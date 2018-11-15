@@ -41,6 +41,10 @@ class QuestionOptionCrudController extends CrudController
 			  'label' => 'Has Sub Option',
 		  	  'type' => 'toggle',
 			  'inline' => true,
+			  'options' => [
+				  0 => 'No',
+				  1 => 'Yes'
+			  ],
 			  'hide_when' => [
 				  0 => ['optiondetail'],
 				  ],
