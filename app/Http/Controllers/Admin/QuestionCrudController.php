@@ -61,19 +61,20 @@ class QuestionCrudController extends CrudController
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		$this->crud->addField([
-			'name' => 'options',
+			'name' => 'optiondetail',
 			'label' => 'Options',
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
 				'select' => 'Option',
-				'checkbox' => 'With Other Answer'
+				'checkbox' => 'With Other Answer',
+				'entity' => 'optiondetail', // the method that defines the relationship in your Model
+				'attribute' => 'option', // foreign key attribute that is shown to user
+				'model' => "App\Models\QuestionOption"
 			],
 			'max' => 5, // maximum rows allowed in the table
-			'min' => 1, // minimum rows allowed in the table
-			'entity' => 'optiondetail', // the method that defines the relationship in your Model
-			'attribute' => 'option', // foreign key attribute that is shown to user
-			'model' => "App\Models\QuestionOption"
+			'min' => 1 // minimum rows allowed in the table
+			
 		]);
 		/*$this->crud->addField(
 			[  // Select2
