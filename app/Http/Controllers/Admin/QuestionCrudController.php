@@ -63,11 +63,11 @@ class QuestionCrudController extends CrudController
 		$this->crud->addField([
 			'name' => 'optiondetail',
 			'label' => 'Options',
-			'type' => 'table',
+			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'option' => 'Option',
-				'with_option_other_ans' => 'With Other Answer'
+				'name' => 'Option',
+				'checkbox' => 'With Other Answer'
 			],
 			'max' => 5, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
