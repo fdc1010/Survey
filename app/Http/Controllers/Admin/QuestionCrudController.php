@@ -68,6 +68,7 @@ class QuestionCrudController extends CrudController
 			'columns' => [
 				'select' => 'Option',
 				'checkbox' => 'With Other Answer',
+				'name' => 'optiondetail',
 				'entity' => 'optiondetail', // the method that defines the relationship in your Model
 				'attribute' => 'option', // foreign key attribute that is shown to user
 				'model' => "App\Models\QuestionOption"
