@@ -35,6 +35,8 @@ class QuestionCrudController extends CrudController
         $this->crud->setFromDb();
 		
 		$this->crud->removeColumn('number_answers');
+		$this->crud->removeColumn('with_other_ans');
+		$this->crud->removeColumn('with_partyselect');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('type_id');
 		$this->crud->addColumn([
