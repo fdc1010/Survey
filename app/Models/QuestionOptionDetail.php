@@ -19,7 +19,7 @@ class QuestionOptionDetail extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['question_id','option_id','with_option_other_ans','description'];
     // protected $hidden = [];
     // protected $dates = [];
 

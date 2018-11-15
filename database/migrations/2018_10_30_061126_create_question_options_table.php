@@ -15,8 +15,7 @@ class CreateQuestionOptionsTable extends Migration
     {
         Schema::create('question_options', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('option')->nullable();
-			$table->boolean('has_sub_options')->default(1);			
+			$table->string('option')->nullable();			
 			$table->integer('priority')->default(0);
             $table->timestamps();
 			

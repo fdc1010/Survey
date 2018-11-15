@@ -16,7 +16,8 @@ class CreateQuestionDetailsTable extends Migration
         Schema::create('question_details', function (Blueprint $table) {
             $table->increments('id');
 			$table->unsignedInteger('question_id');
-			$table->unsignedInteger('option_id');
+			$table->unsignedInteger('option_id');			
+			$table->boolean('with_option_other_ans')->default(1);
 			$table->longText('description')->nullable();
             $table->timestamps();
 			

@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
 			$table->integer('number_answers')->default(1);
 			$table->integer('priority')->default(0);
 			$table->integer('type_id')->default(1);
-			$table->integer('for_position')->default(1);
+			$table->integer('for_position')->nullable();
 			$table->boolean('is_visible')->default(1);
 			$table->boolean('with_other_ans')->default(1);		
 			$table->boolean('with_partyselect')->default(0);
