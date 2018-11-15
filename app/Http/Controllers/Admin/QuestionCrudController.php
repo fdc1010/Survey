@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionRequest as StoreRequest;
 use App\Http\Requests\QuestionRequest as UpdateRequest;
@@ -36,15 +35,15 @@ class QuestionCrudController extends CrudController
         $this->crud->setFromDb();
 		
 		$this->crud->removeColumn('number_answers');
+		$this->crud->removeColumn('options');
+		$this->crud->removeField('number_answers');
+		$this->crud->removeField('type_id');
+		$this->crud->removeField('options');
 		$this->crud->addColumn([
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
-	    ]);
-		$this->crud->removeColumn('options');
-		$this->crud->removeField('options');
-		$this->crud->removeField('number_answers');
-		$this->crud->removeField('type_id');
+	    ]);				
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
@@ -60,7 +59,7 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'type_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'name' => 'options',
 			'label' => 'Options',
 			'type' => 'table',
@@ -70,7 +69,18 @@ class QuestionCrudController extends CrudController
 			],
 			'max' => 5, // maximum rows allowed in the table
 			'min' => 0, // minimum rows allowed in the table
-		]);
+		]);*/
+		$this->crud->addField(
+			[  // Select2
+			   'label' => "Options",
+			   'type' => 'select2_multiple',
+			   'name' => 'optiondetail', // the db column for the foreign key
+			   'entity' => 'optiondetail', // the method that defines the relationship in your Model
+			   'attribute' => 'option', // foreign key attribute that is shown to user
+			   'model' => "App\Models\QuestionOption", // foreign key model
+			   'pivot' => true,
+			   'select_all' => true
+			]);
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -82,16 +92,15 @@ class QuestionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$id = $this->crud->entry->id; // <-- SHOULD WORK
+		/*$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->options;
-		
 		foreach($options as $option){
 			$opsval = $option['option'];
-			$questionoptions = QuestionOption::create([
-				'question_id' => $id,
-				'option' => $opsval
+			$questionoptions = QuestionDetail::create([
+				'question_id' => $qid,
+				'option_id' => $optid
 			]);			
-		}
+		}*/
         return $redirect_location;
     }
 

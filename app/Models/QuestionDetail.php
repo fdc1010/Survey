@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class QuestionOption extends Model
+class QuestionDetail extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class QuestionOption extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'question_options';
+    protected $table = 'question_details';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['question_id', 'option','priority','has_sub_options'];
+    protected $fillable = ['question_id','option_id'];
     // protected $hidden = [];
     // protected $dates = [];
 

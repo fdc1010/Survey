@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Survey</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -83,7 +83,7 @@
                 <div class="title m-b-md">Welcome!</div>
 
                 <div class="links">
-                <a href="https://45.77.33.243/survey/admin">survey</a></div>
+                <a href="{{ backpack_url('admin') }}">Click here to access admin</a></div>
             </div>
         </div>
     </body>
