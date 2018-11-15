@@ -34,8 +34,7 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeField('has_sub_options');
-		$this->crud->addField([
+		/*$this->crud->addField([
 			  // Checkbox
 			  'name' => 'has_sub_options',
 			  'label' => 'Has Sub Option',
@@ -60,7 +59,7 @@ class QuestionOptionCrudController extends CrudController
 			   'model' => "App\Models\QuestionSubOption", // foreign key model
 			   'pivot' => true,
 			   'select_all' => true
-			]);
+			]);*/
         // add asterisk for fields that are required in QuestionOptionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

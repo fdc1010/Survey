@@ -36,10 +36,8 @@ class QuestionCrudController extends CrudController
         $this->crud->setFromDb();
 		
 		$this->crud->removeColumn('number_answers');
-		$this->crud->removeColumn('options');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('type_id');
-		$this->crud->removeField('options');
 		$this->crud->addColumn([
             'name' => 'number_answers',
             'type' => 'number',
@@ -60,18 +58,21 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'type_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		/*$this->crud->addField([
-			'name' => 'options',
+		$this->crud->addField([
+			'name' => 'optiondetail',
 			'label' => 'Options',
 			'type' => 'table',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'option' => 'Name'
+				'option' => 'Option'
+				'with_option_other_ans' => 'With Other Answer'
 			],
 			'max' => 5, // maximum rows allowed in the table
-			'min' => 0, // minimum rows allowed in the table
-		]);*/
-		$this->crud->addField(
+			'min' => 1, // minimum rows allowed in the table
+			'model' => "App\Models\QuestionOption", // foreign key model
+		    'pivot' => true
+		]);
+		/*$this->crud->addField(
 			[  // Select2
 			   'label' => "Options",
 			   'type' => 'select2_multiple',
@@ -82,6 +83,21 @@ class QuestionCrudController extends CrudController
 			   'pivot' => true,
 			   'select_all' => true
 			]);
+		$this->crud->addField([
+			  // Checkbox
+			  'name' => 'has_sub_options',
+			  'label' => 'Has Sub Option',
+		  	  'type' => 'toggle',
+			  'inline' => true,
+			  'options' => [
+				  0 => 'No',
+				  1 => 'Yes'
+			  ],
+			  'hide_when' => [
+				  0 => ['optiondetail'],
+				  ],
+			  'default' => 0
+		]);*/
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
