@@ -83,7 +83,7 @@
                 <div class="title m-b-md">Welcome!</div>
 
                 <div class="links">
-                <a href="https://45.77.33.243/survey">survey</a></div>
+                <a href="https://45.77.33.243/survey/admin">survey</a></div>
             </div>
         </div>
     </body>
