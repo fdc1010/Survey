@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\QuestionOptionRequest as StoreRequest;
-use App\Http\Requests\QuestionOptionRequest as UpdateRequest;
+use App\Http\Requests\QuestionOptionDetailRequest as StoreRequest;
+use App\Http\Requests\QuestionOptionDetailRequest as UpdateRequest;
 
 /**
- * Class QuestionOptionCrudController
+ * Class QuestionOptionDetailCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class QuestionOptionCrudController extends CrudController
+class QuestionOptionDetailCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class QuestionOptionCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\QuestionOption');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/questionoption');
-        $this->crud->setEntityNameStrings('question option', 'Question Options');
+        $this->crud->setModel('App\Models\QuestionOptionDetail');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/questionoptiondetail');
+        $this->crud->setEntityNameStrings('questionoptiondetail', 'question_option_details');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,30 +34,8 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeField('has_sub_options');
-		$this->crud->addField([
-			  // Checkbox
-			  'name' => 'has_sub_options',
-			  'label' => 'Has Sub Option',
-		  	  'type' => 'toggle',
-			  'inline' => true,
-			  'hide_when' => [
-				  0 => ['optiondetail'],
-				  ],
-			  'default' => 0
-		]);
-		$this->crud->addField(
-			[  // Select2
-			   'label' => "Options",
-			   'type' => 'select2_multiple',
-			   'name' => 'optiondetail', // the db column for the foreign key
-			   'entity' => 'optiondetail', // the method that defines the relationship in your Model
-			   'attribute' => 'option', // foreign key attribute that is shown to user
-			   'model' => "App\Models\QuestionOption", // foreign key model
-			   'pivot' => true,
-			   'select_all' => true
-			]);
-        // add asterisk for fields that are required in QuestionOptionRequest
+
+        // add asterisk for fields that are required in QuestionOptionDetailRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
