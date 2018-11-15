@@ -69,6 +69,7 @@ class QuestionCrudController extends CrudController
 				'checkbox' => 'With Other Answer',
 				'select' => $this->crud->addField([
 								'label' => '',
+								'type' => 'select',
 								'name' => 'optiondetail', // the db column for the foreign key
 								'entity' => 'optiondetail', // the method that defines the relationship in your Model
 								'attribute' => 'option', // foreign key attribute that is shown to user
