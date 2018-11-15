@@ -64,7 +64,7 @@ class QuestionCrudController extends CrudController
 			'type' => 'table',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'option' => 'Option'
+				'option' => 'Option',
 				'with_option_other_ans' => 'With Other Answer'
 			],
 			'max' => 5, // maximum rows allowed in the table
