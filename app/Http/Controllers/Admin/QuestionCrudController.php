@@ -66,8 +66,8 @@ class QuestionCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'name' => 'Option',
-				'checkbox' => 'With Other Answer'
+				'option' => 'Option',
+				'checkbox' => 'With Other Answer',
 			],
 			'max' => 5, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
