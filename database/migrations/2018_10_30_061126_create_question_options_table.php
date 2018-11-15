@@ -15,13 +15,11 @@ class CreateQuestionOptionsTable extends Migration
     {
         Schema::create('question_options', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('question_id');
 			$table->string('option')->nullable();
 			$table->boolean('has_sub_options')->default(1);			
 			$table->integer('priority')->default(0);
             $table->timestamps();
 			
-			$table->foreign('question_id')->references('id')->on('questions');
         });
     }
 
