@@ -24,7 +24,7 @@ class QuestionSubOptionCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\QuestionSubOption');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/questionsuboption');
-        $this->crud->setEntityNameStrings('questionsuboption', 'question_sub_options');
+        $this->crud->setEntityNameStrings('question sub-option', 'Question Sub-Options');
 
         /*
         |--------------------------------------------------------------------------
