@@ -54,10 +54,10 @@ class QuestionOptionCrudController extends CrudController
 			[  // Select2
 			   'label' => "Options",
 			   'type' => 'select2_multiple',
-			   'name' => 'optiondetail', // the db column for the foreign key
-			   'entity' => 'optiondetail', // the method that defines the relationship in your Model
-			   'attribute' => 'option', // foreign key attribute that is shown to user
-			   'model' => "App\Models\QuestionOption", // foreign key model
+			   'name' => 'suboptiondetail', // the db column for the foreign key
+			   'entity' => 'suboptiondetail', // the method that defines the relationship in your Model
+			   'attribute' => 'sub_option', // foreign key attribute that is shown to user
+			   'model' => "App\Models\QuestionSubOption", // foreign key model
 			   'pivot' => true,
 			   'select_all' => true
 			]);
