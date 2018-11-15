@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\QuestionOptionRequest as StoreRequest;
-use App\Http\Requests\QuestionOptionRequest as UpdateRequest;
+use App\Http\Requests\QuestionDetailRequest as StoreRequest;
+use App\Http\Requests\QuestionDetailRequest as UpdateRequest;
 
 /**
- * Class QuestionOptionCrudController
+ * Class QuestionDetailCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class QuestionOptionCrudController extends CrudController
+class QuestionDetailCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class QuestionOptionCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\QuestionOption');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/questionoption');
-        $this->crud->setEntityNameStrings('question option', 'Question Options');
+        $this->crud->setModel('App\Models\QuestionDetail');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/questiondetail');
+        $this->crud->setEntityNameStrings('questiondetail', 'question_details');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,14 +34,8 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeField('has_sub_options');
-		$this->crud->addField([
-			  // Checkbox
-			  'name' => 'has_sub_options',
-			  'label' => 'Has Sub Option',
-		  	  'type' => 'checkbox'
-		]);
-        // add asterisk for fields that are required in QuestionOptionRequest
+
+        // add asterisk for fields that are required in QuestionDetailRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
