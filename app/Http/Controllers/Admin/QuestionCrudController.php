@@ -68,10 +68,12 @@ class QuestionCrudController extends CrudController
 			'columns' => [
 				'option' => 'Option',
 				'checkbox' => 'With Other Answer',
-				'name' => 'optiondetail', // the db column for the foreign key
-			   	'entity' => 'optiondetail', // the method that defines the relationship in your Model
-			   	'attribute' => 'option', // foreign key attribute that is shown to user
-			   	'model' => "App\Models\QuestionOption"
+				'select' => [
+					'name' => 'optiondetail', // the db column for the foreign key
+					'entity' => 'optiondetail', // the method that defines the relationship in your Model
+					'attribute' => 'option', // foreign key attribute that is shown to user
+					'model' => "App\Models\QuestionOption"
+				]
 			],
 			'max' => 5, // maximum rows allowed in the table
 			'min' => 1 // minimum rows allowed in the table
