@@ -68,13 +68,12 @@ class QuestionCrudController extends CrudController
 				'option' => 'Option',
 				'checkbox' => 'With Other Answer',
 				'select' => $this->crud->addField([
-								//'label' => "Type",
-								'type' => 'select',
-								'name' => 'optiondetail', // the relationship name in your Model
-								'entity' => 'optiondetail', // the relationship name in your Model
-								'attribute' => 'option', // attribute on Article that is shown to admin
-								'model' => "App\Models\QuestionOption" // on create&update, do you need to add/delete pivot table entries?
-							])				
+								'label' => '',
+								'name' => 'optiondetail', // the db column for the foreign key
+								'entity' => 'optiondetail', // the method that defines the relationship in your Model
+								'attribute' => 'option', // foreign key attribute that is shown to user
+								'model' => "App\Models\QuestionOption"
+							])
 			],
 			'max' => 5, // maximum rows allowed in the table
 			'min' => 1 // minimum rows allowed in the table
