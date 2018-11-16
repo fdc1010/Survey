@@ -21,7 +21,7 @@ class VoterController extends Controller
         return view('importexcel');
     }
 	public function extramiddlename(){
-		$voters = Voters::get();
+		$voters = Voter::get();
 		
 		foreach($voters as $voter){
 			$explodefm = explode(" ",$voter->first_name);
