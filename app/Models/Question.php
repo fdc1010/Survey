@@ -30,11 +30,11 @@ class Question extends Model
 	
 	public function choices()
     {
-        return $this->belongsToMany('App\Models\QuestionOption','App\Models\QuestionDetail')->withPivot('question_id','option_id');
+        return $this->belongsToMany('App\Models\QuestionOption','question_details')->withPivot('question_id','option_id');
     }
 	public function questiondetail()
     {
-        return $this->belongsToMany('App\Models\Question','App\Models\QuestionDetail')->withPivot('question_id','option_id');
+        return $this->belongsToMany('App\Models\Question','question_details')->withPivot('question_id','option_id');
     }
 	public function type()
     {
