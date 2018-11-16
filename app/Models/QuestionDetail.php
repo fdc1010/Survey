@@ -22,7 +22,14 @@ class QuestionDetail extends Model
     protected $fillable = ['question_id','option_id'];
     // protected $hidden = [];
     // protected $dates = [];
-	
+	public function question()
+    {
+        return $this->belongsTo('App\Models\Question','question_id');
+    }
+	public function option()
+    {
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
