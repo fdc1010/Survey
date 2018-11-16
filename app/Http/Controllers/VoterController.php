@@ -26,7 +26,11 @@ class VoterController extends Controller
 		foreach($voters as $voter){
 			$explodefm = explode(" ",$voter->first_name);
 			echo $voter->first_name . " : ";
-			echo (count($explodefm)>1?$explodefm[0]." ".$explodefm[count($explodefm)-1]:$voter->first_name)."<br>";
+			if(count($explodefm)>1){
+				$curvoter = Voter::find($voter->id);
+				$curvoter->middlename = $explodefm[count($explodefm)-1];
+				$curvoter->save();
+			}
 		}
 	}
 	public function importvoters(Request $request){
