@@ -49,7 +49,7 @@ class QuestionCrudController extends CrudController
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
-			'value' => 0,
+			'value' => 1,
 	    ]);
 		
 		$this->crud->addField([
@@ -62,7 +62,7 @@ class QuestionCrudController extends CrudController
 		]);
 		$this->crud->addField([
 			'name' => 'options',
-			'label' => 'Options',
+			'label' => 'Choices',
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
