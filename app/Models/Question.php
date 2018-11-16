@@ -34,7 +34,7 @@ class Question extends Model
     }
 	public function questiondetail()
     {
-        return $this->belongsToMany('App\Models\Question','App\Models\QuestionDetail');
+        return $this->belongsToMany('App\Models\Question','App\Models\QuestionDetail')->withPivot('question_id','option_id');
     }
 	public function type()
     {
