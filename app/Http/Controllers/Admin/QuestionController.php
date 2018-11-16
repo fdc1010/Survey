@@ -21,7 +21,7 @@ class QuestionController extends Controller
 		$result = QuestionDetail::with(['question'=>function($q){
 											$q->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
-													'with_partyselect']);	
+													'with_partyselect'])->groupby('id');	
 										},'option'=>function($o){
 											$o->select(['id','option','priority']);
 										}])->get();
