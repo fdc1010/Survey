@@ -26,7 +26,7 @@ class CreateVotersTable extends Migration
 			$table->decimal('age',10,2)->nullable();
 			$table->enum('gender', ['M', 'F']);
 			$table->longText('profilepic')->nullable();
-			$table->string('baranggay');
+			$table->string('baranggay')->nullable();
 			$table->integer('status_id')->nullable();
 			$table->integer('seq_num')->nullable();
             $table->timestamps();
