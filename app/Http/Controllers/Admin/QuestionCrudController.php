@@ -70,7 +70,7 @@ class QuestionCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'questionoptions', // used on the "Add X" button
 			'columns' => [
-				'name' => 'options',
+				'option' => 'Name',
 				'select' => 'Option',
 				'checkbox' => 'With Other Answer',
 				'entity' => 'optiondetail', // the method that defines the relationship in your Model
