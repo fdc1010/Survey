@@ -24,11 +24,11 @@ class QuestionDetail extends Model
     // protected $dates = [];
 	public function question()
     {
-        return $this->belongsToMany('App\Models\Question');
+        return $this->belongsTo('App\Models\Question');
     }
 	public function option()
     {
-        return $this->belongsToMany('App\Models\QuestionOption');
+        return $this->belongsTo('App\Models\QuestionOption');
     }
     /*
     |--------------------------------------------------------------------------
