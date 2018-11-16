@@ -23,6 +23,7 @@ class QuestionController extends Controller
 													'type_id','for_position','with_other_ans',
 													'with_partyselect']);
 										}])
+									->select(['question_id','option_id','with_option_other_ans'])
 									->get();
 		/*$result = Question::with(['choices'=>function($c){
 								$c->select(['id','option','priority']);
