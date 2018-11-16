@@ -41,6 +41,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('options');
 		$this->crud->removeField('type_id');
+		$this->crud->removeField('with_other_ans');
 		$this->crud->addColumn([
             'name' => 'number_answers',
             'type' => 'number',
@@ -76,7 +77,7 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'option', // foreign key attribute that is shown to user
 			'model' => "App\Models\QuestionOption"
 		]);
-		$this->crud->addColumn([
+		$this->crud->addField([
             'name' => 'with_other_ans',
 			'label' => 'With other answer',
 			'type' => 'checkbox'
