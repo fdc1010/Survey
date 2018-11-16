@@ -24,7 +24,7 @@ class QuestionOption extends Model
     // protected $dates = [];
 	public function questions()
     {
-        return $this->belongsToMany('App\Models\Question');
+        return $this->belongsToMany('App\Models\Question','question_details','question_id','option_id');
     }
     /*
     |--------------------------------------------------------------------------
