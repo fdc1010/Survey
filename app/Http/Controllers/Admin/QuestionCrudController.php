@@ -84,7 +84,7 @@ class QuestionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'with_partyselect',
-			'label' => 'Inable for Vote Straight',
+			'label' => 'Enable for Vote Straight',
 			'type' => 'checkbox'
 	    ]);
 		/*$this->crud->addField(
