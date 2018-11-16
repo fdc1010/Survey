@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\QuestionDetail;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -17,9 +18,13 @@ class QuestionController extends Controller
         //
     }
 	public function getQuestions(Request $request){
-		$result = Question::select(['question','number_answers','priority',
-									'type_id','for_position','with_other_ans',
-									'with_partyselect'])->get();
+		$result = QuestionDetail::with(['question'=>function($q){
+											$q->select(['id','question','number_answers','priority',
+													'type_id','for_position','with_other_ans',
+													'with_partyselect']);	
+										},'option'=>function($o){
+											$o->select(['id','option','priority']);
+										}])->get();
 		return response()->json($result);
 		
 	}
