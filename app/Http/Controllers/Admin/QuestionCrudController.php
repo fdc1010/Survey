@@ -78,8 +78,7 @@ class QuestionCrudController extends CrudController
 			'min' => 1, // minimum rows allowed in the table
 			'entity' => 'optiondetail', // the method that defines the relationship in your Model
 			'attribute' => 'option', // foreign key attribute that is shown to user
-			'model' => "App\Models\QuestionOption",
-			'pivot' => false
+			'model' => "App\Models\QuestionOption"
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
