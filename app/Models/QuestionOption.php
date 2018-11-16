@@ -22,7 +22,10 @@ class QuestionOption extends Model
     protected $fillable = ['option','priority'];
     // protected $hidden = [];
     // protected $dates = [];
-	
+	public function questionoption()
+    {
+        return $this->hasMany('App\Models\QuestionDetail','option_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
