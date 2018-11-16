@@ -28,7 +28,7 @@ class VoterController extends Controller
 			echo $voter->first_name . " : ";
 			if(count($explodefm)>1){
 				$curvoter = Voter::find($voter->id);
-				$curvoter->middlename = $explodefm[count($explodefm)-1];
+				$curvoter->middle_name = $explodefm[count($explodefm)-1];
 				$curvoter->save();
 			}
 		}
