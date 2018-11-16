@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\QuestionDetail;
 use Illuminate\Http\Request;
