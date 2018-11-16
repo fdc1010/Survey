@@ -85,7 +85,7 @@ class VoterController extends Controller
                         'precinct_municipality' => $value->municipality,
 						'precinct_province' => $value->province,
                         ];
-						dd($value);
+						
                     }
  
                     if(!empty($insert)){
