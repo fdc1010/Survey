@@ -35,14 +35,14 @@ class VoterCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['address','age','contact','birth_date','birth_place','status_id']);
-		/*$this->crud->addColumn([
+		$this->crud->addColumn([
             'name' => 'status_id',
-            'type' => 'text',
+            'type' => 'select',
             'label' => 'Status',
 			'entity' => 'statusname', // the relationship name in your Model
 			'attribute' => 'status', // attribute on Article that is shown to admin
 			'model' => "App\Models\VoterStatus"
-	    ]);*/
+	    ]);
 		
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
