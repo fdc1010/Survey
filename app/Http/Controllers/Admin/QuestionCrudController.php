@@ -37,6 +37,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumn('number_answers');
 		$this->crud->removeColumn('with_other_ans');
 		$this->crud->removeColumn('with_partyselect');
+		$this->crud->removeField('with_partyselect');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('options');
 		$this->crud->removeField('type_id');
@@ -79,6 +80,11 @@ class QuestionCrudController extends CrudController
 		$this->crud->addField([
             'name' => 'with_other_ans',
 			'label' => 'With other answer',
+			'type' => 'checkbox'
+	    ]);
+		$this->crud->addField([
+            'name' => 'with_partyselect',
+			'label' => 'Inable for Vote Straight',
 			'type' => 'checkbox'
 	    ]);
 		/*$this->crud->addField(
