@@ -75,7 +75,7 @@ class QuestionCrudController extends CrudController
 			],
 			'max' => 100, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
-			'entity' => 'questiondetail', // the method that defines the relationship in your Model
+			'entity' => 'choices', // the method that defines the relationship in your Model
 			'attribute' => 'option', // foreign key attribute that is shown to user
 			'model' => "App\Models\QuestionOption"			
 		]);
