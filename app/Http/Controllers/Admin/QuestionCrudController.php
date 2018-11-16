@@ -75,6 +75,11 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'option', // foreign key attribute that is shown to user
 			'model' => "App\Models\QuestionOption"
 		]);
+		$this->crud->addColumn([
+            'name' => 'with_other_ans',
+			'label' => 'With other answer',
+			'type' => 'checkbox'
+	    ]);
 		/*$this->crud->addField(
 			[  // Select2
 			   'label' => "Options",
