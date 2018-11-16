@@ -39,6 +39,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumn('with_other_ans');
 		$this->crud->removeColumn('with_partyselect');
 		$this->crud->removeColumn('for_position');
+		$this->crud->removeColumn('options');
 		$this->crud->removeField('with_partyselect');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('options');
