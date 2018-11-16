@@ -25,7 +25,7 @@ class QuestionController extends Controller
 										},'option'=>function($o){
 											$o->select(['id','option','priority']);
 										}])->get();*/
-		$result = Question::get();
+		$result = Question::with('choices')->get();
 		return response()->json($result);
 		
 	}
