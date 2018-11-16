@@ -18,9 +18,7 @@ class QuestionController extends Controller
     }
 	public function getQuestions(Request $request){
 		$result = QuestionDetail::with(['question'=>function($q){
-											$q->with(['choices'=>function($o){
-														  $o->select(['id','option','priority']);
-													  }]
+											$q->with('choices')
 											  ->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect']);
