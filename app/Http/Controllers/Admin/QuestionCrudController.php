@@ -7,7 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionRequest as StoreRequest;
 use App\Http\Requests\QuestionRequest as UpdateRequest;
-
+use App\Models\QuestionDetail;
 /**
  * Class QuestionCrudController
  * @package App\Http\Controllers\Admin
