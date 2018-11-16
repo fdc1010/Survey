@@ -61,7 +61,7 @@
 </div>
 @endif
  
-<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('importvoters') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     Choose your xls/csv File : <input type="file" name="file" class="form-control">
  
