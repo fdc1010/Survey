@@ -26,5 +26,5 @@ Route::group([
     CRUD::resource('questiondetail', 'QuestionDetailCrudController');
     CRUD::resource('questionoptiondetail', 'QuestionOptionDetailCrudController');
     CRUD::resource('position', 'PositionCrudController');
-	
+	Route::get('getQuestions','QuestionController@getQuestions');
 }); // this should be the absolute last line of this file
