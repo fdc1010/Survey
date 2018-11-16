@@ -28,9 +28,13 @@ class Question extends Model
 	
 	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options'];
 	
-	public function optiondetail()
+	public function choices()
     {
-        return $this->belongsToMany('App\Models\QuestionOption','question_details','option_id','question_id');
+        return $this->belongsToMany('App\Models\QuestionOption');
+    }
+	public function questiondetail()
+    {
+        return $this->belongsToMany('App\Models\Question','App\Models\QuestionDetail');
     }
 	public function type()
     {
