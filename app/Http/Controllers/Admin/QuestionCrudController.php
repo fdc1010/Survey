@@ -73,7 +73,7 @@ class QuestionCrudController extends CrudController
 				'select' => 'Option',
 				'checkbox' => 'With Other Answer'
 			],
-			'max' => 5, // maximum rows allowed in the table
+			'max' => 100, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
 			'entity' => 'optiondetail', // the method that defines the relationship in your Model
 			'attribute' => 'option', // foreign key attribute that is shown to user
