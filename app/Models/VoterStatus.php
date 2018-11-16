@@ -22,7 +22,10 @@ class VoterStatus extends Model
     protected $fillable = ['status', 'name','description'];
     // protected $hidden = [];
     // protected $dates = [];
-	
+	public function voterstatus()
+    {
+        return $this->belongsToMany('App\Models\Voter','status_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
