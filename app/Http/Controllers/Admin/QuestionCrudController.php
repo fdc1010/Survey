@@ -159,9 +159,5 @@ class QuestionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
-	public function getQuestions(Request $request){
-		$result = $this->crud->getEntries();
-		$response = response()->json($result);
-		dd($response);
-	}
+	
 }
