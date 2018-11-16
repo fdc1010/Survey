@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Response;
+use Illuminate\Http\Request;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionRequest as StoreRequest;
@@ -158,4 +159,9 @@ class QuestionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
+	public function getQuestions(Request $request){
+		$result = $this->crud->getEntries();
+		$response = response()->json($result);
+		dd($response);
+	}
 }
