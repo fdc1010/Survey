@@ -23,7 +23,10 @@ class Voter extends Model
 							'address', 'birth_place','age','gender', 'profilepic','baranggay','status_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function status()
+    {
+        return $this->belongsTo('App\Models\VoterStatus','status_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
