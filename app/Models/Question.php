@@ -34,7 +34,7 @@ class Question extends Model
     }
 	public function questionoptions()
 	{
-		return $this->hasManyThrough('App\Models\QuestionDetail','App\Models\QuestionOption');	
+		return $this->hasManyThrough('App\Models\QuestionDetail','App\Models\QuestionOption','question_id','option_id','id','id');	
 	}
 	public function type()
     {
