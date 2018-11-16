@@ -16,7 +16,11 @@ class QuestionController extends Controller
     {
         //
     }
-
+	public function getQuestions(Request $request){
+		$result = Question::get();
+		$response = response()->json($result);
+		dd($response);
+	}
     /**
      * Show the form for creating a new resource.
      *
