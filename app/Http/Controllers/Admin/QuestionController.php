@@ -17,7 +17,9 @@ class QuestionController extends Controller
         //
     }
 	public function getQuestions(Request $request){
-		$result = Question::get();
+		$result = Question::select(['question','number_answers','priority',
+									'type_id','for_position','with_other_ans',
+									'with_partyselect'])->get();
 		return response()->json($result);
 		
 	}
