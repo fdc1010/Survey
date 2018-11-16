@@ -134,11 +134,11 @@ class QuestionCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        //$redirect_location = parent::storeCrud($request);
+        $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		//$qid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry;
+		$options = $this->crud->entry->select;
 		dd($options);
 		foreach($options as $option){
 			$opsval = $option['option'];
