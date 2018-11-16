@@ -34,7 +34,7 @@ class Question extends Model
     }
 	public function questiondetail()
     {
-        return $this->belongsTo('App\Models\QuestionDetail','question_id');
+        return $this->hasMany('App\Models\QuestionDetail','question_id');
     }
 	public function type()
     {
