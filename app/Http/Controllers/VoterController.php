@@ -44,6 +44,7 @@ class VoterController extends Controller
 						'address' => $value->address,
 						'precinct_id' => $value->prec,
                         ];
+						dd($value);
                     }
  
                     if(!empty($insert)){
