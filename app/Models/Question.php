@@ -30,7 +30,7 @@ class Question extends Model
 	
 	public function optiondetail()
     {
-        return $this->belongsToMany('App\Models\QuestionDetail');
+        return $this->hasMany('App\Models\QuestionDetail');
     }
 	public function type()
     {
