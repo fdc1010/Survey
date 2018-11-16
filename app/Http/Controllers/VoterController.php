@@ -36,13 +36,13 @@ class VoterController extends Controller
                 if(!empty($data) && $data->count()){
  
                     foreach ($data as $key => $value) {
-                        $insert[] = [
-                        'seq_num' => $value->no,
+                        $insert[] = [						
+						'precinct_id' => $value->precinct,
+                        'seq_num' => $value->seqnum,
                         'status_id' => $value->status,
                         'last_name' => $value->lastname,
 						'first_name' => $value->firstname,
 						'address' => $value->address,
-						'precinct_id' => $value->precinct,
                         ];
                     }
  
