@@ -42,7 +42,7 @@ class VoterController extends Controller
                         'last_name' => $value->lastname,
 						'first_name' => $value->firstname,
 						'address' => $value->address,
-						'precinct_id' => $value->prec,
+						'precinct_id' => $value->precinct,
                         ];
                     }
  
