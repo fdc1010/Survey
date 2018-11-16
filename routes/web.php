@@ -12,6 +12,7 @@
 */
 Route::get('getQuestions','QuestionController@getQuestions');
 Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+Route::post('import', 'VoterController@import')->name('import');
 Route::get('/', function () {
     return view('welcome');
 });
