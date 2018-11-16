@@ -20,6 +20,14 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
+	public function extramiddlename(){
+		$voters = Voters::get();
+		
+		foreach($voters as $voter){
+			$explodefm = explode(" ",$voter->first_name);
+			echo (count($explodefm)>1?$explodefm[0]." ".$explodefm[count($explodefm)-1]:$voter->first_name);
+		}
+	}
 	public function importvoters(Request $request){
         //validate the xls file
         $this->validate($request, array(
