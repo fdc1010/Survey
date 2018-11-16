@@ -11,6 +11,7 @@
 |
 */
 Route::get('getQuestions','QuestionController@getQuestions');
+Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('/', function () {
     return view('welcome');
 });
