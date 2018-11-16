@@ -20,7 +20,7 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
-	public function import(Request $request){
+	public function importvoters(Request $request){
         //validate the xls file
         $this->validate($request, array(
             'file'      => 'required'
@@ -37,15 +37,18 @@ class VoterController extends Controller
  
                     foreach ($data as $key => $value) {
                         $insert[] = [
-                        'name' => $value->name,
-                        'email' => $value->email,
-                        'phone' => $value->phone,
+                        'seq_num' => $value->no,
+                        'status_id' => $value->status,
+                        'last_name' => $value->lastname,
+						'first_name' => $value->firstname,
+						'address' => $value->address,
+						'precinct_id' => $value->prec,
                         ];
                     }
  
                     if(!empty($insert)){
  
-                        $insertData = DB::table('students')->insert($insert);
+                        $insertData = DB::table('voters')->insert($insert);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
                         }else {                        

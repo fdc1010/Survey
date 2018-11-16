@@ -14,7 +14,7 @@ Route::get('getQuestions','QuestionController@getQuestions');
 Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('importexcel', 'VoterController@index')->name('index');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
-Route::post('import', 'VoterController@import')->name('import');
+Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
 Route::get('/', function () {
     return view('welcome');
 });
