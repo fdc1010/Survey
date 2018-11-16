@@ -17,7 +17,7 @@ class QuestionController extends Controller
         //
     }
 	public function getQuestions(Request $request){
-		$result = QuestionDetail::with(['question'=>function($q){
+		/*$result = QuestionDetail::with(['question'=>function($q){
 											$q->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect']);
@@ -25,14 +25,17 @@ class QuestionController extends Controller
 											$op->select(['id','option','priority']);
 										}])
 									->select(['question_id','option_id','with_option_other_ans'])
-									->get();
-		/*$result = Question::with(['choices'=>function($c){
-								$c->select(['id','option','priority']);
+									->get();*/
+		$result = Question::with(['questiondetail'=>function($qd){
+								$qd->select(['question_id','option_id','with_option_other_ans'])
+									->with(['option'=>function($op){
+											$op->select(['id','option','priority']);
+										}]);
 							}])
 							->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect'])
-							->get();*/
+							->get();
 		return response()->json($result);
 		
 	}
