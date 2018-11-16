@@ -27,7 +27,7 @@ class QuestionController extends Controller
 									->select(['question_id','option_id','with_option_other_ans'])
 									->get();*/
 		$result = Question::with(['questiondetail'=>function($qd){
-								$qd->select(['with_option_other_ans'])
+								$qd->select(['question_id','option_id','with_option_other_ans'])
 									->with(['option'=>function($op){
 											$op->select(['id','option','priority']);
 										}]);
