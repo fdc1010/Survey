@@ -34,11 +34,10 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['address','age','contact','birth_date','birth_place','status_id']);
-		$this->crud->addColumn([
+		$this->crud->removeColumn(['address','age','contact','birth_date','birth_place']);
+		$this->crud->setColumnDetails('status_id',['label' => 'Status',
             'name' => 'status_id',
             'type' => 'text',
-            'label' => 'Status',
 			'entity' => 'statusname', // the relationship name in your Model
 			'attribute' => 'status', // attribute on Article that is shown to admin
 			'model' => "App\Models\VoterStatus"
