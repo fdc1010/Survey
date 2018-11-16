@@ -37,7 +37,7 @@ class VoterCrudController extends CrudController
 		$this->crud->removeColumn(['address','age','contact','birth_date','birth_place','status_id']);
 		$this->crud->addColumn([
             'name' => 'status_id',
-            'type' => 'label',
+            'type' => 'text',
             'label' => 'Status',
 			'entity' => 'status', // the relationship name in your Model
 			'attribute' => 'status', // attribute on Article that is shown to admin
