@@ -14,11 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-	
+
 Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
     // Backpack\MenuCRUD
     CRUD::resource('menu-item', 'MenuItemCrudController');
-	Route::get('getQuestions','QuestionController@getQuestions');
+	
 });
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
 Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
