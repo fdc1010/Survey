@@ -18,13 +18,14 @@ class QuestionController extends Controller
         //
     }
 	public function getQuestions(Request $request){
-		$result = QuestionDetail::with(['question'=>function($q){
+		/*$result = QuestionDetail::with(['question'=>function($q){
 											$q->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect'])->groupby('id');	
 										},'option'=>function($o){
 											$o->select(['id','option','priority']);
-										}])->get();
+										}])->get();*/
+		$result = Question::get();
 		return response()->json($result);
 		
 	}
