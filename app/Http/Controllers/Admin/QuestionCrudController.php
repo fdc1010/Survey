@@ -70,16 +70,14 @@ class QuestionCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'choices', // used on the "Add X" button
 			'columns' => [
-				'name' => 'options',
 				'select' => 'Option',
-				'checkbox' => 'With Other Answer',
-				'entity' => 'choices', // the method that defines the relationship in your Model
-				'attribute' => 'option', // foreign key attribute that is shown to user
-				'model' => "App\Models\QuestionOption"
+				'checkbox' => 'With Other Answer'
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1 // minimum rows allowed in the table
-						
+			'min' => 1, // minimum rows allowed in the table
+			'entity' => 'choices', // the method that defines the relationship in your Model
+			'attribute' => 'option', // foreign key attribute that is shown to user
+			'model' => "App\Models\QuestionOption"			
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
