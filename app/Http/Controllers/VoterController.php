@@ -18,7 +18,7 @@ class VoterController extends Controller
      */
     public function index()
     {
-        //
+        return view('importexcel');
     }
 	public function import(Request $request){
         //validate the xls file
