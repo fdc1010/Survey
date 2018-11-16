@@ -38,11 +38,13 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumn('number_answers');
 		$this->crud->removeColumn('with_other_ans');
 		$this->crud->removeColumn('with_partyselect');
+		$this->crud->removeColumn('for_position');
 		$this->crud->removeField('with_partyselect');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('options');
 		$this->crud->removeField('type_id');
 		$this->crud->removeField('with_other_ans');
+		$this->crud->removeField('for_position');
 		$this->crud->addColumn([
             'name' => 'number_answers',
             'type' => 'number',
@@ -88,6 +90,14 @@ class QuestionCrudController extends CrudController
 			'label' => 'Enable for Vote Straight',
 			'type' => 'checkbox'
 	    ]);
+		$this->crud->addField([
+			'label' => "For Position",
+			'type' => 'select',
+			'name' => 'for_position', // the relationship name in your Model
+			'entity' => 'forposition', // the relationship name in your Model
+			'attribute' => 'position_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
+		]);
 		/*$this->crud->addField(
 			[  // Select2
 			   'label' => "Options",

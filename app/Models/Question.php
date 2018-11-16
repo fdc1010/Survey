@@ -36,6 +36,10 @@ class Question extends Model
     {
         return $this->belongsTo('App\Models\QuestionType','type_id');
     }
+	public function forposition()
+    {
+        return $this->belongsTo('App\Models\PositionCandidate','for_position');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
