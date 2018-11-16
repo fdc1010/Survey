@@ -30,8 +30,12 @@ class Question extends Model
 	
 	public function optiondetail()
     {
-        return $this->hasMany('App\Models\QuestionDetail','question_id');
+        return $this->hasMany('App\Models\QuestionDetail','question_id','option_id');
     }
+	public function questionoptions()
+	{
+		return $this->hasManyThrough('App\Models\QuestionDetail','App\Models\QuestionOption');	
+	}
 	public function type()
     {
         return $this->belongsTo('App\Models\QuestionType','type_id');
