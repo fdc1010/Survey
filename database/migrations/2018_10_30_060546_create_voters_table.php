@@ -18,7 +18,7 @@ class CreateVotersTable extends Migration
 			$table->unsignedInteger('precinct_id');
 			$table->string('first_name');
 			$table->string('last_name');
-			$table->string('middle_name');
+			$table->string('middle_name')->nullable();
 			$table->dateTime('birth_date')->nullable();
 			$table->string('contact')->nullable();
 			$table->string('address')->nullable();

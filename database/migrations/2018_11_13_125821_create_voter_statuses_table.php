@@ -16,8 +16,8 @@ class CreateVoterStatusesTable extends Migration
         Schema::create('voter_statuses', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('status');
-			$table->string('name');
-			$table->longText('description');
+			$table->string('name')->nullable();
+			$table->longText('description')->nullable();
             $table->timestamps();
         });
     }

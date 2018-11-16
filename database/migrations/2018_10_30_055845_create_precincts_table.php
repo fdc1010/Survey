@@ -16,8 +16,9 @@ class CreatePrecinctsTable extends Migration
         Schema::create('precincts', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('precinct_number');
-			$table->string('precinct_location');
-			$table->string('precinct_baranggay');
+			$table->string('precinct_province')->nullable();
+			$table->string('precinct_baranggay')->nullable();
+			$table->string('precinct_municipality')->nullable();
             $table->timestamps();
         });
     }

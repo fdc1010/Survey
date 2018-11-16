@@ -17,7 +17,7 @@ class CreateTallyVotesTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('candidate_id');
 			$table->integer('voter_id');
-			$table->integer('tally');
+			$table->integer('tally')->default(0);
             $table->timestamps();
 			
 			$table->foreign('candidate_id')->references('id')->on('candidates');
