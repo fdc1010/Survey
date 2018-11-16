@@ -25,7 +25,7 @@ class VoterController extends Controller
 		
 		foreach($voters as $voter){
 			$explodefm = explode(" ",$voter->first_name);
-			echo (count($explodefm)>1?$explodefm[0]." ".$explodefm[count($explodefm)-1]:$voter->first_name);
+			echo (count($explodefm)>1?$explodefm[0]." ".$explodefm[count($explodefm)-1]:$voter->first_name)."<br>";
 		}
 	}
 	public function importvoters(Request $request){
