@@ -90,7 +90,7 @@ class VoterCrudController extends CrudController
 			'attribute2' => 'name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		$this->crud->addField([ // base64_image
+		/*$this->crud->addField([ // base64_image
 			'label' => "Profile Image",
 			'name' => "profilepic",
 			'filename' => null, // set to null if not needed
@@ -99,6 +99,16 @@ class VoterCrudController extends CrudController
 			'crop' => true, // set to true to allow cropping, false to disable
 			'src' => 'getImageSource', // null to read straight from DB, otherwise set to model accessor function
 			'upload' => true
+		]);*/
+		$this->crud->addField([ // image
+			'label' => "Profile Image",
+			'name' => "profilepic",
+			'type' => 'image',
+			'upload' => true,
+			'crop' => true, // set to true to allow cropping, false to disable
+			'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+			// 'disk' => 's3_bucket', // in case you need to show images from a different disk
+			//'prefix' => config('app.url').'/profilepic/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
 		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');

@@ -4,13 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Voter extends Model implements HasMedia
+class Voter extends Model
 {
     use CrudTrait;
-	use HasMediaTrait;
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
@@ -48,13 +45,41 @@ class Voter extends Model implements HasMedia
 		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
 		return $barangay->barangay->name;
 	}
-	public function getImageSource() {
+	public function setProfilepicAttribute($value)
+    {
+        $attribute_name = "profilepic";
+        $disk = "profile_pic";
+        $destination_path = config('app.url')."/profilepic";
 
-        if ($this->getMedia('image')->last()){
-            return '/media/user/' . $this->id;
+        // if the image was erased
+        if ($value==null) {
+            // delete the image from disk
+            \Storage::disk($disk)->delete($this->{$attribute_name});
+
+            // set null in the database column
+            $this->attributes[$attribute_name] = null;
         }
-        return '';
+
+        // if a base64 was sent, store it in the db
+        if (starts_with($value, 'data:image'))
+        {
+            // 0. Make the image
+            $image = \Image::make($value)->encode('jpg', 90);
+            // 1. Generate a filename.
+            $filename = md5($value.time()).'.jpg';
+            // 2. Store the image on disk.
+            \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
+            // 3. Save the path to the database
+            $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
+        }
     }
+	public static function boot()
+	{
+		parent::boot();
+		static::deleting(function($obj) {
+			\Storage::disk('public_folder')->delete($obj->image);
+		});
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

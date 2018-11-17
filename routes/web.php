@@ -17,7 +17,7 @@ Route::post('importprecinct', 'VoterController@importprecinct')->name('importpre
 Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
 Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
-Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
+//Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
     return view('welcome');

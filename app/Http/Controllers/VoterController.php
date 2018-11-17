@@ -20,13 +20,13 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
-	public function getMedia($userId, $collection)
+	/*public function getMedia($userId, $collection)
     {
         $user = Voter::findOrFail($userId);
         $media = $user->getMedia($collection)->last();
         $filePath = isset($media) ? $media->getPath() : abort(404, 'Media not found.');
         return Image::make($media->getPath())->response();
-    }
+    }*/
 	public function extramiddlename(){
 		$voters = Voter::get();
 		

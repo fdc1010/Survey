@@ -73,10 +73,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path(),
         ],
-		'media' => [
+		'profile_pic' => [
             'driver' => 'local',
-            'root'   => public_path().'/media',
-            'url' => env('APP_URL') . '/media',
+            'root'   => public_path().'/profilepic',
+            'url' => env('APP_URL') . '/profilepic',
             'visibility' => 'public',
         ],
     ],
