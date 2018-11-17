@@ -80,8 +80,7 @@ class QuestionCrudController extends CrudController
 				'model' => "App\Models\QuestionOption"					
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1, // minimum rows allowed in the table
-			'fake' => true
+			'min' => 1 // minimum rows allowed in the table
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
