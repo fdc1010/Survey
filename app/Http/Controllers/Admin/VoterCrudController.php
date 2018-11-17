@@ -96,7 +96,8 @@ class VoterCrudController extends CrudController
 			'type' => 'base64_image',
 			'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
 			'crop' => true, // set to true to allow cropping, false to disable
-			'src' => 'getImageSource' // null to read straight from DB, otherwise set to model accessor function
+			'src' => 'getImageSource', // null to read straight from DB, otherwise set to model accessor function
+			'upload' => true
 		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
