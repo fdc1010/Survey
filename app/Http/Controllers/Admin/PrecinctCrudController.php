@@ -45,7 +45,7 @@ class PrecinctCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
 			'label' => "Barangay",
-			'type' => 'select',
+			'type' => 'select2',
 			'name' => 'barangay_id', // the relationship name in your Model
 			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
