@@ -35,14 +35,7 @@ class VoterCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['precinct_id','address','age','contact','birth_date','birth_place','status_id']);
-		/*$this->crud->addColumn([
-            'name' => 'status_id',
-            'type' => 'select',
-            'label' => 'Status Symbol',
-			'entity' => 'statusname', // the relationship name in your Model
-			'attribute' => 'status', // attribute on Article that is shown to admin
-			'model' => "App\Models\VoterStatus"
-	    ]);*/
+	
 		$this->crud->addColumn([
             'name' => 'precinct_id',			
             'label' => 'Precinct',
@@ -62,6 +55,15 @@ class VoterCrudController extends CrudController
 			'function_name' => 'getVoterBarangay',
 			'fake' => true
 	    ]);
+		$this->crud->addField([
+			'label' => "Status",
+			'type' => 'selectadv',
+			'name' => 'status_id', // the relationship name in your Model
+			'entity' => 'status', // the relationship name in your Model
+			'attribute' => 'status', // attribute on Article that is shown to admin
+			'attribute2' => 'name',
+			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
+		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

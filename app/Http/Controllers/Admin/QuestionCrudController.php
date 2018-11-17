@@ -35,18 +35,9 @@ class QuestionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		
-		$this->crud->removeColumn('number_answers');
-		$this->crud->removeColumn('with_other_ans');
-		$this->crud->removeColumn('with_partyselect');
-		$this->crud->removeColumn('for_position');
-		$this->crud->removeColumn('options');
-		$this->crud->removeColumn('type_id');
-		$this->crud->removeField('with_partyselect');
-		$this->crud->removeField('number_answers');
-		$this->crud->removeField('options');
-		$this->crud->removeField('type_id');
-		$this->crud->removeField('with_other_ans');
-		$this->crud->removeField('for_position');
+		$this->crud->removeColumn(['number_answers','with_other_ans','with_partyselect','for_position','options','type_id']);
+		$this->crud->removeField(['with_partyselect','number_answers','options','type_id','with_other_ans','for_position']);
+
 		$this->crud->addColumn([
             'name' => 'type_id',
             'type' => 'select',
