@@ -93,7 +93,7 @@ class VoterCrudController extends CrudController
 		$this->crud->addField([ // base64_image
 			'label' => "Profile Image",
 			'name' => "profilepic",
-			'filename' => "image_filename", // set to null if not needed
+			'filename' => null, // set to null if not needed
 			'type' => 'base64_image',
 			'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
 			'crop' => true, // set to true to allow cropping, false to disable
@@ -121,7 +121,7 @@ class VoterCrudController extends CrudController
 			}
 			
             $imageFilename = uniqid('image_').'.png';
-            Image::make($request->profilepic)->resize(200,200)->save($path.$imageFilename);
+            Image::make($request->file('profilepic')->getRealPath())->resize(200,200)->save($path.$imageFilename);
             $user->addMedia($path.$imageFilename)->toCollection('image');
 			
 			$user->profilepic=config('app.url').$imageFilename;
@@ -145,7 +145,7 @@ class VoterCrudController extends CrudController
 				File::makeDirectory($path,0775);
 			}
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->profilepic)->resize(200,200)->save($path.$imageFilename);
+            Image::make($request->file('profilepic')->getRealPath())->resize(200,200)->save($path.$imageFilename);
             $user->addMedia($path.$imageFilename)->toCollection('image');
 			$user->profilepic=config('app.url').$imageFilename;
 			$user->save();
