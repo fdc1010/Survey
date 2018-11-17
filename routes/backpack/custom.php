@@ -31,7 +31,7 @@ Route::group([
     CRUD::resource('surveydetail', 'SurveyDetailCrudController');
     CRUD::resource('tallyvote', 'TallyVoteCrudController');
     CRUD::resource('barangay', 'BarangayCrudController');
-    CRUD::resource('assignment', 'AssignmentCrudController');
+    CRUD::resource('assignment', 'SurveyorAssignmentCrudController');
     CRUD::resource('district', 'DistrictCrudController');
     CRUD::resource('province', 'ProvinceCrudController');
     CRUD::resource('municipality', 'MunicipalityCrudController');
