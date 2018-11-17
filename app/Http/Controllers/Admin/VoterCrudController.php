@@ -40,7 +40,7 @@ class VoterCrudController extends CrudController
             'type' => 'select',
             'label' => 'Status',
 			'entity' => 'statusname', // the relationship name in your Model
-			'attribute' => ['status','name'], // attribute on Article that is shown to admin
+			'attribute' => 'status', // attribute on Article that is shown to admin
 			'model' => "App\Models\VoterStatus"
 	    ]);
 		
