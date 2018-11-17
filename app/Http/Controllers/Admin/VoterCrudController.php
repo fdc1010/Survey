@@ -55,6 +55,13 @@ class VoterCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'getStatusName'
 	    ]);
+		$this->crud->addColumn([
+            'name' => 'barangay',			
+            'label' => 'Barangay',
+            'type' => 'model_function',
+			'function_name' => 'getVoterBarangay',
+			'fake' => true
+	    ]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

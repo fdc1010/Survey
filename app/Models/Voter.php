@@ -39,6 +39,10 @@ class Voter extends Model
 		$precinct = Precinct::find($this->precinct_id);
 		return $precinct->precinct_number;
 	}
+	public function getVoterBarangay(){
+		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
+		return $barangay->barangay->name;
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
