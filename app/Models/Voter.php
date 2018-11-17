@@ -48,7 +48,7 @@ class Voter extends Model
 	public function setProfilepicAttribute($value)
     {
         $attribute_name = "profilepic";
-        $disk = "public_folder";
+        $disk = "profile_pic";
         $destination_path = 'profilepic';
 
         // if the image was erased
