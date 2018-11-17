@@ -76,7 +76,7 @@ class VoterCrudController extends CrudController
 			'name' => 'last_name'
 		]);
 		$this->crud->addField([
-			'label' => "Gender *",
+			'label' => "Gender",
 			'type' => 'enum',
 			'name' => 'gender'
 		])->beforeField('profilepic');
