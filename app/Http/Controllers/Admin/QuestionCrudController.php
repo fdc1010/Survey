@@ -40,12 +40,21 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumn('with_partyselect');
 		$this->crud->removeColumn('for_position');
 		$this->crud->removeColumn('options');
+		$this->crud->removeColumn('type_id');
 		$this->crud->removeField('with_partyselect');
 		$this->crud->removeField('number_answers');
 		$this->crud->removeField('options');
 		$this->crud->removeField('type_id');
 		$this->crud->removeField('with_other_ans');
 		$this->crud->removeField('for_position');
+		$this->crud->addColumn([
+            'name' => 'type_id',
+            'type' => 'select',
+            'label' => 'Type',
+			'entity' => 'type', // the relationship name in your Model
+			'attribute' => 'type_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionType"
+	    ]);
 		$this->crud->addColumn([
             'name' => 'number_answers',
             'type' => 'number',
