@@ -18,6 +18,8 @@ class CreatePrecinctsTable extends Migration
 			$table->string('precinct_number');
 			$table->unsignedInteger('barangay_id');
             $table->timestamps();
+			
+			$table->foreign('barangay_id')->references('id')->on('barangays');
         });
     }
 

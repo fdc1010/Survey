@@ -19,7 +19,7 @@ class CreateBarangaysTable extends Migration
 			$table->unsignedInteger('province_id');
 			$table->unsignedInteger('district_id');
 			$table->integer('municipality_id')->nullable();
-			$table->longText('description');
+			$table->longText('description')->nullable();
             $table->timestamps();
         });
     }
