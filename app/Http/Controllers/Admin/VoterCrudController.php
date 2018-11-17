@@ -47,8 +47,7 @@ class VoterCrudController extends CrudController
             'name' => 'status_id',			
             'label' => 'Status',
             'type' => 'model_function',
-			'function_name' => 'getStatusName',
-			'model' => "App\Models\VoterStatus"
+			'function_name' => 'getStatusName'
 	    ]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
