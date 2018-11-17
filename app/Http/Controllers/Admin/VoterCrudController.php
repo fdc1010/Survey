@@ -114,7 +114,7 @@ class VoterCrudController extends CrudController
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->input('image'))->resize(200,200)->save($storagePath.$imageFilename);
+            Image::make($request->input('image_filename'))->resize(200,200)->save($storagePath.$imageFilename);
             $user->addMedia($storagePath.$imageFilename)->toCollection('profilepic');
         }
         return $redirect_location;
@@ -131,7 +131,7 @@ class VoterCrudController extends CrudController
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->input('image'))->resize(200,200)->save($storagePath.$imageFilename);
+            Image::make($request->input('image_filename'))->resize(200,200)->save($storagePath.$imageFilename);
             $user->addMedia($storagePath.$imageFilename)->toCollection('profilepic');
         }
         return $redirect_location;
