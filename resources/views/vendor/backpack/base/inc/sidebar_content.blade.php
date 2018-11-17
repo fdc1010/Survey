@@ -26,4 +26,3 @@
 <li><a href='{{ backpack_url('voterstatus') }}'><i class='fa fa-users'></i> <span>Voter Status</span></a></li>
 <li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
 <li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
-<li><a href="{{ backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>{{ trans('backpack::crud.file_manager') }}</span></a></li>
