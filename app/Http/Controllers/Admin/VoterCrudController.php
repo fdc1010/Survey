@@ -115,14 +115,14 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid);
+			$path = public_path('media/user/'.$uid.'/image');
 			if (!File::exists($path)) {
 				File::makeDirectory($path,0775);
 			}
 			
             $imageFilename = uniqid('image_').'.png';
-            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/'.$imageFilename));
-            $user->addMedia(public_path('media/user/'.$uid.'/'.$imageFilename))->toCollection('profilepic');
+            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/image/'.$imageFilename));
+            $user->addMedia(public_path('media/user/'.$uid.'/image/'.$imageFilename))->toCollection('image');
         }
         return $redirect_location;
     }
@@ -137,13 +137,13 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid);
+			$path = public_path('media/user/'.$uid.'/image');
 			if (!File::exists($path)) {
 				File::makeDirectory($path,0775);
 			}
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/'.$imageFilename));
-            $user->addMedia(public_path('media/user/'.$uid.'/'.$imageFilename))->toCollection('profilepic');
+            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/image/'.$imageFilename));
+            $user->addMedia(public_path('media/user/'.$uid.'/image/'.$imageFilename))->toCollection('image');
         }
         return $redirect_location;
     }
