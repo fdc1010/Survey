@@ -31,7 +31,7 @@ class Voter extends Model
 	public function getStatusName(){
 		$voterstatus = VoterStatus::find($this->status_id);
 		if($voterstatus)
-			return $voterstatus->status . " " . $voterstatus->name;
+			return $voterstatus->status . " (" . $voterstatus->name . ")";
 		else
 			return "";
 	}
