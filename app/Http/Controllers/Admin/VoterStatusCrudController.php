@@ -24,7 +24,7 @@ class VoterStatusCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\VoterStatus');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/voterstatus');
-        $this->crud->setEntityNameStrings('voter status', 'Voter Statuses');
+        $this->crud->setEntityNameStrings('voter status', 'Voter Status');
 
         /*
         |--------------------------------------------------------------------------
