@@ -56,6 +56,11 @@ class VoterCrudController extends CrudController
 			'fake' => true
 	    ]);
 		$this->crud->addField([
+			'label' => "Gender",
+			'type' => 'enum',
+			'name' => 'gender',
+		])->beforeField('profilepic');
+		$this->crud->addField([
 			'label' => "Status",
 			'type' => 'selectadv',
 			'name' => 'status_id', // the relationship name in your Model
