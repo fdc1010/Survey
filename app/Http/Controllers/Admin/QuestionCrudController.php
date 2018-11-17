@@ -72,7 +72,6 @@ class QuestionCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'name' => 'options',
 				'select' => 'Option',
 				'checkbox' => 'With Other Answer'					
 			],
@@ -139,7 +138,7 @@ class QuestionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->options;
+		$options = $this->crud->entry->select;
 		foreach($options as $option){
 			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
