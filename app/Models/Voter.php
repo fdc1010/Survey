@@ -51,7 +51,7 @@ class Voter extends Model implements HasMedia
 	public function getImageSource() {
 
         if ($this->getMedia('image')->last()){
-            return '/media/user/' . $this->id . '/image';
+            return '/media/user/' . $this->id;
         }
         return '';
     }

@@ -115,7 +115,7 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid.'/image/');
+			$path = public_path('media/user/'.$uid);
 			//if (!File::exists($path)) {
 			//	File::makeDirectory($path,0775);
 			//}
@@ -137,7 +137,7 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid.'/image/');
+			$path = public_path('media/user/'.$uid);
 			//if (!File::exists($path)) {
 			//	File::makeDirectory($path,0775);
 			//}
