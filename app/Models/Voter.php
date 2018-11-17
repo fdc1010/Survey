@@ -27,6 +27,8 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');
     }
+	
+	
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

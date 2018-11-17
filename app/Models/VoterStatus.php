@@ -26,6 +26,9 @@ class VoterStatus extends Model
     {
         return $this->belongsToMany('App\Models\Voter','status_id');
     }
+	public function getStatusName(){
+		return $this->status . "(" . $this->name . ")";
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
