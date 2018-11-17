@@ -42,7 +42,7 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         return [
-            'precinct_id','first_name','last_name','gender','status_id'
+            'first_name','last_name','gender','status_id'
         ];
     }
 

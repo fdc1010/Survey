@@ -56,7 +56,7 @@ class VoterCrudController extends CrudController
 			'fake' => true
 	    ]);
 		$this->crud->addField([
-			'label' => "Precinct *",
+			'label' => "Precinct",
 			'type' => 'select2adv',
 			'name' => 'precinct_id', // the relationship name in your Model
 			'entity' => 'precinct', // the relationship name in your Model
@@ -66,12 +66,12 @@ class VoterCrudController extends CrudController
 			'entity2' => "barangay"
 		]);
 		$this->crud->addField([
-			'label' => "Firstname *",
+			'label' => "Firstname",
 			'type' => 'text',
 			'name' => 'first_name'
 		]);
 		$this->crud->addField([
-			'label' => "Lastname *",
+			'label' => "Lastname",
 			'type' => 'text',
 			'name' => 'last_name'
 		]);
@@ -81,7 +81,7 @@ class VoterCrudController extends CrudController
 			'name' => 'gender'
 		])->beforeField('profilepic');
 		$this->crud->addField([
-			'label' => "Status *",
+			'label' => "Status",
 			'type' => 'selectadv',
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
