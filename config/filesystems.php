@@ -75,7 +75,7 @@ return [
         ],
 		'profile_pic' => [
             'driver' => 'local',
-            'root'   => '/',
+            'root'   => storage_path('../'),
             'url' => env('APP_URL') . '/profilepic',
             'visibility' => 'public',
         ],
