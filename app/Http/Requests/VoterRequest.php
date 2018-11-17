@@ -27,6 +27,7 @@ class VoterRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'precinct_id' => 'required',
 			'first_name' => 'required',
 			'last_name' => 'required', 
 			'gender' => 'required',
