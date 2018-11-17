@@ -27,7 +27,10 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');
     }
-	
+	public function precinct()
+    {
+        return $this->belongsTo('App\Models\Precinct','precinct_id');
+    }
 	public function getStatusName(){
 		$voterstatus = VoterStatus::find($this->status_id);
 		if($voterstatus)

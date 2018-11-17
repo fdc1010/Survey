@@ -34,7 +34,7 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','address','age','contact','birth_date','birth_place','status_id']);
+		$this->crud->removeColumn(['precinct_id','first_name','last_name','address','age','contact','birth_date','birth_place','status_id']);
 	
 		$this->crud->addColumn([
             'name' => 'precinct_id',			
@@ -56,9 +56,29 @@ class VoterCrudController extends CrudController
 			'fake' => true
 	    ]);
 		$this->crud->addField([
-			'label' => "Gender",
+			'label' => "Precinct *",
+			'type' => 'select2adv',
+			'name' => 'precinct_id', // the relationship name in your Model
+			'entity' => 'precinct', // the relationship name in your Model
+			'attribute' => 'precinct_number', // attribute on Article that is shown to admin
+			'model' => "App\Models\Precinct", // on create&update, do you need to add/delete pivot table entries?
+			'attribute2' => 'name', // attribute on Article that is shown to admin
+			'entity2' => "barangay"
+		]);
+		$this->crud->addField([
+			'label' => "Firstname *",
+			'type' => 'text',
+			'name' => 'first_name'
+		]);
+		$this->crud->addField([
+			'label' => "Lastname *",
+			'type' => 'text',
+			'name' => 'last_name'
+		]);
+		$this->crud->addField([
+			'label' => "Gender *",
 			'type' => 'enum',
-			'name' => 'gender',
+			'name' => 'gender'
 		])->beforeField('profilepic');
 		$this->crud->addField([
 			'label' => "Status",
