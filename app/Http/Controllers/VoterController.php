@@ -97,9 +97,7 @@ class VoterController extends Controller
                     foreach ($data as $key => $value) {
                         $insert[] = [
                         'precinct_number' => $value->prec,
-                        'precinct_baranggay' => $value->brgy,
-                        'precinct_municipality' => $value->municipality,
-						'precinct_province' => $value->province,
+                        'barangay_id' => $value->brgy
                         ];
 						
                     }

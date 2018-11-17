@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrecinctsTable extends Migration
+class CreateSurveyorAssignmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreatePrecinctsTable extends Migration
      */
     public function up()
     {
-        Schema::create('precincts', function (Blueprint $table) {
+        Schema::create('surveyor_assignments', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('precinct_number');
+			$table->unsignedInteger('voter_id');
 			$table->unsignedInteger('barangay_id');
+			$table->decimal('quota',10,2);
+			$table->decimal('progress',10,2);
+			$table->string('subject')->nullable();
+			$table->longText('description')->nullable();			
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreatePrecinctsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('precincts');
+        Schema::dropIfExists('surveyor_assignments');
     }
 }

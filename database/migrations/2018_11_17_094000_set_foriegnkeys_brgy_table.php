@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrecinctsTable extends Migration
+class SetForiegnkeysBrgyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePrecinctsTable extends Migration
      */
     public function up()
     {
-        Schema::create('precincts', function (Blueprint $table) {
-            $table->increments('id');
-			$table->string('precinct_number');
-			$table->unsignedInteger('barangay_id');
-            $table->timestamps();
+        Schema::table('barangays', function (Blueprint $table) {
+            $table->foreign('province_id')->references('id')->on('provinces');
+			$table->foreign('district_id')->references('id')->on('districts');
         });
     }
 
@@ -28,6 +26,8 @@ class CreatePrecinctsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('precincts');
+        Schema::table('barangays', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrecinctsTable extends Migration
+class CreateMunicipalitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePrecinctsTable extends Migration
      */
     public function up()
     {
-        Schema::create('precincts', function (Blueprint $table) {
+        Schema::create('municipalities', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('precinct_number');
-			$table->unsignedInteger('barangay_id');
+			$table->string('name');
+			$table->longText('description');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePrecinctsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('precincts');
+        Schema::dropIfExists('municipalities');
     }
 }

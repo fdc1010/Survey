@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Precinct extends Model
+class District extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Precinct extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'precincts';
+    protected $table = 'districts';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['precinct_number', 'barangay_id'];
+    protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 

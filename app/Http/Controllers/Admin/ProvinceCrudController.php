@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\VoterRequest as StoreRequest;
-use App\Http\Requests\VoterRequest as UpdateRequest;
+use App\Http\Requests\ProvinceRequest as StoreRequest;
+use App\Http\Requests\ProvinceRequest as UpdateRequest;
 
 /**
- * Class VoterCrudController
+ * Class ProvinceCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class VoterCrudController extends CrudController
+class ProvinceCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class VoterCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Voter');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/voter');
-        $this->crud->setEntityNameStrings('voter', 'voters');
+        $this->crud->setModel('App\Models\Province');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/province');
+        $this->crud->setEntityNameStrings('province', 'provinces');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,28 +34,8 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','address','age','contact','birth_date','birth_place','status_id']);
-		/*$this->crud->addColumn([
-            'name' => 'status_id',
-            'type' => 'select',
-            'label' => 'Status Symbol',
-			'entity' => 'statusname', // the relationship name in your Model
-			'attribute' => 'status', // attribute on Article that is shown to admin
-			'model' => "App\Models\VoterStatus"
-	    ]);*/
-		$this->crud->addColumn([
-            'name' => 'precinct_id',			
-            'label' => 'Precinct',
-            'type' => 'model_function',
-			'function_name' => 'getPrecinct'
-	    ])->makeFirstColumn();
-		$this->crud->addColumn([
-            'name' => 'status_id',			
-            'label' => 'Status',
-            'type' => 'model_function',
-			'function_name' => 'getStatusName'
-	    ]);
-        // add asterisk for fields that are required in VoterRequest
+
+        // add asterisk for fields that are required in ProvinceRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

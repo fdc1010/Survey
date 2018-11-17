@@ -20,7 +20,7 @@ class Voter extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = ['precinct_id', 'first_name','last_name','middle_name', 'birth_date','contact',
-							'address', 'birth_place','age','gender', 'profilepic','baranggay','status_id'];
+							'address', 'birth_place','age','gender', 'profilepic','status_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	public function statusname()
@@ -34,6 +34,10 @@ class Voter extends Model
 			return $voterstatus->status . " (" . $voterstatus->name . ")";
 		else
 			return "";
+	}
+	public function getPrecinct(){
+		$precinct = Precinct::find($this->precinct_id);
+		return $precinct->precinct_number;
 	}
     /*
     |--------------------------------------------------------------------------

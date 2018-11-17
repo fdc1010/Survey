@@ -30,4 +30,9 @@ Route::group([
     CRUD::resource('surveyanswer', 'SurveyAnswerCrudController');
     CRUD::resource('surveydetail', 'SurveyDetailCrudController');
     CRUD::resource('tallyvote', 'TallyVoteCrudController');
+    CRUD::resource('barangay', 'BarangayCrudController');
+    CRUD::resource('assignment', 'AssignmentCrudController');
+    CRUD::resource('district', 'DistrictCrudController');
+    CRUD::resource('province', 'ProvinceCrudController');
+    CRUD::resource('municipality', 'MunicipalityCrudController');
 }); // this should be the absolute last line of this file
