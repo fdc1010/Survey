@@ -35,6 +35,14 @@ class PrecinctCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumn('barangay_id');
+		$this->crud->addColumn([
+            'name' => 'barangay_id',
+            'type' => 'select',
+            'label' => 'Barangay',
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay"
+	    ]);
         // add asterisk for fields that are required in PrecinctRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
