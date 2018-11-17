@@ -121,8 +121,8 @@ class VoterCrudController extends CrudController
 			}
 			
             $imageFilename = uniqid('image_').'.png';
-            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/image/'.$imageFilename));
-            $user->addMedia(public_path('media/user/'.$uid.'/image/'.$imageFilename))->toCollection('image');
+            Image::make($request->profilepic)->resize(200,200)->save($path.$imageFilename);
+            $user->addMedia($path.$imageFilename)->toCollection('image');
         }
         return $redirect_location;
     }
@@ -142,8 +142,8 @@ class VoterCrudController extends CrudController
 				File::makeDirectory($path,0775);
 			}
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/image/'.$imageFilename));
-            $user->addMedia(public_path('media/user/'.$uid.'/image/'.$imageFilename))->toCollection('image');
+            Image::make($request->profilepic)->resize(200,200)->save($path.$imageFilename);
+            $user->addMedia($path.$imageFilename)->toCollection('image');
         }
         return $redirect_location;
     }
