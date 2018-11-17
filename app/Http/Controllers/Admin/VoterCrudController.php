@@ -121,7 +121,7 @@ class VoterCrudController extends CrudController
 			}
 			
             $imageFilename = uniqid('image_').'.png';
-            Image::make($request->file('profilepic')->getRealPath())->resize(200,200)->save($path.$imageFilename);
+            Image::make($request->file('uploadImage')->getRealPath())->resize(200,200)->save($path.$imageFilename);
             $user->addMedia($path.$imageFilename)->toCollection('image');
 			
 			$user->profilepic=config('app.url').$imageFilename;
@@ -145,7 +145,7 @@ class VoterCrudController extends CrudController
 				File::makeDirectory($path,0775);
 			}
             $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->file('profilepic')->getRealPath())->resize(200,200)->save($path.$imageFilename);
+            Image::make($request->file('uploadImage')->getRealPath())->resize(200,200)->save($path.$imageFilename);
             $user->addMedia($path.$imageFilename)->toCollection('image');
 			$user->profilepic=config('app.url').$imageFilename;
 			$user->save();
