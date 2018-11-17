@@ -50,7 +50,7 @@ class Voter extends Model implements HasMedia
 	}
 	public function getImageSource() {
 
-        if ($this->getMedia('profilepic')->last()){
+        if ($this->getMedia('image')->last()){
             return '/media/user/' . $this->id;
         }
         return '';
