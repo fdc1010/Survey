@@ -8,6 +8,7 @@ use App\Models\Voter;
 use App\Http\Requests\VoterRequest as StoreRequest;
 use App\Http\Requests\VoterRequest as UpdateRequest;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 /**
  * Class VoterCrudController
  * @package App\Http\Controllers\Admin
@@ -114,7 +115,12 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
-            $imageFilename = uniqid('image_').'.png'; 
+			$path = public_path('media/user/'.$uid);
+			if (!File::exists($path)) {
+				File::makeDirectory($path,0775);
+			}
+			
+            $imageFilename = uniqid('image_').'.png';
             Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/'.$imageFilename));
             $user->addMedia(public_path('media/user/'.$uid.'/'.$imageFilename))->toCollection('profilepic');
         }
@@ -131,6 +137,10 @@ class VoterCrudController extends CrudController
 		$user = Voter::find($uid);
 		$imageFilename = $request->input('image_filename');
  		if ($imageFilename !== ''){ 
+			$path = public_path('media/user/'.$uid);
+			if (!File::exists($path)) {
+				File::makeDirectory($path,0775);
+			}
             $imageFilename = uniqid('image_').'.png'; 
             Image::make($request->profilepic)->resize(200,200)->save(public_path('media/user/'.$uid.'/'.$imageFilename));
             $user->addMedia(public_path('media/user/'.$uid.'/'.$imageFilename))->toCollection('profilepic');
