@@ -74,14 +74,13 @@ class QuestionCrudController extends CrudController
 			'columns' => [
 				'name' => 'options',
 				'select' => 'Option',
-				'checkbox' => 'With Other Answer'					
+				'checkbox' => 'With Other Answer',
+				'entity' => 'choices', // the method that defines the relationship in your Model
+				'attribute' => 'option', // foreign key attribute that is shown to user
+				'model' => "App\Models\QuestionOption"	
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1, // minimum rows allowed in the table
-			'fake' => true,
-			'entity' => 'choices', // the method that defines the relationship in your Model
-			'attribute' => 'option', // foreign key attribute that is shown to user
-			'model' => "App\Models\QuestionOption"
+			'min' => 1 // minimum rows allowed in the table					
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
@@ -139,8 +138,7 @@ class QuestionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
-		dd($this->crud->entry);
-		$options = $this->crud->entry->select;
+		$options = $this->crud->entry->options;
 		foreach($options as $option){
 			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
