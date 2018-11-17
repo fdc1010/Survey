@@ -35,7 +35,7 @@ class BarangayController extends Controller
                         $insert[] = [						
 						'name' => $value->barangay,
                         'district_id' => $value->district,
-                        'municipality_id' => $value->municipality
+                        'municipality_id' => $value->municipality,
                         'province_id' => $value->province,
                         ];
                     }
