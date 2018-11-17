@@ -43,6 +43,14 @@ class PrecinctCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay"
 	    ]);
+		$this->crud->addField([
+			'label' => "Barangay",
+			'type' => 'select',
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
+		]);
         // add asterisk for fields that are required in PrecinctRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
