@@ -49,7 +49,7 @@ class Voter extends Model
     {
         $attribute_name = "profilepic";
         $disk = "profile_pic";
-        $destination_path = public_path('profilepic');
+        $destination_path = 'profilepic';
 
         // if the image was erased
         if ($value==null) {
