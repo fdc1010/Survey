@@ -49,7 +49,7 @@ class Voter extends Model
     {
         $attribute_name = "profilepic";
         $disk = "profile_pic";
-        $destination_path = 'profilepic';
+        $destination_path = public_path('profilepic');
 
         // if the image was erased
         if ($value==null) {
@@ -70,14 +70,14 @@ class Voter extends Model
             // 2. Store the image on disk.
             \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
             // 3. Save the path to the database
-            $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
+            $this->attributes[$attribute_name] = config('app.url')."/".$filename;//$destination_path.'/'.$filename;
         }
     }
 	public static function boot()
 	{
 		parent::boot();
 		static::deleting(function($obj) {
-			\Storage::disk('public_folder')->delete($obj->image);
+			\Storage::disk('profile_pic')->delete($obj->image);
 		});
 	}
     /*
