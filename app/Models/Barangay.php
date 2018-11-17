@@ -22,7 +22,18 @@ class Barangay extends Model
     protected $fillable = ['name','province_id','district_id','municipality_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function province()
+    {
+        return $this->belongsTo('App\Models\Province','province_id');
+    }
+	public function district()
+    {
+        return $this->belongsTo('App\Models\District','district_id');
+    }
+	public function municipality()
+    {
+        return $this->belongsTo('App\Models\Municipality','municipality_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

@@ -34,8 +34,32 @@ class BarangayCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
-        // add asterisk for fields that are required in BarangayRequest
+		$this->crud->removeColumn(['province_id','district_id','municipality_id','description']);
+        $this->crud->addColumn([
+            'name' => 'province_id',
+            'type' => 'select',
+            'label' => 'Province',
+			'entity' => 'province', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Province"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'district_id',
+            'type' => 'select',
+            'label' => 'District',
+			'entity' => 'district', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\District"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'municipality_id',
+            'type' => 'select',
+            'label' => 'Municipality',
+			'entity' => 'municipality', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Municipality"
+	    ]);
+		// add asterisk for fields that are required in BarangayRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
