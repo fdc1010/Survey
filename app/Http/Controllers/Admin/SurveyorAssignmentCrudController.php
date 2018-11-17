@@ -24,7 +24,7 @@ class SurveyorAssignmentCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\SurveyorAssignment');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveyorassignment');
-        $this->crud->setEntityNameStrings('surveyorassignment', 'surveyor_assignments');
+        $this->crud->setEntityNameStrings('surveyor assignment', 'Surveyor Assignments');
 
         /*
         |--------------------------------------------------------------------------
