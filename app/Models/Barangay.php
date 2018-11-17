@@ -19,7 +19,7 @@ class Barangay extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name','province_id','district_id','municipality_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
 
