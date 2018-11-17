@@ -67,7 +67,7 @@
  
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
 </form>
-<h1>Import Excel Masterlist of Precinct</h1> 
+<h1>Import Excel Masterlist of Precincts</h1> 
 <form action="{{ route('importprecinct') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     Choose your xls/csv File : <input type="file" name="file" class="form-control">
