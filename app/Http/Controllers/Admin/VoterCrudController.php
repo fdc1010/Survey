@@ -43,7 +43,14 @@ class VoterCrudController extends CrudController
 			'attribute' => 'status', // attribute on Article that is shown to admin
 			'model' => "App\Models\VoterStatus"
 	    ]);
-		
+		$this->crud->addColumn([
+            'name' => 'status_id',
+            'type' => 'select',
+            'label' => 'Status',
+			'entity' => 'statusname', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\VoterStatus"
+	    ]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
