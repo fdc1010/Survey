@@ -28,7 +28,10 @@ class Voter extends Model
         return $this->belongsTo('App\Models\VoterStatus','status_id');
     }
 	
-	
+	public function getStatusName(){
+		$voterstatus = VoterStatus::find($this->status_id);
+		return $voterstatus->status . "(" . $voterstatus->name . ")";
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
