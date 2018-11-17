@@ -121,22 +121,7 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$uid = $this->crud->entry->id;
-		$user = Voter::find($uid);
-		$imageFilename = $request->input('image_filename');
- 		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid);
-			if (!File::exists($path)) {
-				File::makeDirectory($path,0775);
-			}
-			
-            $imageFilename = uniqid('image_').'.png';
-            Image::make($request->file('uploadImage')->getRealPath())->resize(200,200)->save($path.$imageFilename);
-            $user->addMedia($path.$imageFilename)->toCollection('image');
-			
-			$user->profilepic=config('app.url').$imageFilename;
-			$user->save();
-        }
+		
         return $redirect_location;
     }
 
@@ -146,20 +131,7 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$uid = $this->crud->entry->id;
-		$user = Voter::find($uid);
-		$imageFilename = $request->input('image_filename');
- 		if ($imageFilename !== ''){ 
-			$path = public_path('media/user/'.$uid);
-			if (!File::exists($path)) {
-				File::makeDirectory($path,0775);
-			}
-            $imageFilename = uniqid('image_').'.png'; 
-            Image::make($request->file('uploadImage')->getRealPath())->resize(200,200)->save($path.$imageFilename);
-            $user->addMedia($path.$imageFilename)->toCollection('image');
-			$user->profilepic=config('app.url').$imageFilename;
-			$user->save();
-        }
+		
         return $redirect_location;
     }
 }
