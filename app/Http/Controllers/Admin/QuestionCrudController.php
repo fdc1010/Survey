@@ -138,6 +138,7 @@ class QuestionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
+		dd($this->crud->entry);
 		$options = $this->crud->entry->select;
 		foreach($options as $option){
 			$optid = $option['select'];
