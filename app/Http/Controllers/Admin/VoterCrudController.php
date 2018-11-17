@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use App\Models\Voter;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\VoterRequest as StoreRequest;
 use App\Http\Requests\VoterRequest as UpdateRequest;
-
+use Intervention\Image\ImageManagerStatic as Image;
 /**
  * Class VoterCrudController
  * @package App\Http\Controllers\Admin
@@ -89,6 +89,15 @@ class VoterCrudController extends CrudController
 			'attribute2' => 'name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
+		$this->crud->addField([ // base64_image
+			'label' => "Profile Image",
+			'name' => "profilepic",
+			'filename' => "image_filename", // set to null if not needed
+			'type' => 'base64_image',
+			'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
+			'crop' => true, // set to true to allow cropping, false to disable
+			'src' => 'getImageSource' // null to read straight from DB, otherwise set to model accessor function
+		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -100,6 +109,14 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$uid = $this->crud->entry->id;
+		$user = Voter::find($uid);
+		$imageFilename = $request->input('image_filename');
+ 		if ($imageFilename !== ''){ 
+            $imageFilename = uniqid('image_').'.png'; 
+            Image::make($request->input('image'))->resize(200,200)->save($storagePath.$imageFilename);
+            $user->addMedia($storagePath.$imageFilename)->toCollection('profilepic');
+        }
         return $redirect_location;
     }
 
@@ -109,6 +126,14 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$uid = $this->crud->entry->id;
+		$user = Voter::find($uid);
+		$imageFilename = $request->input('image_filename');
+ 		if ($imageFilename !== ''){ 
+            $imageFilename = uniqid('image_').'.png'; 
+            Image::make($request->input('image'))->resize(200,200)->save($storagePath.$imageFilename);
+            $user->addMedia($storagePath.$imageFilename)->toCollection('profilepic');
+        }
         return $redirect_location;
     }
 }

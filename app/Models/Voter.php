@@ -46,6 +46,13 @@ class Voter extends Model
 		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
 		return $barangay->barangay->name;
 	}
+	public function getImageSource() {
+
+        if ($this->getMedia('profilepic')->last()){
+            return '/media/user/' . $this->id . '/profilepic';
+        }
+        return '';
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
