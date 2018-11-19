@@ -82,7 +82,7 @@
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
 </form> 
 <h1>Import Excel Masterlist of Sitios</h1> 
-<form action="{{ route('importSitios') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('importsitios') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     Choose your xls/csv File : <input type="file" name="file" class="form-control">
  
