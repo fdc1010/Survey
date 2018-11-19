@@ -15,7 +15,7 @@ class AddBrgyIdSitioTable extends Migration
     {
         Schema::table('locations', function (Blueprint $table) {
             $table->integer('area_id')->nullable();
-        })
+        });
 		
 		Schema::table('sitios', function (Blueprint $table) {            
 			$table->integer('barangay_id')->nullable();
