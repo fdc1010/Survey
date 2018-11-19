@@ -16,6 +16,7 @@ Route::get('importexcel', 'VoterController@index')->name('index');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
 Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
 Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
+Route::post('importsitios', 'SitioController@importbarangays')->name('importsitios');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 

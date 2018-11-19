@@ -16,7 +16,46 @@ class SitioController extends Controller
     {
         //
     }
-
+	public function importsitios(Request $request){
+        //validate the xls file
+        $this->validate($request, array(
+            'file'      => 'required'
+        ));
+ 
+        if($request->hasFile('file')){
+            $extension = File::extension($request->file->getClientOriginalName());
+            if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
+ 
+                $path = $request->file->getRealPath();
+                $data = Excel::load($path, function($reader) {
+                })->get();
+                if(!empty($data) && $data->count()){
+ 
+                    foreach ($data as $key => $value) {
+                        $insert[] = [						
+							'name' => $value->sitio
+                        ];
+                    } 
+                    if(!empty($insert)){
+ 
+                        $insertData = DB::table('sitios')->insert($insert);
+                        if ($insertData) {
+                            Session::flash('success', 'Your Data has successfully imported');
+                        }else {                        
+                            Session::flash('error', 'Error inserting the data..');
+                            return back();
+                        }
+                    }
+                }
+ 
+                return back();
+ 
+            }else {
+                Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
+                return back();
+            }
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

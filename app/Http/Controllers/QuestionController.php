@@ -29,7 +29,7 @@ class QuestionController extends Controller
 		$result = Question::with(['questiondetail'=>function($qd){
 								$qd->select(['question_id','option_id','with_option_other_ans'])
 									->with(['option'=>function($op){
-											$op->select(['id','option','priority']);
+											$op->select(['id','option','priority'])->orderby('priority');
 										}]);
 							},'type'=>function($t){
 									$t->select(['id','type_name']);
@@ -37,6 +37,7 @@ class QuestionController extends Controller
 							->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect'])
+							->orderby('priority')
 							->get();
 		return response()->json($result);
 		
