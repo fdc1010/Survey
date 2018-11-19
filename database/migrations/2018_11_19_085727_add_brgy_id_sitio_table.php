@@ -20,6 +20,10 @@ class AddBrgyIdSitioTable extends Migration
 		Schema::table('sitios', function (Blueprint $table) {            
 			$table->integer('barangay_id')->nullable();
         });
+		
+		Schema::table('voters', function (Blueprint $table) {            
+			$table->integer('sitio_id')->nullable();
+        });
     }
 
     /**
@@ -32,6 +36,12 @@ class AddBrgyIdSitioTable extends Migration
         Schema::table('sitios', function (Blueprint $table) {
             $table->dropColumn('area_id');
 			$table->dropColumn('barangay_id');
+        });
+		Schema::table('locations', function (Blueprint $table) {
+            $table->dropColumn('area_id');
+        });
+		Schema::table('voters', function (Blueprint $table) {
+            $table->dropColumn('sitio_id');
         });
     }
 }
