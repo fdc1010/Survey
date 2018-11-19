@@ -126,6 +126,7 @@ class QuestionCrudController extends CrudController
 				  ],
 			  'default' => 0
 		]);*/
+		$this->crud->orderBy('priority');
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
