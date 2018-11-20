@@ -22,7 +22,7 @@
 ?>
 <div ng-app="backPackTableApp" ng-controller="tableController" @include('crud::inc.field_wrapper_attributes') >
 
-    <label>{!! $field['label'] !!} fred (count:<span id="trcount">1</span>)</label>
+    <label>{!! $field['label'] !!} (count:<span id="trcount">1</span>)</label>
     @include('crud::inc.field_translatable_icon')
 
     <input class="array-json" type="hidden" id="{{ $field['name'] }}" name="{{ $field['name'] }}">
