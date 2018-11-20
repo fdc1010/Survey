@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -38,10 +43,26 @@ class LoginController extends Controller
     }
 	public function login(Request $request)
 	{		
-		$ok = true;
-		$msg = "You've logged in!";
-		info($msg);
-		return response()->json(['success'=>$ok,'msg'=>$msg]);
+		$validator = Validator::make($request->all(), [
+			'password'=>'required',
+			'email'=>'required',
+		]);
+
+		if ($validator->fails()) {
+			return Response::json(array(
+				'reason' => $validator->getMessageBag()->toArray(),
+				'success'=>false
+			), 400);
+		}
+		if ( ! Auth::attempt($credentials))
+		{
+			return response()->json(['success'=>false,'reason'=>'Invalid credentials'],401);
+		}
+		else{
+			return response()->json(['success'=>true,'reason'=>"You've Logged In!"],200);
+		}
+		
+		
 	}
 	public function logout(Request $request)
     {
