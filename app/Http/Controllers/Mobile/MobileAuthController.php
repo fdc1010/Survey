@@ -13,6 +13,7 @@ class MobileAuthController extends Controller
 {
     public function login(Request $request)
 	{	
+		info($request);
 		$this->validate($request, [
 		   'email' => 'required|email',
 		   'password' => 'required|string|min:8',
