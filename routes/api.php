@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 });*/
 Route::group([
 	 'prefix' => 'mobile' ,
-	 'middleware' => 'api', 
+	 'middleware' => ['auth:api'], 
 	 'namespace' => 'Mobile'], function () {
 			Route::get('user',function(Request $request){
 				info($request);
