@@ -22,8 +22,7 @@ Route::group(['prefix' => 'mobile',
 		Route::post('mobilelogin', 'MobileController@mobilelogin');
 		Route::resource('fred', 'MobileController');
 		Route::group(['middleware' => 'auth:api'], function () {
-			info("Mobile Middleware");	
-			
+			info("Mobile Middleware");			
 			Route::get('mobilelogout', 'MobileController@mobilelogout');	
 		});
 });
