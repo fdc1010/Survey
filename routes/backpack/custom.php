@@ -25,8 +25,6 @@ Route::group([
     CRUD::resource('survey', 'SurveyCrudController');
     CRUD::resource('questiondetail', 'QuestionDetailCrudController');
     CRUD::resource('questionoptiondetail', 'QuestionOptionDetailCrudController');
-    CRUD::resource('position', 'PositionCrudController');
-	
     CRUD::resource('surveyanswer', 'SurveyAnswerCrudController');
     CRUD::resource('surveydetail', 'SurveyDetailCrudController');
     CRUD::resource('tallyvote', 'TallyVoteCrudController');
