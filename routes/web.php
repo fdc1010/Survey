@@ -26,6 +26,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
     // Backpack\MenuCRUD
+	Route::auth();
+	Route::get('logout', 'Auth\LoginController@logout');
     CRUD::resource('menu-item', 'MenuItemCrudController');
 	
 });

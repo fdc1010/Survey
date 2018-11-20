@@ -11,6 +11,8 @@ Route::group([
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+	Route::auth();
+	Route::get('logout', 'Auth\LoginController@logout');
     CRUD::resource('tag', 'TagCrudController');
     CRUD::resource('question', 'QuestionCrudController');
     CRUD::resource('questiontype', 'QuestionTypeCrudController');
