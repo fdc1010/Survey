@@ -32,7 +32,7 @@ Route::group([
 	Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 	Route::post('mobilelogin', 'MobileAuthController@mobilelogin');
 });
-Route::group(['middleware' => 'web', 'prefix' => config('backpack.base.route_prefix', 'namespace' => 'Backpack\Base\app\Http\Controllers')], function () {
+Route::group(['middleware' => 'web', 'prefix' => config('backpack.base.route_prefix'), 'namespace' => 'Backpack\Base\app\Http\Controllers')], function () {
     Route::auth();
     Route::get('logout', 'Auth\LoginController@logout');
     Route::get('dashboard', 'AdminController@dashboard');
