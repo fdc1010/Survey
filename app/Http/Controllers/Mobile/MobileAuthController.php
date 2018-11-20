@@ -37,7 +37,7 @@ class MobileAuthController extends Controller
 		
 	}
 	 public function logout(Request $request){
-
+		info($request);
         $validator = Validator::make($request->all(), [
             'imei'=>'required',
             'password'=>'required',
