@@ -24,7 +24,7 @@ Route::group(['prefix' => 'mobile'], function () {
 		});
 		Route::group(['middleware' => 'auth:api'], function () {
 			Route::get('login', 'MobileAuthController@login');
-			Route::get'logout', 'MobileAuthController@logout');
+			Route::get('logout', 'MobileAuthController@logout');
 
             
 		});
