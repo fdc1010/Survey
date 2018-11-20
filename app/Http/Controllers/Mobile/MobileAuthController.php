@@ -19,7 +19,7 @@ class MobileAuthController extends Controller
 			'password'=>'required',
 			'email'=>'required',
 		]);
-
+		info($request);
 		if ($validator->fails()) {
 			return Response::json(array(
 				'reason' => $validator->getMessageBag()->toArray(),
