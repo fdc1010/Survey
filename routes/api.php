@@ -19,11 +19,11 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	
 		info("Mobile");	
-		Route::post('mobilelogin', 'MobileController@mobilelogin');
+		Route::post('login', 'MobileController@login');
 		Route::resource('fred', 'MobileController');
 		Route::group(['middleware' => 'auth:api'], function () {
 			info("Mobile Middleware");			
-			Route::get('mobilelogout', 'MobileController@mobilelogout');	
+			Route::get('logout', 'MobileController@logout');	
 		});
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
