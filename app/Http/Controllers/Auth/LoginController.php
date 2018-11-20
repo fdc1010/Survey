@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -32,7 +32,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -42,7 +42,7 @@ class LoginController extends Controller
 	public function login(Request $request)
     {
 		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-			return redirect()->intended('/');
+			return redirect()->intended('/admin');
 				
 		}
 		else{
