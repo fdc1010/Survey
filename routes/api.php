@@ -20,7 +20,7 @@ Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	
 		info("Mobile");	
 		Route::post('mobilelogin', 'MobileController@mobilelogin');
-		Route::get('fred', 'MobileController');
+		Route::resource('fred', 'MobileController');
 		Route::group(['middleware' => 'auth:api'], function () {
 			info("Mobile Middleware");	
 			
