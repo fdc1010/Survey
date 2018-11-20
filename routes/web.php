@@ -32,7 +32,16 @@ Route::group([
 	Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 	Route::post('mobilelogin', 'MobileAuthController@mobilelogin');
 });
-
+Route::group(['prefix' => 'mobile',
+	'namespace' => 'Mobile'], function () {	 
+			Route::get('user',function(Request $request){
+				info($request);
+				return App\User::find($request->user()->id);
+			});
+			Route::post('login', 'MobileAuthController@login');
+			Route::get('logout', 'MobileAuthController@logout');
+	
+});
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
 Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
