@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Mobile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\User;
 class MobileController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class MobileController extends Controller
     }
 	public function mobilelogin(Request $request)
 	{	
-		info($request);
+		
 		$this->validate($request, [
 		   'email' => 'required|email',
 		   'password' => 'required|string|min:8',
@@ -44,7 +44,7 @@ class MobileController extends Controller
 		
 		
 	}
-	 public function mobilelogout(Request $request){
+	public function mobilelogout(Request $request){
 		info("logged Out!");
 		return response()->json(['success'=>true,'msg'=>'ok!']);
     }

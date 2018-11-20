@@ -16,10 +16,9 @@ use Illuminate\Http\Request;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::group(['prefix' => 'mobile',
+Route::group(['prefix' => 'api',
 	'namespace' => 'Mobile'], function () {	
 		info("Mobile");	
-		Route::post('mobilelogin', 'MobileController@mobilelogin')->name('mobilelogin');
 		Route::get('mobilelogout', 'MobileController@mobilelogout')->name('mobilelogout');
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
