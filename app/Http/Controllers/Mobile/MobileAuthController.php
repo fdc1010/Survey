@@ -41,5 +41,6 @@ class MobileAuthController extends Controller
 	}
 	 public function logout(Request $request){
 		info("logged Out!");
+		return response()->json(['success'=>true,'msg'=>'ok!']);
     }
 }
