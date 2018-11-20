@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'api',
 	'namespace' => 'Mobile'], function () {	
 		info("Mobile");	
-		Route::get('mobilelogout', 'MobileController@mobilelogout')->name('mobilelogout');
+		Route::get('/mobilelogout', 'MobileController@mobilelogout')->name('mobilelogout');
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');
