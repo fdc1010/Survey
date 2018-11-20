@@ -19,7 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
+Route::group([
+	 //'prefix' => config('backpack.base.route_prefix', 'admin'),
+	 'middleware' => ['web', 'auth'], 
+	 'namespace' => 'Admin'], function () {
     // Backpack\MenuCRUD
 	Route::auth();
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
