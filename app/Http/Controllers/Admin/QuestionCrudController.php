@@ -54,8 +54,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
-            'label' => 'Number of Req. Answers',
-			'value' => 1,
+            'label' => 'Number of Req. Answers'
 	    ]);
 		
 		$this->crud->addField([

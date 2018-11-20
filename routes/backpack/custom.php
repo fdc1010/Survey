@@ -39,5 +39,5 @@ Route::group([
     CRUD::resource('location', 'LocationCrudController');
     CRUD::resource('locationcoordinate', 'LocationCoordinateCrudController');
 	
-	Route::post('mobilelogin', 'Auth\LoginController@mobilelogin');
+	
 }); // this should be the absolute last line of this file

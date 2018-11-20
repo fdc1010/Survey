@@ -32,4 +32,7 @@ Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middle
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
 Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
-
+	
+Route::get('/home', 'HomeController@index')->name('home');
+	Auth::routes();
+	Route::post('mobilelogin', 'Auth\LoginController@mobilelogin');
