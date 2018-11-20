@@ -43,6 +43,7 @@ class LoginController extends Controller
     }
 	public function login(Request $request)
 	{	
+		dd("test");
 		info($request);	
 		$validator = Validator::make($request->all(), [
 			'password'=>'required',
