@@ -35,7 +35,6 @@ Route::group([
 Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	 
 			Route::get('user',function(Request $request){
-				info($request);
 				return App\User::find($request->user()->id);
 			});
 			Route::post('login', 'MobileAuthController@login');
