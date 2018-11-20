@@ -36,6 +36,6 @@ Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
-	Route::post('login', 'Auth\LoginController@login');
-	Route::get('logout', 'Auth\LoginController@logout');
+	Route::post('login', '\App\Http\Controllers\Auth\LoginController@login');
+	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 });
