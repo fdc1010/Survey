@@ -160,7 +160,9 @@ class QuestionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$qdetail = QuestionDetail::where('question_id',$qid)->get();
-		$qdetail->delete();
+		if($qdetail)
+			$qdetail->delete();
+		
 		$options = $this->crud->entry->options;
 		foreach($options as $option){
 			$optid = $option['select'];
