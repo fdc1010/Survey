@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use App\User;
 
 class MobileAuthController extends Controller
 {
@@ -36,7 +36,7 @@ class MobileAuthController extends Controller
 		
 		
 	}
-	 public function logout(Request $request){
+	 public function mobilelogout(Request $request){
 
         $validator = Validator::make($request->all(), [
             'imei'=>'required',
@@ -51,18 +51,22 @@ class MobileAuthController extends Controller
             ), 400);
         }
 				
-        $credentials = $request->only('email','password');
+        if(User::where('email', $request->get('email'))->exists()){
+		   $user = User::where('email', $request->get('email'))->first();
+		   $auth = Hash::check($request->get('password'), $user->password);
+		   if($user && auth){
 		
-        if ( ! Auth::attempt($credentials))
-        {
-            return response()->json(['ok'=>'false','success'=>false,'reason'=>'Invalid credentials']);
-        }else{
-            $user = User::where('email',$request->email)->first();
-            $u = User::find($user->id);
-            $u->imei = $request->imei;
-            $u->save();
-            return response()->json(['ok'=>'success','success'=>true]);
-        }
+			  $user->rollApiKey(); //Model Function
+			   
+			  return response(array(
+				 'currentUser' => $user,
+				 'message' => 'Authorization Successful!',
+			  ));
+		   }
+		}
+		return response(array(
+		   'message' => 'Unauthorized, check your credentials.',
+		), 401);
 
     }
 }
