@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 });*/
 Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	 			
-		Route::post('login', 'MobileController@login');
-		Route::get('logout', 'MobileController@logout');	
+		Route::post('mobilelogin', 'MobileController@mobilelogin');
+		Route::get('mobilelogout', 'MobileController@mobilelogout');	
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');

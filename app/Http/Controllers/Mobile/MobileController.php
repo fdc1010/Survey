@@ -16,7 +16,7 @@ class MobileController extends Controller
     {
         //
     }
-	public function login(Request $request)
+	public function mobilelogin(Request $request)
 	{	
 		info($request);
 		$this->validate($request, [
@@ -44,7 +44,7 @@ class MobileController extends Controller
 		
 		
 	}
-	 public function logout(Request $request){
+	 public function mobilelogout(Request $request){
 		info("logged Out!");
 		return response()->json(['success'=>true,'msg'=>'ok!']);
     }
