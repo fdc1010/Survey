@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+Route::group(['prefix' => 'mobile'], function () {
+    Route::group(['namespace' => 'Mobile'], function () {
+		Route::group(['middleware' => 'auth:api'], function () {
+			Route::post('logout', 'MobileAuthController@logout');
+
+            Route::get('/user',function(Request $request){
+				info($request);
+                return  App\Models\User::find($request->user()->id);
+            });
+		});
+	});
 });
+/*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+	Route::post('/short', 'UrlMapperController@store');
+});*/
