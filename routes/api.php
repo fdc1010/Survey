@@ -20,7 +20,7 @@ Route::group(['prefix' => 'mobile'], function () {
     Route::group(['namespace' => 'Mobile'], function () {
 		Route::get('/user',function(Request $request){
 			info($request);
-			return (new Backpack\Base\app\Models\BackpackUser::class)::find($request->user()->id);//App\User::find($request->user()->id);
+			return App\User::find($request->user()->id);
 		});
 		Route::group(['middleware' => 'auth:api'], function () {
 			Route::post('login', 'MobileAuthController@login');
