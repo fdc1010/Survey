@@ -19,9 +19,9 @@ class MobileController extends Controller
      */
     public function index()
     {
-        info("fred");
+        
     }
-	public function mobilelogin(Request $request)
+	public function login(Request $request)
 	{	
 		
 		$this->validate($request, [
@@ -43,8 +43,8 @@ class MobileController extends Controller
 		
 		
 	}
-	public function mobilelogout(Request $request){
-		info("logged Out!");
+	public function logout(Request $request){
+				
 		return response()->json(['success'=>true,'msg'=>'ok!']);
     }
     /**
