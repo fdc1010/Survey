@@ -12,7 +12,6 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
 	Route::auth();
-	Route::get('login', '\App\Http\Controllers\Auth\LoginController@login');
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
     CRUD::resource('tag', 'TagCrudController');
     CRUD::resource('question', 'QuestionCrudController');
