@@ -25,6 +25,9 @@ Route::group(['prefix' => 'mobile',
 			info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');	
 		});
+		Route::get('getQuestions','QuestionController@getQuestions');
+		Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+		
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');

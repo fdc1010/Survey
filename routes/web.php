@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('getQuestions','QuestionController@getQuestions');
-Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+
 Route::get('importexcel', 'VoterController@index')->name('index');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
 Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
