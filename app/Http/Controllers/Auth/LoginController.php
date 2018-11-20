@@ -40,6 +40,7 @@ class LoginController extends Controller
 	{		
 		$ok = true;
 		$msg = "You've logged in!";
+		info($msg);
 		return response()->json(['success'=>$ok,'msg'=>$msg]);
 	}
 	public function logout(Request $request)
