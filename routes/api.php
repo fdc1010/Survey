@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 Route::group([
-	 'prefix' => config('backpack.base.route_prefix', 'mobile'),
+	 'prefix' => 'mobile' ,
 	 'middleware' => 'auth:api', 
 	 'namespace' => 'Mobile'], function () {
 			Route::get('/user',function(Request $request){
@@ -25,7 +25,7 @@ Route::group([
 				return App\User::find($request->user()->id);
 			});
 			Route::post('login', 'MobileAuthController@login');
-			Route::get('logout', 'MobileAuthController@logout');			
+			Route::get('logout', 'MobileAuthController@logout');
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');
