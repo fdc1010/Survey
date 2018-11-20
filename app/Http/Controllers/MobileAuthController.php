@@ -14,7 +14,7 @@ class MobileAuthController extends Controller
     public function mobilelogin(Request $request)
 	{	
 		dd($request);	
-		$validator = Validator::make($request->all(), [
+		/*$validator = Validator::make($request->all(), [
 			'password'=>'required',
 			'email'=>'required',
 		]);
@@ -31,7 +31,7 @@ class MobileAuthController extends Controller
 		}
 		else{
 			return response()->json(['success'=>true,'reason'=>"You've Logged In!"],200);
-		}
+		}*/
 		
 		
 	}
