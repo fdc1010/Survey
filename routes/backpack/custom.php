@@ -5,7 +5,7 @@
 // --------------------------
 // This route file is loaded automatically by Backpack\Base.
 // Routes you generate using Backpack\Generators will be placed here.
-info(config('backpack.base.middleware_key'));
+//info(config('backpack.base.middleware_key'));
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', 'auth'],//config('backpack.base.middleware_key', 'admin')],
