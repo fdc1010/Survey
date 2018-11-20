@@ -29,8 +29,7 @@ Route::group([
 	Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
 	Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
 	Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
-	Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
-	Route::post('mobilelogin', 'MobileAuthController@mobilelogin');
+	Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');	
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/

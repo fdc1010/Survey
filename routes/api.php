@@ -16,10 +16,11 @@ use Illuminate\Http\Request;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::group(['prefix' => 'api',
+Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	
 		info("Mobile");	
-		Route::get('/mobilelogout', 'MobileController@mobilelogout')->name('mobilelogout');
+		Route::post('mobilelogin', 'MobileController@mobilelogin');
+		Route::get('mobilelogout', 'MobileController@mobilelogout');	
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');
