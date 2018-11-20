@@ -12,7 +12,7 @@ class MobileAuthController extends Controller
 {
     public function mobilelogin(Request $request)
 	{	
-		dd($request);	
+		
 		/*$validator = Validator::make($request->all(), [
 			'password'=>'required',
 			'email'=>'required',

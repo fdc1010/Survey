@@ -73,13 +73,13 @@ class Voter extends Model
             $this->attributes[$attribute_name] = config('app.url')."/".$filename;//$destination_path.'/'.$filename;
         }
     }
-	public static function boot()
+	/*public static function boot()
 	{
 		parent::boot();
 		static::deleting(function($obj) {
 			\Storage::disk('profile_pic')->delete($obj->image);
 		});
-	}
+	}*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
