@@ -18,13 +18,13 @@ Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::auth();
 Route::group([
 	 'prefix' => config('backpack.base.route_prefix', 'admin'),
 	 'middleware' => ['web', 'auth'], 
 	 'namespace' => 'Admin'], function () {
     // Backpack\MenuCRUD
-	Route::auth();
+	
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
     CRUD::resource('menu-item', 'Admin\MenuItemCrudController');
 	Route::get('importexcel', 'VoterController@index')->name('index');
