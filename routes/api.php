@@ -24,10 +24,10 @@ Route::group(['prefix' => 'mobile',
 		Route::group(['middleware' => 'auth:api'], function () {
 			info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');	
+			Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
+			Route::get('getQuestions','QuestionController@getQuestions');
+			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 		});
-		Route::get('getQuestions','QuestionController@getQuestions');
-		Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
-		
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');

@@ -16,7 +16,7 @@ class VoterController extends Controller
     {
         //
     }
-	public function getVoterDetailByLastname(Request $request){
+	public function getVoterInfoByLastname(Request $request){
 		$lname = $request->lastname;
 		$voters = Voter::where('last_name','LIKE','%$lname%')->first();
 		
