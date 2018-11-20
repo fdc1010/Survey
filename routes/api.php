@@ -17,7 +17,8 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 Route::group(['prefix' => 'mobile',
-	'namespace' => 'Mobile'], function () {	 			
+	'namespace' => 'Mobile'], function () {	
+		info("Mobile");	
 		Route::post('mobilelogin', 'MobileController@mobilelogin');
 		Route::get('mobilelogout', 'MobileController@mobilelogout');	
 });
