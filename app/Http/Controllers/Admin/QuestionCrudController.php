@@ -172,5 +172,11 @@ class QuestionCrudController extends CrudController
 		}
         return $redirect_location;
     }
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		QuestionDetail::where('question_id',$id)->delete();
+		return $this->crud->delete($id);
+	}
 	
 }
