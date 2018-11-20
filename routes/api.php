@@ -20,7 +20,7 @@ Route::group(['prefix' => 'mobile'], function () {
     Route::group(['namespace' => 'Mobile'], function () {
 		Route::group(['middleware' => 'auth:api'], function () {
 			Route::post('login', 'MobileAuthController@login');
-			Route::post('logout', 'MobileAuthController@logout');
+			Route::get('logout', 'MobileAuthController@logout');
 
             Route::get('/user',function(Request $request){
 				info($request);

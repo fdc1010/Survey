@@ -18,4 +18,10 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+	
+	# Add Access Control Headers
+	Header add Access-Control-Allow-Origin "*"
+	Header add Access-Control-Allow-Methods:
+		"GET,POST,PUT,DELETE,OPTIONS"
+	Header add Access-Control-Allow-Headers: "Accept, Authorization, Content-Type, X-Requested-With"
 </IfModule>
