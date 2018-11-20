@@ -18,7 +18,7 @@ class MobileController extends Controller
      */
     public function index()
     {
-        //
+        info("fred");
     }
 	public function mobilelogin(Request $request)
 	{	
