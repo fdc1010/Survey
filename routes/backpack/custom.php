@@ -38,7 +38,4 @@ Route::group([
     CRUD::resource('sitio', 'SitioCrudController');
     CRUD::resource('location', 'LocationCrudController');
     CRUD::resource('locationcoordinate', 'LocationCoordinateCrudController');
-	Route::post('mobilelogin', '\App\Http\Controllers\Auth\LoginController@login');
-	Route::get('mobilelogout', '\App\Http\Controllers\Auth\LoginController@logout');
-	
 }); // this should be the absolute last line of this file
