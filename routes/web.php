@@ -34,3 +34,8 @@ Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
 	
 Route::get('/home', 'HomeController@index')->name('home');
+Route::auth();
+Route::group(['middleware' => ['auth']], function () {
+	Route::post('mobilelogin', '\App\Http\Controllers\Auth\LoginController@mobilelogin');
+	Route::get('mobilelogout', '\App\Http\Controllers\Auth\LoginController@logout');
+});

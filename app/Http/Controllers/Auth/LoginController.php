@@ -41,7 +41,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-	public function login(Request $request)
+	public function mobilelogin(Request $request)
 	{	
 		dd("test");
 		info($request);	
