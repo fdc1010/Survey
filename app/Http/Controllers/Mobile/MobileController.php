@@ -25,26 +25,20 @@ class MobileController extends Controller
 		
 		$this->validate($request, [
 		   'email' => 'required|email',
-		   'password' => 'required|string|min:8',
+		   'password' => 'required|string',
 		]);
 		
-		
-		if(User::where('email', $request->get('email'))->exists()){
-		   $user = User::where('email', $request->get('email'))->first();
+		$user = User::where('email', $request->get('email'))->first();
+		if($user){		   
 		   $auth = Hash::check($request->get('password'), $user->password);
-		   if($user && auth){
+		   if($auth){
 		
 			  $user->rollApiKey(); //Model Function
 		
-			  return response(array(
-				 'currentUser' => $user,
-				 'message' => 'Authorization Successful!',
-			  ));
+			  return response()->json('Authorization Successful');
 		   }
 		}
-		return response(array(
-		   'message' => 'Unauthorized, check your credentials.',
-		), 401);
+		return response()->json('Unauthorized, check your credentials.');
 		
 		
 	}
