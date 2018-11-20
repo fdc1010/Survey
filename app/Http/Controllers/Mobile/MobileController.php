@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Mobile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 class MobileController extends Controller
 {
