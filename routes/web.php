@@ -18,15 +18,12 @@ Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('/', function () {
     return view('welcome');
 });
-Route::auth();
 Route::group([
 	 'prefix' => config('backpack.base.route_prefix', 'admin'),
 	 'middleware' => ['web', 'auth'], 
 	 'namespace' => 'Admin'], function () {
-    // Backpack\MenuCRUD
-	
-	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-    CRUD::resource('menu-item', 'Admin\MenuItemCrudController');
+    // Backpack\MenuCRUD	
+    CRUD::resource('menu-item', 'MenuItemCrudController');
 	Route::get('importexcel', 'VoterController@index')->name('index');
 	Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
 	Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
