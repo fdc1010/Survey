@@ -23,8 +23,8 @@ Route::group(['prefix' => 'mobile'], function () {
 			return App\User::find($request->user()->id);
 		});
 		Route::group(['middleware' => 'auth:api'], function () {
-			Route::post('login', 'MobileAuthController@login');
-			Route::get('logout', 'MobileAuthController@logout');
+			Route::get('login', 'MobileAuthController@login');
+			Route::get'logout', 'MobileAuthController@logout');
 
             
 		});
