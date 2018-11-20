@@ -18,9 +18,9 @@ class VoterController extends Controller
     }
 	public function getVoterInfoByLastname(Request $request){
 		$lname = $request->lastname;
-		$voters = Voter::where('last_name','LIKE','%$lname%')
-						 ->orWhere('first_name','LIKE','%$lname%')
-						 ->orWhere('middle_name','LIKE','%$lname%')->first();
+		$voters = Voter::where('last_name','LIKE','%{$lname%}%')
+						 ->orWhere('first_name','LIKE','%{$lname%}')
+						 ->orWhere('middle_name','LIKE','%{$lname%}')->first();
 		
 		return response()->json(['voter'=>$voters]);		
 	}
