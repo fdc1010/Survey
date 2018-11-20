@@ -46,7 +46,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\LocationController' => $baseDir . '/app/Http/Controllers/LocationController.php',
     'App\\Http\\Controllers\\LocationCoordinateController' => $baseDir . '/app/Http/Controllers/LocationCoordinateController.php',
-    'App\\Http\\Controllers\\MobileAuthController' => $baseDir . '/app/Http/Controllers/MobileAuthController.php',
+    'App\\Http\\Controllers\\Mobile\\MobileAuthController' => $baseDir . '/app/Http/Controllers/Mobile/MobileAuthController.php',
     'App\\Http\\Controllers\\MunicipalityController' => $baseDir . '/app/Http/Controllers/MunicipalityController.php',
     'App\\Http\\Controllers\\PageController' => $baseDir . '/app/Http/Controllers/PageController.php',
     'App\\Http\\Controllers\\PartyController' => $baseDir . '/app/Http/Controllers/PartyController.php',

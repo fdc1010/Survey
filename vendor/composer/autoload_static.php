@@ -616,7 +616,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\LocationCoordinateController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationCoordinateController.php',
-        'App\\Http\\Controllers\\MobileAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/MobileAuthController.php',
+        'App\\Http\\Controllers\\Mobile\\MobileAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/MobileAuthController.php',
         'App\\Http\\Controllers\\MunicipalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/MunicipalityController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\PartyController' => __DIR__ . '/../..' . '/app/Http/Controllers/PartyController.php',
