@@ -16,18 +16,16 @@ use Illuminate\Http\Request;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::group(['prefix' => 'mobile'], function () {
-    Route::group(['namespace' => 'Mobile'], function () {
-		
-		Route::group(['middleware' => 'auth:api'], function () {
+Route::group([
+	 'prefix' => config('backpack.base.route_prefix', 'mobile'),
+	 'middleware' => 'auth:api', 
+	 'namespace' => 'Mobile'], function () {
 			Route::get('/user',function(Request $request){
 				info($request);
 				return App\User::find($request->user()->id);
 			});
 			Route::post('login', 'MobileAuthController@login');
-			Route::get('logout', 'MobileAuthController@logout');
-		});
-	});
+			Route::get('logout', 'MobileAuthController@logout');			
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 	Route::post('/short', 'UrlMapperController@store');
