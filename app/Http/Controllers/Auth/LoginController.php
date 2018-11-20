@@ -44,32 +44,13 @@ class LoginController extends Controller
 			return redirect()->intended('/admin');
 				
 		}
-		else {
-			if(Auth::check()){
-				Auth::logout();
-				$errors = [$this->username() => trans('auth.suspend')];
-				return redirect('/login')
-					->withInput($request->only($this->username(), 'remember'))
-					->withErrors($errors);
-			}
-		}
-			/*else if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'suspend' => 0, 'is_online'=> 1])) {
-				if(Auth::check()){
-					Auth::logout();
-					$errors = [$this->username() => trans('auth.alreadylogin')];
-					return redirect('/login')
-						->withInput($request->only($this->username(), 'remember'))
-						->withErrors($errors);
-				}
-
-			}*/
-			else{
+		else{
 				$errors = [$this->username() => trans('auth.failed')];
 				return redirect()->back()
 					->withInput($request->only($this->username(), 'remember'))
 					->withErrors($errors);
 			}
-		}
+		
 		
 
     }
