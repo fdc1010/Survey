@@ -36,4 +36,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+	public function mobilelogin(Request $request){
+		$ok = true;
+		$msg = "You've logged in!";
+		return response()->json(['success'=>$ok,'msg'=>$msg]);	
+	}
 }
