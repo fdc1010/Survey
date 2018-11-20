@@ -34,7 +34,7 @@ Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
 	
 Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+Route::auth();
 Route::group(['middleware' => ['auth']], function () {
 	Route::post('login', '\App\Http\Controllers\Auth\LoginController@login');
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
