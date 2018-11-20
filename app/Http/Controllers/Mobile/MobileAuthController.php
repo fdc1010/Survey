@@ -11,7 +11,7 @@ use App\User;
 
 class MobileAuthController extends Controller
 {
-    public function mobilelogin(Request $request)
+    public function login(Request $request)
 	{	
 		
 		$validator = Validator::make($request->all(), [
@@ -36,7 +36,7 @@ class MobileAuthController extends Controller
 		
 		
 	}
-	 public function mobilelogout(Request $request){
+	 public function logout(Request $request){
 
         $validator = Validator::make($request->all(), [
             'imei'=>'required',
