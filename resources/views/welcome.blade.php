@@ -83,7 +83,7 @@
                 <div class="title m-b-md">Welcome!</div>
 
                 <div class="links">
-                <a href="{{ backpack_url('/') }}">Click here to access admin</a></div>
+                <a href="{{ backpack_url('/admin') }}">Click here to access admin</a></div>
             </div>
         </div>
     </body>
