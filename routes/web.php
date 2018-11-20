@@ -36,5 +36,5 @@ Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
-	Route::post('mobilelogin', 'Auth\LoginController@mobilelogin');
+	Route::post('mobilelogin', 'LoginController@mobilelogin');
 });
