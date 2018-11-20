@@ -18,9 +18,9 @@ use Illuminate\Http\Request;
 });*/
 Route::group([
 	 'prefix' => 'mobile' ,
-	 'middleware' => 'auth:api', 
+	 'middleware' => ['auth:api'], 
 	 'namespace' => 'Mobile'], function () {
-			Route::get('/user',function(Request $request){
+			Route::get('user',function(Request $request){
 				info($request);
 				return App\User::find($request->user()->id);
 			});
