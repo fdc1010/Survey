@@ -28,7 +28,9 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+ 		Event::listen('Illuminate\Auth\Events\Login', function ($event) {						
+            $user = $event->user;
+            $user->api_token = str_random(60);
+		});
     }
 }

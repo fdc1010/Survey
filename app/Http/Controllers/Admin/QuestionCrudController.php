@@ -54,8 +54,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
-            'label' => 'Number of Req. Answers',
-			'value' => 1,
+            'label' => 'Number of Req. Answers'
 	    ]);
 		
 		$this->crud->addField([
@@ -126,6 +125,7 @@ class QuestionCrudController extends CrudController
 				  ],
 			  'default' => 0
 		]);*/
+		$this->crud->orderBy('priority');
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -157,6 +157,19 @@ class QuestionCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$qid = $this->crud->entry->id; // <-- SHOULD WORK
+		$qdetail = QuestionDetail::where('question_id',$qid)->delete();
+				
+		$options = $this->crud->entry->options;
+		foreach($options as $option){
+			$optid = $option['select'];
+			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
+			$questionoptions = QuestionDetail::create([
+				'question_id' => $qid,
+				'option_id' => $optid,
+				'with_option_other_ans' => $chkhasother
+			]);			
+		}
         return $redirect_location;
     }
 	

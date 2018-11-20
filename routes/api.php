@@ -13,6 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+Route::group(['prefix' => 'mobile',
+	'namespace' => 'Mobile'], function () {	
+		info("Mobile");	
+		Route::post('login', 'MobileController@login');
+		Route::resource('fred', 'MobileController');
+		Route::group(['middleware' => 'auth:api'], function () {
+			info("Mobile Middleware");			
+			Route::get('logout', 'MobileController@logout');	
+			Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
+			Route::get('getQuestions','QuestionController@getQuestions');
+			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+		});
 });
+/*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+	Route::post('/short', 'UrlMapperController@store');
+});*/

@@ -27,6 +27,10 @@ class QuestionRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'question' => 'required',
+			'number_answers' => 'required|min:1',
+			'priority' => 'required',
+			'options' => 'required'
         ];
     }
 
@@ -38,7 +42,7 @@ class QuestionRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'question','number_answers','priority','options'
         ];
     }
 
