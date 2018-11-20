@@ -13,51 +13,19 @@ class MobileAuthController extends Controller
 {
     public function login(Request $request)
 	{	
-		info($request);
-		$validator = Validator::make($request->all(), [
-			'imei'=>'required',
-			'password'=>'required',
-			'email'=>'required',
+		$this->validate($request, [
+		   'email' => 'required|email',
+		   'password' => 'required|string|min:8',
 		]);
-		info($request);
-		if ($validator->fails()) {
-			return Response::json(array(
-				'reason' => $validator->getMessageBag()->toArray(),
-				'success'=>false
-			), 400);
-		}
-		if ( ! Auth::attempt($credentials))
-		{
-			return response()->json(['success'=>false,'reason'=>'Invalid credentials'],401);
-		}
-		else{
-			return response()->json(['success'=>true,'reason'=>"You've Logged In!"],200);
-		}
 		
 		
-	}
-	 public function logout(Request $request){
-		info($request);
-        $validator = Validator::make($request->all(), [
-            'imei'=>'required',
-            'password'=>'required',
-            'email'=>'required',
-        ]);
-
-        if ($validator->fails()) {
-            return Response::json(array(
-                'errors' => $validator->getMessageBag()->toArray(),
-                'success'=>false
-            ), 400);
-        }
-				
-        if(User::where('email', $request->get('email'))->exists()){
+		if(User::where('email', $request->get('email'))->exists()){
 		   $user = User::where('email', $request->get('email'))->first();
 		   $auth = Hash::check($request->get('password'), $user->password);
 		   if($user && auth){
 		
 			  $user->rollApiKey(); //Model Function
-			   
+		
 			  return response(array(
 				 'currentUser' => $user,
 				 'message' => 'Authorization Successful!',
@@ -67,6 +35,10 @@ class MobileAuthController extends Controller
 		return response(array(
 		   'message' => 'Unauthorized, check your credentials.',
 		), 401);
-
+		
+		
+	}
+	 public function logout(Request $request){
+		info("logged Out!");
     }
 }
