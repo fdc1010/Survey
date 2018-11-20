@@ -24,7 +24,7 @@ Route::group(['prefix' => 'mobile'], function () {
 
             Route::get('/user',function(Request $request){
 				info($request);
-                return  App\Models\User::find($request->user()->id);
+                return  App\User::find($request->user()->id);
             });
 		});
 	});
