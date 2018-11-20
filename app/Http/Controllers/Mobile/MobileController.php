@@ -36,10 +36,10 @@ class MobileController extends Controller
 		
 			  $user->rollApiKey(); //Model Function
 		
-			  return response()->json('Authorization Successful');
+			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   }
 		}
-		return response()->json('Unauthorized, check your credentials.');
+		return response()->json(['success'=>false,'msg'=>'Unauthorized, check your credentials.']);
 		
 		
 	}
