@@ -18,14 +18,15 @@ use Illuminate\Http\Request;
 });*/
 Route::group(['prefix' => 'mobile'], function () {
     Route::group(['namespace' => 'Mobile'], function () {
+		Route::get('/user',function(Request $request){
+			info($request);
+			return  App\User::find($request->user()->id);
+		});
 		Route::group(['middleware' => 'auth:api'], function () {
 			Route::post('login', 'MobileAuthController@login');
 			Route::get('logout', 'MobileAuthController@logout');
 
-            Route::get('/user',function(Request $request){
-				info($request);
-                return  App\User::find($request->user()->id);
-            });
+            
 		});
 	});
 });
