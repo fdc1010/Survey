@@ -283,7 +283,7 @@
 					  });
 				  });
 				  $(document).on('change','.select2_field',function(e){
-					  $('.select2_field:selected').each(function (i, obj) {
+					  $('.select2_field option:selected').each(function (i, obj) {
 						 console.log(i,obj); 
 					  });
 				  });
