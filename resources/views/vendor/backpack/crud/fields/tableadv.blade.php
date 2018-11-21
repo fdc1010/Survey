@@ -282,9 +282,10 @@
 						  theme: "bootstrap"
 					  });
 				  });
-				  $('.select2_field').on('click',function(e){
-					  $(this).each(function (i, obj) {
-						  console.log(i,obj);
+				  $(document).on('click','.select2_field',function(e){
+					  console.log(this);
+					  $(this).each(function (option) {
+						  console.log(option);
 					  });
 				  });
 			});
