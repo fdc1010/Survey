@@ -21,7 +21,7 @@ Route::group(['prefix' => 'mobile',
 		//info("Mobile");	
 		Route::post('login', 'MobileController@login');
 		Route::resource('fred', 'MobileController');
-		Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
+		Route::get('getVoterInfoByName', 'VoterController@getVoterInfoByName');
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');				
