@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Models\Voter;
-use App\Models\VoterStatus;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\VoterRequest as StoreRequest;
 use App\Http\Requests\VoterRequest as UpdateRequest;
@@ -20,8 +19,6 @@ class VoterCrudController extends CrudController
 {
     public function setup()
     {
-		$prct = VoterStatus::first();
-		dd($prct->status_name);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
