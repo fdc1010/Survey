@@ -37,11 +37,10 @@ class SurveyorAssignment extends Model
 		$areas = AssignmentDetail::where('assignment_id',$this->id)
 										->with('sitio')
 										->get();
-		$result = "<ul>";
+		$result = "";
 		foreach($areas as $area){
-			$result .= "<li>".$area->sitio->name."</li>";
+			$result .= $area->sitio->name."<br>";
 		}
-		$result .= "</ul>";
 		return $result;
 	}
 	/*
