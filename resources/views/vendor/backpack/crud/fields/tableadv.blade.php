@@ -103,7 +103,7 @@
                                 
                                     <?php $entity_model = $crud->getRelationModel($field['columns']['entity'],  - 1); ?>
                                     <select ng-model="item.{{ $prop }}"
-                                        @include('crud::inc.field_attributes', ['default_class' =>  'form-control select2'])
+                                        @include('crud::inc.field_attributes', ['default_class' =>  'form-control select2_field'])
                                         >
                                 
                                         @if ($entity_model::isColumnNullable($field['columns']['name']))
