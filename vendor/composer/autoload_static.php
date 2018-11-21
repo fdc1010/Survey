@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
+class ComposerStaticInit43d29838a084f956963d51c2d7fd7289
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -617,6 +617,9 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\LocationCoordinateController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationCoordinateController.php',
         'App\\Http\\Controllers\\Mobile\\MobileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/MobileController.php',
+        'App\\Http\\Controllers\\Mobile\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/QuestionController.php',
+        'App\\Http\\Controllers\\Mobile\\SurveyAnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/SurveyAnswerController.php',
+        'App\\Http\\Controllers\\Mobile\\VoterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/VoterController.php',
         'App\\Http\\Controllers\\MunicipalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/MunicipalityController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\PartyController' => __DIR__ . '/../..' . '/app/Http/Controllers/PartyController.php',
@@ -4606,6 +4609,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'Spatie\\PdfToImage\\Exceptions\\PageDoesNotExist' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/PageDoesNotExist.php',
         'Spatie\\PdfToImage\\Exceptions\\PdfDoesNotExist' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/PdfDoesNotExist.php',
         'Spatie\\PdfToImage\\Pdf' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Pdf.php',
+        'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',
         'Spatie\\Permission\\Contracts\\Permission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Contracts/Permission.php',
@@ -5373,11 +5377,11 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit43d29838a084f956963d51c2d7fd7289::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit43d29838a084f956963d51c2d7fd7289::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit43d29838a084f956963d51c2d7fd7289::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit43d29838a084f956963d51c2d7fd7289::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit43d29838a084f956963d51c2d7fd7289::$classMap;
 
         }, null, ClassLoader::class);
     }
