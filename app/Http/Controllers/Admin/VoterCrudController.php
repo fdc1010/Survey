@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Models\Voter;
+use App\Models\Precinct;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\VoterRequest as StoreRequest;
 use App\Http\Requests\VoterRequest as UpdateRequest;
@@ -19,8 +20,8 @@ class VoterCrudController extends CrudController
 {
     public function setup()
     {
-		$voter = Voter::first();
-		dd($voter->full_name);
+		$prct = Precinct::first();
+		dd($prct->precinct_info);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
