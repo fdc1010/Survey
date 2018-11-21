@@ -53,6 +53,7 @@ class VoterCrudController extends CrudController
 			'label' => "Profile Image",
 			'name' => "profilepic",
 			'type' => 'image',
+			'width' => '30px',
 		])->beforeColumn('first_name');
 		$this->crud->addColumn([
             'name' => 'barangay',			
