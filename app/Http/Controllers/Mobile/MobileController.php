@@ -25,11 +25,11 @@ class MobileController extends Controller
 	{	
 		
 		$this->validate($request, [
-		   'email' => 'required|email',
+		   'name' => 'required|string',
 		   'password' => 'required|string',
 		]);
-		
-		$user = User::where('email', $request->get('email'))->first();
+		$name = $request->get('name');
+		$user = User::whereRaw("name like ?", ["%{$name}%"])->first();
 		if($user){		   
 		   $auth = Hash::check($request->get('password'), $user->password);
 		   if($auth){
