@@ -138,7 +138,7 @@ class VoterCrudController extends CrudController
 	{
 		$this->crud->hasAccessOrFail('delete');
 		//Voter::where('id',$id)->delete();
-		$voter Voter::find($id);
+		$voter=Voter::find($id);
 		
 		return $this->crud->delete($id);
 	}
