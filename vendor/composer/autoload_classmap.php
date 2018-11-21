@@ -4043,7 +4043,6 @@ return array(
     'Spatie\\PdfToImage\\Exceptions\\PageDoesNotExist' => $vendorDir . '/spatie/pdf-to-image/src/Exceptions/PageDoesNotExist.php',
     'Spatie\\PdfToImage\\Exceptions\\PdfDoesNotExist' => $vendorDir . '/spatie/pdf-to-image/src/Exceptions/PdfDoesNotExist.php',
     'Spatie\\PdfToImage\\Pdf' => $vendorDir . '/spatie/pdf-to-image/src/Pdf.php',
-    'Spatie\\Permission\\Commands\\CacheReset' => $vendorDir . '/spatie/laravel-permission/src/Commands/CacheReset.php',
     'Spatie\\Permission\\Commands\\CreatePermission' => $vendorDir . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
     'Spatie\\Permission\\Commands\\CreateRole' => $vendorDir . '/spatie/laravel-permission/src/Commands/CreateRole.php',
     'Spatie\\Permission\\Contracts\\Permission' => $vendorDir . '/spatie/laravel-permission/src/Contracts/Permission.php',
