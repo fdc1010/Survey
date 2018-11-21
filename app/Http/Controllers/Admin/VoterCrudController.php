@@ -148,8 +148,7 @@ class VoterCrudController extends CrudController
 		$voter=Voter::find($id);
 		$path = public_path('profilepic/');
 		$photo=$path.basename($voter->profilepic);		
-		File::delete($photo);
-		info($photo);
+		File::delete($photo);		
 		return $this->crud->delete($id);
 	}
 }
