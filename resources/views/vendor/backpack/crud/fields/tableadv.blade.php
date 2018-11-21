@@ -284,7 +284,7 @@
 				  });
 				  $(document).on('change','.select2_field',function(e){
 					  $('.select2_field option:selected').each(function (i, obj) {
-						 console.log(i,obj); 
+						 console.log($(obj).val()); 
 					  });
 				  });
 			});
