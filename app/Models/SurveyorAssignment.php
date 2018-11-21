@@ -33,7 +33,17 @@ class SurveyorAssignment extends Model
     {
         return $this->belongsToMany('App\Models\Sitio','assignment_details','sitio_id','assignment_id');
     }
-	
+	public function getAreas(){
+		$areas = AssignmentDetail::where('assignment_id',$this->id)
+										->with('sitio')
+										->get();
+		$result = "<ul>";
+		foreach($areas as $area){
+			$result .= "<li>".$area->sitio->name."</li>";
+		}
+		$result .= "</ul>";
+		return $result;
+	}
 	/*
 	public function barangay()
     {
