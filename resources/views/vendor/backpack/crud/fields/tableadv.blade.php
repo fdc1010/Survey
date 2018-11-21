@@ -282,11 +282,8 @@
 						  theme: "bootstrap"
 					  });
 				  });
-				  $(document).on('click','.select2_field',function(e){
-					  console.log(this);
-					  $(this).each(function (option) {
-						  console.log(option);
-					  });
+				  $(document).on('change','.select2_field',function(e){
+					  console.log("fred",this);					  
 				  });
 			});
         </script>
