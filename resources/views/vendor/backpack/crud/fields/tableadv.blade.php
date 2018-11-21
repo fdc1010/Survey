@@ -277,16 +277,16 @@
 				  });	
 				  
 				  $(document).on('mouseenter','.select2_field',function(e){
-					  $('.select2_field').each(function (i, obj) {
-						  console.log(i,obj);
-						  if (!$(obj).hasClass("select2-hidden-accessible"))
-						  {
-							  $(obj).select2({
-								  theme: "bootstrap"
-							  });
-						  }
+					  
+					  $(this).select2({
+						  theme: "bootstrap"
 					  });
 				  });
+				  $('.select2_field').on('click',function(e){
+					  $(this).each(function (i, obj) {
+						  console.log(i,obj);
+					  });
+				  }
 			});
         </script>
     @endpush
