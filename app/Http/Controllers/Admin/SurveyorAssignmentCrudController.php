@@ -147,4 +147,10 @@ class SurveyorAssignmentCrudController extends CrudController
 		}
         return $redirect_location;
     }
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		AssignmentDetail::where('assignment_id',$id)->delete();
+		return $this->crud->delete($id);
+	}
 }
