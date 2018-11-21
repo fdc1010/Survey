@@ -24,15 +24,15 @@ class AssignmentDetail extends Model
     // protected $dates = [];
 	public function assignareas()
     {
-        return $this->belongsToMany('App\SurveyAssignment','sitios','assignment_id','sitio_id');
+        return $this->belongsToMany('App\Models\SurveyAssignment','sitios','assignment_id','sitio_id');
     }
 	public function barangay()
     {
-        return $this->belongsTo('App\Barangay','barangay_id');
+        return $this->belongsTo('App\Models\Barangay','barangay_id');
     }
 	public function sitio()
     {
-        return $this->belongsTo('App\Sitio','sitio_id');
+        return $this->belongsTo('App\Models\Sitio','sitio_id');
     }
 	
     /*
