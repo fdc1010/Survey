@@ -134,4 +134,12 @@ class VoterCrudController extends CrudController
 		
         return $redirect_location;
     }
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		//Voter::where('id',$id)->delete();
+		$voter Voter::find($id);
+		
+		return $this->crud->delete($id);
+	}
 }
