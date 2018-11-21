@@ -34,8 +34,8 @@ class SurveyorAssignmentCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['user_id','barangay_id','sitio_id','task','description']);
-		$this->crud->removeField(['user_id','barangay_id','sitio_id','quota','progress']);
+		$this->crud->removeColumn(['user_id','task','description']);
+		$this->crud->removeField(['user_id','progress']);
         $this->crud->addColumn([
             'label' => "User",
 			'type' => 'select',
@@ -52,7 +52,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
 		])->afterColumn('user_id');*/
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'label'     => 'Assignment Area',
 			'type'      => 'checklist',
 			'name'      => 'sitio_id',
@@ -60,7 +60,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name',
 			'model'     => "App\Models\Sitio",
 			'pivot'     => true,
-		])->afterColumn('user_id');
+		])->afterColumn('user_id');*/
 		$this->crud->addField([
 			'label' => "User",
 			'type' => 'select',
@@ -77,7 +77,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
 		])->afterField('user_id');*/
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'label'     => 'Assignment Area',
 			'type'      => 'checklist',
 			'name'      => 'sitio_id',
@@ -85,7 +85,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name',
 			'model'     => "App\Models\Sitio",
 			'pivot'     => true,
-		])->afterField('user_id');
+		])->afterField('user_id');*/
 		// add asterisk for fields that are required in SurveyorAssignmentRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

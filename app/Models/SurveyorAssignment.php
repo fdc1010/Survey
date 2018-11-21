@@ -19,7 +19,7 @@ class SurveyorAssignment extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['user_id','barangay_id','sitio_id','quota','progress','task','description'];
+    protected $fillable = ['user_id','quota','progress','task','description'];
     
 	// protected $hidden = [];
     // protected $dates = [];
@@ -27,6 +27,7 @@ class SurveyorAssignment extends Model
     {
         return $this->belongsTo('App\User','user_id');
     }
+	/*
 	public function barangay()
     {
         return $this->belongsTo('App\Barangay','barangay_id');
@@ -34,7 +35,7 @@ class SurveyorAssignment extends Model
 	public function sitio()
     {
         return $this->belongsTo('App\Sitio','sitio_id');
-    }
+    }*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
