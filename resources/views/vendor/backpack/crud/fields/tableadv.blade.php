@@ -103,6 +103,7 @@
                                 
                                     <?php $entity_model = $crud->getRelationModel($field['columns']['entity'],  - 1); ?>
                                     <select ng-model="item.{{ $prop }}"
+                                    	style="width: 100%"
                                         @include('crud::inc.field_attributes', ['default_class' =>  'form-control select2_field'])
                                         >
                                 
