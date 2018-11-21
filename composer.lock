@@ -3748,16 +3748,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.26.2",
+            "version": "2.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "9ae356445d38b7e0ce6a692293f30069580dd109"
+                "reference": "8443660fc02a13e9c6b73baa369dc1999afe9025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/9ae356445d38b7e0ce6a692293f30069580dd109",
-                "reference": "9ae356445d38b7e0ce6a692293f30069580dd109",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/8443660fc02a13e9c6b73baa369dc1999afe9025",
+                "reference": "8443660fc02a13e9c6b73baa369dc1999afe9025",
                 "shasum": ""
             },
             "require": {
@@ -3809,7 +3809,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-11-20T19:43:32+00:00"
+            "time": "2018-11-21T16:41:38+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
