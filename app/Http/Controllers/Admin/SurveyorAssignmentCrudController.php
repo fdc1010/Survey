@@ -68,7 +68,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'user', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
-		])->makeFirstField();
+		])->beforeField('task');
 		$this->crud->addField([
 			'label' => "Barangay",
 			'type' => 'select',
