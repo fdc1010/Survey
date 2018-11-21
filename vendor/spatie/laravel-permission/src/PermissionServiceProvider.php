@@ -32,6 +32,7 @@ class PermissionServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Commands\CacheReset::class,
                 Commands\CreateRole::class,
                 Commands\CreatePermission::class,
             ]);
@@ -40,6 +41,10 @@ class PermissionServiceProvider extends ServiceProvider
         $this->registerModelBindings();
 
         $permissionLoader->registerPermissions();
+
+        $this->app->singleton(PermissionRegistrar::class, function ($app) use ($permissionLoader) {
+            return $permissionLoader;
+        });
     }
 
     public function register()

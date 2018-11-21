@@ -73,7 +73,7 @@ class VoterCrudController extends CrudController
 			'attribute2' => 'name', // attribute on Article that is shown to admin
 			'entity2' => "barangay"
 		]);
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'label' => "Firstname",
 			'type' => 'text',
 			'name' => 'first_name'
@@ -82,7 +82,7 @@ class VoterCrudController extends CrudController
 			'label' => "Lastname",
 			'type' => 'text',
 			'name' => 'last_name'
-		]);
+		]);*/
 		$this->crud->addField([
 			'label' => "Gender",
 			'type' => 'enum',

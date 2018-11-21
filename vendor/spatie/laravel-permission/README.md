@@ -47,7 +47,7 @@ $role->givePermissionTo('edit articles');
 
 If you're using multiple guards we've got you covered as well. Every guard will have its own set of permissions and roles that can be assigned to the guard's users. Read about it in the [using multiple guards](#using-multiple-guards) section of the readme.
 
-Because all permissions will be registered on [Laravel's gate](https://laravel.com/docs/5.5/authorization), you can test if a user has a permission with Laravel's default `can` function:
+Because all permissions will be registered on [Laravel's gate](https://laravel.com/docs/5.5/authorization), you can check if a user has a permission with Laravel's default `can` function:
 
 ```php
 $user->can('edit articles');
@@ -178,22 +178,15 @@ return [
     'column_names' => [
 
         /*
-         * Change this if you want to name the related model primary key other than 
+         * Change this if you want to name the related model primary key other than
          * `model_id`.
          *
-         * For example, this would be nice if your primary keys are all UUIDs. In 
+         * For example, this would be nice if your primary keys are all UUIDs. In
          * that case, name this `model_uuid`.
          */
         'model_morph_key' => 'model_id',
     ],
 
-    /*
-     * By default all permissions will be cached for 24 hours unless a permission or
-     * role is updated. Then the cache will be flushed immediately.
-     */
-
-    'cache_expiration_time' => 60 * 24,
-    
     /*
      * When set to true, the required permission/role names are added to the exception
      * message. This could be considered an information leak in some contexts, so
@@ -201,6 +194,33 @@ return [
      */
 
     'display_permission_in_exception' => false,
+
+    'cache' => [
+
+        /*
+         * By default all permissions will be cached for 24 hours unless a permission or
+         * role is updated. Then the cache will be flushed immediately.
+         */
+
+        'expiration_time' => 60 * 24,
+
+        /*
+         * The key to use when tagging and prefixing entries in the cache.
+         */
+
+        'key' => 'spatie.permission.cache',
+
+        /*
+         * When checking for a permission against a model by passing a Permission
+         * instance to the check, this key determines what attribute on the
+         * Permissions model is used to cache against.
+         *
+         * Ideally, this should match your preferred way of checking permissions, eg:
+         * `$user->can('view-posts')` would be 'name'.
+         */
+
+        'model_key' => 'name',
+    ],
 ];
 ```
 
@@ -215,6 +235,7 @@ composer require spatie/laravel-permission
 Copy the required files:
 
 ```bash
+mkdir -p config
 cp vendor/spatie/laravel-permission/config/permission.php config/permission.php
 cp vendor/spatie/laravel-permission/database/migrations/create_permission_tables.php.stub database/migrations/2018_01_01_000000_create_permission_tables.php
 ```
@@ -222,7 +243,7 @@ cp vendor/spatie/laravel-permission/database/migrations/create_permission_tables
 You will also need to create another configuration file at `config/auth.php`. Get it on the Laravel repository or just run the following command:
 
 ```bash
-curl -Ls https://raw.githubusercontent.com/laravel/lumen-framework/5.5/config/auth.php -o config/auth.php
+curl -Ls https://raw.githubusercontent.com/laravel/lumen-framework/5.7/config/auth.php -o config/auth.php
 ```
 
 Then, in `bootstrap/app.php`, register the middlewares:
@@ -372,7 +393,7 @@ Or revoke & add new permissions in one go:
 $user->syncPermissions(['edit articles', 'delete articles']);
 ```
 
-You can test if a user has a permission:
+You can check if a user has a permission:
 
 ```php
 $user->hasPermissionTo('edit articles');
@@ -386,7 +407,7 @@ $user->hasPermissionTo(Permission::find(1)->id);
 $user->hasPermissionTo($somePermission->id);
 ```
 
-You can test if a user has Any of an array of permissions:
+You can check if a user has Any of an array of permissions:
 
 ```php
 $user->hasAnyPermission(['edit articles', 'publish articles', 'unpublish articles']);
@@ -405,7 +426,7 @@ $user->hasAnyPermission(['edit articles', 1, 5]);
 ```
 
 Saved permissions will be registered with the `Illuminate\Auth\Access\Gate` class for the default guard. So you can
-test if a user has a permission with Laravel's default `can` function:
+check if a user has a permission with Laravel's default `can` function:
 
 ```php
 $user->can('edit articles');
@@ -524,7 +545,7 @@ This package also adds Blade directives to verify whether the currently logged i
 Optionally you can pass in the `guard` that the check will be performed on as a second argument.
 
 #### Blade and Roles
-Test for a specific role:
+Check for a specific role:
 ```php
 @role('writer')
     I am a writer!
@@ -541,7 +562,7 @@ is the same as
 @endhasrole
 ```
 
-Test for any role in a list:
+Check for any role in a list:
 ```php
 @hasanyrole($collectionOfRoles)
     I have one or more of these roles!
@@ -555,7 +576,7 @@ Test for any role in a list:
     I have none of these roles...
 @endhasanyrole
 ```
-Test for all roles:
+Check for all roles:
 
 ```php
 @hasallroles($collectionOfRoles)
@@ -789,43 +810,41 @@ In your application's tests, if you are not seeding roles and permissions as par
 
 ## Database Seeding
 
-Two notes about Database Seeding:
+You may discover that it is best to flush this package's cache before seeding, to avoid cache conflict errors. This can be done directly in a seeder class. Here is a sample seeder, which first clears the cache, creates permissions and then assigns permissions to roles (the order of these steps is intentional):
 
-1. It is best to flush the `spatie.permission.cache` before seeding, to avoid cache conflict errors. This can be done from an Artisan command (see Troubleshooting: Cache section, later) or directly in a seeder class (see example below).
+```php
+use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-2. Here's a sample seeder, which clears the cache, creates permissions and then assigns permissions to roles:
-
-    ```php
-    use Illuminate\Database\Seeder;
-    use Spatie\Permission\Models\Role;
-    use Spatie\Permission\Models\Permission;
-
-    class RolesAndPermissionsSeeder extends Seeder
+class RolesAndPermissionsSeeder extends Seeder
+{
+    public function run()
     {
-        public function run()
-        {
-            // Reset cached roles and permissions
-            app()['cache']->forget('spatie.permission.cache');
+        // Reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-            // create permissions
-            Permission::create(['name' => 'edit articles']);
-            Permission::create(['name' => 'delete articles']);
-            Permission::create(['name' => 'publish articles']);
-            Permission::create(['name' => 'unpublish articles']);
+        // create permissions
+        Permission::create(['name' => 'edit articles']);
+        Permission::create(['name' => 'delete articles']);
+        Permission::create(['name' => 'publish articles']);
+        Permission::create(['name' => 'unpublish articles']);
 
-            // create roles and assign created permissions
+        // create roles and assign created permissions
 
-            $role = Role::create(['name' => 'writer']);
-            $role->givePermissionTo('edit articles');
+        // this can be done as separate statements
+        $role = Role::create(['name' => 'writer']);
+        $role->givePermissionTo('edit articles');
 
-            $role = Role::create(['name' => 'moderator']);
-            $role->givePermissionTo(['publish articles', 'unpublish articles']);
+        // or may be done by chaining
+        $role = Role::create(['name' => 'moderator'])
+            ->givePermissionTo(['publish articles', 'unpublish articles']);
 
-            $role = Role::create(['name' => 'super-admin']);
-            $role->givePermissionTo(Permission::all());
-        }
+        $role = Role::create(['name' => 'super-admin']);
+        $role->givePermissionTo(Permission::all());
     }
-	```
+}
+```
 
 ## Extending
 
@@ -851,7 +870,9 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 Role and Permission data are cached to speed up performance.
 
-When you use the supplied methods for manipulating roles and permissions, the cache is automatically reset for you:
+While we recommend not changing the cache "key" name, if you wish to alter the expiration time you may do so in the `config/permission.php` file, in the `cache` array. Note that as of v2.26.0 the `cache` entry here is now an array, and `expiration_time` is a sub-array entry.
+
+When you use the built-in functions for manipulating roles and permissions, the cache is automatically reset for you, and relations are automatically reloaded for the current model record:
 
 ```php
 $user->assignRole('writer');
@@ -868,17 +889,23 @@ $permission->syncRoles(params);
 HOWEVER, if you manipulate permission/role data directly in the database instead of calling the supplied methods, then you will not see the changes reflected in the application unless you manually reset the cache.
 
 ### Manual cache reset
-To manually reset the cache for this package, run:
-```bash
-php artisan cache:forget spatie.permission.cache
+To manually reset the cache for this package, you can run the following in your app code:
+```php
+$this->app->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
 ```
+
+Or you can use an Artisan command:
+```bash
+php artisan permission:cache-reset
+```
+
 
 ### Cache Identifier
 
 TIP: If you are leveraging a caching service such as `redis` or `memcached` and there are other sites 
-running on your server, you could run into cache clashes. It is prudent to set your own cache `prefix` 
-in `/config/cache.php` to something unique for each application. This will prevent other applications 
-from accidentally using/changing your cached data.
+running on your server, you could run into cache clashes between apps. It is prudent to set your own 
+cache `prefix` in Laravel's `/config/cache.php` to something unique for each application. 
+This will prevent other applications from accidentally using/changing your cached data.
 
 
 ## Need a UI?
@@ -886,6 +913,8 @@ from accidentally using/changing your cached data.
 The package doesn't come with any screens out of the box, you should build that yourself. Here are some options to get you started:
 
 - [Laravel Nova package by @vyuldashev for managing Roles and Permissions](https://github.com/vyuldashev/nova-permission)
+
+- [Laravel Nova package by @paras-malhotra for managing Roles and Permissions and permissions based authorization for Nova Resources](https://github.com/insenseanalytics/laravel-nova-permission)
 
 - [Extensive tutorial for building permissions UI](https://scotch.io/tutorials/user-authorization-in-laravel-54-with-spatie-laravel-permission) by [Caleb Oki](http://www.caleboki.com/).
 

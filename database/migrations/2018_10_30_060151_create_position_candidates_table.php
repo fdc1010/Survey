@@ -15,8 +15,8 @@ class CreatePositionCandidatesTable extends Migration
     {
         Schema::create('position_candidates', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('position_name');
-			$table->longText('position_description')->nullable();
+			$table->string('name');
+			$table->longText('description')->nullable();
             $table->timestamps();
         });
     }

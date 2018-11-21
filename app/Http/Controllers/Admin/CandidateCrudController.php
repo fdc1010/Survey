@@ -34,7 +34,54 @@ class CandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->removeColumn(['position_id', 'party_id','voter_id']);
+		$this->crud->removeField(['position_id', 'party_id','voter_id']);
+        $this->crud->addColumn([
+            'label' => "Position",
+			'type' => 'select',
+			'name' => 'position_id', // the relationship name in your Model
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
+		])->makeFirstColumn();
+		$this->crud->addColumn([
+            'label' => "Party",
+			'type' => 'select',
+			'name' => 'party_id', // the relationship name in your Model
+			'entity' => 'party', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Party" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addColumn([
+            'name' => 'voter_id',			
+            'label' => 'Candidate',
+            'type' => 'model_function',
+			'function_name' => 'getCandidateName'
+	    ]);
+		$this->crud->addField([
+			'label' => "Candidate",
+			'type' => 'select',
+			'name' => 'voter_id', // the relationship name in your Model
+			'entity' => 'voter', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
+		])->beforeField('position_id');
+		$this->crud->addField([
+			'label' => "Position",
+			'type' => 'select',
+			'name' => 'position_id', // the relationship name in your Model
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
+		])->beforeField('party_id');
+		$this->crud->addField([
+			'label' => "Party",
+			'type' => 'select',
+			'name' => 'party_id', // the relationship name in your Model
+			'entity' => 'party', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Party" // on create&update, do you need to add/delete pivot table entries?
+		]);
         // add asterisk for fields that are required in CandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
