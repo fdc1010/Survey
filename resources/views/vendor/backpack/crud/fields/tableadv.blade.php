@@ -113,7 +113,7 @@
                                 
                                         @if (isset($field['columns']['model']))
                                             @foreach ($field['columns']['model']::with($field['columns']['entity'])->get() as $parent_connected_entity_entry)
-											     <optgroup label="{{ $parent_connected_entity_entry->{$field['columns']['attribute']} }}">
+											     <optgroup style="font-size:21px !important;" class="" label="{{ $parent_connected_entity_entry->{$field['columns']['attribute']} }}">
 													@foreach ($parent_connected_entity_entry->{$field['columns']['entity']} as $connected_entity_entry)
                                                           @if($current_value == $connected_entity_entry->getKey())
                                                               <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
