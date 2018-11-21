@@ -9,6 +9,7 @@ use App\Http\Requests\VoterRequest as StoreRequest;
 use App\Http\Requests\VoterRequest as UpdateRequest;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\File;
+use App\Models\Voter;
 /**
  * Class VoterCrudController
  * @package App\Http\Controllers\Admin
@@ -18,7 +19,7 @@ class VoterCrudController extends CrudController
 {
     public function setup()
     {
-		dd(App\Models\Voter::first());
+		dd(Voter::first());
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
