@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     @foreach( $field['columns'] as $prop => $label ) 
-                    	@if($prop=="checkbox" || $prop=="select" || $prop=="input")
+                    	@if($prop=="checkbox" || $prop=="select" || $prop=="select_group" || $prop=="input")
                     		<th style="font-weight: 600!important;">
                         		{{ $label }}
                     		</th>
