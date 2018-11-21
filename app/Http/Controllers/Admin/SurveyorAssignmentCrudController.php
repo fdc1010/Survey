@@ -53,12 +53,10 @@ class SurveyorAssignmentCrudController extends CrudController
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
 		])->afterColumn('user_id');*/
 		$this->crud->addColumn([
-            'label'     => 'Assignment Area',
-			'type'      => 'checklist',
-			'name'      => 'areas',
-			'entity'    => 'surveyareas',
-			'attribute' => 'name',
-			'model'     => "App\Models\Sitio"
+            'name' => 'areas',			
+            'label' => 'Assigned Areas',
+            'type' => 'model_function',
+			'function_name' => 'getAreas'
 		])->afterColumn('user_id');		
 		$this->crud->addField([
 			'label' => "User",

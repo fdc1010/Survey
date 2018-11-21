@@ -16,9 +16,13 @@ class VoterController extends Controller
     {
         //
     }
-	public function getVoterInfoByLastname(Request $request){
+	public function getVoterInfoByName(Request $request){
 		$lname = $request->lastname;
-		$voters = Voter::whereRaw("CONCAT(first_name,' ',middle_name,' ',last_name) like ?", ["%{$lname}%"])
+		$fname = $request->firstname;
+		$mname = $request->middlename;
+		$voters = Voter::where('first_name','like', "%{$fname}%")
+					->where('last_name','like', "%{$lname}%")
+					->where('middle_name','like', "%{$mname}%")
 					->with('status','precinct')
 					->first();
 		

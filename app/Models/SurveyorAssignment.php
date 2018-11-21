@@ -33,6 +33,7 @@ class SurveyorAssignment extends Model
     {
         return $this->belongsToMany('App\Models\Sitio','assignment_details','sitio_id','assignment_id');
     }
+	
 	/*
 	public function barangay()
     {

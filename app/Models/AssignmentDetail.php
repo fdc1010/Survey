@@ -34,6 +34,17 @@ class AssignmentDetail extends Model
     {
         return $this->belongsTo('App\Sitio','sitio_id');
     }
+	public function getAreas(){
+		$areas = AssignmentDetail::where('assignment_id',$this->assignment_id)
+										->with('sitio')
+										->get();
+		$result = "<ul>";
+		foreach($areas as $area){
+			$result .= "<li>".$area->sitio->name."</li>";
+		}
+		$result .= "</ul>";
+		return $result;
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
