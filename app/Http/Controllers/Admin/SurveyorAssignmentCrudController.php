@@ -7,7 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\SurveyorAssignmentRequest as StoreRequest;
 use App\Http\Requests\SurveyorAssignmentRequest as UpdateRequest;
-
+use App\Models\AssignmentDetail;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
@@ -112,18 +112,17 @@ class SurveyorAssignmentCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		dd($this->crud->entry);
-		/*$sid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->options;
+		$sid = $this->crud->entry->id; // <-- SHOULD WORK
+		$options = $this->crud->entry->areas;
 		foreach($options as $option){
-			$optid = $option['select'];
-			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
-			$questionoptions = QuestionDetail::create([
-				'question_id' => $qid,
-				'option_id' => $optid,
-				'with_option_other_ans' => $chkhasother
+			$optid = $option['select_group'];
+			$quota = $option['number'];
+			$areaoptions = AssignmentDetail::create([
+				'assignment_id' => $sid,
+				'sitio_id' => $optid,
+				'quota' => $quota
 			]);			
-		}*/
+		}
         return $redirect_location;
     }
 
@@ -133,6 +132,19 @@ class SurveyorAssignmentCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$sid = $this->crud->entry->id; // <-- SHOULD WORK
+		$adetail = AssignmentDetail::where('assignment_id',$sid)->delete();
+				
+		$options = $this->crud->entry->areas;
+		foreach($options as $option){
+			$optid = $option['select_group'];
+			$quota = $option['number'];
+			$areaoptions = AssignmentDetail::create([
+				'assignment_id' => $sid,
+				'sitio_id' => $optid,
+				'quota' => $quota
+			]);			
+		}
         return $redirect_location;
     }
 }
