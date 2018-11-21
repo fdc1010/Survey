@@ -102,8 +102,8 @@ class VoterCrudController extends CrudController
 			'type' => 'select',
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
-			'attribute' => 'status', // attribute on Article that is shown to admin
-			'attribute2' => 'status_name',
+			'attribute' => 'status_name', // attribute on Article that is shown to admin
+			//'attribute2' => 'status_name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		/*$this->crud->addField([ // base64_image
