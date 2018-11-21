@@ -286,7 +286,7 @@
 					  $(this).each(function (i, obj) {
 						  console.log(i,obj);
 					  });
-				  }
+				  });
 			});
         </script>
     @endpush
