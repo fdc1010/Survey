@@ -35,7 +35,7 @@ class SurveyorAssignmentCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['user_id','task','description','areas']);
-		$this->crud->removeField(['user_id','quota','progress','areas']);
+		$this->crud->removeField(['user_id','progress','areas']);
         $this->crud->addColumn([
             'label' => "User",
 			'type' => 'select',
