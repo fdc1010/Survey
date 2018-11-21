@@ -283,7 +283,7 @@
 					  });
 				  });
 				  $(document).on('change','.select2_field',function(e){
-					  console.log("fred",this);					  
+					  console.log($(this).val());
 				  });
 			});
         </script>
