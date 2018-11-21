@@ -99,7 +99,7 @@ class VoterCrudController extends CrudController
 		])->beforeField('profilepic');
 		$this->crud->addField([
 			'label' => "Status",
-			'type' => 'selectadv',
+			'type' => 'select',
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
 			'attribute' => 'status', // attribute on Article that is shown to admin
