@@ -56,7 +56,7 @@ class SurveyorAssignmentCrudController extends CrudController
             'label'     => 'Assignment Area',
 			'type'      => 'checklist',
 			'name'      => 'areas',
-			'entity'    => 'assignareas',
+			'entity'    => 'surveyareas',
 			'attribute' => 'name',
 			'model'     => "App\Models\Sitio"
 		])->afterColumn('user_id');		
@@ -75,6 +75,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity_singular' => 'area', // used on the "Add X" button
 			'columns' => [
 				'name' => 'areas',
+				'select' => 'Barangay',
 				'select' => 'Area',
 				'number' => 'Quota',
 				'entity' => 'assignareas', // the method that defines the relationship in your Model
