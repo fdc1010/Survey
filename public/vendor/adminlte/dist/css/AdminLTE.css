@@ -4252,9 +4252,6 @@ table.text-center th {
   user-select: none;
   -webkit-user-select: none;
 }
-.select2-results__option optgroup{
-	font-size:21px !important;
-}
 .select2-container .select2-selection--single .select2-selection__rendered {
   padding-left: 0;
   padding-right: 0;
