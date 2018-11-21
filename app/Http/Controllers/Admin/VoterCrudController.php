@@ -20,7 +20,7 @@ class VoterCrudController extends CrudController
     public function setup()
     {
 		$voter = Voter::first();
-		dd($voter);
+		dd($voter->full_name);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information

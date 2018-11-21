@@ -46,9 +46,9 @@ class Voter extends Model
 		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
 		return $barangay->barangay->name;
 	}
-	public function getFullNameAttribute($value)
+	public function getFullNameAttribute()
     {
-        return ucwords($this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name);
+        return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
     }
 	public function setProfilepicAttribute($value)
     {
