@@ -15,7 +15,16 @@ class CreateAssignmentDetailsTable extends Migration
     {
         Schema::create('assignment_details', function (Blueprint $table) {
             $table->increments('id');
+			$table->unsignedInteger('assignment_id');
+			$table->integer('barangay_id')->nullable();
+			$table->integer('sitio_id')->nullable();
+			$table->integer('quota')->nullable();
+			$table->decimal('progress',10,2)->nullable();
+			$table->string('task')->nullable();
+			$table->longText('description')->nullable();
             $table->timestamps();
+			
+			$table->foreign('assignment_id')->references('id')->on('surveyor_assignments');
         });
     }
 
