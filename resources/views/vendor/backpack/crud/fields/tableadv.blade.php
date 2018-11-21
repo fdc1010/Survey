@@ -282,7 +282,7 @@
 						  theme: "bootstrap"
 					  });
 				  });
-				  $('.select2_field').on('click',function(e){
+				  $(document).on('click','.select2_field',function(e){
 					  $(this).each(function (i, obj) {
 						  console.log(i,obj);
 					  });
