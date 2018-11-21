@@ -91,6 +91,47 @@
                                     @endif
                                 </div>
                             </td>
+                            @elseif($prop=="select_group")
+                            <td>                                
+								<!-- select2 -->
+                                @php
+                                    $current_value = old($field['columns']['name']) ?? $field['columns']['value'] ?? $field['columns']['default'] ?? '';
+                                @endphp
+                                
+                                <div @include('crud::inc.field_wrapper_attributes') >
+                                    @include('crud::inc.field_translatable_icon')
+                                
+                                    <?php $entity_model = $crud->getRelationModel($field['columns']['entity'],  - 1); ?>
+                                    <select ng-model="item.{{ $prop }}"
+                                        style="width: 100%"
+                                        @include('crud::inc.field_attributes', ['default_class' =>  'form-control select2_field'])
+                                        >
+                                
+                                        @if ($entity_model::isColumnNullable($field['columns']['name']))
+                                            <option value="">-</option>
+                                        @endif
+                                
+                                        @if (isset($field['columns']['model']))
+                                            @foreach ($field['columns']['model']::with($field['columns']['entity'])->get() as $parent_connected_entity_entry)
+											     <optgroup label="{{ $parent_connected_entity_entry->{$field['columns']['attribute']} }}">
+													@foreach ($parent_connected_entity_entry->{$field['columns']['entity']} as $connected_entity_entry)
+                                                          @if($current_value == $connected_entity_entry->getKey())
+                                                              <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
+                                                          @else
+                                                              <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
+                                                          @endif
+                                                    @endforeach
+                                                 </optgroup>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                
+                                    {{-- HINT --}}
+                                    @if (isset($field['columns']['hint']))
+                                        <p class="help-block">{!! $field['columns']['hint'] !!}</p>
+                                    @endif
+                                </div>
+                            </td>
                             @elseif($prop=="input")
                             <td>
                                 <input class="form-control input-sm" type="text" ng-model="item.{{ $prop }}">

@@ -34,6 +34,9 @@ class Barangay extends Model
     {
         return $this->belongsTo('App\Models\Municipality','municipality_id');
     }
+	public function sitio(){
+		return $this->hasMany('App\Models\Sitio','barangay_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

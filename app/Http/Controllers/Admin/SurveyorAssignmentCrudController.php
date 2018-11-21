@@ -74,13 +74,12 @@ class SurveyorAssignmentCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'area', // used on the "Add X" button
 			'columns' => [
-				'name' => 'areas',
-				'select' => 'Barangay',
-				'select' => 'Area',
+				'name' => 'areas',				
+				'select_group' => 'Area',
 				'number' => 'Quota',
-				'entity' => 'assignareas', // the method that defines the relationship in your Model
-				'attribute' => 'name', // foreign key attribute that is shown to user
-				'model' => "App\Models\Sitio"					
+				'entity' => 'sitio', // the method that defines the relationship in your Model
+				'attribute' => 'name', // foreign key attribute that is shown to user				
+				'model' => "App\Models\Barangay",
 			],
 			'max' => 1000, // maximum rows allowed in the table
 			'min' => 1 // minimum rows allowed in the table
