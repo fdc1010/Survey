@@ -20,7 +20,7 @@ class CreateSurveyorAssignmentsTable extends Migration
 			$table->integer('sitio_id')->nullable();
 			$table->decimal('quota',10,2)->nullable();
 			$table->decimal('progress',10,2)->nullable();
-			$table->string('subject')->nullable();
+			$table->string('task')->nullable();
 			$table->longText('description')->nullable();
             $table->timestamps();
 			
