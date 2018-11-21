@@ -39,25 +39,23 @@ class VoterCrudController extends CrudController
 		$this->crud->removeColumn(['precinct_id','profilepic','middle_name','address','age','contact','birth_date','birth_place','status_id']);
 	
 		$this->crud->addColumn([
-            'name' => 'precinct_id',			
-            'label' => 'Precinct',
-            'type' => 'model_function',
-			'function_name' => 'getPrecinct'
-	    ])->makeFirstColumn();
-		$this->crud->addColumn([
-            'name' => 'status_id',			
-            'label' => 'Status',
-            'type' => 'model_function',
-			'function_name' => 'getStatusName'
-	    ]);
-		$this->crud->addColumn([
             'label' => "Precint",
 			'type' => 'select',
 			'name' => 'precint_id', // the relationship name in your Model
 			'entity' => 'precinct', // the relationship name in your Model
 			'attribute' => 'precinct_info', // attribute on Article that is shown to admin
 			'model' => "App\Models\Precinct" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		])->makeFirstColumn();
+		
+		$this->crud->addColumn([
+            'label' => "Status",
+			'type' => 'select',
+			'name' => 'status_id', // the relationship name in your Model
+			'entity' => 'status', // the relationship name in your Model
+			'attribute' => 'status_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\VoterStatus" 
+	    ]);
+		
 		$this->crud->addColumn([   // CustomHTML
 			'label' => "Profile Image",
 			'name' => "profilepic",
