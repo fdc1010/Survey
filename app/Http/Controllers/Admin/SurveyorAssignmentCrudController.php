@@ -43,7 +43,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'user', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		])->makeFirstColumn();
 		$this->crud->addColumn([
             'label' => "Barangay",
 			'type' => 'select',
@@ -51,7 +51,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		])->afterColumn('user_id');
 		$this->crud->addColumn([
             'label'     => 'Assign Area',
 			'type'      => 'checklist',
@@ -60,7 +60,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name',
 			'model'     => "App\Models\Sitio",
 			'pivot'     => true,
-		]);
+		])->afterColumn('barangay_id');
 		$this->crud->addField([
 			'label' => "User",
 			'type' => 'select',
@@ -68,7 +68,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'user', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		])->makeFirstField();
 		$this->crud->addField([
 			'label' => "Barangay",
 			'type' => 'select',
@@ -76,7 +76,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		])->afterField('user_id');
 		$this->crud->addField([
 			'label'     => 'Assign Area',
 			'type'      => 'checklist',
@@ -85,7 +85,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name',
 			'model'     => "App\Models\Sitio",
 			'pivot'     => true,
-		]);
+		])->afterField('barangay_id');
 		// add asterisk for fields that are required in SurveyorAssignmentRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
