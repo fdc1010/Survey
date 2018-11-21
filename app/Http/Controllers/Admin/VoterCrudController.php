@@ -139,7 +139,9 @@ class VoterCrudController extends CrudController
 		$this->crud->hasAccessOrFail('delete');
 		//Voter::where('id',$id)->delete();
 		$voter=Voter::find($id);
-		
+		$path = config('app.root') . '/public/profilepic/';
+		$photo=$path.basename($voter->profilepic);		
+		File::delete($photo);
 		return $this->crud->delete($id);
 	}
 }
