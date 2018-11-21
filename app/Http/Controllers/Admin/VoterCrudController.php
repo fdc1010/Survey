@@ -65,13 +65,13 @@ class VoterCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
 			'label' => "Precinct",
-			'type' => 'select2adv',
+			'type' => 'select2',
 			'name' => 'precinct_id', // the relationship name in your Model
 			'entity' => 'precinct', // the relationship name in your Model
-			'attribute' => 'precinct_number', // attribute on Article that is shown to admin
+			'attribute' => 'precinct_info', // attribute on Article that is shown to admin
 			'model' => "App\Models\Precinct", // on create&update, do you need to add/delete pivot table entries?
-			'attribute2' => 'name', // attribute on Article that is shown to admin
-			'entity2' => "barangay"
+			//'attribute2' => 'name', // attribute on Article that is shown to admin
+			//'entity2' => "barangay"
 		]);
 		/*$this->crud->addField([
 			'label' => "Firstname",
@@ -94,7 +94,7 @@ class VoterCrudController extends CrudController
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
 			'attribute' => 'status', // attribute on Article that is shown to admin
-			'attribute2' => 'name',
+			'attribute2' => 'status_name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		/*$this->crud->addField([ // base64_image

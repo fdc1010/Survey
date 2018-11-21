@@ -26,6 +26,11 @@ class Precinct extends Model
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
     }
+	public function getPrecintInfoAttribute()
+    {
+		$brgy = Barangay::find($this->barangay_id);
+        return $this->attributes['precinct_number'] . ' (' . $brgy->name . ')';
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
