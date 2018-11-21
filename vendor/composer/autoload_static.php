@@ -576,6 +576,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
     );
 
     public static $classMap = array (
+        'App\\AssignmentDetail' => __DIR__ . '/../..' . '/app/AssignmentDetail.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\BarangayCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BarangayCrudController.php',
@@ -617,6 +618,9 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\LocationCoordinateController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationCoordinateController.php',
         'App\\Http\\Controllers\\Mobile\\MobileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/MobileController.php',
+        'App\\Http\\Controllers\\Mobile\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/QuestionController.php',
+        'App\\Http\\Controllers\\Mobile\\SurveyAnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/SurveyAnswerController.php',
+        'App\\Http\\Controllers\\Mobile\\VoterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mobile/VoterController.php',
         'App\\Http\\Controllers\\MunicipalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/MunicipalityController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\PartyController' => __DIR__ . '/../..' . '/app/Http/Controllers/PartyController.php',

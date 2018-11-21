@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\AssignmentDetail' => $baseDir . '/app/AssignmentDetail.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admin\\BarangayCrudController' => $baseDir . '/app/Http/Controllers/Admin/BarangayCrudController.php',
@@ -47,6 +48,9 @@ return array(
     'App\\Http\\Controllers\\LocationController' => $baseDir . '/app/Http/Controllers/LocationController.php',
     'App\\Http\\Controllers\\LocationCoordinateController' => $baseDir . '/app/Http/Controllers/LocationCoordinateController.php',
     'App\\Http\\Controllers\\Mobile\\MobileController' => $baseDir . '/app/Http/Controllers/Mobile/MobileController.php',
+    'App\\Http\\Controllers\\Mobile\\QuestionController' => $baseDir . '/app/Http/Controllers/Mobile/QuestionController.php',
+    'App\\Http\\Controllers\\Mobile\\SurveyAnswerController' => $baseDir . '/app/Http/Controllers/Mobile/SurveyAnswerController.php',
+    'App\\Http\\Controllers\\Mobile\\VoterController' => $baseDir . '/app/Http/Controllers/Mobile/VoterController.php',
     'App\\Http\\Controllers\\MunicipalityController' => $baseDir . '/app/Http/Controllers/MunicipalityController.php',
     'App\\Http\\Controllers\\PageController' => $baseDir . '/app/Http/Controllers/PageController.php',
     'App\\Http\\Controllers\\PartyController' => $baseDir . '/app/Http/Controllers/PartyController.php',

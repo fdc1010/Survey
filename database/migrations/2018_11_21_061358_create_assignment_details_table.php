@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSurveyorAssignmentsTable extends Migration
+class CreateAssignmentDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateSurveyorAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('surveyor_assignments', function (Blueprint $table) {
+        Schema::create('assignment_details', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('user_id');
-			$table->integer('quota')->nullable();
-			$table->decimal('progress',10,2)->nullable();
-			$table->string('task')->nullable();
-			$table->longText('description')->nullable();
             $table->timestamps();
-			
         });
     }
 
@@ -32,6 +26,6 @@ class CreateSurveyorAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surveyor_assignments');
+        Schema::dropIfExists('assignment_details');
     }
 }

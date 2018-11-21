@@ -76,7 +76,7 @@
                                 
                                         @if (isset($field['columns']['model']))
                                             @foreach ($field['columns']['model']::all() as $connected_entity_entry)
-                                                @if($current_value == $connected_entity_entry->getKey())
+                                                @if( (old($field['columns']["name"]) && in_array($connected_entity_entry->getKey(), old($field['columns']["name"]))) || (is_null(old($field['columns']["name"])) && isset($field['columns']['value']) && in_array($connected_entity_entry->getKey(), $field['columns']['value']->pluck($connected_entity_entry->getKeyName(), $connected_entity_entry->getKeyName())->toArray())))
                                                     <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
                                                 @else
                                                     <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
@@ -94,6 +94,29 @@
                             @elseif($prop=="input")
                             <td>
                                 <input class="form-control input-sm" type="text" ng-model="item.{{ $prop }}">
+                            </td>
+                            @elseif($prop=="number")
+                            <td>
+                            	<!-- number input -->
+                                <div @include('crud::inc.field_wrapper_attributes') >
+                                    @include('crud::inc.field_translatable_icon')
+                                
+                                    @if(isset($field['columns']['prefix']) || isset($field['columns']['suffix'])) <div class="input-group"> @endif
+                                        @if(isset($field['columns']['prefix'])) <div class="input-group-addon">{!! $field['columns']['prefix'] !!}</div> @endif
+                                        <input
+                                            type="number"
+                                            ng-model="item.{{ $prop }}"                                            
+                                            @include('crud::inc.field_attributes')
+                                            >
+                                        @if(isset($field['columns']['suffix'])) <div class="input-group-addon">{!! $field['columns']['suffix'] !!}</div> @endif
+                                
+                                    @if(isset($field['columns']['prefix']) || isset($field['columns']['suffix'])) </div> @endif
+                                
+                                    {{-- HINT --}}
+                                    @if (isset($field['columns']['hint']))
+                                        <p class="help-block">{!! $field['columns']['hint'] !!}</p>
+                                    @endif
+                                </div>
                             </td>
                             @endif
                        

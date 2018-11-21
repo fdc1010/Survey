@@ -27,6 +27,8 @@ class SurveyorAssignmentRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'quota' => 'required|integer|min:5',
+			'user_id' => 'required'
         ];
     }
 
@@ -38,7 +40,7 @@ class SurveyorAssignmentRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'quota','user_id'
         ];
     }
 
