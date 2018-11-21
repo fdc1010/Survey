@@ -18,11 +18,11 @@ use Illuminate\Http\Request;
 });*/
 Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	
-		info("Mobile");	
+		//info("Mobile");	
 		Route::post('login', 'MobileController@login');
 		Route::resource('fred', 'MobileController');
 		Route::group(['middleware' => 'auth:api'], function () {
-			info("Mobile Middleware");			
+			//info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');	
 			Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
 			Route::get('getQuestions','QuestionController@getQuestions');
