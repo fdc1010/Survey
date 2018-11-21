@@ -34,8 +34,59 @@ class SurveyorAssignmentCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
-        // add asterisk for fields that are required in SurveyorAssignmentRequest
+		$this->crud->removeColumn(['user_id','barangay_id','sitio_id','subject','description']);
+		$this->crud->removeField(['user_id','barangay_id','sitio_id','quota','progress']);
+        $this->crud->addColumn([
+            'label' => "User",
+			'type' => 'select',
+			'name' => 'user_id', // the relationship name in your Model
+			'entity' => 'user', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addColumn([
+            'label' => "Barangay",
+			'type' => 'select',
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addColumn([
+            'label'     => 'Assign Area',
+			'type'      => 'checklist',
+			'name'      => 'sitio_id',
+			'entity'    => 'sitio',
+			'attribute' => 'name',
+			'model'     => "App\Models\Sitio",
+			'pivot'     => true,
+		]);
+		$this->crud->addField([
+			'label' => "User",
+			'type' => 'select',
+			'name' => 'user_id', // the relationship name in your Model
+			'entity' => 'user', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addField([
+			'label' => "Barangay",
+			'type' => 'select',
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addField([
+			'label'     => 'Assign Area',
+			'type'      => 'checklist',
+			'name'      => 'sitio_id',
+			'entity'    => 'sitio',
+			'attribute' => 'name',
+			'model'     => "App\Models\Sitio",
+			'pivot'     => true,
+		]);
+		// add asterisk for fields that are required in SurveyorAssignmentRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

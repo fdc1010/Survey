@@ -15,7 +15,7 @@ class CreateSurveyorAssignmentsTable extends Migration
     {
         Schema::create('surveyor_assignments', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('voter_id');
+			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('barangay_id');
 			$table->integer('sitio_id')->nullable();
 			$table->decimal('quota',10,2)->nullable();
@@ -24,7 +24,7 @@ class CreateSurveyorAssignmentsTable extends Migration
 			$table->longText('description')->nullable();
             $table->timestamps();
 			
-			$table->foreign('voter_id')->references('id')->on('voters');
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('barangay_id')->references('id')->on('barangays');
         });
     }
