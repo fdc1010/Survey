@@ -28,7 +28,7 @@ class Voter extends Model
     }
 	public function precinct()
     {
-        return $this->belongsTo('App\Models\Precinct','precinct_id');
+        return $this->belongsTo('App\Models\Precinct','precinct_id')->with('barangay');
     }
 	public function getStatusName(){
 		$voterstatus = VoterStatus::find($this->status_id);
@@ -70,7 +70,7 @@ class Voter extends Model
             // 2. Store the image on disk.
             \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
             // 3. Save the path to the database
-            $this->attributes[$attribute_name] = config('app.url')."/".$filename;//$destination_path.'/'.$filename;
+            $this->attributes[$attribute_name] = config('app.url')."/profilepic/".$filename;//$destination_path.'/'.$filename;
         }
     }
 	/*public static function boot()

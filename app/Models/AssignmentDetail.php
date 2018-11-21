@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Barangay extends Model
+class AssignmentDetail extends Model
 {
     use CrudTrait;
 
@@ -15,28 +15,26 @@ class Barangay extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'barangays';
+    protected $table = 'assignment_details';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name','province_id','district_id','municipality_id','description'];
+    protected $fillable = ['assignment_id','barangay_id','sitio_id','quota','progress','task','description'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function province()
+	public function assignareas()
     {
-        return $this->belongsTo('App\Models\Province','province_id');
+        return $this->belongsToMany('App\Models\SurveyAssignment','sitios','assignment_id','sitio_id');
     }
-	public function district()
+	public function barangay()
     {
-        return $this->belongsTo('App\Models\District','district_id');
+        return $this->belongsTo('App\Models\Barangay','barangay_id');
     }
-	public function municipality()
+	public function sitio()
     {
-        return $this->belongsTo('App\Models\Municipality','municipality_id');
+        return $this->belongsTo('App\Models\Sitio','sitio_id');
     }
-	public function sitio(){
-		return $this->hasMany('App\Models\Sitio','barangay_id');
-	}
+	
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

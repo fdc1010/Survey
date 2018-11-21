@@ -19,10 +19,39 @@ class SurveyorAssignment extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
-    // protected $hidden = [];
+    protected $fillable = ['user_id','quota','progress','task','description','areas'];
+    protected $casts = [
+        'areas' => 'array'
+    ];
+	// protected $hidden = [];
     // protected $dates = [];
-
+	public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
+	public function surveyareas()
+    {
+        return $this->belongsToMany('App\Models\Sitio','assignment_details','sitio_id','assignment_id');
+    }
+	public function getAreas(){
+		$areas = AssignmentDetail::where('assignment_id',$this->id)
+										->with('sitio')
+										->get();
+		$result = "";
+		foreach($areas as $area){
+			$result .= $area->sitio->name."<br>";
+		}
+		return $result;
+	}
+	/*
+	public function barangay()
+    {
+        return $this->belongsTo('App\Barangay','barangay_id');
+    }
+	public function sitio()
+    {
+        return $this->belongsTo('App\Sitio','sitio_id');
+    }*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

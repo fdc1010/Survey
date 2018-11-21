@@ -35,7 +35,7 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','first_name','last_name','address','age','contact','birth_date','birth_place','status_id']);
+		$this->crud->removeColumn(['precinct_id','profilepic','middle_name','address','age','contact','birth_date','birth_place','status_id']);
 	
 		$this->crud->addColumn([
             'name' => 'precinct_id',			
@@ -49,6 +49,13 @@ class VoterCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'getStatusName'
 	    ]);
+		$this->crud->addColumn([   // CustomHTML
+			'label' => "Profile Image",
+			'name' => "profilepic",
+			'type' => 'image',
+			'width' => '50px',
+			'height' => '50px',
+		])->beforeColumn('first_name');
 		$this->crud->addColumn([
             'name' => 'barangay',			
             'label' => 'Barangay',
@@ -134,4 +141,14 @@ class VoterCrudController extends CrudController
 		
         return $redirect_location;
     }
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		//Voter::where('id',$id)->delete();
+		$voter=Voter::find($id);
+		$path = public_path('profilepic/');
+		$photo=$path.basename($voter->profilepic);		
+		File::delete($photo);		
+		return $this->crud->delete($id);
+	}
 }

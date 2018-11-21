@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SurveyorAssignmentRequest extends FormRequest
+class AssignmentDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,7 @@ class SurveyorAssignmentRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-			'quota' => 'required|integer|min:5',
-			'user_id' => 'required'
+			'quota' => 'required|integer|min:5'
         ];
     }
 
@@ -40,7 +39,7 @@ class SurveyorAssignmentRequest extends FormRequest
     public function attributes()
     {
         return [
-            'quota','user_id'
+            //
         ];
     }
 

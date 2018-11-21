@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     @foreach( $field['columns'] as $prop => $label ) 
-                    	@if($prop=="checkbox" || $prop=="select" || $prop=="input")
+                    	@if($prop=="checkbox" || $prop=="select" || $prop=="select_group" || $prop=="number" || $prop=="input")
                     		<th style="font-weight: 600!important;">
                         		{{ $label }}
                     		</th>
@@ -76,7 +76,7 @@
                                 
                                         @if (isset($field['columns']['model']))
                                             @foreach ($field['columns']['model']::all() as $connected_entity_entry)
-                                                @if($current_value == $connected_entity_entry->getKey())
+                                                @if( (old($field['columns']["name"]) && in_array($connected_entity_entry->getKey(), old($field['columns']["name"]))) || (is_null(old($field['columns']["name"])) && isset($field['columns']['value']) && in_array($connected_entity_entry->getKey(), $field['columns']['value']->pluck($connected_entity_entry->getKeyName(), $connected_entity_entry->getKeyName())->toArray())))
                                                     <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
                                                 @else
                                                     <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
@@ -91,9 +91,73 @@
                                     @endif
                                 </div>
                             </td>
+                            @elseif($prop=="select_group")
+                            <td>                                
+								<!-- select2 -->
+                                @php
+                                    $current_value = old($field['columns']['name']) ?? $field['columns']['value'] ?? $field['columns']['default'] ?? '';
+                                @endphp
+                                
+                                <div @include('crud::inc.field_wrapper_attributes') >
+                                    @include('crud::inc.field_translatable_icon')
+                                
+                                    <?php $entity_model = $crud->getRelationModel($field['columns']['entity'],  - 1); ?>
+                                    <select ng-model="item.{{ $prop }}"
+                                    	style="width: 100%;"
+                                        @include('crud::inc.field_attributes', ['default_class' =>  'form-control select2_field'])
+                                        >
+                                
+                                        @if ($entity_model::isColumnNullable($field['columns']['name']))
+                                            <option value="">-</option>
+                                        @endif
+                                
+                                        @if (isset($field['columns']['model']))
+                                            @foreach ($field['columns']['model']::with($field['columns']['entity'])->get() as $parent_connected_entity_entry)
+											     <optgroup label="{{ $parent_connected_entity_entry->{$field['columns']['attribute']} }}" style="font-size:21px;">
+													@foreach ($parent_connected_entity_entry->{$field['columns']['entity']} as $connected_entity_entry)
+                                                          @if($current_value == $connected_entity_entry->getKey())
+                                                              <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
+                                                          @else
+                                                              <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['columns']['attribute']} }}</option>
+                                                          @endif
+                                                    @endforeach
+                                                 </optgroup>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                
+                                    {{-- HINT --}}
+                                    @if (isset($field['columns']['hint']))
+                                        <p class="help-block">{!! $field['columns']['hint'] !!}</p>
+                                    @endif
+                                </div>
+                            </td>
                             @elseif($prop=="input")
                             <td>
                                 <input class="form-control input-sm" type="text" ng-model="item.{{ $prop }}">
+                            </td>
+                            @elseif($prop=="number")
+                            <td>
+                            	<!-- number input -->
+                                <div @include('crud::inc.field_wrapper_attributes') >
+                                    @include('crud::inc.field_translatable_icon')
+                                
+                                    @if(isset($field['columns']['prefix']) || isset($field['columns']['suffix'])) <div class="input-group"> @endif
+                                        @if(isset($field['columns']['prefix'])) <div class="input-group-addon">{!! $field['columns']['prefix'] !!}</div> @endif
+                                        <input
+                                            type="number"
+                                            ng-model="item.{{ $prop }}"                                            
+                                            @include('crud::inc.field_attributes')
+                                            >
+                                        @if(isset($field['columns']['suffix'])) <div class="input-group-addon">{!! $field['columns']['suffix'] !!}</div> @endif
+                                
+                                    @if(isset($field['columns']['prefix']) || isset($field['columns']['suffix'])) </div> @endif
+                                
+                                    {{-- HINT --}}
+                                    @if (isset($field['columns']['hint']))
+                                        <p class="help-block">{!! $field['columns']['hint'] !!}</p>
+                                    @endif
+                                </div>
                             </td>
                             @endif
                        
@@ -133,7 +197,8 @@
         {{-- YOUR CSS HERE --}}
         <!-- include select2 css-->
         <link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+        <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
     @endpush
 
     {{-- FIELD JS - will be loaded in the after_scripts section --}}
@@ -259,6 +324,11 @@
 						  theme: "bootstrap"
 					  });
 				  });
+				  /*$(document).on('change','.select2_field',function(e){
+					  $('.select2_field option:selected').each(function (i, obj) {
+						 
+					  });
+				  });*/
 			});
         </script>
     @endpush
