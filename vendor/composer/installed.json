@@ -178,17 +178,17 @@
     },
     {
         "name": "backpack/crud",
-        "version": "3.4.42",
-        "version_normalized": "3.4.42.0",
+        "version": "3.4.43",
+        "version_normalized": "3.4.43.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Laravel-Backpack/CRUD.git",
-            "reference": "6de4545dc44d8f7afa852678dcf89db24d2d3e98"
+            "reference": "86d959743b4d1f416daa8e6d5474ea2a8fe5c4ad"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/6de4545dc44d8f7afa852678dcf89db24d2d3e98",
-            "reference": "6de4545dc44d8f7afa852678dcf89db24d2d3e98",
+            "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/86d959743b4d1f416daa8e6d5474ea2a8fe5c4ad",
+            "reference": "86d959743b4d1f416daa8e6d5474ea2a8fe5c4ad",
             "shasum": ""
         },
         "require": {
@@ -205,7 +205,7 @@
             "scrutinizer/ocular": "~1.1",
             "spatie/laravel-translatable": "^2.1"
         },
-        "time": "2018-11-20T11:04:08+00:00",
+        "time": "2018-11-21T07:50:24+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2569,17 +2569,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.7.13",
-        "version_normalized": "5.7.13.0",
+        "version": "v5.7.14",
+        "version_normalized": "5.7.14.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e"
+            "reference": "ad6c1fe1e455c0f73a431928282704879ccbd856"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/3ff3110ac14f2b4876acaff289bb55a1af74f02e",
-            "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/ad6c1fe1e455c0f73a431928282704879ccbd856",
+            "reference": "ad6c1fe1e455c0f73a431928282704879ccbd856",
             "shasum": ""
         },
         "require": {
@@ -2679,7 +2679,7 @@
             "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (^4.1).",
             "symfony/psr-http-message-bridge": "Required to psr7 bridging features (^1.0)."
         },
-        "time": "2018-11-07T12:41:02+00:00",
+        "time": "2018-11-21T13:46:08+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -4547,23 +4547,23 @@
     },
     {
         "name": "psr/log",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2016-10-10T12:19:37+00:00",
+        "time": "2018-11-20T15:27:04+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
