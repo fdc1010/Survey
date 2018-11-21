@@ -22,6 +22,7 @@ class VoterStatus extends Model
     protected $fillable = ['status', 'name','description'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $appends = ['status_name'];
 	public function voterstatus()
     {
         return $this->belongsToMany('App\Models\Voter','status_id');

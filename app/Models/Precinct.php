@@ -22,6 +22,7 @@ class Precinct extends Model
     protected $fillable = ['precinct_number', 'barangay_id'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $appends = ['precint_info'];
 	public function barangay()
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
