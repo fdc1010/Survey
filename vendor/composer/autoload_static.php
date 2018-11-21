@@ -576,9 +576,9 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
     );
 
     public static $classMap = array (
-        'App\\AssignmentDetail' => __DIR__ . '/../..' . '/app/AssignmentDetail.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AssignmentDetailCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AssignmentDetailCrudController.php',
         'App\\Http\\Controllers\\Admin\\BarangayCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BarangayCrudController.php',
         'App\\Http\\Controllers\\Admin\\CandidateCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CandidateCrudController.php',
         'App\\Http\\Controllers\\Admin\\DistrictCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DistrictCrudController.php',
@@ -605,6 +605,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Controllers\\Admin\\TallyVoteCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TallyVoteCrudController.php',
         'App\\Http\\Controllers\\Admin\\VoterCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VoterCrudController.php',
         'App\\Http\\Controllers\\Admin\\VoterStatusCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VoterStatusCrudController.php',
+        'App\\Http\\Controllers\\AssignmentDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssignmentDetailController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -649,6 +650,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\AssignmentDetailRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AssignmentDetailRequest.php',
         'App\\Http\\Requests\\BarangayRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BarangayRequest.php',
         'App\\Http\\Requests\\CandidateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CandidateRequest.php',
         'App\\Http\\Requests\\DistrictRequest' => __DIR__ . '/../..' . '/app/Http/Requests/DistrictRequest.php',
@@ -675,6 +677,7 @@ class ComposerStaticInit83c93c9ac6bb73bc12ccfcc027394c3e
         'App\\Http\\Requests\\TallyVoteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TallyVoteRequest.php',
         'App\\Http\\Requests\\VoterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VoterRequest.php',
         'App\\Http\\Requests\\VoterStatusRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VoterStatusRequest.php',
+        'App\\Models\\AssignmentDetail' => __DIR__ . '/../..' . '/app/Models/AssignmentDetail.php',
         'App\\Models\\Barangay' => __DIR__ . '/../..' . '/app/Models/Barangay.php',
         'App\\Models\\Candidate' => __DIR__ . '/../..' . '/app/Models/Candidate.php',
         'App\\Models\\District' => __DIR__ . '/../..' . '/app/Models/District.php',

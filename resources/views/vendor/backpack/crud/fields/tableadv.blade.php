@@ -282,11 +282,11 @@
 						  theme: "bootstrap"
 					  });
 				  });
-				  $(document).on('change','.select2_field',function(e){
+				  /*$(document).on('change','.select2_field',function(e){
 					  $('.select2_field option:selected').each(function (i, obj) {
-						 $(this).remove();
+						 
 					  });
-				  });
+				  });*/
 			});
         </script>
     @endpush

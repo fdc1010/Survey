@@ -27,6 +27,7 @@ class AssignmentDetailRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'quota' => 'required|integer|min:5'
         ];
     }
 

@@ -6,9 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\AssignmentDetail' => $baseDir . '/app/AssignmentDetail.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\AssignmentDetailCrudController' => $baseDir . '/app/Http/Controllers/Admin/AssignmentDetailCrudController.php',
     'App\\Http\\Controllers\\Admin\\BarangayCrudController' => $baseDir . '/app/Http/Controllers/Admin/BarangayCrudController.php',
     'App\\Http\\Controllers\\Admin\\CandidateCrudController' => $baseDir . '/app/Http/Controllers/Admin/CandidateCrudController.php',
     'App\\Http\\Controllers\\Admin\\DistrictCrudController' => $baseDir . '/app/Http/Controllers/Admin/DistrictCrudController.php',
@@ -35,6 +35,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\TallyVoteCrudController' => $baseDir . '/app/Http/Controllers/Admin/TallyVoteCrudController.php',
     'App\\Http\\Controllers\\Admin\\VoterCrudController' => $baseDir . '/app/Http/Controllers/Admin/VoterCrudController.php',
     'App\\Http\\Controllers\\Admin\\VoterStatusCrudController' => $baseDir . '/app/Http/Controllers/Admin/VoterStatusCrudController.php',
+    'App\\Http\\Controllers\\AssignmentDetailController' => $baseDir . '/app/Http/Controllers/AssignmentDetailController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -79,6 +80,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\AssignmentDetailRequest' => $baseDir . '/app/Http/Requests/AssignmentDetailRequest.php',
     'App\\Http\\Requests\\BarangayRequest' => $baseDir . '/app/Http/Requests/BarangayRequest.php',
     'App\\Http\\Requests\\CandidateRequest' => $baseDir . '/app/Http/Requests/CandidateRequest.php',
     'App\\Http\\Requests\\DistrictRequest' => $baseDir . '/app/Http/Requests/DistrictRequest.php',
@@ -105,6 +107,7 @@ return array(
     'App\\Http\\Requests\\TallyVoteRequest' => $baseDir . '/app/Http/Requests/TallyVoteRequest.php',
     'App\\Http\\Requests\\VoterRequest' => $baseDir . '/app/Http/Requests/VoterRequest.php',
     'App\\Http\\Requests\\VoterStatusRequest' => $baseDir . '/app/Http/Requests/VoterStatusRequest.php',
+    'App\\Models\\AssignmentDetail' => $baseDir . '/app/Models/AssignmentDetail.php',
     'App\\Models\\Barangay' => $baseDir . '/app/Models/Barangay.php',
     'App\\Models\\Candidate' => $baseDir . '/app/Models/Candidate.php',
     'App\\Models\\District' => $baseDir . '/app/Models/District.php',

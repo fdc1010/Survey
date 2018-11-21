@@ -19,13 +19,19 @@ class SurveyorAssignment extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['user_id','quota','progress','task','description'];
-    
+    protected $fillable = ['user_id','quota','progress','task','description','areas'];
+    protected $casts = [
+        'areas' => 'array'
+    ];
 	// protected $hidden = [];
     // protected $dates = [];
 	public function user()
     {
         return $this->belongsTo('App\User','user_id');
+    }
+	public function areas()
+    {
+        return $this->belongsToMany('App\Models\Sitio','assignment_details','sitio_id','assignment_id');
     }
 	/*
 	public function barangay()
