@@ -19,10 +19,12 @@ class Sitio extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name'];
+    protected $fillable = ['name','barangay_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function barangay(){
+		return $this->belongsTo('App\Models\Barangay','barangay_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
