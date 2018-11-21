@@ -21,10 +21,10 @@ Route::group(['prefix' => 'mobile',
 		//info("Mobile");	
 		Route::post('login', 'MobileController@login');
 		Route::resource('fred', 'MobileController');
+		Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");			
-			Route::get('logout', 'MobileController@logout');	
-			Route::get('getVoterInfoByLastname', 'VoterController@getVoterInfoByLastname');
+			Route::get('logout', 'MobileController@logout');				
 			Route::get('getQuestions','QuestionController@getQuestions');
 			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 		});
