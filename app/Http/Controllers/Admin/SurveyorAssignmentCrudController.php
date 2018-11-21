@@ -53,23 +53,13 @@ class SurveyorAssignmentCrudController extends CrudController
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
 		])->afterColumn('user_id');*/
 		$this->crud->addColumn([
-            'label'     => 'Assigned Areas',
-			'type'      => 'checklist',
-			'name'      => 'areas',
-			'entity'    => 'sitio',
-			'attribute' => 'name',
-			'model'     => "App\Models\Sitio",
-			'pivot'     => true,
-		])->afterColumn('user_id');
-		$this->crud->addColumn([
             'label'     => 'Assignment Area',
 			'type'      => 'checklist',
-			'name'      => 'sitio_id',
-			'entity'    => 'sitio',
+			'name'      => 'areas',
+			'entity'    => 'assignareas',
 			'attribute' => 'name',
-			'model'     => "App\Models\Sitio",
-			'pivot'     => true,
-		])->afterColumn('user_id');
+			'model'     => "App\Models\Sitio"
+		])->afterColumn('user_id');		
 		$this->crud->addField([
 			'label' => "User",
 			'type' => 'select',
@@ -78,6 +68,22 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
 		])->beforeField('task');
+		$this->crud->addField([
+			'name' => 'areas',
+			'label' => 'Areas',
+			'type' => 'tableadv',
+			'entity_singular' => 'area', // used on the "Add X" button
+			'columns' => [
+				'name' => 'areas',
+				'select' => 'Area',
+				'number' => 'Quota',
+				'entity' => 'assignareas', // the method that defines the relationship in your Model
+				'attribute' => 'name', // foreign key attribute that is shown to user
+				'model' => "App\Models\Sitio"					
+			],
+			'max' => 1000, // maximum rows allowed in the table
+			'min' => 1 // minimum rows allowed in the table
+		]);
 		/*$this->crud->addField([
 			'label' => "Barangay",
 			'type' => 'select',

@@ -22,9 +22,9 @@ class AssignmentDetail extends Model
     protected $fillable = ['assignment_id','barangay_id','sitio_id','quota','progress','task','description'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function surveyorassign()
+	public function assignareas()
     {
-        return $this->belongsTo('App\SurveyAssignment','assignment_id');
+        return $this->belongsToMany('App\SurveyAssignment','sitios','assignment_id','sitio_id');
     }
 	public function barangay()
     {
