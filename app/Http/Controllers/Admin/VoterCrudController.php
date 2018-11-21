@@ -18,6 +18,7 @@ class VoterCrudController extends CrudController
 {
     public function setup()
     {
+		dd(App\Models\Voter::first());
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
