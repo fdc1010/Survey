@@ -35,7 +35,7 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','first_name','last_name','address','age','contact','birth_date','birth_place','status_id']);
+		$this->crud->removeColumn(['precinct_id','profilepic','middle_name','address','age','contact','birth_date','birth_place','status_id']);
 	
 		$this->crud->addColumn([
             'name' => 'precinct_id',			
@@ -49,6 +49,11 @@ class VoterCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'getStatusName'
 	    ]);
+		$this->crud->addColumn([   // CustomHTML
+			'label' => "Profile Image",
+			'name' => "profilepic",
+			'type' => 'image',
+		]);
 		$this->crud->addColumn([
             'name' => 'barangay',			
             'label' => 'Barangay',
