@@ -107,7 +107,7 @@
                                         >
                                 
                                         @if ($entity_model::isColumnNullable($field['columns']['name']))
-                                            <!--<option value="">-</option>-->
+                                            <option value="">-</option>
                                         @endif
                                 
                                         @if (isset($field['columns']['model']))
