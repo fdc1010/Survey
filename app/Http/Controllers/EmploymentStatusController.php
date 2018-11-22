@@ -17,7 +17,7 @@ class EmploymentStatusController extends Controller
         //
     }
 	public function getEmploymentStatus(Request $request){
-		$empstatus = EmploymentStatus::all();
+		$empstatus = EmploymentStatus::select(['name','description'])->get();
 		
 		return response()->json($empstatus);
 	}

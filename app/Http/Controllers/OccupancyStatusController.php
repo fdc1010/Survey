@@ -17,7 +17,7 @@ class OccupancyStatusController extends Controller
         //
     }
 	public function getOccupancyStatus(Request $request){
-		$occstatus = OccupancyStatus::all();
+		$occstatus = OccupancyStatus::select(['name','description'])->get();
 		
 		return response()->json($occstatus);
 	}

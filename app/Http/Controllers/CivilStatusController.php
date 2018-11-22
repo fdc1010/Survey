@@ -27,7 +27,7 @@ class CivilStatusController extends Controller
         //
     }
 	public function getCivilStatus(Request $request){
-		$civilstatus = CivilStatus::all();
+		$civilstatus = CivilStatus::select(['name','description'])->get();
 		
 		return response()->json($civilstatus);
 	}
