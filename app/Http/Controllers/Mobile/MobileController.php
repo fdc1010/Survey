@@ -24,11 +24,22 @@ class MobileController extends Controller
 	public function login(Request $request)
 	{	
 		
-		$this->validate($request, [
+		/*$this->validate($request, [
 		   'email' => 'required|email',
 		   'password' => 'required|string',
+		]);*/
+		$validator = Validator::make($request->all(), [
+			'imei'=>'required',
+			'password'=>'required',
+			'email'=>'required',
 		]);
-		
+		if ($validator->fails()) {
+			return Response::json(array(
+				'reason' => $validator->getMessageBag()->toArray(),
+				'msg'=>'Unauthorized, check your credentials.',
+				'success'=>false
+			), 400);
+		}
 		$user = User::where('email', $request->get('email'))->first();
 		if($user){		   
 		   $auth = Hash::check($request->get('password'), $user->password);
@@ -39,12 +50,22 @@ class MobileController extends Controller
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   }
 		}
-		return response()->json(['success'=>false,'msg'=>'Unauthorized, check your credentials.']);
+		//return response()->json(['success'=>false,'msg'=>'Unauthorized, check your credentials.']);
 		
 		
 	}
 	public function logout(Request $request){
-				
+		$validator = Validator::make($request->all(), [
+			'imei'=>'required',
+			'password'=>'required',
+			'email'=>'required',
+		]);
+		if ($validator->fails()) {
+			return Response::json(array(
+				'reason' => $validator->getMessageBag()->toArray(),
+				'success'=>false
+			), 400);
+		}		
 		return response()->json(['success'=>true,'msg'=>'ok!']);
     }
     /**

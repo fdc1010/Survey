@@ -8,6 +8,10 @@ use App\Models\OccupancyStatus;
 use App\Models\VoterStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class VoterController extends Controller
 {
@@ -58,7 +62,7 @@ class VoterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        		
     }
 
     /**
@@ -92,7 +96,32 @@ class VoterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+			'precinct_id'=>'required',
+			'first_name'=>'required',
+			'last_name'=>'required',
+			'precinct_id'=>'required',
+			'gender'=>'required',
+			'status_id'=>'required',
+			'precinct_id'=>'required',
+			'employment_status_id'=>'required',
+			'civil_status_id'=>'required',
+			'occupancy_status_id'=>'required',
+			'occupancy_length'=>'required',
+			'monthly_household'=>'required',			
+			'work'=>'required'
+		]);
+		if ($validator->fails()) {
+			return Response::json(array(
+				'reason' => $validator->getMessageBag()->toArray(),
+				'msg'=>'Unauthorized, check your credentials.',
+				'success'=>false
+			), 400);
+		}
+		$voter = Voter::find($id);
+        $voter->fill($request->all());
+        $voter->save();
+        return response()->json(['success'=>true],200);
     }
 
     /**

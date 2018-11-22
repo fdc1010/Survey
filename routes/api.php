@@ -19,8 +19,7 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'mobile',
 	'namespace' => 'Mobile'], function () {	
 		//info("Mobile");	
-		Route::post('login', 'MobileController@login');
-		Route::resource('fred', 'MobileController');
+		Route::post('login', 'MobileController@login');		
 		Route::get('getCivilStatus', 'CivilStatusController@getCivilStatus');
 		Route::get('getEmploymentStatus', 'EmploymentStatusController@getEmploymentStatus');
 		Route::get('getOccupancyStatus', 'OccupancyStatusController@getOccupancyStatus');
@@ -31,6 +30,7 @@ Route::group(['prefix' => 'mobile',
 			Route::get('logout', 'MobileController@logout');				
 			Route::get('getQuestions','QuestionController@getQuestions');
 			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+			Route::resource('voter', 'VoterController');
 		});
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
