@@ -72,11 +72,9 @@
 				'{{ $candidate->voter->full_name }}',
 			@endforeach
 			],
-            ['Votes',
-					@foreach($candidates as $candidate)
-						(Math.floor(Math.random() * 100) + 1),
-					@endforeach
-			]
+            @foreach($candidates as $candidate)
+				['{{ $candidate->voter->full_name }}',(Math.floor(Math.random() * 100) + 1)],
+			@endforeach
           ],
 		  labels: true,
           type: 'bar',
