@@ -84,7 +84,7 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($qualities as $quality)
                                         @php
-                                            $votesq[$candidate->id][$quality->id]=rand(1,100)};
+                                            $votesq[$candidate->id][$quality->id]=rand(1,100);
                                         @endphp
                                         <td>{{ $votesq[$candidate->id][$quality->id] }}</td>
                                         @endforeach
