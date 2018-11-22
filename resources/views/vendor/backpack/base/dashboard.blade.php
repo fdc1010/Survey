@@ -67,7 +67,7 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
-                                        	$qualities = App\Models\OptionCandidate::with('option','position')
+                                        	$qualities = App\Models\OptionPosition::with('option','position')
                                             									->where('position_id',1)->get();
                                         @endphp
                                         @foreach($qualities as $quality)
