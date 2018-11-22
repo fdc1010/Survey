@@ -41,21 +41,16 @@ class VoterCrudController extends CrudController
 									'yearly_household','work']);
 		$this->crud->removeField(['employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household','yearly_household','work']);
 		$this->crud->addColumn([
-            'label' => "Precint",
-			'type' => 'select',
-			'name' => 'precint_id', // the relationship name in your Model
-			'entity' => 'precinct', // the relationship name in your Model
-			'attribute' => 'precinct_info', // attribute on Article that is shown to admin
-			'model' => "App\Models\Precinct" // on create&update, do you need to add/delete pivot table entries?
-		])->makeFirstColumn();
-		
+            'name' => 'precinct_id',			
+            'label' => 'Precinct',
+            'type' => 'model_function',
+			'function_name' => 'getPrecinct'
+	    ])->makeFirstColumn();
 		$this->crud->addColumn([
-            'label' => "Status",
-			'type' => 'select',
-			'name' => 'status_id', // the relationship name in your Model
-			'entity' => 'status', // the relationship name in your Model
-			'attribute' => 'status_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\VoterStatus" 
+            'name' => 'status_id',			
+            'label' => 'Status',
+            'type' => 'model_function',
+			'function_name' => 'getStatusName'
 	    ]);
 		
 		$this->crud->addColumn([   // CustomHTML
@@ -65,13 +60,12 @@ class VoterCrudController extends CrudController
 			'width' => '50px',
 			'height' => '50px',
 		])->beforeColumn('first_name');
+		
 		$this->crud->addColumn([
-            'label' => "Barangay",
-			'type' => 'select',
-			'name' => 'barangay', // the relationship name in your Model
-			'entity' => 'precinct', // the relationship name in your Model
-			'attribute' => 'precinct_barangay', // attribute on Article that is shown to admin
-			'model' => "App\Models\Precinct", // on create&update, do you need to add/delete pivot table entries?
+            'name' => 'barangay',			
+            'label' => 'Barangay',
+            'type' => 'model_function',
+			'function_name' => 'getVoterBarangay',
 			'fake' => true
 	    ]);
 		$this->crud->addField([
