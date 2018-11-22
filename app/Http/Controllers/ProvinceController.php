@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Province;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class ProvinceController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TallyVote;
+use App\Models\TallyVote;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller

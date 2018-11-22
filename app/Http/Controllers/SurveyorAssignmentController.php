@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SurveyorAssignment;
+use App\Models\SurveyorAssignment;
 use Illuminate\Http\Request;
 
 class SurveyorAssignmentController extends Controller

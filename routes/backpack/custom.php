@@ -37,4 +37,7 @@ Route::group([
     CRUD::resource('location', 'LocationCrudController');
     CRUD::resource('locationcoordinate', 'LocationCoordinateCrudController');
     CRUD::resource('assignmentdetail', 'AssignmentDetailCrudController');
+    CRUD::resource('employmentstatus', 'EmploymentStatusCrudController');
+    CRUD::resource('civilstatus', 'CivilStatusCrudController');
+    CRUD::resource('occupancystatus', 'OccupancyStatusCrudController');
 }); // this should be the absolute last line of this file

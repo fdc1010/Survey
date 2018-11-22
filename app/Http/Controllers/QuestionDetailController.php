@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\QuestionDetail;
+use App\Models\QuestionDetail;
 use Illuminate\Http\Request;
 
 class QuestionDetailController extends Controller

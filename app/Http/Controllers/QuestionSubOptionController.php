@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\QuestionSubOption;
+use App\Models\QuestionSubOption;
 use Illuminate\Http\Request;
 
 class QuestionSubOptionController extends Controller
