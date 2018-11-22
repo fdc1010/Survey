@@ -24,6 +24,7 @@ Route::group(['prefix' => 'mobile',
 		Route::get('getCivilStatus', 'CivilStatusController@getCivilStatus');
 		Route::get('getEmploymentStatus', 'EmploymentStatusController@getEmploymentStatus');
 		Route::get('getOccupancyStatus', 'OccupancyStatusController@getOccupancyStatus');
+		Route::get('getVoterStatuses', 'VoterController@getVoterStatuses');
 		Route::get('getVoterInfoByName', 'VoterController@getVoterInfoByName');
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");			

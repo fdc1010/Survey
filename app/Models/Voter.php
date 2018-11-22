@@ -45,10 +45,6 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\OccupancyStatus','occupancy_status_id');
     }
-	public function employmentstatus()
-    {
-        return $this->belongsTo('App\Models\EmploymentStatus','employment_status_id');
-    }
 	public function getStatusName(){
 		$voterstatus = VoterStatus::find($this->status_id);
 		if($voterstatus)
