@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="divTabular" style="height:100%;">
+                      <div id="divTabular" style="height:320px;">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
