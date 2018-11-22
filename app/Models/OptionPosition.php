@@ -19,10 +19,17 @@ class OptionPosition extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['option_id','position_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function option()
+    {
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
+    }
+	public function position()
+    {
+        return $this->belongsTo('App\Models\PositionCandidate','position_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

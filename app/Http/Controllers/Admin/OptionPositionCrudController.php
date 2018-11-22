@@ -34,7 +34,41 @@ class OptionPositionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->removeColumn(['option_id','position_id']);
+		$this->crud->removeField(['option_id','position_id']);
+		
+		$this->crud->addColumn([
+            'name' => 'position_id',
+            'type' => 'select',
+            'label' => 'Position',
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Positioncandidate"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'select',
+            'label' => 'Option',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addField([
+            'name' => 'position_id',
+            'type' => 'select2',
+            'label' => 'Position',
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Positioncandidate"
+	    ]);
+		$this->crud->addField([
+            'name' => 'option_id',
+            'type' => 'select2',
+            'label' => 'Option',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
         // add asterisk for fields that are required in OptionPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
