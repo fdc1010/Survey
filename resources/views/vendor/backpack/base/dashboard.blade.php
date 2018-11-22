@@ -67,8 +67,9 @@
         data: {
 		  columns: [
 					@foreach($candidates as $candidate)
-						'{{ $candidate->full_name }}',100,
+						['{{ $candidate->full_name }}',100],
 					@endforeach
+					
 				],
 			
 			
