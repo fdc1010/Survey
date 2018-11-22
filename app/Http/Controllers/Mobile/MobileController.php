@@ -70,9 +70,8 @@ class MobileController extends Controller
 		$user = User::where('email', $request->get('email'))->first();
 		if($user){	
 		
-			  $user->rollApiKey(); //Model Function
-			  $user->is_online=0;
-			  $user->save();
+			  $user->api_token = null;
+			  $user->is_online = 0;
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   
 		}
