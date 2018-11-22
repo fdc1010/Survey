@@ -18,8 +18,8 @@ class CreateLocationCoordinatesTable extends Migration
 			$table->enum('shape',['polygon','circle','rectangle','polyline']);
 			$table->unsignedInteger('location_id');
 			$table->decimal('coordinate',10,2);
-			$table->string('name');
-			$table->longText('description');
+			$table->string('name')->nullable();
+			$table->longText('description')->nullable();
             $table->timestamps();
 			
 			$table->foreign('location_id')->references('id')->on('locations');

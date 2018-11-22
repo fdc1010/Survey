@@ -16,8 +16,8 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
 			$table->enum('area',['province','district','municipality','barangay','sitio']);
-			$table->string('name');
-			$table->longText('description');
+			$table->string('name')->nullable();
+			$table->longText('description')->nullable();
             $table->timestamps();
         });
     }
