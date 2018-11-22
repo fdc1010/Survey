@@ -96,7 +96,7 @@ class QuestionCrudController extends CrudController
 			'type' => 'select',
 			'name' => 'for_position', // the relationship name in your Model
 			'entity' => 'forposition', // the relationship name in your Model
-			'attribute' => 'position_name', // attribute on Article that is shown to admin
+			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		/*$this->crud->addField(
