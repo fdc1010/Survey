@@ -34,5 +34,10 @@ class EventServiceProvider extends ServiceProvider
 			$user->is_online = 1;
 			$user->save();
 		});
+		Event::listen('Illuminate\Auth\Events\Logout', function ($event) {						
+            $user = $event->user;
+			$user->is_online = 0;
+			$user->save();
+		});
     }
 }
