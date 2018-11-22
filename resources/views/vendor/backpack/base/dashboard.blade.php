@@ -24,7 +24,31 @@
                 </div>
 
                 <div class="box-body">                	
-                        	<div id="tabular"></div>
+                      <div id="divTabular">
+                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Cadidate</th>
+                                        <th>Votes</th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                @php
+                                	$votes = array();
+                                    $candidates = App\Models\Candidate::with('voter')->get();
+                                @endphp
+                                @foreach($candidates as $candidate)
+                                	@php
+                                    	$votes[$candidate->id]=rand(1,100);
+                                    @endphp
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        <td>{{ $votes[$candidate->id] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
                 </div>
             </div>
         </div>
@@ -85,7 +109,7 @@
 			],
 			['Votes',
             @foreach($candidates as $candidate)
-				(Math.floor(Math.random() * 100) + 1),
+				{{ $votes[$candidate->id] }},
 			@endforeach
 			]
           ],
