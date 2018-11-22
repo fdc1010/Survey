@@ -186,7 +186,42 @@
           },
         }
       });
-	
+	var chartqualities = c3.generate({
+		bindto: '#chartqualities',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($qualities as $quality)
+				['{{$quality->option->option}}',
+				@foreach($candidates as $candidate)
+					{{ $votesq[$candidate->id][$quality->id] }},
+				@endforeach
+				]
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
 	@foreach($barangays as $barangay)
       var chart_{{ $barangay->id }} = c3.generate({
 		bindto: '#chart_{{ $barangay->id }}',
