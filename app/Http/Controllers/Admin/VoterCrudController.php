@@ -39,7 +39,7 @@ class VoterCrudController extends CrudController
 		$this->crud->removeColumn(['precinct_id','profilepic','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
-		$this->crud->removeField(['employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household','work']);
+		$this->crud->removeField(['employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household','yearly_household','work']);
 		$this->crud->addColumn([
             'label' => "Precint",
 			'type' => 'select',
