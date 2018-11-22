@@ -189,19 +189,19 @@
 	var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
-		  x: 'Qualities',
+		  x: 'Candidates',
 		  columns: [
-		  	['Qualities', 
-			@foreach($qualities as $quality)
-				'{{ $quality->option->option }}',
-			@endforeach
-			],			
+		  	['Candidates', 
 			@foreach($candidates as $candidate)
-				['{{ $candidate->voter->full_name }}',
-				@foreach($qualities as $quality)
-					{{ $votesq[$candidate->id][$quality->id] }},
-				@endforeach
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($qualities as $quality)
+				@foreach($candidates as $candidate)
+				['{{ $quality->option->option }}',				
+					{{ $votesq[$candidate->id][$quality->id] }},				
 				],
+				@endforeach
 			@endforeach
           ],
 		  labels: true,
