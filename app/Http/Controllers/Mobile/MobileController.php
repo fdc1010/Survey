@@ -51,7 +51,7 @@ class MobileController extends Controller
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   }
 		}
-		//return response()->json(['success'=>false,'msg'=>'Unauthorized, check your credentials.']);
+		return response()->json(['success'=>false,'msg'=>'Unauthorized, Check your credentials.']);
 		
 		
 	}
@@ -75,6 +75,7 @@ class MobileController extends Controller
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   
 		}
+		return response()->json(['success'=>false,'msg'=>'Opps! an error occured, Check your credentials/device.']);
     }
     /**
      * Show the form for creating a new resource.
