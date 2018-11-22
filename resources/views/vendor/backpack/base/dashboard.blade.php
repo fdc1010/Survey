@@ -192,8 +192,8 @@
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($qualities as $quality)
+				'{{ $quality->option->option }}',
 			@endforeach
 			],			
 			@foreach($candidates as $candidate)
