@@ -39,7 +39,7 @@ class VoterCrudController extends CrudController
 		$this->crud->removeColumn(['precinct_id','profilepic','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
-		$this->crud->removeField(['work']);
+		$this->crud->removeField(['employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household','work']);
 		$this->crud->addColumn([
             'label' => "Precint",
 			'type' => 'select',
@@ -84,16 +84,6 @@ class VoterCrudController extends CrudController
 			//'attribute2' => 'name', // attribute on Article that is shown to admin
 			//'entity2' => "barangay"
 		]);
-		/*$this->crud->addField([
-			'label' => "Firstname",
-			'type' => 'text',
-			'name' => 'first_name'
-		]);
-		$this->crud->addField([
-			'label' => "Lastname",
-			'type' => 'text',
-			'name' => 'last_name'
-		]);*/
 		$this->crud->addField([
 			'label' => "Gender",
 			'type' => 'enum',
@@ -101,23 +91,13 @@ class VoterCrudController extends CrudController
 		])->beforeField('profilepic');
 		$this->crud->addField([
 			'label' => "Status",
-			'type' => 'select',
+			'type' => 'radio',
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
 			'attribute' => 'status_name', // attribute on Article that is shown to admin
 			//'attribute2' => 'status_name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		/*$this->crud->addField([ // base64_image
-			'label' => "Profile Image",
-			'name' => "profilepic",
-			'filename' => null, // set to null if not needed
-			'type' => 'base64_image',
-			'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
-			'crop' => true, // set to true to allow cropping, false to disable
-			'src' => 'getImageSource', // null to read straight from DB, otherwise set to model accessor function
-			'upload' => true
-		]);*/
 		$this->crud->addField([ // image
 			'label' => "Profile Image",
 			'name' => "profilepic",
@@ -129,10 +109,26 @@ class VoterCrudController extends CrudController
 			//'prefix' => config('app.url').'/profilepic/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
 		]);
 		$this->crud->addField([
+			'label' => "Employment Status",
+			'type' => 'select',
+			'name' => 'employment_status_id', // the relationship name in your Model
+			'entity' => 'employmentstatus', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\EmploymentStatus" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addField([
 			'label' => "Work",
 			'type' => 'text',
 			'name' => 'work'
 		])->afterField('employment_status_id');
+		$this->crud->addField([
+			'label' => "Employment Status",
+			'type' => 'select',
+			'name' => 'employment_status_id', // the relationship name in your Model
+			'entity' => 'employmentstatus', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\EmploymentStatus" // on create&update, do you need to add/delete pivot table entries?
+		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
