@@ -68,10 +68,11 @@ class VoterCrudController extends CrudController
 		$this->crud->addColumn([
             'label' => "Barangay",
 			'type' => 'select',
-			'name' => 'precint_id', // the relationship name in your Model
+			'name' => 'barangay', // the relationship name in your Model
 			'entity' => 'precinct', // the relationship name in your Model
 			'attribute' => 'precinct_barangay', // attribute on Article that is shown to admin
-			'model' => "App\Models\Precinct" // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\Precinct", // on create&update, do you need to add/delete pivot table entries?
+			'fake' => true
 	    ]);
 		$this->crud->addField([
 			'label' => "Precinct",
