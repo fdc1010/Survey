@@ -82,7 +82,7 @@
                                             									->where('position_id',1)->get();
                                         @endphp
                                         @foreach($qualities as $quality)
-                                        <th>{{ $quality->option->name }}</th>
+                                        <th>{{ $quality->option->option }}</th>
                                         @endforeach
                                     </tr>                                    
                                 </thead>
