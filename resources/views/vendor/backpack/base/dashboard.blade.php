@@ -51,7 +51,9 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chart_{{ $barangay->id }}"></div></div>
+                <div class="box-body">
+                	<div id="chart_{{ $barangay->id }}"></div>
+                </div>
             </div>
         </div>
         @endforeach
