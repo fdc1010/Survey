@@ -25,7 +25,7 @@
 
                 <div class="box-body">                	
                       <div id="divTabular">
-                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table id="tabular" height="100%" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Cadidate</th>
