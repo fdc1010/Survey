@@ -49,9 +49,7 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         return [
-            'precinct_id','first_name','last_name','gender','status_id','employment_status_id',
-			'civil_status_id','occupancy_status_id','monthly_household','occupancy_length',
-			'work'
+			'work.required_if'=>'The work field is required when employment status is Employed.'
         ];
     }
 
