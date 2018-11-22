@@ -49,7 +49,7 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         return [
-			'work.required'=>'The work field is required when employment status is Employed.'
+			'work'
         ];
     }
 
@@ -61,7 +61,7 @@ class VoterRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'The work field is required when employment status is Employed.'
         ];
     }
 }
