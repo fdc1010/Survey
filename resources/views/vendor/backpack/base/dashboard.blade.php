@@ -28,8 +28,48 @@
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
-                                    	<th>Cadidate</th>
+                                    	<th>Candidates</th>
                                         <th>Votes</th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                @php
+                                	$votes = array();
+                                    $candidates = App\Models\Candidate::with('voter')->get();
+                                @endphp
+                                @foreach($candidates as $candidate)
+                                	@php
+                                    	$votes[$candidate->id]=rand(1,100);
+                                    @endphp
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        <td>{{ $votes[$candidate->id] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="divTabular" style="height:320px;">
+                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @php
+                                        	
+                                        @endphp
+                                        <th></th>
                                     </tr>                                    
                                 </thead>
                                 <tbody>

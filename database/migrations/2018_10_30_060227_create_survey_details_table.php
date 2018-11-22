@@ -17,7 +17,7 @@ class CreateSurveyDetailsTable extends Migration
             $table->increments('id');
 			$table->string('subject')->nullable();
 			$table->longText('description')->nullable();
-			$table->integer('for_position')->default(1);
+			$table->integer('for_position')->nullable();
             $table->timestamps();
         });
     }
