@@ -67,23 +67,25 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
-                                        	
+                                        	$qualities = App\Models\OptionCandidate::with('option','position')
+                                            									->where('position_id',1)->get();
                                         @endphp
-                                        <th></th>
+                                        @foreach($qualities as $quality)
+                                        <th>{{ $quality->option->name }}</th>
+                                        @endforeach
                                     </tr>                                    
                                 </thead>
                                 <tbody>
-                                @php
-                                	$votes = array();
-                                    $candidates = App\Models\Candidate::with('voter')->get();
+                               @php
+                                	$votesq = array();
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
-                                    	$votes[$candidate->id]=rand(1,100);
+                                    	$votesq[$candidate->id]=rand(1,100);
                                     @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
-                                        <td>{{ $votes[$candidate->id] }}</td>
+                                        <td>{{ $votesq[$candidate->id] }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
