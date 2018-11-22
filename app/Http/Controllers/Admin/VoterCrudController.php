@@ -137,6 +137,16 @@ class VoterCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\OccupancyStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
+		$this->crud->addField([
+			'label' => "Length of Occupancy",
+			'type' => 'number',
+			'name' => 'occupancy_length'
+		])->afterField('occupancy_status_id');
+		$this->crud->addField([
+			'label' => "Monthly Household Income",
+			'type' => 'number',
+			'name' => 'monthly_household'
+		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
