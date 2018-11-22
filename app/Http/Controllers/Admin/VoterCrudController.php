@@ -128,6 +128,11 @@ class VoterCrudController extends CrudController
 			// 'disk' => 's3_bucket', // in case you need to show images from a different disk
 			//'prefix' => config('app.url').'/profilepic/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
 		]);
+		$this->crud->addField([
+			'label' => "Work",
+			'type' => 'text',
+			'name' => 'work'
+		])->afterField('employment_status_id');
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
