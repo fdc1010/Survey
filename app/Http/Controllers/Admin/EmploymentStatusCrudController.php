@@ -24,7 +24,7 @@ class EmploymentStatusCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\EmploymentStatus');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/employmentstatus');
-        $this->crud->setEntityNameStrings('employmentstatus', 'employment_statuses');
+        $this->crud->setEntityNameStrings('employment status', 'Employment Status');
 
         /*
         |--------------------------------------------------------------------------

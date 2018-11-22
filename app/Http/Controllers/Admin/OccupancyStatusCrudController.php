@@ -24,7 +24,7 @@ class OccupancyStatusCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OccupancyStatus');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/occupancystatus');
-        $this->crud->setEntityNameStrings('occupancystatus', 'occupancy_statuses');
+        $this->crud->setEntityNameStrings('occupancy status', 'Occupancy Status');
 
         /*
         |--------------------------------------------------------------------------

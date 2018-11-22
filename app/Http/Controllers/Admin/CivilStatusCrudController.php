@@ -24,7 +24,7 @@ class CivilStatusCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\CivilStatus');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/civilstatus');
-        $this->crud->setEntityNameStrings('civilstatus', 'civil_statuses');
+        $this->crud->setEntityNameStrings('civil status', 'Civil Status');
 
         /*
         |--------------------------------------------------------------------------
