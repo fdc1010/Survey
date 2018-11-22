@@ -47,12 +47,11 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">{{ $barangay->name }}</div>                	
-                        	<div id="chart_{{ $barangay->id }}"></div>
+                      		<div class="box-title">{{ $barangay->name }}</div>                	                        	
                     </div>
                 </div>
 
-                <!--<div class="box-body">{{ trans('backpack::base.logged_in') }}</div>-->
+                <div class="box-body"><div id="chart_{{ $barangay->id }}"></div></div>
             </div>
         </div>
         @endforeach
