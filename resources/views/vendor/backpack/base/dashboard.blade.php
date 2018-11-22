@@ -62,16 +62,16 @@
 	@endphp	
 	var chart = c3.generate({
 		bindto: '#chart',
-		x: 'Cadidate',		
+		x: 'Candidate',		
         data: {
 		  columns: [
-		  	['Cadidate', 
+		  	['Candidate', 
 			@foreach($candidates as $candidate)
 				'{{ $candidate->voter->full_name }}',
 			@endforeach
 			],
             @foreach($candidates as $candidate)
-			['{{ $candidate->voter->full_name }}',(Math.floor(Math.random() * 100) + 1)],
+			['{{ $candidate->voter->full_name }}',40],//(Math.floor(Math.random() * 100) + 1)],
 			@endforeach
           ],
 		  labels: true,
