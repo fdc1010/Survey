@@ -13,7 +13,7 @@ class AddOtherinfouserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('voters', function (Blueprint $table) {
 			$table->integer('employment_status_id')->nullable();
 			$table->integer('civil_status_id')->nullable();
 			$table->integer('occupancy_status_id')->nullable();
@@ -31,7 +31,7 @@ class AddOtherinfouserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('voters', function (Blueprint $table) {
             $table->dropColumn('employment_status_id');
 			$table->dropColumn('civil_status_id');
 			$table->dropColumn('occupancy_status_id');
