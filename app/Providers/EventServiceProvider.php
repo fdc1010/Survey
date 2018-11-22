@@ -31,6 +31,8 @@ class EventServiceProvider extends ServiceProvider
  		Event::listen('Illuminate\Auth\Events\Login', function ($event) {						
             $user = $event->user;
             $user->api_token = str_random(60);
+			$user->is_online = 1;
+			$user->save();
 		});
     }
 }
