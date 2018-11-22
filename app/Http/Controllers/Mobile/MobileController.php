@@ -46,7 +46,8 @@ class MobileController extends Controller
 		   if($auth){
 		
 			  $user->rollApiKey(); //Model Function
-		
+			  $user->is_online=1;
+			  $user->save();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
 		   }
 		}
@@ -66,7 +67,15 @@ class MobileController extends Controller
 				'success'=>false
 			), 400);
 		}		
-		return response()->json(['success'=>true,'msg'=>'ok!']);
+		$user = User::where('email', $request->get('email'))->first();
+		if($user){	
+		
+			  $user->rollApiKey(); //Model Function
+			  $user->is_online=0;
+			  $user->save();
+			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
+		   
+		}
     }
     /**
      * Show the form for creating a new resource.
