@@ -53,7 +53,7 @@ class User extends Authenticatable
 	public function rollApiKey(){
 	   do{
 		  $this->api_token = str_random(60);
-		  //$this->is_online = 1;
+		  $this->is_online = 1;
 	   }while($this->where('api_token', $this->api_token)->exists());
 	   $this->save();
 	}
