@@ -91,11 +91,10 @@ class VoterCrudController extends CrudController
 		])->beforeField('profilepic');
 		$this->crud->addField([
 			'label' => "Status",
-			'type' => 'radio',
+			'type' => 'select',
 			'name' => 'status_id', // the relationship name in your Model
 			'entity' => 'status', // the relationship name in your Model
 			'attribute' => 'status_name', // attribute on Article that is shown to admin
-			'options' => ['attribute' => 'status_arr'],
 			//'attribute2' => 'status_name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
