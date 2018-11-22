@@ -31,7 +31,13 @@ class VoterRequest extends FormRequest
 			'first_name' => 'required',
 			'last_name' => 'required', 
 			'gender' => 'required',
-			'status_id' => 'required'
+			'status_id' => 'required',
+			'employment_status_id' => 'required',
+			'civil_status_id' => 'required',
+			'occupancy_status_id' => 'required',
+			'monthly_household' => 'required|numeric',
+			'occupancy_length' => 'required|numeric',
+			'work' => 'required_if:employment_status_id,1'
         ];
     }
 
@@ -43,7 +49,9 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         return [
-            'precinct_id','first_name','last_name','gender','status_id'
+            'precinct_id','first_name','last_name','gender','status_id','employment_status_id',
+			'civil_status_id','occupancy_status_id','monthly_household','occupancy_length',
+			'work'
         ];
     }
 
