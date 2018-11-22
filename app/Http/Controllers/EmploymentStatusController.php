@@ -16,7 +16,11 @@ class EmploymentStatusController extends Controller
     {
         //
     }
-
+	public function getEmploymentStatus(Request $request){
+		$empstatus = EmploymentStatus::all();
+		
+		return response()->json($empstatus);
+	}
     /**
      * Show the form for creating a new resource.
      *

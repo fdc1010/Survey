@@ -16,7 +16,11 @@ class OccupancyStatusController extends Controller
     {
         //
     }
-
+	public function getOccupancyStatus(Request $request){
+		$occstatus = OccupancyStatus::all();
+		
+		return response()->json($occstatus);
+	}
     /**
      * Show the form for creating a new resource.
      *

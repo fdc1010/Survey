@@ -26,7 +26,11 @@ class CivilStatusController extends Controller
     {
         //
     }
-
+	public function getCivilStatus(Request $request){
+		$civilstatus = CivilStatus::all();
+		
+		return response()->json($civilstatus);
+	}
     /**
      * Store a newly created resource in storage.
      *
