@@ -24,10 +24,8 @@ class Voter extends Model
 							'yearly_household','work'];
     // protected $hidden = [];
     // protected $dates = [];
-	protected $appends = ['full_name','status_arr'];
-	protected $casts = [
-        'status_arr' => 'array'
-    ];
+	protected $appends = ['full_name'];
+	
 	public function status()
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');
@@ -69,7 +67,7 @@ class Voter extends Model
     }
 	public function getStatusArrAttribute()
     {
-		return $this->status;
+		return $this->status->toArray();
 	}
 	public function setProfilepicAttribute($value)
     {
