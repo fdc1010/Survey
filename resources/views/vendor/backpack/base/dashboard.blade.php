@@ -61,11 +61,11 @@
 		$candidates = App\Models\Candidate::with('voter')->get();
 	@endphp	
 	var chart = c3.generate({
-		bindto: '#chart',
-		x: 'Candidate',		
+		bindto: '#chart',				
         data: {
+		  x: 'Candidates',
 		  columns: [
-		  	['Candidate', 
+		  	['Candidates', 
 			@foreach($candidates as $candidate)
 				'{{ $candidate->voter->full_name }}',
 			@endforeach
