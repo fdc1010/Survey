@@ -63,9 +63,9 @@
 	var chart = c3.generate({
 		bindto: '#chart',				
         data: {
-		  x: 'x',
+		  x: 'Candidates',
 		  columns: [
-		  	['x', 
+		  	['Candidates', 
 			@foreach($candidates as $candidate)
 				'{{ $candidate->voter->full_name }}',
 			@endforeach
