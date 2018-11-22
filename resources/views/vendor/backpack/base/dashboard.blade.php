@@ -63,7 +63,8 @@
 		$candidates = App\Models\Candidate::with('voter')->get();
 	@endphp	
 	var chart = c3.generate({
-		bindto: '#chart',		
+		bindto: '#chart',
+		x: 'x',		
         data: {
 		  columns: [
 		  	['x', 
