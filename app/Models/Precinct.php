@@ -31,6 +31,10 @@ class Precinct extends Model
     {		
         return $this->attributes['precinct_number'] . ' (' . $this->barangay->name . ')';
     }
+	public function getPrecinctBarangayAttribute()
+    {		
+        return $this->barangay->name;
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
