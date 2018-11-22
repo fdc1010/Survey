@@ -70,7 +70,7 @@
 						['{{ $candidate->voter->full_name }}',100],
 					@endforeach
 					
-				],
+				
 			
 			
 //           ['data1', 30, 200, 100, 400, 150, 250],
