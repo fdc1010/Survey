@@ -18,9 +18,13 @@
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-6">                      
                       		<div class="box-title">Main Chart</div>                	
                         	<div id="chart"></div>
+                    </div>
+                    <div class="col-md-6">                      
+                      		<div class="box-title">Tabular Stats</div>                	
+                        	<div id="table"></div>
                     </div>
                 </div>
 
