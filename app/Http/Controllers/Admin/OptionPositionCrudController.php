@@ -66,7 +66,7 @@ class OptionPositionCrudController extends CrudController
             'type' => 'select2',
             'label' => 'Option',
 			'entity' => 'option', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
+			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
         // add asterisk for fields that are required in OptionPositionRequest
