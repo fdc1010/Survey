@@ -77,6 +77,7 @@
 //           ['data2', 130, 100, 140, 200, 150, 50]
           ],
 		  labels: true,
+          type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
           onmouseout: function (d) { console.log("onmouseout", d); }
