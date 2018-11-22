@@ -122,12 +122,20 @@ class VoterCrudController extends CrudController
 			'name' => 'work'
 		])->afterField('employment_status_id');
 		$this->crud->addField([
-			'label' => "Employment Status",
+			'label' => "Civil Status",
 			'type' => 'select',
-			'name' => 'employment_status_id', // the relationship name in your Model
-			'entity' => 'employmentstatus', // the relationship name in your Model
+			'name' => 'civil_status_id', // the relationship name in your Model
+			'entity' => 'civilstatus', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\EmploymentStatus" // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\CivilStatus" // on create&update, do you need to add/delete pivot table entries?
+		]);
+		$this->crud->addField([
+			'label' => "Occupancy",
+			'type' => 'select',
+			'name' => 'occupancy_status_id', // the relationship name in your Model
+			'entity' => 'occupancystatus', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\OccupancyStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
