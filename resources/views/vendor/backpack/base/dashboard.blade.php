@@ -57,17 +57,15 @@
 	@php
 		$barangays = App\Models\Barangay::all();
 		$i=0;	
-		foreach($barangays as $barangayarr){
-			echo "brgy[".$i++."]='$barangayarr->name';";
-		}
+		
 		$candidates = App\Models\Candidate::with('voter')->get();
 	@endphp	
 	var chart = c3.generate({
 		bindto: '#chart',
-		x: 'x',		
+		x: 'Cadidate',		
         data: {
 		  columns: [
-		  	['x', 
+		  	['Cadidate', 
 			@foreach($candidates as $candidate)
 				'{{ $candidate->voter->full_name }}',
 			@endforeach
