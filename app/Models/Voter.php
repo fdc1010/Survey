@@ -19,7 +19,9 @@ class Voter extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = ['precinct_id', 'first_name','last_name','middle_name', 'birth_date','contact',
-							'address', 'birth_place','age','gender', 'profilepic','status_id'];
+							'address', 'birth_place','age','gender', 'profilepic','status_id','employment_status_id',
+							'civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
+							'yearly_household','work'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $appends = ['full_name'];
@@ -30,6 +32,22 @@ class Voter extends Model
 	public function precinct()
     {
         return $this->belongsTo('App\Models\Precinct','precinct_id')->with('barangay');
+    }
+	public function employmentstatus()
+    {
+        return $this->belongsTo('App\Models\EmploymentStatus','employment_status_id');
+    }
+	public function civilstatus()
+    {
+        return $this->belongsTo('App\Models\CivilStatus','civil_status_id');
+    }
+	public function occupancystatus()
+    {
+        return $this->belongsTo('App\Models\OccupancyStatus','occupancy_status_id');
+    }
+	public function employmentstatus()
+    {
+        return $this->belongsTo('App\Models\EmploymentStatus','employment_status_id');
     }
 	public function getStatusName(){
 		$voterstatus = VoterStatus::find($this->status_id);
