@@ -29,6 +29,16 @@ class PositionCandidate extends Model
 	public function getOptionsAttribute(){
 		return $this->optionposition->options->option;	
 	}
+	public function getOptionSelections(){
+		$options = $this->optionposition->options;
+		$result = "<ul>";
+		foreach($options as $option)){
+			$result .= "<li>".$option->option."</li>":
+		}
+		$result .= "</ul>";
+		
+		return $result;
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
