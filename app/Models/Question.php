@@ -22,7 +22,7 @@ class Question extends Model
     //protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
-	 protected $casts = [
+	protected $casts = [
         'options' => 'array'
     ];
 	
