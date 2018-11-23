@@ -44,7 +44,7 @@ class PositionCandidateCrudController extends CrudController
 			'fake' => true
 	    ]);
 		$this->crud->addField([
-            'name' => 'options',
+            'name' => 'position_id',
             'type' => 'select',
             'label' => 'checklist',
 			'entity' => 'optionposition', // the relationship name in your Model
