@@ -40,7 +40,7 @@ class PositionCandidateCrudController extends CrudController
             'name' => 'options',			
             'label' => 'Options',
             'type' => 'model_function',
-			'function_name' => 'getOptionSelections',
+			'function_name' => 'getOptionsSelections',
 			'fake' => true
 	    ]);
 		$this->crud->addField([
