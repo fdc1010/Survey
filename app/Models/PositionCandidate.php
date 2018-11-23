@@ -22,7 +22,7 @@ class PositionCandidate extends Model
     protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
-	protected $appends = ['option_selection'];
+	protected $appends = ['options'];
 	
 	public function optionsposition(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');
@@ -30,7 +30,7 @@ class PositionCandidate extends Model
 	public function options(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
 	}
-	public function getOptionSelectionAttribute(){
+	public function getOptionsAttribute(){
 		/*$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($options as $option){
@@ -39,7 +39,7 @@ class PositionCandidate extends Model
 		$result .= "</ul>";*/
 		
 		//return $this->optionsposition;
-		return $this->optionsposition;
+		return $this->options->options->option;
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
