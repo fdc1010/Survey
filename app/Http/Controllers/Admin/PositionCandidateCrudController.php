@@ -50,8 +50,7 @@ class PositionCandidateCrudController extends CrudController
             'label' => 'Options',
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option_selection', // attribute on Article that is shown to admin
-			'model' => "App\Models\OptionPosition",
-			'fake' => true
+			'model' => "App\Models\OptionPosition"
 	    ]);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
