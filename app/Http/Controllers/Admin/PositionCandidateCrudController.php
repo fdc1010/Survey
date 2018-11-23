@@ -85,14 +85,14 @@ class PositionCandidateCrudController extends CrudController
 		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
 		$options = $this->crud->entry->option_selection;
-		dd($this->crud->entry);		
+				
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
 		}
-		
+		dd($this->crud->entry);
         return $redirect_location;
     }
 }
