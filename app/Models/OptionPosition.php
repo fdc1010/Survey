@@ -25,8 +25,8 @@ class OptionPosition extends Model
 	
 	protected $appends = ['option_selection'];
 	protected $casts = [
-        'option_id' => 'integer',
-		'position_id' => 'integer'
+        'option_id' => 'array',
+		'position_id' => 'array'
     ];
 	/*	
 	public function options()
@@ -38,11 +38,11 @@ class OptionPosition extends Model
         return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','option_id');
     }*/
 	
-	/*public function positionoptions(){
-		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
-	}*/
-	public function optionposition(){
-		return $this->belongsToMany('App\Models\QuestionOption','position_cadidates','position_id','option_id');
+	public function positionoptions(){
+		return $this->hasMany('App\Models\PositionCandidate','position_id');
+	}
+	public function optionpositions(){
+		return $this->hasMany('App\Models\QuestionOption','option_id');
 	}
 	public function getOptionSelectionAttribute(){
 		return $this->options->option;	

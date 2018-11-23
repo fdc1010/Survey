@@ -29,12 +29,10 @@ class PositionCandidate extends Model
 	/*public function optionsposition(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}*/
-	public function options(){
-		return $this->hasMany('App\Models\OptionPosition','option_id');
+	public function optionsposition(){
+		return $this->belongsToMany('App\Models\OptionPosition','option_positions','option_id','position_id');
 	}
-	public function positions(){
-		return $this->belongsTo('App\Models\OptionPosition','position_id');
-	}
+	
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
 		$result = "<ul>";
