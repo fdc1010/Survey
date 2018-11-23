@@ -39,7 +39,8 @@ class PositionCandidate extends Model
 		$result .= "</ul>";*/
 		
 		//return $this->optionsposition;
-		return $this->options->options->option;
+		info($this->options);
+		//return $this->options->options->option;
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
