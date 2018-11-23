@@ -33,34 +33,15 @@ class QuestionOptionCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
-		/*$this->crud->addField([
-			  // Checkbox
-			  'name' => 'has_sub_options',
-			  'label' => 'Has Sub Option',
-		  	  'type' => 'toggle',
-			  'inline' => true,
-			  'options' => [
-				  0 => 'No',
-				  1 => 'Yes'
-			  ],
-			  'hide_when' => [
-				  0 => ['optiondetail'],
-				  ],
-			  'default' => 0
-		]);
-		$this->crud->addField(
-			[  // Select2
-			   'label' => "Options",
-			   'type' => 'select2_multiple',
-			   'name' => 'suboptiondetail', // the db column for the foreign key
-			   'entity' => 'suboptiondetail', // the method that defines the relationship in your Model
-			   'attribute' => 'sub_option', // foreign key attribute that is shown to user
-			   'model' => "App\Models\QuestionSubOption", // foreign key model
-			   'pivot' => true,
-			   'select_all' => true
-			]);*/
-        // add asterisk for fields that are required in QuestionOptionRequest
+        $this->crud->setFromDb();		
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'checklist',
+            'label' => 'Positions Tagged',
+			'entity' => 'positions', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate"
+	    ])->afterColumn('priority');
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

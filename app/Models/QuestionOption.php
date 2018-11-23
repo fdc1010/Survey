@@ -26,6 +26,17 @@ class QuestionOption extends Model
     {
         return $this->belongsToMany('App\Models\Question','question_details','question_id','option_id');
     }
+	public function getPositions()
+    {
+        $optpos = OptionPosition::with('position')->where('option_id',$this->id);
+		if($optpos)
+			return $optpos->position . " (" . $voterstatus->name . ")";
+		else
+			return "";
+    }
+	public function positions(){
+		return $this->belongsToMany('App\Models\OptionPosition','position_candidates','option_id','position_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

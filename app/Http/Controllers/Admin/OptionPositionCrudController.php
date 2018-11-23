@@ -24,7 +24,7 @@ class OptionPositionCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OptionPosition');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionposition');
-        $this->crud->setEntityNameStrings('optionposition', 'option_positions');
+        $this->crud->setEntityNameStrings('option position', 'option positions');
 
         /*
         |--------------------------------------------------------------------------
