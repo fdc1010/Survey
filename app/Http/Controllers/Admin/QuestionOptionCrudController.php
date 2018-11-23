@@ -35,7 +35,7 @@ class QuestionOptionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();		
 		$this->crud->addColumn([
-            'name' => 'positions',
+            'name' => 'position',
             'type' => 'checklist',
             'label' => 'Positions Tagged',
 			'entity' => 'positions', // the relationship name in your Model
