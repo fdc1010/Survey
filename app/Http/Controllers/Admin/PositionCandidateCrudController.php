@@ -19,7 +19,7 @@ class PositionCandidateCrudController extends CrudController
     public function setup()
     {
 		$pos = PositionCandidate::first();
-		dd($pos->options);
+		dd($pos->option_selections);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
