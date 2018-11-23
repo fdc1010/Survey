@@ -42,7 +42,7 @@ class PositionCandidateCrudController extends CrudController
             'label' => 'Options',
             'type' => 'model_function',
 			'function_name' => 'getOptionSelections'
-	    ])
+	    ]);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
