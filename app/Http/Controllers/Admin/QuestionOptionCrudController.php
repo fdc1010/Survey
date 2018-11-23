@@ -35,12 +35,13 @@ class QuestionOptionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();		
 		$this->crud->addColumn([
-            'name' => 'option_id',
+            'name' => 'positions',
             'type' => 'checklist',
             'label' => 'Positions Tagged',
 			'entity' => 'positions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\PositionCandidate",
+			'fake' => true
 	    ])->afterColumn('priority');
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

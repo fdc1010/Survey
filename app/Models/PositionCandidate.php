@@ -19,10 +19,13 @@ class PositionCandidate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['position_name', 'position_description'];
+    protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function getNameAttribute()
+    {
+        return ucwords($this->attributes['name']);
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
