@@ -57,16 +57,16 @@ class OptionPositionCrudController extends CrudController
             'name' => 'position_id',
             'type' => 'checklist',
             'label' => 'Position',
-			'entity' => 'position_selection', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
+			'entity' => 'optionspositions', // the relationship name in your Model
+			'attribute' => 'position_selection', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate"
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
             'type' => 'checklist',
             'label' => 'Option',
-			'entity' => 'option_selection', // the relationship name in your Model
-			'attribute' => 'option', // attribute on Article that is shown to admin
+			'entity' => 'optionspositions', // the relationship name in your Model
+			'attribute' => 'option_selection', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
         // add asterisk for fields that are required in OptionPositionRequest
