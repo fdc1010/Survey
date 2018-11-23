@@ -7,12 +7,17 @@ use App\Models\EmploymentStatus;
 use App\Models\OccupancyStatus;
 use App\Models\VoterStatus;
 use App\Models\Gender;
+use App\Models\SurveyAnswer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Session;
+use Excel;
+use File;
 
 class VoterController extends Controller
 {
@@ -24,6 +29,54 @@ class VoterController extends Controller
     public function index()
     {
         //
+    }
+	public function syncInData(Request $request){
+		//validate the xls file
+        $this->validate($request, array(
+            'file'      => 'required'
+        ));
+ 
+        if($request->hasFile('file')){
+            $extension = File::extension($request->file->getClientOriginalName());
+            if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
+ 
+                $path = $request->file->getRealPath();
+                $data = Excel::load($path, function($reader) {
+                })->get();
+                if(!empty($data) && $data->count()){
+ 
+                    foreach ($data as $key => $value) {
+                        $insert[] = [						
+						'precinct_id' => $value->email,
+                        'seq_num' => $value->seqnum,
+                        'status_id' => $value->status,
+						'sitio_id' => $value->sitio,
+                        'last_name' => $value->lastname,
+						'first_name' => $value->firstname,
+						'middle_name' => $value->middlename,
+						'address' => $value->address
+                        ];
+                    }
+ 
+                    if(!empty($insert)){
+ 
+                        $insertData = DB::table('survey_answers')->insert($insert);
+                        if ($insertData) {
+                            return response()->json(['success'=>true,'message'=>'Your Data has successfully imported']);
+                        }else {                        
+                            return response()->json(['success'=>false,'message'=>'Error inserting the data..']);
+                
+                        }
+                    }
+                }
+ 
+                return response()->json(['success'=>false,'message'=>'Empty File Content']);
+ 
+            }else {
+                return response()->json(['success'=>false,'message'=>'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!']);
+                
+            }
+        }
     }
 	public function getVoterInfoByName(Request $request){
 		$lname = $request->lastname;

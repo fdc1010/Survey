@@ -20,6 +20,7 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
+	
 	/*public function getMedia($userId, $collection)
     {
         $user = Voter::findOrFail($userId);

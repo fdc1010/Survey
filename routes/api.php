@@ -31,6 +31,7 @@ Route::group(['prefix' => 'mobile',
 			Route::get('getQuestions','QuestionController@getQuestions');
 			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 			Route::resource('voter', 'VoterController');
+			Route::post('syncInData', 'VoterController@syncInData');
 		});
 });
 /*Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
