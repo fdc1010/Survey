@@ -59,7 +59,7 @@ class OptionPositionCrudController extends CrudController
             'label' => 'Position',
 			'entity' => 'position', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\QuestionOption"
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
