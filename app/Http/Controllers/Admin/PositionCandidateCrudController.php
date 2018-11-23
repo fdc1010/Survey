@@ -64,15 +64,15 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		dd($this->crud->entry);
-		/*$position = $this->crud->entry->position_id;
-		$options = $this->crud->entry->option_id;		
+		
+		$position = $this->crud->entry->position_id;
+		$options = $this->crud->entry->option_selection;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}*/
+		}
 		
         return $redirect_location;
     }
@@ -85,7 +85,7 @@ class PositionCandidateCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
-		$options = $this->crud->entry->option_id;		
+		$options = $this->crud->entry->option_selection;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
