@@ -49,7 +49,7 @@ class OptionPositionCrudController extends CrudController
             'name' => 'option_id',
             'type' => 'checklist',
             'label' => 'Option',
-			'entity' => 'option', // the relationship name in your Model
+			'entity' => 'optionsposition', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
@@ -57,7 +57,7 @@ class OptionPositionCrudController extends CrudController
             'name' => 'position_id',
             'type' => 'select',
             'label' => 'Position',
-			'entity' => 'positions', // the relationship name in your Model
+			'entity' => 'positionoptions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate"
 	    ]);
