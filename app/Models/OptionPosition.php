@@ -22,6 +22,8 @@ class OptionPosition extends Model
     protected $fillable = ['option_id','position_id'];
     // protected $hidden = [];
     // protected $dates = [];
+	
+	protected $appends = ['option_selection'];
 		
 	public function options()
     {
@@ -37,6 +39,9 @@ class OptionPosition extends Model
 	}
 	public function optionsposition(){
 		return $this->belongsToMany('App\Models\QuestionOption','option_positions','position_id','option_id');
+	}
+	public function getOptionSelectionAttribute(){
+		return $this->options->option;	
 	}
     /*
     |--------------------------------------------------------------------------

@@ -15,6 +15,8 @@ use App\Models\EmploymentStatus;
 use App\Models\CivilStatus;
 use App\Models\OccupancyStatus;
 use App\Models\Gender;
+use App\Models\SurveyorAssignment;
+
 class MobileController extends Controller
 {
     /**
@@ -58,10 +60,18 @@ class MobileController extends Controller
 			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
 			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
 			  $genderstatus = Gender::select(['id','name','description'])->get();
-			  return response()->json(['success'=>true,'msg'=>'Authorization Successful',
+			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
+			  										->where('completed',0)
+													->with(['assignments'=>function($q){
+																		$q->with(['sitio'=>function($qu){
+																				$qu->with('voters');
+																			}]);
+															}])
+			  										->first();
+			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
-										'gender'=>$genderstatus]);
+										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails]);
 		   }
 		}
 		return response()->json(['success'=>false,'msg'=>'Unauthorized, Check your credentials.']);

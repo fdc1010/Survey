@@ -34,8 +34,26 @@ class PositionCandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['option_id','position_id']);
-		$this->crud->removeField(['option_id','position_id']);
+		$this->crud->removeColumn(['position_id']);
+		$this->crud->removeField(['position_id']);
+		$this->crud->addColumn([
+            'name' => 'options',
+            'type' => 'checklist',
+            'label' => 'Options',
+			'entity' => 'optionposition', // the relationship name in your Model
+			'attribute' => 'option_selection', // attribute on Article that is shown to admin
+			'model' => "App\Models\OptionPosition",
+			'fake' => true
+	    ]);
+		$this->crud->addField([
+            'name' => 'options',
+            'type' => 'select',
+            'label' => 'checklist',
+			'entity' => 'optionposition', // the relationship name in your Model
+			'attribute' => 'option_selection', // attribute on Article that is shown to admin
+			'model' => "App\Models\OptionPosition",
+			'fake' => true
+	    ]);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -47,14 +65,15 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$position = $this->crud->entry->position_id;
+		dd($this->crud->entry);
+		/*$position = $this->crud->entry->position_id;
 		$options = $this->crud->entry->option_id;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }

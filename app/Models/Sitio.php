@@ -25,6 +25,9 @@ class Sitio extends Model
 	public function barangay(){
 		return $this->belongsTo('App\Models\Barangay','barangay_id');
 	}
+	public function voters(){
+		return $this->hasMany('App\Models\Voter','sitio_id'); 	
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

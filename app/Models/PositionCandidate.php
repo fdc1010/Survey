@@ -22,9 +22,12 @@ class PositionCandidate extends Model
     protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
-	
+	protected $appends = ['options'];
 	public function optionposition(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');
+	}
+	public function getOptionsAttribute(){
+		return $this->optionposition->options->option;	
 	}
     /*
     |--------------------------------------------------------------------------
