@@ -23,12 +23,12 @@ class OptionPosition extends Model
     // protected $hidden = [];
     // protected $dates = [];
 	
-	protected $appends = ['option_selection'];
-	protected $casts = [
+	protected $appends = ['option_selection','position_selection'];
+	/*protected $casts = [
         'option_id' => 'array',
 		'position_id' => 'array'
     ];
-	/*	
+		
 	public function options()
     {
         return $this->hasMany('App\Models\QuestionOption','option_positions','option_id','position_id');
@@ -37,7 +37,12 @@ class OptionPosition extends Model
     {
         return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','option_id');
     }*/
-	
+	public function positions(){
+		return $this->belongsTo('App\Models\PositionCandidate','position_id');
+	}
+	public function options(){
+		return $this->belongsTo('App\Models\QuestionOption','option_id');
+	}
 	public function positionoptions(){
 		return $this->hasMany('App\Models\PositionCandidate','position_id');
 	}
@@ -50,6 +55,9 @@ class OptionPosition extends Model
     }
 	public function getOptionSelectionAttribute(){
 		return $this->options->option;	
+	}
+	public function getPositionSelectionAttribute(){
+		return $this->positions->name;	
 	}
     /*
     |--------------------------------------------------------------------------
