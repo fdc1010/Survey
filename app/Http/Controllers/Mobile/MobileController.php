@@ -52,10 +52,10 @@ class MobileController extends Controller
 			  $user->rollApiKey(); //Model Function
 			  $user->is_online=1;
 			  $user->save();
-			  $voterstatus = VoterStatus::select(['status','name','description'])->get();
-			  $empstatus = EmploymentStatus::select(['name','description'])->get();
-			  $civilstatus = CivilStatus::select(['name','description'])->get();
-			  $occstatus = OccupancyStatus::select(['name','description'])->get();
+			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
+			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
+			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
+			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful',
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus]);
