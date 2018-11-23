@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Models\VoterStatus;
-use App\Models\empstatus;
-use App\Models\civilstatus;
-use App\Models\occstatus;
+use App\Models\EmploymentStatus;
+use App\Models\CivilStatus;
+use App\Models\OccupancyStatus;
 class MobileController extends Controller
 {
     /**
