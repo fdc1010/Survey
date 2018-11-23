@@ -31,7 +31,7 @@ class QuestionOption extends Model
         $optpositions = OptionPosition::with('position')->where('option_id',$this->id)->get();		
 		$result = "<ul>";
 		foreach($optpositions as $optposition){
-			info($optposition);
+			info($optposition->position);
 			$result .= "<li>".$optposition->position->name."</li>";
 		}
 		$result = "</ul>";
