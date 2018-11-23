@@ -22,7 +22,6 @@ class CreateOptionPositionsTable extends Migration
 			$table->foreign('position_id')->references('id')->on('position_candidates');
 			$table->foreign('option_id')->references('id')->on('question_options');
         
-			$table->primary(['id','position_id', 'option_id']);
 		});
     }
 
