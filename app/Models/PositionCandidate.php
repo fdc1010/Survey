@@ -22,10 +22,10 @@ class PositionCandidate extends Model
     protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function getNameAttribute()
+	/*public function getNameAttribute()
     {
         return ucwords($this->attributes['name']);
-    }
+    }*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
