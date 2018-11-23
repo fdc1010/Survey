@@ -24,13 +24,13 @@ class PositionCandidate extends Model
     // protected $dates = [];
 	protected $appends = ['options'];
 	public function optionposition(){
-		return $this->hasMany('App\Models\OptionPosition','position_id')->with('options');
+		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}
 	public function getOptionsAttribute(){
-		return $this->optionposition->options->option;	
+		return $this->optionposition()->options->option;	
 	}
 	public function getOptionSelections(){
-		$options = $this->optionposition->options;
+		$options = $this->optionposition()->options;
 		$result = "<ul>";
 		foreach($options as $option){
 			$result .= "<li>".$option->option."</li>";
