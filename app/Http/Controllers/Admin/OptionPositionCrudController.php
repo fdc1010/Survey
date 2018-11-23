@@ -39,7 +39,7 @@ class OptionPositionCrudController extends CrudController
 		
 		$this->crud->addColumn([
             'name' => 'position_id',
-            'type' => 'select',
+            'type' => 'checklist',
             'label' => 'Position',
 			'entity' => 'position', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
@@ -47,7 +47,7 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addColumn([
             'name' => 'option_id',
-            'type' => 'select',
+            'type' => 'checklist',
             'label' => 'Option',
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
@@ -55,7 +55,7 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'position_id',
-            'type' => 'select',
+            'type' => 'checklist',
             'label' => 'Position',
 			'entity' => 'positions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
@@ -63,7 +63,7 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
-            'type' => 'select',
+            'type' => 'checklist',
             'label' => 'Option',
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
