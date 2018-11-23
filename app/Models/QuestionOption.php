@@ -28,8 +28,7 @@ class QuestionOption extends Model
     }
 	public function getPositions()
     {
-        $optpositions = OptionPosition::with('position')->where('option_id',$this->id);
-		info($optpositions);
+        $optpositions = OptionPosition::with('position')->where('option_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($optpositions as $optposition){
 			$result .= "<li>".$optposition->position->name."</li>";
