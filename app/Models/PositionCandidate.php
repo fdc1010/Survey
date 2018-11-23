@@ -25,7 +25,7 @@ class PositionCandidate extends Model
 	protected $appends = ['option_selections'];
 	
 	public function optionsposition(){
-		return $this->hasMany('App\Models\QuestionOption','position_id');
+		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}
 	public function getOptionSelectionsAttribute(){
 		/*$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
