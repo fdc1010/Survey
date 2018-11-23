@@ -33,7 +33,7 @@ class PositionCandidate extends Model
 		return $this->hasMany('App\Models\OptionPosition','option_id');
 	}
 	public function positions(){
-		return $this->hasMany('App\Models\OptionPosition','position_id');
+		return $this->belongsTo('App\Models\OptionPosition','position_id');
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();

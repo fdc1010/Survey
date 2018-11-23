@@ -36,22 +36,7 @@ class PositionCandidateCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['position_id']);
-		$this->crud->removeField(['position_id']);
-		$this->crud->addColumn([
-            'name' => 'options',			
-            'label' => 'Options',
-            'type' => 'model_function',
-			'function_name' => 'getOptionSelections',
-			'fake' => true
-	    ]);
-		$this->crud->addField([
-            'name' => 'options',
-            'type' => 'checklist',
-            'label' => 'Options',
-			'entity' => 'options', // the relationship name in your Model
-			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => "App\Models\QuestionOption"
-	    ]);
+		$this->crud->removeField(['position_id','options']);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -64,14 +49,14 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		
-		$position = $this->crud->entry->position_id;
+		/*$position = $this->crud->entry->position_id;
 		$options = $this->crud->entry->option_selection;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }
@@ -82,8 +67,8 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		dd($this->crud->entry);
-		$position = $this->crud->entry->id; // <-- SHOULD WORK
+		
+		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
 		$options = $this->crud->entry->option_selection;
 		
@@ -92,7 +77,7 @@ class PositionCandidateCrudController extends CrudController
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }
