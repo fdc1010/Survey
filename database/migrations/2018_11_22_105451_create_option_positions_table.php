@@ -14,6 +14,7 @@ class CreateOptionPositionsTable extends Migration
     public function up()
     {
         Schema::create('option_positions', function (Blueprint $table) {
+			$table->increments('id');
 			$table->unsignedInteger('option_id')->index();
 			$table->unsignedInteger('position_id')->index();
             $table->timestamps();
@@ -21,7 +22,7 @@ class CreateOptionPositionsTable extends Migration
 			$table->foreign('position_id')->references('id')->on('position_candidates');
 			$table->foreign('option_id')->references('id')->on('question_options');
         
-			$table->primary(['position_id', 'option_id']);
+			$table->primary(['id','position_id', 'option_id']);
 		});
     }
 
