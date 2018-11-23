@@ -14,6 +14,7 @@ use App\Models\VoterStatus;
 use App\Models\EmploymentStatus;
 use App\Models\CivilStatus;
 use App\Models\OccupancyStatus;
+use App\Models\Gender;
 class MobileController extends Controller
 {
     /**
@@ -56,9 +57,11 @@ class MobileController extends Controller
 			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
 			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
 			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
+			  $genderstatus = Gender::select(['id','name','description'])->get();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful',
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
-										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus]);
+										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
+										'gender'=>$genderstatus]);
 		   }
 		}
 		return response()->json(['success'=>false,'msg'=>'Unauthorized, Check your credentials.']);

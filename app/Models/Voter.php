@@ -42,6 +42,9 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\CivilStatus','civil_status_id');
     }
+	public function gender(){
+		return $this->belongsTo('App\Models\Gender','gender_id');
+	}
 	public function occupancystatus()
     {
         return $this->belongsTo('App\Models\OccupancyStatus','occupancy_status_id');

@@ -6,6 +6,7 @@ use App\Models\CivilStatus;
 use App\Models\EmploymentStatus;
 use App\Models\OccupancyStatus;
 use App\Models\VoterStatus;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,10 @@ class VoterController extends Controller
 		$empstatus = EmploymentStatus::select(['name','description'])->get();
 		$civilstatus = CivilStatus::select(['name','description'])->get();
 		$occstatus = OccupancyStatus::select(['name','description'])->get();
+		$genderstatus = Gender::select(['id','name','description'])->get();
 		return response()->json(['voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
-									'civilstatus'=>$civilstatus,'occstatus'=>$occstatus]);		
+									'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
+									'gender'=>$genderstatus]);
 	}
     /**
      * Show the form for creating a new resource.
