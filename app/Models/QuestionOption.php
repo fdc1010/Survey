@@ -26,7 +26,7 @@ class QuestionOption extends Model
     {
         return $this->belongsToMany('App\Models\Question','question_details','question_id','option_id');
     }
-	public function getPositions()
+	/*public function getPositions()
     {
         $optpositions = OptionPosition::with('position')->where('option_id',$this->id)->get();		
 		$result = "<ul>";
@@ -39,7 +39,7 @@ class QuestionOption extends Model
 	
 	public function optionposition(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
-	}
+	}*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
