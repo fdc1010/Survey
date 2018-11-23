@@ -24,10 +24,10 @@ class OptionPosition extends Model
     // protected $dates = [];
 	
 	protected $appends = ['option_selection'];
-	/*protected $casts = [
+	protected $casts = [
         'option_id' => 'array',
 		'position_id' => 'array'
-    ];*/
+    ];
 	/*	
 	public function options()
     {
@@ -44,6 +44,10 @@ class OptionPosition extends Model
 	public function optionpositions(){
 		return $this->hasMany('App\Models\QuestionOption','option_id');
 	}
+	public function optionspositions()
+    {
+        return $this->belongsToMany('App\Models\QuestionOption','option_positions','position_id','option_id');
+    }
 	public function getOptionSelectionAttribute(){
 		return $this->options->option;	
 	}
