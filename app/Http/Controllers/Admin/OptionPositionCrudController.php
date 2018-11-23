@@ -7,7 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\OptionPositionRequest as StoreRequest;
 use App\Http\Requests\OptionPositionRequest as UpdateRequest;
-
+use App\Models\OptionPosition;
 /**
  * Class OptionPositionCrudController
  * @package App\Http\Controllers\Admin
@@ -80,6 +80,17 @@ class OptionPositionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+				
+		$positions = $this->crud->entry->position_id;
+		$options = $this->crud->entry->option_id;
+		foreach($positions as $position){
+			foreach($options as $option){
+				$questionoptions = OptionPosition::create([
+					'position_id' => $position,
+					'option_id' => $option
+				]);			
+			}
+		}
         return $redirect_location;
     }
 
@@ -89,6 +100,19 @@ class OptionPositionCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$opid = $this->crud->entry->id; // <-- SHOULD WORK
+		$opdetail = OptionPosition::where('id',$opid)->delete();
+				
+		$positions = $this->crud->entry->position_id;
+		$options = $this->crud->entry->option_id;
+		foreach($positions as $position){
+			foreach($options as $option){
+				$questionoptions = OptionPosition::create([
+					'position_id' => $position,
+					'option_id' => $option
+				]);			
+			}
+		}
         return $redirect_location;
     }
 }

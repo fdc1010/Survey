@@ -19,9 +19,15 @@ class OptionPosition extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option_id','position_id'];
+    protected $fillable = ['option_id','position_id','options','positions'];
     // protected $hidden = [];
     // protected $dates = [];
+	
+	protected $casts = [
+        'options' => 'array',
+		'positions' => 'array'
+    ];
+	
 	public function options()
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
