@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Models\VoterStatus;
+use App\Models\empstatus;
+use App\Models\civilstatus;
+use App\Models\occstatus;
 class MobileController extends Controller
 {
     /**
