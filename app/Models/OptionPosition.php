@@ -24,6 +24,10 @@ class OptionPosition extends Model
     // protected $dates = [];
 	
 	protected $appends = ['option_selection'];
+	protected $casts = [
+        'option_id' => 'array',
+		'position_id' => 'array'
+    ];
 	/*	
 	public function options()
     {
