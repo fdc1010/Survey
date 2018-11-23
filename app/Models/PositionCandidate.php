@@ -24,7 +24,7 @@ class PositionCandidate extends Model
     // protected $dates = [];
 	protected $appends = ['options'];
 	public function optionposition(){
-		return $this->hasMany('App\Models\OptionPosition','position_id');
+		return $this->hasMany('App\Models\OptionPosition','position_id')->with('options');
 	}
 	public function getOptionsAttribute(){
 		return $this->optionposition()->options->option;	
