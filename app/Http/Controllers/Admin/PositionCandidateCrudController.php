@@ -85,7 +85,8 @@ class PositionCandidateCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
-		$options = $this->crud->entry->option_selection;		
+		$options = $this->crud->entry->option_selection;
+		dd($this->crud->entry);		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
