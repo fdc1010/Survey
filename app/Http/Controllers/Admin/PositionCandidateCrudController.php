@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\PositionCandidateRequest as StoreRequest;
 use App\Http\Requests\PositionCandidateRequest as UpdateRequest;
 use App\Models\OptionPosition;
+use App\Models\PositionCandidate;
 /**
  * Class PositionCandidateCrudController
  * @package App\Http\Controllers\Admin
@@ -17,6 +18,8 @@ class PositionCandidateCrudController extends CrudController
 {
     public function setup()
     {
+		$pos = PositionCandidate::first();
+		dd($pos);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
