@@ -40,17 +40,17 @@ class PositionCandidateCrudController extends CrudController
 		$this->crud->removeColumn(['position_id']);
 		$this->crud->removeField(['position_id']);
 		$this->crud->addColumn([
-            'name' => 'options',			
+            'name' => 'option_selection',			
             'label' => 'Options',
             'type' => 'model_function',
 			'function_name' => 'getOptionsSelection',
 			'fake' => true
 	    ]);
 		$this->crud->addField([
-            'name' => 'options',
+            'name' => 'option_selection',
             'type' => 'checklist',
             'label' => 'Options',
-			'entity' => 'optionsposition', // the relationship name in your Model
+			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option_selection', // attribute on Article that is shown to admin
 			'model' => "App\Models\OptionPosition",
 			'fake' => true
