@@ -35,14 +35,13 @@ class PositionCandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['position_id','options']);
-		$this->crud->removeField(['position_id','options']);
+		$this->crud->removeColumn(['position_id']);
+		$this->crud->removeField(['position_id']);
 		$this->crud->addColumn([
             'name' => 'options',			
             'label' => 'Options',
             'type' => 'model_function',
-			'function_name' => 'getOptionSelections',
-			'fake' => true
+			'function_name' => 'getOptionSelections'
 	    ]);
 		$this->crud->addField([
             'name' => 'options',
