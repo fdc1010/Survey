@@ -35,7 +35,7 @@ class QuestionOption extends Model
 			return "";
     }
 	public function positions(){
-		return $this->belongsToMany('App\Models\OptionPosition','position_candidates','option_id','position_id');
+		return $this->belongsToMany('App\Models\OptionPosition','position_candidates','position_id','option_id');
 	}
     /*
     |--------------------------------------------------------------------------
