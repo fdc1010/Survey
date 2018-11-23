@@ -37,6 +37,12 @@ class PositionCandidateCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['position_id','options']);
 		$this->crud->removeField(['position_id','options']);
+		$this->crud->addColumn([
+            'name' => 'options',			
+            'label' => 'Options',
+            'type' => 'model_function',
+			'function_name' => 'getOptionSelections'
+	    ])
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
