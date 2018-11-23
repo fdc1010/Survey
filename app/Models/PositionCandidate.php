@@ -28,17 +28,17 @@ class PositionCandidate extends Model
 		return $this->belongsToMany('App\Models\QuestionOption','option_positions','position_id','option_id');
 	}
 	public function getOptionsAttribute(){
-		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
+		/*$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($options as $option){
 			$result .= "<li>".$option->options->option."</li>";
 		}
-		$result .= "</ul>";
-		
-		return $result;
+		$result .= "</ul>";*/
+		info($this->optionsposition);
+		//return $this->optionsposition;
 	}
 	public function getOptionsSelections(){
-		$options = OptionPosition::with('options')->get();
+		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($options as $option){
 			$result .= "<li>".$option->options->option."</li>";
