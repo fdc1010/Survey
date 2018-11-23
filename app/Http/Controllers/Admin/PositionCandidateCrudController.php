@@ -17,9 +17,7 @@ use App\Models\PositionCandidate;
 class PositionCandidateCrudController extends CrudController
 {
     public function setup()
-    {
-		$pos = PositionCandidate::first();
-		dd($pos->option_selection);
+    {		
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
