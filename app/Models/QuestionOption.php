@@ -28,11 +28,13 @@ class QuestionOption extends Model
     }
 	public function getPositions()
     {
-        $optpos = OptionPosition::with('position')->where('option_id',$this->id);
-		if($optpos)
-			return $optpos->position . " (" . $voterstatus->name . ")";
-		else
-			return "";
+        $optionpositions = OptionPosition::with('position')->where('option_id',$this->id);
+		$result = "<ul>";
+		foreach($optionpositions as $optionposition){
+			$result .= "<li>".$optionposition->position->name."</li>";
+		}
+		$result = "</ul>";
+		return $result;
     }
 	public function positions(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
