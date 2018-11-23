@@ -22,11 +22,11 @@ class OptionPosition extends Model
     protected $fillable = ['option_id','position_id'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function options()
+	public function option()
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
-	public function positions()
+	public function position()
     {
         return $this->belongsTo('App\Models\PositionCandidate','position_id');
     }
