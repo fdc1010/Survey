@@ -34,12 +34,12 @@ class OptionPosition extends Model
         return $this->belongsTo('App\Models\PositionCandidate','position_id');
     }
 	
-	public function positionoptions(){
+	/*public function positionoptions(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
 	}
 	public function optionsposition(){
 		return $this->belongsToMany('App\Models\QuestionOption','option_positions','position_id','option_id');
-	}
+	}*/
 	public function getOptionSelectionAttribute(){
 		return $this->options->option;	
 	}

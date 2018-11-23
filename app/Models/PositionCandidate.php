@@ -22,12 +22,12 @@ class PositionCandidate extends Model
     protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
-	protected $appends = ['option_selections'];
+	protected $appends = ['option_selection'];
 	
 	public function optionsposition(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}
-	public function getOptionSelectionsAttribute(){
+	public function getOptionSelectionAttribute(){
 		/*$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($options as $option){

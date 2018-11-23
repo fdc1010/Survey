@@ -19,7 +19,7 @@ class PositionCandidateCrudController extends CrudController
     public function setup()
     {
 		$pos = PositionCandidate::first();
-		dd($pos->option_selections);
+		dd($pos->option_selection);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
@@ -43,7 +43,7 @@ class PositionCandidateCrudController extends CrudController
             'name' => 'options',			
             'label' => 'Options',
             'type' => 'model_function',
-			'function_name' => 'getOptionsSelections',
+			'function_name' => 'getOptionsSelection',
 			'fake' => true
 	    ]);
 		$this->crud->addField([
