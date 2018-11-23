@@ -32,8 +32,8 @@ class PositionCandidate extends Model
 	public function getOptionSelections(){
 		$options = $this->optionposition->options;
 		$result = "<ul>";
-		foreach($options as $option)){
-			$result .= "<li>".$option->option."</li>":
+		foreach($options as $option){
+			$result .= "<li>".$option->option."</li>";
 		}
 		$result .= "</ul>";
 		
