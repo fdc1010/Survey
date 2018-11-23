@@ -24,11 +24,11 @@ class OptionPosition extends Model
     // protected $dates = [];
 	public function options()
     {
-        return $this->hasMany('App\Models\QuestionOption','option_id');
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
 	public function positions()
     {
-        return $this->hasMany('App\Models\PositionCandidate','position_id');
+        return $this->belongsTo('App\Models\PositionCandidate','position_id');
     }
 	
 	public function positionoptions(){

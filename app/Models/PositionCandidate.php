@@ -23,8 +23,8 @@ class PositionCandidate extends Model
     // protected $hidden = [];
     // protected $dates = [];
 	
-	public function positionoptions(){
-		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
+	public function optionposition(){
+		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}
     /*
     |--------------------------------------------------------------------------
