@@ -47,7 +47,7 @@ class PositionCandidateCrudController extends CrudController
 		$this->crud->addField([
             'name' => 'options',
             'type' => 'checklist',
-            'label' => 'Options',
+            'label' => 'Qualities Tagged Options',
 			'entity' => 'optionselections', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
