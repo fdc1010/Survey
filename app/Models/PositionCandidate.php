@@ -27,7 +27,7 @@ class PositionCandidate extends Model
     ];
 	
 	public function optionspositions(){
-		return $this->belongsToMany('App\Models\PositionCandidate','option_positions');
+		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id');
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
