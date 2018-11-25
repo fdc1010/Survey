@@ -39,11 +39,10 @@ class PositionCandidate extends Model
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
-		$result = "<ul>";
+		$result = "";
 		foreach($options as $option){
-			$result .= "<li>".$option->options->option."</li>";
+			$result .= $option->options->option."<br />";
 		}
-		$result .= "</ul>";
 		
 		return $result;
 	}
