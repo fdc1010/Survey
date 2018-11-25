@@ -38,7 +38,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','extras','type_id']);
 		$this->crud->removeFields(['with_partyselect','number_answers','extras','type_id','with_other_ans','for_position']);
 
-		/*$this->crud->addColumn([
+		$this->crud->addColumn([
             'name' => 'type_id',
             'type' => 'select',
             'label' => 'Type',
@@ -50,7 +50,7 @@ class QuestionCrudController extends CrudController
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
-	    ]);		*/		
+	    ]);				
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
@@ -81,7 +81,7 @@ class QuestionCrudController extends CrudController
 			'max' => 100, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
 			'fake' => true, 
-    		'store_in' => 'options'
+    		'store_in' => 'extras'
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
@@ -140,7 +140,7 @@ class QuestionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->extras;
+		$options = $this->crud->entry->options;
 		foreach($options as $option){
 			$optid = $option['options'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
@@ -161,7 +161,7 @@ class QuestionCrudController extends CrudController
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$qdetail = QuestionDetail::where('question_id',$qid)->delete();
 				
-		$options = $this->crud->entry->extras;
+		$options = $this->crud->entry->options;
 		foreach($options as $option){
 			$optid = $option['options'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
