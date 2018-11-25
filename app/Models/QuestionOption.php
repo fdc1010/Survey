@@ -26,17 +26,16 @@ class QuestionOption extends Model
     {
         return $this->belongsToMany('App\Models\Question','question_details','question_id','option_id');
     }
-	/*public function getPositions()
+	public function getPositions()
     {
         $optpositions = OptionPosition::with('position')->where('option_id',$this->id)->get();		
-		$result = "<ul>";
+		$result = "";
 		foreach($optpositions as $optposition){
-			$result .= "<li>".$optposition->position->name."</li>";
+			$result .= optposition->position->name."<br />";
 		}
-		$result .= "</ul>";
 		return $result;
     }
-	
+	/*
 	public function optionposition(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
 	}*/
