@@ -84,6 +84,7 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		dd($this->crud->entry);
 		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
 		$options = $this->crud->entry->options;
