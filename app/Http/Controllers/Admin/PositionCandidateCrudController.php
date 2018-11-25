@@ -36,6 +36,8 @@ class PositionCandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
+		$this->crud->removeColumn(['extras']);
+		$this->crud->removeField(['extras']);
 		/*$this->crud->addColumn([
             'name' => 'extras',			
             'label' => 'Tagged Options for Qualities',
