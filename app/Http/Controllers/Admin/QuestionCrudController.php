@@ -35,8 +35,8 @@ class QuestionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		
-		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
-		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
+		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','extras']);
+		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','extras']);
 
 		$this->crud->addColumn([
             'name' => 'type_id',
@@ -79,8 +79,9 @@ class QuestionCrudController extends CrudController
 				'model' => "App\Models\QuestionOption"					
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1 // minimum rows allowed in the table
-			
+			'min' => 1, // minimum rows allowed in the table
+			'fake' => true, 
+    		'store_in' => 'extras'
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
