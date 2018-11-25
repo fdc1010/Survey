@@ -114,7 +114,7 @@ class QuestionCrudController extends CrudController
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->options;
 		foreach($options as $option){
-			$optid = $option['options'];
+			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
@@ -135,7 +135,7 @@ class QuestionCrudController extends CrudController
 				
 		$options = $this->crud->entry->options;
 		foreach($options as $option){
-			$optid = $option['options'];
+			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
