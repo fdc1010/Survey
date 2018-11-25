@@ -44,7 +44,7 @@ class PositionCandidateCrudController extends CrudController
 			'function_name' => 'getOptionSelections',
 			'fake' => true
 	    ]);
-		$this->crud->addField([
+		/*$this->crud->addField([
             'name' => 'options',
             'type' => 'checklist',
             'label' => 'Qualities Tagged Options',
@@ -53,7 +53,7 @@ class PositionCandidateCrudController extends CrudController
 			'model' => "App\Models\QuestionOption",
 			'fake' => true, 
     		'store_in' => 'extras'
-	    ]);
+	    ]);*/
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
