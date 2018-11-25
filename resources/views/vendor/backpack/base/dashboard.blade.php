@@ -78,11 +78,11 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
-                                        	$qualities = App\Models\OptionPosition::with('option','position')
+                                        	$qualities = App\Models\OptionPosition::with('options','positions')
                                             									->where('position_id',1)->get();
                                         @endphp
                                         @foreach($qualities as $quality)
-                                        <th>{{ $quality->option->option }}</th>
+                                        <th>{{ $quality->options->option }}</th>
                                         @endforeach
                                     </tr>                                    
                                 </thead>
