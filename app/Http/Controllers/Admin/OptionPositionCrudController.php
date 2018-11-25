@@ -46,14 +46,6 @@ class OptionPositionCrudController extends CrudController
 			'model' => "App\Models\PositionCandidate"
 	    ]);
 		$this->crud->orderBy('position_id');
-		$this->crud->addColumn([
-            'name' => 'option_id',
-            'type' => 'checklist',
-            'label' => 'Option',
-			'entity' => 'optionspositions', // the relationship name in your Model
-			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => "App\Models\QuestionOption"
-	    ]);
 		$this->crud->addField([
             'name' => 'position_id',
             'type' => 'checklist',
@@ -61,6 +53,14 @@ class OptionPositionCrudController extends CrudController
 			'entity' => 'positions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'checklist',
+            'label' => 'Tagged Options for Qualities',
+			'entity' => 'options', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
 	    ]);
 		// add asterisk for fields that are required in OptionPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
