@@ -140,7 +140,7 @@ class QuestionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->options;
+		$options = $this->crud->entry->extras;
 		foreach($options as $option){
 			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
@@ -161,7 +161,7 @@ class QuestionCrudController extends CrudController
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$qdetail = QuestionDetail::where('question_id',$qid)->delete();
 				
-		$options = $this->crud->entry->options;
+		$options = $this->crud->entry->extras;
 		foreach($options as $option){
 			$optid = $option['select'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
