@@ -26,7 +26,8 @@ class PositionCandidateCrudController extends CrudController
         $this->crud->setModel('App\Models\PositionCandidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/positioncandidate');
         $this->crud->setEntityNameStrings('position candidate', 'Position Candidates');
-
+		$this->crud->enableDetailsRow();
+		$this->crud->allowAccess('details_row');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -37,13 +38,13 @@ class PositionCandidateCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['position_id','extras']);
 		$this->crud->removeFields(['position_id','extras']);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'extras',			
             'label' => 'Tagged Options for Qualities',
             'type' => 'model_function',
 			'function_name' => 'getOptionSelections',
 			'fake' => true
-	    ]);
+	    ]);*/
 		/*$this->crud->addField([
             'name' => 'extras',
             'type' => 'checklist',
@@ -97,4 +98,13 @@ class PositionCandidateCrudController extends CrudController
 		
         return $redirect_location;
     }
+	public function showDetailsRow($id){
+		$this->crud->addColumn([
+            'name' => 'extras',			
+            'label' => 'Tagged Options for Qualities',
+            'type' => 'model_function',
+			'function_name' => 'getOptionSelections',
+			'fake' => true
+	    ]);
+	}
 }
