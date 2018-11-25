@@ -22,11 +22,11 @@ class Question extends Model
     //protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];	
-	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options'];
 	protected $casts = [
         'options' => 'array'
     ];
-	
+	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options'];
+		
 	public function choices()
     {
         return $this->belongsToMany('App\Models\QuestionOption','question_details','option_id','question_id');
