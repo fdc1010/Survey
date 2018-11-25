@@ -25,23 +25,9 @@ class PositionCandidate extends Model
 	protected $casts = [
         'options' => 'array'
     ];
-	public function positionoptions(){
-		return $this->hasMany('App\Models\OptionPosition');
-	}
-	public function optionsposition(){
-		return $this->hasMany('App\Models\OptionPosition','option_id');
-	}
+	
 	public function optionspositions(){
-		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
-	}
-	public function position(){
-		return $this->belongsTo('App\Models\PositionCandidate');
-	}
-	public function options(){
-		return $this->belongsTo('App\Models\OptionPosition');
-	}
-	public function optionselections(){
-		return $this->belongsTo('App\Models\QuestionOption','option_id');
+		return $this->belongsToMany('App\Models\OptionPosition','option_id','position_id');
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();
