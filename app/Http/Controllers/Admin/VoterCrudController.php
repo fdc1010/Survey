@@ -65,8 +65,7 @@ class VoterCrudController extends CrudController
             'name' => 'barangay',			
             'label' => 'Barangay',
             'type' => 'model_function',
-			'function_name' => 'getVoterBarangay',
-			'fake' => true
+			'function_name' => 'getVoterBarangay'
 	    ]);
 		$this->crud->addColumn([
             'name' => 'gender_id',
