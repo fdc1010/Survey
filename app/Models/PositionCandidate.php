@@ -23,8 +23,11 @@ class PositionCandidate extends Model
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'options' => 'array'
+        'extras' => 'array'
     ];
+	protected $translatable = [
+        						'extras'
+    						];
 	
 	public function positionoptions(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');

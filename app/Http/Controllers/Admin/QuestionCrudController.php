@@ -35,8 +35,8 @@ class QuestionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		
-		$this->crud->removeColumn(['number_answers','with_other_ans','with_partyselect','for_position','options','type_id']);
-		$this->crud->removeField(['with_partyselect','number_answers','options','type_id','with_other_ans','for_position']);
+		$this->crud->removeColumn(['number_answers','with_other_ans','with_partyselect','for_position','extras','type_id']);
+		$this->crud->removeField(['with_partyselect','number_answers','extras','type_id','with_other_ans','for_position']);
 
 		$this->crud->addColumn([
             'name' => 'type_id',
@@ -66,7 +66,7 @@ class QuestionCrudController extends CrudController
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		$this->crud->addField([
-			'name' => 'options',
+			'name' => 'extras',
 			'label' => 'Choices',
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button

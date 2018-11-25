@@ -50,7 +50,8 @@ class PositionCandidateCrudController extends CrudController
 			'entity' => 'optionspositions', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption",
-			'fake' => true
+			'fake' => true, 
+    		'store_in' => 'extras'
 	    ]);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
@@ -64,14 +65,14 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		
-		$position = $this->crud->entry->id; // <-- SHOULD WORK
+		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->option_selection;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }
@@ -83,7 +84,7 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		dd($this->crud->entry);
-		$position = $this->crud->entry->id; // <-- SHOULD WORK
+		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
 		$options = $this->crud->entry->option_selection;
 		
@@ -92,7 +93,7 @@ class PositionCandidateCrudController extends CrudController
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }

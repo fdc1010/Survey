@@ -23,7 +23,7 @@ class CreateQuestionsTable extends Migration
 			$table->boolean('is_visible')->default(1);
 			$table->boolean('with_other_ans')->default(1);		
 			$table->boolean('with_partyselect')->default(0);
-			$table->string('options')->nullable();
+			$table->longText('extras')->nullable();
             $table->timestamps();
         });
     }
