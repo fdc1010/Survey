@@ -19,11 +19,11 @@ class OptionPosition extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option_id','position_id','extras'];
+    protected $fillable = ['option_id','position_id','extras','extras_2'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'extras' => 'array'
+        'extras' => 'array','extras_2'=>'array'
     ];
 	protected $appends = ['option_selection','position_selection'];
 	/*protected $casts = [
