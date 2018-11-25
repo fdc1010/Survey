@@ -38,7 +38,7 @@ class QuestionCrudController extends CrudController
 		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','extras','type_id']);
 		$this->crud->removeFields(['with_partyselect','number_answers','extras','type_id','with_other_ans','for_position']);
 
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'type_id',
             'type' => 'select',
             'label' => 'Type',
@@ -50,7 +50,7 @@ class QuestionCrudController extends CrudController
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
-	    ]);				
+	    ]);		*/		
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
@@ -66,7 +66,7 @@ class QuestionCrudController extends CrudController
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		$this->crud->addField([
-			'name' => 'options',
+			'name' => 'extras',
 			'label' => 'Choices',
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
@@ -142,7 +142,7 @@ class QuestionCrudController extends CrudController
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->extras;
 		foreach($options as $option){
-			$optid = $option['extras'];
+			$optid = $option['options'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
@@ -163,7 +163,7 @@ class QuestionCrudController extends CrudController
 				
 		$options = $this->crud->entry->extras;
 		foreach($options as $option){
-			$optid = $option['extras'];
+			$optid = $option['options'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
