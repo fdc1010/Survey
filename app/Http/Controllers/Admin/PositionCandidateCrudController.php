@@ -48,9 +48,9 @@ class PositionCandidateCrudController extends CrudController
             'name' => 'options',
             'type' => 'checklist',
             'label' => 'Qualities Tagged Options',
+			'entity' => 'position',
 			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => "App\Models\QuestionOption",
-			'fake'=>true
+			'model' => "App\Models\QuestionOption"
 	    ]);
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
@@ -63,10 +63,10 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+		dd($this->crud->entry);	
 		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->options;	
-		dd($this->crud->entry);	
+		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
