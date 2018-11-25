@@ -38,7 +38,7 @@ class PositionCandidate extends Model
 		return $this->belongsTo('App\Models\OptionPosition');
 	}
 	public function options(){
-		return $this->belongsTo('App\Models\OptionPosition');
+		return $this->belongsTo('App\Models\QuestionOption');
 	}
 	public function optionselections(){
 		return $this->belongsTo('App\Models\QuestionOption','option_id');
