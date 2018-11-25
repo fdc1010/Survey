@@ -46,10 +46,10 @@ class OptionPosition extends Model
 		return $this->belongsTo('App\Models\QuestionOption','option_id');
 	}
 	public function positionoptions(){
-		return $this->hasMany('App\Models\PositionCandidate');
+		return $this->hasMany('App\Models\PositionCandidate','position_id');
 	}
 	public function optionpositions(){
-		return $this->hasMany('App\Models\QuestionOption');
+		return $this->hasMany('App\Models\QuestionOption','option_id');
 	}
 	public function optionspositions()
     {
