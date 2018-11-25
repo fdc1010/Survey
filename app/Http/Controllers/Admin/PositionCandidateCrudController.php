@@ -65,14 +65,14 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		
-		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
+		$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->option_selection;		
 		foreach($options as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}*/
+		}
 		
         return $redirect_location;
     }
