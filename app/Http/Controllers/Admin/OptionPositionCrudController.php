@@ -34,9 +34,10 @@ class OptionPositionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
+		$this->crud->orderBy('position_id');
 		$this->crud->removeColumns(['option_id','position_id','extras']);
 		$this->crud->removeFields(['option_id','position_id','extras']);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'position_id',
             'type' => 'checklist',
             'label' => 'Position',
@@ -70,7 +71,7 @@ class OptionPositionCrudController extends CrudController
 			'model' => "App\Models\QuestionOption",
 			'fake' => true, 
     		'store_in' => 'extras'
-	    ]);
+	    ]);*/
         // add asterisk for fields that are required in OptionPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
