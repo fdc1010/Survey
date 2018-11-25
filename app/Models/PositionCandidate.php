@@ -23,7 +23,7 @@ class PositionCandidate extends Model
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'options' => 'array'
+        'extras' => 'array'
     ];
 	
 	public function optionspositions(){
