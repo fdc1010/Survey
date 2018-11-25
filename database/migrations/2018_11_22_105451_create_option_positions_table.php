@@ -17,6 +17,7 @@ class CreateOptionPositionsTable extends Migration
 			$table->increments('id');
 			$table->unsignedInteger('option_id')->index();
 			$table->unsignedInteger('position_id')->index();
+			$table->longText('extras')->nullable();
             $table->timestamps();
 			
 			$table->foreign('position_id')->references('id')->on('position_candidates');

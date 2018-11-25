@@ -19,10 +19,12 @@ class OptionPosition extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option_id','position_id'];
+    protected $fillable = ['option_id','position_id','extras'];
     // protected $hidden = [];
     // protected $dates = [];
-	
+	protected $casts = [
+        'extras' => 'array'
+    ];
 	protected $appends = ['option_selection','position_selection'];
 	/*protected $casts = [
         'option_id' => 'array',
@@ -58,6 +60,15 @@ class OptionPosition extends Model
 	}
 	public function getPositionSelectionAttribute(){
 		return $this->positions->name;	
+	}
+	public function getOptionSelections(){
+		$options = OptionPosition::with('options')->where('position_id',$this->position_id)->get();
+		$result = "";
+		foreach($options as $option){
+			$result .= $option->options->option."<br />";
+		}
+		
+		return $result;
 	}
     /*
     |--------------------------------------------------------------------------
