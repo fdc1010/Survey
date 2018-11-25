@@ -36,8 +36,8 @@ class PositionCandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		//$this->crud->removeColumn('options');
-		//$this->crud->removeField('options');
+		$this->crud->removeColumn('extras');
+		$this->crud->removeField('extras');
 		$this->crud->addColumn([
             'name' => 'options',			
             'label' => 'Tagged Options for Qualities',
@@ -45,7 +45,7 @@ class PositionCandidateCrudController extends CrudController
 			'function_name' => 'getOptionSelections'
 	    ]);
 		$this->crud->addField([
-            'name' => 'optionspositions',
+            'name' => 'options',
             'type' => 'checklist',
             'label' => 'Options',
 			'entity' => 'optionsposition', // the relationship name in your Model

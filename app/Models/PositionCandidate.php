@@ -19,11 +19,11 @@ class PositionCandidate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'description','options'];
+    protected $fillable = ['name', 'description','extras'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'options' => 'array'
+        'extras' => 'array'
     ];
 	public function positionoptions(){
 		return $this->hasMany('App\Models\OptionPosition');
@@ -35,6 +35,9 @@ class PositionCandidate extends Model
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
 	}
 	public function position(){
+		return $this->belongsTo('App\Models\OptionPosition');
+	}
+	public function options(){
 		return $this->belongsTo('App\Models\OptionPosition');
 	}
 	public function optionselections(){
