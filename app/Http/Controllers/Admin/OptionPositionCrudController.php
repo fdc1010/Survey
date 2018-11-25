@@ -34,8 +34,8 @@ class OptionPositionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['option_id','position_id','extras']);
-		$this->crud->removeField(['option_id','position_id','extras']);
+		$this->crud->removeColumns(['option_id','position_id','extras']);
+		$this->crud->removeFields(['option_id','position_id','extras']);
 		$this->crud->groupBy('position_id');
 		/*$this->crud->addColumn([
             'name' => 'position_id',
