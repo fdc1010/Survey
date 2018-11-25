@@ -39,7 +39,7 @@ class PositionCandidateCrudController extends CrudController
 		$this->crud->removeField(['position_id','extras']);
 		$this->crud->addColumn([
             'name' => 'extras',			
-            'label' => 'Options',
+            'label' => 'Tagged Options for Qualities',
             'type' => 'model_function',
 			'function_name' => 'getOptionSelections',
 			'fake' => true
