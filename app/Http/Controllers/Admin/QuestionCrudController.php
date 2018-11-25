@@ -65,8 +65,8 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'type_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionType" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		/*$this->crud->addField([
-			'name' => 'extras',
+		$this->crud->addField([
+			'name' => 'options',
 			'label' => 'Choices',
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
@@ -81,8 +81,8 @@ class QuestionCrudController extends CrudController
 			'max' => 100, // maximum rows allowed in the table
 			'min' => 1, // minimum rows allowed in the table
 			'fake' => true, 
-    		'store_in' => 'extras'
-		]);*/
+    		'store_in' => 'options'
+		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
 			'label' => 'With other answer',

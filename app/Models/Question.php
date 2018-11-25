@@ -22,9 +22,9 @@ class Question extends Model
     //protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];	
-	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','extras'];
+	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options'];
 	protected $casts = [
-        'extras' => 'array'
+        'options' => 'array'
     ];
 	
 	public function choices()
