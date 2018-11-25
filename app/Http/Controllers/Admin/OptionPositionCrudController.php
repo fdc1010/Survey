@@ -36,7 +36,7 @@ class OptionPositionCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['option_id','position_id','extras']);
 		$this->crud->removeFields(['option_id','position_id','extras']);
-		/*$this->crud->addColumn([
+		$this->crud->addColumn([
             'name' => 'position_id',
             'type' => 'checklist',
             'label' => 'Position',
@@ -51,7 +51,7 @@ class OptionPositionCrudController extends CrudController
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
-	    ]);*/
+	    ]);
 		$this->crud->addField([
             'name' => 'position_id',
             'type' => 'checklist',
