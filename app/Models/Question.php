@@ -21,11 +21,11 @@ class Question extends Model
     // protected $guarded = ['id'];
     //protected $fillable = [];
     // protected $hidden = [];
-    // protected $dates = [];
+    // protected $dates = [];	
+	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','extras'];
 	protected $casts = [
         'extras' => 'array'
     ];
-	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','extras'];
 	
 	public function choices()
     {
