@@ -38,20 +38,12 @@ class PositionCandidateCrudController extends CrudController
         $this->crud->setFromDb();
 		//$this->crud->removeColumn(['options']);
 		//$this->crud->removeField(['options']);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'options',			
             'label' => 'Tagged Options for Qualities',
             'type' => 'model_function',
 			'function_name' => 'getOptionSelections'
-	    ]);
-		$this->crud->addField([
-            'name' => 'options',
-            'type' => 'checklist',
-            'label' => 'Qualities Tagged Options',
-			'entity' => 'position',
-			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => 'App\Models\QuestionOption'
-	    ]);
+	    ]);*/
         // add asterisk for fields that are required in PositionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
