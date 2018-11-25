@@ -65,7 +65,7 @@ class OptionPosition extends Model
 		$options = OptionPosition::with('options')->where('position_id',$this->position_id)->get();
 		$result = "";
 		foreach($options as $option){
-			$result .= $option->options->option."<br />";
+			$result .= $option->options->option."<br>";
 		}
 		
 		return $result;
