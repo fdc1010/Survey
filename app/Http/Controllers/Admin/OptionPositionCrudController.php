@@ -36,7 +36,7 @@ class OptionPositionCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumn(['option_id','position_id','extras']);
 		$this->crud->removeField(['option_id','position_id','extras']);
-		
+		$this->crud->groupBy('position_id');
 		$this->crud->addColumn([
             'name' => 'position_id',
             'type' => 'checklist',
