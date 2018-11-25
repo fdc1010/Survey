@@ -30,7 +30,7 @@ class VoterRequest extends FormRequest
 			'precinct_id' => 'required',
 			'first_name' => 'required',
 			'last_name' => 'required', 
-			'gender' => 'required',
+			'gender_id' => 'required',
 			'status_id' => 'required',
 			'employment_status_id' => 'required',
 			'civil_status_id' => 'required',
@@ -49,7 +49,7 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         return [
-			'work'
+			'work','gender_id'
         ];
     }
 
@@ -61,7 +61,8 @@ class VoterRequest extends FormRequest
     public function messages()
     {
         return [
-            'work.required_if'=>'The work field is required when employment status is Employed.'
+            'work.required_if'=>'The work field is required when employment status is Employed.',
+			'gender_id'=>'The gender field is required.'
         ];
     }
 }
