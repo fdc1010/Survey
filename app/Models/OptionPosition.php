@@ -57,7 +57,7 @@ class OptionPosition extends Model
     }
 	public function positionspositions()
     {
-        return $this->belongsToMany('App\Models\PositionCandidate','position_id','position_id','position_id');
+        return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','position_id');
     }
 	public function getOptionSelectionAttribute(){
 		return $this->options->option;	
