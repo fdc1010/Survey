@@ -48,7 +48,7 @@ class PositionCandidateCrudController extends CrudController
             'name' => 'options',
             'type' => 'checklist',
             'label' => 'Qualities Tagged Options',
-			'entity' => 'options',
+			'entity' => 'position',
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => 'App\Models\QuestionOption'
 	    ]);
