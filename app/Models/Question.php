@@ -25,9 +25,6 @@ class Question extends Model
 	protected $casts = [
         'extras' => 'array'
     ];
-	protected $translatable = [
-        						'extras'
-    						];
 	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','extras'];
 	
 	public function choices()
