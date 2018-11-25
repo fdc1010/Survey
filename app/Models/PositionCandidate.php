@@ -26,7 +26,7 @@ class PositionCandidate extends Model
         'extras' => 'array'
     ];
 	public function options(){
-		return $this->belongsTo('App\Models\QuestionOption');
+		return $this->belongsTo('App\Models\QuestionOption','option_id');
 	}
 	public function optionspositions(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','option_id');
