@@ -35,8 +35,8 @@ class QuestionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		
-		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','extras']);
-		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','extras']);
+		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
+		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
 
 		$this->crud->addColumn([
             'name' => 'type_id',
@@ -79,9 +79,8 @@ class QuestionCrudController extends CrudController
 				'model' => "App\Models\QuestionOption"					
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1, // minimum rows allowed in the table
-			'fake' => true, 
-    		'store_in' => 'extras'
+			'min' => 1 // minimum rows allowed in the table
+			
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
@@ -101,32 +100,6 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		/*$this->crud->addField(
-			[  // Select2
-			   'label' => "Options",
-			   'type' => 'select2_multiple',
-			   'name' => 'optiondetail', // the db column for the foreign key
-			   'entity' => 'optiondetail', // the method that defines the relationship in your Model
-			   'attribute' => 'option', // foreign key attribute that is shown to user
-			   'model' => "App\Models\QuestionOption", // foreign key model
-			   'pivot' => true,
-			   'select_all' => true
-			]);
-		$this->crud->addField([
-			  // Checkbox
-			  'name' => 'has_sub_options',
-			  'label' => 'Has Sub Option',
-		  	  'type' => 'toggle',
-			  'inline' => true,
-			  'options' => [
-				  0 => 'No',
-				  1 => 'Yes'
-			  ],
-			  'hide_when' => [
-				  0 => ['optiondetail'],
-				  ],
-			  'default' => 0
-		]);*/
 		$this->crud->orderBy('priority');
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
