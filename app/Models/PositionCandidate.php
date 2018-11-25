@@ -19,11 +19,11 @@ class PositionCandidate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'description','extras'];
+    protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'extras' => 'array'
+        'options' => 'array'
     ];
 	
 	public function optionspositions(){
