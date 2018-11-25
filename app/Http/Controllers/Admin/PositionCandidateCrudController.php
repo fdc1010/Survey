@@ -44,7 +44,7 @@ class PositionCandidateCrudController extends CrudController
 			'function_name' => 'getOptionSelections'
 	    ]);
 		$this->crud->addField([
-            'name' => 'name',
+            'name' => 'options',
             'type' => 'checklist',
             'label' => 'Qualities Tagged Options',
 			'entity' => 'optionspositions', // the relationship name in your Model
@@ -85,7 +85,7 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		dd($this->crud->entry);
-		$position = $this->crud->entry->id; // <-- SHOULD WORK
+		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
 		$opdetail = OptionPosition::where('position_id',$position)->delete();		
 		$options = $this->crud->entry->extras;
 		
@@ -95,7 +95,7 @@ class PositionCandidateCrudController extends CrudController
 				'position_id' => $position,
 				'option_id' => $option
 			]);			
-		}
+		}*/
 		
         return $redirect_location;
     }
