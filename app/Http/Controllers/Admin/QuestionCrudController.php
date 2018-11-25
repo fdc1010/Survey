@@ -71,7 +71,7 @@ class QuestionCrudController extends CrudController
 			'type' => 'tableadv',
 			'entity_singular' => 'option', // used on the "Add X" button
 			'columns' => [
-				'name' => 'options',
+				'name' => 'extras',
 				'select' => 'Option',
 				'checkbox' => 'With Other Answer',
 				'entity' => 'choices', // the method that defines the relationship in your Model
@@ -142,7 +142,7 @@ class QuestionCrudController extends CrudController
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->extras;
 		foreach($options as $option){
-			$optid = $option['select'];
+			$optid = $option['extras'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
@@ -163,7 +163,7 @@ class QuestionCrudController extends CrudController
 				
 		$options = $this->crud->entry->extras;
 		foreach($options as $option){
-			$optid = $option['select'];
+			$optid = $option['extras'];
 			$chkhasother = !empty($option['checkbox'])?$option['checkbox']:false;
 			$questionoptions = QuestionDetail::create([
 				'question_id' => $qid,
