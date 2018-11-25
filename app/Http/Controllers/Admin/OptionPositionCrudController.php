@@ -37,6 +37,7 @@ class OptionPositionCrudController extends CrudController
 		
 		$this->crud->removeColumns(['option_id','position_id','extras']);
 		$this->crud->removeFields(['option_id','position_id','extras']);
+		$this->crud->orderBy('position_id');
 		$this->crud->addColumn([
             'name' => 'position_id',
             'type' => 'checklist',
@@ -52,8 +53,7 @@ class OptionPositionCrudController extends CrudController
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate"
-	    ]);
-		$this->crud->orderBy('position_id');
+	    ]);		
 		$this->crud->addField([
             'name' => 'position_id',
             'type' => 'checklist',
