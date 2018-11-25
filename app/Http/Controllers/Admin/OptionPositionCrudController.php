@@ -86,7 +86,6 @@ class OptionPositionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$positions = $this->crud->entry->position_id;
-		dd($positions);
 		foreach($positions as $position){
 			$options = $this->crud->entry->option_id;		
 			foreach($options['options'] as $option){
@@ -106,7 +105,6 @@ class OptionPositionCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		$positions = $this->crud->entry->position_id;
-		dd($positions);
 		foreach($positions as $position){
 		  $opdetail = OptionPosition::where('position_id',$position)->delete();		
 		  $options = $this->crud->entry->option_id;
