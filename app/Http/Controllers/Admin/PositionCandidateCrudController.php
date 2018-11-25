@@ -99,12 +99,13 @@ class PositionCandidateCrudController extends CrudController
         return $redirect_location;
     }
 	public function showDetailsRow($id){
-		$this->crud->addColumn([
-            'name' => 'extras',			
-            'label' => 'Tagged Options for Qualities',
-            'type' => 'model_function',
-			'function_name' => 'getOptionSelections',
-			'fake' => true
-	    ]);
+		$options = OptionPosition::with('options')->where('position_id',$id)->get();
+		$result = "";
+		foreach($options as $option){
+			$result .= $option->options->option."<br>";
+		}
+		
+		return $result;
+		
 	}
 }
