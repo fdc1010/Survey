@@ -66,7 +66,7 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
-            'type' => 'checklist',
+            'type' => 'select',
             'label' => 'Tagged Options for Qualities',
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
