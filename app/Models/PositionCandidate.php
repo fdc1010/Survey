@@ -28,7 +28,7 @@ class PositionCandidate extends Model
 	public function positionoptions(){
 		return $this->hasMany('App\Models\OptionPosition');
 	}
-	public function optionsposition(){
+	public function options(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
 	}
 	public function optionspositions(){
