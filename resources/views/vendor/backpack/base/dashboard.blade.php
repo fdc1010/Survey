@@ -197,7 +197,7 @@
 			@endforeach
 			],
 			@foreach($qualities as $quality)
-				['{{ $quality->option->option }}',
+				['{{ $quality->options->option }}',
 				@foreach($candidates as $candidate)
 					{{ $votesq[$candidate->id][$quality->option_id] }},
 				@endforeach
