@@ -56,7 +56,7 @@
                                 </div>
                             </form>
                             @php
-                            	$resquest = $_REQUEST['selvoterstatuses'];
+                            	$resquest = !empty($_REQUEST['selvoterstatuses'])?$_REQUEST['selvoterstatuses']:'';
                                 info($resquest);
                             @endphp
                          </div>
