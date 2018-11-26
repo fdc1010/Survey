@@ -205,14 +205,14 @@
                                	@php
                                 	$tallyp = array();                                    
                                 @endphp
-                                @foreach($brgysurveys as $brgysurvey)                          	
+                                @foreach($barangays as $barangay)
                                 	<tr>
-                                    	<td>{{ $brgysurvey->barangay->name }}</td>
+                                    	<td>{{ $barangay->name }}</td>
                                         @foreach($problems as $problem)
                                         @php
-                                            $tallyp[$brgysurvey->id][$problem->option_id]=rand(1,100);
+                                            $tallyp[$barangay->id][$problem->option_id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $tallyp[$brgysurvey->id][$problem->option_id] }}</td>
+                                        <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
