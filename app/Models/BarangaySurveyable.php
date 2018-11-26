@@ -25,6 +25,7 @@ class BarangaySurveyable extends Model
 	protected $casts = [
         'barangay_id' => 'array'
     ];
+	protected $translatable = ['barangay_id'];
 	public function barangay()
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
