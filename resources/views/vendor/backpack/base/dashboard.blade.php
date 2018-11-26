@@ -33,19 +33,27 @@
                                                                         ->where('position_id',$surveypos)->get();                  
                             @endphp
                         	<form method="get" id="my_form" action="{{ backpack_url('dashboard') }}">                            	
-                                    <select id="selposition" name="selposition">                                    
-                                        @foreach($positions as $position)
-                                            <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <select id="selvoterstatuses" name="selvoterstatuses">                                  
-                                        @foreach($voterstatuses as $voterstatus)
-                                            <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
-                                        <span class="fa fa-search"></span> View
-                                    </a>
+                            	<div class="col-md-12">	
+                                	<div class="col-md-4">	
+                                        <select id="selposition" name="selposition">                                    
+                                                @foreach($positions as $position)
+                                                    <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="selvoterstatuses" name="selvoterstatuses">                                  
+                                            @foreach($voterstatuses as $voterstatus)
+                                                <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                            <span class="fa fa-search"></span> View
+                                        </a>
+                                    </div>
+                                </div>
                             </form>
                          </div>
                     </div>
