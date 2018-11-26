@@ -45,8 +45,8 @@ class BarangaySurveyableCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Barangay",
 			'type' => 'checklist',
-			'name' => 'barangay_id', // the relationship name in your Model
-			'entity' => 'barangays', // the relationship name in your Model
+			'name' => 'barangay', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
 			//'pivot' => true
