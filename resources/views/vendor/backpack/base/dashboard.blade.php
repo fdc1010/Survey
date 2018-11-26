@@ -431,6 +431,7 @@
 				],
           ],
           type: 'bar',
+		  legend: false,
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
           onmouseout: function (d) { console.log("onmouseout", d); }
