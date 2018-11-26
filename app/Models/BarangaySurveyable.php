@@ -22,6 +22,9 @@ class BarangaySurveyable extends Model
     protected $fillable = ['barangay_id'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $casts = [
+        'barangay_id' => 'array'
+    ];
 	public function barangay()
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
