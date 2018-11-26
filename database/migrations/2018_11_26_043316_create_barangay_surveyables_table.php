@@ -16,8 +16,9 @@ class CreateBarangaySurveyablesTable extends Migration
         Schema::create('barangay_surveyables', function (Blueprint $table) {
             $table->increments('id');
 			$table->unsignedInteger('barangay_id');
-			$table->unsignedInteger('barangay_id');
             $table->timestamps();
+			
+			$table->foreign('barangay_id')->references('id')->on('barangays');
         });
     }
 
