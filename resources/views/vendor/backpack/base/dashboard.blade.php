@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                             </form>
-                            {!! $request !!}
+                            {{ $request->selvoterstatuses }}
                          </div>
                     </div>
                 </div>
