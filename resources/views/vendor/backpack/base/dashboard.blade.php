@@ -56,9 +56,9 @@
                                     </div>
                                 </div>
                             </form>
-                            @php 
-                            	print_r($selvoterstatuses);
-                            @endphp
+                            @if($selvoterstatuses)
+                            	{{ $selvoterstatuses }}
+                            @endif
                          </div>
                     </div>
                 </div>
