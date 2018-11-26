@@ -56,7 +56,9 @@
                                     </div>
                                 </div>
                             </form>
-                            {!! $request->selvoterstatuses !!}
+                            @php 
+                            	print_r($request->selvoterstatuses)
+                            @endphp
                          </div>
                     </div>
                 </div>
