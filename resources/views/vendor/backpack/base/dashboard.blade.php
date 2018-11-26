@@ -164,21 +164,16 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
-                                        	$agebracket = App\Models\AgeBracket::all();
                                         	$genders = App\Models\Gender::all();
                                         @endphp
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
-                                        @foreach($agebracket as $age)
-                                        <th>{{ $age->title }}</th>
-                                        @endforeach
                                     </tr>                                    
                                 </thead>
                                 <tbody>
                                @php
-                                	$tallyg = array();
-                                    $tallyage = array();                                    
+                                	$tallyg = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)                                	
                                 	<tr>
@@ -188,12 +183,6 @@
                                             $tallyg[$candidate->id][$gender->id]=rand(1,100);
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
-                                        @endforeach
-                                        @foreach($agebracket as $age)
-                                        @php
-                                            $tallyage[$candidate->id][$age->id]=rand(1,100);
-                                        @endphp
-                                        <td>{{ $tallyage[$candidate->id][$age->id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -212,6 +201,60 @@
                 </div>
 
                 <div class="box-body"><div id="chartgender"></div></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblvoterstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @php
+                                        	$voterstatuses = App\Models\VoterStatus::all();
+                                        @endphp
+                                        @foreach($voterstatuses as $voterstatus)
+                                        <th>{{ $voterstatus->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallyvs = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($voterstatuses as $voterstatus)
+                                        @php
+                                            $tallyvs[$candidate->id][$voterstatus->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyvs[$candidate->id][$voterstatus->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartvoterstatus"></div></div>
             </div>
         </div> 
         <div class="col-md-6">
@@ -353,6 +396,12 @@ $(document).ready(function ($) {
 		scrollButtons:{enable:true},
 		theme:"3d",
 		scrollbarPosition:"outside"
+	});
+	$("#tblvoterstatus").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
 	});	
 	@php
 		//$barangays = App\Models\Barangay::all();
@@ -443,6 +492,42 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyg[$candidate->id][$gender->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartvoterstatus = c3.generate({
+		bindto: '#chartvoterstatus',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($voterstatuses as $voterstatus)
+				['{{ $voterstatus->name }}',
+				@foreach($candidates as $candidate)
+					{{ $tallyvs[$candidate->id][$voterstatus->id] }},
 				@endforeach
 				],
 			@endforeach
