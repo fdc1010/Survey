@@ -134,7 +134,7 @@
 
                 <div class="box-body">                	
                       <div id="tblgender">
-                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table id="tabular" class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
