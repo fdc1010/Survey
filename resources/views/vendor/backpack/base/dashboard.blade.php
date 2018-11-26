@@ -20,13 +20,26 @@
             	<div class="box-header with-border">
                     <div class="col-md-12">                      
                         <div class="box-title">
+                        	@php
+                                $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+                                $problems = App\Models\OptionProblem::with('option')->get();
+                                $voterstatuses = App\Models\VoterStatus::all();
+                                $genders = App\Models\Gender::all();
+                                $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+                                $barangays = App\Models\Barangay::all();
+                                $positions = App\Models\PositionCandidate::all();  
+                                $qualities = App\Models\OptionPosition::with('options','positions')
+                                                                        ->where('position_id',$surveypos)->get();                  
+                            @endphp
                         	<form method="get" action="{{ backpack_url('dashboard') }}">                            	
-                                <select id="selposition" name="selposition">
-                                    @php
-                                        $positions = App\Models\PositionCandidate::all();                    
-                                    @endphp
+                                <select id="selposition" name="selposition">                                    
                                     @foreach($positions as $position)
                                         <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select id="selvoterstatuses" name="selvoterstatuses">                                  
+                                    @foreach($voterstatuses as $voterstatus)
+                                        <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                     @endforeach
                                 </select>
                                 <button type="submit" class="btn btn-primary">
@@ -59,11 +72,9 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	$barangays = App\Models\Barangay::all();
-                                
+                                	
                                 	$surveypos = !empty($posid)?$posid:1;
-                                	$tally = array();
-                                    $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+                                	$tally = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
@@ -105,13 +116,6 @@
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
-                                        @php
-                                        	
-                                            
-                                            
-                                        	$qualities = App\Models\OptionPosition::with('options','positions')
-                                            									->where('position_id',$surveypos)->get();
-                                        @endphp
                                         @foreach($qualities as $quality)
                                         <th>{{ $quality->options->option }}</th>
                                         @endforeach
@@ -163,9 +167,6 @@
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
-                                        @php
-                                        	$genders = App\Models\Gender::all();
-                                        @endphp
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
@@ -217,9 +218,6 @@
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
-                                        @php
-                                        	$voterstatuses = App\Models\VoterStatus::all();
-                                        @endphp
                                         @foreach($voterstatuses as $voterstatus)
                                         <th>{{ $voterstatus->name }}</th>
                                         @endforeach
@@ -271,10 +269,6 @@
             					<thead>
                                 	<tr>
                                     	<th>Barangays</th>
-                                        @php
-                                        	$brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
-                                        	$problems = App\Models\OptionProblem::with('option')->get();
-                                        @endphp
                                         @foreach($problems as $problem)
                                         <th>{{ $problem->option->option }}</th>
                                         @endforeach
