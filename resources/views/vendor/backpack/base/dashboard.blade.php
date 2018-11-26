@@ -32,7 +32,7 @@
                                 $qualities = App\Models\OptionPosition::with('options','positions')
                                                                         ->where('position_id',$surveypos)->get();                  
                             @endphp
-                        	<form method="get" id="my_form" action="{{ backpack_url('dashboard') }}" class="select2_multiple">                            	
+                        	<form method="get" id="my_form" action="{{ backpack_url('dashboard') }}">                            	
                             	<div class="col-md-12">	
                                 	<div class="col-md-4">	
                                         <select id="selposition" name="selposition">                                    
@@ -42,7 +42,7 @@
                                             </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="selvoterstatuses" name="selvoterstatuses">                                  
+                                        <select id="selvoterstatuses" name="selvoterstatuses" class="select2_multiple" multiple="multiple">                                  
                                             @foreach($voterstatuses as $voterstatus)
                                                 <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                             @endforeach
