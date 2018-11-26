@@ -20,8 +20,7 @@
             	<div class="box-header with-border">
                     <div class="col-md-12">                      
                         <div class="box-title">
-                        	<form method="post" action="{{ backpack_url('dashboard') }}">
-                            	@csrf
+                        	<form method="get" action="{{ backpack_url('dashboard') }}">                            	
                                 <select id="selposition">
                                     @php
                                         $positions = App\Models\PositionCandidate::all();                    
