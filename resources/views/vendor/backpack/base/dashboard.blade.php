@@ -34,8 +34,9 @@
                                 </thead>
                                 <tbody>
                                 @php
+                                	$surveypos = !empty($posid)?$posid:1;
                                 	$votes = array();
-                                    $candidates = App\Models\Candidate::with('voter')->get();
+                                    $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
@@ -79,7 +80,7 @@
                                     	<th>Candidates</th>
                                         @php
                                         	$qualities = App\Models\OptionPosition::with('options','positions')
-                                            									->where('position_id',1)->get();
+                                            									->where('position_id',$surveypos)->get();
                                         @endphp
                                         @foreach($qualities as $quality)
                                         <th>{{ $quality->options->option }}</th>
@@ -142,8 +143,7 @@
                                 </thead>
                                 <tbody>
                                @php
-                                	$votesg = array();
-                                    $candidates = App\Models\Candidate::with('voter')->get();
+                                	$votesg = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)                                	
                                 	<tr>
@@ -204,8 +204,6 @@
 	@php
 		$barangays = App\Models\Barangay::all();
 		$i=0;	
-		
-		$candidates = App\Models\Candidate::with('voter')->get();
 	@endphp	
 	var chart = c3.generate({
 		bindto: '#chart',				
