@@ -32,28 +32,38 @@
                                 $genders = App\Models\Gender::all();
                                 $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 $barangays = App\Models\Barangay::all();
-                                $positions = App\Models\PositionCandidate::all();  
+                                if(!empty($cpos))	
+                                    $positions = App\Models\PositionCandidate::where('id',$cpos)->get();
+                                else
+                                	$positions = App\Models\PositionCandidate::all(); 
                                 $qualities = App\Models\OptionPosition::with('options','positions')
                                                                         ->where('position_id',$surveypos)->get();                  
                             @endphp
                         	<form method="post" id="my_form" action="{{ backpack_url('postdashboard') }}">                    	
                             	@csrf
                             	<div class="col-md-12">	
-                                	<div class="col-md-4">	
+                                	<div class="col-md-3">	
                                         <select id="selposition" name="selposition">                                    
                                                 @foreach($positions as $position)
                                                     <option value="{{ $position->id }}">{{ $position->name }}</option>
                                                 @endforeach
                                             </select>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <select id="selvoterstatuses" name="selvoterstatuses[]" multiple="multiple">                                  
                                             @foreach($selvoterstatuses as $voterstatus)
                                                 <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
+                                            @foreach($barangays as $barangay)
+                                                <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
                                         <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                             <span class="fa fa-search"></span> View
                                         </a>
