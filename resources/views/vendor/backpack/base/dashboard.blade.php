@@ -57,7 +57,7 @@
                                 </div>
                             </form>
                             @if(!empty($vstatus))
-                            	{!! $vstatus !!}
+                            	{{ var_dump($vstatus) }}
                             @endif
                          </div>
                     </div>
