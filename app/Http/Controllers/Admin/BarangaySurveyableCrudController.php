@@ -42,6 +42,14 @@ class BarangaySurveyableCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay"
 	    ]);
+		$this->crud->addField([
+			'label' => "Barangay",
+			'type' => 'checklist',
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangays', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
+		]);
         // add asterisk for fields that are required in BarangaySurveyableRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
