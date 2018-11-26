@@ -25,7 +25,7 @@
 
                 <div class="box-body">                	
                       <div id="tblvotes" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped table-hover responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Cadidate</th>
@@ -76,7 +76,7 @@
 
                 <div class="box-body">                	
                       <div id="tblqualities" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive" cellspacing="0">
+                      		<table class="table table-striped table-hover responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -134,7 +134,7 @@
 
                 <div class="box-body">                	
                       <div id="tblgender" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped table-hover responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -188,7 +188,7 @@
 
                 <div class="box-body">                	
                       <div id="tblproblem" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped table-hover responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Barangays</th>
