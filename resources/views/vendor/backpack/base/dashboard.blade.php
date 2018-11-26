@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="divTabular" style="height:320px;">
+                      <div id="tblvotes" style="height:320px;">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -32,7 +32,7 @@
                                         <th>Votes</th>
                                     </tr>                                    
                                 </thead>
-                                <tbody id="tblvotes">
+                                <tbody>
                                 @php
                                 	$barangays = App\Models\Barangay::all();
                                 
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="divTabular" style="height:320px;">
+                      <div id="tblqualities" style="height:320px;">
                       		<table id="tabular" class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -92,7 +92,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody id="tblqualities">
+                                <tbody>
                                @php
                                 	$tallyq = array();
                                 @endphp
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="divTabular" style="height:320px;">
+                      <div id="tblgender" style="height:320px;">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -146,7 +146,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody id="tblgender">
+                                <tbody>
                                @php
                                 	$tallyg = array();                                    
                                 @endphp
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="divTabular" style="height:320px;">
+                      <div id="tblproblem" style="height:320px;">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -201,7 +201,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody id="tblproblem">
+                                <tbody>
                                	@php
                                 	$tallyp = array();                                    
                                 @endphp
