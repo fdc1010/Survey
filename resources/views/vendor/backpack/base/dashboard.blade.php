@@ -191,6 +191,7 @@
                                 	<tr>
                                     	<th>Barangays</th>
                                         @php
+                                        	$brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
                                         	$problems = App\Models\OptionProblem::with('option')->get();
                                         @endphp
                                         @foreach($problems as $problem)
@@ -202,14 +203,14 @@
                                @php
                                 	$votesp = array();                                    
                                 @endphp
-                                @foreach($barangays as $barangay)                          	
+                                @foreach($brgysurveys as $brgysurvey)                          	
                                 	<tr>
-                                    	<td>{{ $barangay->name }}</td>
+                                    	<td>{{ $brgysurvey->barangay->name }}</td>
                                         @foreach($problems as $problem)
                                         @php
-                                            $votesp[$barangay->id][$problem->option_id]=rand(1,100);
+                                            $votesp[$brgysurvey->id][$problem->option_id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesp[$barangay->id][$problem->option_id] }}</td>
+                                        <td>{{ $votesp[$brgysurvey->id][$problem->option_id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -299,14 +300,14 @@
 		  x: 'Barangays',
 		  columns: [
 		  	['Barangays', 
-			@foreach($barangays as $barangay)
-				'{{ $barangay->name }}',
+			@foreach($brgysurveys as $brgysurvey)
+				'{{ $brgysurvey->barangay->name }}',
 			@endforeach
 			],
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
-				@foreach($barangays as $barangay)
-					{{ $votesp[$barangay->id][$problem->option_id] }},
+				@foreach($brgysurveys as $brgysurvey)
+					{{ $votesp[$brgysurvey->id][$problem->option_id] }},
 				@endforeach
 				],
 			@endforeach
