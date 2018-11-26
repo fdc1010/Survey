@@ -24,7 +24,10 @@
                             	$surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
                                 $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
                                 $problems = App\Models\OptionProblem::with('option')->get();
-                                $voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
+                                if(!empty($vstatus))
+                                	$voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
+                                else
+                                	$voterstatuses = App\Models\VoterStatus::all();
                                 $genders = App\Models\Gender::all();
                                 $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 $barangays = App\Models\Barangay::all();
@@ -56,9 +59,6 @@
                                     </div>
                                 </div>
                             </form>
-                            @if(!empty($vstatus))
-                            	{{ var_dump($vstatus) }}
-                            @endif
                          </div>
                     </div>
                 </div>
