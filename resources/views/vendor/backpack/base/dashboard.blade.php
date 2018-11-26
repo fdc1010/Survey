@@ -650,6 +650,7 @@ $(document).ready(function ($) {
 			@endforeach
 			]
           ],
+		  color: function (color, d) { return "#00FF00"; },
 		  labels: true,
           type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
