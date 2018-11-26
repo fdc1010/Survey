@@ -30,7 +30,7 @@
                                     @endforeach
                                 </select>
                                 <button type="submit" class="btn btn-primary">
-                                    <span class="fa fa-search" role="presentation" aria-hidden="true"></span> Save and new item
+                                    <span class="fa fa-search" role="presentation" aria-hidden="true"></span> View
                                 </button>
                             </form>
                          </div>
