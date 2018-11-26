@@ -648,7 +648,7 @@ $(document).ready(function ($) {
 			@endforeach
 				],
           ],
-		  color: function (color, d) { return "#32CD32"; },
+		  color: function (color, d) { return "#006400"; },
           type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
