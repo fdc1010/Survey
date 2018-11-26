@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblvotes">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblqualities">
+                      <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
                       		<table class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender">
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblproblem">
+                      <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -260,38 +260,17 @@
 @endsection
 @section('chartcss')
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
 @endsection
 @section('chartsjs')	
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-	<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('#tblvotes').slimScroll({
-		height: '320px',
-		opacity: 0.5,
-		width: '100%',
-    	axis: 'both'
-	});
-	$('#tblqualities').slimScroll({
-		height: '320px',
-		opacity: 0.5,
-		width: '100%',
-    	axis: 'both'
-	});
-	$('#tblgender').slimScroll({
-		height: '320px',
-		opacity: 0.5,
-		width: '100%',
-    	axis: 'both'
-	});
-	$('#tblproblem').slimScroll({
-		height: '320px',
-		opacity: 0.5,
-		width: '100%',
-    	axis: 'both'
-	});	
+	$(".custom-css").mCustomScrollbar();
+	
 	@php
 		//$barangays = App\Models\Barangay::all();
 		$i=0;	
