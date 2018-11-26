@@ -430,8 +430,7 @@
 			@endforeach
 				],
           ],
-          type: 'bar',
-		  legend: false,
+          type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
           onmouseout: function (d) { console.log("onmouseout", d); }
@@ -446,7 +445,10 @@
             ratio: 0.3,
 //            max: 30
           },
-        }
+        },
+		legend: {
+			show: false
+		}
       });
 	@endforeach
     </script>
