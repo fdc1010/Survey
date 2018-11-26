@@ -270,19 +270,27 @@
 $(document).ready(function ($) {
 	$('#tblvotes').slimScroll({
 		height: '310px',
-		opacity: 0.5
+		opacity: 0.5,
+		railVisible: true,
+		alwaysVisible: true
 	});
 	$('#tblqualities').slimScroll({
 		height: '310px',
-		opacity: 0.5
+		opacity: 0.5,
+		railVisible: true,
+		alwaysVisible: true
 	});
 	$('#tblgender').slimScroll({
 		height: '310px',
-		opacity: 0.5
+		opacity: 0.5,
+		railVisible: true,
+		alwaysVisible: true
 	});
 	$('#tblproblem').slimScroll({
 		height: '310px',
-		opacity: 0.5
+		opacity: 0.5,
+		railVisible: true,
+		alwaysVisible: true
 	});	
 	@php
 		//$barangays = App\Models\Barangay::all();
