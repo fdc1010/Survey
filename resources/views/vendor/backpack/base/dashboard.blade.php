@@ -55,10 +55,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </form>
-                            @if(!empty($request))
-                            	{{ $request }}
-                            @endif
+                            </form>                            
                          </div>
                     </div>
                 </div>
