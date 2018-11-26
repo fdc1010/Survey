@@ -313,12 +313,18 @@
             </div>
         </div>
         @php
-            $tallybrgy = array();                                    
+            $tallybrgy = array();
+            $tallycbrgy = array();                                    
         @endphp
         @foreach($barangays as $barangay)
         	@foreach($problems as $problem)
             @php
                 $tallybrgy[$barangay->id][$problem->option_id]=rand(1,100);
+            @endphp
+            @endforeach
+            @foreach($candidates as $candidate)
+            @php
+                $tallycbrgy[$barangay->id][$candidate->id]=rand(1,100);
             @endphp
             @endforeach
         <div class="col-md-4">
@@ -640,7 +646,7 @@ $(document).ready(function ($) {
 			],
 			['Votes',
             @foreach($candidates as $candidate)
-				{{ $tally[$candidate->id] }},
+				{{ $tallycbrgy[$barangay->id][$candidate->id] }},
 			@endforeach
 			]
           ],
