@@ -429,7 +429,6 @@
 				{{ $tallybrgy[$barangay->id][$problem->option_id] }},
 			@endforeach
 				],
-			@endforeach
           ],
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
