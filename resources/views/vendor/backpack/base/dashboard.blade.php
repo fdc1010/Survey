@@ -260,17 +260,17 @@
 @endsection
 @section('chartcss')
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
-    <!--<link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />-->
+    <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
 @endsection
 @section('chartsjs')	
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-	<!--<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>-->
+    <!--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>-->
+	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('#tblvotes').slimScroll({
+	/*$('#tblvotes').slimScroll({
 		height: '320px',
 		opacity: 0.5,
 		width: '100%',
@@ -293,6 +293,30 @@ $(document).ready(function ($) {
 		opacity: 0.5,
 		width: '100%',
     	axis: 'yx'
+	});*/
+	$("#tblvotes").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblqualities").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblgender").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblproblem").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
 	});	
 	@php
 		//$barangays = App\Models\Barangay::all();
