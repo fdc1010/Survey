@@ -423,12 +423,12 @@
 			@foreach($problems as $problem)
 				'{{ $problem->option->option }}',
 			@endforeach
-			],
-			['Problema',
+			],			
 			@foreach($problems as $problem)				
+			['{{ $problem->option->option }}',
 				{{ $tallybrgy[$barangay->id][$problem->option_id] }},
-			@endforeach
-				],
+			],
+			@endforeach				
           ],
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
