@@ -304,7 +304,7 @@
 			@endforeach
 			],
 			@foreach($problems as $problem)
-				['{{ $problem->options->option }}',
+				['{{ $problem->option->option }}',
 				@foreach($barangays as $barangay)
 					{{ $votesp[$barangay->id][$problem->option_id] }},
 				@endforeach
