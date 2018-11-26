@@ -269,8 +269,30 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$(".custom-css").mCustomScrollbar();
-	
+	$('#tblvotes').slimScroll({
+		height: '320px',
+		opacity: 0.5,
+		width: '100%',
+    	axis: 'yx'
+	});
+	$('#tblqualities').slimScroll({
+		height: '320px',
+		opacity: 0.5,
+		width: '100%',
+    	axis: 'yx'
+	});
+	$('#tblgender').slimScroll({
+		height: '320px',
+		opacity: 0.5,
+		width: '100%',
+    	axis: 'yx'
+	});
+	$('#tblproblem').slimScroll({
+		height: '320px',
+		opacity: 0.5,
+		width: '100%',
+    	axis: 'yx'
+	});	
 	@php
 		//$barangays = App\Models\Barangay::all();
 		$i=0;	
