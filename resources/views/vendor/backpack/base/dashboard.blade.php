@@ -24,7 +24,7 @@
                             	$surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
                                 $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
                                 $problems = App\Models\OptionProblem::with('option')->get();
-                                $voterstatuses = App\Models\VoterStatus::all();
+                                $voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
                                 $genders = App\Models\Gender::all();
                                 $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 $barangays = App\Models\Barangay::all();
