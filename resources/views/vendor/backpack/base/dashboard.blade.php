@@ -32,7 +32,8 @@
                                 $qualities = App\Models\OptionPosition::with('options','positions')
                                                                         ->where('position_id',$surveypos)->get();                  
                             @endphp
-                        	<form method="get" id="my_form" action="{{ backpack_url('dashboard') }}">                            	
+                        	<form method="post" id="my_form" action="{{ backpack_url('dashboard') }}">    
+                            	@csrf                        	
                             	<div class="col-md-12">	
                                 	<div class="col-md-4">	
                                         <select id="selposition" name="selposition">                                    
