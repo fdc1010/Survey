@@ -43,7 +43,7 @@
                                             <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                         @endforeach
                                     </select>
-                                    <a class="btn btn-primary" onclick="this.submit();">
+                                    <a class="btn btn-primary" onclick="document.form.submit();">
                                         <span class="fa fa-search"></span> View
                                     </a>
                             </form>
