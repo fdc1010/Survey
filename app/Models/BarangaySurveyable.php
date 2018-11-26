@@ -31,8 +31,9 @@ class BarangaySurveyable extends Model
     }
 	public function barangays()
     {
-        return $this->belongsToMany('App\Models\Barangay','barangay_surveyables');
+        return $this->hasMany('App\Models\BarangaySurveyable','barangay_id');
     }
+	
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
