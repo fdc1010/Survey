@@ -262,6 +262,7 @@
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
 @endsection
 @section('chartsjs')	
+	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
 	<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
