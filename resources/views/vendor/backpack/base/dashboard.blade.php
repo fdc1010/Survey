@@ -597,23 +597,24 @@ $(document).ready(function ($) {
           },
         }
       });
-	@foreach($barangays as $barangay)
-      var chart_{{ $barangay->id }} = c3.generate({
-		bindto: '#chart_{{ $barangay->id }}',
+	@foreach($barangays as $barangay)      
+	  var chart_candidates_{{ $barangay->id }} = c3.generate({
+		bindto: '#chart_candidates_{{ $barangay->id }}',
         data: {
-          x: 'Problema',
+          x: 'Candidates',
 		  columns: [
-		  	['Problema', 
-			@foreach($problems as $problem)
-				'{{ $problem->option->option }}',
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
 			@endforeach
 			],
-			['Tally',
-			@foreach($problems as $problem)				
-				{{ $tallybrgy[$barangay->id][$problem->option_id] }},
+			['Votes',
+            @foreach($candidates as $candidate)
+				{{ $tallycbrgy[$barangay->id][$candidate->id] }},
 			@endforeach
-				],
+			]
           ],
+		  labels: true,
           type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -634,24 +635,23 @@ $(document).ready(function ($) {
 			show: false
 		}
       });
-	  var chart_candidates_{{ $barangay->id }} = c3.generate({
-		bindto: '#chart_candidates_{{ $barangay->id }}',
+	  var chart_{{ $barangay->id }} = c3.generate({
+		bindto: '#chart_{{ $barangay->id }}',
         data: {
-          x: 'Candidates',
+          x: 'Problema',
 		  columns: [
-		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+		  	['Problema', 
+			@foreach($problems as $problem)
+				'{{ $problem->option->option }}',
 			@endforeach
 			],
-			['Votes',
-            @foreach($candidates as $candidate)
-				{{ $tallycbrgy[$barangay->id][$candidate->id] }},
+			['Tally',
+			@foreach($problems as $problem)				
+				{{ $tallybrgy[$barangay->id][$problem->option_id] }},
 			@endforeach
-			]
+				],
           ],
-		  color: function (color, d) { return "#00FF00"; },
-		  labels: true,
+		  color: function (color, d) { return "#32CD32"; },
           type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
