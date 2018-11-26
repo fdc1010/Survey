@@ -79,6 +79,9 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
+                                        	
+                                            $barangays = App\Models\Barangay::all();
+                                            
                                         	$qualities = App\Models\OptionPosition::with('options','positions')
                                             									->where('position_id',$surveypos)->get();
                                         @endphp
@@ -172,10 +175,61 @@
 
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
-        </div>     
-    	@php
-            $barangays = App\Models\Barangay::all();
-        @endphp
+        </div> 
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="divTabular" style="height:320px;">
+                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Barangays</th>
+                                        @php
+                                        	$genders = App\Models\Gender::all();
+                                        @endphp
+                                        @foreach($genders as $gender)
+                                        <th>{{ $gender->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$votesg = array();                                    
+                                @endphp
+                                @foreach($barangays as $barangay)                                	
+                                	<tr>
+                                    	<td>{{ $barangay->name }}</td>
+                                        @foreach($genders as $gender)
+                                        @php
+                                            $votesg[$candidate->id][$gender->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $votesg[$candidate->id][$gender->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartbrgy"></div></div>
+            </div>
+        </div>         	
         @foreach($barangays as $barangay)
         <div class="col-md-4">
             <div class="box box-default">
