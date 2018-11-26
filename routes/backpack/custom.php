@@ -42,4 +42,5 @@ Route::group([
     CRUD::resource('occupancystatus', 'OccupancyStatusCrudController');
     CRUD::resource('optionposition', 'OptionPositionCrudController');
     CRUD::resource('gender', 'GenderCrudController');
+    CRUD::resource('barangaysurveyable', 'BarangaySurveyableCrudController');
 }); // this should be the absolute last line of this file
