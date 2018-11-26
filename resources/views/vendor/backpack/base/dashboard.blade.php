@@ -20,7 +20,7 @@
             	<div class="box-header with-border">
                     <div class="col-md-12">                      
                         <div class="box-title">
-                        	<form method="post">
+                        	<form method="post" action="">
                                 <select id="selposition">
                                     @php
                                         $positions = App\Models\PositionCandidate::all();                    
@@ -29,7 +29,9 @@
                                         <option value="{{ $position->id }}">{{ $position->name }}</option>
                                     @endforeach
                                 </select>
-                                <input type="submit" class="btn btn-primary" />
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="fa fa-search" role="presentation" aria-hidden="true"></span> Save and new item
+                                </button>
                             </form>
                          </div>
                     </div>
