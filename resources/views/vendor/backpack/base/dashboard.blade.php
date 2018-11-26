@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
