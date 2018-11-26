@@ -21,7 +21,7 @@
                     <div class="col-md-12">                      
                         <div class="box-title">
                         	<form method="get" action="{{ backpack_url('dashboard') }}">                            	
-                                <select id="selposition">
+                                <select id="selposition" name="selposition">
                                     @php
                                         $positions = App\Models\PositionCandidate::all();                    
                                     @endphp
