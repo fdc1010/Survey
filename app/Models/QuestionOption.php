@@ -35,6 +35,14 @@ class QuestionOption extends Model
 		}
 		return $result;
     }
+	public function barangaysurveys()
+    {
+        return $this->hasMany('App\Models\BarangaySurveyable','barangay_id');
+    }
+	public function problems()
+    {
+        return $this->hasMany('App\Models\OptionProblem','option_id');
+    }
 	/*
 	public function optionposition(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');

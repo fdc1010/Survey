@@ -191,10 +191,10 @@
                                 	<tr>
                                     	<th>Barangays</th>
                                         @php
-                                        	$genders = App\Models\Gender::all();
+                                        	$problems = App\Models\OptionProblem::with('option')->get();
                                         @endphp
-                                        @foreach($genders as $gender)
-                                        <th>{{ $gender->name }}</th>
+                                        @foreach($problems as $problem)
+                                        <th>{{ $problem->option->option }}</th>
                                         @endforeach
                                     </tr>                                    
                                 </thead>
@@ -202,14 +202,14 @@
                                @php
                                 	$votesg = array();                                    
                                 @endphp
-                                @foreach($barangays as $barangay)                                	
+                                @foreach($barangays as $barangay)                          	
                                 	<tr>
                                     	<td>{{ $barangay->name }}</td>
-                                        @foreach($genders as $gender)
+                                        @foreach($problems as $problem)
                                         @php
-                                            $votesg[$candidate->id][$gender->id]=rand(1,100);
+                                            $votesg[$candidate->id][$problem->option->id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesg[$candidate->id][$gender->id] }}</td>
+                                        <td>{{ $votesg[$candidate->id][$problem->option->id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach

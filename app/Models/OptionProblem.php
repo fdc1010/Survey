@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class BarangaySurveyable extends Model
+class OptionProblem extends Model
 {
     use CrudTrait;
 
@@ -15,21 +15,18 @@ class BarangaySurveyable extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'barangay_surveyables';
+    protected $table = 'option_problems';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['barangay_id'];
+    protected $fillable = ['option_id'];
     // protected $hidden = [];
     // protected $dates = [];
-	/*protected $casts = [
-        'barangay_id' => 'array'
-    ];*/
-	public function barangay()
-    {
-        return $this->belongsTo('App\Models\Barangay','barangay_id');
-    }
 	
+	public function option()
+    {
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
+    }
 	
     /*
     |--------------------------------------------------------------------------
