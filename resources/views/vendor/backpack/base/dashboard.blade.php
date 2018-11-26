@@ -42,7 +42,7 @@
                                             </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="selvoterstatuses" name="selvoterstatuses" class="select2_multiple" multiple="multiple">                                  
+                                        <select id="selvoterstatuses" name="selvoterstatuses[]" class="select2_multiple" multiple="multiple">                                  
                                             @foreach($voterstatuses as $voterstatus)
                                                 <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                             @endforeach
