@@ -28,6 +28,7 @@
                                 	$voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
                                 else
                                 	$voterstatuses = App\Models\VoterStatus::all();
+                                $selvoterstatuses = App\Models\VoterStatus::all();
                                 $genders = App\Models\Gender::all();
                                 $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 $barangays = App\Models\Barangay::all();
@@ -47,7 +48,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <select id="selvoterstatuses" name="selvoterstatuses[]" multiple="multiple">                                  
-                                            @foreach($voterstatuses as $voterstatus)
+                                            @foreach($selvoterstatuses as $voterstatus)
                                                 <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                             @endforeach
                                         </select>
