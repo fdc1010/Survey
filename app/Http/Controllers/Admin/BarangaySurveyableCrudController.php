@@ -59,7 +59,8 @@ class BarangaySurveyableCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
+        dd($request);
+			$redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
