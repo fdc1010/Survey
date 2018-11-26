@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblvotes" style="height:320px;">
+                      <div id="tblvotes">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblqualities" style="height:320px;">
+                      <div id="tblqualities">
                       		<table id="tabular" class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" style="height:320px;">
+                      <div id="tblgender">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblproblem" style="height:320px;">
+                      <div id="tblproblem">
                       		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -269,19 +269,19 @@
     <script>
 $(document).ready(function ($) {
 	$('#tblvotes').slimScroll({
-		height: $(document).height()-120,
+		height: '320px',
 		opacity: 0.5
 	});
 	$('#tblqualities').slimScroll({
-		height: $(document).height()-120,
+		height: '320px',
 		opacity: 0.5
 	});
 	$('#tblgender').slimScroll({
-		height: $(document).height()-120,
+		height: '320px',
 		opacity: 0.5
 	});
 	$('#tblproblem').slimScroll({
-		height: $(document).height()-120,
+		height: '320px',
 		opacity: 0.5
 	});	
 	@php
