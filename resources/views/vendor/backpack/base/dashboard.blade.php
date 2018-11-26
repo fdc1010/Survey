@@ -56,8 +56,8 @@
                                     </div>
                                 </div>
                             </form>
-                            @if($request->selvoterstatuses)
-                            	{{ $request->selvoterstatuses }}
+                            @if(!empty($request))
+                            	{{ $request }}
                             @endif
                          </div>
                     </div>
