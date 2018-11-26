@@ -55,7 +55,10 @@
                                         </a>
                                     </div>
                                 </div>
-                            </form>                            
+                            </form>
+                            @if(!empty($vstatus))
+                            	{{ $vstatus }}
+                            @endif
                          </div>
                     </div>
                 </div>
