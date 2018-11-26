@@ -57,7 +57,7 @@
                                 </div>
                             </form>
                             @if(!empty($vstatus))
-                            	{{ $vstatus }}
+                            	{!! $vstatus !!}
                             @endif
                          </div>
                     </div>
