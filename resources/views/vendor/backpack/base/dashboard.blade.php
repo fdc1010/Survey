@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblvotes">
-                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      <div id="divTabular" style="height:320px;">
+                      		<table id="tblvotes" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Cadidate</th>
@@ -75,8 +75,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblqualities">
-                      		<table id="tabular" class="table table-striped table-hover display responsive" cellspacing="0">
+                      <div id="tblqualities" style="height:320px;">
+                      		<table id="tblqualities" class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -133,8 +133,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender">
-                      		<table id="tabular" class="table table-striped table-hover display responsive" cellspacing="0">
+                      <div id="divTabular" style="height:320px;">
+                      		<table id="tblgender" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -187,8 +187,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblproblem">
-                      		<table id="tabular" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      <div id="divTabular" style="height:320px;">
+                      		<table id="tblproblem" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Barangays</th>
@@ -269,19 +269,19 @@
     <script>
 $(document).ready(function ($) {
 	$('#tblvotes').slimScroll({
-		height: '320px',
+		height: '310px',
 		opacity: 0.5
 	});
 	$('#tblqualities').slimScroll({
-		height: '320px',
+		height: '310px',
 		opacity: 0.5
 	});
 	$('#tblgender').slimScroll({
-		height: '320px',
+		height: '310px',
 		opacity: 0.5
 	});
 	$('#tblproblem').slimScroll({
-		height: '320px',
+		height: '310px',
 		opacity: 0.5
 	});	
 	@php
