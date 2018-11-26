@@ -21,7 +21,7 @@
                     <div class="col-md-12">                      
                         <div class="box-title">
                         	@php
-                            	$surveypos = !empty($posid)?$posid:1;
+                            	$surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
                                 $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
                                 $problems = App\Models\OptionProblem::with('option')->get();
                                 $voterstatuses = App\Models\VoterStatus::all();
