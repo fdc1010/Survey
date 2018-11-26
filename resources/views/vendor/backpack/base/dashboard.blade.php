@@ -200,16 +200,16 @@
                                 </thead>
                                 <tbody>
                                @php
-                                	$votesg = array();                                    
+                                	$votesp = array();                                    
                                 @endphp
                                 @foreach($barangays as $barangay)                          	
                                 	<tr>
                                     	<td>{{ $barangay->name }}</td>
                                         @foreach($problems as $problem)
                                         @php
-                                            $votesg[$candidate->id][$problem->option->id]=rand(1,100);
+                                            $votesp[$candidate->id][$problem->option->id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesg[$candidate->id][$problem->option->id] }}</td>
+                                        <td>{{ $votesp[$candidate->id][$problem->option->id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
