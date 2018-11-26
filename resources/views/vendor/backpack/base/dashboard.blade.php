@@ -164,16 +164,21 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @php
+                                        	$agebracket = App\Models\AgeBracket::all();
                                         	$genders = App\Models\Gender::all();
                                         @endphp
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
+                                        @foreach($agebracket as $age)
+                                        <th>{{ $age->title }}</th>
+                                        @endforeach
                                     </tr>                                    
                                 </thead>
                                 <tbody>
                                @php
-                                	$tallyg = array();                                    
+                                	$tallyg = array();
+                                    $tallyage = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)                                	
                                 	<tr>
@@ -183,6 +188,12 @@
                                             $tallyg[$candidate->id][$gender->id]=rand(1,100);
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
+                                        @endforeach
+                                        @foreach($agebracket as $age)
+                                        @php
+                                            $tallyage[$candidate->id][$age->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyage[$candidate->id][$age->id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
