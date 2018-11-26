@@ -32,7 +32,7 @@
                                         <th>Votes</th>
                                     </tr>                                    
                                 </thead>
-                                <tbody>
+                                <tbody id="tblvotes">
                                 @php
                                 	$barangays = App\Models\Barangay::all();
                                 
@@ -92,7 +92,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody>
+                                <tbody id="tblqualities">
                                @php
                                 	$tallyq = array();
                                 @endphp
@@ -146,7 +146,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody>
+                                <tbody id="tblgender">
                                @php
                                 	$tallyg = array();                                    
                                 @endphp
@@ -201,7 +201,7 @@
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody>
+                                <tbody id="tblproblem">
                                	@php
                                 	$tallyp = array();                                    
                                 @endphp
@@ -266,7 +266,23 @@
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
-	var brgy = [];
+$(document).ready(function ($) {
+	$('#tblvotes').slimScroll({
+		height: $(document).height()-120,
+		opacity: 0.5
+	});
+	$('#tblqualities').slimScroll({
+		height: $(document).height()-120,
+		opacity: 0.5
+	});
+	$('#tblgender').slimScroll({
+		height: $(document).height()-120,
+		opacity: 0.5
+	});
+	$('#tblproblem').slimScroll({
+		height: $(document).height()-120,
+		opacity: 0.5
+	});	
 	@php
 		//$barangays = App\Models\Barangay::all();
 		$i=0;	
@@ -452,5 +468,7 @@
 		}
       });
 	@endforeach
+
+});
     </script>
 @endsection
