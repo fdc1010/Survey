@@ -330,7 +330,12 @@
                 </div>
 
                 <div class="box-body">
-                	<div id="chart_{{ $barangay->id }}"></div>
+                	<div class="col-md-12">
+                    	<div id="chart_candidates_{{ $barangay->id }}"></div>
+                    </div>
+                	<div class="col-md-12">
+                    	<div id="chart_{{ $barangay->id }}"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -603,6 +608,43 @@ $(document).ready(function ($) {
 			@endforeach
 				],
           ],
+          type: 'bar',		  
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        },
+		legend: {
+			show: false
+		}
+      });
+	  var chart_candidates_{{ $barangay->id }} = c3.generate({
+		bindto: '#chart_candidates_{{ $barangay->id }}',
+        data: {
+          x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			['Votes',
+            @foreach($candidates as $candidate)
+				{{ $tally[$candidate->id] }},
+			@endforeach
+			]
+          ],
+		  labels: true,
           type: 'bar',		  
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
