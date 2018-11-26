@@ -31,7 +31,7 @@ class BarangaySurveyable extends Model
     }
 	public function barangays()
     {
-        return $this->hasMany('App\Models\BarangaySurvey');
+        return $this->hasMany('App\Models\Barangay');
     }
     /*
     |--------------------------------------------------------------------------
