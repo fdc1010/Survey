@@ -14,6 +14,18 @@
 
 
 @section('content')
+	<div class="row">
+    	<div class="col-md-12">
+        	<select id="selposition">
+            	@php
+                	$positions = App\Models\PositionCandidate::all();                    
+                @endphp
+                @foreach($positions as $position)
+                	<option value="{{ $position->id }}">{{ $position->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
