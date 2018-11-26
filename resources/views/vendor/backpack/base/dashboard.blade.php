@@ -64,10 +64,17 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
+                                        <select id="selprob" name="selprob[]" multiple="multiple">                                  
+                                            @foreach($problems as $problem)
+                                                <option value="{{ $problem->id }}">{{ $problem->option->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-12">
                                         <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                             <span class="fa fa-search"></span> View
                                         </a>
-                                    </div>
                                 </div>
                             </form>
                          </div>
