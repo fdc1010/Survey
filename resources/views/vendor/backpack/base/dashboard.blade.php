@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblvotes" style="height:320px;">
-                      		<table class="table table-striped table-hover responsive" cellspacing="0">
+                      <div id="tblvotes">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Cadidate</th>
@@ -75,8 +75,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblqualities" style="height:320px;">
-                      		<table class="table table-striped table-hover responsive" cellspacing="0">
+                      <div id="tblqualities">
+                      		<table class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -133,8 +133,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" style="height:320px;">
-                      		<table class="table table-striped table-hover responsive" cellspacing="0">
+                      <div id="tblgender">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -187,8 +187,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblproblem" style="height:320px;">
-                      		<table class="table table-striped table-hover responsive" cellspacing="0">
+                      <div id="tblproblem">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Barangays</th>
@@ -271,25 +271,25 @@ $(document).ready(function ($) {
 	$('#tblvotes').slimScroll({
 		height: '320px',
 		opacity: 0.5,
-		width: 300,
+		width: '100%',
     	axis: 'both'
 	});
 	$('#tblqualities').slimScroll({
 		height: '320px',
 		opacity: 0.5,
-		width: 300,
+		width: '100%',
     	axis: 'both'
 	});
 	$('#tblgender').slimScroll({
 		height: '320px',
 		opacity: 0.5,
-		width: 300,
+		width: '100%',
     	axis: 'both'
 	});
 	$('#tblproblem').slimScroll({
 		height: '320px',
 		opacity: 0.5,
-		width: 300,
+		width: '100%',
     	axis: 'both'
 	});	
 	@php
