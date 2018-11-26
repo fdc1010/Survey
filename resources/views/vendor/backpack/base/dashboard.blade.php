@@ -630,10 +630,7 @@ $(document).ready(function ($) {
             ratio: 0.3,
 //            max: 30
           },
-        },
-		legend: {
-			show: false
-		}
+        }
       });
 	  var chart_{{ $barangay->id }} = c3.generate({
 		bindto: '#chart_{{ $barangay->id }}',
