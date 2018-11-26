@@ -57,7 +57,7 @@
                                 </div>
                             </form>
                             @php 
-                            	!empty($request)?print_r($request):"";
+                            	print_r($request);
                             @endphp
                          </div>
                     </div>
