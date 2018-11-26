@@ -34,6 +34,8 @@
                                 </thead>
                                 <tbody>
                                 @php
+                                	$barangays = App\Models\Barangay::all();
+                                
                                 	$surveypos = !empty($posid)?$posid:1;
                                 	$votes = array();
                                     $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
@@ -80,7 +82,7 @@
                                     	<th>Candidates</th>
                                         @php
                                         	
-                                            $barangays = App\Models\Barangay::all();
+                                            
                                             
                                         	$qualities = App\Models\OptionPosition::with('options','positions')
                                             									->where('position_id',$surveypos)->get();
@@ -257,7 +259,7 @@
     <script>
 	var brgy = [];
 	@php
-		$barangays = App\Models\Barangay::all();
+		//$barangays = App\Models\Barangay::all();
 		$i=0;	
 	@endphp	
 	var chart = c3.generate({
@@ -301,8 +303,8 @@
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($barangays as $barangay)
-				'{{ $barangay->full_name }}',
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
 			@endforeach
 			],
 			@foreach($qualities as $quality)
