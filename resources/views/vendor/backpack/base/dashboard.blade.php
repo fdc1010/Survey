@@ -207,9 +207,9 @@
                                     	<td>{{ $barangay->name }}</td>
                                         @foreach($problems as $problem)
                                         @php
-                                            $votesp[$candidate->id][$problem->option->id]=rand(1,100);
+                                            $votesp[$barangay->id][$problem->option_id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesp[$candidate->id][$problem->option->id] }}</td>
+                                        <td>{{ $votesp[$barangay->id][$problem->option_id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -227,7 +227,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartbrgy"></div></div>
+                <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>         	
         @foreach($barangays as $barangay)
@@ -294,13 +294,49 @@
         }
       });
 	var chartqualities = c3.generate({
+		bindto: '#chartproblem',				
+        data: {
+		  x: 'Barangays',
+		  columns: [
+		  	['Barangays', 
+			@foreach($barangays as $barangay)
+				'{{ $barangay->name }}',
+			@endforeach
+			],
+			@foreach($problems as $problem)
+				['{{ $problem->options->option }}',
+				@foreach($barangays as $barangay)
+					{{ $votesp[$barangay->id][$problem->option_id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($barangays as $barangay)
+				'{{ $barangay->full_name }}',
 			@endforeach
 			],
 			@foreach($qualities as $quality)
