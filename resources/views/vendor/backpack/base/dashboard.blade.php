@@ -294,42 +294,7 @@
           },
         }
       });
-	var chartqualities = c3.generate({
-		bindto: '#chartproblem',				
-        data: {
-		  x: 'Barangays',
-		  columns: [
-		  	['Barangays', 
-			@foreach($brgysurveys as $brgysurvey)
-				'{{ $brgysurvey->barangay->name }}',
-			@endforeach
-			],
-			@foreach($problems as $problem)
-				['{{ $problem->option->option }}',
-				@foreach($brgysurveys as $brgysurvey)
-					{{ $votesp[$brgysurvey->id][$problem->option_id] }},
-				@endforeach
-				],
-			@endforeach
-          ],
-		  labels: true,
-          type: 'bar',
-          onclick: function (d, element) { console.log("onclick", d, element); },
-          onmouseover: function (d) { console.log("onmouseover", d); },
-          onmouseout: function (d) { console.log("onmouseout", d); }
-        },
-        axis: {
-          x: {
-            type: 'categorized'
-          }
-        },
-        bar: {
-          width: {
-            ratio: 0.3,
-//            max: 30
-          },
-        }
-      });
+	
 	var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -380,6 +345,42 @@
 				['{{ $gender->name }}',
 				@foreach($candidates as $candidate)
 					{{ $votesg[$candidate->id][$gender->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartproblem = c3.generate({
+		bindto: '#chartproblem',				
+        data: {
+		  x: 'Barangays',
+		  columns: [
+		  	['Barangays', 
+			@foreach($brgysurveys as $brgysurvey)
+				'{{ $brgysurvey->barangay->name }}',
+			@endforeach
+			],
+			@foreach($problems as $problem)
+				['{{ $problem->option->option }}',
+				@foreach($brgysurveys as $brgysurvey)
+					{{ $votesp[$brgysurvey->id][$problem->option_id] }},
 				@endforeach
 				],
 			@endforeach
