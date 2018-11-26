@@ -348,9 +348,9 @@
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
 @endsection
-@section('chartsjs')	
-	<script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
+@section('chartsjs')		
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
     <!--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>-->
 	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
