@@ -37,16 +37,16 @@
                                 	$barangays = App\Models\Barangay::all();
                                 
                                 	$surveypos = !empty($posid)?$posid:1;
-                                	$votes = array();
+                                	$tally = array();
                                     $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
-                                    	$votes[$candidate->id]=rand(1,100);
+                                    	$tally[$candidate->id]=rand(1,100);
                                     @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
-                                        <td>{{ $votes[$candidate->id] }}</td>
+                                        <td>{{ $tally[$candidate->id] }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -94,16 +94,16 @@
                                 </thead>
                                 <tbody>
                                @php
-                                	$votesq = array();
+                                	$tallyq = array();
                                 @endphp
                                 @foreach($candidates as $candidate)                                	
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($qualities as $quality)
                                         @php
-                                            $votesq[$candidate->id][$quality->option_id]=rand(1,100);
+                                            $tallyq[$candidate->id][$quality->option_id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesq[$candidate->id][$quality->option_id] }}</td>
+                                        <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -148,16 +148,16 @@
                                 </thead>
                                 <tbody>
                                @php
-                                	$votesg = array();                                    
+                                	$tallyg = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)                                	
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
                                         @php
-                                            $votesg[$candidate->id][$gender->id]=rand(1,100);
+                                            $tallyg[$candidate->id][$gender->id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesg[$candidate->id][$gender->id] }}</td>
+                                        <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -202,17 +202,17 @@
                                     </tr>                                    
                                 </thead>
                                 <tbody>
-                               @php
-                                	$votesp = array();                                    
+                               	@php
+                                	$tallyp = array();                                    
                                 @endphp
                                 @foreach($brgysurveys as $brgysurvey)                          	
                                 	<tr>
                                     	<td>{{ $brgysurvey->barangay->name }}</td>
                                         @foreach($problems as $problem)
                                         @php
-                                            $votesp[$brgysurvey->id][$problem->option_id]=rand(1,100);
+                                            $tallyp[$brgysurvey->id][$problem->option_id]=rand(1,100);
                                         @endphp
-                                        <td>{{ $votesp[$brgysurvey->id][$problem->option_id] }}</td>
+                                        <td>{{ $tallyp[$brgysurvey->id][$problem->option_id] }}</td>
                                         @endforeach
                                     </tr>
                                 @endforeach
@@ -232,8 +232,16 @@
 
                 <div class="box-body"><div id="chartproblem"></div></div>
             </div>
-        </div>         	
+        </div>
+        @php
+            $tallybrgy = array();                                    
+        @endphp
         @foreach($barangays as $barangay)
+        	@foreach($problems as $problem)
+            @php
+                $tallybrgy[$barangay->id][$problem->option_id]=rand(1,100);
+            @endphp
+            @endforeach
         <div class="col-md-4">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -274,7 +282,7 @@
 			],
 			['Votes',
             @foreach($candidates as $candidate)
-				{{ $votes[$candidate->id] }},
+				{{ $tally[$candidate->id] }},
 			@endforeach
 			]
           ],
@@ -310,7 +318,7 @@
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
 				@foreach($candidates as $candidate)
-					{{ $votesq[$candidate->id][$quality->option_id] }},
+					{{ $tallyq[$candidate->id][$quality->option_id] }},
 				@endforeach
 				],
 			@endforeach
@@ -346,7 +354,7 @@
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($candidates as $candidate)
-					{{ $votesg[$candidate->id][$gender->id] }},
+					{{ $tallyg[$candidate->id][$gender->id] }},
 				@endforeach
 				],
 			@endforeach
@@ -382,7 +390,7 @@
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
 				@foreach($brgysurveys as $brgysurvey)
-					{{ $votesp[$brgysurvey->id][$problem->option_id] }},
+					{{ $tallyp[$brgysurvey->id][$problem->option_id] }},
 				@endforeach
 				],
 			@endforeach
@@ -409,11 +417,19 @@
       var chart_{{ $barangay->id }} = c3.generate({
 		bindto: '#chart_{{ $barangay->id }}',
         data: {
-          columns: [
-            ['data1', 1030, 1200, 1100, 1400, 1150, 1250],
-            ['data2', 2130, 2100, 2140, 2200, 2150, 1850]
-//           ['data1', 30, 200, 100, 400, 150, 250],
-//           ['data2', 130, 100, 140, 200, 150, 50]
+          x: 'Problema',
+		  columns: [
+		  	['Problema', 
+			@foreach($problems as $problem)
+				'{{ $problem->option->option }}',
+			@endforeach
+			],
+			['Problema',
+			@foreach($problems as $problem)				
+				{{ $tallybrgy[$barangay->id][$problem->option_id] }},
+			@endforeach
+				],
+			@endforeach
           ],
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
