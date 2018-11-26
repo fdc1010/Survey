@@ -20,14 +20,17 @@
             	<div class="box-header with-border">
                     <div class="col-md-12">                      
                         <div class="box-title">
-                            <select id="selposition">
-                                @php
-                                    $positions = App\Models\PositionCandidate::all();                    
-                                @endphp
-                                @foreach($positions as $position)
-                                    <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                @endforeach
-                            </select>
+                        	<form method="post">
+                                <select id="selposition">
+                                    @php
+                                        $positions = App\Models\PositionCandidate::all();                    
+                                    @endphp
+                                    @foreach($positions as $position)
+                                        <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="submit" class="btn btn-primary" />
+                            </form>
                          </div>
                     </div>
                 </div>
