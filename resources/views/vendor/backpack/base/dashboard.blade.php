@@ -57,7 +57,7 @@
                                 </div>
                             </form>
                             @php 
-                            	print_r($request->selvoterstatuses)
+                            	print_r($request);
                             @endphp
                          </div>
                     </div>
