@@ -43,9 +43,9 @@
                                             <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="submit" class="btn btn-primary">
+                                    <a class="btn btn-primary" onclick="this.submit();">
                                         <span class="fa fa-search"></span> View
-                                    </button>
+                                    </a>
                             </form>
                          </div>
                     </div>
