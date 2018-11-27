@@ -22,7 +22,19 @@
                       		<div class="box-title">Tabular Stats</div>
                     </div>
                 </div>
-
+                @php
+                	$surveypos = 1;
+                	$brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+                    $problems = App\Models\OptionProblem::with('option')->get();
+                    $voterstatuses = App\Models\VoterStatus::all();
+                    $selvoterstatuses = App\Models\VoterStatus::all();
+                    $genders = App\Models\Gender::all();
+                    $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+                    $barangays = App\Models\Barangay::all();
+                    $positions = App\Models\PositionCandidate::all(); 
+                    $qualities = App\Models\OptionPosition::with('options','positions')
+                                                                        ->where('position_id',$surveypos)->get();
+                @endphp
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
@@ -34,8 +46,6 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	$surveypos = 1;
-                                	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 	$tally = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)
@@ -71,8 +81,47 @@
                       		<div class="box-title">Criteria</div>                	                        	
                     </div>
                 </div>
-
-                <div class="box-body">Options</div>
+                
+                <div class="box-body">
+                	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
+                        @csrf
+                        <div class="col-md-12">	
+                            <div class="col-md-3">	
+                                <select id="selposition" name="selposition">                                    
+                                        @foreach($positions as $position)
+                                            <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="selvoterstatuses" name="selvoterstatuses[]" multiple="multiple">                                  
+                                    @foreach($selvoterstatuses as $voterstatus)
+                                        <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
+                                    @foreach($barangays as $barangay)
+                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="selprob" name="selprob[]" multiple="multiple">                                  
+                                    @foreach($problems as $problem)
+                                        <option value="{{ $problem->id }}">{{ $problem->option->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>                                    
+                        </div>
+                        <div class="col-md-12">
+                                <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                    <span class="fa fa-search"></span> View
+                                </a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
