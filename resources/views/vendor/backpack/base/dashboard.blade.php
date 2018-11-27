@@ -589,16 +589,17 @@
 
                 <div class="box-body"><div id="chartemp"></div></div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <div class="col-md-12">                      
-                                <div class="box-title">Candidate Qualities</div>
-                        </div>
+        </div>     
+    </div>
+    <div class="row">
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Candidate Qualities</div>                	                        	
                     </div>
-    
+                </div>
+           
                     <div class="box-body">                	
                           <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                                 <table class="table table-striped table-hover display responsive" cellspacing="0">
