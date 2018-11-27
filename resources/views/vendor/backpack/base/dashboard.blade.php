@@ -30,7 +30,8 @@
         $positions = App\Models\PositionCandidate::all(); 
         $qualities = App\Models\OptionPosition::with('options','positions')
                                                             ->where('position_id',$surveypos)->get();
-   		echo $rdata->position;
+   		$seldata=json_decode($rdata);
+        var_dump($seldata);
     @endphp
     <div class="row">
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
