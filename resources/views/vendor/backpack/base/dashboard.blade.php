@@ -34,6 +34,8 @@
                                 </thead>
                                 <tbody>
                                 @php
+                                	$surveypos = 1;
+                                	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 	$tally = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)
