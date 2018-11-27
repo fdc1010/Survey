@@ -423,7 +423,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>
+                      		<div class="box-title">Candidate Qualities</div>
                     </div>
                 </div>
 
@@ -431,6 +431,11 @@
                       <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive" cellspacing="0">
             					<thead>
+                                	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        @foreach($qualities as $quality)
+                                        <th></th>
+                                        @endforeach
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -463,7 +468,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>                	                        	
+                      		<div class="box-title">Candidate Qualities</div>                	                        	
                     </div>
                 </div>
 
@@ -474,7 +479,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>
+                      		<div class="box-title">Concerns Per Barangay</div>
                     </div>
                 </div>
 
@@ -514,7 +519,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>                	                        	
+                      		<div class="box-title">Concerns Per Barangay</div>                	                        	
                     </div>
                 </div>
 
