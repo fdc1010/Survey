@@ -73,7 +73,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_agedetails"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Gender</option>
@@ -82,7 +82,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_gendetails"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Civil Status</option>
@@ -91,7 +91,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_civdetails"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Employment Status</option>
@@ -100,7 +100,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_empdetails"><span class="fa fa-plus"> </span></a></th>
                             </tr>                                    
                         </thead>
                     </table>
@@ -216,6 +216,102 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12" id="agedetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Age Brackets</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        @foreach($agebrackets as $agebracket)
+                                <div class="col-md-4">
+                                    <label class="control-label">
+                                        <input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />
+                                        {{ $agebracket->title }}
+                                    </label>
+                                </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="gendetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Gender</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        @foreach($genders as $gender)
+                                <div class="col-md-4">
+                                    <label class="control-label">
+                                        <input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" />
+                                        {{ $gender->name }}
+                                    </label>
+                                </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="civdetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Civil Status</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        @foreach($civilstatuses as $civilstatus)
+                                <div class="col-md-4">
+                                    <label class="control-label">
+                                        <input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" />
+                                        {{ $civilstatus->name }}
+                                    </label>
+                                </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="btn_empdetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Employment Status</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        @foreach($empstatuses as $empstatus)
+                                <div class="col-md-4">
+                                    <label class="control-label">
+                                        <input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" />
+                                        {{ $empstatus->name }}
+                                    </label>
+                                </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -298,6 +394,10 @@ $(document).ready(function ($) {
 	$('#brgydetails').hide('slow');
 	$('#posdetails').hide('slow');
 	$('#candetails').hide('slow');
+	$('#agedetails').hide('slow');
+	$('#gendetails').hide('slow');
+	$('#civdetails').hide('slow');
+	$('#empdetails').hide('slow');
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
 	});
@@ -306,6 +406,18 @@ $(document).ready(function ($) {
 	});
 	$('#btn_candetails').on('click',function(e){
 		$('#candetails').toggle('slow');
+	});
+	$('#btn_agedetails').on('click',function(e){
+		$('#agedetails').toggle('slow');
+	});
+	$('#btn_gendetails').on('click',function(e){
+		$('#gendetails').toggle('slow');
+	});
+	$('#btn_civdetails').on('click',function(e){
+		$('#civdetails').toggle('slow');
+	});
+	$('#btn_empdetails').on('click',function(e){
+		$('#empdetails').toggle('slow');
 	});
 	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
