@@ -86,7 +86,7 @@
                                 <th><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td>
                                 	<select>
-                                    	<option>Civil Status</option>
+                                    	<option>Civil</option>
                                     @foreach($civilstatuses as $civilstatus)	
                                     	<option value="{{ $civilstatus->id }}">{{ $civilstatus->name }}</option>
                                     @endforeach
@@ -95,7 +95,7 @@
                                 <th><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td>
                                 	<select>
-                                    	<option>Employment Status</option>
+                                    	<option>Employment</option>
                                     @foreach($empstatuses as $empstatus)	
                                     	<option value="{{ $empstatus->id }}">{{ $empstatus->name }}</option>
                                     @endforeach
