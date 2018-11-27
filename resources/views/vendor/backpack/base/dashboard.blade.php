@@ -45,8 +45,8 @@
                     	<thead>
                             <tr>
                                 <th width="5%">Barangays:</th>
-                                <td width="5%"><span id="countbrgy">{{ count($barangays) }}</span></td>
-                                <th width="5%"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
+                                <td width="5%" align="center"><span id="countbrgy">{{ count($barangays) }}</span></td>
+                                <th width="5%" align="center"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th width="5%">Run for:</th>
                                 <td width="5%">
                                 	<select>
@@ -55,7 +55,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <th width="5%">Candidate:</th>
                                 <td width="5%">
                                 	<select>
@@ -64,7 +64,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th width="5%">Demographics:</th>
                                 <td width="5%">
                                 	<select>
@@ -74,7 +74,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td width="5%">
                                 	<select>
                                     	<option>Gender</option>
