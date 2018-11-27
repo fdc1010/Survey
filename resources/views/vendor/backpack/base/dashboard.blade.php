@@ -199,7 +199,10 @@
                         @foreach($positions as $position)
                         	<span>{{ $position->name }}</span>
                         	<div class="col-md-12">
-                            @foreach($candidates as $candidate)
+                            @php
+                            	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
+                            @endphp
+                            @foreach($poscandidates as $candidate)
                                     <div class="col-md-4">
                                         <label class="control-label">
                                             <input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
