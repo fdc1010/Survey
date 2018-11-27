@@ -108,7 +108,7 @@
                         <div class="form-group">
                         	<label class="col-lg-2 control-label">Barangays:</label>
                             <div class="col-lg-4">
-                            	<select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
+                            	<select id="selbrgy" name="selbrgy[]" multiple="multiple" class="form-control">                                  
                                     @foreach($barangays as $barangay)
                                         <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
@@ -118,7 +118,7 @@
                         <div class="form-group">
                         	<label class="col-lg-2 control-label">Problems:</label>
                             <div class="col-lg-4">
-                            	<select id="selprob" name="selprob[]" multiple="multiple">                                  
+                            	<select id="selprob" name="selprob[]" multiple="multiple" class="form-control">                                  
                                     @foreach($barangays as $barangay)
                                         <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
