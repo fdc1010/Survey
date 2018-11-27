@@ -48,10 +48,13 @@ class StatsController extends Controller
     {
 		
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-		dd($request);
-		$vstatus =$request->selvoterstatuses;
-		$cpos = $request->selposition;
-        return view('backpack::dashboard', [$this->data,'vstatus'=>$vstatus,'cpos'=>$cpos]);
+		$this->data['selposition'] = $request->selposition;
+		$this->data['selcandidate'] = $request->selcandidate;
+		$this->data['selagebracket'] = $request->selagebracket;
+		$this->data['selgender'] = $request->selgender;
+		$this->data['selcivil'] = $request->selcivil;
+		$this->data['selemployment'] = $request->selemp;
+        return view('backpack::dashboard', $this->data);
     }
     public function store(Request $request)
     {

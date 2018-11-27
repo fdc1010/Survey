@@ -30,6 +30,7 @@
         $positions = App\Models\PositionCandidate::all(); 
         $qualities = App\Models\OptionPosition::with('options','positions')
                                                             ->where('position_id',$surveypos)->get();
+   		print_r($data);
     @endphp
     <div class="row">
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
@@ -40,7 +41,7 @@
                       		<div class="box-title">Criteria</div>                	                        	
                     </div>
                 </div>
-
+				
                 <div class="box-body">
                 	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap">
                     	<thead>
