@@ -16,7 +16,8 @@
 @section('content')
 	@php
         $surveypos = 1;
-        $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+        $brgyarr = array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
+        $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $problems = App\Models\OptionProblem::with('option')->get();
         $voterstatuses = App\Models\VoterStatus::all();
         $selvoterstatuses = App\Models\VoterStatus::all();
@@ -492,7 +493,7 @@
                                	@php
                                 	$tallyp = array();                                    
                                 @endphp
-                                @foreach($barangays as $barangay)
+                                @foreach($brgysurveys as $barangay)
                                 	<tr>
                                     	<td>{{ $barangay->name }}</td>
                                         @foreach($problems as $problem)
@@ -777,14 +778,14 @@ $(document).ready(function ($) {
 		  x: 'Barangays',
 		  columns: [
 		  	['Barangays', 
-			@foreach($brgysurveys as $brgysurvey)
-				'{{ $brgysurvey->barangay->name }}',
+			@foreach($brgysurveys as $barangay)
+				'{{ $barangay->name }}',
 			@endforeach
 			],
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
-				@foreach($brgysurveys as $brgysurvey)
-					{{ $tallyp[$brgysurvey->id][$problem->option_id] }},
+				@foreach($brgysurveys as $barangay)
+					{{ $tallyp[$barangay->id][$problem->option_id] }},
 				@endforeach
 				],
 			@endforeach
