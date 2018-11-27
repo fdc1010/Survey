@@ -54,7 +54,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_posdetails"><span class="fa fa-plus"> </span></a></th>
                                 <th>Candidate:</th>
                                 <td>
                                 	<select>
@@ -63,7 +63,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_candetails"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>
                                 	<select>
@@ -185,6 +185,35 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12" id="candetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Candidates</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        @foreach($positions as $position)
+                        	<span>{{ $position->name }}</span>
+                        	<div class="col-md-12">
+                            @foreach($candidates as $candidate)
+                                    <div class="col-md-4">
+                                        <label class="control-label">
+                                            <input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
+                                            {{ $candidate->name }}
+                                        </label>
+                                    </div>
+                            @endforeach
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -265,8 +294,16 @@ $(document).ready(function ($) {
 		theme: "bootstrap"
 	});*/
 	$('#brgydetails').hide('slow');
+	$('#posdetails').hide('slow');
+	$('#candetails').hide('slow');
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
+	});
+	$('#btn_posdetails').on('click',function(e){
+		$('#posdetails').toggle('slow');
+	});
+	$('#btn_candetails').on('click',function(e){
+		$('#candetails').toggle('slow');
 	});
 	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
