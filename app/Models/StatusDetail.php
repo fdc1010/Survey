@@ -19,7 +19,7 @@ class StatusDetail extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['status_id','voter_id'];
+    protected $fillable = ['status_id','voter_id','extras'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
