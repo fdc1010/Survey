@@ -21,15 +21,21 @@
                     <div class="col-md-12">                      
                         <div class="box-title">
                         	@php
-                            	$surveypos = 1;
+                            	$surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
                                 $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
                                 $problems = App\Models\OptionProblem::with('option')->get();
-                                $voterstatuses = App\Models\VoterStatus::all();
+                                if(!empty($vstatus))
+                                	$voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
+                                else
+                                	$voterstatuses = App\Models\VoterStatus::all();
                                 $selvoterstatuses = App\Models\VoterStatus::all();
                                 $genders = App\Models\Gender::all();
                                 $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
                                 $barangays = App\Models\Barangay::all();
-                                $positions = App\Models\PositionCandidate::all(); 
+                                if(!empty($cpos))	
+                                    $positions = App\Models\PositionCandidate::where('id',$cpos)->get();
+                                else
+                                	$positions = App\Models\PositionCandidate::all(); 
                                 $qualities = App\Models\OptionPosition::with('options','positions')
                                                                         ->where('position_id',$surveypos)->get();                  
                             @endphp
