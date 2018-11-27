@@ -34,8 +34,8 @@ class StatusDetailCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['status_id','voter_id']);
-		$this->crud->removeField(['status_id','voter_id']);
+		$this->crud->removeColumn(['status_id','voter_id','extras']);
+		$this->crud->removeField(['status_id','voter_id','extras']);
 		$this->crud->addColumn([
             'name' => 'voter_id',
             'type' => 'select',
