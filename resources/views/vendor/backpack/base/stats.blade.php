@@ -14,75 +14,25 @@
 
 
 @section('content')
-	<div class="row">
-    	<div class="col-md-12">
-        	<div class="box box-default">
-            	<div class="box-header with-border">
-                    <div class="col-md-12">                      
-                        <div class="box-title">
-                        	@php
-                            	$surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
-                                $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
-                                $problems = App\Models\OptionProblem::with('option')->get();
-                                if(!empty($vstatus))
-                                	$voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
-                                else
-                                	$voterstatuses = App\Models\VoterStatus::all();
-                                $selvoterstatuses = App\Models\VoterStatus::all();
-                                $genders = App\Models\Gender::all();
-                                $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
-                                $barangays = App\Models\Barangay::all();
-                                if(!empty($cpos))	
-                                    $positions = App\Models\PositionCandidate::where('id',$cpos)->get();
-                                else
-                                	$positions = App\Models\PositionCandidate::all(); 
-                                $qualities = App\Models\OptionPosition::with('options','positions')
-                                                                        ->where('position_id',$surveypos)->get();                  
-                            @endphp
-                        	<form method="post" id="my_form" action="{{ backpack_url('postdashboard') }}">                    	
-                            	@csrf
-                            	<div class="col-md-12">	
-                                	<div class="col-md-3">	
-                                        <select id="selposition" name="selposition">                                    
-                                                @foreach($positions as $position)
-                                                    <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                                @endforeach
-                                            </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select id="selvoterstatuses" name="selvoterstatuses[]" multiple="multiple">                                  
-                                            @foreach($selvoterstatuses as $voterstatus)
-                                                <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
-                                            @foreach($barangays as $barangay)
-                                                <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select id="selprob" name="selprob[]" multiple="multiple">                                  
-                                            @foreach($problems as $problem)
-                                                <option value="{{ $problem->id }}">{{ $problem->option->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>                                    
-                                </div>
-                                <div class="col-md-12">
-                                        <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
-                                            <span class="fa fa-search"></span> View
-                                        </a>
-                                </div>
-                            </form>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	@php
+        $surveypos = !empty($_REQUEST['selposition'])?$_REQUEST['selposition']:1;
+        $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+        $problems = App\Models\OptionProblem::with('option')->get();
+        if(!empty($vstatus))
+            $voterstatuses = App\Models\VoterStatus::whereIn('id',$vstatus)->get();
+        else
+            $voterstatuses = App\Models\VoterStatus::all();
+        $selvoterstatuses = App\Models\VoterStatus::all();
+        $genders = App\Models\Gender::all();
+        $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        $barangays = App\Models\Barangay::all();
+        if(!empty($cpos))	
+            $positions = App\Models\PositionCandidate::where('id',$cpos)->get();
+        else
+            $positions = App\Models\PositionCandidate::all(); 
+        $qualities = App\Models\OptionPosition::with('options','positions')
+                                                ->where('position_id',$surveypos)->get();                  
+    @endphp
     <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
