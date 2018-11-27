@@ -380,6 +380,7 @@
                                         @foreach($genders as $gender)
                                         <th></th>
                                         @endforeach
+                                    </tr>
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($genders as $gender)
@@ -436,6 +437,7 @@
                                         @foreach($agebrackets as $agebracket)
                                         <th></th>
                                         @endforeach
+                                    </tr>
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($agebrackets as $agebracket)
@@ -492,7 +494,8 @@
                                         @foreach($civilstatuses as $civilstatus)
                                         <th></th>
                                         @endforeach
-                                	<tr>
+                                	</tr>
+                                    <tr>
                                     	<th>Candidates</th>
                                         @foreach($civilstatuses as $civilstatus)
                                         <th>{{ $civilstatus->name }}</th>
@@ -587,111 +590,116 @@
                 <div class="box-body"><div id="chartemp"></div></div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Candidate Qualities</div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <div class="col-md-12">                      
+                                <div class="box-title">Candidate Qualities</div>
+                        </div>
+                    </div>
+    
+                    <div class="box-body">                	
+                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                                <table class="table table-striped table-hover display responsive" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ $positions[0]->name }}</th>
+                                            @foreach($qualities as $quality)
+                                            <th></th>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <th>Candidates</th>
+                                            @foreach($qualities as $quality)
+                                            <th>{{ $quality->options->option }}</th>
+                                            @endforeach
+                                        </tr>                                    
+                                    </thead>
+                                    <tbody>
+                                   @php
+                                        $tallyq = array();
+                                    @endphp
+                                    @foreach($candidates as $candidate)                                	
+                                        <tr>
+                                            <td>{{ $candidate->voter->full_name }}</td>
+                                            @foreach($qualities as $quality)
+                                            @php
+                                                $tallyq[$candidate->id][$quality->option_id]=rand(1,100);
+                                            @endphp
+                                            <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                          </div>
                     </div>
                 </div>
-
-                <div class="box-body">                	
-                      <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive" cellspacing="0">
-            					<thead>
-                                	<tr>
-                                    	<th>{{ $positions[0]->name }}</th>
-                                        @foreach($qualities as $quality)
-                                        <th></th>
-                                        @endforeach
-                                	<tr>
-                                    	<th>Candidates</th>
-                                        @foreach($qualities as $quality)
-                                        <th>{{ $quality->options->option }}</th>
-                                        @endforeach
-                                    </tr>                                    
-                                </thead>
-                                <tbody>
-                               @php
-                                	$tallyq = array();
-                                @endphp
-                                @foreach($candidates as $candidate)                                	
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        @foreach($qualities as $quality)
-                                        @php
-                                            $tallyq[$candidate->id][$quality->option_id]=rand(1,100);
-                                        @endphp
-                                        <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
-                                        @endforeach
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                      </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <div class="col-md-12">                      
+                                <div class="box-title">Candidate Qualities</div>                	                        	
+                        </div>
+                    </div>
+    
+                    <div class="box-body"><div id="chartqualities"></div></div>
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Candidate Qualities</div>                	                        	
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <div class="col-md-12">                      
+                                <div class="box-title">Concerns Per Barangay</div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="box-body"><div id="chartqualities"></div></div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Concerns Per Barangay</div>
+    
+                    <div class="box-body">                	
+                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Barangays</th>
+                                            @foreach($problems as $problem)
+                                            <th>{{ $problem->option->option }}</th>
+                                            @endforeach
+                                        </tr>                                    
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $tallyp = array();                                    
+                                    @endphp
+                                    @foreach($brgysurveys as $barangay)
+                                        <tr>
+                                            <td>{{ $barangay->name }}</td>
+                                            @foreach($problems as $problem)
+                                            @php
+                                                $tallyp[$barangay->id][$problem->option_id]=rand(1,100);
+                                            @endphp
+                                            <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                          </div>
                     </div>
-                </div>
-
-                <div class="box-body">                	
-                      <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                	<tr>
-                                    	<th>Barangays</th>
-                                        @foreach($problems as $problem)
-                                        <th>{{ $problem->option->option }}</th>
-                                        @endforeach
-                                    </tr>                                    
-                                </thead>
-                                <tbody>
-                               	@php
-                                	$tallyp = array();                                    
-                                @endphp
-                                @foreach($brgysurveys as $barangay)
-                                	<tr>
-                                    	<td>{{ $barangay->name }}</td>
-                                        @foreach($problems as $problem)
-                                        @php
-                                            $tallyp[$barangay->id][$problem->option_id]=rand(1,100);
-                                        @endphp
-                                        <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
-                                        @endforeach
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                      </div>
                 </div>
             </div>
-        </div>
-    	<div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Concerns Per Barangay</div>                	                        	
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <div class="col-md-12">                      
+                                <div class="box-title">Concerns Per Barangay</div>                	                        	
+                        </div>
                     </div>
+    
+                    <div class="box-body"><div id="chartproblem"></div></div>
                 </div>
-
-                <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
     </div>
