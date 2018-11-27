@@ -196,9 +196,8 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($positions as $position)
-                        	<span>{{ $position->name }}</span>
-                        	<div class="col-md-12">
+                        @foreach($positions as $position)                        	
+                        	<div class="col-md-12"><span>{{ $position->name }}</span>
                             @php
                             	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
                             @endphp
