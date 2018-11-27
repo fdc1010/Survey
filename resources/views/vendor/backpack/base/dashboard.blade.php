@@ -164,7 +164,16 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('select').select2({
+	$('#selposition').select2({
+		theme: "bootstrap"
+	});
+	$('#selvoterstatuses').select2({
+		theme: "bootstrap"
+	});
+	$('#selbrgy').select2({
+		theme: "bootstrap"
+	});
+	$('#selprob').select2({
 		theme: "bootstrap"
 	});
 	$("#tblvotes").mCustomScrollbar({
