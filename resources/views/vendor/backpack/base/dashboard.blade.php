@@ -23,7 +23,25 @@
                     </div>
                 </div>
 
-                <div class="box-body">Options</div>
+                <div class="box-body">
+                	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                    	<thead>
+                            <tr>
+                                <th>Total Barangays:</th>
+                                <th>84</th>
+                                <th>Run for:</th>
+                                <th>Mayor</th>
+                                <th>Candidate:</th>
+                                <th>Ed Labs</th>
+                                <th>Demographics:</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Civil Status</th>
+                                <th>Employment Status</th>
+                            </tr>                                    
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     	<div class="col-md-6">
