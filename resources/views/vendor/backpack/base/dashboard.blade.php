@@ -27,12 +27,15 @@
                 	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                     	<thead>
                             <tr>
-                                <th>Total Barangays:</th>
+                                <th>Barangays:</th>
                                 <td>84</td>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Run for:</th>
                                 <td>Mayor</td>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Candidate:</th>
                                 <td>Ed Labs</td>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
                                 <td>Gender</td>
