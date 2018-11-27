@@ -64,7 +64,14 @@
                                 </td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
-                                <td>Age</td>
+                                <td>
+                                	<select>
+                                    	<option>Age</option>
+                                    @foreach($agebrackets as $agebracket)	
+                                    	<option value="{{ $agebracket->id }}">{{ $agebracket->title }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
                                 <td><input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/></td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <td>
