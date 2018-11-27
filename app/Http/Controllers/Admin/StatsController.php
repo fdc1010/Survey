@@ -46,14 +46,15 @@ class StatsController extends Controller
 	
 	public function stats(Request $request)
     {
-		
+		$rdata = array();
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-		$this->data['selposition'] = $request->selposition;
-		$this->data['selcandidate'] = $request->selcandidate;
-		$this->data['selagebracket'] = $request->selagebracket;
-		$this->data['selgender'] = $request->selgender;
-		$this->data['selcivil'] = $request->selcivil;
-		$this->data['selemployment'] = $request->selemp;
+		$rdata['position'] = $request->selposition;
+		$rdata['candidate'] = $request->selcandidate;
+		$rdata['agebracket'] = $request->selagebracket;
+		$rdata['gender'] = $request->selgender;
+		$rdata['civil'] = $request->selcivil;
+		$rdata['employment'] = $request->selemp;
+		$this->data['rdata'] = $rdata;
         return view('backpack::dashboard', $this->data);
     }
     public function store(Request $request)
