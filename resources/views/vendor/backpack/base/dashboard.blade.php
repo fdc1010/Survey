@@ -418,6 +418,57 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($qualities as $quality)
+                                        <th>{{ $quality->options->option }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallyq = array();
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($qualities as $quality)
+                                        @php
+                                            $tallyq[$candidate->id][$quality->option_id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartqualities"></div></div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('chartcss')
@@ -611,6 +662,42 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyg[$candidate->id][$gender->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartqualities = c3.generate({
+		bindto: '#chartqualities',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($qualities as $quality)
+				['{{ $quality->options->option }}',
+				@foreach($candidates as $candidate)
+					{{ $tallyq[$candidate->id][$quality->option_id] }},
 				@endforeach
 				],
 			@endforeach
