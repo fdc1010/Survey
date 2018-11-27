@@ -175,7 +175,7 @@
                         @foreach($positions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" class="form-control" />
+                                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" />
                                         {{ $position->name }}
                                     </label>
                                 </div>
