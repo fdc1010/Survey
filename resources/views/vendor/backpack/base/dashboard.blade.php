@@ -43,7 +43,7 @@
                 <div class="box-body">
                 	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap" width="100%">
                     	<thead>
-                            <tr style="margin:5px; padding:5px;">
+                            <tr style="width: 100%;">
                                 <th>Barangays:</th>
                                 <td><span id="countbrgy">{{ count($barangays) }}</span></td>
                                 <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
