@@ -42,7 +42,7 @@
                             <tr>
                                 <th>Barangays:</th>
                                 <td>84</td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>Mayor</td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
@@ -192,7 +192,9 @@ $(document).ready(function ($) {
 		theme: "bootstrap"
 	});*/
 	$('#brgydetails').hide('slow');
-	
+	$('#btn_brgydetails').on('click',function(e){
+		$('#brgydetails').toggle('slow');
+	});
 	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
 		keepRenderingSort: true,
