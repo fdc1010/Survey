@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="box-body">
-                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap" style="width: 100%;">
+                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap" style="width: 500px;">
                     	<thead>
                             <tr>
                                 <th>Barangays:</th>
