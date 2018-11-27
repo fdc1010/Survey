@@ -15,6 +15,17 @@
 
 @section('content')
     <div class="row">
+    	<div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Criteria</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">Options</div>
+            </div>
+        </div>
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
