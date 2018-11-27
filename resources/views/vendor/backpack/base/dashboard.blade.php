@@ -312,7 +312,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
+    	<div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -347,7 +347,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
+    	<div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -356,6 +356,57 @@
                 </div>
 
                 <div class="box-body"><div id="chart"></div></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($genders as $gender)
+                                        <th>{{ $gender->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallyg = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($genders as $gender)
+                                        @php
+                                            $tallyg[$candidate->id][$gender->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
     </div>
@@ -485,6 +536,24 @@ $(document).ready(function ($) {
 		theme:"3d",
 		scrollbarPosition:"outside"
 	});
+	$("#tblqualities").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblgender").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblproblem").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
 	var chart = c3.generate({
 		bindto: '#chart',				
         data: {
@@ -500,6 +569,42 @@ $(document).ready(function ($) {
 				{{ $tally[$candidate->id] }},
 			@endforeach
 			]
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartgender = c3.generate({
+		bindto: '#chartgender',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($genders as $gender)
+				['{{ $gender->name }}',
+				@foreach($candidates as $candidate)
+					{{ $tallyg[$candidate->id][$gender->id] }},
+				@endforeach
+				],
+			@endforeach
           ],
 		  labels: true,
           type: 'bar',
