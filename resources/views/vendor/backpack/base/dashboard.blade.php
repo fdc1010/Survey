@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="posdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -175,7 +175,7 @@
                         @foreach($positions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" data-parsley-mincheck="2"  class="flat form-control pc" />
+                                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" class="form-control" />
                                         {{ $position->name }}
                                     </label>
                                 </div>
