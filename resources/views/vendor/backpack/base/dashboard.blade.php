@@ -206,7 +206,7 @@
                                     <div class="col-md-4">
                                         <label class="control-label">
                                             <input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
-                                            {{ $candidate->name }}
+                                            {{ $candidate->voter->full_name }}
                                         </label>
                                     </div>
                             @endforeach
