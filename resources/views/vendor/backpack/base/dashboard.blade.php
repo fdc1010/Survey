@@ -441,7 +441,7 @@
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($agebrackets as $agebracket)
-                                        <th>{{ $agebracket->name }}</th>
+                                        <th>{{ agebracket->title }}</th>
                                         @endforeach
                                     </tr>                                    
                                 </thead>
@@ -928,7 +928,7 @@ $(document).ready(function ($) {
 			@endforeach
 			],
 			@foreach($agebrackets as $agebracket)
-				['{{ $agebracket->name }}',
+				['{{ agebracket->title }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyab[$candidate->id][$agebracket->id] }},
 				@endforeach
