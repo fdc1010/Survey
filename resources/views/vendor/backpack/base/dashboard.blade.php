@@ -89,38 +89,12 @@
                         	<div class="col-lg-5">    
                                 <div class="form-group">  
                                     <div class="col-lg-12">                             	
-                                        {!! Form::label('usersbycc', 'Select Volunteer(s)', array('class' => 'col-lg-12 control-label', 'style'=>'text-align:center !important;')) !!}                                        
+										<label class="col-lg-12 control-label">Select(s)</label>                                     
                                     </div>
                                 </div>                                            
                                 <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
-                                    @foreach($commandcenters as $commandcenter)
-                                       <optgroup label="{{ $commandcenter->name }} Command Center ({{ count($commandcenter->user) }})">   
-                                          @foreach($commandcenter->user as $user)
-                                              <option value="{{ $user->id }}">{{ strtoupper($user->lastname) }}, {{ strtoupper($user->firstname) }} --- (
-                                                    @for($i=0; $i<count($user->roles); $i++)
-                                                        @if(!empty($user->roles[($i+1)]))
-                                                            {{ $user->roles[$i]->name }}, 
-                                                        @else
-                                                            {{ $user->roles[$i]->name }}
-                                                        @endif
-                                                    @endfor
-                                              )</option>
-                                          @endforeach
-                                       </optgroup>
-                                    @endforeach
-                                    <optgroup label="No Assigned Command Center! ({{ count($usersnoccs) }})">
-                                        @foreach($usersnoccs as $user)
-                                              <option value="{{ $user->id }}">{{ strtoupper($user->lastname) }}, {{ strtoupper($user->firstname) }} --- (
-                                              @for($i=0; $i<count($user->roles); $i++)
-                                                  @if(!empty($user->roles[($i+1)]))
-                                                      {{ $user->roles[$i]->name }}, 
-                                                  @else
-                                                      {{ $user->roles[$i]->name }}
-                                                  @endif
-                                              @endfor
-                                              )</option>
-                                        @endforeach
-                                    </optgroup>
+                                    <option>
+                                    </option>
                                 </select>                                        
                           </div>
                           
@@ -139,7 +113,7 @@
                           <div class="col-lg-5">
                                   <div class="form-group">
                                       <div class="col-lg-12">
-                                          {!! Form::label('users', 'Selected Volunteer(s)', array('class' => 'col-lg-12 control-label', 'style'=>'text-align:center !important;')) !!}
+                                          <label class="col-lg-12 control-label">Selected</label>
                                       </div>
                                   </div>
                               <select name="to[]" id="usersbycc_to" class="form-control" size="8" multiple="multiple"></select>
