@@ -53,7 +53,13 @@
                                 </td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Candidate:</th>
-                                <td>Ed Labs</td>
+                                <td>
+                                	<select>
+                                    @foreach($candidates as $candidate)	
+                                    	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
