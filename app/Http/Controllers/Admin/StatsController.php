@@ -46,7 +46,7 @@ class StatsController extends Controller
 	
 	public function stats(Request $request)
     {
-		$rdata = array();
+		$rdata = [];
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		$rdata['position'] = $request->selposition;
 		$rdata['candidate'] = $request->selcandidate;
