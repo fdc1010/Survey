@@ -288,7 +288,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id="btn_empdetails">
+        <div class="col-md-12" id="empdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
