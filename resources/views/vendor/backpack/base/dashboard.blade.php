@@ -48,7 +48,7 @@
                                 <td width="5%" align="center"><span id="countbrgy">{{ count($barangays) }}</span></td>
                                 <th width="5%" align="center"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th width="5%">Run for:</th>
-                                <td width="5%">
+                                <td width="5%" align="center">
                                 	<select>
                                     @foreach($positions as $position)	
                                     	<option value="{{ $position->id }}">{{ $position->name }}</option>
@@ -57,7 +57,7 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <th width="5%">Candidate:</th>
-                                <td width="5%">
+                                <td width="5%" align="center">
                                 	<select>
                                     @foreach($candidates as $candidate)	
                                     	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
@@ -66,7 +66,7 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th width="5%">Demographics:</th>
-                                <td width="5%">
+                                <td width="5%" align="center">
                                 	<select>
                                     	<option>Age</option>
                                     @foreach($agebrackets as $agebracket)	
@@ -75,7 +75,7 @@
                                 	</select>
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
-                                <td width="5%">
+                                <td width="5%" align="center">
                                 	<select>
                                     	<option>Gender</option>
                                     @foreach($genders as $gender)	
@@ -83,8 +83,8 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
-                                <td width="5%">
+                                <th width="5%" align="center"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
+                                <td width="5%" align="center">
                                 	<select>
                                     	<option>Civil</option>
                                     @foreach($civilstatuses as $civilstatus)	
@@ -92,8 +92,8 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
-                                <td width="5%">
+                                <th width="5%" align="center"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
+                                <td width="5%" align="center">
                                 	<select>
                                     	<option>Employment</option>
                                     @foreach($empstatuses as $empstatus)	
@@ -101,8 +101,8 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
-                                <th width="5%">
+                                <th width="5%" align="center"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
+                                <th width="5%" align="center">
                                     <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                         <span class="fa fa-search"></span> View
                                     </a>
