@@ -112,30 +112,30 @@
                              </div>
                         </div>
                         <div class="col-md-12">
-                        	<div class="col-md-6">
-                                	<div class="form-group">
-                                        <label class="col-md-4 control-label">Barangays:</label>
-                                        <div class="col-md-6">
-                                            <select id="selbrgy" name="selbrgy[]" multiple="multiple" class="form-control">                                  
-                                                @foreach($barangays as $barangay)
-                                                    <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                              </div>
-                              <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Problems:</label>
+                                    <label class="col-md-4 control-label">Barangays:</label>
                                     <div class="col-md-6">
-                                        <select id="selprob" name="selprob[]" multiple="multiple" class="form-control">                                  
+                                        <select id="selbrgy" name="selbrgy[]" multiple="multiple" class="form-control">                                  
                                             @foreach($barangays as $barangay)
                                                 <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                              </div>                          
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="col-md-4 control-label">Problems:</label>
+                                  <div class="col-md-6">
+                                      <select id="selprob" name="selprob[]" multiple="multiple" class="form-control">                                  
+                                          @foreach($barangays as $barangay)
+                                              <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                          @endforeach
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
                         </div>                        
                         <div class="col-md-12">
                                 <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
