@@ -161,6 +161,23 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Position</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	@foreach( $positions as $position)
+                            <div class="checkbox col-md-4">
+                                <label><input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}"   data-parsley-mincheck="2"  class="flat pc" />  {{ $position->name }}</label>
+                            </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
