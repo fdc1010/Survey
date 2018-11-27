@@ -23,6 +23,7 @@
         $genders = App\Models\Gender::all();
         $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         $barangays = App\Models\Barangay::all();
+        $agebrackets = App\Models\AgeBracket::all();
         $civilstatuses = App\Models\CivilStatus::all();
         $empstatuses = App\Models\EmploymentStatus::all();
         $positions = App\Models\PositionCandidate::all(); 
