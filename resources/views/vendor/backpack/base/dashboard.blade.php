@@ -141,13 +141,14 @@
 @section('chartsjs')		
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/multiselect.js') }}"></script>
     <!--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>-->
 	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('#selposition').select2({
+	/*$('#selposition').select2({
 		theme: "bootstrap"
 	});
 	$('#selvoterstatuses').select2({
@@ -158,7 +159,7 @@ $(document).ready(function ($) {
 	});
 	$('#selprob').select2({
 		theme: "bootstrap"
-	});
+	});*/
 	$("#tblvotes").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
