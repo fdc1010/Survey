@@ -419,7 +419,7 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -459,7 +459,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
+    	<div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -470,7 +470,7 @@
                 <div class="box-body"><div id="chartqualities"></div></div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -510,7 +510,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
+    	<div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
