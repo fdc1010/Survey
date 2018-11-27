@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="brgydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -191,6 +191,7 @@ $(document).ready(function ($) {
 	$('#selprob').select2({
 		theme: "bootstrap"
 	});*/
+	$('#brgydetails').hide('slow');
 	
 	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
