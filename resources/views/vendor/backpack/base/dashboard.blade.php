@@ -486,7 +486,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -543,7 +543,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -824,6 +824,18 @@ $(document).ready(function ($) {
 		}
 	});
 	$("#tblvotes").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblcivilstatus").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblempstatus").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
 		theme:"3d",
