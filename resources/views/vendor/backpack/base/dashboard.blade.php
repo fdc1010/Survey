@@ -85,57 +85,66 @@
                 <div class="box-body">
                 	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
                         @csrf
-                        <div class="col-md-12">
-                        	<div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Position:</label>
-                                    <div class="col-md-6">
-                                        <select id="selposition" name="selposition" class="form-control">                                    
-                                            @foreach($positions as $position)
-                                                <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                            @endforeach
-                                        </select>
+                        <div class="col-ls-12">
+                        	<div class="col-lg-5">    
+                                <div class="form-group">  
+                                    <div class="col-lg-12">                             	
+                                        {!! Form::label('usersbycc', 'Select Volunteer(s)', array('class' => 'col-lg-12 control-label', 'style'=>'text-align:center !important;')) !!}                                        
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Voter Status:</label>
-                                    <div class="col-md-6">
-                                        <select id="selvoterstatuses" name="selvoterstatuses" class="form-control">                                    
-                                            @foreach($positions as $position)
-                                                <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Barangays:</label>
-                                    <div class="col-md-6">
-                                        <select id="selbrgy" name="selbrgy[]" multiple="multiple" class="form-control select2_multiple">                                  
-                                            @foreach($barangays as $barangay)
-                                                <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Problems:</label>
-                                  <div class="col-md-6">
-                                      <select id="selprob" name="selprob[]" multiple="multiple" class="form-control select2_multiple">                                  
-                                          @foreach($barangays as $barangay)
-                                              <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                </div>                                            
+                                <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
+                                    @foreach($commandcenters as $commandcenter)
+                                       <optgroup label="{{ $commandcenter->name }} Command Center ({{ count($commandcenter->user) }})">   
+                                          @foreach($commandcenter->user as $user)
+                                              <option value="{{ $user->id }}">{{ strtoupper($user->lastname) }}, {{ strtoupper($user->firstname) }} --- (
+                                                    @for($i=0; $i<count($user->roles); $i++)
+                                                        @if(!empty($user->roles[($i+1)]))
+                                                            {{ $user->roles[$i]->name }}, 
+                                                        @else
+                                                            {{ $user->roles[$i]->name }}
+                                                        @endif
+                                                    @endfor
+                                              )</option>
                                           @endforeach
-                                      </select>
-                                  </div>
+                                       </optgroup>
+                                    @endforeach
+                                    <optgroup label="No Assigned Command Center! ({{ count($usersnoccs) }})">
+                                        @foreach($usersnoccs as $user)
+                                              <option value="{{ $user->id }}">{{ strtoupper($user->lastname) }}, {{ strtoupper($user->firstname) }} --- (
+                                              @for($i=0; $i<count($user->roles); $i++)
+                                                  @if(!empty($user->roles[($i+1)]))
+                                                      {{ $user->roles[$i]->name }}, 
+                                                  @else
+                                                      {{ $user->roles[$i]->name }}
+                                                  @endif
+                                              @endfor
+                                              )</option>
+                                        @endforeach
+                                    </optgroup>
+                                </select>                                        
+                          </div>
+                          
+                          <div class="col-lg-2">
+                              <div class="form-group" style="padding-bottom:10px;"> 
+                                  <div class="col-lg-12">&nbsp;</div>
                               </div>
-                            </div>
+                              <button type="button" id="usersbycc_undo" class="btn btn-primary btn-block">undo</button>
+                              <button type="button" id="usersbycc_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                              <button type="button" id="usersbycc_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                              <button type="button" id="usersbycc_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                              <button type="button" id="usersbycc_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                              <button type="button" id="usersbycc_redo" class="btn btn-success btn-block">redo</button>
+                          </div>
+                          
+                          <div class="col-lg-5">
+                                  <div class="form-group">
+                                      <div class="col-lg-12">
+                                          {!! Form::label('users', 'Selected Volunteer(s)', array('class' => 'col-lg-12 control-label', 'style'=>'text-align:center !important;')) !!}
+                                      </div>
+                                  </div>
+                              <select name="to[]" id="usersbycc_to" class="form-control" size="8" multiple="multiple"></select>
+                          </div> 
+                      </div>
                         </div>                        
                         <div class="col-md-12">
                                 <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
