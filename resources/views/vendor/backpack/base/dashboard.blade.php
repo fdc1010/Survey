@@ -324,6 +324,10 @@
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        <th></th>
+                                    </tr>
+                                	<tr>
                                     	<th>Cadidate</th>
                                         <th>Votes</th>
                                     </tr>                                    
@@ -370,6 +374,11 @@
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
+                                	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        @foreach($genders as $gender)
+                                        <th></th>
+                                        @endforeach
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($genders as $gender)
