@@ -160,6 +160,17 @@ $(document).ready(function ($) {
 	$('#selprob').select2({
 		theme: "bootstrap"
 	});*/
+	$('#usersbycc').multiselect({
+		submitAllLeft: false,
+		keepRenderingSort: true,
+		search: {
+			left: '<div class="input-group"><input type="text" name="q" id="searchusersbyccleftq" class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchusersbyccleft" style="cursor:pointer;"><span class="fa fa-search"></span></span>'
+			,right: '<div class="input-group"><input type="text" name="q" id="searchusersbyccrightq"  class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchusersbyccright" style="cursor:pointer;"><span class="fa fa-search"></span></span>',
+		},
+		fireSearch: function(value) {
+			return value.length > 0;
+		}
+	});
 	$("#tblvotes").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
