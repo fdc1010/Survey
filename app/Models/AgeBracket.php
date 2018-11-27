@@ -19,7 +19,7 @@ class AgeBracket extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['title','from','to','description'];
     // protected $hidden = [];
     // protected $dates = [];
 
