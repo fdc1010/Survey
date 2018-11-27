@@ -197,7 +197,7 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         @foreach($positions as $position)                        	
-                        	<div class="col-md-12"><h3>{{ $position->name }}</h3>
+                        	<div class="col-md-12"><h5>{{ $position->name }}</h5>
                             @php
                             	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
                             @endphp
