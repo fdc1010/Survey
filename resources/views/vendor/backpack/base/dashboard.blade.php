@@ -14,6 +14,19 @@
 
 
 @section('content')
+	@php
+        $surveypos = 1;
+        $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+        $problems = App\Models\OptionProblem::with('option')->get();
+        $voterstatuses = App\Models\VoterStatus::all();
+        $selvoterstatuses = App\Models\VoterStatus::all();
+        $genders = App\Models\Gender::all();
+        $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        $barangays = App\Models\Barangay::all();
+        $positions = App\Models\PositionCandidate::all(); 
+        $qualities = App\Models\OptionPosition::with('options','positions')
+                                                            ->where('position_id',$surveypos)->get();
+    @endphp
     <div class="row">
     	<div class="col-md-12">
             <div class="box box-default">
@@ -109,20 +122,7 @@
                     <div class="col-md-12">                      
                       		<div class="box-title">Tabular Stats</div>
                     </div>
-                </div>
-                @php
-                	$surveypos = 1;
-                	$brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
-                    $problems = App\Models\OptionProblem::with('option')->get();
-                    $voterstatuses = App\Models\VoterStatus::all();
-                    $selvoterstatuses = App\Models\VoterStatus::all();
-                    $genders = App\Models\Gender::all();
-                    $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
-                    $barangays = App\Models\Barangay::all();
-                    $positions = App\Models\PositionCandidate::all(); 
-                    $qualities = App\Models\OptionPosition::with('options','positions')
-                                                                        ->where('position_id',$surveypos)->get();
-                @endphp
+                </div>                
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
