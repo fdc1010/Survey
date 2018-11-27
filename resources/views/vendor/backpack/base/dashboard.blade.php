@@ -44,7 +44,7 @@
                     	<thead>
                             <tr>
                                 <th>Barangays:</th>
-                                <td>84</td>
+                                <td><span id="countbrgy">{{ count($barangays) }}</span></td>
                                 <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>
