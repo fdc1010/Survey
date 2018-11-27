@@ -29,13 +29,13 @@
                             <tr>
                                 <th>Barangays:</th>
                                 <td>84</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>Mayor</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Candidate:</th>
                                 <td>Ed Labs</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
                                 <td>Gender</td>
@@ -44,6 +44,62 @@
                             </tr>                                    
                         </thead>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Criteria</div>                	                        	
+                    </div>
+                </div>
+                
+                <div class="box-body">
+                	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
+                        @csrf
+                        <div class="col-ls-12">
+                        	<div class="col-lg-5">    
+                                <div class="form-group">  
+                                    <div class="col-lg-12">                             	
+										<label class="col-lg-12 control-label">Barangays</label>                                     
+                                    </div>
+                                </div>                                            
+                                <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
+                                    @foreach($barangays as $barangay)	
+                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                    @endforeach
+                                </select>                                        
+                          </div>
+                          
+                          <div class="col-lg-2">
+                              <div class="form-group" style="padding-bottom:10px;"> 
+                                  <div class="col-lg-12">&nbsp;</div>
+                              </div>
+                              <button type="button" id="usersbycc_undo" class="btn btn-primary btn-block">undo</button>
+                              <button type="button" id="usersbycc_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                              <button type="button" id="usersbycc_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                              <button type="button" id="usersbycc_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                              <button type="button" id="usersbycc_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                              <button type="button" id="usersbycc_redo" class="btn btn-success btn-block">redo</button>
+                          </div>
+                          
+                          <div class="col-lg-5">
+                                  <div class="form-group">
+                                      <div class="col-lg-12">
+                                          <label class="col-lg-12 control-label">Selected</label>
+                                      </div>
+                                  </div>
+                              <select name="to[]" id="usersbycc_to" class="form-control" size="8" multiple="multiple"></select>
+                          </div> 
+                      </div>
+                        </div>                        
+                        <div class="col-md-12 text-center">
+                                <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                    <span class="fa fa-search"></span> View
+                                </a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -105,63 +161,7 @@
 
                 <div class="box-body"><div id="chart"></div></div>
             </div>
-        </div>
-    	<div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Criteria</div>                	                        	
-                    </div>
-                </div>
-                
-                <div class="box-body">
-                	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
-                        @csrf
-                        <div class="col-ls-12">
-                        	<div class="col-lg-5">    
-                                <div class="form-group">  
-                                    <div class="col-lg-12">                             	
-										<label class="col-lg-12 control-label">Barangays</label>                                     
-                                    </div>
-                                </div>                                            
-                                <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
-                                    @foreach($barangays as $barangay)	
-                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
-                                    @endforeach
-                                </select>                                        
-                          </div>
-                          
-                          <div class="col-lg-2">
-                              <div class="form-group" style="padding-bottom:10px;"> 
-                                  <div class="col-lg-12">&nbsp;</div>
-                              </div>
-                              <button type="button" id="usersbycc_undo" class="btn btn-primary btn-block">undo</button>
-                              <button type="button" id="usersbycc_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-                              <button type="button" id="usersbycc_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-                              <button type="button" id="usersbycc_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                              <button type="button" id="usersbycc_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
-                              <button type="button" id="usersbycc_redo" class="btn btn-success btn-block">redo</button>
-                          </div>
-                          
-                          <div class="col-lg-5">
-                                  <div class="form-group">
-                                      <div class="col-lg-12">
-                                          <label class="col-lg-12 control-label">Selected</label>
-                                      </div>
-                                  </div>
-                              <select name="to[]" id="usersbycc_to" class="form-control" size="8" multiple="multiple"></select>
-                          </div> 
-                      </div>
-                        </div>                        
-                        <div class="col-md-12 text-center">
-                                <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
-                                    <span class="fa fa-search"></span> View
-                                </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </div>    	
     </div>
 @endsection
 @section('chartcss')
