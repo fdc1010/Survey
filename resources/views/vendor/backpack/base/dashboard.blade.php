@@ -44,7 +44,13 @@
                                 <td>84</td>
                                 <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus"> </span></a></th>
                                 <th>Run for:</th>
-                                <td>Mayor</td>
+                                <td>
+                                	<select>
+                                    @foreach($positions as $position)	
+                                    	<option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Candidate:</th>
                                 <td>Ed Labs</td>
