@@ -16,21 +16,50 @@
 @section('content')
 	@php
         $surveypos = 1;
-        $brgyarr = array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
+        $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
-        $problems = App\Models\OptionProblem::with('option')->get();
-        $voterstatuses = App\Models\VoterStatus::all();
-        $selvoterstatuses = App\Models\VoterStatus::all();
-        $genders = App\Models\Gender::all();
-        $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        if(!empty($rdata['to'])){	
+        	$problems = App\Models\OptionProblem::with('option')->whereIn('barangay_id',$brgyarr)->get();
+        }else{
+        	$problems = App\Models\OptionProblem::with('option')->get();
+        }
+        if(!empty($rdata['gender'])){	
+            $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
+        }else{
+        	$genders = App\Models\Gender::all();
+        }
+        if(!empty($rdata['position'])){
+       	 	$candidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
+        }else{
+        	$candidates = App\Models\Candidate::with('voter')->get();
+       	}
         $barangays = App\Models\Barangay::all();
-        $agebrackets = App\Models\AgeBracket::all();
-        $civilstatuses = App\Models\CivilStatus::all();
-        $empstatuses = App\Models\EmploymentStatus::all();
-        $positions = App\Models\PositionCandidate::all(); 
-        $qualities = App\Models\OptionPosition::with('options','positions')
-                                                            ->where('position_id',$surveypos)->get();
-   		print_r($rdata['selposition']);
+        if(!empty($rdata['agebracket'])){
+        	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
+        }else{
+        	$agebrackets = App\Models\AgeBracket::all(); 
+        }
+        if(!empty($rdata['civilstatus'])){
+        	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['civilstatus'])->get(); 
+        }else{
+        	$civilstatuses = App\Models\CivilStatus::all();
+        }
+        if(!empty($rdata['empstatus'])){
+        	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get(); 
+        }else{
+        	$empstatuses = App\Models\EmploymentStatus::all(); 
+        }
+        if(!empty($rdata['empstatus'])){
+        	$positions = App\Models\PositionCandidate::whereIn('id',$rdata['position'])->get(); 
+        }else{
+        	$positions = App\Models\PositionCandidate::where('id',$surveypos)->get();
+        }
+        if(!empty($rdata['position'])){
+        	$qualities = App\Models\OptionPosition::with('options','positions')
+                                                        ->whereIn('position_id',$rdata['position'])->get();
+   		}else{
+        	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
+        }
     @endphp
     <div class="row">
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
