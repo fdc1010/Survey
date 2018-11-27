@@ -86,7 +86,7 @@ class VoterController extends Controller
 		$voters = Voter::where('first_name','like', "%{$fname}%")
 					->where('last_name','like', "%{$lname}%")
 					->where('middle_name','like', "%{$mname}%")
-					->with(['status','precinct','employmentstatus','civilstatus','occupancystatus','statuses'=function($q){$q->select(['voter_id','status_id']);}])
+					->with(['status','precinct','employmentstatus','civilstatus','occupancystatus','statuses'=>function($q){$q->select(['voter_id','status_id']);}])
 					->first();
 		
 		return response()->json(['voter'=>$voters]);
