@@ -32,6 +32,7 @@
                                                             ->where('position_id',$surveypos)->get();
     @endphp
     <div class="row">
+    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -113,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <form method="post" id="my_form" action="{{ backpack_url('stats') }}">
+        
         <div class="col-md-12" id="brgydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
