@@ -85,36 +85,46 @@
                 <div class="box-body">
                 	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
                         @csrf
-                        <div class="col-md-12">	
-                            <div class="col-md-3">	
-                                <select id="selposition" name="selposition">                                    
-                                        @foreach($positions as $position)
-                                            <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select id="selvoterstatuses" name="selvoterstatuses[]" multiple="multiple">                                  
-                                    @foreach($selvoterstatuses as $voterstatus)
-                                        <option value="{{ $voterstatus->id }}">{{ $voterstatus->name }}</option>
+                        <div class="form-group">
+                        	<label class="col-lg-2 control-label">Position:</label>
+                            <div class="col-lg-4">
+                            	<select id="selposition" name="selposition" class="form-control">                                    
+                                    @foreach($positions as $position)
+                                        <option value="{{ $position->id }}">{{ $position->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
+                        </div>
+                        <div class="form-group">
+                        	<label class="col-lg-2 control-label">Voter Status:</label>
+                            <div class="col-lg-4">
+                            	<select id="selvoterstatuses" name="selvoterstatuses" class="form-control">                                    
+                                    @foreach($positions as $position)
+                                        <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label class="col-lg-2 control-label">Barangays:</label>
+                            <div class="col-lg-4">
+                            	<select id="selbrgy" name="selbrgy[]" multiple="multiple">                                  
                                     @foreach($barangays as $barangay)
                                         <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <select id="selprob" name="selprob[]" multiple="multiple">                                  
-                                    @foreach($problems as $problem)
-                                        <option value="{{ $problem->id }}">{{ $problem->option->name }}</option>
+                        </div>
+                        <div class="form-group">
+                        	<label class="col-lg-2 control-label">Problems:</label>
+                            <div class="col-lg-4">
+                            	<select id="selprob" name="selprob[]" multiple="multiple">                                  
+                                    @foreach($barangays as $barangay)
+                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>                                    
-                        </div>
+                            </div>
+                        </div>                        
                         <div class="col-md-12">
                                 <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                     <span class="fa fa-search"></span> View
