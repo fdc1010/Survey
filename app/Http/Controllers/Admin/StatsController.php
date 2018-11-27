@@ -54,6 +54,7 @@ class StatsController extends Controller
 		$rdata['gender'] = $request->selgender;
 		$rdata['civil'] = $request->selcivil;
 		$rdata['employment'] = $request->selemp;
+		$rdata['rangebrgy'] = $request->to;
 		$this->data['rdata'] = $rdata;
         return view('backpack::dashboard', $this->data);
     }
