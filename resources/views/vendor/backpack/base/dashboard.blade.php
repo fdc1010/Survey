@@ -89,12 +89,13 @@
                         	<div class="col-lg-5">    
                                 <div class="form-group">  
                                     <div class="col-lg-12">                             	
-										<label class="col-lg-12 control-label">Select(s)</label>                                     
+										<label class="col-lg-12 control-label">Barangays</label>                                     
                                     </div>
                                 </div>                                            
                                 <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
-                                    <option>
-                                    </option>
+                                    @foreach($barangays as $barangay)	
+                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                    @endforeach
                                 </select>                                        
                           </div>
                           
@@ -120,7 +121,7 @@
                           </div> 
                       </div>
                         </div>                        
-                        <div class="col-md-12">
+                        <div class="col-md-12 text-center">
                                 <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                     <span class="fa fa-search"></span> View
                                 </a>
