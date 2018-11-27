@@ -65,6 +65,8 @@
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
+                                <td><input id="ageRanges" data-slider-id='ageRange' type="text" data-slider-min="18" data-slider-max="150" data-slider-step="1" data-slider-value="18"/></td>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Gender</option>
