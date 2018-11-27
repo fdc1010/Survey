@@ -24,7 +24,7 @@ class StatusDetailCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\StatusDetail');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/statusdetail');
-        $this->crud->setEntityNameStrings('statusdetail', 'status_details');
+        $this->crud->setEntityNameStrings('status detail', 'Status Details');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,7 +34,24 @@ class StatusDetailCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->addColumn([
+            'name' => 'voter_id',
+            'type' => 'select',
+            'label' => 'Voter',
+			'entity' => 'voter', // the relationship name in your Model
+			'attribute' => 'full_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Voter"
+	    ]);
+		$this->crud->addField([
+			'label' => "Status",
+			'type' => 'select',
+			'name' => 'status_id', // the relationship name in your Model
+			'entity' => 'status', // the relationship name in your Model
+			'attribute' => 'status_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\VoterStatus", // on create&update, do you need to add/delete pivot table entries?
+			//'attribute2' => 'name', // attribute on Article that is shown to admin
+			//'entity2' => "barangay"
+		]);
         // add asterisk for fields that are required in StatusDetailRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
