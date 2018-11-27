@@ -29,7 +29,7 @@ Route::group([
 	 'namespace' => 'Admin'], function () {
     // Backpack\MenuCRUD	
     CRUD::resource('menu-item', 'MenuItemCrudController');	
-	Route::post('stats', 'AdminController@stats');
+	Route::post('stats', 'StatsController@stats');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
