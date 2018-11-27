@@ -28,16 +28,16 @@
                     	<thead>
                             <tr>
                                 <th>Total Barangays:</th>
-                                <th>84</th>
+                                <td>84</td>
                                 <th>Run for:</th>
-                                <th>Mayor</th>
+                                <td>Mayor</td>
                                 <th>Candidate:</th>
-                                <th>Ed Labs</th>
+                                <td>Ed Labs</td>
                                 <th>Demographics:</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Civil Status</th>
-                                <th>Employment Status</th>
+                                <td>Age</td>
+                                <td>Gender</td>
+                                <td>Civil Status</td>
+                                <td>Employment Status</td>
                             </tr>                                    
                         </thead>
                     </table>
