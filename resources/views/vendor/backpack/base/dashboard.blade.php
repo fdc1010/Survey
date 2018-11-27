@@ -316,7 +316,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Tabular Stats</div>
+                      		<div class="box-title">Tabular Stats (Summary)</div>
                     </div>
                 </div>                
                 <div class="box-body">                	
@@ -329,7 +329,7 @@
                                     </tr>
                                 	<tr>
                                     	<th>Cadidate</th>
-                                        <th>Votes</th>
+                                        <th>Tally</th>
                                     </tr>                                    
                                 </thead>
                                 <tbody>
@@ -355,7 +355,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart</div>                	                        	
+                      		<div class="box-title">Main Chart (Summary)</div>                	                        	
                     </div>
                 </div>
 
@@ -366,7 +366,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>
+                      		<div class="box-title">Tabular Tally by Gender</div>
                     </div>
                 </div>
 
@@ -411,7 +411,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"></div>                	                        	
+                      		<div class="box-title">Chart Tally by Gender</div>                	                        	
                     </div>
                 </div>
 
