@@ -41,11 +41,11 @@
                 </div>
 
                 <div class="box-body">
-                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap" style="width: 900px; border: 1px solid yellow;">
+                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap">
                     	<thead>
                             <tr>
-                                <th>Barangays:</th>
-                                <td><span id="countbrgy">{{ count($barangays) }}</span></td>
+                                <th width="20%">Barangays:</th>
+                                <td width="20%"><span id="countbrgy">{{ count($barangays) }}</span></td>
                                 <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>
