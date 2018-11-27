@@ -128,12 +128,12 @@
                                     </select>
                                 </div>
                             </div>                        
-                            <div class="col-md-12">
-                                    <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
-                                        <span class="fa fa-search"></span> View
-                                    </a>
-                            </div>
-                         </div>
+                        </div>
+                        <div class="col-md-12">
+                                <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                    <span class="fa fa-search"></span> View
+                                </a>
+                        </div>                         
                     </form>
                 </div>
             </div>
