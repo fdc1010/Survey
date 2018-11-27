@@ -42,13 +42,13 @@
                             <tr>
                                 <th>Barangays:</th>
                                 <td>84</td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Run for:</th>
                                 <td>Mayor</td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Candidate:</th>
                                 <td>Ed Labs</td>
-                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
+                                <th><span class="fa fa-plus"> </span></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
                                 <td>Gender</td>
@@ -122,7 +122,8 @@
                     <div class="col-md-12">                      
                       		<div class="box-title">Tabular Stats</div>
                     </div>
-                </div>                
+                </div>
+                
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
