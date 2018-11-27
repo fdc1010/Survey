@@ -1012,7 +1012,7 @@ $(document).ready(function ($) {
 			@endforeach
 			],
 			@foreach($empstatuses as $empstatus)
-				['{{ $civilstatus->name }}',
+				['{{ $empstatus->name }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyemp[$candidate->id][$empstatus->id] }},
 				@endforeach
