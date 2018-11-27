@@ -45,7 +45,7 @@
                             <tr>
                                 <th>Barangays:</th>
                                 <td>84</td>
-                                <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>
                                 	<select>
@@ -54,7 +54,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_posdetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <th>Candidate:</th>
                                 <td>
                                 	<select>
@@ -63,7 +63,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_candetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>
                                 	<select>
@@ -73,7 +73,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_agedetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Gender</option>
@@ -82,7 +82,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_gendetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Civil Status</option>
@@ -91,7 +91,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_civdetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Employment Status</option>
@@ -100,7 +100,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th><a href="#" id="btn_empdetails"><span class="fa fa-plus"> </span></a></th>
+                                <th><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
                             </tr>                                    
                         </thead>
                     </table>
@@ -400,24 +400,73 @@ $(document).ready(function ($) {
 	$('#empdetails').hide('slow');
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
+		if($('#spanbrgydetails').hasClass('fa-plus')){
+			$('#spanbrgydetails').removeClass('fa-plus');
+			$('#spanbrgydetails').addClass('fa-minus');
+		}else{
+			$('#spanbrgydetails').removeClass('fa-minus');
+			$('#spanbrgydetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_posdetails').on('click',function(e){
 		$('#posdetails').toggle('slow');
+		if($('#spanposdetails').hasClass('fa-plus')){
+			$('#spanposdetails').removeClass('fa-plus');
+			$('#spanposdetails').addClass('fa-minus');
+		}else{
+			$('#spanposdetails').removeClass('fa-minus');
+			$('#spanposdetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_candetails').on('click',function(e){
 		$('#candetails').toggle('slow');
+		if($('#spancandetails').hasClass('fa-plus')){
+			$('#spancandetails').removeClass('fa-plus');
+			$('#spancandetails').addClass('fa-minus');
+		}else{
+			$('#spancandetails').removeClass('fa-minus');
+			$('#spancandetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_agedetails').on('click',function(e){
 		$('#agedetails').toggle('slow');
+		if($('#spanagedetails').hasClass('fa-plus')){
+			$('#spanagedetails').removeClass('fa-plus');
+			$('#spanagedetails').addClass('fa-minus');
+		}else{
+			$('#spanagedetails').removeClass('fa-minus');
+			$('#spanagedetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_gendetails').on('click',function(e){
 		$('#gendetails').toggle('slow');
+		if($('#spangendetails').hasClass('fa-plus')){
+			$('#spangendetails').removeClass('fa-plus');
+			$('#spangendetails').addClass('fa-minus');
+		}else{
+			$('#spangendetails').removeClass('fa-minus');
+			$('#spangendetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_civdetails').on('click',function(e){
 		$('#civdetails').toggle('slow');
+		if($('#spancivdetails').hasClass('fa-plus')){
+			$('#spancivdetails').removeClass('fa-plus');
+			$('#spancivdetails').addClass('fa-minus');
+		}else{
+			$('#spancivdetails').removeClass('fa-minus');
+			$('#spancivdetails').addClass('fa-plus');
+		}
 	});
 	$('#btn_empdetails').on('click',function(e){
 		$('#empdetails').toggle('slow');
+		if($('#spanempdetails').hasClass('fa-plus')){
+			$('#spanempdetails').removeClass('fa-plus');
+			$('#spanempdetails').addClass('fa-minus');
+		}else{
+			$('#spanempdetails').removeClass('fa-minus');
+			$('#spanempdetails').addClass('fa-plus');
+		}
 	});
 	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
