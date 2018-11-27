@@ -64,7 +64,53 @@
                 <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
-        
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Tabular Stats</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Cadidate</th>
+                                        <th>Votes</th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                @php
+                                	$tally = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)
+                                	@php
+                                    	$tally[$candidate->id]=rand(1,100);
+                                    @endphp
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        <td>{{ $tally[$candidate->id] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Main Chart</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chart"></div></div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('chartcss')
