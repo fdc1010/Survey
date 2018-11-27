@@ -105,7 +105,7 @@
                               <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple"></select>
                           </div> 
                       </div>                        
-                      <div class="col-md-12 text-center">
+                      <div class="col-md-12">
                               <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
                                   <span class="fa fa-search"></span> View
                               </a>
