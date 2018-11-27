@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+        <form method="post" id="my_form" action="{{ backpack_url('stats') }}">
         <div class="col-md-12" id="brgydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -116,7 +117,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
+                	                    	
                         @csrf
                         <div class="col-ls-12">
                         	<div class="col-lg-5">    
@@ -158,7 +159,7 @@
                                   <span class="fa fa-search"></span> View
                               </a>
                       </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -313,6 +314,7 @@
                 </div>
             </div>
         </div>
+        </form>
     	<div class="col-md-3">
             <div class="box box-default">
                 <div class="box-header with-border">
