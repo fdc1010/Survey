@@ -469,6 +469,57 @@
                 <div class="box-body"><div id="chartqualities"></div></div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Barangays</th>
+                                        @foreach($problems as $problem)
+                                        <th>{{ $problem->option->option }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               	@php
+                                	$tallyp = array();                                    
+                                @endphp
+                                @foreach($barangays as $barangay)
+                                	<tr>
+                                    	<td>{{ $barangay->name }}</td>
+                                        @foreach($problems as $problem)
+                                        @php
+                                            $tallyp[$barangay->id][$problem->option_id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title"></div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartproblem"></div></div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('chartcss')
@@ -698,6 +749,42 @@ $(document).ready(function ($) {
 				['{{ $quality->options->option }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyq[$candidate->id][$quality->option_id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartproblem = c3.generate({
+		bindto: '#chartproblem',				
+        data: {
+		  x: 'Barangays',
+		  columns: [
+		  	['Barangays', 
+			@foreach($brgysurveys as $brgysurvey)
+				'{{ $brgysurvey->barangay->name }}',
+			@endforeach
+			],
+			@foreach($problems as $problem)
+				['{{ $problem->option->option }}',
+				@foreach($brgysurveys as $brgysurvey)
+					{{ $tallyp[$brgysurvey->id][$problem->option_id] }},
 				@endforeach
 				],
 			@endforeach
