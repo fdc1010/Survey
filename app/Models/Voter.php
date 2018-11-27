@@ -30,6 +30,10 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');
     }
+	public function statuses()
+    {
+        return $this->hasMany('App\Models\StatusDetail','voter_id');
+    }
 	public function precinct()
     {
         return $this->belongsTo('App\Models\Precinct','precinct_id')->with('barangay');
