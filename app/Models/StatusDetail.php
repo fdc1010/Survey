@@ -29,7 +29,7 @@ class StatusDetail extends Model
 		return $this->belongsTo('App\Models\VoterStatus','status_id');
 	}
 	public function voter(){
-		return $this->belongsTo('App\Models\Voter','Voter_id');
+		return $this->belongsTo('App\Models\Voter','voter_id');
 	}
     /*
     |--------------------------------------------------------------------------
