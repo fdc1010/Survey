@@ -102,6 +102,11 @@
                                 	</select>
                                 </td>
                                 <th><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
+                                <th>
+                                    <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                        <span class="fa fa-search"></span> View
+                                    </a>
+                              </th>
                             </tr>                                    
                         </thead>
                     </table>
@@ -153,13 +158,7 @@
                                   </div>
                               <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple"></select>
                           </div> 
-                      </div>                        
-                      <div class="col-md-12">
-                              <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
-                                  <span class="fa fa-search"></span> View
-                              </a>
-                      </div>
-                    
+                      </div>     
                 </div>
             </div>
         </div>
