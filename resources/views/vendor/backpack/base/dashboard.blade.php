@@ -77,7 +77,7 @@
 										<label class="col-lg-12 control-label">Select</label>                                     
                                     </div>
                                 </div>                                            
-                                <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
+                                <select name="from[]" id="brgycriteria" class="form-control" size="8" multiple="multiple">               
                                     @foreach($barangays as $barangay)	
                                         <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
@@ -88,12 +88,12 @@
                               <div class="form-group" style="padding-bottom:10px;"> 
                                   <div class="col-lg-12">&nbsp;</div>
                               </div>
-                              <button type="button" id="usersbycc_undo" class="btn btn-primary btn-block">undo</button>
-                              <button type="button" id="usersbycc_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-                              <button type="button" id="usersbycc_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-                              <button type="button" id="usersbycc_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                              <button type="button" id="usersbycc_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
-                              <button type="button" id="usersbycc_redo" class="btn btn-success btn-block">redo</button>
+                              <button type="button" id="brgycriteria_undo" class="btn btn-primary btn-block">undo</button>
+                              <button type="button" id="brgycriteria_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                              <button type="button" id="brgycriteria_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                              <button type="button" id="brgycriteria_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                              <button type="button" id="brgycriteria_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                              <button type="button" id="brgycriteria_redo" class="btn btn-success btn-block">redo</button>
                           </div>
                           
                           <div class="col-lg-5">
@@ -102,7 +102,7 @@
                                           <label class="col-lg-12 control-label">Selected</label>
                                       </div>
                                   </div>
-                              <select name="to[]" id="usersbycc_to" class="form-control" size="8" multiple="multiple"></select>
+                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple"></select>
                           </div> 
                       </div>                        
                       <div class="col-md-12 text-center">
@@ -191,12 +191,13 @@ $(document).ready(function ($) {
 	$('#selprob').select2({
 		theme: "bootstrap"
 	});*/
-	$('#usersbycc').multiselect({
+	
+	$('#brgycriteria').multiselect({
 		submitAllLeft: false,
 		keepRenderingSort: true,
 		search: {
-			left: '<div class="input-group"><input type="text" name="q" id="searchusersbyccleftq" class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchusersbyccleft" style="cursor:pointer;"><span class="fa fa-search"></span></span>'
-			,right: '<div class="input-group"><input type="text" name="q" id="searchusersbyccrightq"  class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchusersbyccright" style="cursor:pointer;"><span class="fa fa-search"></span></span>',
+			left: '<div class="input-group"><input type="text" name="q" id="searchbrgycriterialeftq" class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchbrgycriterialeft" style="cursor:pointer;"><span class="fa fa-search"></span></span>'
+			,right: '<div class="input-group"><input type="text" name="q" id="searchbrgycriteriarightq"  class="form-control" placeholder="Search..." /><span class="input-group-addon" id="searchbrgycriteriaright" style="cursor:pointer;"><span class="fa fa-search"></span></span>',
 		},
 		fireSearch: function(value) {
 			return value.length > 0;
