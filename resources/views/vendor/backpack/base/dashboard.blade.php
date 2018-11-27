@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="box-body">
-                	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                     	<thead>
                             <tr>
                                 <th>Barangays:</th>
@@ -823,6 +823,12 @@ $(document).ready(function ($) {
 		fireSearch: function(value) {
 			return value.length > 0;
 		}
+	});
+	$("#tblviewdetails").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
 	});
 	$("#tblvotes").mCustomScrollbar({
 		axis:"yx",
