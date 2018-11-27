@@ -69,7 +69,7 @@
                                 <th width="5%">Demographics:</th>
                                 <td width="5%" align="center">
                                 	<select name="selagebracket" id="selagebracket">
-                                    	<option>Age</option>
+                                    	<option value="0">Age</option>
                                     @foreach($agebrackets as $agebracket)	
                                     	<option value="{{ $agebracket->id }}">{{ $agebracket->title }}</option>
                                     @endforeach
@@ -78,7 +78,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selgender" id="selgender">
-                                    	<option>Gender</option>
+                                    	<option value="0">Gender</option>
                                     @foreach($genders as $gender)	
                                     	<option value="{{ $gender->id }}">{{ $gender->name }}</option>
                                     @endforeach
@@ -87,7 +87,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selcivil" id="selcivil">
-                                    	<option>Civil</option>
+                                    	<option value="0">Civil</option>
                                     @foreach($civilstatuses as $civilstatus)	
                                     	<option value="{{ $civilstatus->id }}">{{ $civilstatus->name }}</option>
                                     @endforeach
@@ -96,7 +96,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selemp" id="selemp">
-                                    	<option>Employment</option>
+                                    	<option value="0">Employment</option>
                                     @foreach($empstatuses as $empstatus)	
                                     	<option value="{{ $empstatus->id }}">{{ $empstatus->name }}</option>
                                     @endforeach
