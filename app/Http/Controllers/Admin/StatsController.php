@@ -48,7 +48,7 @@ class StatsController extends Controller
     {
 		
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-		
+		dd($request);
 		$vstatus =$request->selvoterstatuses;
 		$cpos = $request->selposition;
         return view('backpack::dashboard', [$this->data,'vstatus'=>$vstatus,'cpos'=>$cpos]);
