@@ -175,44 +175,51 @@ class VoterController extends Controller
 				'success'=>false
 			), 400);
 		}*/
-		$voter = Voter::find($id);
-        $voter->fill($request->all());
-		if($request->hasFile('profilepic')){
-			
-			$path = config('app.root') . '/public/profilepic/';
-			$photo=$path.basename($voter->profilepic);
-			
-			File::delete($photo);
-			
-            $md5profName = md5_file($request->file('profilepic')->getRealPath());
-            $guessExtensionprof = $request->file('profilepic')->guessExtension();
-
-            $srvroot = $_SERVER['DOCUMENT_ROOT'];
-            $pathimage =  $srvroot . '/profilepic/';
-            $path = url('/profilepic/');
-            if (!File::exists($path)) {
-                File::makeDirectory($path,0777);
-            }
-
-            $width = 160;
-            $height = 160;
-            $image = Image::make($request->file('profilepic')->getRealPath());
-            $image->width() > $image->height() ? $width=null : $height=null;
-            $image->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-
-            $image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
-
-            $filename = $md5profName.'.'.$guessExtensionprof;
-            $voter->profilepic =  config('app.url') . '/profilepic/' . $filename;
-
-        }
-        $voter->save();
-        return response()->json(['success'=>true],200);
+		try{
+			$voter = Voter::find($id);
+			$voter->fill($request->all());
+			if($request->hasFile('profilepic')){
+				
+				$path = config('app.root') . '/public/profilepic/';
+				$photo=$path.basename($voter->profilepic);
+				
+				File::delete($photo);
+				
+				$md5profName = md5_file($request->file('profilepic')->getRealPath());
+				$guessExtensionprof = $request->file('profilepic')->guessExtension();
+	
+				$srvroot = $_SERVER['DOCUMENT_ROOT'];
+				$pathimage =  $srvroot . '/profilepic/';
+				$path = url('/profilepic/');
+				if (!File::exists($path)) {
+					File::makeDirectory($path,0777);
+				}
+	
+				$width = 160;
+				$height = 160;
+				$image = Image::make($request->file('profilepic')->getRealPath());
+				$image->width() > $image->height() ? $width=null : $height=null;
+				$image->resize($width, $height, function ($constraint) {
+					$constraint->aspectRatio();
+					$constraint->upsize();
+				});
+	
+				$image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
+	
+				$filename = $md5profName.'.'.$guessExtensionprof;
+				$voter->profilepic =  config('app.url') . '/profilepic/' . $filename;
+	
+			}
+			$voter->save();
+			return response()->json(['success'=>true,'msg'=>'Updating Voter Successful!'],200);
+		}catch(\Exception $e){
+			return response()->json(['success'=>true,'msg'=>$e]);
+		}
     }
-
+	public function sendInfo(Request $request){
+		info($request);	
+		return response()->json(['success'=>true,'msg'=>'Saving Survey Info on the Server Successful!'],200);
+	}
     /**
      * Remove the specified resource from storage.
      *
