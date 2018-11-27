@@ -23,6 +23,8 @@
         $genders = App\Models\Gender::all();
         $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         $barangays = App\Models\Barangay::all();
+        $civilstatuses = App\Models\CivilStatus::all();
+        $empstatuses = App\Models\EmploymentStatus::all();
         $positions = App\Models\PositionCandidate::all(); 
         $qualities = App\Models\OptionPosition::with('options','positions')
                                                             ->where('position_id',$surveypos)->get();
@@ -63,9 +65,30 @@
                                 <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
-                                <td>Gender</td>
-                                <td>Civil Status</td>
-                                <td>Employment Status</td>
+                                <td>
+                                	<select>
+                                    	<option>Gender</option>
+                                    @foreach($genders as $gender)	
+                                    	<option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
+                                <td>
+                                	<select>
+                                    	<option>Civil Status</option>
+                                    @foreach($civilstatuses as $civilstatus)	
+                                    	<option value="{{ $civilstatus->id }}">{{ $civilstatus->name }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
+                                <td>
+                                	<select>
+                                    	<option>Employment Status</option>
+                                    @foreach($empstatuses as $empstatus)	
+                                    	<option value="{{ $empstatus->id }}">{{ $empstatus->name }}</option>
+                                    @endforeach
+                                	</select>
+                                </td>
                             </tr>                                    
                         </thead>
                     </table>
