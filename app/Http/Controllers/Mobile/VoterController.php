@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use Excel;
 use File;
+use Image;
 
 class VoterController extends Controller
 {
@@ -150,9 +151,9 @@ class VoterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)//, $id)
     {
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
 			'precinct_id'=>'required',
 			'first_name'=>'required',
 			'last_name'=>'required',
@@ -173,9 +174,41 @@ class VoterController extends Controller
 				'msg'=>'Unauthorized, check your credentials.',
 				'success'=>false
 			), 400);
-		}
+		}*/
 		$voter = Voter::find($id);
         $voter->fill($request->all());
+		if($request->hasFile('profilepic')){
+			
+			$path = config('app.root') . '/public/profilepic/';
+			$photo=$path.basename($voter->profilepic);
+			
+			File::delete($photo);
+			
+            $md5profName = md5_file($request->file('profilepic')->getRealPath());
+            $guessExtensionprof = $request->file('profilepic')->guessExtension();
+
+            $srvroot = $_SERVER['DOCUMENT_ROOT'];
+            $pathimage =  $srvroot . '/profilepic/';
+            $path = url('/profilepic/');
+            if (!File::exists($path)) {
+                File::makeDirectory($path,0777);
+            }
+
+            $width = 160;
+            $height = 160;
+            $image = Image::make($request->file('profilepic')->getRealPath());
+            $image->width() > $image->height() ? $width=null : $height=null;
+            $image->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            $image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
+
+            $filename = $md5profName.'.'.$guessExtensionprof;
+            $voter->profilepic =  config('app.url') . '/profilepic/' . $filename;
+
+        }
         $voter->save();
         return response()->json(['success'=>true],200);
     }

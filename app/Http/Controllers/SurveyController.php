@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Survey;
 use App\Models\Voter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+use Image;
 
 class SurveyController extends Controller
 {
