@@ -648,8 +648,7 @@
                     <div class="box-body"><div id="chartqualities"></div></div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
+        
             <div class="col-md-6">
                 <div class="box box-default">
                     <div class="box-header with-border">
