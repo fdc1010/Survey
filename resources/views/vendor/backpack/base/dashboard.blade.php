@@ -423,6 +423,174 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        @foreach($agebrackets as $agebracket)
+                                        <th></th>
+                                        @endforeach
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($agebrackets as $agebracket)
+                                        <th>{{ $agebracket->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallyab = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($agebrackets as $agebracket)
+                                        @php
+                                            $tallyab[$candidate->id][$agebracket->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartagebracket"></div></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Civil Status</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        @foreach($civilstatuses as $civilstatus)
+                                        <th></th>
+                                        @endforeach
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($civilstatuses as $civilstatus)
+                                        <th>{{ $civilstatus->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallycv = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($civilstatuses as $civilstatus)
+                                        @php
+                                            $tallycv[$candidate->id][$civilstatus->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallycv[$candidate->id][$civilstatus->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Civil Status</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartcivil"></div></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Employment Status</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>{{ $positions[0]->name }}</th>
+                                        @foreach($empstatuses as $empstatus)
+                                        <th></th>
+                                        @endforeach
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($empstatuses as $empstatus)
+                                        <th>{{ $empstatus->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                               @php
+                                	$tallyemp = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)                                	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($empstatuses as $empstatus)
+                                        @php
+                                            $tallyemp[$candidate->id][$empstatus->id]=rand(1,100);
+                                        @endphp
+                                        <td>{{ $tallyemp[$candidate->id][$empstatus->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Employment Status</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartemp"></div></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
                       		<div class="box-title">Candidate Qualities</div>
                     </div>
                 </div>
@@ -719,6 +887,114 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($candidates as $candidate)
 					{{ $tallyg[$candidate->id][$gender->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartagebracket = c3.generate({
+		bindto: '#chartagebracket',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($agebrackets as $agebracket)
+				['{{ $agebracket->name }}',
+				@foreach($candidates as $candidate)
+					{{ $tallyab[$candidate->id][$agebracket->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartcivil = c3.generate({
+		bindto: '#chartcivil',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($civilstatuses as $civilstatus)
+				['{{ $civilstatus->name }}',
+				@foreach($candidates as $candidate)
+					{{ $tallycv[$candidate->id][$civilstatus->id] }},
+				@endforeach
+				],
+			@endforeach
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  var chartemp = c3.generate({
+		bindto: '#chartemp',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($candidates as $candidate)
+				'{{ $candidate->voter->full_name }}',
+			@endforeach
+			],
+			@foreach($empstatuses as $empstatus)
+				['{{ $civilstatus->name }}',
+				@foreach($candidates as $candidate)
+					{{ $tallyemp[$candidate->id][$empstatus->id] }},
 				@endforeach
 				],
 			@endforeach
