@@ -73,6 +73,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Civil Status</option>
@@ -81,6 +82,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <td>
                                 	<select>
                                     	<option>Employment Status</option>
@@ -89,6 +91,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                             </tr>                                    
                         </thead>
                     </table>
