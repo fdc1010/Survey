@@ -197,12 +197,12 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         @foreach($positions as $position)                        	
-                        	<div class="col-md-12"><span>{{ $position->name }}</span>
+                        	<div class="col-md-12"><h3>{{ $position->name }}</h3>
                             @php
                             	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
                             @endphp
                             @foreach($poscandidates as $candidate)
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label class="control-label">
                                             <input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
                                             {{ $candidate->voter->full_name }}
