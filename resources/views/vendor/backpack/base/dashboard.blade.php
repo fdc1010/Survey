@@ -14,6 +14,19 @@
 
 
 @section('content')
+	@php
+        $surveypos = 1;
+        $brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
+        $problems = App\Models\OptionProblem::with('option')->get();
+        $voterstatuses = App\Models\VoterStatus::all();
+        $selvoterstatuses = App\Models\VoterStatus::all();
+        $genders = App\Models\Gender::all();
+        $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        $barangays = App\Models\Barangay::all();
+        $positions = App\Models\PositionCandidate::all(); 
+        $qualities = App\Models\OptionPosition::with('options','positions')
+                                                            ->where('position_id',$surveypos)->get();
+    @endphp
     <div class="row">
     	<div class="col-md-12">
             <div class="box box-default">
@@ -29,13 +42,13 @@
                             <tr>
                                 <th>Barangays:</th>
                                 <td>84</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Run for:</th>
                                 <td>Mayor</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Candidate:</th>
                                 <td>Ed Labs</td>
-                                <th><span class="fa fa-plus"> </span></th>
+                                <th><a href="#"><span class="fa fa-plus"> </span></a></th>
                                 <th>Demographics:</th>
                                 <td>Age</td>
                                 <td>Gender</td>
@@ -47,73 +60,13 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Tabular Stats</div>
+                      		<div class="box-title">Barangays</div>                	                        	
                     </div>
                 </div>
-                @php
-                	$surveypos = 1;
-                	$brgysurveys = App\Models\BarangaySurveyable::with('barangay')->get();
-                    $problems = App\Models\OptionProblem::with('option')->get();
-                    $voterstatuses = App\Models\VoterStatus::all();
-                    $selvoterstatuses = App\Models\VoterStatus::all();
-                    $genders = App\Models\Gender::all();
-                    $candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
-                    $barangays = App\Models\Barangay::all();
-                    $positions = App\Models\PositionCandidate::all(); 
-                    $qualities = App\Models\OptionPosition::with('options','positions')
-                                                                        ->where('position_id',$surveypos)->get();
-                @endphp
-                <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                	<tr>
-                                    	<th>Cadidate</th>
-                                        <th>Votes</th>
-                                    </tr>                                    
-                                </thead>
-                                <tbody>
-                                @php
-                                	$tally = array();                                    
-                                @endphp
-                                @foreach($candidates as $candidate)
-                                	@php
-                                    	$tally[$candidate->id]=rand(1,100);
-                                    @endphp
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        <td>{{ $tally[$candidate->id] }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                      </div>
-                </div>
-            </div>
-        </div>
-    	<div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chart"></div></div>
-            </div>
-        </div>
-    	<div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Criteria</div>                	                        	
-                    </div>
-                </div>
-                
                 <div class="box-body">
                 	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">                    	
                         @csrf
@@ -121,7 +74,7 @@
                         	<div class="col-lg-5">    
                                 <div class="form-group">  
                                     <div class="col-lg-12">                             	
-										<label class="col-lg-12 control-label">Barangays</label>                                     
+										<label class="col-lg-12 control-label">Select</label>                                     
                                     </div>
                                 </div>                                            
                                 <select name="from[]" id="usersbycc" class="form-control" size="8" multiple="multiple">               
@@ -160,6 +113,52 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Tabular Stats</div>
+                    </div>
+                </div>                
+                <div class="box-body">                	
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Cadidate</th>
+                                        <th>Votes</th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                @php
+                                	$tally = array();                                    
+                                @endphp
+                                @foreach($candidates as $candidate)
+                                	@php
+                                    	$tally[$candidate->id]=rand(1,100);
+                                    @endphp
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        <td>{{ $tally[$candidate->id] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Main Chart</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
     </div>
