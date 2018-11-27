@@ -237,11 +237,13 @@
     <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
+    <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
 @endsection
 @section('chartsjs')		
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('js/multiselect.js') }}"></script>
+    <script src="{{ URL::asset('js/icheck.min.js') }}"></script>
     <!--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>-->
 	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
