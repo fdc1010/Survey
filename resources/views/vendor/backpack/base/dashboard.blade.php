@@ -50,7 +50,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <th width="5%">Run for:</th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selposition" id="selposition">
                                     @foreach($positions as $position)	
                                     	<option value="{{ $position->id }}">{{ $position->name }}</option>
                                     @endforeach
@@ -59,7 +59,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <th width="5%">Candidate:</th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selcandidate" id="selcandidate">
                                     @foreach($candidates as $candidate)	
                                     	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
                                     @endforeach
@@ -68,7 +68,7 @@
                                 <th width="5%" align="center"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th width="5%">Demographics:</th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selagebracket" id="selagebracket">
                                     	<option>Age</option>
                                     @foreach($agebrackets as $agebracket)	
                                     	<option value="{{ $agebracket->id }}">{{ $agebracket->title }}</option>
@@ -77,7 +77,7 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selgender" id="selgender">
                                     	<option>Gender</option>
                                     @foreach($genders as $gender)	
                                     	<option value="{{ $gender->id }}">{{ $gender->name }}</option>
@@ -86,7 +86,7 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selcivil" id="selcivil">
                                     	<option>Civil</option>
                                     @foreach($civilstatuses as $civilstatus)	
                                     	<option value="{{ $civilstatus->id }}">{{ $civilstatus->name }}</option>
@@ -95,7 +95,7 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td width="5%" align="center">
-                                	<select>
+                                	<select name="selemp" id="selemp">
                                     	<option>Employment</option>
                                     @foreach($empstatuses as $empstatus)	
                                     	<option value="{{ $empstatus->id }}">{{ $empstatus->name }}</option>
