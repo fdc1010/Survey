@@ -102,7 +102,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Voter Status:</label>
                                     <div class="col-md-6">
-                                        <select id="selvoterstatuses" name="selvoterstatuses" class="form-control select2_multiple">                                    
+                                        <select id="selvoterstatuses" name="selvoterstatuses" class="form-control">                                    
                                             @foreach($positions as $position)
                                                 <option value="{{ $position->id }}">{{ $position->name }}</option>
                                             @endforeach
@@ -128,7 +128,7 @@
                               <div class="form-group">
                                   <label class="col-md-4 control-label">Problems:</label>
                                   <div class="col-md-6">
-                                      <select id="selprob" name="selprob[]" multiple="multiple" class="form-control">                                  
+                                      <select id="selprob" name="selprob[]" multiple="multiple" class="form-control select2_multiple">                                  
                                           @foreach($barangays as $barangay)
                                               <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                           @endforeach
