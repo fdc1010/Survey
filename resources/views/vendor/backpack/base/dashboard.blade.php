@@ -166,9 +166,9 @@
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
                                 <th width="5%" align="center">
-                                    <a class="btn btn-primary" onclick="document.getElementById('my_form').submit();">
+                                    <button type="submit" class="btn btn-primary">
                                         <span class="fa fa-search"></span> View
-                                    </a>
+                                    </button>
                               </th>
                             </tr>                                    
                         </thead>
@@ -376,7 +376,6 @@
                 </div>
             </div>
         </div>
-        <input type="submit" />
         </form>
     	<div class="col-md-3">
             <div class="box box-default">
@@ -1179,7 +1178,7 @@ $(document).ready(function ($) {
 //            max: 30
           },
         }
-      });
+      });	  
 });
     </script>
 @endsection
