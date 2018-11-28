@@ -34,8 +34,13 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	public function tally(){
-		return $this->where('candidate_id',$this->candidate_id)->sum('tally');	
+	public function tally($agebrackets = null,$genders = null){
+		return $this->where('candidate_id',$this->candidate_id)
+						->whereHas('voter'=>function($q)use($agebrackets){
+								$q->whereIn('age',$agebrackets)
+									->whereIn('gender',$genders);
+							})
+						->sum('tally');	
 	}
     /*
     |--------------------------------------------------------------------------
