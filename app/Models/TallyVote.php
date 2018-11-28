@@ -19,7 +19,7 @@ class TallyVote extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['candidate_id','voter_id','tally'];
+    protected $fillable = ['candidate_id','voter_id','tally','survey_detail_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	public function candidate()
@@ -29,6 +29,10 @@ class TallyVote extends Model
 	public function voter()
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
+    }
+	public function surveydetail()
+    {
+        return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
 	public function tally(){
 		return $this->where('candidate_id',$this->candidate_id)->sum('tally');	
