@@ -25,6 +25,15 @@ class OptionCandidateCrudController extends CrudController
         $this->crud->setModel('App\Models\OptionCandidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optioncandidate');
         $this->crud->setEntityNameStrings('option candidate', 'Option Candidates');
+		
+        /*
+        |--------------------------------------------------------------------------
+        | CrudPanel Configuration
+        |--------------------------------------------------------------------------
+        */
+
+        // TODO: remove setFromDb() and manually define Fields and Columns
+        $this->crud->setFromDb();
 		$this->crud->removeColumns(['option_id','candidate_id']);
 		$this->crud->removeFields(['option_id','candidate_id']);
 		$this->crud->orderBy('candidate_id');
@@ -61,15 +70,6 @@ class OptionCandidateCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
-        /*
-        |--------------------------------------------------------------------------
-        | CrudPanel Configuration
-        |--------------------------------------------------------------------------
-        */
-
-        // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
-
         // add asterisk for fields that are required in OptionCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
