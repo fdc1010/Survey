@@ -34,11 +34,21 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	public function tally($agebrackets = [18,20,30,40,80],$genders = [1,2,3]){
+	public function tally($age = 18, $agebrackets = [],$genders = [], $empstatus = [],
+							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$this->candidate_id)
-						->whereHas('voter',function($q)use($agebrackets,$genders){
-								$q->whereIn('age',$agebrackets)
-									->whereIn('gender',$genders);
+						->whereHas('voter',function($q)use($agebrackets,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+								$q->where('age','>=',$age)
+									->orWhereIn('age',$agebrackets)
+									->orWhereIn('gender_id',$genders)
+									->orWhereIn('employment_status_id',$empstatus)
+									->orWhereIn('civil_status_id',$civilstatus)
+									->orWhereIn('occupancy_status_id',$occstatus)
+									->orWhereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												});
 							})
 						->sum('tally');	
 	}
