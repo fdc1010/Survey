@@ -17,6 +17,7 @@ class CreateSurveyAnswersTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('question_id');
 			$table->unsignedInteger('voter_id');
+			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('survey_detail_id');
 			$table->integer('option_id')->nullable();
 			$table->integer('answered_option')->nullable();
@@ -26,6 +27,7 @@ class CreateSurveyAnswersTable extends Migration
 			$table->foreign('question_id')->references('id')->on('questions');
 			$table->foreign('survey_detail_id')->references('id')->on('survey_details');
 			$table->foreign('voter_id')->references('id')->on('voters');
+			$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
