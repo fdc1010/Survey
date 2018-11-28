@@ -40,7 +40,7 @@ class OptionCandidateCrudController extends CrudController
 		$this->crud->addColumn([
             'name' => 'candidate_id',
             'type' => 'select',
-            'label' => 'Tagged Options for Candidate',
+            'label' => 'Candidate',
 			'entity' => 'voter', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Voter"
@@ -56,7 +56,7 @@ class OptionCandidateCrudController extends CrudController
 		$this->crud->addField([
             'name' => 'candidate_id',
             'type' => 'select2',
-            'label' => 'Tagged Options for Candidate',
+            'label' => 'Candidate',
 			'entity' => 'voter', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Voter"
