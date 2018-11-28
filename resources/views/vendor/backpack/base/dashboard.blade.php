@@ -104,7 +104,7 @@
                     	<thead>
                             <tr>
                                 <th width="5%">Barangays:</th>
-                                <td width="5%" align="center"><span id="countbrgy">{{ count($barangays) }}</span></td>
+                                <td width="5%" align="center"><span id="countbrgy">{{ (!empty($rdata['to'])?count($rdata['to']):count($barangays)) }}</span></td>
                                 <th width="5%" align="center"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selposition" id="selposition">
