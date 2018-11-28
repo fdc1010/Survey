@@ -105,7 +105,7 @@ class PositionCandidateCrudController extends CrudController
 			$result .= "<li>".$candidate->voter->full_name."</li>";
 		}
 		$options = OptionPosition::with('options')->where('position_id',$id)->get();
-		$result = ."</ul><h4>Tagged Qualities Option:</h4><ul>";
+		$result .= "</ul><h4>Tagged Qualities Option:</h4><ul>";
 		foreach($options as $option){
 			$result .= "<li>".$option->options->option."</li>";
 		}
