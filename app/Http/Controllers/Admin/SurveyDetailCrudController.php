@@ -24,7 +24,7 @@ class SurveyDetailCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\SurveyDetail');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveydetail');
-        $this->crud->setEntityNameStrings('surveydetail', 'survey_details');
+        $this->crud->setEntityNameStrings('survey detail', 'Survey Details');
 
         /*
         |--------------------------------------------------------------------------
