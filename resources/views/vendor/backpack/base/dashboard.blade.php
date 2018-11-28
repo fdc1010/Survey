@@ -16,6 +16,7 @@
 @section('content')
 	@php
         $surveypos = 1;
+        $surveydetails = App\Models\SurveyDetail::all();
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         if(!empty($rdata['to'])){	
@@ -67,7 +68,13 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Criteria</div>                	                        	
+                      		<div class="box-title">Survey 
+                            	<select name="selsurvey" id="selsurvey">
+                                @foreach($surveydetails as $surveydetail)	
+                                    <option value="{{ $surveydetail->id }}">{{ $surveydetail->subject }}</option>
+                                @endforeach
+                                </select>
+                            </div>                	                        	
                     </div>
                 </div>
 				
@@ -78,18 +85,18 @@
                                 <th width="5%">Barangays:</th>
                                 <td width="5%" align="center"><span id="countbrgy">{{ count($barangays) }}</span></td>
                                 <th width="5%" align="center"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></th>
-                                <th width="5%">Run for:</th>
                                 <td width="5%" align="center">
                                 	<select name="selposition" id="selposition">
+                                    	<option value="0">Run for</option>
                                     @foreach($positions as $position)	
                                     	<option value="{{ $position->id }}">{{ $position->name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
                                 <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
-                                <th width="5%">Candidate:</th>
                                 <td width="5%" align="center">
                                 	<select name="selcandidate" id="selcandidate">
+                                    	<option value="0">Candidate</option>
                                     @foreach($candidates as $candidate)	
                                     	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
                                     @endforeach
