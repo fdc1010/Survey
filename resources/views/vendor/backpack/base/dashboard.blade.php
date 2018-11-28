@@ -40,11 +40,7 @@
             	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
             }
         }
-        if(!empty($rdata['to'])){
-        	$barangays = App\Models\Barangay::whereIn('id',$brgyarr)->get();
-        }else{
-        	$barangays = App\Models\Barangay::all();
-       	}        
+        $barangays = App\Models\Barangay::all();     
         	
         
         if(!empty($rdata['agebracket'])){
