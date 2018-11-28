@@ -54,9 +54,17 @@ class TallyVoteCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
+		$this->crud->addColumn([
+            'name' => 'survey_detail_id',
+            'type' => 'select',
+            'label' => 'Survey',
+			'entity' => 'surveydetail', // the relationship name in your Model
+			'attribute' => 'subject', // attribute on Article that is shown to admin
+			'model' => "App\Models\SurveyDetail"
+	    ]);
 		$this->crud->addField([
             'name' => 'voter_id',
-            'type' => 'select',
+            'type' => 'select2',
             'label' => 'Voter',
 			'entity' => 'voter', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
@@ -69,6 +77,14 @@ class TallyVoteCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
+	    ]);
+		$this->crud->addField([
+            'name' => 'survey_detail_id',
+            'type' => 'select2',
+            'label' => 'Survey',
+			'entity' => 'surveydetail', // the relationship name in your Model
+			'attribute' => 'subject', // attribute on Article that is shown to admin
+			'model' => "App\Models\SurveyDetail"
 	    ]);
         // add asterisk for fields that are required in TallyVoteRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
