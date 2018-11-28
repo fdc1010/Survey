@@ -15,10 +15,11 @@
 
 @section('content')
 	@php
-        $surveypos = 1;
+        $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
         $surveydetails = App\Models\SurveyDetail::all();
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
+        $selinitpositions = App\Models\PositionCandidate::all();
         if(!empty($rdata['to'])){	
         	$problems = App\Models\OptionProblem::with('option')->whereIn('barangay_id',$brgyarr)->get();
         }else{
@@ -88,7 +89,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selposition" id="selposition">
                                     	<option value="0">Run for</option>
-                                    @foreach($positions as $position)	
+                                    @foreach($selinitpositions as $position)	
                                     	<option value="{{ $position->id }}">{{ $position->name }}</option>
                                     @endforeach
                                 	</select>
