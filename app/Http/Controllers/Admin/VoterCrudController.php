@@ -47,10 +47,11 @@ class VoterCrudController extends CrudController
 			'function_name' => 'getPrecinct'
 	    ])->makeFirstColumn();
 		$this->crud->addColumn([
-            'name' => 'status_id',			
+            'name' => 'status',			
             'label' => 'Status',
             'type' => 'model_function',
-			'function_name' => 'getStatusName'
+			'function_name' => 'getStatusName',
+			'fake'=>true
 	    ]);
 		
 		$this->crud->addColumn([   // CustomHTML
@@ -74,6 +75,13 @@ class VoterCrudController extends CrudController
 			'entity' => 'gender', // the relationship name in your Model
 			'attribute' => 'description', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'surveyor',			
+            'label' => 'Surveyor',
+            'type' => 'model_function',
+			'function_name' => 'getSurveyor',
+			'fake'=>true
 	    ]);
 		$this->crud->addField([
 			'label' => "Precinct",

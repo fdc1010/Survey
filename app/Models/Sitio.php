@@ -28,6 +28,9 @@ class Sitio extends Model
 	public function voters(){
 		return $this->hasMany('App\Models\Voter','sitio_id'); 	
 	}
+	public function surveyor(){
+		return $this->hasMany('App\Models\AssignmentDetail','sitio_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

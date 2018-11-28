@@ -68,6 +68,11 @@ class Voter extends Model
 		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
 		return $barangay->barangay->name;
 	}
+	public function getSurveyor(){
+		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();
+		if(!empty($surveyor->surveyor->user))
+			return $surveyor->surveyor->user->full_name;
+	}
 	public function getFullNameAttribute()
     {
         return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
