@@ -113,7 +113,7 @@
                                 	<select name="selposition" id="selposition">
                                     	<option value="0">Run for</option>
                                     @foreach($selinitpositions as $position)	
-                                    	<option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    	<option value="{{ $position->id }}" {{ ((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
@@ -122,7 +122,7 @@
                                 	<select name="selcandidate" id="selcandidate">
                                     	<option value="0">Candidate</option>
                                     @foreach($selinitcandidates as $candidate)	
-                                    	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
+                                    	<option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
@@ -132,7 +132,7 @@
                                 	<select name="selagebracket" id="selagebracket">
                                     	<option value="0">Age</option>
                                     @foreach($agebrackets as $agebracket)	
-                                    	<option value="{{ $agebracket->id }}">{{ $agebracket->title }}</option>
+                                    	<option value="{{ $agebracket->id }}" {{ ((!empty($rdata['selagebracket'])&&$rdata['selagebracket']==$agebracket->id)?"selected='selected'":"") }}>{{ $agebracket->title }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
@@ -141,7 +141,7 @@
                                 	<select name="selgender" id="selgender">
                                     	<option value="0">Gender</option>
                                     @foreach($genders as $gender)	
-                                    	<option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                    	<option value="{{ $gender->id }}" {{ ((!empty($rdata['selgender'])&&$rdata['selgender']==$gender->id)?"selected='selected'":"") }}>{{ $gender->name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
@@ -150,7 +150,7 @@
                                 	<select name="selcivil" id="selcivil">
                                     	<option value="0">Civil</option>
                                     @foreach($civilstatuses as $civilstatus)	
-                                    	<option value="{{ $civilstatus->id }}">{{ $civilstatus->name }}</option>
+                                    	<option value="{{ $civilstatus->id }}" {{ ((!empty($rdata['selcivil'])&&$rdata['selcivil']==$civilstatus->id)?"selected='selected'":"") }}>{{ $civilstatus->name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
@@ -159,7 +159,7 @@
                                 	<select name="selemp" id="selemp">
                                     	<option value="0">Employment</option>
                                     @foreach($empstatuses as $empstatus)	
-                                    	<option value="{{ $empstatus->id }}">{{ $empstatus->name }}</option>
+                                    	<option value="{{ $empstatus->id }}" {{ ((!empty($rdata['selemp'])&&$rdata['selemp']==$empstatus->id)?"selected='selected'":"") }}>{{ $empstatus->name }}</option>
                                     @endforeach
                                 	</select>
                                 </td>
