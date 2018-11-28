@@ -24,8 +24,43 @@ class OptionCandidateCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OptionCandidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optioncandidate');
-        $this->crud->setEntityNameStrings('optioncandidate', 'option_candidates');
-
+        $this->crud->setEntityNameStrings('option candidate', 'Option Candidates');
+		$this->crud->removeColumns(['option_id','candidate_id']);
+		$this->crud->removeFields(['option_id','candidate_id']);
+		$this->crud->orderBy('candidate_id');
+		
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'select',
+            'label' => 'Option',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'candidate_id',
+            'type' => 'select',
+            'label' => 'Tagged Options for Candidate',
+			'entity' => 'voter', // the relationship name in your Model
+			'attribute' => 'full_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Voter"
+	    ]);
+		$this->crud->addField([
+            'name' => 'option_id',
+            'type' => 'select2',
+            'label' => 'Option',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addField([
+            'name' => 'candidate_id',
+            'type' => 'select2',
+            'label' => 'Tagged Options for Candidate',
+			'entity' => 'voter', // the relationship name in your Model
+			'attribute' => 'full_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Voter"
+	    ]);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

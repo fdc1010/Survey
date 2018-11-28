@@ -19,10 +19,21 @@ class OptionCandidate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['option_id','candidate_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function option()
+    {
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
+    }
+	public function candidate()
+    {
+        return $this->belongsTo('App\Models\Candidate','candidate_id')->with('position','party','voter');
+    }
+	public function voter()
+    {
+        return $this->belongsTo('App\Models\Voter','candidate_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
