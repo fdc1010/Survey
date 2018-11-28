@@ -72,7 +72,7 @@
                       		<div class="box-title">Survey:  
                             	<select name="selsurvey" id="selsurvey">
                                 @foreach($surveydetails as $surveydetail)	
-                                    <option value="{{ $surveydetail->id }}" {{ ((old('selsurvey')==$surveydetail->id)?"selected='selected'":"")) }}>{{ $surveydetail->subject }}</option>
+                                    <option value="{{ $surveydetail->id }}" {{ (old('selsurvey')==$surveydetail->id?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                                 @endforeach
                                 </select>
                             </div>                	                        	
