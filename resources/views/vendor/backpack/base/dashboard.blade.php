@@ -213,8 +213,14 @@
                                           <label class="col-lg-12 control-label">Selected</label>
                                       </div>
                                   </div>
-                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">
-                              		
+                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">                                                                        
+                                    @if(!empty($rdata['to']))	
+                                    	@foreach($barangays as $barangay)
+                                        	@if(in_array($barangay->id,$rdata['to']))
+                                        		<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
+                                            @endif
+                                    	@endforeach
+                                    @endif                                    
                               </select>
                           </div> 
                       </div>     
