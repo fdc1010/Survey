@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\SurveyorAssignmentRequest as StoreRequest;
 use App\Http\Requests\SurveyorAssignmentRequest as UpdateRequest;
 use App\Models\AssignmentDetail;
+use App\Models\Sitio;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
@@ -25,7 +26,8 @@ class SurveyorAssignmentCrudController extends CrudController
         $this->crud->setModel('App\Models\SurveyorAssignment');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveyorassignment');
         $this->crud->setEntityNameStrings('surveyor assignment', 'Surveyor Assignments');
-
+		$this->crud->enableDetailsRow();
+		$this->crud->allowAccess('details_row');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -52,12 +54,12 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
 		])->afterColumn('user_id');*/
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'areas',			
             'label' => 'Assigned Areas',
             'type' => 'model_function',
 			'function_name' => 'getAreas'
-		])->afterColumn('user_id');	
+		])->afterColumn('user_id');	*/
 		$this->crud->addColumn([
             'label' => "Survey",
 			'type' => 'select',
@@ -158,5 +160,17 @@ class SurveyorAssignmentCrudController extends CrudController
 		$this->crud->hasAccessOrFail('delete');
 		AssignmentDetail::where('assignment_id',$id)->delete();
 		return $this->crud->delete($id);
+	}
+	public function showDetailsRow($id){
+		$areas = AssignmentDetail::where('assignment_id',$this->id)
+										->with('sitio')
+										->get();
+		$result = "<h4>Assigned Areas:</h4><ul>";
+		foreach($areas as $area){
+			$result .= "<li>".$area->sitio->name." - quota: ".$area->quota."</li>";
+		}
+		$result .= "</ul>";
+		return $result;
+		
 	}
 }

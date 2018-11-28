@@ -101,7 +101,7 @@ class PositionCandidateCrudController extends CrudController
     }
 	public function showDetailsRow($id){
 		$candidates = Candidate::with('voter')->where('position_id',$id)->get();
-		$result = "<h4>candidates:</h4><ul>";
+		$result = "<h4>Candidates:</h4><ul>";
 		foreach($candidates as $candidate){
 			$result .= "<li>".$candidate->voter->full_name."</li>";
 		}
