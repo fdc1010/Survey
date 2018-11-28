@@ -88,7 +88,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'name' => 'survey_detail_id', // the relationship name in your Model
 			'entity' => 'surveydetail', // the relationship name in your Model
 			'attribute' => 'subject', // attribute on Article that is shown to admin
-			'model' => "App\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		/*$this->crud->addField([
 			'label'     => 'Assignment Area',

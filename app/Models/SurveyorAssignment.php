@@ -38,7 +38,7 @@ class SurveyorAssignment extends Model
 	}
 	public function surveydetail()
     {
-        return $this->belongsTo('App\SurveyDetail','survey_detail_id');
+        return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
 	public function getAreas(){
 		$areas = AssignmentDetail::where('assignment_id',$this->id)

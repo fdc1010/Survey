@@ -24,7 +24,7 @@ class SurveyDetail extends Model
     // protected $dates = [];
 	public function position()
     {
-        return $this->belongsTo('App\PositionCandidate','for_position');
+        return $this->belongsTo('App\Models\PositionCandidate','for_position');
     }
     /*
     |--------------------------------------------------------------------------
