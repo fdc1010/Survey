@@ -165,10 +165,11 @@ class SurveyorAssignmentCrudController extends CrudController
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('sitio')
 										->get();
-		$result = "<h4>Assigned Areas:</h4><ul>";
+		$result = "<h4>Assigned Areas:</h4><div class='col-lg-6'>";
 		foreach($areas as $area){
-			$result .= "<div class='col-lg-6'><div class='col-lg-6'>".$area->sitio->name."</div><div class='col-lg-6'>quota: ".$area->quota."</div></div>";
+			$result .= "<div class='col-lg-6'>".$area->sitio->name."</div><div class='col-lg-6'>quota: ".$area->quota."</div>";
 		}
+		$result .= "</div>";
 		return $result;
 		
 	}
