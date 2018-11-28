@@ -70,6 +70,8 @@ class MobileController extends Controller
 																											$qvs->select(['voter_id','status_id']);
 																									}]);
 																						}]);
+																			},'barangay'=>function($qb){
+																				$qb->select(['name','description','province_id','district_id','municipality_id']);	
 																			}]);
 															}])
 			  										->first();
