@@ -67,11 +67,11 @@ class MobileController extends Controller
 																		$q->with(['sitio'=>function($qu){
 																				$qu->with(['voters'=>function($qs){
 																									$qs->with(['statuses'=>function($qvs){
-																											$qvs->select(['voter_id','status_id']);
-																									}]);
+																													$qvs->select(['voter_id','status_id']);
+																												},'barangay'=>function($qb){
+																													$qb->select(['name','description','province_id','district_id','municipality_id']);	
+																												}]);
 																						}]);
-																			},'barangay'=>function($qb){
-																				$qb->select(['name','description','province_id','district_id','municipality_id']);	
 																			}]);
 															}])
 			  										->first();
