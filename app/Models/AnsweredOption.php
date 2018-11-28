@@ -19,10 +19,13 @@ class AnsweredOption extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['survey_answer_id','option_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function surveyanswer()
+    {
+        return $this->belongsTo('App\Models\SurveyAnswer','survey_answer_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

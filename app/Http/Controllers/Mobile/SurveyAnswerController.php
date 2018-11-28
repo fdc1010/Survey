@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mobile;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\AnsweredOption;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,7 +35,14 @@ class SurveyAnswerController extends Controller
 		if($request->has('option_other_answer')){
 			$surveyans->option_other_answer = $request->option_other_answer;
 		}
-		$surveyans->save();
+		$surveyansid=$surveyans->save();
+		
+		foreach($request->option_id as $optid){
+			$answeredoptions = new AnsweredOption;
+			$answeredoptions->survey_answer_id = $surveyansid;
+			$answeredoptions->option_id = $optid;
+			$answeredoptions->save();
+		}
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
     /**
