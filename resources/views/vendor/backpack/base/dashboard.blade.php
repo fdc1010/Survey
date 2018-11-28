@@ -87,8 +87,9 @@
         }
     @endphp
     <div class="row">
-    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}" enctype="multipart/form-data">
-    	<div class="col-md-12">
+    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
+        @csrf
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -184,8 +185,6 @@
                     </div>
                 </div>
                 <div class="box-body">
-                	                    	
-                        @csrf
                         <div class="col-ls-12">
                         	<div class="col-lg-5">    
                                 <div class="form-group">  
@@ -377,6 +376,7 @@
                 </div>
             </div>
         </div>
+        <input type="submit" />
         </form>
     	<div class="col-md-3">
             <div class="box box-default">
