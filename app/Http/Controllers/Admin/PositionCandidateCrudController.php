@@ -99,12 +99,17 @@ class PositionCandidateCrudController extends CrudController
         return $redirect_location;
     }
 	public function showDetailsRow($id){
-		$options = OptionPosition::with('options')->where('position_id',$id)->get();
-		$result = "";
-		foreach($options as $option){
-			$result .= $option->options->option."<br>";
+		$candidates = Candidate::with('voter')->where('position_id',$id)->get();
+		$result = "<h4>candidates:</h4><ul>";
+		foreach($candidates as $candidate){
+			$result .= "<li>".$candidate->voter->full_name."</li>";
 		}
-		
+		$options = OptionPosition::with('options')->where('position_id',$id)->get();
+		$result = ."</ul><h4>Tagged Qualities Option:</h4><ul>";
+		foreach($options as $option){
+			$result .= "<li>".$option->options->option."</li>";
+		}
+		$result .= "</ul>";
 		return $result;
 		
 	}
