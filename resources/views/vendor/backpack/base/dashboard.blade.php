@@ -33,7 +33,7 @@
         if(!empty($rdata['position'])){
        	 	$candidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
         }else{
-        	$candidates = App\Models\Candidate::with('voter')->get();
+        	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
        	}
         $barangays = App\Models\Barangay::all();
         if(!empty($rdata['agebracket'])){
