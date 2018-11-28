@@ -15,7 +15,12 @@ class CreateOptionCandidatesTable extends Migration
     {
         Schema::create('option_candidates', function (Blueprint $table) {
             $table->increments('id');
+			$table->unsignedInteger('option_id');
+			$table->unsignedInteger('candidate_id');
             $table->timestamps();
+			
+			$table->foreign('option_id')->references('id')->on('question_options');
+			$table->foreign('candidate_id')->references('id')->on('candidates');
         });
     }
 
