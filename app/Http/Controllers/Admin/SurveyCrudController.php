@@ -25,7 +25,7 @@ class SurveyCrudController extends CrudController
         $this->crud->setModel('App\Models\Survey');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/survey');
         $this->crud->setEntityNameStrings('survey', 'surveys');
-
+		$this->crud->denyAccess(['update', 'create', 'delete']);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -34,7 +34,7 @@ class SurveyCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		
         // add asterisk for fields that are required in SurveyRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
