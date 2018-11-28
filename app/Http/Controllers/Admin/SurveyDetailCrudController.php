@@ -34,7 +34,24 @@ class SurveyDetailCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->removeColumn(['for_position']);
+		$this->crud->removeField(['for_position']);
+		$this->crud->addColumn([
+            'name' => 'for_position',
+            'type' => 'select',
+            'label' => 'Position',
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate"
+	    ]);
+		$this->crud->addField([
+            'name' => 'for_position',
+            'type' => 'select',
+            'label' => 'Position',
+			'entity' => 'position', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate"
+	    ]);
         // add asterisk for fields that are required in SurveyDetailRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

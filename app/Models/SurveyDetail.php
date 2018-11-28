@@ -19,10 +19,13 @@ class SurveyDetail extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['subject','description','for_position'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function position()
+    {
+        return $this->belongsTo('App\PositionCandidate','for_position');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
