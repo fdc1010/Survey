@@ -41,7 +41,7 @@
             }
         }
         if(!empty($rdata['to'])){
-        	$barangays = App\Models\Barangay::whereIn('barangay_id',$brgyarr)->get();
+        	$barangays = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         }else{
         	$barangays = App\Models\Barangay::all();
        	}        
