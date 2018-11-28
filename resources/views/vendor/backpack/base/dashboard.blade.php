@@ -194,8 +194,8 @@
                                     </div>
                                 </div>                                            
                                 <select name="from[]" id="brgycriteria" class="form-control" size="8" multiple="multiple">               
-                                    @foreach($barangays as $barangay)	
-                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                    @foreach($barangays as $barangay)                                    	
+                                       	<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
                                     @endforeach
                                 </select>                                        
                           </div>
@@ -218,7 +218,13 @@
                                           <label class="col-lg-12 control-label">Selected</label>
                                       </div>
                                   </div>
-                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple"></select>
+                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">
+                              		@foreach($barangays as $barangay)
+                                    	@if(!empty($rdata['to']) && in_array($barangay->id,$rdata['to']))
+                                        	<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
+                                        @endif
+                                    @endforeach
+                              </select>
                           </div> 
                       </div>     
                 </div>
