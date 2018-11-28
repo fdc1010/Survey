@@ -19,7 +19,7 @@ class SurveyorAssignment extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['user_id','quota','progress','task','description','areas'];
+    protected $fillable = ['user_id','quota','progress','task','description','areas','survey_detail_id'];
     protected $casts = [
         'areas' => 'array'
     ];
@@ -36,6 +36,10 @@ class SurveyorAssignment extends Model
 	public function assignments(){
 		return $this->hasMany('App\Models\AssignmentDetail','assignment_id');
 	}
+	public function surveydetail()
+    {
+        return $this->belongsTo('App\SurveyDetail','survey_detail_id');
+    }
 	public function getAreas(){
 		$areas = AssignmentDetail::where('assignment_id',$this->id)
 										->with('sitio')

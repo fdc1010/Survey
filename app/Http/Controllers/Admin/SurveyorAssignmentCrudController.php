@@ -34,8 +34,8 @@ class SurveyorAssignmentCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['user_id','task','description','areas']);
-		$this->crud->removeField(['user_id','progress','areas']);
+		$this->crud->removeColumn(['user_id','task','description','areas','survey_detail_id']);
+		$this->crud->removeField(['user_id','progress','areas','survey_detail_id']);
         $this->crud->addColumn([
             'label' => "User",
 			'type' => 'select',
@@ -82,14 +82,14 @@ class SurveyorAssignmentCrudController extends CrudController
 			'max' => 1000, // maximum rows allowed in the table
 			'min' => 1 // minimum rows allowed in the table
 		]);
-		/*$this->crud->addField([
-			'label' => "Barangay",
+		$this->crud->addField([
+			'label' => "Survey Detail ID",
 			'type' => 'select',
-			'name' => 'barangay_id', // the relationship name in your Model
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
-		])->afterField('user_id');*/
+			'name' => 'survey_detail_id', // the relationship name in your Model
+			'entity' => 'surveydetail', // the relationship name in your Model
+			'attribute' => 'subject', // attribute on Article that is shown to admin
+			'model' => "App\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
+		]);
 		/*$this->crud->addField([
 			'label'     => 'Assignment Area',
 			'type'      => 'checklist',

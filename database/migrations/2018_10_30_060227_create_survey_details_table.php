@@ -15,7 +15,7 @@ class CreateSurveyDetailsTable extends Migration
     {
         Schema::create('survey_details', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('subject')->nullable();
+			$table->string('subject');
 			$table->longText('description')->nullable();
 			$table->integer('for_position')->nullable();
             $table->timestamps();
