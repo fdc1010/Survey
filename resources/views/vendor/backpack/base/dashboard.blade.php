@@ -87,7 +87,7 @@
         }
     @endphp
     <div class="row">
-    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
+    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}" enctype="multipart/form-data">
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
