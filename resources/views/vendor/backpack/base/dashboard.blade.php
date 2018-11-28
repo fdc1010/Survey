@@ -68,7 +68,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Survey 
+                      		<div class="box-title">Survey:  
                             	<select name="selsurvey" id="selsurvey">
                                 @foreach($surveydetails as $surveydetail)	
                                     <option value="{{ $surveydetail->id }}">{{ $surveydetail->subject }}</option>
