@@ -31,7 +31,6 @@ class VoterRequest extends FormRequest
 			'first_name' => 'required',
 			'last_name' => 'required', 
 			'gender_id' => 'required',
-			'status_id' => 'required',
 			'employment_status_id' => 'required',
 			'civil_status_id' => 'required',
 			'occupancy_status_id' => 'required',
