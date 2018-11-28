@@ -27,7 +27,7 @@ class VoterCrudController extends CrudController
         $this->crud->setModel('App\Models\Voter');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/voter');
         $this->crud->setEntityNameStrings('voter', 'voters');
-
+		
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -39,7 +39,7 @@ class VoterCrudController extends CrudController
 		$this->crud->removeColumn(['precinct_id','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
-		$this->crud->removeField(['employment_status_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household','yearly_household','work']);
+		$this->crud->removeField(['employment_status_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
 		$this->crud->addColumn([
             'name' => 'precinct_id',			
             'label' => 'Precinct',
@@ -50,8 +50,7 @@ class VoterCrudController extends CrudController
             'name' => 'status',			
             'label' => 'Status',
             'type' => 'model_function',
-			'function_name' => 'getStatusName',
-			'fake'=>true
+			'function_name' => 'getStatusName'
 	    ]);
 		
 		$this->crud->addColumn([   // CustomHTML
@@ -80,8 +79,7 @@ class VoterCrudController extends CrudController
             'name' => 'surveyor',			
             'label' => 'Surveyor',
             'type' => 'model_function',
-			'function_name' => 'getSurveyor',
-			'fake'=>true
+			'function_name' => 'getSurveyor'
 	    ]);
 		$this->crud->addField([
 			'label' => "Precinct",
@@ -101,7 +99,7 @@ class VoterCrudController extends CrudController
 			'attribute' => 'description', // attribute on Article that is shown to admin
 			'model' => "App\Models\Gender", // on create&update, do you need to add/delete pivot table entries?
 		])->beforeField('profilepic');
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'label' => "Status",
 			'type' => 'select',
 			'name' => 'status_id', // the relationship name in your Model
@@ -109,7 +107,7 @@ class VoterCrudController extends CrudController
 			'attribute' => 'status_name', // attribute on Article that is shown to admin
 			//'attribute2' => 'status_name',
 			'model' => "App\Models\VoterStatus" // on create&update, do you need to add/delete pivot table entries?
-		]);
+		]);*/
 		$this->crud->addField([ // image
 			'label' => "Profile Image",
 			'name' => "profilepic",

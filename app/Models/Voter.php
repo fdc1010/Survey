@@ -53,12 +53,15 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\OccupancyStatus','occupancy_status_id');
     }
-	public function getStatusName(){
-		$voterstatus = VoterStatus::find($this->status_id);
-		if($voterstatus)
-			return $voterstatus->status . " (" . $voterstatus->name . ")";
-		else
-			return "";
+	public function getStatusName(){		
+		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
+		$result .= "<ul>";
+		foreach($voterstatus as $vstatus){
+			$result .= "<li>".$vstatus->status->status." (".$vstatus->status->name.")</li>";
+		}
+		$result .= "</ul>";
+		return $result;
+		
 	}
 	public function getPrecinct(){
 		$precinct = Precinct::find($this->precinct_id);
@@ -71,7 +74,7 @@ class Voter extends Model
 	public function getSurveyor(){
 		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();
 		if(!empty($surveyor->surveyor->user))
-			return $surveyor->surveyor->user->full_name;
+			return $surveyor->surveyor->user->name;
 	}
 	public function getFullNameAttribute()
     {
