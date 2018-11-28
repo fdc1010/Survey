@@ -18,12 +18,16 @@ class SurveyAnswerController extends Controller
         //
     }
 	public function storeAnswers(Request $request){
-		$sid = $request->survey_id;
-		$survey = Survey::find($sid);
+		//$sid = $request->survey_detail_id;
+		//$survey = Survey::find($sid);
 		$surveyans = new SurveyAnswer;		
-		$surveyans->survey_id = $survey->id;
+		$surveyans->survey_detail_id = $request->survey_detail_id;
 		$surveyans->question_id = $request->question_id;
-		$surveyans->answered_option = $request->answered_option;
+		$surveyans->answered_option = $request->option_id;
+		$surveyans->user_id = $request->user_id;
+		$surveyans->voter_id = $request->voter_id;
+		$surveyans->latitude = $request->latitude;		
+		$surveyans->longitude = $request->longitude;
 		if($request->has('other_answer')){
 			$surveyans->other_answer = $request->other_answer;
 		}

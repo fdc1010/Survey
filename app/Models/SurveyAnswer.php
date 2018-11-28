@@ -24,6 +24,9 @@ class SurveyAnswer extends Model
 							'latitude','longitude'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $casts = [
+        'answered_option' => 'array'
+    ];
 	public function user()
     {
         return $this->belongsTo('App\User','user_id');
