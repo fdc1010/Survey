@@ -31,7 +31,7 @@ class TallyVote extends Model
         return $this->belongsTo('App\Models\Voter','voter_id');
     }
 	public function tally(){
-		return $this->sum('tally');	
+		return $this->where('candidate_id',$this->candidate_id)->sum('tally');	
 	}
     /*
     |--------------------------------------------------------------------------
