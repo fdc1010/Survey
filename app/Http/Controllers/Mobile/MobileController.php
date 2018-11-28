@@ -65,7 +65,11 @@ class MobileController extends Controller
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
 																		$q->with(['sitio'=>function($qu){
-																				$qu->with(['voters'=>function($qs){$qs->with('statuses')->select(['voter_id','status_id']);}]);
+																				$qu->with(['voters'=>function($qs){
+																									$qs->with(['statuses'=>function($qvs){
+																											$qvs->select(['voter_id','status_id']);
+																									}]);
+																						}]);
 																			}]);
 															}])
 			  										->first();
