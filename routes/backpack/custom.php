@@ -47,4 +47,5 @@ Route::group([
     CRUD::resource('agebracket', 'AgeBracketCrudController');
     CRUD::resource('statusdetail', 'StatusDetailCrudController');
     CRUD::resource('optioncandidate', 'OptionCandidateCrudController');
+    CRUD::resource('tallyothervote', 'TallyOtherVoteCrudController');
 }); // this should be the absolute last line of this file
