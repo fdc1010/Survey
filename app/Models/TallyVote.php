@@ -34,9 +34,9 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	public function tally($agebrackets = null,$genders = null){
+	public function tally($agebrackets = [18,20,30,40,80],$genders = [1,2,3]){
 		return $this->where('candidate_id',$this->candidate_id)
-						->whereHas('voter',function($q)use($agebrackets){
+						->whereHas('voter',function($q)use($agebrackets,$genders){
 								$q->whereIn('age',$agebrackets)
 									->whereIn('gender',$genders);
 							})
