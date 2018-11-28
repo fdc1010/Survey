@@ -26,6 +26,10 @@ class Voter extends Model
     // protected $dates = [];
 	protected $appends = ['full_name'];
 	
+	public function sitio()
+    {
+        return $this->belongsTo('App\Models\Sitio','sitio_id');
+    }
 	public function status()
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');

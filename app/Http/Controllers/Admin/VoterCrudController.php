@@ -157,6 +157,16 @@ class VoterCrudController extends CrudController
 			'type' => 'number',
 			'name' => 'monthly_household'
 		]);
+		$this->crud->addField([
+			'label' => "Sitio",
+			'type' => 'select2',
+			'name' => 'sitio_id', // the relationship name in your Model
+			'entity' => 'sitio', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Sitio", // on create&update, do you need to add/delete pivot table entries?
+			//'attribute2' => 'name', // attribute on Article that is shown to admin
+			//'entity2' => "barangay"
+		]);
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
