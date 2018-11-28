@@ -20,6 +20,7 @@
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::all();
+        $selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         if(!empty($rdata['to'])){	
         	$problems = App\Models\OptionProblem::with('option')->whereIn('barangay_id',$brgyarr)->get();
         }else{
@@ -120,7 +121,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selcandidate" id="selcandidate">
                                     	<option value="0">Candidate</option>
-                                    @foreach($candidates as $candidate)	
+                                    @foreach($selinitcandidates as $candidate)	
                                     	<option value="{{ $candidate->id }}">{{ $candidate->voter->full_name }}</option>
                                     @endforeach
                                 	</select>
