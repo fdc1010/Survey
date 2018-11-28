@@ -57,7 +57,7 @@ class Voter extends Model
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "";
 		foreach($voterstatus as $vstatus){
-			$result .= "<div class='col-lg-12'>".$vstatus->status->status." (".$vstatus->status->name.")</div>";
+			$result .= "<div class='col-lg-2'>".$vstatus->status->status." (".$vstatus->status->name.")</div>";
 		}		
 		return $result;
 		
