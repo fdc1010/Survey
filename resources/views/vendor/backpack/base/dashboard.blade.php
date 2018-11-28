@@ -50,7 +50,7 @@
         }else{
         	$empstatuses = App\Models\EmploymentStatus::all(); 
         }
-        if(!empty($rdata['empstatus'])){
+        if(!empty($rdata['position'])){
         	$positions = App\Models\PositionCandidate::whereIn('id',$rdata['position'])->get(); 
         }else{
         	$positions = App\Models\PositionCandidate::where('id',$surveypos)->get();
