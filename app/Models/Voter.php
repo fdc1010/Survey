@@ -55,7 +55,7 @@ class Voter extends Model
     }
 	public function getStatusName(){		
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
-		$result .= "<ul>";
+		$result = "<ul>";
 		foreach($voterstatus as $vstatus){
 			$result .= "<li>".$vstatus->status->status." (".$vstatus->status->name.")</li>";
 		}
