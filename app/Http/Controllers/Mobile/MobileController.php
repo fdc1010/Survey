@@ -68,7 +68,8 @@ class MobileController extends Controller
 																				$qu->with(['voters'=>function($qs){
 																									$qs->with(['statuses'=>function($qvs){
 																											$qvs->select(['voter_id','status_id']);
-																									}]);
+																									}])
+																					->select(['id','name','description']);
 																						}]);
 																			}]);
 															}])
