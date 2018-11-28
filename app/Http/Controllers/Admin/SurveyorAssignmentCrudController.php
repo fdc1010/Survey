@@ -162,7 +162,7 @@ class SurveyorAssignmentCrudController extends CrudController
 		return $this->crud->delete($id);
 	}
 	public function showDetailsRow($id){
-		$areas = AssignmentDetail::where('assignment_id',$this->id)
+		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('sitio')
 										->get();
 		$result = "<h4>Assigned Areas:</h4><ul>";
