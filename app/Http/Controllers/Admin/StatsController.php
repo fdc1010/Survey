@@ -63,6 +63,7 @@ class StatsController extends Controller
 		$chkcivilstatus=$request->civilstatus;
 		$chkempstatus=$request->empstatus;*/
 		$rdata = $request->except(['q','_token']);
+		dd($rdata);
         return view('backpack::dashboard', [$this->data,'rdata'=>$rdata]);
     }
     public function store(Request $request)
