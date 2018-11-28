@@ -21,11 +21,7 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::all();
         $selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
-        if(!empty($rdata['to'])){	
-        	$problems = App\Models\OptionProblem::with('option')->whereIn('barangay_id',$brgyarr)->get();
-        }else{
-        	$problems = App\Models\OptionProblem::with('option')->get();
-        }
+        $problems = App\Models\OptionProblem::with('option')->get();
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
         }else{
@@ -44,8 +40,12 @@
             	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
             }
         }
-        
-        $barangays = App\Models\Barangay::all();
+        if(!empty($rdata['to'])){
+        	$barangays = App\Models\Barangay::whereIn('barangay_id',$brgyarr)->get();
+        }else{
+        	$barangays = App\Models\Barangay::all();
+       	}        
+        	
         
         if(!empty($rdata['agebracket'])){
         	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
