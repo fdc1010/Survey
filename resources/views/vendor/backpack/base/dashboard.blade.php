@@ -28,28 +28,50 @@
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
         }else{
-        	$genders = App\Models\Gender::all();
+        	if(!empty($rdata['selgender'])){
+        		$genders = App\Models\Gender::where('id',$rdata['selgender'])->get();
+            }else{
+            	$genders = App\Models\Gender::all();
+            }
         }
         if(!empty($rdata['position'])){
        	 	$candidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
         }else{
-        	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
-       	}
+        	if(!empty($rdata['selcandidate'])){
+            	$candidates = App\Models\Candidate::with('voter')->where('id',$rdata['selcandidate'])->get();
+       		}else{
+            	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+            }
+        }
+        
         $barangays = App\Models\Barangay::all();
+        
         if(!empty($rdata['agebracket'])){
         	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
         }else{
-        	$agebrackets = App\Models\AgeBracket::all(); 
+        	if(!empty($rdata['selagebracket'])){
+        		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get(); 
+            }else{
+            	$agebrackets = App\Models\AgeBracket::all(); 
+            }
         }
         if(!empty($rdata['civilstatus'])){
         	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['civilstatus'])->get(); 
         }else{
-        	$civilstatuses = App\Models\CivilStatus::all();
+        	if(!empty($rdata['selcivil'])){
+        		$civilstatuses = App\Models\CivilStatus::where('id',$rdata['selcivil'])->get();
+            }else{
+            	$civilstatuses = App\Models\CivilStatus::all();
+            }
         }
         if(!empty($rdata['empstatus'])){
         	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get(); 
         }else{
-        	$empstatuses = App\Models\EmploymentStatus::all(); 
+        	if(!empty($rdata['selemp'])){
+        		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['selemp'])->get(); 
+            }else{
+            	$empstatuses = App\Models\EmploymentStatus::all(); 
+            }
         }
         if(!empty($rdata['position'])){
         	$positions = App\Models\PositionCandidate::whereIn('id',$rdata['position'])->get(); 
