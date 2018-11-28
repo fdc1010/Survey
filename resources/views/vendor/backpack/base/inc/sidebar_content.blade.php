@@ -28,3 +28,4 @@
 <li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
 <li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-users'></i> <span>Barangays</span></a></li>
 <li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
+<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
