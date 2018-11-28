@@ -14,6 +14,7 @@ class AddImeiUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+			$table->unsignedInteger('voter_id')->nullable();
             $table->string('imei')->nullable();
         });
     }
@@ -26,7 +27,8 @@ class AddImeiUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('imei');
+            $table->dropColumn('voter_id');
+			$table->dropColumn('imei');
         });
     }
 }
