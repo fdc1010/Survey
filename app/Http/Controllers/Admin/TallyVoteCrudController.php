@@ -36,7 +36,7 @@ class TallyVoteCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['voter_id','candidate_id','survey_detail_id']);
 		$this->crud->removeFields(['voter_id','candidate_id','survey_detail_id']);
-		$this->crud->orderBy('candidate_id');
+		$this->crud->orderBy('survey_detail_id');
 		
 		$this->crud->addColumn([
             'name' => 'voter_id',
