@@ -36,7 +36,7 @@ class TallyVote extends Model
     }
 	public function tally($agebrackets = null,$genders = null){
 		return $this->where('candidate_id',$this->candidate_id)
-						->whereHas('voter'=>function($q)use($agebrackets){
+						->whereHas('voter',function($q)use($agebrackets){
 								$q->whereIn('age',$agebrackets)
 									->whereIn('gender',$genders);
 							})
