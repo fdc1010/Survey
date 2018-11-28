@@ -46,7 +46,7 @@ class SurveyorAssignment extends Model
 										->get();
 		$result = "";
 		foreach($areas as $area){
-			$result .= $area->sitio->name."<br>";
+			$result .= $area->sitio->name." - quota: ".$area->quota."<br>";
 		}
 		return $result;
 	}

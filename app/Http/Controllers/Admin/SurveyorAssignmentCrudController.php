@@ -57,7 +57,15 @@ class SurveyorAssignmentCrudController extends CrudController
             'label' => 'Assigned Areas',
             'type' => 'model_function',
 			'function_name' => 'getAreas'
-		])->afterColumn('user_id');		
+		])->afterColumn('user_id');	
+		$this->crud->addColumn([
+            'label' => "Survey",
+			'type' => 'select',
+			'name' => 'survey_detail_id', // the relationship name in your Model
+			'entity' => 'surveydetail', // the relationship name in your Model
+			'attribute' => 'subject', // attribute on Article that is shown to admin
+			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
+		])->afterColumn('progress');	
 		$this->crud->addField([
 			'label' => "User",
 			'type' => 'select',
@@ -83,7 +91,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'min' => 1 // minimum rows allowed in the table
 		]);
 		$this->crud->addField([
-			'label' => "Survey Detail ID",
+			'label' => "Survey",
 			'type' => 'select',
 			'name' => 'survey_detail_id', // the relationship name in your Model
 			'entity' => 'surveydetail', // the relationship name in your Model
