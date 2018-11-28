@@ -22,7 +22,7 @@ class Candidate extends Model
     protected $fillable = ['position_id', 'party_id','voter_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	protected $appends = ['full_name'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -45,6 +45,11 @@ class Candidate extends Model
 		$voter = Voter::find($this->voter_id);
 		return $voter->first_name . " " . $voter->middle_name . " " . $voter->last_name;	
 	}
+	public function getFullNameAttribute()
+    {
+		$voter = Voter::find($this->voter_id);
+        return ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

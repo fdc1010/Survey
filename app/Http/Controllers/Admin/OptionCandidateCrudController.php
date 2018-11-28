@@ -41,9 +41,9 @@ class OptionCandidateCrudController extends CrudController
             'name' => 'candidate_id',
             'type' => 'select',
             'label' => 'Candidate',
-			'entity' => 'voter', // the relationship name in your Model
+			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Voter"
+			'model' => "App\Models\Candidate"
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
@@ -57,9 +57,9 @@ class OptionCandidateCrudController extends CrudController
             'name' => 'candidate_id',
             'type' => 'select2',
             'label' => 'Candidate',
-			'entity' => 'voter', // the relationship name in your Model
+			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Voter"
+			'model' => "App\Models\Candidate"
 	    ]);
         /*
         |--------------------------------------------------------------------------
