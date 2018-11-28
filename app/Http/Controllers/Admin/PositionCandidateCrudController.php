@@ -9,6 +9,7 @@ use App\Http\Requests\PositionCandidateRequest as StoreRequest;
 use App\Http\Requests\PositionCandidateRequest as UpdateRequest;
 use App\Models\OptionPosition;
 use App\Models\PositionCandidate;
+use App\Models\Candidate;
 /**
  * Class PositionCandidateCrudController
  * @package App\Http\Controllers\Admin
