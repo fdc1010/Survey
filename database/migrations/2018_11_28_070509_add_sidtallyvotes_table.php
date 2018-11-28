@@ -14,9 +14,8 @@ class AddSidtallyvotesTable extends Migration
     public function up()
     {
         Schema::table('tally_votes', function (Blueprint $table) {
-            $table->unsignedInteger('survey_detail_id');
+            $table->integer('survey_detail_id')->nullable();
 			
-			$table->foreign('survey_detail_id')->references('id')->on('survey_details');
         });
     }
 
