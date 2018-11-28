@@ -34,7 +34,7 @@ class AssignmentDetail extends Model
     {
         return $this->belongsTo('App\Models\Sitio','sitio_id');
     }
-	pubilc function surveyor(){
+	public function surveyor(){
 		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
 	}
     /*
