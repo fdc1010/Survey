@@ -221,7 +221,7 @@
                               <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">
                               		@foreach($barangays as $barangay)
                                     	@if(!empty($rdata['to']) && in_array($barangay->id,$rdata['to']))
-                                        	<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
+                                        	<option value="{{ $barangay->id }}">{{ $barangay->name }} {{ $rdata['to'] }}</option>                                        	
                                         @endif
                                     @endforeach
                               </select>
