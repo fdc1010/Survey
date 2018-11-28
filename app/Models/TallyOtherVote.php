@@ -33,9 +33,27 @@ class TallyOtherVote extends Model
 	public function surveydetail()
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
-    }
-	public function tally(){
-		return $this->where('option_id',$this->option_id)->sum('tally');	
+    }	
+	public function tally($age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
+							$civilstatus = [],$occstatus = [],$voterstatus = []){
+		return $this->where('option_id',$this->option_id)
+						->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+								$q->where('age','>=',$age)
+									->orWhereIn('age',$agebrackets)
+									->orWhereIn('gender_id',$genders)
+									->orWhereIn('employment_status_id',$empstatus)
+									->orWhereIn('civil_status_id',$civilstatus)
+									->orWhereIn('occupancy_status_id',$occstatus)
+									->orWhereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
+									->orWhereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});
+							})
+						->sum('tally');	
 	}
     /*
     |--------------------------------------------------------------------------
