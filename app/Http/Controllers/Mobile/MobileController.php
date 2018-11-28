@@ -68,11 +68,7 @@ class MobileController extends Controller
 																				$qu->with(['voters'=>function($qs){
 																									$qs->with(['statuses'=>function($qvs){
 																													$qvs->select(['voter_id','status_id']);
-																												},'precinct'=>function($qp){
-																													$qp->with(['barangay'=>function($qb){
-																															$qb->select(['name','description','province_id','district_id','municipality_id']);
-																														}]);	
-																												}]);
+																												},'precinct']);
 																						}]);
 																			}]);
 															}])
