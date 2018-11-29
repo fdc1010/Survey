@@ -34,15 +34,14 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	/*public function tally($candidateid=1,$surveydetailid=1,$age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
+	public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
 					->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
-								$q->where('age','>=',$age)
-									->orWhereIn('age',$agebrackets)
+								$q->whereIn('age',$agebrackets)
 									->orWhereIn('gender_id',$genders)
 									->orWhereIn('employment_status_id',$empstatus)
 									->orWhereIn('civil_status_id',$civilstatus)
@@ -55,29 +54,32 @@ class TallyVote extends Model
 												});
 							})
 						->sum('tally');	
-	}*/
-	public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+	}
+	/*public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
-		dd($agebrackets);
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 								$q->whereIn('age',$agebrackets)
-									->whereIn('gender_id',$genders)
-									//->whereIn('employment_status_id',$empstatus)
-									//->whereIn('civil_status_id',$civilstatus)
-									//->whereIn('occupancy_status_id',$occstatus)
-									//->whereHas('statuses',function($qv)use($voterstatus){
-									//						$qv->whereIn('status_id',$voterstatus);
-									//			})
+									->where(function($query){
+											 $query->whereNotNull('employment_status_id')
+											 		->whereIn('employment_status_id',$empstatus);
+												});
+										})
+									->whereIn('employment_status_id',$empstatus)
+									->whereIn('civil_status_id',$civilstatus)
+									->whereIn('occupancy_status_id',$occstatus)
+									->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
 									->whereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
 												});
 							})
 						->sum('tally');	
-	}
+	}*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
