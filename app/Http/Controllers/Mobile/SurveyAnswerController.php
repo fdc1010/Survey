@@ -11,6 +11,7 @@ use App\Models\OptionProblem;
 use App\Models\RelatedQuestion;
 use App\Models\TallyVote;
 use App\Models\TallyOtherVote;
+use App\Models\Voter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
