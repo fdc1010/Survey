@@ -37,7 +37,7 @@ class SurveyAnswerController extends Controller
 		foreach($receivedans as $voteranswers){
 			$surveyans = new SurveyAnswer;		
 			$surveyans->survey_detail_id = $surveydetailid;
-			$surveyans->question_id = $voteranswers->questionId;
+			$surveyans->question_id = $voteranswers['questionId'];
 			$surveyans->answered_option = $voteranswers->answers;
 			$surveyans->user_id = $userid;
 			$surveyans->voter_id = $voterid;
