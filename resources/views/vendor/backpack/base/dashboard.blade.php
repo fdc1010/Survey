@@ -21,6 +21,10 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::all();
         $selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        $selinitgenders = App\Models\Gender::all();
+        $selinitagebrackets = App\Models\AgeBracket::all();
+        $selinitcivilstatuses = App\Models\CivilStatus::all();
+        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
         $problems = App\Models\OptionProblem::with('option')->get();
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
@@ -238,7 +242,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($positions as $position)
+                        @foreach($selinitpositions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                     	@if(!empty($rdata['position']) && in_array($position->id,$rdata['position']))
@@ -266,7 +270,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($positions as $position)                        	
+                        @foreach($selinitpositions as $position)                        	
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
                             @php
                             	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
@@ -301,7 +305,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($agebrackets as $agebracket)
+                        @foreach($selinitagebrackets as $agebracket)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                         @if(!empty($rdata['agebracket']) && in_array($agebracket->id,$rdata['agebracket']))
@@ -329,7 +333,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($genders as $gender)
+                        @foreach($selinitgenders as $gender)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                         @if(!empty($rdata['gender']) && in_array($gender->id,$rdata['gender']))	
@@ -357,7 +361,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($civilstatuses as $civilstatus)
+                        @foreach($selinitcivilstatuses as $civilstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                         @if(!empty($rdata['civilstatus']) && in_array($civilstatus->id,$rdata['civilstatus']))		
@@ -385,7 +389,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($empstatuses as $empstatus)
+                        @foreach($selinitempstatuses as $empstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                         @if(!empty($rdata['empstatus']) && in_array($empstatus->id,$rdata['empstatus']))	
