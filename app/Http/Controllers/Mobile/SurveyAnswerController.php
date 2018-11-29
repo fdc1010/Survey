@@ -83,6 +83,7 @@ class SurveyAnswerController extends Controller
 									$tallycandidate->survey_detail_id = $surveydetailid;
 									$tallycandidate->save();
 								}
+							}
 						}
 					}
 				}
