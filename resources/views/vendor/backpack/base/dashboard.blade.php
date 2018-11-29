@@ -522,7 +522,16 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
                                         @php
-                                            $tallyg[$candidate->id][$gender->id]=rand(1,100);
+                                        	$tallygen = App\Models\TallyVote::where('candidate_id',$candidate->id)
+                                        									->where('survey_detail_id',$tallysurvey)
+                                                                            ->first();
+                                        	if($tallygen){
+                                            	$tallyg[$candidate->id][$gender->id]=$tallygen->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                                                                                      $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                      $tallyoccstatus,$tallyvoterstatus);
+                                            }else{
+                                            	$tallyg[$candidate->id][$gender->id]=0;
+                                            }
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
                                         @endforeach
@@ -579,7 +588,16 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($agebrackets as $agebracket)
                                         @php
-                                            $tallyab[$candidate->id][$agebracket->id]=rand(1,100);
+                                        	$tallyageb = App\Models\TallyVote::where('candidate_id',$candidate->id)
+                                        											->where('survey_detail_id',$tallysurvey)
+                                                                           			->first();
+                                        	if($tallyageb){
+                                            	$tallyab[$candidate->id][$agebracket->id]=$tallyageb->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                                                                                      $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                      $tallyoccstatus,$tallyvoterstatus);
+                                            }else{
+                                            	$tallyab[$candidate->id][$agebracket->id]=0;
+                                            }
                                         @endphp
                                         <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
                                         @endforeach
@@ -636,7 +654,16 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($civilstatuses as $civilstatus)
                                         @php
-                                            $tallycv[$candidate->id][$civilstatus->id]=rand(1,100);
+                                        	$tallycivil = App\Models\TallyVote::where('candidate_id',$candidate->id)
+                                        											->where('survey_detail_id',$tallysurvey)
+                                                                           			->first();
+                                        	if($tallycivil){
+                                            	$tallycv[$candidate->id][$civilstatus->id]=$tallycivil->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                                                                                      			$tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                      			$tallyoccstatus,$tallyvoterstatus);
+                                            }else{
+                                            	$tallycv[$candidate->id][$civilstatus->id]=0;
+                                            }
                                         @endphp
                                         <td>{{ $tallycv[$candidate->id][$civilstatus->id] }}</td>
                                         @endforeach
@@ -692,7 +719,16 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($empstatuses as $empstatus)
                                         @php
-                                            $tallyemp[$candidate->id][$empstatus->id]=rand(1,100);
+                                        	$tallyemp = App\Models\TallyVote::where('candidate_id',$candidate->id)
+                                        											->where('survey_detail_id',$tallysurvey)
+                                                                           			->first();
+                                        	if($tallyemp){
+                                           		$tallyemp[$candidate->id][$empstatus->id]=$tallyemp->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                                                                                      			$tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                      			$tallyoccstatus,$tallyvoterstatus);
+                                            }else{
+                                            	$tallyemp[$candidate->id][$empstatus->id]=0;
+                                            }
                                         @endphp
                                         <td>{{ $tallyemp[$candidate->id][$empstatus->id] }}</td>
                                         @endforeach
