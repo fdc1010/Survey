@@ -76,7 +76,7 @@ class SurveyAnswerController extends Controller
 					if($surans){
 						$question = Question::find($relquestion->question_id);
 						if(!empty($question->for_position) && is_numeric($question->for_position)){							
-							$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->first();
+							$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
 							foreach($ansoption as $ansoptid){
 								$optioncandidate = OptionCandidate::where('option_id',$ansoptid->option_id)->first();
 								if($optioncandidate){
