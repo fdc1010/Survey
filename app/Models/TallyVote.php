@@ -95,8 +95,32 @@ class TallyVote extends Model
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
-								$q->whereIn('age',$agebrackets)
-									->whereIn('gender_id',$genders)									
+								if(count($agebrackets)>0)
+									$q->whereIn('age',$agebrackets);
+								
+								if(count($genders)>0)
+									$q->whereIn('gender_id',$genders);
+									
+								if(count($empstatus)>0)
+									$q->whereIn('employment_status_id',$empstatus);
+									
+								if(count($civilstatus)>0)
+									$q->whereIn('civil_status_id',$civilstatus);
+									
+								if(count($occstatus)>0)
+									$q->whereIn('occupancy_status_id',$occstatus);
+									
+								if(count($voterstatus)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												});			
+								}
+								
+								if(count($brgy)>0){
+									$q->whereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});			
+								}
 									/*->where(function($query)use($empstatus){
 											 $query->whereNotNull('employment_status_id')
 											 		->whereIn('employment_status_id',$empstatus);										
@@ -114,8 +138,7 @@ class TallyVote extends Model
 												})
 									->orWhereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
-												})*/
-											;
+												});*/											
 							})
 						->sum('tally');	
 	}
