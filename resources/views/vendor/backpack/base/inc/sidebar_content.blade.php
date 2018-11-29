@@ -20,11 +20,16 @@
 
 <li><a href='{{ backpack_url('question') }}'><i class='fa fa-list'></i> <span>Questions</span></a></li>
 <li><a href='{{ backpack_url('precinct') }}'><i class='fa fa-list'></i> <span>Precincts</span></a></li>
-<li><a href='{{ backpack_url('party') }}'><i class='fa fa-list'></i> <span>Parties</span></a></li>
-<li><a href='{{ backpack_url('positioncandidate') }}'><i class='fa fa-list'></i> <span>Positions</span></a></li>
-<li><a href='{{ backpack_url('voter') }}'><i class='fa fa-users'></i> <span>Voters</span></a></li>
-<li><a href='{{ backpack_url('voterstatus') }}'><i class='fa fa-users'></i> <span>Voter Status</span></a></li>
-<li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
+<li class="treeview">
+  <a href="#"><i class="fa fa-group"></i> <span>Diplomacy</span> <i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">
+	<li><a href='{{ backpack_url('party') }}'><i class='fa fa-list'></i> <span>Parties</span></a></li>
+	<li><a href='{{ backpack_url('positioncandidate') }}'><i class='fa fa-list'></i> <span>Positions</span></a></li>
+	<li><a href='{{ backpack_url('voter') }}'><i class='fa fa-users'></i> <span>Voters</span></a></li>
+	<li><a href='{{ backpack_url('voterstatus') }}'><i class='fa fa-users'></i> <span>Voter Status</span></a></li>
+	<li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
+  </ul>
+</li>
 <li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-users'></i> <span>Barangays</span></a></li>
 <li class="treeview">
   <a href="#"><i class="fa fa-group"></i> <span>Poll/Surveys</span> <i class="fa fa-angle-left pull-right"></i></a>
