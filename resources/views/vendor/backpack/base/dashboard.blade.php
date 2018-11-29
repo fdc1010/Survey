@@ -15,6 +15,12 @@
 
 @section('content')
 	@php
+    	$tallysurvey = (!empty($rdata['selsurvey']) && $rdata['selsurvey']==$surveydetail->id)?$rdata['selsurvey']:1; 
+        $tallyage = (!empty($rdata['selagebracket']))?0:18; 
+        
+        $tallyoccstatus = [];
+        $tallyvoterstatus = [];
+        
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
         $surveydetails = App\Models\SurveyDetail::all();
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
@@ -28,9 +34,11 @@
         $problems = App\Models\OptionProblem::with('option')->get();
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
+            $tallygenders = $rdata['gender'];
         }else{
         	if(!empty($rdata['selgender'])){
         		$genders = App\Models\Gender::where('id',$rdata['selgender'])->get();
+                $tallygenders = [$rdata['selgender']];
             }else{
             	$genders = App\Models\Gender::all();
             }
@@ -49,27 +57,33 @@
         
         if(!empty($rdata['agebracket'])){
         	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
+            $tallyagebrackets = $rdata['agebracket'];
         }else{
         	if(!empty($rdata['selagebracket'])){
         		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get(); 
+                $tallyagebrackets = [$rdata['selagebracket']];
             }else{
             	$agebrackets = App\Models\AgeBracket::all(); 
             }
         }
         if(!empty($rdata['civilstatus'])){
-        	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['civilstatus'])->get(); 
+        	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['civilstatus'])->get();
+            $tallycivilstatus = $rdata['civilstatus'];
         }else{
         	if(!empty($rdata['selcivil'])){
         		$civilstatuses = App\Models\CivilStatus::where('id',$rdata['selcivil'])->get();
+                $tallycivilstatus = [$rdata['selcivil']];
             }else{
             	$civilstatuses = App\Models\CivilStatus::all();
             }
         }
         if(!empty($rdata['empstatus'])){
         	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get(); 
+            $tallyempstatus = $rdata['empstatus'];
         }else{
         	if(!empty($rdata['selemp'])){
         		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['selemp'])->get(); 
+                $tallyempstatus = [$rdata['selemp']];
             }else{
             	$empstatuses = App\Models\EmploymentStatus::all(); 
             }
@@ -224,6 +238,9 @@
                                         		<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
                                             @endif
                                     	@endforeach
+                                        @php
+                                            $tallybrgy=$rdata['to'];
+                                        @endphp
                                     @endif                                    
                               </select>
                           </div> 
@@ -433,7 +450,11 @@
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
-                                    	$tally[$candidate->id]=rand(1,100);
+                                    	$tallycan = App\Models\TallyVote::where('survey_detail_id',$tallysurvey)
+                                                                            ->first();
+                                    	$tally[$candidate->id]=$tallycan->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        										$tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                $tallyoccstatus,$tallyvoterstatus);
                                     @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
