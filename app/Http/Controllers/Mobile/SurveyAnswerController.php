@@ -35,17 +35,17 @@ class SurveyAnswerController extends Controller
 		$surveydetailid = $request->survey_detail_id;
 		$receivedans = json_decode($request->q_and_a, true);
 		
-		foreach($receivedans as $voteranswers){			
-			$surveyans = new SurveyAnswer;		
-			$surveyans->survey_detail_id = $surveydetailid;
-			$surveyans->question_id = $voteranswers['questionId'];
-			$surveyans->answered_option = $voteranswers['answers'];
-			$surveyans->user_id = $userid;
-			$surveyans->voter_id = $voterid;
-			//$surveyans->latitude = $request->latitude;		
-			//$surveyans->longitude = $request->longitude;
-			$surveyansid=$surveyans->save();
+		foreach($receivedans as $voteranswers){
 			foreach($voteranswers['answers'] as $ansid){								
+				$surveyans = new SurveyAnswer;		
+				$surveyans->survey_detail_id = $surveydetailid;
+				$surveyans->question_id = $voteranswers['questionId'];
+				$surveyans->answered_option = $voteranswers['answers'];
+				$surveyans->user_id = $userid;
+				$surveyans->voter_id = $voterid;
+				//$surveyans->latitude = $request->latitude;		
+				//$surveyans->longitude = $request->longitude;
+				$surveyansid=$surveyans->save();
 				$optid = $ansid['id'];
 				$other_answer = null;
 				if(!empty($voteranswers['otherAnswer'])){
