@@ -1046,7 +1046,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -1082,7 +1082,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -1118,7 +1118,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -1154,7 +1154,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -1190,7 +1190,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
@@ -1226,7 +1226,7 @@ $(document).ready(function ($) {
 				],
 			@endforeach
           ],
-		  labels: true,
+		  //labels: true,
           type: 'bar',
           onclick: function (d, element) { console.log("onclick", d, element); },
           onmouseover: function (d) { console.log("onmouseover", d); },
