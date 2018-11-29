@@ -36,9 +36,9 @@ class TallyVote extends Model
     }
 	public function tally($age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
-		return $this->where('candidate_id',$this->candidate_id)
-						//->where('survey_detail_id',$survey)
-						->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
+				//where('candidate_id',$this->candidate_id)
+				//->where('survey_detail_id',$survey)
+		return $this->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 								$q->where('age','>=',$age)

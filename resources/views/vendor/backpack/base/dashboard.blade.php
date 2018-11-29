@@ -455,7 +455,8 @@
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
-                                    	$tallycan = App\Models\TallyVote::where('survey_detail_id',$tallysurvey)
+                                    	$tallycan = App\Models\TallyVote::where('candidate_id',$candidate->id)
+                                        									->where('survey_detail_id',$tallysurvey)
                                                                             ->first();
                                     	$tally[$candidate->id]=$tallycan->tally($tallyage,$tallyagebrackets,$tallybrgy,
                                         										$tallygenders, $tallyempstatus,$tallycivilstatus,
