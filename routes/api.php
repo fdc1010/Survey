@@ -25,11 +25,11 @@ Route::group(['prefix' => 'mobile',
 		Route::get('getOccupancyStatus', 'OccupancyStatusController@getOccupancyStatus');
 		Route::get('getVoterStatuses', 'VoterController@getVoterStatuses');
 		Route::get('getVoterInfoByName', 'VoterController@getVoterInfoByName');
+		Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');				
-			Route::get('getQuestions','QuestionController@getQuestions');
-			Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
+			Route::get('getQuestions','QuestionController@getQuestions');			
 			Route::resource('voter', 'VoterController');
 			Route::post('sendInfo','VoterController@sendInfo');
 			Route::post('syncInData', 'VoterController@syncInData');
