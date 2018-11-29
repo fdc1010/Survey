@@ -37,20 +37,20 @@ class SurveyAnswerController extends Controller
 		
 		foreach($receivedans as $voteranswers){
 			foreach($voteranswers['answers'] as $ansid){								
+				$optid = $ansid['id'];
+
 				$surveyans = new SurveyAnswer;		
 				$surveyans->survey_detail_id = $surveydetailid;
 				$surveyans->question_id = $voteranswers['questionId'];
 				$surveyans->answered_option = $voteranswers['answers'];
+				$surveyans->option_id = $optid;
 				$surveyans->user_id = $userid;
 				$surveyans->voter_id = $voterid;
+				$surveyans->other_answer = $voteranswers['otherAnswer'];
 				//$surveyans->latitude = $request->latitude;		
 				//$surveyans->longitude = $request->longitude;
-				$surveyansid=$surveyans->save();
-				$optid = $ansid['id'];
-				$other_answer = null;
-				if(!empty($voteranswers['otherAnswer'])){
-					$other_answer = $voteranswers['otherAnswer'];
-				}
+				$surveyansid=$surveyans->save();				
+				
 				$answeredoptions = AnsweredOption::create([
 					'other_answer' => $other_answer,
 					'survey_answer_id' => $surveyansid,
@@ -76,9 +76,9 @@ class SurveyAnswerController extends Controller
 					if($surans){
 						$question = Question::find($relquestion->question_id);
 						if(!empty($question->for_position) && is_numeric($question->for_position)){							
-							$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
-							foreach($ansoption as $ansoptid){
-								$optioncandidate = OptionCandidate::where('option_id',$ansoptid->option_id)->first();
+							//$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
+							//foreach($ansoption as $ansoptid){
+								$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
 								if($optioncandidate){
 									$tallycandidate = new TallyOtherVote;
 									$tallycandidate->option_id = $optid;
@@ -87,7 +87,7 @@ class SurveyAnswerController extends Controller
 									$tallycandidate->survey_detail_id = $surveydetailid;
 									$tallycandidate->save();
 								}
-							}
+							//}
 						
 						}
 					}
