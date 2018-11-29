@@ -28,7 +28,8 @@ class SurveyAnswerController extends Controller
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
-		$surveyans = new SurveyAnswer;		
+		info($request);
+		/*$surveyans = new SurveyAnswer;		
 		$surveyans->survey_detail_id = $request->survey_detail_id;
 		$surveyans->question_id = $request->question_id;
 		$surveyans->answered_option = $request->option_id;
@@ -92,7 +93,7 @@ class SurveyAnswerController extends Controller
 				$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 				$tallyproblem->save();
 			}
-		}		
+		}*/		
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
     /**
