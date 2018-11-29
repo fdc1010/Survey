@@ -25,7 +25,12 @@
 <li><a href='{{ backpack_url('voter') }}'><i class='fa fa-users'></i> <span>Voters</span></a></li>
 <li><a href='{{ backpack_url('voterstatus') }}'><i class='fa fa-users'></i> <span>Voter Status</span></a></li>
 <li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
-<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
 <li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-users'></i> <span>Barangays</span></a></li>
-<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
-<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
+<li class="treeview">
+  <a href="#"><i class="fa fa-group"></i> <span>Poll/Surveys</span> <i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">
+  	<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
+	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
+	<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
+  </ul>
+</li>
