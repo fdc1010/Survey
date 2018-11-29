@@ -241,7 +241,11 @@
                         @foreach($positions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" />
+                                    	@if(in_array($position->id,$rdata['position']))
+                                        	<input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" checked="checked" />
+                                        @else
+                                        	<input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" />
+                                        @endif
                                         {{ $position->name }}
                                     </label>
                                 </div>
@@ -270,7 +274,11 @@
                             @foreach($poscandidates as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
-                                            <input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
+                                            @if(in_array($candidate->id,$rdata['candidate']))
+                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" checked="checked" />
+                                           	@else
+                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
+                                            @endif
                                             {{ $candidate->voter->full_name }}
                                         </label>
                                     </div>
@@ -296,7 +304,11 @@
                         @foreach($agebrackets as $agebracket)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />
+                                        @if(in_array($agebracket->id,$rdata['agebracket']))
+                                        	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" checked="checked" />
+										@ele
+                                        	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />                                          
+                                        @endif
                                         {{ $agebracket->title }}
                                     </label>
                                 </div>
@@ -320,7 +332,11 @@
                         @foreach($genders as $gender)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" />
+                                        @if(in_array($gender->id,$rdata['gender']))	
+                                            <input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" checked="checked" />
+                                        @else
+                                        	<input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" />
+                                        @endif
                                         {{ $gender->name }}
                                     </label>
                                 </div>
@@ -344,7 +360,11 @@
                         @foreach($civilstatuses as $civilstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" />
+                                        @if(in_array($civilstatus->id,$rdata['civilstatus']))		
+                                            <input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" checked="checked" />
+                                        @else
+                                        	<input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" />
+                                        @endif
                                         {{ $civilstatus->name }}
                                     </label>
                                 </div>
@@ -368,7 +388,11 @@
                         @foreach($empstatuses as $empstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        <input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" />
+                                        @if(in_array($empstatus->id,$rdata['empstatus']))	
+                                            <input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" checked="checked" />
+                                        @else
+                                        	<input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" />
+                                        @endif
                                         {{ $empstatus->name }}
                                     </label>
                                 </div>
