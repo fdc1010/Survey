@@ -37,6 +37,7 @@ class TallyOtherVote extends Model
 	public function tally($survey = 1, $age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('option_id',$this->option_id)
+						->where('survey_detail_id',$survey)
 						->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
