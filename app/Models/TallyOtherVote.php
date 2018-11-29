@@ -19,9 +19,17 @@ class TallyOtherVote extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option_id','voter_id','tally','survey_detail_id'];
+    protected $fillable = ['candidate_id','barangay_id','option_id','voter_id','tally','survey_detail_id'];
     // protected $hidden = [];
     // protected $dates = [];
+	public function candidate()
+    {
+        return $this->belongsTo('App\Models\Candidate','candidate_id');
+    }
+	public function barangay()
+    {
+        return $this->belongsTo('App\Models\Barangay','barangay_id');
+    }
 	public function option()
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
@@ -56,9 +64,10 @@ class TallyOtherVote extends Model
 							})
 						->sum('tally');	
 	}*/
-	public function tally($optionid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+	public function tally($candidateid=1,$optionid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
-		return $this->where('option_id',$optionid)
+		return $this->where('candidate_id',$candidateid)
+					->where('option_id',$optionid)
 					->where('survey_detail_id',$surveydetailid)
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,

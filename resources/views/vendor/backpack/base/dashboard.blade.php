@@ -769,7 +769,7 @@
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
                                             @php
-                                                $tallyq[$candidate->id][$quality->option_id]=$tallyotherpoll->tally($quality->option_id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                                $tallyq[$candidate->id][$quality->option_id]=$tallyotherpoll->tally($candidate->id,$quality->option_id,$tallysurvey,$tallyagebrackets,$tallybrgy,
                                                                                                                 $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                                 $tallyoccstatus,$tallyvoterstatus);
                                             @endphp

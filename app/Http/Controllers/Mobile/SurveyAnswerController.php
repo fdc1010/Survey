@@ -57,25 +57,26 @@ class SurveyAnswerController extends Controller
 				$tallycandidate->survey_detail_id = $request->survey_detail_id;
 				$tallycandidate->save();
 			}
-			$question = Question::find($request->question_id);
-			if(!empty($question->for_position) && is_numeric($question->for_position)){
-				$optionposition = OptionPosition::where('option_id',$optid)
-													->where('position_id',$question->for_position)
-													->first();
-				if($optionposition){
-					$tallyposition = new TallyOtherVote;
-					$tallyposition->option_id = $optid;
-					$tallyposition->voter_id = $request->voter_id;
-					$tallyposition->survey_detail_id = $request->survey_detail_id;
-					$tallyposition->save();
+			//$question = Question::find($request->question_id);
+			//if(!empty($question->for_position) && is_numeric($question->for_position)){
+				$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+				if($optioncandidate){
+					$tallycandidate = new TallyOtherVote;
+					$tallycandidate->option_id = $optid;
+					$tallycandidate->voter_id = $request->voter_id;
+					$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+					$tallycandidate->survey_detail_id = $request->survey_detail_id;
+					$tallycandidate->save();
 				}
 			}
 			$optionproblem = OptionProblem::where('option_id',$optid)->first();
 			if($optionproblem){
+				$voterbrgy = Voter::with('precinct')->find($request->voter_id);
 				$tallyproblem = new TallyOtherVote;
 				$tallyproblem->option_id = $optid;
 				$tallyproblem->voter_id = $request->voter_id;
 				$tallyproblem->survey_detail_id = $request->survey_detail_id;
+				$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 				$tallyproblem->save();
 			}
 		}		
