@@ -823,7 +823,9 @@
                                             <td>{{ $barangay->name }}</td>
                                             @foreach($problems as $problem)
                                             @php
-                                                $tallyp[$barangay->id][$problem->option_id]=rand(1,100);
+                                                $tallyp[$barangay->id][$problem->option_id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                                                                                                	$tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                                	$tallyoccstatus,$tallyvoterstatus);
                                             @endphp
                                             <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
                                             @endforeach
