@@ -96,10 +96,7 @@ class TallyVote extends Model
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 								$q->whereIn('age',$agebrackets)
-									->where(function($query)use($genders){
-											 $query->whereNotNull('gender_id')
-											 		->whereIn('gender_id',$genders);										
-										})
+									->whereIn('gender_id',$genders)									
 									->where(function($query)use($empstatus){
 											 $query->whereNotNull('employment_status_id')
 											 		->whereIn('employment_status_id',$empstatus);										
