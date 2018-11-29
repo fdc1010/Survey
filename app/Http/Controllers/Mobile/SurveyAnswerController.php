@@ -29,7 +29,7 @@ class SurveyAnswerController extends Controller
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
 		info($request);
-		/*$userid = $request->user_id;
+		$userid = $request->user_id;
 		$voterid = $request->voter_id;
 		$surveydetailid = $request->survey_detail_id;
 		foreach($request->q_and_a as $voteranswers){
@@ -98,7 +98,7 @@ class SurveyAnswerController extends Controller
 					$tallyproblem->save();
 				}
 			}		
-		}*/
+		}
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
     /**
