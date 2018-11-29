@@ -30,7 +30,7 @@
 	<li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
   </ul>
 </li>
-<li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-users'></i> <span>Barangays</span></a></li>
+<li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-building'></i> <span>Barangays</span></a></li>
 <li class="treeview">
   <a href="#"><i class="fa fa-bar-chart"></i> <span>Poll</span> <i class="fa fa-angle-left pull-right"></i></a>
   <ul class="treeview-menu">
