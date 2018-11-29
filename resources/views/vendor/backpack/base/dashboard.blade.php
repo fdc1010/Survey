@@ -241,7 +241,7 @@
                         @foreach($positions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                    	@if(in_array($position->id,$rdata['position']))
+                                    	@if(!empty($rdata['position']) && in_array($position->id,$rdata['position']))
                                         	<input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" />
@@ -274,7 +274,7 @@
                             @foreach($poscandidates as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
-                                            @if(in_array($candidate->id,$rdata['candidate']))
+                                            @if(!empty($rdata['candidate']) && in_array($candidate->id,$rdata['candidate']))
                                             	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" checked="checked" />
                                            	@else
                                             	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
@@ -304,7 +304,7 @@
                         @foreach($agebrackets as $agebracket)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(in_array($agebracket->id,$rdata['agebracket']))
+                                        @if(!empty($rdata['agebracket']) && in_array($agebracket->id,$rdata['agebracket']))
                                         	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" checked="checked" />
 										@ele
                                         	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />                                          
@@ -332,7 +332,7 @@
                         @foreach($genders as $gender)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(in_array($gender->id,$rdata['gender']))	
+                                        @if(!empty($rdata['gender']) && in_array($gender->id,$rdata['gender']))	
                                             <input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" />
@@ -360,7 +360,7 @@
                         @foreach($civilstatuses as $civilstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(in_array($civilstatus->id,$rdata['civilstatus']))		
+                                        @if(!empty($rdata['civilstatus']) && in_array($civilstatus->id,$rdata['civilstatus']))		
                                             <input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" />
@@ -388,7 +388,7 @@
                         @foreach($empstatuses as $empstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(in_array($empstatus->id,$rdata['empstatus']))	
+                                        @if(!empty($rdata['empstatus']) && in_array($empstatus->id,$rdata['empstatus']))	
                                             <input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" />
