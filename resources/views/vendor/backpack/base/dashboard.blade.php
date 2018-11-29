@@ -463,13 +463,6 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	info($tallyagebrackets);
-                                    info($tallybrgy);
-                                    info($tallygenders);
-                                    info($tallyempstatus);
-                                    info($tallycivilstatus);
-                                    info($tallyoccstatus);
-                                    info($tallyvoterstatus);
                                 	$tally = array();                                    
                                 @endphp
                                 @foreach($candidates as $candidate)
