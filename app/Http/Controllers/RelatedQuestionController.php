@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\OptionQuality;
+use App\RelatedQuestion;
 use Illuminate\Http\Request;
 
-class OptionQualityController extends Controller
+class RelatedQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OptionQualityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OptionQuality  $optionQuality
+     * @param  \App\RelatedQuestion  $relatedQuestion
      * @return \Illuminate\Http\Response
      */
-    public function show(OptionQuality $optionQuality)
+    public function show(RelatedQuestion $relatedQuestion)
     {
         //
     }
@@ -52,10 +52,10 @@ class OptionQualityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OptionQuality  $optionQuality
+     * @param  \App\RelatedQuestion  $relatedQuestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(OptionQuality $optionQuality)
+    public function edit(RelatedQuestion $relatedQuestion)
     {
         //
     }
@@ -64,10 +64,10 @@ class OptionQualityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OptionQuality  $optionQuality
+     * @param  \App\RelatedQuestion  $relatedQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OptionQuality $optionQuality)
+    public function update(Request $request, RelatedQuestion $relatedQuestion)
     {
         //
     }
@@ -75,10 +75,10 @@ class OptionQualityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OptionQuality  $optionQuality
+     * @param  \App\RelatedQuestion  $relatedQuestion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OptionQuality $optionQuality)
+    public function destroy(RelatedQuestion $relatedQuestion)
     {
         //
     }

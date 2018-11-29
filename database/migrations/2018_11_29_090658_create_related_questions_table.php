@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOptionQualitiesTable extends Migration
+class CreateRelatedQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOptionQualitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('option_qualities', function (Blueprint $table) {
+        Schema::create('related_questions', function (Blueprint $table) {
             $table->increments('id');
 			$table->unsignedInteger('question_id');
 			$table->unsignedInteger('related_question_id');
@@ -32,6 +32,6 @@ class CreateOptionQualitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('option_qualities');
+        Schema::dropIfExists('related_questions');
     }
 }

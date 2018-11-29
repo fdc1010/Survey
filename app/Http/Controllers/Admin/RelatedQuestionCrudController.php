@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\OptionQualityRequest as StoreRequest;
-use App\Http\Requests\OptionQualityRequest as UpdateRequest;
+use App\Http\Requests\RelatedQuestionRequest as StoreRequest;
+use App\Http\Requests\RelatedQuestionRequest as UpdateRequest;
 
 /**
- * Class OptionQualityCrudController
+ * Class RelatedQuestionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class OptionQualityCrudController extends CrudController
+class RelatedQuestionCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,18 +22,10 @@ class OptionQualityCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\OptionQuality');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionquality');
-        $this->crud->setEntityNameStrings('option quality', 'Option Qualities');
-
-        /*
-        |--------------------------------------------------------------------------
-        | CrudPanel Configuration
-        |--------------------------------------------------------------------------
-        */
-
-        // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+        $this->crud->setModel('App\Models\RelatedQuestion');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/relatedquestion');
+        $this->crud->setEntityNameStrings('relatedquestion', 'related_questions');
+		
 		$this->crud->removeColumns(['question_id','related_question_id','description']);
 		$this->crud->removeFields(['question_id','related_question_id','description']);
 		$this->crud->addColumn([
@@ -68,7 +60,7 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'question', // attribute on Article that is shown to admin
 			'model' => "App\Models\Question"
 	    ]);
-        // add asterisk for fields that are required in OptionQualityRequest
+        // add asterisk for fields that are required in RelatedQuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
