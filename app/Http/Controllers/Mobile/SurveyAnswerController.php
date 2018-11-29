@@ -8,6 +8,7 @@ use App\Models\AnsweredOption;
 use App\Models\OptionCandidate;
 use App\Models\OptionPosition;
 use App\Models\OptionProblem;
+use App\Models\RelatedQuestion;
 use App\Models\TallyVote;
 use App\Models\TallyOtherVote;
 use Illuminate\Http\Request;
@@ -57,19 +58,30 @@ class SurveyAnswerController extends Controller
 				$tallycandidate->survey_detail_id = $request->survey_detail_id;
 				$tallycandidate->save();
 			}
-			/*$question = Question::find($request->question_id);
-			if(!empty($question->for_position) && is_numeric($question->for_position)){
-				$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-				if($optioncandidate){
-					$tallycandidate = new TallyOtherVote;
-					$tallycandidate->option_id = $optid;
-					$tallycandidate->voter_id = $request->voter_id;
-					$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-					$tallycandidate->survey_detail_id = $request->survey_detail_id;
-					$tallycandidate->save();
+			$relquestion = RelatedQuestion::where('question_id',$request->question_id)->first();
+			if($relquestion){
+				$surans = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+										->where('question_id',$relquestion->question_id)
+										->where('voter_id',$request->voter_id)
+										->first();
+				if($surans){
+					$question = Question::find($relquestion->question_id);
+					if(!empty($question->for_position) && is_numeric($question->for_position)){
+						$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->first();
+						foreach($ansoption->option_id as $ansoptid){
+							$optioncandidate = OptionCandidate::where('option_id',$ansoptid)->first();
+							if($optioncandidate){
+								$tallycandidate = new TallyOtherVote;
+								$tallycandidate->option_id = $optid;
+								$tallycandidate->voter_id = $request->voter_id;
+								$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+								$tallycandidate->survey_detail_id = $request->survey_detail_id;
+								$tallycandidate->save();
+							}
+					}
 				}
-			}*/
-			$relquestion = QuestionRelated::find($request->question_id);
+			}
+			
 			$optionproblem = OptionProblem::where('option_id',$optid)->first();
 			if($optionproblem){
 				$voterbrgy = Voter::with('precinct')->find($request->voter_id);
