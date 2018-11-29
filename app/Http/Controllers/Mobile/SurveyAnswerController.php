@@ -32,9 +32,9 @@ class SurveyAnswerController extends Controller
 		$userid = $request->user_id;
 		$voterid = $request->voter_id;
 		$surveydetailid = $request->survey_detail_id;
-		//info($request->q_and_a);
-		$votersendans = json_encode($request->q_and_a);
-		foreach($votersendans as $voteranswers){
+		$receivedans = $request->q_and_a;
+		info($receivedans->answers);
+		foreach($receivedans->answers as $voteranswers){
 			$surveyans = new SurveyAnswer;		
 			$surveyans->survey_detail_id = $surveydetailid;
 			$surveyans->question_id = $voteranswers->questionId;
@@ -51,7 +51,7 @@ class SurveyAnswerController extends Controller
 			//}
 			$surveyansid=$surveyans->save();
 			
-			foreach($voteranswers->answers as $optid){
+			//foreach($voteranswers->answers as $optid){
 				$answeredoptions = new AnsweredOption;
 				$answeredoptions->survey_answer_id = $surveyansid;
 				$answeredoptions->option_id = $optid;
@@ -100,7 +100,7 @@ class SurveyAnswerController extends Controller
 					$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 					$tallyproblem->save();
 				}
-			}		
+			//}		
 		}
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
