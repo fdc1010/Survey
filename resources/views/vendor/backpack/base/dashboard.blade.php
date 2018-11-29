@@ -172,7 +172,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selgender" id="selgender">
                                     	<option value="0">Gender</option>
-                                    @foreach($genders as $gender)	
+                                    @foreach($selinitgenders as $gender)	
                                     	<option value="{{ $gender->id }}" {{ ((!empty($rdata['selgender'])&&$rdata['selgender']==$gender->id)?"selected='selected'":"") }}>{{ $gender->name }}</option>
                                     @endforeach
                                 	</select>
