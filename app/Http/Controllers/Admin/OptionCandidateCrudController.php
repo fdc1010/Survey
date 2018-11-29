@@ -41,7 +41,7 @@ class OptionCandidateCrudController extends CrudController
 		$this->crud->addColumn([
             'name' => 'option_id',
             'type' => 'select',
-            'label' => 'Option',
+            'label' => 'Question Option',
 			'entity' => 'option', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
