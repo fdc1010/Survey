@@ -34,7 +34,7 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
+	/*public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
@@ -54,8 +54,8 @@ class TallyVote extends Model
 												});
 							})
 						->sum('tally');	
-	}
-	/*public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+	}*/
+	public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
@@ -63,23 +63,30 @@ class TallyVote extends Model
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 								$q->whereIn('age',$agebrackets)
-									->where(function($query){
+									->orWhere(function($query){
 											 $query->whereNotNull('employment_status_id')
 											 		->whereIn('employment_status_id',$empstatus);
 												});
 										})
-									->whereIn('employment_status_id',$empstatus)
-									->whereIn('civil_status_id',$civilstatus)
-									->whereIn('occupancy_status_id',$occstatus)
-									->whereHas('statuses',function($qv)use($voterstatus){
+									->orWhere(function($query){
+											 $query->whereNotNull('civil_status_id')
+											 		->whereIn('civil_status_id',$civilstatus);
+												});
+										})
+									->orWhere(function($query){
+											 $query->whereNotNull('occupancy_status_id')
+											 		->whereIn('occupancy_status_id',$occstatus);
+												});
+										})
+									->orWhereHas('statuses',function($qv)use($voterstatus){
 															$qv->whereIn('status_id',$voterstatus);
 												})
-									->whereHas('precinct',function($qb)use($brgy){
+									->orWhereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
 												});
 							})
 						->sum('tally');	
-	}*/
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
