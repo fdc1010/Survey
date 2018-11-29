@@ -46,17 +46,18 @@ class SurveyAnswerController extends Controller
 			$surveyansid=$surveyans->save();
 			foreach($voteranswers['answers'] as $ansid){								
 				$optid = $ansid['id'];
-				$answeredoptions = new AnsweredOption;
+				$other_answer = null;
 				if(!empty($voteranswers['otherAnswer'])){
-					$answeredoptions->other_answer = $voteranswers['otherAnswer'];
+					$other_answer = $voteranswers['otherAnswer'];
 				}
+				$answeredoptions = AnsweredOption::create([
+					'other_answer' => $other_answer,
+					'survey_answer_id' => $surveyansid,
+					'option_id' => $optid
+				]);
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
-				$answeredoptions->survey_answer_id = $surveyansid;
-				$answeredoptions->option_id = $optid;
-				$answeredoptions->save();
-				
 				$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
 				if($optioncandidate){
 					$tallycandidate = new TallyVote;
