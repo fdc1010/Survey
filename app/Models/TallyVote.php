@@ -97,7 +97,7 @@ class TallyVote extends Model
 															$occstatus,$voterstatus){
 								$q->whereIn('age',$agebrackets)
 									->whereIn('gender_id',$genders)									
-									->where(function($query)use($empstatus){
+									/*->where(function($query)use($empstatus){
 											 $query->whereNotNull('employment_status_id')
 											 		->whereIn('employment_status_id',$empstatus);										
 										})
@@ -109,12 +109,13 @@ class TallyVote extends Model
 											 $query->whereNotNull('occupancy_status_id')
 											 		->whereIn('occupancy_status_id',$occstatus);
 										})
-									//->whereHas('statuses',function($qv)use($voterstatus){
-									//						$qv->whereIn('status_id',$voterstatus);
-									//			})
+									->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
 									->orWhereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
-												});
+												})*/
+											;
 							})
 						->sum('tally');	
 	}
