@@ -31,8 +31,12 @@ class QuestionController extends Controller
 									->with(['option'=>function($op){
 											$op->select(['id','option','priority'])->orderby('priority');
 										}]);
-							},'type'=>function($t){
+								},'type'=>function($t){
 									$t->select(['id','type_name']);
+								},'forposition'=>function($p){
+									$p->with(['candidates'=>function($c){
+											$c->with('party');
+										});	
 								}])
 							->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
