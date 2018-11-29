@@ -66,10 +66,10 @@ class SurveyAnswerController extends Controller
 					$tallycandidate->survey_detail_id = $surveydetailid;
 					$tallycandidate->save();
 				}
-				$relquestion = RelatedQuestion::where('question_id',$voteranswers->questionId)->first();
+				$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
 				if($relquestion){
 					$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-											->where('question_id',$voteranswers->questionId)
+											->where('question_id',$voteranswers['questionId'])
 											->where('voter_id',$voterid)
 											->first();
 					if($surans){
