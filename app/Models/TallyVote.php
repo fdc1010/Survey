@@ -109,10 +109,10 @@ class TallyVote extends Model
 											 $query->whereNotNull('occupancy_status_id')
 											 		->whereIn('occupancy_status_id',$occstatus);
 										})
-									->orWhereHas('statuses',function($qv)use($voterstatus){
+									->whereHas('statuses',function($qv)use($voterstatus){
 															$qv->whereIn('status_id',$voterstatus);
 												})
-									->orWhereHas('precinct',function($qb)use($brgy){
+									->whereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
 												});
 							})
