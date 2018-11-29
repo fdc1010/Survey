@@ -69,6 +69,7 @@ class SurveyAnswerController extends Controller
 					$tallycandidate->save();
 				}
 			}*/
+			$relquestion = QuestionRelated::find($request->question_id);
 			$optionproblem = OptionProblem::where('option_id',$optid)->first();
 			if($optionproblem){
 				$voterbrgy = Voter::with('precinct')->find($request->voter_id);

@@ -24,7 +24,7 @@ class RelatedQuestionCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\RelatedQuestion');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/relatedquestion');
-        $this->crud->setEntityNameStrings('relatedquestion', 'related_questions');
+        $this->crud->setEntityNameStrings('related question', 'Related Questions');
 		
 		$this->crud->removeColumns(['question_id','related_question_id','description']);
 		$this->crud->removeFields(['question_id','related_question_id','description']);
