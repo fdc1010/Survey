@@ -463,7 +463,7 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	dd($tallyagebrackets);
+                                	info($tallyagebrackets);
                                     info($tallybrgy);
                                     info($tallygenders);
                                     info($tallyempstatus);
