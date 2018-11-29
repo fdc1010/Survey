@@ -15,6 +15,8 @@
 
 @section('content')
 	@php
+    	$tallypoll = new App\Models\TallyVote;
+        
     	$tallysurvey = (!empty($rdata['selsurvey']) && $rdata['selsurvey']==$surveydetail->id)?$rdata['selsurvey']:1; 
         $tallyage = (!empty($rdata['selagebracket']))?0:18; 
         
@@ -455,16 +457,9 @@
                                 @endphp
                                 @foreach($candidates as $candidate)
                                 	@php
-                                    	$tallycan = App\Models\TallyVote::where('candidate_id',$candidate->id)
-                                        									->where('survey_detail_id',$tallysurvey)
-                                                                            ->first();
-                                        if($tallycan){
-                                    		$tally[$candidate->id]=$tallycan->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                    	$tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyage,$tallyagebrackets,$tallybrgy,
                                         										$tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                $tallyoccstatus,$tallyvoterstatus);
-                                        }else{
-                                        	$tally[$candidate->id]=0;
-                                        }
+                                                                                $tallyoccstatus,$tallyvoterstatus);                                        
                                     @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
@@ -522,16 +517,9 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
                                         @php
-                                        	$tallygen = App\Models\TallyVote::where('candidate_id',$candidate->id)
-                                        									->where('survey_detail_id',$tallysurvey)
-                                                                            ->first();
-                                        	if($tallygen){
-                                            	$tallyg[$candidate->id][$gender->id]=$tallygen->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        	$tallyg[$candidate->id][$gender->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyage,$tallyagebrackets,$tallybrgy,
                                                                                                       $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                      $tallyoccstatus,$tallyvoterstatus);
-                                            }else{
-                                            	$tallyg[$candidate->id][$gender->id]=0;
-                                            }
+                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
                                         @endforeach
@@ -588,16 +576,10 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($agebrackets as $agebracket)
                                         @php
-                                        	$tallyageb = App\Models\TallyVote::where('candidate_id',$candidate->id)
-                                        											->where('survey_detail_id',$tallysurvey)
-                                                                           			->first();
-                                        	if($tallyageb){
-                                            	$tallyab[$candidate->id][$agebracket->id]=$tallyageb->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        	
+                                        	$tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyage,$tallyagebrackets,$tallybrgy,
                                                                                                       $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                      $tallyoccstatus,$tallyvoterstatus);
-                                            }else{
-                                            	$tallyab[$candidate->id][$agebracket->id]=0;
-                                            }
+                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
                                         @endphp
                                         <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
                                         @endforeach
@@ -654,16 +636,9 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($civilstatuses as $civilstatus)
                                         @php
-                                        	$tallycivil = App\Models\TallyVote::where('candidate_id',$candidate->id)
-                                        											->where('survey_detail_id',$tallysurvey)
-                                                                           			->first();
-                                        	if($tallycivil){
-                                            	$tallycv[$candidate->id][$civilstatus->id]=$tallycivil->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        	$tallycv[$candidate->id][$civilstatus->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyage,$tallyagebrackets,$tallybrgy,
                                                                                                       			$tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                      			$tallyoccstatus,$tallyvoterstatus);
-                                            }else{
-                                            	$tallycv[$candidate->id][$civilstatus->id]=0;
-                                            }
+                                                                                                      			$tallyoccstatus,$tallyvoterstatus);                                            
                                         @endphp
                                         <td>{{ $tallycv[$candidate->id][$civilstatus->id] }}</td>
                                         @endforeach
@@ -719,16 +694,9 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($empstatuses as $empstatus)
                                         @php
-                                        	$tallyemp = App\Models\TallyVote::where('candidate_id',$candidate->id)
-                                        											->where('survey_detail_id',$tallysurvey)
-                                                                           			->first();
-                                        	if($tallyemp){
-                                           		$tallyemp[$candidate->id][$empstatus->id]=$tallyemp->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        	$tallyemp[$candidate->id][$empstatus->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyage,$tallyagebrackets,$tallybrgy,
                                                                                                       			$tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                      			$tallyoccstatus,$tallyvoterstatus);
-                                            }else{
-                                            	$tallyemp[$candidate->id][$empstatus->id]=0;
-                                            }
+                                                                                                      			$tallyoccstatus,$tallyvoterstatus);                                            
                                         @endphp
                                         <td>{{ $tallyemp[$candidate->id][$empstatus->id] }}</td>
                                         @endforeach
