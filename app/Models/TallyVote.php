@@ -38,7 +38,7 @@ class TallyVote extends Model
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 				//where('candidate_id',$this->candidate_id)
 				//->where('survey_detail_id',$survey)
-		$poll = $this->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
+		return $this->whereHas('voter',function($q)use($age,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 								$q->where('age','>=',$age)
@@ -55,10 +55,6 @@ class TallyVote extends Model
 												});
 							})
 						->sum('tally');	
-		if($poll)
-			return $poll;
-		else
-			return 0;
 	}
     /*
     |--------------------------------------------------------------------------

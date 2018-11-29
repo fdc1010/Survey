@@ -458,9 +458,13 @@
                                     	$tallycan = App\Models\TallyVote::where('candidate_id',$candidate->id)
                                         									->where('survey_detail_id',$tallysurvey)
                                                                             ->first();
-                                    	$tally[$candidate->id]=$tallycan->tally($tallyage,$tallyagebrackets,$tallybrgy,
+                                        if($tallycan){
+                                    		$tally[$candidate->id]=$tallycan->tally($tallyage,$tallyagebrackets,$tallybrgy,
                                         										$tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                 $tallyoccstatus,$tallyvoterstatus);
+                                        }else{
+                                        	$tally[$candidate->id]=0;
+                                        }
                                     @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
