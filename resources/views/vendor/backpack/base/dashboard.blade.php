@@ -17,7 +17,7 @@
 	@php
     	$tallypoll = new App\Models\TallyVote;
         
-    	$tallysurvey = (!empty($rdata['selsurvey']) && $rdata['selsurvey']==$surveydetail->id)?$rdata['selsurvey']:1; 
+    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallyage = (!empty($rdata['selagebracket']))?0:18; 
 
         $tallyagebrackets=[];
