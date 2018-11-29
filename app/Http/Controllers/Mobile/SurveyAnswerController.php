@@ -72,7 +72,7 @@ class SurveyAnswerController extends Controller
 					$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
 											->where('question_id',$relquestion->question_id)
 											//->where('voter_id',$voterid)
-											->get();
+											->first();
 					if($surans){
 						$question = Question::find($relquestion->question_id);
 						if(!empty($question->for_position) && is_numeric($question->for_position)){							
