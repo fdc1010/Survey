@@ -35,24 +35,24 @@ class SurveyAnswerController extends Controller
 		$receivedans = json_decode($request->q_and_a, true);
 		
 		foreach($receivedans as $voteranswers){			
-			foreach($voteranswers['answers'] as $ansid){
-				$surveyans = new SurveyAnswer;		
-				$surveyans->survey_detail_id = $surveydetailid;
-				$surveyans->question_id = $voteranswers['questionId'];
-				$surveyans->answered_option = $voteranswers['answers'];
-				$surveyans->user_id = $userid;
-				$surveyans->voter_id = $voterid;
-				//$surveyans->latitude = $request->latitude;		
-				//$surveyans->longitude = $request->longitude;
+			$surveyans = new SurveyAnswer;		
+			$surveyans->survey_detail_id = $surveydetailid;
+			$surveyans->question_id = $voteranswers['questionId'];
+			$surveyans->answered_option = $voteranswers['answers'];
+			$surveyans->user_id = $userid;
+			$surveyans->voter_id = $voterid;
+			//$surveyans->latitude = $request->latitude;		
+			//$surveyans->longitude = $request->longitude;
+			$surveyansid=$surveyans->save();
+			foreach($voteranswers['answers'] as $ansid){								
+				$optid = $ansid['id'];
+				$answeredoptions = new AnsweredOption;
 				if(!empty($voteranswers['otherAnswer'])){
-					$surveyans->other_answer = $voteranswers['otherAnswer'];
+					$answeredoptions->other_answer = $voteranswers['otherAnswer'];
 				}
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
-				$surveyansid=$surveyans->save();
-				$optid = $ansid['id'];
-				$answeredoptions = new AnsweredOption;
 				$answeredoptions->survey_answer_id = $surveyansid;
 				$answeredoptions->option_id = $optid;
 				$answeredoptions->save();
