@@ -25,7 +25,7 @@ class TallyOtherVoteCrudController extends CrudController
         $this->crud->setModel('App\Models\TallyOtherVote');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/tallyothervote');
         $this->crud->setEntityNameStrings('tally other vote', 'Tally Other Votes');
-
+		$this->crud->denyAccess(['update', 'create', 'delete']);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

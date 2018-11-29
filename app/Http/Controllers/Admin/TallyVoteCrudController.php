@@ -25,7 +25,7 @@ class TallyVoteCrudController extends CrudController
         $this->crud->setModel('App\Models\TallyVote');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/tallyvote');
         $this->crud->setEntityNameStrings('tally vote', 'Tally Votes');
-
+		$this->crud->denyAccess(['update', 'create', 'delete']);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
