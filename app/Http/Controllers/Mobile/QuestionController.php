@@ -44,6 +44,7 @@ class QuestionController extends Controller
 													'with_partyselect'])
 							->orderby('priority')
 							->get();
+		info($result);
 		return response()->json($result);		
 	}
     /**
