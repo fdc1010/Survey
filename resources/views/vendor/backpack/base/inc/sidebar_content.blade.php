@@ -43,7 +43,12 @@
 	<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
     <li><a href='{{ backpack_url('tallyvote') }}'><i class='fa fa-bar-chart'></i> <span>Tally</span></a></li>
     <li><a href='{{ backpack_url('tallyothervote') }}'><i class='fa fa-bar-chart'></i> <span>Other Tally</span></a></li>
-  	<li><a href='{{ backpack_url('question') }}'><i class='fa fa-question'></i> <span>Questions</span></a></li>
-    <li><a href='{{ backpack_url('questionoption') }}'><i class='fa fa-info'></i> <span>Question Options</span></a></li>
+  	<li class="treeview">
+      	<a href="#"><i class="fa fa-bar-comments"></i> <span>Questionnaire</span> <i class="fa fa-angle-left pull-right"></i></a>
+      	<ul class="treeview-menu">
+    		<li><a href='{{ backpack_url('question') }}'><i class='fa fa-question'></i> <span>Questions</span></a></li>
+    		<li><a href='{{ backpack_url('questionoption') }}'><i class='fa fa-info'></i> <span>Question Options</span></a></li>
+  		</ul>
+    </li>
   </ul>
 </li>
