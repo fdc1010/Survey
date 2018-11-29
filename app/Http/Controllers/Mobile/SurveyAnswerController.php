@@ -1,9 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Mobile;
+use App\Models\Question;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\AnsweredOption;
+use App\Models\OptionCandidate;
+use App\Models\OptionPosition;
+use App\Models\OptionProblem;
+use App\Models\TallyVote;
+use App\Models\TallyOtherVote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -42,7 +48,37 @@ class SurveyAnswerController extends Controller
 			$answeredoptions->survey_answer_id = $surveyansid;
 			$answeredoptions->option_id = $optid;
 			$answeredoptions->save();
-		}
+			
+			$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+			if($optioncandidate){
+				$tallycandidate = new TallyVote;
+				$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+				$tallycandidate->voter_id = $request->voter_id;
+				$tallycandidate->survey_detail_id = $request->survey_detail_id;
+				$tallycandidate->save();
+			}
+			$question = Question::find($request->question_id);
+			if(!empty($question->for_position) && is_numeric($question->for_position)){
+				$optionposition = OptionPosition::where('option_id',$optid)
+													->where('position_id',$question->for_position)
+													->first();
+				if($optionposition){
+					$tallyposition = new TallyOtherVote;
+					$tallyposition->option_id = $optid;
+					$tallyposition->voter_id = $request->voter_id;
+					$tallyposition->survey_detail_id = $request->survey_detail_id;
+					$tallyposition->save();
+				}
+			}
+			$optionproblem = OptionProblem::where('option_id',$optid)->first();
+			if($optionproblem){
+				$tallyproblem = new TallyOtherVote;
+				$tallyproblem->option_id = $optid;
+				$tallyproblem->voter_id = $request->voter_id;
+				$tallyproblem->survey_detail_id = $request->survey_detail_id;
+				$tallyproblem->save();
+			}
+		}		
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
     /**
