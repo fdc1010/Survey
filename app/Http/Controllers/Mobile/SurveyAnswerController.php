@@ -52,7 +52,7 @@ class SurveyAnswerController extends Controller
 				$surveyansid=$surveyans->save();				
 				
 				$answeredoptions = AnsweredOption::create([
-					'other_answer' => $other_answer,
+					'other_answer' => $ansid['otherAnswer'],
 					'survey_answer_id' => $surveyansid,
 					'option_id' => $optid
 				]);
