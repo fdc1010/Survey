@@ -34,7 +34,7 @@ class TallyOtherVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }	
-	public function tally($optionid=1,$surveydetailid=1,$age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
+	/*public function tally($optionid=1,$surveydetailid=1,$age = 18, $agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('option_id',$optionid)
 						->where('survey_detail_id',$surveydetailid)
@@ -53,6 +53,42 @@ class TallyOtherVote extends Model
 									->orWhereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
 												});
+							})
+						->sum('tally');	
+	}*/
+	public function tally($optionid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+							$civilstatus = [], $occstatus = [], $voterstatus = []){
+		return $this->where('option_id',$optionid)
+					->where('survey_detail_id',$surveydetailid)
+					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+								if(count($agebrackets)>0)
+									$q->whereIn('age',$agebrackets);
+								
+								if(count($genders)>0)
+									$q->whereIn('gender_id',$genders);
+									
+								if(count($empstatus)>0)
+									$q->whereIn('employment_status_id',$empstatus);
+									
+								if(count($civilstatus)>0)
+									$q->whereIn('civil_status_id',$civilstatus);
+									
+								if(count($occstatus)>0)
+									$q->whereIn('occupancy_status_id',$occstatus);
+									
+								if(count($voterstatus)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												});			
+								}
+								
+								if(count($brgy)>0){
+									$q->whereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});			
+								}									
 							})
 						->sum('tally');	
 	}

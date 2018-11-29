@@ -16,6 +16,7 @@
 @section('content')
 	@php
     	$tallypoll = new App\Models\TallyVote;
+        $tallyotherpoll = new App\Models\TallyOtherVote;
         
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallyage = (!empty($rdata['selagebracket']))?0:18; 
@@ -587,10 +588,10 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($agebrackets as $agebracket)
                                         @php
-                                        	$tallyagebrackets=[];
-                                            array_push($tallyagebrackets,$agebracket->from,$agebracket->to);
+                                        	$gtallyagebrackets=[];
+                                            array_push($gtallyagebrackets,$agebracket->from,$agebracket->to);
                                             
-                                        	$tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                        	$tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
                                                                                                       $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                       $tallyoccstatus,$tallyvoterstatus);                                            
                                         @endphp
@@ -768,7 +769,9 @@
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
                                             @php
-                                                $tallyq[$candidate->id][$quality->option_id]=rand(1,100);
+                                                $tallyq[$candidate->id][$quality->option_id]=$tallyotherpoll->tally($quality->option_id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                                                                                                $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                                $tallyoccstatus,$tallyvoterstatus);
                                             @endphp
                                             <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
                                             @endforeach

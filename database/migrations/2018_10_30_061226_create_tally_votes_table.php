@@ -17,11 +17,13 @@ class CreateTallyVotesTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('candidate_id');
 			$table->unsignedInteger('voter_id');
+			$table->unsignedInteger('survey_detail_id');
 			$table->integer('tally')->default(1);
             $table->timestamps();
 			
 			$table->foreign('candidate_id')->references('id')->on('candidates');
 			$table->foreign('voter_id')->references('id')->on('voters');
+			$table->foreign('survey_detail_id')->references('id')->on('survey_details');
         });
     }
 
