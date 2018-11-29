@@ -44,8 +44,7 @@ class QuestionController extends Controller
 													'with_partyselect'])
 							->orderby('priority')
 							->get();
-		return response()->json($result);
-		
+		return response()->json($result);		
 	}
     /**
      * Show the form for creating a new resource.
