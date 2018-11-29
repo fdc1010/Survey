@@ -57,7 +57,7 @@ class SurveyAnswerController extends Controller
 				$tallycandidate->survey_detail_id = $request->survey_detail_id;
 				$tallycandidate->save();
 			}
-			$question = Question::find($request->question_id);
+			/*$question = Question::find($request->question_id);
 			if(!empty($question->for_position) && is_numeric($question->for_position)){
 				$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
 				if($optioncandidate){
@@ -68,7 +68,7 @@ class SurveyAnswerController extends Controller
 					$tallycandidate->survey_detail_id = $request->survey_detail_id;
 					$tallycandidate->save();
 				}
-			}
+			}*/
 			$optionproblem = OptionProblem::where('option_id',$optid)->first();
 			if($optionproblem){
 				$voterbrgy = Voter::with('precinct')->find($request->voter_id);
