@@ -17,7 +17,7 @@ class CreateOptionQualitiesTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('question_id');
 			$table->unsignedInteger('related_question_id');
-			$table->longText('description');
+			$table->longText('description')->nullable();
             $table->timestamps();
 			
 			$table->foreign('question_id')->references('id')->on('questions');
