@@ -32,8 +32,8 @@ class SurveyAnswerController extends Controller
 		$userid = $request->user_id;
 		$voterid = $request->voter_id;
 		$surveydetailid = $request->survey_detail_id;
-		$receivedans = json_decode($request->q_and_a);
-		info(json_decode($receivedans[0]));
+		$receivedans = json_decode($request->q_and_a, true);
+		
 		foreach($receivedans as $voteranswers){
 			$surveyans = new SurveyAnswer;		
 			$surveyans->survey_detail_id = $surveydetailid;
