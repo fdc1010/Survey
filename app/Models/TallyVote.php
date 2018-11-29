@@ -51,7 +51,7 @@ class TallyVote extends Model
 												})
 									->orWhereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
-												});
+												})
 							})
 						->sum('tally');	
 	}
