@@ -76,12 +76,6 @@ class VoterCrudController extends CrudController
 			'model' => "App\Models\QuestionOption"
 	    ]);
 		$this->crud->addColumn([
-            'name' => 'surveyor',			
-            'label' => 'Surveyor',
-            'type' => 'model_function',
-			'function_name' => 'getSurveyor'
-	    ]);
-		$this->crud->addColumn([
 			'label' => "Sitio",
 			'type' => 'select',
 			'name' => 'sitio_id', // the relationship name in your Model
@@ -89,6 +83,12 @@ class VoterCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Sitio", // on create&update, do you need to add/delete pivot table entries?
 		]);
+		$this->crud->addColumn([
+            'name' => 'surveyor',			
+            'label' => 'Surveyor',
+            'type' => 'model_function',
+			'function_name' => 'getSurveyor'
+	    ]);
 		$this->crud->addField([
 			'label' => "Precinct",
 			'type' => 'select2',
