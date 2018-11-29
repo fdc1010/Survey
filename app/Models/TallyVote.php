@@ -67,10 +67,10 @@ class TallyVote extends Model
 									->whereIn('gender_id',$genders)
 									->whereIn('employment_status_id',$empstatus)
 									->whereIn('civil_status_id',$civilstatus)
-									//->whereIn('occupancy_status_id',$occstatus)
-									//->whereHas('statuses',function($qv)use($voterstatus){
-									//						$qv->whereIn('status_id',$voterstatus);
-									//			})
+									->whereIn('occupancy_status_id',$occstatus)
+									->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
 									->whereHas('precinct',function($qb)use($brgy){
 															$qb->whereIn('barangay_id',$brgy);
 												});
