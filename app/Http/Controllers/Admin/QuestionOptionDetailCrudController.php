@@ -24,7 +24,7 @@ class QuestionOptionDetailCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\QuestionOptionDetail');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/questionoptiondetail');
-        $this->crud->setEntityNameStrings('questionoptiondetail', 'question_option_details');
+        $this->crud->setEntityNameStrings('question option detail', 'Question Option Details');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,7 +34,56 @@ class QuestionOptionDetailCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->removeColumns(['question_id','option_id','sub_option_id','description']);
+		$this->crud->removeFields(['question_id','option_id','sub_option_id']);
+		$this->crud->addColumn([
+            'name' => 'question_id',
+            'type' => 'select',
+            'label' => 'Question',
+			'entity' => 'question', // the relationship name in your Model
+			'attribute' => 'question', // attribute on Article that is shown to admin
+			'model' => "App\Models\Question"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'select',
+            'label' => 'Options',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'sub_option_id',
+            'type' => 'select',
+            'label' => 'Sub Option',
+			'entity' => 'suboption', // the relationship name in your Model
+			'attribute' => 'sub_option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionSubOption"
+	    ]);
+		$this->crud->addField([
+            'name' => 'question_id',
+            'type' => 'select2',
+            'label' => 'Question',
+			'entity' => 'question', // the relationship name in your Model
+			'attribute' => 'question', // attribute on Article that is shown to admin
+			'model' => "App\Models\Question"
+	    ]);
+		$this->crud->addField([
+            'name' => 'option_id',
+            'type' => 'select2',
+            'label' => 'Options',
+			'entity' => 'option', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addField([
+            'name' => 'sub_option_id',
+            'type' => 'select2',
+            'label' => 'Sub Option',
+			'entity' => 'suboption', // the relationship name in your Model
+			'attribute' => 'sub_option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionSubOption"
+	    ]);
         // add asterisk for fields that are required in QuestionOptionDetailRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

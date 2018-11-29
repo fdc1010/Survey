@@ -19,10 +19,21 @@ class QuestionOptionDetail extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['question_id','option_id','with_option_other_ans','description'];
+    protected $fillable = ['question_id','option_id','sub_option_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function question()
+    {
+        return $this->belongsTo('App\Models\Question','question_id');
+    }
+	public function option()
+    {
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
+    }
+	public function suboption()
+    {
+        return $this->belongsTo('App\Models\QuestionSubOption','sub_option_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

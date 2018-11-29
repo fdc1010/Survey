@@ -33,7 +33,8 @@ class QuestionOptionCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();		
+        $this->crud->setFromDb();	
+		
 		$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions Tagged',
@@ -41,7 +42,8 @@ class QuestionOptionCrudController extends CrudController
 			'function_name' => 'getPositions',
 			'fake' => true
 	    ])->afterColumn('priority');
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
+        
+		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
 
