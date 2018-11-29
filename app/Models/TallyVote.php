@@ -65,18 +65,15 @@ class TallyVote extends Model
 								$q->whereIn('age',$agebrackets)
 									->orWhere(function($query){
 											 $query->whereNotNull('employment_status_id')
-											 		->whereIn('employment_status_id',$empstatus);
-												});
+											 		->whereIn('employment_status_id',$empstatus);										
 										})
 									->orWhere(function($query){
 											 $query->whereNotNull('civil_status_id')
 											 		->whereIn('civil_status_id',$civilstatus);
-												});
-										})
+										})										
 									->orWhere(function($query){
 											 $query->whereNotNull('occupancy_status_id')
 											 		->whereIn('occupancy_status_id',$occstatus);
-												});
 										})
 									->orWhereHas('statuses',function($qv)use($voterstatus){
 															$qv->whereIn('status_id',$voterstatus);
