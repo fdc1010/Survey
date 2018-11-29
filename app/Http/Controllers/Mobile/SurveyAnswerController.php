@@ -75,19 +75,19 @@ class SurveyAnswerController extends Controller
 											->first();
 					if($surans){
 						$question = Question::find($relquestion->question_id);
-						if(!empty($question->for_position) && is_numeric($question->for_position)){
-							info($surans);
+						if(!empty($question->for_position) && is_numeric($question->for_position)){							
 							$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->first();
-							info($ansoption);
-							foreach($ansoption->option_id as $ansoptid){
-								$optioncandidate = OptionCandidate::where('option_id',$ansoptid)->first();
-								if($optioncandidate){
-									$tallycandidate = new TallyOtherVote;
-									$tallycandidate->option_id = $optid;
-									$tallycandidate->voter_id = $voterid;
-									$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-									$tallycandidate->survey_detail_id = $surveydetailid;
-									$tallycandidate->save();
+							if(($ansoption){
+								foreach($ansoption->option_id as $ansoptid){
+									$optioncandidate = OptionCandidate::where('option_id',$ansoptid)->first();
+									if($optioncandidate){
+										$tallycandidate = new TallyOtherVote;
+										$tallycandidate->option_id = $optid;
+										$tallycandidate->voter_id = $voterid;
+										$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+										$tallycandidate->survey_detail_id = $surveydetailid;
+										$tallycandidate->save();
+									}
 								}
 							}
 						}
