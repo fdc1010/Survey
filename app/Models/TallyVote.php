@@ -55,7 +55,7 @@ class TallyVote extends Model
 							})
 						->sum('tally');	
 	}*/
-	public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+	/*public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
@@ -76,6 +76,39 @@ class TallyVote extends Model
 											 		->whereIn('civil_status_id',$civilstatus);
 										})										
 									->orWhere(function($query)use($occstatus){
+											 $query->whereNotNull('occupancy_status_id')
+											 		->whereIn('occupancy_status_id',$occstatus);
+										})
+									->orWhereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
+									->orWhereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});
+							})
+						->sum('tally');	
+	}*/
+	public function tally($candidateid=1,$surveydetailid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+							$civilstatus = [], $occstatus = [], $voterstatus = []){
+		return $this->where('candidate_id',$candidateid)
+					->where('survey_detail_id',$surveydetailid)
+					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+								$q->whereIn('age',$agebrackets)
+									->where(function($query)use($genders){
+											 $query->whereNotNull('gender_id')
+											 		->whereIn('gender_id',$genders);										
+										})
+									->where(function($query)use($empstatus){
+											 $query->whereNotNull('employment_status_id')
+											 		->whereIn('employment_status_id',$empstatus);										
+										})
+									->where(function($query)use($civilstatus){
+											 $query->whereNotNull('civil_status_id')
+											 		->whereIn('civil_status_id',$civilstatus);
+										})										
+									->where(function($query)use($occstatus){
 											 $query->whereNotNull('occupancy_status_id')
 											 		->whereIn('occupancy_status_id',$occstatus);
 										})
