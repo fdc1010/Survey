@@ -163,7 +163,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selagebracket" id="selagebracket">
                                     	<option value="0">Age</option>
-                                    @foreach($agebrackets as $agebracket)	
+                                    @foreach($selinitagebrackets as $agebracket)	
                                     	<option value="{{ $agebracket->id }}" {{ ((!empty($rdata['selagebracket'])&&$rdata['selagebracket']==$agebracket->id)?"selected='selected'":"") }}>{{ $agebracket->title }}</option>
                                     @endforeach
                                 	</select>
@@ -181,7 +181,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selcivil" id="selcivil">
                                     	<option value="0">Civil</option>
-                                    @foreach($civilstatuses as $civilstatus)	
+                                    @foreach($selinitcivilstatuses as $civilstatus)	
                                     	<option value="{{ $civilstatus->id }}" {{ ((!empty($rdata['selcivil'])&&$rdata['selcivil']==$civilstatus->id)?"selected='selected'":"") }}>{{ $civilstatus->name }}</option>
                                     @endforeach
                                 	</select>
@@ -190,7 +190,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selemp" id="selemp">
                                     	<option value="0">Employment</option>
-                                    @foreach($empstatuses as $empstatus)	
+                                    @foreach($selinitempstatuses as $empstatus)	
                                     	<option value="{{ $empstatus->id }}" {{ ((!empty($rdata['selemp'])&&$rdata['selemp']==$empstatus->id)?"selected='selected'":"") }}>{{ $empstatus->name }}</option>
                                     @endforeach
                                 	</select>
