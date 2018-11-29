@@ -25,12 +25,12 @@
 		foreach($tempagebrackets as $ageb){
         	array_push($tallyagebrackets,$ageb->from,$ageb->to);
         }        
-        $tallybrgy=[];
-        $tallygenders=[];
-        $tallyempstatus=[];
-        $tallycivilstatus=[];
-        $tallyoccstatus=[];
-        $tallyvoterstatus=[];
+        $tallybrgy=App\Models\Barangay::get()->pluck('id')->toArray();
+        $tallygenders=App\Models\Gender::get()->pluck('id')->toArray();
+        $tallyempstatus=App\Models\EmploymentStatus::get()->pluck('id')->toArray();
+        $tallycivilstatus=App\Models\CivilStatus::get()->pluck('id')->toArray();
+        $tallyoccstatus = App\Models\OccupancyStatus::get()->pluck('id')->toArray();
+        $tallyvoterstatus = App\Models\StatusDetail::get()->pluck('status_id')->toArray();
         
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
         $surveydetails = App\Models\SurveyDetail::all();
