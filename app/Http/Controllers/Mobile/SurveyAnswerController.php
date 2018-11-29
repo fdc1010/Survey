@@ -50,7 +50,7 @@ class SurveyAnswerController extends Controller
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
-				
+				$surveyansid=$surveyans->save();
 				$optid = $ansid['id'];
 				$answeredoptions = new AnsweredOption;
 				$answeredoptions->survey_answer_id = $surveyansid;
@@ -99,8 +99,7 @@ class SurveyAnswerController extends Controller
 					$tallyproblem->survey_detail_id = $surveydetailid;
 					$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 					$tallyproblem->save();
-				}
-				$surveyansid=$surveyans->save();
+				}				
 			}		
 		}
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
