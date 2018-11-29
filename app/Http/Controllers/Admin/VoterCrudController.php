@@ -141,9 +141,9 @@ class VoterCrudController extends CrudController
 		])->afterField('employment_status_id');
 		$this->crud->addField([
 			'label' => "Civil Status",
-			'type' => 'select',
+			'type' => 'checklist',
 			'name' => 'civil_status_id', // the relationship name in your Model
-			'entity' => 'civilstatus', // the relationship name in your Model
+			'entity' => 'statuses', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\CivilStatus" // on create&update, do you need to add/delete pivot table entries?
 		]);

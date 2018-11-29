@@ -19,7 +19,7 @@ class Voter extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = ['precinct_id', 'first_name','last_name','middle_name', 'birth_date','contact',
-							'address', 'birth_place','age','gender', 'profilepic','status_id','employment_status_id',
+							'address', 'birth_place','age','gender_id', 'profilepic','status_id','employment_status_id',
 							'civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 							'yearly_household','work'];
     // protected $hidden = [];
