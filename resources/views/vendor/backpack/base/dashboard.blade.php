@@ -344,7 +344,7 @@
                                     <label class="control-label">
                                         @if(!empty($rdata['agebracket']) && in_array($agebracket->id,$rdata['agebracket']))
                                         	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" checked="checked" />
-										@ele
+										@else
                                         	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />                                          
                                         @endif
                                         {{ $agebracket->title }}
