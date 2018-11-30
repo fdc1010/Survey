@@ -34,7 +34,7 @@ class SurveyAnswerController extends Controller
 		$voterid = $request->voter_id;
 		$surveydetailid = $request->survey_detail_id;
 		
-		$voterdetails = json_decode($request->voter_detail,true);
+		$voterdetails = json_decode($request->voter_detail);
 		
 		info($voterdetails);
 		/*Voter::where('id',$voterid)
