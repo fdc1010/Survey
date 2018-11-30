@@ -31,113 +31,116 @@ class SurveyAnswerController extends Controller
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
-		try{
+		
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
-			
-			$voterdetails = json_decode($request->voter_detail,true);
-			
-			
-			Voter::where('id',$voterid)
-					->update([
-								'age'=>$voterdetails['age'],
-								'contact'=>$voterdetails['contactNum'],
-								'work'=>$voterdetails['work'],
-								'monthly_household'=>$voterdetails['monthlyIncome'],
-								'yearly_household'=>$voterdetails['yearlyIncome'],
-								'occupancy_length'=>$voterdetails['occuLength'],
-								'occupancy_status_id'=>$voterdetails['occuStatusId'],
-								'civil_status_id'=>$voterdetails['civilStatusId'],
-								'employment_status_id'=>$voterdetails['empStatusId'],
-								'gender_id'=>$voterdetails['genderId']
-							]);
-			$vstatusarr = json_decode($voterdetails['status'],true);
-			foreach($vstatusarr as $vstatus){
-				StatusDetail::where('voter_id',$voterid)->delete();
-				$voterstatuses = new StatusDetail;	
-				$voterstatuses->voter_id = $voterid;
-				$voterstatuses->status_id = $vstatus;
-				$voterstatuses->save();
-			}
-			$receivedans = json_decode($request->q_and_a, true);
-			
-			foreach($receivedans as $voteranswers){
-				foreach($voteranswers['answers'] as $ansid){								
-					$optid = $ansid['id'];
-	
-					$surveyans = new SurveyAnswer;		
-					$surveyans->survey_detail_id = $surveydetailid;
-					$surveyans->question_id = $voteranswers['questionId'];
-					$surveyans->answered_option = $voteranswers['answers'];
-					$surveyans->option_id = $optid;
-					$surveyans->user_id = $userid;
-					$surveyans->voter_id = $voterid;
-					$surveyans->other_answer = $ansid['otherAnswer'];
-					//$surveyans->latitude = $request->latitude;		
-					//$surveyans->longitude = $request->longitude;
-					$surveyansid=$surveyans->save();				
-					
-					/*$answeredoptions = AnsweredOption::create([
-						'other_answer' => $ansid['otherAnswer'],
-						'survey_answer_id' => $surveyansid,
-						'option_id' => $optid
-					]);*/
-					//if($request->has('option_other_answer')){
-					//	$surveyans->option_other_answer = $request->option_other_answer;
-					//}
-					$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-					if($optioncandidate){
-						$tallycandidate = new TallyVote;
-						$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-						$tallycandidate->voter_id = $voterid;
-						$tallycandidate->survey_detail_id = $surveydetailid;
-						$tallycandidate->save();
-					}
-					$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
-					if($relquestion){
-						$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-												->where('question_id',$relquestion->related_question_id)
-												//->where('voter_id',$voterid)
-												->first();
-						if($surans){
-							$question = Question::find($relquestion->question_id);
-							if(!empty($question->for_position) && is_numeric($question->for_position)){							
-								//$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
-								//foreach($ansoption as $ansoptid){
-									$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
-									//info($relquestion->question_id);
-									//info($surans->option_id);
-									if($optioncandidate){
-										$tallycandidate = new TallyOtherVote;
-										$tallycandidate->option_id = $optid;
-										$tallycandidate->voter_id = $voterid;
-										$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-										$tallycandidate->survey_detail_id = $surveydetailid;
-										$tallycandidate->save();
-									}
-								//}
-							
+			$surveyanswers = SurveyAnswer::where('user_id',$userid)
+											->where('voter_id',$voterid)
+											->where('survey_detail_id',$surveydetailid)
+											->first();
+			if(empty($surveyanswers)){
+				$voterdetails = json_decode($request->voter_detail,true);
+						
+				Voter::where('id',$voterid)
+						->update([
+									'age'=>$voterdetails['age'],
+									'contact'=>$voterdetails['contactNum'],
+									'work'=>$voterdetails['work'],
+									'monthly_household'=>$voterdetails['monthlyIncome'],
+									'yearly_household'=>$voterdetails['yearlyIncome'],
+									'occupancy_length'=>$voterdetails['occuLength'],
+									'occupancy_status_id'=>$voterdetails['occuStatusId'],
+									'civil_status_id'=>$voterdetails['civilStatusId'],
+									'employment_status_id'=>$voterdetails['empStatusId'],
+									'gender_id'=>$voterdetails['genderId']
+								]);
+				$vstatusarr = json_decode($voterdetails['status'],true);
+				foreach($vstatusarr as $vstatus){
+					StatusDetail::where('voter_id',$voterid)->delete();
+					$voterstatuses = new StatusDetail;	
+					$voterstatuses->voter_id = $voterid;
+					$voterstatuses->status_id = $vstatus;
+					$voterstatuses->save();
+				}
+				$receivedans = json_decode($request->q_and_a, true);
+				
+				foreach($receivedans as $voteranswers){
+					foreach($voteranswers['answers'] as $ansid){								
+						$optid = $ansid['id'];
+		
+						$surveyans = new SurveyAnswer;		
+						$surveyans->survey_detail_id = $surveydetailid;
+						$surveyans->question_id = $voteranswers['questionId'];
+						$surveyans->answered_option = $voteranswers['answers'];
+						$surveyans->option_id = $optid;
+						$surveyans->user_id = $userid;
+						$surveyans->voter_id = $voterid;
+						$surveyans->other_answer = $ansid['otherAnswer'];
+						//$surveyans->latitude = $request->latitude;		
+						//$surveyans->longitude = $request->longitude;
+						$surveyansid=$surveyans->save();				
+						
+						/*$answeredoptions = AnsweredOption::create([
+							'other_answer' => $ansid['otherAnswer'],
+							'survey_answer_id' => $surveyansid,
+							'option_id' => $optid
+						]);*/
+						//if($request->has('option_other_answer')){
+						//	$surveyans->option_other_answer = $request->option_other_answer;
+						//}
+						$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+						if($optioncandidate){
+							$tallycandidate = new TallyVote;
+							$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+							$tallycandidate->voter_id = $voterid;
+							$tallycandidate->survey_detail_id = $surveydetailid;
+							$tallycandidate->save();
+						}
+						$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
+						if($relquestion){
+							$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+													->where('question_id',$relquestion->related_question_id)
+													//->where('voter_id',$voterid)
+													->first();
+							if($surans){
+								$question = Question::find($relquestion->question_id);
+								if(!empty($question->for_position) && is_numeric($question->for_position)){							
+									//$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
+									//foreach($ansoption as $ansoptid){
+										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+										//info($relquestion->question_id);
+										//info($surans->option_id);
+										if($optioncandidate){
+											$tallycandidate = new TallyOtherVote;
+											$tallycandidate->option_id = $optid;
+											$tallycandidate->voter_id = $voterid;
+											$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+											$tallycandidate->survey_detail_id = $surveydetailid;
+											$tallycandidate->save();
+										}
+									//}
+								
+								}
 							}
 						}
-					}
-					
-					$optionproblem = OptionProblem::where('option_id',$optid)->first();
-					if($optionproblem){
-						$voterbrgy = Voter::with('precinct')->find($voterid);
-						$tallyproblem = new TallyOtherVote;
-						$tallyproblem->option_id = $optid;
-						$tallyproblem->voter_id = $voterid;
-						$tallyproblem->survey_detail_id = $surveydetailid;
-						$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
-						$tallyproblem->save();
-					}				
-				}		
+						
+						$optionproblem = OptionProblem::where('option_id',$optid)->first();
+						if($optionproblem){
+							$voterbrgy = Voter::with('precinct')->find($voterid);
+							$tallyproblem = new TallyOtherVote;
+							$tallyproblem->option_id = $optid;
+							$tallyproblem->voter_id = $voterid;
+							$tallyproblem->survey_detail_id = $surveydetailid;
+							$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
+							$tallyproblem->save();
+						}				
+					}		
+				}
+				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
+			}else{
+				return response()->json(['success'=>false,'msg'=>'Answers already been saved!']);
 			}
-			return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
-		}catch(\Exception $e){
-			
-		}
 	}
     /**
      * Show the form for creating a new resource.
