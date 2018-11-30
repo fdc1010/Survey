@@ -454,10 +454,6 @@
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                             	<thead>
                                       <tr>
-                                          <th></th>
-                                          <th></th>
-                                      </tr>
-                                      <tr>
                                           <th>Cadidate</th>
                                           <th>Tally</th>
                                       </tr>                                    
@@ -469,10 +465,6 @@
                                   <thead>
                                       <tr>
                                           <th>{{ $position->name }}</th>
-                                          <th></th>
-                                      </tr>
-                                      <tr>
-                                          <th></th>
                                           <th></th>
                                       </tr>                                    
                                   </thead>
