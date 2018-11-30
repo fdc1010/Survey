@@ -452,6 +452,9 @@
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                            	@php
+                                    $tally = array();                                    
+                                @endphp
             					@foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -463,10 +466,7 @@
                                           <th>Tally</th>
                                       </tr>                                    
                                   </thead>
-                                  <tbody>
-                                  @php
-                                      $tally = array();                                    
-                                  @endphp
+                                  <tbody>                                  
                                   @foreach($candidates as $candidate)
                                   	  @if($position->id == $candidate->position_id)
                                       @php
