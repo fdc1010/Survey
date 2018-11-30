@@ -346,7 +346,7 @@
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate" /> Check All</label></div>
                         @foreach($selinitpositions as $position)                        	
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
-                            <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate_{{ $position->id }}" /> Check All</label></div>
+                            <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate_{{ $position->id }}" /> Check All Candidates for {{ $position->name }}</label></div>
                             @foreach($position->candidates as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
