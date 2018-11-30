@@ -45,7 +45,7 @@ class SurveyAnswerController extends Controller
 							'contact'=>$voterdetails['contactNum'],
 							'work'=>$voterdetails['work'],
 							'monthly_household'=>$voterdetails['monthlyIncome'],
-							'yearly_household'=>$voterdetails['yearly_household'],
+							'yearly_household'=>$voterdetails['yearlyIncome'],
 							'occupancy_length'=>$voterdetails['occuLength'],
 							'occupancy_status_id'=>$voterdetails['occuStatusId'],
 							'civil_status_id'=>$voterdetails['civilStatusId'],
