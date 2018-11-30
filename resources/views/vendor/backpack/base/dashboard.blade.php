@@ -1283,7 +1283,7 @@ $(document).ready(function ($) {
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
-					foreach($position->candidates as $candidate)
+					@foreach($position->candidates as $candidate)
 						{{ $tallyq[$candidate->id][$quality->option_id] }},
 					@endforeach
 				@endforeach
