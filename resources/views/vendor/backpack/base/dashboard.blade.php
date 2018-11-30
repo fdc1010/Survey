@@ -939,7 +939,10 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('#checkAllPosition').on('click',function(e){
+	$('#checkAllPosition').on('change',function(e){
+		$("input[name='position[]']").prop('checked',$(this).is(":checked"));
+	});
+	$('#checkAllCandidate').on('change',function(e){
 		
 	});
 	$('#brgydetails').hide('slow');
