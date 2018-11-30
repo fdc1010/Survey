@@ -452,30 +452,32 @@
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                	<tr>
-                                    	<th>{{ $positions[0]->name }}</th>
-                                        <th></th>
-                                    </tr>
-                                	<tr>
-                                    	<th>Cadidate</th>
-                                        <th>Tally</th>
-                                    </tr>                                    
-                                </thead>
-                                <tbody>
-                                @php
-                                	$tally = array();                                    
-                                @endphp
-                                @foreach($candidates as $candidate)
-                                	@php
-                                    	$tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
-                                        										$tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                $tallyoccstatus,$tallyvoterstatus);                                        
+            					@foreach($positions as $position)
+                                    <thead>                                
+                                        <tr>
+                                            <th>{{ $position->name }}</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Cadidate</th>
+                                            <th>Tally</th>
+                                        </tr>                                    
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $tally = array();                                    
                                     @endphp
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        <td>{{ $tally[$candidate->id] }}</td>
-                                    </tr>
+                                    @foreach($candidates as $candidate)
+                                        @php
+                                            $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                                                                    $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                    $tallyoccstatus,$tallyvoterstatus);                                        
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $candidate->voter->full_name }}</td>
+                                            <td>{{ $tally[$candidate->id] }}</td>
+                                        </tr>
+                                    @endforeach
                                 @endforeach
                                 </tbody>
                             </table>
