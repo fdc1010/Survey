@@ -29,10 +29,18 @@ class SurveyAnswerController extends Controller
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
-		info($request);
-		/*$userid = $request->user_id;
+		
+		$userid = $request->user_id;
 		$voterid = $request->voter_id;
 		$surveydetailid = $request->survey_detail_id;
+		
+		$voterdetails = json_decode($request->voter_detail,true);
+		
+		info($voterdetails);
+		/*Voter::where('id',$voterid)
+				->update(['age'=>$voterdetail->age]);
+	
+		
 		$receivedans = json_decode($request->q_and_a, true);
 		
 		foreach($receivedans as $voteranswers){
@@ -51,7 +59,11 @@ class SurveyAnswerController extends Controller
 				//$surveyans->longitude = $request->longitude;
 				$surveyansid=$surveyans->save();				
 				
-				
+				/*$answeredoptions = AnsweredOption::create([
+					'other_answer' => $ansid['otherAnswer'],
+					'survey_answer_id' => $surveyansid,
+					'option_id' => $optid
+				]);*/
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
