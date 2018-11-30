@@ -165,7 +165,7 @@
                                     <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
                                 <div class="col-md-1">
-                                	<a href="#printdetails" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
+                                	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                             </div>                	                        	
                     </div>
@@ -186,7 +186,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#brgydetails" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selcandidate" id="selcandidate">
                                     	<option value="0">Candidate</option>
@@ -199,7 +199,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#candetails" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th width="5%">Demographics:</th>
                                 <td width="5%" align="center">
                                 	<select name="selagebracket" id="selagebracket">
@@ -209,7 +209,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#agedetails" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selgender" id="selgender">
                                     	<option value="0">Gender</option>
@@ -218,7 +218,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#gendetails" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selcivil" id="selcivil">
                                     	<option value="0">Civil</option>
@@ -227,7 +227,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#civdetails" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selemp" id="selemp">
                                     	<option value="0">Employment</option>
@@ -236,7 +236,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#empdetails" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
                                 <th width="5%" align="center">
                                     <button type="submit" class="btn btn-primary">
                                         <span class="fa fa-search"></span> View
@@ -318,11 +318,11 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintPos" name="checkprint[]" value="1" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintGraph" name="checkprint[]" value="1" checked="checked" />Graphs</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" />Criteria by Gender</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" />Criteria by Age Bracket</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" />Criteria by Civil Status</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" />Criteria by Employment Status</div>
                         </div>
                     </div>
                 </div>
