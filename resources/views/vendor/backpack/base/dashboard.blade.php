@@ -157,7 +157,7 @@
                                 @foreach($surveydetails as $surveydetail)	
                                     <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                                 @endforeach
-                                </select>
+                                </select>&nbsp;
                                 <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                             </div>                	                        	
                     </div>
