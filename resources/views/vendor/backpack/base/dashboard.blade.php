@@ -162,10 +162,10 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5"> 
-                                    <a href="#printdetails"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                                    <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
                                 <div class="col-md-1">
-                                	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
+                                	<a href="#printdetails" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                             </div>                	                        	
                     </div>
@@ -987,11 +987,6 @@ $(document).ready(function ($) {
 	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
-			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
-			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
-			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
-			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
-			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
 			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
 		});
 	@endforeach
