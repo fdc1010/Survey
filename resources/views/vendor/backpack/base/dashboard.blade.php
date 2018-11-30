@@ -38,7 +38,7 @@
         $surveydetails = App\Models\SurveyDetail::all();
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
-        $selinitpositions = App\Models\PositionCandidate::with('candidates')->all();
+        $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         if(!empty($rdata['position'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
         }else{
