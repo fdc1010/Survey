@@ -107,11 +107,7 @@
             	$empstatuses = App\Models\EmploymentStatus::all(); 
             }
         }
-        if(!empty($rdata['position'])){
-        	$positions = App\Models\PositionCandidate::whereIn('id',$rdata['position'])->get(); 
-        }else{
-        	$positions = App\Models\PositionCandidate::where('id',$surveypos)->get();
-        }
+        
         if(!empty($rdata['position'])){
         	$qualities = App\Models\OptionPosition::with('options','positions')
                                                         ->whereIn('position_id',$rdata['position'])->get();
@@ -120,20 +116,32 @@
         }
         
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
-            $candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])->get();
+            $positions = App\Models\PositionCandidate::with('candidates')->whereIn('position_id',$rdata['position'])->get();
         }else if{!empty($rdata['position']))){
         	if(!empty($rdata['selcandidate']){
-                $candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])
-                                                                            ->where('id',$rdata['selcandidate'])
-                                                                            ->get();
-            }else if(){
-            
+                $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
+                													$q->where('id',$rdata['selcandidate']);
+                												}])
+                                                            ->whereIn('position_id',$rdata['position'])
+                                                            ->get();
+            }else if(!empty($rdata['candidate']){
+            	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
+                													$q->whereIn('id',$rdata['candidate']);
+                												}])
+                                                            ->whereIn('position_id',$rdata['position'])
+                                                            ->get();
             }
         }else{
-            if(!empty($rdata['selcandidate'])){
-                $candidates = App\Models\Candidate::with('voter','position')->where('id',$rdata['selcandidate'])->get();
-            }else{
-                $candidates = App\Models\Candidate::with('voter','position')->where('position_id',$surveypos)->get();
+            if(!empty($rdata['selcandidate']){
+                $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
+                													$q->where('id',$rdata['selcandidate']);
+                												}])
+                                                            ->get();
+            }else if(!empty($rdata['candidate']){
+            	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
+                													$q->whereIn('id',$rdata['candidate']);
+                												}])
+                                                            ->get();
             }
         }
     @endphp
@@ -485,8 +493,7 @@
                                       </tr>                                    
                                   </thead>
                                   <tbody>                                  
-                                  @foreach($candidates as $candidate)
-                                  	  @if($position->id == $candidate->position_id)
+                                  @foreach($position->candidates as $candidate)
                                       @php
                                           $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
@@ -496,7 +503,6 @@
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           <td>{{ $tally[$candidate->id] }}</td>
                                       </tr>
-                                      @endif
                                   @endforeach                                
                                   </tbody>
                                 @endforeach
@@ -549,8 +555,7 @@
                                   </thead>                                  
                                 <tbody>
                                	
-                                 @foreach($candidates as $candidate)  
-                                	@if($position->id == $candidate->position_id)                              	
+                                 @foreach($position->candidates as $candidate)                             	
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
@@ -563,7 +568,6 @@
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
                                         @endforeach
                                     </tr>
-                                	@endif
                                   @endforeach                                
                                   </tbody>
                                 @endforeach
@@ -616,8 +620,7 @@
                                   </thead>
                                   <tbody>
                                   
-                                  @foreach($candidates as $candidate)   
-                                  	@if($position->id == $candidate->position_id)                             	
+                                  @foreach($position->candidates as $candidate)                               	
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
@@ -633,7 +636,6 @@
                                           <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
                                           @endforeach
                                       </tr>
-                                  	@endif
                                   @endforeach                                
                                   </tbody>
                                 @endforeach
@@ -685,8 +687,7 @@
                                       </tr>                                    
                                   </thead>
                                   <tbody>                                
-                                	@foreach($candidates as $candidate)    
-                                    	@if($position->id == $candidate->position_id)                            	
+                                	@foreach($position->candidates as $candidate)                               	
                                         <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
@@ -698,7 +699,6 @@
                                             <td>{{ $tallycv[$candidate->id][$civilstatus->id] }}</td>
                                             @endforeach
                                         </tr>
-                                		@endif
                                   	@endforeach                                
                                   </tbody>
                                 @endforeach
@@ -750,8 +750,7 @@
                                       </tr>                                    
                                   </thead>
                                   <tbody>                                
-                                	@foreach($candidates as $candidate)    
-                                    	@if($position->id == $candidate->position_id)                                	             	
+                                	@foreach($position->candidates as $candidate)                                    	             	
                                           <tr>
                                               <td>{{ $candidate->voter->full_name }}</td>
                                               @foreach($empstatuses as $empstatus)
@@ -763,7 +762,6 @@
                                               <td>{{ $tallyemp[$candidate->id][$empstatus->id] }}</td>
                                               @endforeach
                                           </tr>
-                                		@endif
                                   	@endforeach                                
                                   </tbody>
                                 @endforeach
@@ -817,8 +815,7 @@
                                       </tr>                                    
                                   </thead>
                                   <tbody>                                
-                                	@foreach($candidates as $candidate)    
-                                    	@if($position->id == $candidate->position_id)                                	             	
+                                	@foreach($position->candidates as $candidate)                                   	             	
                                           <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
@@ -830,7 +827,6 @@
                                             <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
                                             @endforeach
                                           </tr>
-                                		@endif
                                   	@endforeach                                
                                   </tbody>
                                 @endforeach
@@ -1080,13 +1076,17 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			['Votes',
-			@foreach($candidates as $candidate)
-				{{ $tally[$candidate->id] }},
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					{{ $tally[$candidate->id] }},
+				@endforeach
 			@endforeach
 			]
           ],
@@ -1114,14 +1114,18 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
-				@foreach($candidates as $candidate)
-					{{ $tallyg[$candidate->id][$gender->id] }},
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyg[$candidate->id][$gender->id] }},
+					@endforeach
 				@endforeach
 				],
 			@endforeach
@@ -1150,14 +1154,18 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
-				@foreach($candidates as $candidate)
-					{{ $tallyab[$candidate->id][$agebracket->id] }},
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyab[$candidate->id][$agebracket->id] }},
+					@endforeach
 				@endforeach
 				],
 			@endforeach
@@ -1186,14 +1194,18 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
-				@foreach($candidates as $candidate)
-					{{ $tallycv[$candidate->id][$civilstatus->id] }},
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallycv[$candidate->id][$civilstatus->id] }},
+					@endforeach
 				@endforeach
 				],
 			@endforeach
@@ -1222,14 +1234,18 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
-				@foreach($candidates as $candidate)
-					{{ $tallyemp[$candidate->id][$empstatus->id] }},
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyemp[$candidate->id][$empstatus->id] }},
+					@endforeach
 				@endforeach
 				],
 			@endforeach
@@ -1258,14 +1274,18 @@ $(document).ready(function ($) {
 		  x: 'Candidates',
 		  columns: [
 		  	['Candidates', 
-			@foreach($candidates as $candidate)
-				'{{ $candidate->voter->full_name }}',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
 			@endforeach
 			],
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
-				@foreach($candidates as $candidate)
-					{{ $tallyq[$candidate->id][$quality->option_id] }},
+				@foreach($positions as $position)
+					foreach($position->candidates as $candidate)
+						{{ $tallyq[$candidate->id][$quality->option_id] }},
+					@endforeach
 				@endforeach
 				],
 			@endforeach
