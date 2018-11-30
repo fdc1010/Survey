@@ -454,7 +454,7 @@
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                             	<thead>
                                     <tr>
-                                        <th>Cadidate</th>
+                                        <th>Cadidates</th>
                                         <th>Tally</th>
                                     </tr>                                    
                                 </thead>
@@ -513,7 +513,7 @@
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
-                                        <th>Cadidate</th>
+                                        <th>Cadidates</th>
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
@@ -580,39 +580,46 @@
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
-                                    	<th>{{ $positions[0]->name }}</th>
-                                        @foreach($agebrackets as $agebracket)
-                                        <th></th>
-                                        @endforeach
-                                    </tr>
-                                	<tr>
                                     	<th>Candidates</th>
                                         @foreach($agebrackets as $agebracket)
                                         <th>{{ $agebracket->title }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>                             
                                 </thead>
-                                <tbody>
-                               @php
+                                @php
                                 	$tallyab = array();                                    
                                 @endphp
-                                @foreach($candidates as $candidate)                                	
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        @foreach($agebrackets as $agebracket)
-                                        @php
-                                        	$gtallyagebrackets=[];
-                                            array_push($gtallyagebrackets,$agebracket->from,$agebracket->to);
-                                            
-                                        	$tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
-                                                                                                      $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
-                                        @endphp
-                                        <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
-                                        @endforeach
-                                    </tr>
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($agebrackets as $agebracket)
+                                       	  <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>
+                                  
+                                  @foreach($candidates as $candidate)   
+                                  	@if($position->id == $candidate->position_id)                             	
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          @foreach($agebrackets as $agebracket)
+                                          @php
+                                              $gtallyagebrackets=[];
+                                              array_push($gtallyagebrackets,$agebracket->from,$agebracket->to);
+                                              
+                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
+                                                                                                        $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
+                                          @endphp
+                                          <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
+                                          @endforeach
+                                      </tr>
+                                  	@endif
+                                  @endforeach                                
+                                  </tbody>
                                 @endforeach
-                                </tbody>
                             </table>
                       </div>
                 </div>
