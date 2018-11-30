@@ -474,6 +474,10 @@
                                           $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);                                        
+                                      	  info($tally[$candidate->id]);
+                                          info($candidate->id." ".$tallysurvey." ".$tallyagebrackets." ".$tallybrgy." ".
+                                                $tallygenders." ".$tallyempstatus." ".$tallycivilstatus." ".
+                                                $tallyoccstatus." ".$tallyvoterstatus);
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
