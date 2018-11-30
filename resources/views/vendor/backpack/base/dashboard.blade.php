@@ -56,12 +56,12 @@
             }
         }
         if(!empty($rdata['position'])){
-       	 	$candidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
+       	 	$candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])->get();
         }else{
         	if(!empty($rdata['selcandidate'])){
-            	$candidates = App\Models\Candidate::with('voter')->where('id',$rdata['selcandidate'])->get();
+            	$candidates = App\Models\Candidate::with('voter','position')->where('id',$rdata['selcandidate'])->get();
        		}else{
-            	$candidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+            	$candidates = App\Models\Candidate::with('voter','position')->where('position_id',$surveypos)->get();
             }
         }
         $barangays = App\Models\Barangay::all();     
@@ -453,32 +453,33 @@
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					@foreach($positions as $position)
-                                    <thead>                                
-                                        <tr>
-                                            <th>{{ $position->name }}</th>
-                                            <th></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Cadidate</th>
-                                            <th>Tally</th>
-                                        </tr>                                    
-                                    </thead>
-                                    <tbody>
-                                    @php
-                                        $tally = array();
-                                        $candidatesres = App\Models\Candidate::where('position_id',$id)->get();                                    
-                                    @endphp
-                                    @foreach($candidatesres as $candidate)
-                                        @php
-                                            $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
-                                                                                    $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                    $tallyoccstatus,$tallyvoterstatus);                                        
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $candidate->voter->full_name }}</td>
-                                            <td>{{ $tally[$candidate->id] }}</td>
-                                        </tr>
-                                    @endforeach
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          <th></th>
+                                      </tr>
+                                      <tr>
+                                          <th>Cadidate</th>
+                                          <th>Tally</th>
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>
+                                  @php
+                                      $tally = array();                                    
+                                  @endphp
+                                  @foreach($candidates as $candidate)
+                                  	  @if($position->id == $candidate->position_id)
+                                      @php
+                                          $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
+                                                                                  $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                  $tallyoccstatus,$tallyvoterstatus);                                        
+                                      @endphp
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          <td>{{ $tally[$candidate->id] }}</td>
+                                      </tr>
+                                      @endif
+                                  @endforeach
                                 @endforeach
                                 </tbody>
                             </table>
