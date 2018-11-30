@@ -343,8 +343,10 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate" /> Check All</label></div>
                         @foreach($selinitpositions as $position)                        	
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
+                            <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate_{{ $position->id }}" /> Check All</label></div>
                             @foreach($position->candidates as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
@@ -375,6 +377,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllAgeBracket" /> Check All</label></div>
                         @foreach($selinitagebrackets as $agebracket)
                                 <div class="col-md-4">
                                     <label class="control-label">
@@ -403,6 +406,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllGender" /> Check All</label></div>
                         @foreach($selinitgenders as $gender)
                                 <div class="col-md-4">
                                     <label class="control-label">
@@ -431,6 +435,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCivil" /> Check All</label></div>
                         @foreach($selinitcivilstatuses as $civilstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
@@ -459,6 +464,7 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllEmp" /> Check All</label></div>
                         @foreach($selinitempstatuses as $empstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
@@ -933,18 +939,9 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	/*$('#selposition').select2({
-		theme: "bootstrap"
+	$('#checkAllPosition').on('click',function(e){
+		
 	});
-	$('#selvoterstatuses').select2({
-		theme: "bootstrap"
-	});
-	$('#selbrgy').select2({
-		theme: "bootstrap"
-	});
-	$('#selprob').select2({
-		theme: "bootstrap"
-	});*/
 	$('#brgydetails').hide('slow');
 	$('#posdetails').hide('slow');
 	$('#candetails').hide('slow');
