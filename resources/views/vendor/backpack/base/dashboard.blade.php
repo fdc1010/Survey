@@ -12,7 +12,6 @@
     </section>
 @endsection
 
-
 @section('content')
 	@php
     	$tallypoll = new App\Models\TallyVote;
