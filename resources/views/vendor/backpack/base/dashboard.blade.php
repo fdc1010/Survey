@@ -114,21 +114,21 @@
    		}else{
         	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
         }
-        
+        $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
-            $positions = App\Models\PositionCandidate::with('candidates')->whereIn('position_id',$rdata['position'])->get();
+            $positions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate']);
                 												}])
-                                                            ->whereIn('position_id',$rdata['position'])
+                                                            ->whereIn('id',$rdata['position'])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->whereIn('id',$rdata['candidate']);
                 												}])
-                                                            ->whereIn('position_id',$rdata['position'])
+                                                            ->whereIn('id',$rdata['position'])
                                                             ->get();
             }
         }else{
