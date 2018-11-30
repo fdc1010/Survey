@@ -29,7 +29,7 @@ class PositionCandidate extends Model
 		return $this->belongsTo('App\Models\QuestionOption','option_id');
 	}
 	public function candidates(){
-		return $this->hasMany('App\Models\Candidate','position_id');	
+		return $this->hasMany('App\Models\Candidate','position_id')->with('voter');	
 	}
 	public function optionspositions(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','option_id');

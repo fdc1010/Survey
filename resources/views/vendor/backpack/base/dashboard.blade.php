@@ -38,7 +38,7 @@
         $surveydetails = App\Models\SurveyDetail::all();
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
-        $selinitpositions = App\Models\PositionCandidate::all();
+        $selinitpositions = App\Models\PositionCandidate::with('candidates')->all();
         if(!empty($rdata['position'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
         }else{
@@ -60,15 +60,7 @@
             	$genders = App\Models\Gender::all();
             }
         }
-        if(!empty($rdata['position'])){
-       	 	$candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])->get();
-        }else{
-        	if(!empty($rdata['selcandidate'])){
-            	$candidates = App\Models\Candidate::with('voter','position')->where('id',$rdata['selcandidate'])->get();
-       		}else{
-            	$candidates = App\Models\Candidate::with('voter','position')->where('position_id',$surveypos)->get();
-            }
-        }
+        
         $barangays = App\Models\Barangay::all();     
         	
         
@@ -125,6 +117,24 @@
                                                         ->whereIn('position_id',$rdata['position'])->get();
    		}else{
         	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
+        }
+        
+        if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
+            $candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])->get();
+        }else if{!empty($rdata['position']))){
+        	if(!empty($rdata['selcandidate']){
+                $candidates = App\Models\Candidate::with('voter','position')->whereIn('position_id',$rdata['position'])
+                                                                            ->where('id',$rdata['selcandidate'])
+                                                                            ->get();
+            }else if(){
+            
+            }
+        }else{
+            if(!empty($rdata['selcandidate'])){
+                $candidates = App\Models\Candidate::with('voter','position')->where('id',$rdata['selcandidate'])->get();
+            }else{
+                $candidates = App\Models\Candidate::with('voter','position')->where('position_id',$surveypos)->get();
+            }
         }
     @endphp
     <div class="row">
@@ -316,10 +326,7 @@
                         <div class="form-group">
                         @foreach($selinitpositions as $position)                        	
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
-                            @php
-                            	$poscandidates = App\Models\Candidate::where('position_id',$position->id)->get();
-                            @endphp
-                            @foreach($poscandidates as $candidate)
+                            @foreach($position->candidates as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
                                             @if(!empty($rdata['candidate']) && in_array($candidate->id,$rdata['candidate']))
