@@ -611,9 +611,7 @@
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
                                           @php
-                                              $gtallyagebrackets=[];
-                                              array_push($gtallyagebrackets,$agebracket->from,$agebracket->to);
-                                              
+                                                                                            
                                               $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                         $tallyoccstatus,$tallyvoterstatus);                                            
