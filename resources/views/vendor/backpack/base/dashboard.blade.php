@@ -153,12 +153,16 @@
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
                       		<div class="box-title">Survey:  
+                            	<div class="col-md-6">
                             	<select name="selsurvey" id="selsurvey">
                                 @foreach($surveydetails as $surveydetail)	
                                     <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                                 @endforeach
                                 </select>
-                                <a href="#" style="margin-left:5px;"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                                </div>
+                                <div class="col-md-6">
+                                	<a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                            	</div>
                             </div>                	                        	
                     </div>
                 </div>
