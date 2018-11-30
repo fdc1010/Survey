@@ -453,11 +453,11 @@
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                             	<thead>
-                                      <tr>
-                                          <th>Cadidate</th>
-                                          <th>Tally</th>
-                                      </tr>                                    
-                                  </thead>
+                                    <tr>
+                                        <th>Cadidate</th>
+                                        <th>Tally</th>
+                                    </tr>                                    
+                                </thead>
                             	@php
                                     $tally = array();                                    
                                 @endphp
@@ -481,9 +481,9 @@
                                           <td>{{ $tally[$candidate->id] }}</td>
                                       </tr>
                                       @endif
-                                  @endforeach
+                                  @endforeach                                
+                                  </tbody>
                                 @endforeach
-                                </tbody>
                             </table>
                       </div>
                 </div>
@@ -512,24 +512,29 @@
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
-                                	<tr>
-                                    	<th>{{ $positions[0]->name }}</th>
-                                        @foreach($genders as $gender)
-                                        <th></th>
-                                        @endforeach
-                                    </tr>
-                                	<tr>
-                                    	<th>Candidates</th>
+                                    <tr>
+                                        <th>Cadidate</th>
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
                                     </tr>                                    
                                 </thead>
-                                <tbody>
-                               @php
+                                @php
                                 	$tallyg = array();                                    
                                 @endphp
-                                @foreach($candidates as $candidate)                                	
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($genders as $gender)
+                                          <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>                                  
+                                <tbody>
+                               	
+                                 @foreach($candidates as $candidate)  
+                                	@if($position->id == $candidate->position_id)                              	
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
@@ -542,8 +547,10 @@
                                         <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
                                         @endforeach
                                     </tr>
+                                	@endif
+                                  @endforeach                                
+                                  </tbody>
                                 @endforeach
-                                </tbody>
                             </table>
                       </div>
                 </div>
