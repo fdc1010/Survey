@@ -158,6 +158,7 @@
                                     <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                                 @endforeach
                                 </select>
+                                <button class="btn btn-primary"><span class="fa fa-file-pdf"></span> Print Preview</button>
                             </div>                	                        	
                     </div>
                 </div>
