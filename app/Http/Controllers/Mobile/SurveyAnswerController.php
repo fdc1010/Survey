@@ -51,11 +51,11 @@ class SurveyAnswerController extends Controller
 				//$surveyans->longitude = $request->longitude;
 				$surveyansid=$surveyans->save();				
 				
-				$answeredoptions = AnsweredOption::create([
+				/*$answeredoptions = AnsweredOption::create([
 					'other_answer' => $ansid['otherAnswer'],
 					'survey_answer_id' => $surveyansid,
 					'option_id' => $optid
-				]);
+				]);*/
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
@@ -79,6 +79,7 @@ class SurveyAnswerController extends Controller
 							//$ansoption = AnsweredOption::where('survey_answer_id',$surans->id)->get();
 							//foreach($ansoption as $ansoptid){
 								$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+								info($optioncandidate);
 								if($optioncandidate){
 									$tallycandidate = new TallyOtherVote;
 									$tallycandidate->option_id = $optid;
