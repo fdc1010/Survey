@@ -318,11 +318,11 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintPos" name="checkprint[]" value="1" checked="checked" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" checked="checked" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" checked="checked" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" checked="checked" /></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" checked="checked" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintPos" name="checkprint[]" value="1" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /></div>
                         </div>
                     </div>
                 </div>
@@ -988,6 +988,11 @@ $(document).ready(function ($) {
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
 			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
 		});
 	@endforeach
 	$('#brgydetails').hide('slow');
@@ -997,6 +1002,10 @@ $(document).ready(function ($) {
 	$('#gendetails').hide('slow');
 	$('#civdetails').hide('slow');
 	$('#empdetails').hide('slow');
+	$('#empdetails').hide('slow');
+	$('#btn_printdetails').on('click',function(e){
+		
+	};
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
 		if($('#spanbrgydetails').hasClass('fa-plus')){
