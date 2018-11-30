@@ -959,7 +959,7 @@ $(document).ready(function ($) {
 	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
-			$("input[type='checkbox'][name='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
 		});
 	@endforeach
 	$('#brgydetails').hide('slow');
