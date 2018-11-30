@@ -319,10 +319,10 @@
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
                         <div class="col-md-3"><input type="checkbox" id="checkprintGraph" name="checkprint[]" value="1" checked="checked" /> Graphs</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /> Criteria by Gender</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /> Criteria by Age Bracket</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /> Criteria by Civil Status</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /> Criteria by Employment Status</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /> Gender</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /> Bracket</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /> Civil Status</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /> Employment Status</div>
                         </div>
                     </div>
                 </div>
