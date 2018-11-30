@@ -1062,13 +1062,9 @@ $(document).ready(function ($) {
 			@endforeach
 			],
 			['Votes',
-			@foreach($positions as $position)
-				@foreach($candidates as $candidate)
-					@if($position->id == $candidate->position_id)
-						{{ $tally[$candidate->id] }},
-					@endif
-				@endforeach
-			@endforeach	
+			@foreach($candidates as $candidate)
+				{{ $tally[$candidate->id] }},
+			@endforeach
 			]
           ],
 		  labels: true,
