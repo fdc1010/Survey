@@ -318,13 +318,13 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintGraph" name="checkprint[]" value="1" checked="checked" /> Graphs</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /> Gender</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /> Age Bracket</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /> Civil Status</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /> Employment Status</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintProb" name="checkprint[]" value="1" /> Problems</div>
-                        <div class="col-md-3"><input type="checkbox" id="checkprintCanQ" name="checkprint[]" value="1" /> Candidate Qualities</div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprint[]" value="1" checked="checked" /> Graphs</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" /> Gender</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /> Age Bracket</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /> Civil Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /> Employment Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprint[]" value="1" /> Problems</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprint[]" value="1" /> Candidate Qualities</label></div>
                         </div>
                     </div>
                 </div>
