@@ -314,8 +314,8 @@
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
-                        @foreach($selinitpositions as $position)
-                        		<div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPosition" /> Check All</label></div>
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPosition" /> Check All</label></div>
+                        @foreach($selinitpositions as $position)                        		
                                 <div class="col-md-4">
                                     <label class="control-label">
                                     	@if(!empty($rdata['position']) && in_array($position->id,$rdata['position']))
