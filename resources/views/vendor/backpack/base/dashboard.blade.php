@@ -117,14 +117,14 @@
         
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with('candidates')->whereIn('position_id',$rdata['position'])->get();
-        }else if(!empty($rdata['position']))){
-        	if(!empty($rdata['selcandidate']){
+        }else if(!empty($rdata['position'])){
+        	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate']);
                 												}])
                                                             ->whereIn('position_id',$rdata['position'])
                                                             ->get();
-            }else if(!empty($rdata['candidate']){
+            }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->whereIn('id',$rdata['candidate']);
                 												}])
@@ -132,12 +132,12 @@
                                                             ->get();
             }
         }else{
-            if(!empty($rdata['selcandidate']){
+            if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate']);
                 												}])
                                                             ->get();
-            }else if(!empty($rdata['candidate']){
+            }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->whereIn('id',$rdata['candidate']);
                 												}])
