@@ -1007,7 +1007,7 @@ $(document).ready(function ($) {
 			$('#spanprintdetails').removeClass('fa-minus');
 			$('#spanprintdetails').addClass('fa-plus');
 		}
-	};
+	});
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
 		if($('#spanbrgydetails').hasClass('fa-plus')){
