@@ -612,7 +612,7 @@
                                           @foreach($agebrackets as $agebracket)
                                           @php
                                                                                             
-                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
+                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                         $tallyoccstatus,$tallyvoterstatus);                                            
                                           @endphp
