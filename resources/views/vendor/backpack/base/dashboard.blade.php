@@ -452,6 +452,16 @@
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                            	<thead>
+                                      <tr>
+                                          <th></th>
+                                          <th></th>
+                                      </tr>
+                                      <tr>
+                                          <th>Cadidate</th>
+                                          <th>Tally</th>
+                                      </tr>                                    
+                                  </thead>
                             	@php
                                     $tally = array();                                    
                                 @endphp
@@ -462,8 +472,8 @@
                                           <th></th>
                                       </tr>
                                       <tr>
-                                          <th>Cadidate</th>
-                                          <th>Tally</th>
+                                          <th></th>
+                                          <th></th>
                                       </tr>                                    
                                   </thead>
                                   <tbody>                                  
