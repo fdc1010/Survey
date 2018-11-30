@@ -52,8 +52,8 @@ class SurveyAnswerController extends Controller
 							'employment_status_id'=>$voterdetails['empStatusId'],
 							'gender_id'=>$voterdetails['genderId']
 						]);
-	
-		foreach($voterdetails['status'] as $vstatus){
+		$vstatusarr = json_decode($voterdetails['status'],true);
+		foreach($vstatusarr as $vstatus){
 			StatusDetail::where('voter_id',$voterid)->delete();
 			$voterstatuses = new StatusDetail;	
 			$voterstatuses->voter_id = $voterid;
