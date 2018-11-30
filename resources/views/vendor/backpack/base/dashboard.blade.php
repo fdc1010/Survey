@@ -162,10 +162,10 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5"> 
-                                    <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                                    <a href="#printdetails"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
                                 <div class="col-md-1">
-                                	<a href="#printdetails" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
+                                	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                             </div>                	                        	
                     </div>
@@ -318,7 +318,11 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" checked="checked" />
+                        <div class="col-md-3"><input type="checkbox" id="checkprintPos" name="checkprint[]" value="1" checked="checked" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" checked="checked" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" checked="checked" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" checked="checked" /></div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" checked="checked" /></div>
                         </div>
                     </div>
                 </div>
@@ -977,6 +981,9 @@ $(document).ready(function ($) {
 	});
 	$('#checkAllEmp').on('change',function(e){
 		$("input[type='checkbox'][name='empstatus[]']").prop('checked',$(this).is(":checked"));
+	});
+	$('#checkAllPrint').on('change',function(e){
+		$("input[type='checkbox'][name='checkprint[]']").prop('checked',$(this).is(":checked"));
 	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
