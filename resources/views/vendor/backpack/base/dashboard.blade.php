@@ -323,6 +323,8 @@
                         <div class="col-md-3"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" /> Age Bracket</div>
                         <div class="col-md-3"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" /> Civil Status</div>
                         <div class="col-md-3"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" /> Employment Status</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintProb" name="checkprint[]" value="1" /> Problems</div>
+                        <div class="col-md-3"><input type="checkbox" id="checkprintCanQ" name="checkprint[]" value="1" /> Candidate Qualities</div>
                         </div>
                     </div>
                 </div>
