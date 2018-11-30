@@ -117,7 +117,7 @@
         
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with('candidates')->whereIn('position_id',$rdata['position'])->get();
-        }else if{!empty($rdata['position']))){
+        }else if(!empty($rdata['position']))){
         	if(!empty($rdata['selcandidate']){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate']);
