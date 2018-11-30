@@ -161,10 +161,10 @@
                                     @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4"> 
+                                <div class="col-md-5"> 
                                     <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                 	<a href="#" id="btn_printpredetails"><span class="fa fa-plus" id="spanprintpredetails"> </span></a>
                                 </div>
                             </div>                	                        	
