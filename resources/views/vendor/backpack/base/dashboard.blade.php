@@ -465,9 +465,10 @@
                                     </thead>
                                     <tbody>
                                     @php
-                                        $tally = array();                                    
+                                        $tally = array();
+                                        $candidatesres = App\Models\Candidate::where('position_id',$id)->get();                                    
                                     @endphp
-                                    @foreach($candidates as $candidate)
+                                    @foreach($candidatesres as $candidate)
                                         @php
                                             $tally[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurvey,$tallyagebrackets,$tallybrgy,
                                                                                     $tallygenders, $tallyempstatus,$tallycivilstatus,
