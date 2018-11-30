@@ -181,8 +181,12 @@
                                 <td width="5%" align="center">
                                 	<select name="selcandidate" id="selcandidate">
                                     	<option value="0">Candidate</option>
-                                    @foreach($selinitcandidates as $candidate)	
-                                    	<option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
+                                    @foreach($positions as $position)
+                                    	<optgroup label="{{ $position->name }}" >
+										@foreach($position->candidates as $candidate)
+                                    		<option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
+                                    	@endforeach
+                                        </optgroup>
                                     @endforeach
                                 	</select>
                                 </td>
