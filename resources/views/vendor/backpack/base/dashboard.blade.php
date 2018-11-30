@@ -186,7 +186,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#brgydetails" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selcandidate" id="selcandidate">
                                     	<option value="0">Candidate</option>
@@ -199,7 +199,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#candetails" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></th>
                                 <th width="5%">Demographics:</th>
                                 <td width="5%" align="center">
                                 	<select name="selagebracket" id="selagebracket">
@@ -209,7 +209,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#agedetails" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selgender" id="selgender">
                                     	<option value="0">Gender</option>
@@ -218,7 +218,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#gendetails" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selcivil" id="selcivil">
                                     	<option value="0">Civil</option>
@@ -227,7 +227,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#civdetails" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></th>
                                 <td width="5%" align="center">
                                 	<select name="selemp" id="selemp">
                                     	<option value="0">Employment</option>
@@ -236,7 +236,7 @@
                                     @endforeach
                                 	</select>
                                 </td>
-                                <th width="5%" align="center"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
+                                <th width="5%" align="center"><a href="#empdetails" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></th>
                                 <th width="5%" align="center">
                                     <button type="submit" class="btn btn-primary">
                                         <span class="fa fa-search"></span> View
