@@ -39,7 +39,11 @@
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::all();
-        $selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        if(!empty($rdata['position'])){
+        	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
+        }else{
+        	$selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
+        }
         $selinitgenders = App\Models\Gender::all();
         $selinitagebrackets = App\Models\AgeBracket::all();
         $selinitcivilstatuses = App\Models\CivilStatus::all();
