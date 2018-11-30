@@ -581,7 +581,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -1051,6 +1051,12 @@ $(document).ready(function ($) {
 		scrollbarPosition:"outside"
 	});
 	$("#tblproblem").mCustomScrollbar({
+		axis:"yx",
+		scrollButtons:{enable:true},
+		theme:"3d",
+		scrollbarPosition:"outside"
+	});
+	$("#tblagebracket").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
 		theme:"3d",
