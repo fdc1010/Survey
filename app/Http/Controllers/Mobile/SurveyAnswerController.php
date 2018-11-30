@@ -70,7 +70,7 @@ class SurveyAnswerController extends Controller
 				$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
 				if($relquestion){
 					$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-											->where('question_id',$relquestion->question_id)
+											->where('question_id',$relquestion->related_question_id)
 											//->where('voter_id',$voterid)
 											->first();
 					if($surans){
