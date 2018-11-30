@@ -12,6 +12,8 @@ use App\Models\RelatedQuestion;
 use App\Models\TallyVote;
 use App\Models\TallyOtherVote;
 use App\Models\Voter;
+use App\Models\VoterStatus;
+use App\Models\StatusDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,11 +38,28 @@ class SurveyAnswerController extends Controller
 		
 		$voterdetails = json_decode($request->voter_detail,true);
 		
-		info($voterdetails);
-		/*Voter::where('id',$voterid)
-				->update(['age'=>$voterdetail->age]);
-	
 		
+		Voter::where('id',$voterid)
+				->update([
+							'age'=>$voterdetails['age'],
+							'contact'=>$voterdetails['contactNum'],
+							'work'=>$voterdetails['work'],
+							'monthly_household'=>$voterdetails['monthlyIncome'],
+							'yearly_household'=>$voterdetails['yearly_household'],
+							'occupancy_length'=>$voterdetails['occuLength'],
+							'occupancy_status_id'=>$voterdetails['occuStatusId'],
+							'civil_status_id'=>$voterdetails['civilStatusId'],
+							'employment_status_id'=>$voterdetails['empStatusId'],
+							'gender_id'=>$voterdetails['genderId']
+						]);
+	
+		foreach($voterdetails['status'] as $vstatus){
+			StatusDetail::where('voter_id',$voterid)->delete();
+			$voterstatuses = new StatusDetail;	
+			$voterstatuses->voter_id = $voterid;
+			$voterstatuses->status_id = $vstatus;
+			$voterstatuses->save();
+		}
 		$receivedans = json_decode($request->q_and_a, true);
 		
 		foreach($receivedans as $voteranswers){
@@ -59,7 +78,11 @@ class SurveyAnswerController extends Controller
 				//$surveyans->longitude = $request->longitude;
 				$surveyansid=$surveyans->save();				
 				
-				
+				/*$answeredoptions = AnsweredOption::create([
+					'other_answer' => $ansid['otherAnswer'],
+					'survey_answer_id' => $surveyansid,
+					'option_id' => $optid
+				]);*/
 				//if($request->has('option_other_answer')){
 				//	$surveyans->option_other_answer = $request->option_other_answer;
 				//}
@@ -110,7 +133,7 @@ class SurveyAnswerController extends Controller
 					$tallyproblem->save();
 				}				
 			}		
-		}*/
+		}
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
     /**
