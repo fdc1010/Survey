@@ -23,8 +23,10 @@
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();        
 		foreach($tempagebrackets as $ageb){
-        	array_push($tallyagebrackets,$ageb->from,$ageb->to);
-        }        
+        	for($iage = $ageb->from; $iage<=$ageb->to; $iage++){
+        		array_push($tallyagebrackets,$iage);
+            }
+        }      
         $tallybrgy=App\Models\Barangay::get()->pluck('id')->toArray();
         $tallygenders=App\Models\Gender::get()->pluck('id')->toArray();
         $tallyempstatus=[];
@@ -70,14 +72,18 @@
         	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
             $tallyagebrackets=[];
             foreach($agebrackets as $agebracket){
-                array_push($tallyagebrackets,$agebracket->from,$agebracket->to);
+                for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
+                    array_push($tallyagebrackets,$iage);
+                }                
             }
         }else{
         	if(!empty($rdata['selagebracket'])){
         		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get(); 
                 $tallyagebrackets=[];
                 foreach($agebrackets as $agebracket){
-                    array_push($tallyagebrackets,$agebracket->from,$agebracket->to);
+                    for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
+                        array_push($tallyagebrackets,$iage);
+                    }
                 }
             }else{
             	$agebrackets = App\Models\AgeBracket::all(); 
