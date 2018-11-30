@@ -1004,7 +1004,14 @@ $(document).ready(function ($) {
 	$('#empdetails').hide('slow');
 	$('#printdetails').hide('slow');
 	$('#btn_printdetails').on('click',function(e){
-		
+		$('#printdetails').toggle('slow');
+		if($('#spanprintdetails').hasClass('fa-plus')){
+			$('#spanprintdetails').removeClass('fa-plus');
+			$('#spanprintdetails').addClass('fa-minus');
+		}else{
+			$('#spanprintdetails').removeClass('fa-minus');
+			$('#spanprintdetails').addClass('fa-plus');
+		}
 	};
 	$('#btn_brgydetails').on('click',function(e){
 		$('#brgydetails').toggle('slow');
