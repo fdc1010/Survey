@@ -153,18 +153,12 @@
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
                       		<div class="box-title">Survey:  
-                                <ol class="breadcrumb">
-                                    <li>
-                                        <select name="selsurvey" id="selsurvey">
-                                        @foreach($surveydetails as $surveydetail)	
-                                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
-                                        @endforeach
-                                        </select>
-                                     </li>
-                                     <li>   
-                                        <button class="btn btn-primary"><span class="fa fa-file-pdf"></span> Print Preview</button>
-                                     </li>
-                                </ol>
+                            	<select name="selsurvey" id="selsurvey">
+                                @foreach($surveydetails as $surveydetail)	
+                                    <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                                @endforeach
+                                </select>
+                                <button class="btn btn-primary"><span class="fa fa-file-pdf"></span> Print Pri</button>
                             </div>                	                        	
                     </div>
                 </div>
