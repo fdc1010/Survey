@@ -475,9 +475,15 @@
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);                                        
                                       	  info($tally[$candidate->id]);
-                                          echo $candidate->id." ".$tallysurvey." ".$tallyagebrackets." ".$tallybrgy." ".
-                                                $tallygenders." ".$tallyempstatus." ".$tallycivilstatus." ".
-                                                $tallyoccstatus." ".$tallyvoterstatus;
+                                          print_r($candidate->id);
+                                          print_r($tallysurvey);
+                                          print_r($tallyagebrackets);
+                                          print_r($tallybrgy);
+                                          print_r($tallygenders);
+                                          print_r($tallyempstatus);
+                                          print_r($tallycivilstatus);
+                                          print_r($tallyoccstatus);
+                                          print_r($tallyvoterstatus);
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
