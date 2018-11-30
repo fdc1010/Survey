@@ -165,7 +165,7 @@
                                     <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
                                 <div class="col-md-1">
-                                	<a href="#" id="btn_printpredetails"><span class="fa fa-plus" id="spanprintpredetails"> </span></a>
+                                	<a href="#printdetails" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                             </div>                	                        	
                     </div>
@@ -303,6 +303,24 @@
                               </select>
                           </div> 
                       </div>     
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="printdetails">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Include in Print Preview</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body">
+                	<div class="col-md-12">
+                        <div class="form-group">
+                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
+                        <input type="checkbox" id="{{ $position->id }}" name="position[]" value=" {{ $position->id }}" checked="checked" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
