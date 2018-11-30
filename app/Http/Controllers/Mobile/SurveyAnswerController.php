@@ -80,7 +80,7 @@ class SurveyAnswerController extends Controller
 							//foreach($ansoption as $ansoptid){
 								$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
 								//info($relquestion->question_id);
-								info($surans->option_id);
+								//info($surans->option_id);
 								if($optioncandidate){
 									$tallycandidate = new TallyOtherVote;
 									$tallycandidate->option_id = $optid;
