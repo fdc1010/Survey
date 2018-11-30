@@ -613,7 +613,7 @@
                                           @php
                                               $gtallyagebrackets=[];
                                               for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
-                                                  array_push($gtallyagebrackets,$iage);
+                                                  array_push($gtallyagebrackets,$tallyiage);
                                               }
                                               $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
