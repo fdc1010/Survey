@@ -1002,7 +1002,7 @@ $(document).ready(function ($) {
 	$('#gendetails').hide('slow');
 	$('#civdetails').hide('slow');
 	$('#empdetails').hide('slow');
-	$('#empdetails').hide('slow');
+	$('#printdetails').hide('slow');
 	$('#btn_printdetails').on('click',function(e){
 		
 	};
