@@ -351,9 +351,9 @@
                                     <div class="col-md-3">
                                         <label class="control-label">
                                             @if(!empty($rdata['candidate']) && in_array($candidate->id,$rdata['candidate']))
-                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" checked="checked" />
+                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" class="candidate_{{ $position->id }}[]" value=" {{ $candidate->id }}" checked="checked" />
                                            	@else
-                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" value=" {{ $candidate->id }}" />
+                                            	<input type="checkbox" id="{{ $candidate->id }}" name="candidate[]" class="candidate_{{ $position->id }}[]" value=" {{ $candidate->id }}" />
                                             @endif
                                             {{ $candidate->voter->full_name }}
                                         </label>
@@ -940,11 +940,28 @@
     <script>
 $(document).ready(function ($) {
 	$('#checkAllPosition').on('change',function(e){
-		$("input[name='position[]']").prop('checked',$(this).is(":checked"));
+		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
 	});
 	$('#checkAllCandidate').on('change',function(e){
-		
+		$("input[type='checkbox'][name='candidate[]']").prop('checked',$(this).is(":checked"));
 	});
+	$('#checkAllAgeBracket').on('change',function(e){
+		$("input[type='checkbox'][name='agebracket[]']").prop('checked',$(this).is(":checked"));
+	});
+	$('#checkAllGender').on('change',function(e){
+		$("input[type='checkbox'][name='gender[]']").prop('checked',$(this).is(":checked"));
+	});
+	$('#checkAllCivil').on('change',function(e){
+		$("input[type='checkbox'][name='civilstatus[]']").prop('checked',$(this).is(":checked"));
+	});
+	$('#checkAllEmp').on('change',function(e){
+		$("input[type='checkbox'][name='empstatus[]']").prop('checked',$(this).is(":checked"));
+	});
+	@foreach($selinitpositions as $position)
+		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
+			$("input[type='checkbox'][name='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
+		});
+	@endforeach
 	$('#brgydetails').hide('slow');
 	$('#posdetails').hide('slow');
 	$('#candetails').hide('slow');
