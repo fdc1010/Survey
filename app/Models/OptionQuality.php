@@ -19,11 +19,11 @@ class OptionQuality extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-	protected $fakeColumns = ['extras', 'metas'];
+	protected $fakeColumns = ['extras', 'metas','position_id'];
     protected $fillable = ['option_id','description'];
 	protected $casts = [
         'extras' => 'array','metas'=>'array',
-		//'position_id' => 'array'
+		'position_id' => 'array'
     ];
     // protected $hidden = [];
     // protected $dates = [];
