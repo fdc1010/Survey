@@ -147,7 +147,8 @@
     <div class="row">
     	
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}">
-        	@if(!empty($rdata['selsurvey']))
+        	@csrf
+            @if(!empty($rdata['selsurvey']))
             	<input type="hidden" name="hidselsurvey" value="{{ $rdata['selsurvey'] }}" />
             @endif
             @if(!empty($rdata['selagebracket']))
