@@ -191,7 +191,7 @@
                 </div>                
                 <div class="box-body">                	
                       <div class="contentBlock" id="tblvotes">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped display" cellspacing="0">
                             	<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -238,7 +238,7 @@
 
                 <div class="box-body">                	
                       <div class="contentBlock" id="tblgender">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -293,7 +293,7 @@
 
                 <div class="box-body">                	
                       <div class="contentBlock" id="tblcivilstatus">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     <tr>
                                     	<th>Candidates</th>
@@ -346,7 +346,7 @@
 
                 <div class="box-body">                	
                       <div class="contentBlock" id="tblempstatus">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($empstatuses as $empstatus)
@@ -401,7 +401,7 @@
 
                 <div class="box-body">                	
                       <div class="contentBlock" id="tblagebracket">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -458,7 +458,7 @@
            
                     <div class="box-body">                	
                           <div class="contentBlock" id="tblqualities">                                
-                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                                <table class="table table-striped display" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -511,7 +511,7 @@
     
                     <div class="box-body">                	
                           <div class="contentBlock" id="tblproblem">
-                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                                <table class="table table-striped display" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Barangays</th>
