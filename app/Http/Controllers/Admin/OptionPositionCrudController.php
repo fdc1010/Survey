@@ -58,7 +58,7 @@ class OptionPositionCrudController extends CrudController
             'name' => 'position_id',
             'type' => 'select',
             'label' => 'Positions',
-			'entity' => 'optionspositions', // the relationship name in your Model
+			'entity' => 'positions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate",
 			/*'fake' => true,
@@ -66,12 +66,11 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
-            'type' => 'checklist',
+            'type' => 'select2',
             'label' => 'Tagged Options for Qualities',
-			'entity' => 'optionspositions', // the relationship name in your Model
+			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => "App\Models\QuestionOption",
-			'pivot' => false
+			'model' => "App\Models\QuestionOption"
 	    ]);
 		/*$this->crud->addField([
             'name' => 'option_id',
