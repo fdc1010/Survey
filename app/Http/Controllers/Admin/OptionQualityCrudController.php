@@ -44,11 +44,11 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
-		/*$this->crud->addField([
+		$this->crud->addField([
 			'label' => "Qualities",
 			'type' => 'select2',
 			'name' => 'option_id', // the relationship name in your Model
-			'entity' => 'options', // the relationship name in your Model
+			'entity' => 'option', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			//'pivot' => true
@@ -57,42 +57,12 @@ class OptionQualityCrudController extends CrudController
 			'label' => "Positions",
 			'type' => 'checklist',
 			'name' => 'position_id', 
-			'entity' => 'positions',
+			'entity' => 'position',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate", 
-			//'pivot' => false
-		]);*/
-		$this->crud->addField(
-		[   // two interconnected entities
-			'label'             => 'Candidate Qualities',
-			'field_unique_name' => 'option_positions',
-			'type'              => 'checklist_dependency',
-			'name'              => 'options_and_positions', // the methods that defines the relationship in your Model
-			'subfields'         => [
-				'primary' => [
-					'label'            => 'Qualities',
-					'name'             => 'options', // the method that defines the relationship in your Model
-					'entity'           => 'options', // the method that defines the relationship in your Model
-					'entity_secondary' => 'positions', // the method that defines the relationship in your Model
-					'attribute'        => 'option', // foreign key attribute that is shown to user
-					'model'            => "App\Models\QuestionOption", // foreign key model
-					'pivot'            => false, // on create&update, do you need to add/delete pivot table entries?]
-					'number_columns'   => 3, //can be 1,2,3,4,6
-				],
-				'secondary' => [
-					'label'          => 'Positions',
-					'name'           => 'positions', // the method that defines the relationship in your Model
-					'entity'         => 'positions', // the method that defines the relationship in your Model
-					'entity_primary' => 'options', // the method that defines the relationship in your Model
-					'attribute'      => 'name', // foreign key attribute that is shown to user
-					'model'          => "App\Models\PositionCandidate", // foreign key model
-					'pivot'          => false, // on create&update, do you need to add/delete pivot table entries?]
-					'number_columns' => 3, //can be 1,2,3,4,6
-				],
-			],
-			
-		]
-		);
+			//'fake' => true
+		]);
+		
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -101,7 +71,7 @@ class OptionQualityCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = $this->storeCrudB($request); //parent::storeCrud($request);
+        $redirect_location = $this->storeCrud($request); //parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
@@ -115,35 +85,5 @@ class OptionQualityCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
-	public function storeCrudB(StoreRequest $request = null)
-    {
-        $this->crud->hasAccessOrFail('create');
-
-        // fallback to global request instance
-        if (is_null($request)) {
-            $request = \Request::instance();
-        }
-
-        // replace empty values with NULL, so that it will work with MySQL strict mode on
-        foreach ($request->input() as $key => $value) {
-            if (empty($value) && $value !== '0') {
-                $request->request->set($key, null);
-            }
-        }
-
-        // insert item in the db
-        //$item = $this->crud->create($request->except(['redirect_after_save', '_token']));
-
-        // show a success message
-        \Alert::success(trans('backpack::crud.insert_success'))->flash();
-
-        // redirect the user where he chose to be redirected
-        switch ($request->input('redirect_after_save')) {
-            case 'current_item_edit':
-                return \Redirect::to($this->crud->route.'/'.$item->getKey().'/edit');
-
-            default:
-                return \Redirect::to($request->input('redirect_after_save'));
-        }
-    }
+	
 }
