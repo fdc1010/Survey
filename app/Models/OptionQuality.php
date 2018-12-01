@@ -19,16 +19,15 @@ class OptionQuality extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['related_question_id','question_id','description'];
+    protected $fillable = ['option_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function question()
+	public function option()
     {
-        return $this->belongsTo('App\Models\Question','question_id');
+        return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
-	public function relatedquestion()
-    {
-        return $this->belongsTo('App\Models\Question','related_question_id');
+	public function optionpositions(){
+		return $this->belongsToMany('App\Models\OptionQuality','option_positions','position_id','option_id');
     }
     /*
     |--------------------------------------------------------------------------
