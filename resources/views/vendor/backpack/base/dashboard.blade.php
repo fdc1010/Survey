@@ -1028,26 +1028,26 @@
     <script>
 $(document).ready(function ($) {
 	$('#checkprintGraph').on('change',function(e){
-		$('#hidincgraph').val($(this).val());
+		$('#hidincgraph').val($(this).is(":checked"));
 		console.log($(this).val());
 	});
 	$('#checkprintGender').on('change',function(e){
-		$('#hidincgen').val($(this).val());
+		$('#hidincgen').val($(this).is(":checked"));
 	});
 	$('#checkprintAge').on('change',function(e){
-		$('#hidincageb').val($(this).val());
+		$('#hidincageb').val($(this).is(":checked"));
 	});
 	$('#checkprintCivil').on('change',function(e){
-		$('#hidincciv').val($(this).val());
+		$('#hidincciv').val($(this).is(":checked"));
 	});
 	$('#checkprintEmp').on('change',function(e){
-		$('#hidincemp').val($(this).val());
+		$('#hidincemp').val($(this).is(":checked"));
 	});
 	$('#checkprintProb').on('change',function(e){
-		$('#hidincprob').val($(this).val());
+		$('#hidincprob').val($(this).is(":checked"));
 	});
 	$('#checkprintCanQ').on('change',function(e){
-		$('#hidinccanq').val($(this).val());
+		$('#hidinccanq').val($(this).is(":checked"));
 	});
 	$('#printpreview').on('click',function(e){
 		$('#my_formprint').submit();
