@@ -30,6 +30,7 @@ Route::group([
     // Backpack\MenuCRUD	
     CRUD::resource('menu-item', 'MenuItemCrudController');	
 	Route::post('stats', 'StatsController@stats');
+	Route::post('printsurvey', 'StatsController@printsurvey');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/

@@ -49,22 +49,14 @@ class StatsController extends Controller
 		
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		
-		/*$selposition = $request->selposition;
-		$selcandidate = $request->selcandidate;
-		$selagebracket = $request->selagebracket;
-		$selgender = $request->selgender;
-		$selcivil = $request->selcivil;
-		$selemp = $request->selemp;
-		$brgyto = $request->to;
-		$chkpositions = $request->position;
-		$chkagebracket= $request->agebracket;
-		$chkcandidate = $request->candidate;
-		$chkgender=$request->gender;
-		$chkcivilstatus=$request->civilstatus;
-		$chkempstatus=$request->empstatus;*/
 		$rdata = $request->except(['q','_token']);
         return view('backpack::dashboard', [$this->data,'rdata'=>$rdata]);
     }
+	public function printsurvey(Request $request){
+		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
+		$rdata = $request->except(['q','_token']);
+		return view('backpack::printSurvey', [$this->data,'rdata'=>$rdata]);
+	}
     public function store(Request $request)
     {
         //
