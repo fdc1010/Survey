@@ -42,7 +42,7 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'label' => "Qualities",
 			'type' => 'select2',
 			'name' => 'option_id', // the relationship name in your Model
@@ -59,7 +59,8 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate", 
 			//'pivot' => false
-		]);
+		]);*/
+		
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
