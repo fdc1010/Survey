@@ -636,7 +636,7 @@
     <script src="{{ asset('vendor/adminlte') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/adminlte.min.js"></script>
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-    <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/d3.v5.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 	$(document).ready(function ($) {

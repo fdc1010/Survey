@@ -1021,7 +1021,7 @@
     <script src="{{ asset('js/icheck.min.js') }}"></script>
     <!--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>-->
 	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-    <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/d3.v5.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
