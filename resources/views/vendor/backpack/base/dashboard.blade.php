@@ -1010,7 +1010,7 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	function makeAjaxCall(url, formdata, callback) {
+	/*function makeAjaxCall(url, formdata, callback) {
 		$.ajax({
 			type:'POST',
 			dataType:'json',
@@ -1079,7 +1079,7 @@ $(document).ready(function ($) {
 		makeAjaxCall( "{{ route('announcement.store') }}", formData, function(data) {
 			console.log("callback response",data);
 		});
-	}
+	}*/
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
 	});
