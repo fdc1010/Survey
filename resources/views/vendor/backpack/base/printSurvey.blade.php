@@ -703,6 +703,7 @@
           },
         }
       });
+      @if($rdata['hidincgen']=="true")
 	  var chartgender = c3.generate({
 		bindto: '#chartgender',				
         data: {
@@ -743,6 +744,8 @@
           },
         }
       });
+	  @endif
+      @if($rdata['hidincageb']=="true")
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket',				
         data: {
@@ -783,6 +786,8 @@
           },
         }
       });
+	  @endif
+      @if($rdata['hidincciv']=="true")
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil',				
         data: {
@@ -823,6 +828,8 @@
           },
         }
       });
+	  @endif
+      @if($rdata['hidincemp']=="true")
 	  var chartemp = c3.generate({
 		bindto: '#chartemp',				
         data: {
@@ -863,6 +870,8 @@
           },
         }
       });
+	  @endif
+      @if($rdata['hidincanq']=="true")
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -903,6 +912,8 @@
           },
         }
       });
+	  @endif
+      @if($rdata['hidincprob']=="true")
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
@@ -940,6 +951,7 @@
         }
       });
 	  @endif
+	 @endif
         // Ajax calls should always have the CSRF token attached to them, otherwise they won't work
         $.ajaxSetup({
                 headers: {
