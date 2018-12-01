@@ -16,6 +16,7 @@ class CreateOptionQualitiesTable extends Migration
         Schema::create('option_qualities', function (Blueprint $table) {
             $table->increments('id');
 			$table->unsignedInteger('option_id')->unique();
+			$table->longText('position_id')->nullable();
 			$table->longText('description')->nullable();
             $table->timestamps();
 			
