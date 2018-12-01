@@ -73,9 +73,9 @@ class OptionPositionCrudController extends CrudController
 		$this->crud->addField(
 		[   // two interconnected entities
 			'label'             => 'Candidate Qualities',
-			'field_unique_name' => 'quality_position',
+			'field_unique_name' => 'option_positions',
 			'type'              => 'checklist_dependency',
-			'name'              => 'option_and_position', // the methods that defines the relationship in your Model
+			'name'              => 'optionspositions', // the methods that defines the relationship in your Model
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
