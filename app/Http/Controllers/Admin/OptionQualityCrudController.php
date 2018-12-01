@@ -101,7 +101,7 @@ class OptionQualityCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
+        $redirect_location = $this->storeCrud($request); //parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
@@ -114,5 +114,36 @@ class OptionQualityCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+	public function storeCrud(StoreRequest $request = null)
+    {
+        $this->crud->hasAccessOrFail('create');
+
+        // fallback to global request instance
+        if (is_null($request)) {
+            $request = \Request::instance();
+        }
+
+        // replace empty values with NULL, so that it will work with MySQL strict mode on
+        foreach ($request->input() as $key => $value) {
+            if (empty($value) && $value !== '0') {
+                $request->request->set($key, null);
+            }
+        }
+
+        // insert item in the db
+        //$item = $this->crud->create($request->except(['redirect_after_save', '_token']));
+
+        // show a success message
+        \Alert::success(trans('backpack::crud.insert_success'))->flash();
+
+        // redirect the user where he chose to be redirected
+        switch ($request->input('redirect_after_save')) {
+            case 'current_item_edit':
+                return \Redirect::to($this->crud->route.'/'.$item->getKey().'/edit');
+
+            default:
+                return \Redirect::to($request->input('redirect_after_save'));
+        }
     }
 }
