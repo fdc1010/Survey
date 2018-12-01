@@ -57,7 +57,7 @@ class OptionQualityCrudController extends CrudController
 			'name' => 'position_id', 
 			'entity' => 'optionpositions',
 			'attribute' => 'option', 
-			'model' => "App\Models\QuestionOption", 
+			'model' => "App\Models\PositionCandidate", 
 			//'pivot' => true
 		]);
         // add asterisk for fields that are required in OptionQualityRequest
