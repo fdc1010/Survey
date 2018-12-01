@@ -1061,13 +1061,6 @@ $(document).ready(function ($) {
 	});
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
-		$('#hidincgraph').val($(this).is(":checked"));
-		$('#hidincgen').val($(this).is(":checked"));
-		$('#hidincageb').val($(this).is(":checked"));
-		$('#hidincciv').val($(this).is(":checked"));
-		$('#hidincemp').val($(this).is(":checked"));
-		$('#hidincprob').val($(this).is(":checked"));
-		$('#hidinccanq').val($(this).is(":checked"));
 	});
 	$('#checkAllCandidate').on('change',function(e){
 		$("input[type='checkbox'][name='candidate[]']").prop('checked',$(this).is(":checked"));
@@ -1085,7 +1078,14 @@ $(document).ready(function ($) {
 		$("input[type='checkbox'][name='empstatus[]']").prop('checked',$(this).is(":checked"));
 	});
 	$('#checkAllPrint').on('change',function(e){
-		$("input[type='checkbox'][name='checkprint[]']").prop('checked',$(this).is(":checked"));
+		$("input[type='checkbox'][name='checkprint[]']").prop('checked',$(this).is(":checked"));		
+		$('#hidincgraph').val($(this).is(":checked"));
+		$('#hidincgen').val($(this).is(":checked"));
+		$('#hidincageb').val($(this).is(":checked"));
+		$('#hidincciv').val($(this).is(":checked"));
+		$('#hidincemp').val($(this).is(":checked"));
+		$('#hidincprob').val($(this).is(":checked"));
+		$('#hidinccanq').val($(this).is(":checked"));
 	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
