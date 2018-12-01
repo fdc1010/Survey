@@ -148,12 +148,12 @@
     	
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}">
         	<input type="hidden" name="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:"") }}" />
-            <input type="hidden" name="hidselagebracket" value="{{ (!empty($rdata['selagebracket']))?$rdata['selagebracket']:"") }}" />
-            <input type="hidden" name="hidselposition" value="{{ (!empty($rdata['selposition']))?$rdata['selposition']:"") }}" />
-            <input type="hidden" name="hidselcivil" value="{{ (!empty($rdata['selcivil']))?$rdata['selcivil']:"") }}" />
-            <input type="hidden" name="hidselgender" value="{{ (!empty($rdata['selgender']))?$rdata['selgender']:"") }}" />
-            <input type="hidden" name="hidselemp" value="{{ (!empty($rdata['selemp']))?$rdata['selemp']:"") }}" />
-            <input type="hidden" name="hidselcandidate" value="{{ (!empty($rdata['selcandidate']))?$rdata['selcandidate']:"") }}" />
+            <input type="hidden" name="hidselagebracket" value="{{ (!empty($rdata['selagebracket'])?$rdata['selagebracket']:"") }}" />
+            <input type="hidden" name="hidselposition" value="{{ (!empty($rdata['selposition'])?$rdata['selposition']:"") }}" />
+            <input type="hidden" name="hidselcivil" value="{{ (!empty($rdata['selcivil'])?$rdata['selcivil']:"") }}" />
+            <input type="hidden" name="hidselgender" value="{{ (!empty($rdata['selgender'])?$rdata['selgender']:"") }}" />
+            <input type="hidden" name="hidselemp" value="{{ (!empty($rdata['selemp'])?$rdata['selemp']:"") }}" />
+            <input type="hidden" name="hidselcandidate" value="{{ (!empty($rdata['selcandidate'])?$rdata['selcandidate']:"") }}" />
             @if(!empty($rdata['position']))
             	@foreach($rdata['position'] as $hidpos)
                 	<input type="hidden" name="hidposition[]" value="{{ $hidpos }}" />
