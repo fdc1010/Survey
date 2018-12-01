@@ -75,26 +75,26 @@ class OptionPositionCrudController extends CrudController
 			'label'             => 'Candidate Qualities',
 			'field_unique_name' => 'option_positions',
 			'type'              => 'checklist_dependency',
-			'name'              => 'optionspositions', // the methods that defines the relationship in your Model
+			'name'              => 'option_id_and_position_id', // the methods that defines the relationship in your Model
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
-					'name'             => 'option_id', // the method that defines the relationship in your Model
+					'name'             => 'options', // the method that defines the relationship in your Model
 					'entity'           => 'options', // the method that defines the relationship in your Model
 					'entity_secondary' => 'positions', // the method that defines the relationship in your Model
 					'attribute'        => 'option', // foreign key attribute that is shown to user
 					'model'            => "App\Models\QuestionOption", // foreign key model
-					'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
+					'pivot'            => false, // on create&update, do you need to add/delete pivot table entries?]
 					'number_columns'   => 3, //can be 1,2,3,4,6
 				],
 				'secondary' => [
 					'label'          => 'Positions',
-					'name'           => 'position_id', // the method that defines the relationship in your Model
+					'name'           => 'positions', // the method that defines the relationship in your Model
 					'entity'         => 'positions', // the method that defines the relationship in your Model
 					'entity_primary' => 'options', // the method that defines the relationship in your Model
 					'attribute'      => 'name', // foreign key attribute that is shown to user
 					'model'          => "App\Models\PositionCandidate", // foreign key model
-					'pivot'          => true, // on create&update, do you need to add/delete pivot table entries?]
+					'pivot'          => false, // on create&update, do you need to add/delete pivot table entries?]
 					'number_columns' => 3, //can be 1,2,3,4,6
 				],
 			],
