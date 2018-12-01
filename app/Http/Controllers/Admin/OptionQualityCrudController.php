@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Models\OptionPosition;
+use App\Models\OptionQuality;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\OptionQualityRequest as StoreRequest;
 use App\Http\Requests\OptionQualityRequest as UpdateRequest;
@@ -91,7 +92,22 @@ class OptionQualityCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
+		OptionPosition::where('option_id',$oqid)->delete();
+		$options = $this->crud->entry->position_id;
+		foreach($options as $posid){
+			$optionquality = OptionPosition::create([
+				'position_id' => $posid,
+				'option_id' => $optid
+			]);			
+		}
         return $redirect_location;
     }
-	
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		$optionquality = OptionQuality::find($id);
+		OptionPosition::where('option_id',$optionquality->option_id)->delete();
+		return $this->crud->delete($id);
+	}
 }
