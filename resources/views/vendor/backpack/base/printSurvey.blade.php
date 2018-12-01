@@ -275,66 +275,8 @@
                       </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket</div>
-                    </div>
-                </div>
-
-                <div class="box-body">                	
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                	<tr>
-                                    	<th>Candidates</th>
-                                        @foreach($agebrackets as $agebracket)
-                                        <th>{{ $agebracket->title }}</th>
-                                        @endforeach
-                                    </tr>                             
-                                </thead>
-                                @php
-                                	$tallyab = array();                                    
-                                @endphp
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($agebrackets as $agebracket)
-                                       	  <th></th>
-                                          @endforeach
-                                      </tr>                                    
-                                  </thead>
-                                  <tbody>
-                                  
-                                  @foreach($position->candidates as $candidate)                               	
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          @foreach($agebrackets as $agebracket)
-                                          @php
-                                              $gtallyagebrackets=[];
-                                              for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
-                                                  array_push($gtallyagebrackets,$tallyiage);
-                                              }
-                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
-                                                                                                        $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
-                                          @endphp
-                                          <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
-                                          @endforeach
-                                      </tr>
-                                  @endforeach                                
-                                  </tbody>
-                                @endforeach
-                            </table>
-                      </div>
-                </div>
-            </div>
-        </div>
-        
+        </div>       
+                
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -443,6 +385,63 @@
     </div>
    
     <div class="row">
+    	<div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($agebrackets as $agebracket)
+                                        <th>{{ $agebracket->title }}</th>
+                                        @endforeach
+                                    </tr>                             
+                                </thead>
+                                @php
+                                	$tallyab = array();                                    
+                                @endphp
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($agebrackets as $agebracket)
+                                       	  <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>
+                                  
+                                  @foreach($position->candidates as $candidate)                               	
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          @foreach($agebrackets as $agebracket)
+                                          @php
+                                              $gtallyagebrackets=[];
+                                              for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
+                                                  array_push($gtallyagebrackets,$tallyiage);
+                                              }
+                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$tallysurvey,$gtallyagebrackets,$tallybrgy,
+                                                                                                        $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
+                                          @endphp
+                                          <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
+                                          @endforeach
+                                      </tr>
+                                  @endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -562,17 +561,6 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartagebracket"></div></div>
-            </div>
-        </div>
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -593,6 +581,17 @@
                 </div>
 
                 <div class="box-body"><div id="chartemp"></div></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartagebracket"></div></div>
             </div>
         </div>
         <div class="col-md-12">
