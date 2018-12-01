@@ -871,7 +871,7 @@
         }
       });
 	  @endif
-      @if($rdata['hidincanq']=="true")
+      @if($rdata['hidinccanq']=="true")
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
