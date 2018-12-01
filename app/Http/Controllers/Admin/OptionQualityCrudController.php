@@ -42,7 +42,7 @@ class OptionQualityCrudController extends CrudController
             'name' => 'option_id',
             'type' => 'select',
             'label' => 'Qualities',
-			'entity' => 'option', // the relationship name in your Model
+			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
@@ -50,7 +50,7 @@ class OptionQualityCrudController extends CrudController
 			'label' => "Qualities",
 			'type' => 'select2',
 			'name' => 'option_id', // the relationship name in your Model
-			'entity' => 'option', // the relationship name in your Model
+			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			//'pivot' => true
