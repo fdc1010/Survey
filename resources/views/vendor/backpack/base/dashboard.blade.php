@@ -1029,7 +1029,6 @@
 $(document).ready(function ($) {
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).is(":checked"));
-		console.log($('#hidincgraph').val());
 	});
 	$('#checkprintGender').on('change',function(e){
 		$('#hidincgen').val($(this).is(":checked"));
@@ -1054,6 +1053,13 @@ $(document).ready(function ($) {
 	});
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
+		$('#hidincgraph').val($(this).is(":checked"));
+		$('#hidincgen').val($(this).is(":checked"));
+		$('#hidincageb').val($(this).is(":checked"));
+		$('#hidincciv').val($(this).is(":checked"));
+		$('#hidincemp').val($(this).is(":checked"));
+		$('#hidincprob').val($(this).is(":checked"));
+		$('#hidinccanq').val($(this).is(":checked"));
 	});
 	$('#checkAllCandidate').on('change',function(e){
 		$("input[type='checkbox'][name='candidate[]']").prop('checked',$(this).is(":checked"));
