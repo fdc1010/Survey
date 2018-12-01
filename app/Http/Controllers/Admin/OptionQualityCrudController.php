@@ -60,7 +60,7 @@ class OptionQualityCrudController extends CrudController
 			'name' => 'position_id', 
 			'entity' => 'position',
 			'attribute' => 'name', 
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\PositionCandidate",
 			'fake'=>true,
 			'store_in'=>'position_id'
 		]);
