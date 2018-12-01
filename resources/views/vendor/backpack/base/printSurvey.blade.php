@@ -191,7 +191,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div class="contentBlock" id="tblvotes">
+                      <div id="tblvotes">
                       		<table class="table table-striped display" cellspacing="0">
                             	<thead>
                                     <tr>
@@ -238,7 +238,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div class="contentBlock" id="tblgender">
+                      <div id="tblgender">
                       		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     <tr>
@@ -293,7 +293,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div class="contentBlock" id="tblcivilstatus">
+                      <div id="tblcivilstatus">
                       		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     <tr>
@@ -346,7 +346,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div class="contentBlock" id="tblempstatus">
+                      <div id="tblempstatus">
                       		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -401,7 +401,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div class="contentBlock" id="tblagebracket">
+                      <div id="tblagebracket">
                       		<table class="table table-striped display" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -458,7 +458,7 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div class="contentBlock" id="tblqualities">                                
+                          <div id="tblqualities">                                
                                 <table class="table table-striped display" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -511,7 +511,7 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div class="contentBlock" id="tblproblem">
+                          <div id="tblproblem">
                                 <table class="table table-striped display" cellspacing="0">
                                     <thead>
                                         <tr>

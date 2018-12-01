@@ -63,8 +63,8 @@ class StatsController extends Controller
             ->setOption('margin-top', 10)
             ->setOption('margin-left', 10)
             ->setOption('margin-right', 10)
-            ->setOption('margin-bottom', 15);
-			//->setOption('orientation', 'Landscape')
+            ->setOption('margin-bottom', 15)
+			->setOption('orientation', 'Landscape');
 			//->setOption('javascript-delay', 1500);	
 			//->setOption('zoom', 1.33)
 			//->setOption('enable-smart-shrinking',true);
