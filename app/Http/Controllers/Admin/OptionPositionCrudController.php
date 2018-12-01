@@ -58,7 +58,7 @@ class OptionPositionCrudController extends CrudController
             'name' => 'position_id',
             'type' => 'select',
             'label' => 'Positions',
-			'entity' => 'positions', // the relationship name in your Model
+			'entity' => 'optionspositions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate",
 			/*'fake' => true,
