@@ -19,7 +19,7 @@ Route::post('importbarangays', 'BarangayController@importbarangays')->name('impo
 Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');	
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
-Route::get('printsurvey', 'StatsController@printsurvey');
+
 Route::get('/', function () {
     return view('welcome');
 });

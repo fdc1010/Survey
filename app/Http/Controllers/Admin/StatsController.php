@@ -53,7 +53,7 @@ class StatsController extends Controller
 		$rdata = $request->except(['q','_token']);
         return view('backpack::dashboard', [$this->data,'rdata'=>$rdata]);
     }
-	/*public function printsurvey(Request $request){
+	public function printsurvey(Request $request){
 		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		$rdata = $request->except(['q','_token']);
 		//dd($request);
@@ -74,7 +74,7 @@ class StatsController extends Controller
             //->setOption('header-html', route('pdf.headerin'))
             //->setOption('footer-html', route('pdf.footerin'));
 		return $pdf->inline();
-	}*/
+	}
     public function store(Request $request)
     {
         //
