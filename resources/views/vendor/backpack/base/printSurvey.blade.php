@@ -564,6 +564,7 @@
                 <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
+        @if($rdata['hidincgen']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -575,6 +576,7 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
+        @endif
         @if($rdata['hidincciv']=="true")
         <div class="col-md-6">
             <div class="box box-default">
