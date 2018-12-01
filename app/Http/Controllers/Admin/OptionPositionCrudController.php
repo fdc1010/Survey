@@ -66,14 +66,23 @@ class OptionPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'option_id',
+            'type' => 'checklist',
+            'label' => 'Tagged Options for Qualities',
+			'entity' => 'optionspositions', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption",
+			'pivot' => false
+	    ]);
+		/*$this->crud->addField([
+            'name' => 'option_id',
             'type' => 'select2',
             'label' => 'Tagged Options for Qualities',
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption",
-			/*'fake' => true,
-			'store_in' => 'extras_2'*/
-	    ]);
+			'fake' => true,
+			'store_in' => 'extras_2'
+	    ]);*/
 		// add asterisk for fields that are required in OptionPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

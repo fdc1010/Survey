@@ -51,15 +51,6 @@ class OptionQualityCrudController extends CrudController
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			//'pivot' => true
 		]);
-		$this->crud->addField([
-			'label' => "Positions",
-			'type' => 'checklist',
-			'name' => 'optionpositions', // the relationship name in your Model
-			'entity' => 'optionpositions', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\PositionCandidate", // on create&update, do you need to add/delete pivot table entries?
-			//'pivot' => true
-		]);
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
