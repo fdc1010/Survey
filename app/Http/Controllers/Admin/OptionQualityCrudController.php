@@ -101,10 +101,10 @@ class OptionQualityCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        //$redirect_location = parent::storeCrud($request);
+        $redirect_location = parent::storeCrud(); //parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        //return $redirect_location;
+        return $redirect_location;
     }
 
     public function update(UpdateRequest $request)
