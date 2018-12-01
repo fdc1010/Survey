@@ -537,11 +537,9 @@
                           </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
         </div>
-    </div>
-	 <div class="row">
+        <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -620,7 +618,9 @@
                 <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
-    </div>	  
+    </div>
+    </div>
+	 	  
     </section>
 </div>
 <!-- ./wrapper -->
