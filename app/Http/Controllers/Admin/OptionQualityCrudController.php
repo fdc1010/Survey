@@ -90,6 +90,7 @@ class OptionQualityCrudController extends CrudController
 					'number_columns' => 3, //can be 1,2,3,4,6
 				],
 			],
+			'fake' => true
 		]
 		);
         // add asterisk for fields that are required in OptionQualityRequest
