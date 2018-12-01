@@ -36,7 +36,7 @@ class OptionQualityCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         //$this->crud->setFromDb();
 		//$this->crud->removeColumns(['option_id','position_id','extras','extras_2']);
-		$this->crud->removeFields(['option_id','description']);
+		$this->crud->removeFields(['option_id','description','positions']);
 		$this->crud->addColumn([
             'name' => 'option_id',
             'type' => 'select',
@@ -57,7 +57,7 @@ class OptionQualityCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklist',
-			'name' => 'position_id', 
+			'name' => 'positions', 
 			'entity' => 'position',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
