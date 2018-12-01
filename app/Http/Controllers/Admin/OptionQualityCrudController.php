@@ -44,7 +44,7 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
-		$this->crud->addField([
+		/*$this->crud->addField([
 			'label' => "Qualities",
 			'type' => 'select2',
 			'name' => 'option_id', // the relationship name in your Model
@@ -56,13 +56,43 @@ class OptionQualityCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklist',
-			'name' => 'positions', 
+			'name' => 'position_id', 
 			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate", 
-			'fake' => true
-		]);
-		
+			//'pivot' => false
+		]);*/
+		$this->crud->addField(
+		[   // two interconnected entities
+			'label'             => 'Candidate Qualities',
+			'field_unique_name' => 'option_positions',
+			'type'              => 'checklist_dependency',
+			'name'              => 'options_and_positions', // the methods that defines the relationship in your Model
+			'subfields'         => [
+				'primary' => [
+					'label'            => 'Qualities',
+					'name'             => 'options', // the method that defines the relationship in your Model
+					'entity'           => 'options', // the method that defines the relationship in your Model
+					'entity_secondary' => 'positions', // the method that defines the relationship in your Model
+					'attribute'        => 'option', // foreign key attribute that is shown to user
+					'model'            => "App\Models\QuestionOption", // foreign key model
+					'pivot'            => false, // on create&update, do you need to add/delete pivot table entries?]
+					'number_columns'   => 3, //can be 1,2,3,4,6
+				],
+				'secondary' => [
+					'label'          => 'Positions',
+					'name'           => 'positions', // the method that defines the relationship in your Model
+					'entity'         => 'positions', // the method that defines the relationship in your Model
+					'entity_primary' => 'options', // the method that defines the relationship in your Model
+					'attribute'      => 'name', // foreign key attribute that is shown to user
+					'model'          => "App\Models\PositionCandidate", // foreign key model
+					'pivot'          => false, // on create&update, do you need to add/delete pivot table entries?]
+					'number_columns' => 3, //can be 1,2,3,4,6
+				],
+			],
+			
+		]
+		);
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -71,10 +101,10 @@ class OptionQualityCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
+        //$redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        //return $redirect_location;
     }
 
     public function update(UpdateRequest $request)
