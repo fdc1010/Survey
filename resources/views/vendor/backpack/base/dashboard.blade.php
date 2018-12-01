@@ -1029,7 +1029,7 @@
 $(document).ready(function ($) {
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).is(":checked"));
-		console.log($(this).val());
+		console.log($('#hidincgraph').val());
 	});
 	$('#checkprintGender').on('change',function(e){
 		$('#hidincgen').val($(this).is(":checked"));
