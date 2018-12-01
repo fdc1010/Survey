@@ -1027,6 +1027,14 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
+	$('#hidincgraph').val($('#checkprintGraph').is(":checked"));
+	$('#hidincgen').val($('#checkprintGender').is(":checked"));
+	$('#hidincageb').val($('#checkprintAge').is(":checked"));
+	$('#hidincciv').val($('#checkprintCivil').is(":checked"));
+	$('#hidincemp').val($('#checkprintEmp').is(":checked"));
+	$('#hidincprob').val($('#checkprintProb').is(":checked"));
+	$('#hidinccanq').val($('#checkprintCanQ').is(":checked"));
+	
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).is(":checked"));
 	});
