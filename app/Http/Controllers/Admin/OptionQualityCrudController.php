@@ -37,6 +37,7 @@ class OptionQualityCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['option_id','position_id','positions','description']);
 		$this->crud->removeFields(['option_id','position_id','description','positions']);
+		$this->crud->denyAccess(['update']);
 		$this->crud->addColumn([
             'name' => 'option_id',
             'type' => 'select',
