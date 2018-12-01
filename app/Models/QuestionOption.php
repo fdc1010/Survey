@@ -43,6 +43,9 @@ class QuestionOption extends Model
     {
         return $this->hasMany('App\Models\OptionProblem','option_id');
     }
+	public function positions(){
+		return $this->hasMany('App\Models\OptionPosition','option_id');
+	}
 	/*
 	public function optionposition(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
