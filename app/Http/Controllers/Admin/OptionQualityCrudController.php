@@ -110,12 +110,12 @@ class OptionQualityCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
+        $redirect_location = parent::updateCrudB($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
-	public function storeCrud(StoreRequest $request = null)
+	public function storeCrudB(StoreRequest $request = null)
     {
         $this->crud->hasAccessOrFail('create');
 
