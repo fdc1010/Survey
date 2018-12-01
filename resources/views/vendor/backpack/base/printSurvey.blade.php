@@ -560,17 +560,7 @@
                       <div class="box-body"><div id="chartgender"></div></div>
                   </div>
               </div>
-              <div class="col-md-6">
-                  <div class="box box-default">
-                      <div class="box-header with-border">
-                          <div class="col-md-12">                      
-                                  <div class="box-title">By Age Bracket</div>                	                        	
-                          </div>
-                      </div>
-      
-                      <div class="box-body"><div id="chartagebracket"></div></div>
-                  </div>
-              </div>
+              
               <div class="col-md-6">
                   <div class="box box-default">
                       <div class="box-header with-border">
@@ -582,7 +572,7 @@
                       <div class="box-body"><div id="chartcivil"></div></div>
                   </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
                   <div class="box box-default">
                       <div class="box-header with-border">
                           <div class="col-md-12">                      
@@ -594,6 +584,17 @@
                   </div>
               </div>     
           </div>
+          <div class="col-md-12">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">By Age Bracket</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chartagebracket"></div></div>
+                  </div>
+              </div>
           <div class="col-md-12">
               <div class="box box-default">
                   <div class="box-header with-border">
