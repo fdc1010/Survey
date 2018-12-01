@@ -67,7 +67,7 @@ class OptionQualityCrudController extends CrudController
 			'label'             => 'Candidate Qualities',
 			'field_unique_name' => 'option_positions',
 			'type'              => 'checklist_dependency',
-			'name'              => 'options_and_positions', // the methods that defines the relationship in your Model
+			'name'              => 'option_id', // the methods that defines the relationship in your Model
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
@@ -89,7 +89,7 @@ class OptionQualityCrudController extends CrudController
 					'pivot'          => false, // on create&update, do you need to add/delete pivot table entries?]
 					'number_columns' => 3, //can be 1,2,3,4,6
 				],
-			],
+			],'fake'=>true
 			
 		]
 		);
