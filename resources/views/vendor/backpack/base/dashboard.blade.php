@@ -108,10 +108,10 @@
         }
         
         if(!empty($rdata['position'])){
-        	$qualities = App\Models\OptionPosition::with('options','positions')
-                                                        ->whereIn('position_id',$rdata['position'])->get();
+        	$qualities = App\Models\OptionPosition::with('options','positions')            											
+                                                        ->whereIn('position_id',$rdata['position'])->groupBy('option_id')->get();
    		}else{
-        	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
+        	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->groupBy('option_id')->get();
         }
         $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
