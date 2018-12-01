@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
     <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition {{ config('backpack.base.skin') }} sidebar-mini">
+<body>
     <!-- Site wrapper -->
     <div class="wrapper">
       <!-- Content Wrapper. Contains page content -->
