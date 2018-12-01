@@ -28,6 +28,7 @@ class OptionQuality extends Model
     ];
     // protected $hidden = [];
     // protected $dates = [];
+	
 	public function option()
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
