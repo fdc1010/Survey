@@ -40,9 +40,9 @@
 			}
 		}*/
 		.contentBlock, div, h2, h3, p { 
-			display:block ! important; 
+			/*display:block ! important; 
 			page-break-inside:avoid ! important; 
-			/*page-break-before:always !important;*/
+			page-break-before:always !important;*/
 		}
     </style>
 </head>
