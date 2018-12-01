@@ -640,6 +640,7 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 	$(document).ready(function ($) {
+	@if($rdata['hidincgraph']=="true")
 	Function.prototype.bind = Function.prototype.bind || function (thisp) {
 		var fn = this;
 		return function () {
@@ -920,7 +921,7 @@
           },
         }
       });
-	      
+	  @endif
         // Ajax calls should always have the CSRF token attached to them, otherwise they won't work
         $.ajaxSetup({
                 headers: {
