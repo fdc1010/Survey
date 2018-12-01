@@ -39,7 +39,7 @@ class OptionQuality extends Model
     }
 	public function options_and_positions()
     {
-        return $this->belongsToMany('App\Models\QuestionOption','App\Models\PositionCandidate');
+        return $this->belongsToMany('App\Models\QuestionOption','option_positions');
     }
     /*
     |--------------------------------------------------------------------------
