@@ -30,6 +30,16 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2"> <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
+	<style type="text/css"> 
+		thead { display: table-header-group }
+		tfoot { display: table-row-group }
+		tr { page-break-inside: avoid }
+		@media print {
+			.element-that-contains-table {
+				overflow: visible !important;
+			}
+		}
+    </style>
 </head>
 <body class="hold-transition {{ config('backpack.base.skin') }}">
     <!-- Site wrapper -->
