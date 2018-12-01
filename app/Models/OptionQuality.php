@@ -19,7 +19,7 @@ class OptionQuality extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-	protected $fakeColumns = ['positions'];
+	//protected $fakeColumns = ['positions'];
     protected $fillable = ['option_id','description','positions'];
 	protected $casts = [
         //'extras' => 'array','metas'=>'array',
@@ -32,9 +32,9 @@ class OptionQuality extends Model
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
-	public function positions(){
+	/*public function positions(){
 		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','position_id');
-    }
+    }*/
 	/*public function position()
     {
         return $this->belongsTo('App\Models\PositionCandidate');
