@@ -31,13 +31,9 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2"> <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
 	<style type="text/css"> 
-		thead { display: table-header-group }
-		tfoot { display: table-row-group }
-		tr { page-break-inside: avoid }
-		@media print {
-			.element-that-contains-table {
-				overflow: visible !important;
-			}
+		.contentBlock, div, h2, h3, p { 
+			display:block ! important; 
+			page-break-inside:avoid ! important; 
 		}
     </style>
 </head>
@@ -186,7 +182,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes">
+                      <div class="contentBlock" id="tblvotes">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                             	<thead>
                                     <tr>
@@ -233,7 +229,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender">
+                      <div class="contentBlock" id="tblgender">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -288,7 +284,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus">
+                      <div class="contentBlock" id="tblcivilstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -341,7 +337,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus">
+                      <div class="contentBlock" id="tblempstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -396,7 +392,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket">
+                      <div class="contentBlock" id="tblagebracket">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -453,7 +449,7 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div id="tblqualities">                                
+                          <div class="contentBlock" id="tblqualities">                                
                                 <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -506,7 +502,7 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div id="tblproblem">
+                          <div class="contentBlock" id="tblproblem">
                                 <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                                     <thead>
                                         <tr>
