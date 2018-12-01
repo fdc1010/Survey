@@ -55,6 +55,7 @@ class StatsController extends Controller
 	public function printsurvey(Request $request){
 		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		$rdata = $request->except(['q','_token']);
+		dd($request);
 		return view('backpack::printSurvey', [$this->data,'rdata'=>$rdata]);
 	}
     public function store(Request $request)
