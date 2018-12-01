@@ -25,19 +25,11 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
 
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/pace/pace.min.css">
-    <link rel="stylesheet" href="{{ asset('vendor/backpack/pnotify/pnotify.custom.min.css') }}">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <!-- BackPack Base CSS -->
-    <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
-    <link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />-->
-    <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2"> <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
-    <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition {{ config('backpack.base.skin') }}">
     <!-- Site wrapper -->
@@ -184,7 +176,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblvotes">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                             	<thead>
                                     <tr>
@@ -231,7 +223,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblgender">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -286,7 +278,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblcivilstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -339,7 +331,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblempstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -394,7 +386,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblagebracket">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                 	<tr>
@@ -451,7 +443,7 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">                                
+                          <div id="tblqualities">                                
                                 <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -504,7 +496,7 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                          <div id="tblproblem">
                                 <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -628,8 +620,6 @@
     <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('vendor/adminlte') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/adminlte.min.js"></script>
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('js/d3.v5.min.js') }}" charset="utf-8"></script>
