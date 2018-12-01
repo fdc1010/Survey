@@ -42,11 +42,11 @@ class OptionQuality extends Model
     }
 	public function positions(){
 		return $this->hasMany('App\Models\OptionPosition','position_id');
-    }*/
+    }
 	public function options_and_positions()
     {
         return $this->belongsToMany('App\Models\QuestionOption','option_positions');
-    }
+    }*/
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
