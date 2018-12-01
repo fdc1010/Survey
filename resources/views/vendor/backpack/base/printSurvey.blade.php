@@ -554,7 +554,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chart"></div></div>
+                <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -565,7 +565,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartgender"></div></div>
+                <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -576,7 +576,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartcivil"></div></div>
+                <div class="box-body"><div id="chartcivil"></div></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -587,7 +587,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartemp"></div></div>
+                <div class="box-body"><div id="chartemp"></div></div>
             </div>
         </div>
         <div class="col-md-12">
@@ -598,7 +598,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartagebracket"></div></div>
+                <div class="box-body"><div id="chartagebracket"></div></div>
             </div>
         </div>
         <div class="col-md-12">
@@ -609,7 +609,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartqualities"></div></div>
+                <div class="box-body"><div id="chartqualities"></div></div>
             </div>
         </div>
     
@@ -621,7 +621,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:950px;" id="chartproblem"></div></div>
+                <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
     </div>
