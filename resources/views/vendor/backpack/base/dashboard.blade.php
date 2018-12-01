@@ -198,7 +198,14 @@
             	@foreach($rdata['candidate'] as $hidcan)
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
-            @endif
+            @endif            
+            <input type="hidden" name="hidincgraph" value="0" />
+            <input type="hidden" name="hidincgen" value="0" />
+            <input type="hidden" name="hidincageb" value="0" />
+            <input type="hidden" name="hidincciv" value="0" />
+            <input type="hidden" name="hidincemp" value="0" />
+            <input type="hidden" name="hidincprob" value="0" />
+            <input type="hidden" name="hidinccanq" value="0" />
         </form>
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
         @csrf
@@ -1020,6 +1027,27 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
+	$('#checkprintGraph').on('change',function(e){
+		$('#hidincgraph').val($(this).val());
+	});
+	$('#checkprintGender').on('change',function(e){
+		$('#hidincgen').val($(this).val());
+	});
+	$('#checkprintAge').on('change',function(e){
+		$('#hidincageb').val($(this).val());
+	});
+	$('#checkprintCivil').on('change',function(e){
+		$('#hidincciv').val($(this).val());
+	});
+	$('#checkprintEmp').on('change',function(e){
+		$('#hidincemp').val($(this).val());
+	});
+	$('#checkprintProb').on('change',function(e){
+		$('#hidincprob').val($(this).val());
+	});
+	$('#checkprintCanQ').on('change',function(e){
+		$('#hidinccanq').val($(this).val());
+	});
 	$('#printpreview').on('click',function(e){
 		$('#my_formprint').submit();
 	});
