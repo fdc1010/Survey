@@ -56,15 +56,15 @@ class StatsController extends Controller
 	public function printsurvey(Request $request){
 		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		$rdata = $request->except(['q','_token']);
-		//dd($request);
-		$pdf = App::make('snappy.pdf.wrapper');
+		return view('backpack::printSurvey', [$this->data,'rdata'=>$rdata]);
+		/*$pdf = App::make('snappy.pdf.wrapper');
         $pdf->loadView('backpack::printSurvey', [$this->data,'rdata'=>$rdata])
             ->setPaper('Legal')
             ->setOption('margin-top', 10)
             ->setOption('margin-left', 10)
             ->setOption('margin-right', 10)
-            ->setOption('margin-bottom', 15)
-			->setOption('orientation', 'Landscape');
+            ->setOption('margin-bottom', 15);
+			//->setOption('orientation', 'Landscape')
 			//->setOption('javascript-delay', 1500);	
 			//->setOption('zoom', 1.33)
 			//->setOption('enable-smart-shrinking',true);
@@ -73,7 +73,7 @@ class StatsController extends Controller
 			//->setOption('page-height', '33.02cm')
             //->setOption('header-html', route('pdf.headerin'))
             //->setOption('footer-html', route('pdf.footerin'));
-		return $pdf->inline();
+		return $pdf->inline();*/
 	}
     public function store(Request $request)
     {
