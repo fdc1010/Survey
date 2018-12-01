@@ -1,23 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App;
 use PDF;
 
 class StatsController extends Controller
 {
-	protected $data = []; // the information we send to the view
-
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
-        $this->middleware(backpack_middleware());
-    }
     /**
      * Display a listing of the resource.
      *
@@ -27,33 +17,7 @@ class StatsController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-	
-	public function stats(Request $request)
-    {
-		
-        $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-		
-		$rdata = $request->except(['q','_token']);
-        return view('backpack::dashboard', [$this->data,'rdata'=>$rdata]);
-    }
-	/*public function printsurvey(Request $request){
+	public function printsurvey(Request $request){
 		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
 		$rdata = $request->except(['q','_token']);
 		//dd($request);
@@ -74,7 +38,23 @@ class StatsController extends Controller
             //->setOption('header-html', route('pdf.headerin'))
             //->setOption('footer-html', route('pdf.footerin'));
 		return $pdf->inline();
-	}*/
+	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         //
@@ -83,10 +63,10 @@ class StatsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\cr  $cr
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         //
     }
@@ -94,10 +74,10 @@ class StatsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\cr  $cr
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
         //
     }
@@ -106,7 +86,7 @@ class StatsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\cr  $cr
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -117,16 +97,11 @@ class StatsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\cr  $cr
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         //
-    }
-	public function redirect()
-    {
-        // The '/admin' route is not to be used as a page, because it breaks the menu's active state.
-        return redirect(backpack_url('dashboard'));
     }
 }

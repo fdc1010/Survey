@@ -146,7 +146,7 @@
     @endphp
     <div class="row">
     	
-		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}" target="_blank">
+		<form method="post" id="my_formprint" action="{{ URL('printsurvey') }}" target="_blank">
         	@csrf
             @if(!empty($rdata['selsurvey']))
             	<input type="hidden" name="hidselsurvey" value="{{ $rdata['selsurvey'] }}" />
