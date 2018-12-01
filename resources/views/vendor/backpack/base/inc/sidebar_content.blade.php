@@ -54,6 +54,7 @@
       	<ul class="treeview-menu">
     		<li><a href='{{ backpack_url('optionproblem') }}'><i class='fa fa-check-square-o'></i> <span>Option Tally Problem</span></a></li>
             <li><a href='{{ backpack_url('optioncandidate') }}'><i class='fa fa-thumbs-o-up'></i> <span>Option Tally Candidate</span></a></li>
+            <li><a href='{{ backpack_url('optionquality') }}'><i class='fa fa-check-square-o'></i> <span>Option Tally Qualities</span></a></li>
   		</ul>
     </li>
   </ul>
