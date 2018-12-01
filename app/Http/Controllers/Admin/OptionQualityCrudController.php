@@ -57,11 +57,10 @@ class OptionQualityCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklist',
-			'name' => 'position_id', 
+			'name' => 'positions', 
 			'entity' => 'position',
 			'attribute' => 'name', 
-			'model' => "App\Models\PositionCandidate", 
-			'fake' => true
+			'model' => "App\Models\PositionCandidate"
 		]);
 		
         // add asterisk for fields that are required in OptionQualityRequest
