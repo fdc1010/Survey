@@ -48,7 +48,7 @@
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
-    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
+    	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1; 
         
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();        
@@ -64,13 +64,13 @@
         $tallyoccstatus = [];
         $tallyvoterstatus = [];
         
-        $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
+        $surveypos = !empty($rdata['hidselposition'])?$rdata['hidselposition']:1;
         $surveydetails = App\Models\SurveyDetail::all();
-        $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
+        $brgyarr = !empty($rdata['hidto'])?$rdata['hidto']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
-        if(!empty($rdata['position'])){
-        	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
+        if(!empty($rdata['hidposition'])){
+        	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['hidposition'])->get();
         }else{
         	$selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         }
@@ -79,12 +79,12 @@
         $selinitcivilstatuses = App\Models\CivilStatus::all();
         $selinitempstatuses = App\Models\EmploymentStatus::all(); 
         $problems = App\Models\OptionProblem::with('option')->get();
-        if(!empty($rdata['gender'])){	
-            $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
+        if(!empty($rdata['hidgender'])){	
+            $genders = App\Models\Gender::whereIn('id',$rdata['hidgender'])->get(); 
             $tallygenders=$genders->pluck('id')->toArray();
         }else{
-        	if(!empty($rdata['selgender'])){
-        		$genders = App\Models\Gender::where('id',$rdata['selgender'])->get();
+        	if(!empty($rdata['hidselgender'])){
+        		$genders = App\Models\Gender::where('id',$rdata['hidselgender'])->get();
                 $tallygenders=$genders->pluck('id')->toArray();
             }else{
             	$genders = App\Models\Gender::all();
@@ -94,8 +94,8 @@
         $barangays = App\Models\Barangay::all();     
         	
         
-        if(!empty($rdata['agebracket'])){
-        	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
+        if(!empty($rdata['hidagebracket'])){
+        	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['hidagebracket'])->get(); 
             $tallyagebrackets=[];
             foreach($agebrackets as $agebracket){
                 for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
@@ -103,8 +103,8 @@
                 }                
             }
         }else{
-        	if(!empty($rdata['selagebracket'])){
-        		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get(); 
+        	if(!empty($rdata['hidselagebracket'])){
+        		$agebrackets = App\Models\AgeBracket::where('id',$rdata['hidselagebracket'])->get(); 
                 $tallyagebrackets=[];
                 foreach($agebrackets as $agebracket){
                     for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
@@ -115,61 +115,61 @@
             	$agebrackets = App\Models\AgeBracket::all(); 
             }
         }
-        if(!empty($rdata['civilstatus'])){
-        	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['civilstatus'])->get();
+        if(!empty($rdata['hidcivilstatus'])){
+        	$civilstatuses = App\Models\CivilStatus::whereIn('id',$rdata['hidcivilstatus'])->get();
             $tallycivilstatus=$civilstatuses->pluck('id')->toArray();
         }else{
-        	if(!empty($rdata['selcivil'])){
-        		$civilstatuses = App\Models\CivilStatus::where('id',$rdata['selcivil'])->get();
+        	if(!empty($rdata['hidselcivil'])){
+        		$civilstatuses = App\Models\CivilStatus::where('id',$rdata['hidselcivil'])->get();
                 $tallycivilstatus=$civilstatuses->pluck('id')->toArray();
             }else{
             	$civilstatuses = App\Models\CivilStatus::all();
             }
         }
-        if(!empty($rdata['empstatus'])){
-        	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get(); 
+        if(!empty($rdata['hidempstatus'])){
+        	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['hidempstatus'])->get(); 
             $tallyempstatus=$empstatuses->pluck('id')->toArray();
         }else{
-        	if(!empty($rdata['selemp'])){
-        		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['selemp'])->get(); 
+        	if(!empty($rdata['hidselemp'])){
+        		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['hidselemp'])->get(); 
                 $tallyempstatus=$empstatuses->pluck('id')->toArray();
             }else{
             	$empstatuses = App\Models\EmploymentStatus::all(); 
             }
         }
         
-        if(!empty($rdata['position'])){
+        if(!empty($rdata['hidposition'])){
         	$qualities = App\Models\OptionPosition::with('options','positions')
-                                                        ->whereIn('position_id',$rdata['position'])->get();
+                                                        ->whereIn('position_id',$rdata['hidposition'])->get();
    		}else{
         	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
         }
         $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
-        if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
-            $positions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
-        }else if(!empty($rdata['position'])){
-        	if(!empty($rdata['selcandidate'])){
+        if(!empty($rdata['hidposition']) && empty($rdata['hidselcandidate'])){
+            $positions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['hidposition'])->get();
+        }else if(!empty($rdata['hidposition'])){
+        	if(!empty($rdata['hidselcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->where('id',$rdata['selcandidate']);
+                													$q->where('id',$rdata['hidselcandidate']);
                 												}])
-                                                            ->whereIn('id',$rdata['position'])
+                                                            ->whereIn('id',$rdata['hidposition'])
                                                             ->get();
-            }else if(!empty($rdata['candidate'])){
+            }else if(!empty($rdata['hidcandidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->whereIn('id',$rdata['candidate']);
+                													$q->whereIn('id',$rdata['hidcandidate']);
                 												}])
-                                                            ->whereIn('id',$rdata['position'])
+                                                            ->whereIn('id',$rdata['hidposition'])
                                                             ->get();
             }
         }else{
-            if(!empty($rdata['selcandidate'])){
+            if(!empty($rdata['hidselcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->where('id',$rdata['selcandidate']);
+                													$q->where('id',$rdata['hidselcandidate']);
                 												}])
                                                             ->get();
-            }else if(!empty($rdata['candidate'])){
+            }else if(!empty($rdata['hidcandidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->whereIn('id',$rdata['candidate']);
+                													$q->whereIn('id',$rdata['hidcandidate']);
                 												}])
                                                             ->get();
             }
