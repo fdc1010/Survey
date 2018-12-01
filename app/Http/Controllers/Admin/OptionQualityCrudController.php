@@ -35,8 +35,8 @@ class OptionQualityCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumns(['option_id','positions','description']);
-		$this->crud->removeFields(['option_id','description','positions']);
+		$this->crud->removeColumns(['option_id','position_id','positions','description']);
+		$this->crud->removeFields(['option_id','position_id','description','positions']);
 		$this->crud->addColumn([
             'name' => 'option_id',
             'type' => 'select',
@@ -58,10 +58,9 @@ class OptionQualityCrudController extends CrudController
 			'label' => "Positions",
 			'type' => 'checklist',
 			'name' => 'positions', 
-			'entity' => 'position',
+			'entity' => 'positions',
 			'attribute' => 'name', 
-			'model' => "App\Models\PositionCandidate",
-			'pivot' => false
+			'model' => "App\Models\PositionCandidate"
 		]);
 		
         // add asterisk for fields that are required in OptionQualityRequest
