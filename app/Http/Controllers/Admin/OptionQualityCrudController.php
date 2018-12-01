@@ -56,7 +56,7 @@ class OptionQualityCrudController extends CrudController
 			'type' => 'checklist',
 			'name' => 'position_id', 
 			'entity' => 'optionpositions',
-			'attribute' => 'option', 
+			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate", 
 			'pivot' => false
 		]);
