@@ -22,7 +22,7 @@ class OptionQualityCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\OptionQuality');
+        //$this->crud->setModel('App\Models\OptionQuality');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionquality');
         $this->crud->setEntityNameStrings('option quality', 'Option Qualities');
 
@@ -67,7 +67,7 @@ class OptionQualityCrudController extends CrudController
 			'label'             => 'Candidate Qualities',
 			'field_unique_name' => 'option_positions',
 			'type'              => 'checklist_dependency',
-			'name'              => 'option_id', // the methods that defines the relationship in your Model
+			'name'              => 'options_and_positions', // the methods that defines the relationship in your Model
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
@@ -89,7 +89,7 @@ class OptionQualityCrudController extends CrudController
 					'pivot'          => false, // on create&update, do you need to add/delete pivot table entries?]
 					'number_columns' => 3, //can be 1,2,3,4,6
 				],
-			],'fake'=>true
+			],
 			
 		]
 		);
@@ -101,7 +101,7 @@ class OptionQualityCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud(); //parent::storeCrud($request);
+        $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
