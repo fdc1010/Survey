@@ -18,8 +18,7 @@
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
-        $tallyage = (!empty($rdata['selagebracket']))?0:18; 
-
+        
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();        
 		foreach($tempagebrackets as $ageb){
@@ -146,6 +145,51 @@
         }
     @endphp
     <div class="row">
+    	
+		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}">
+        	<input type="hidden" name="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:"") }}" />
+            <input type="hidden" name="hidselagebracket" value="{{ (!empty($rdata['selagebracket']))?$rdata['selagebracket']:"") }}" />
+            <input type="hidden" name="hidselposition" value="{{ (!empty($rdata['selposition']))?$rdata['selposition']:"") }}" />
+            <input type="hidden" name="hidselcivil" value="{{ (!empty($rdata['selcivil']))?$rdata['selcivil']:"") }}" />
+            <input type="hidden" name="hidselgender" value="{{ (!empty($rdata['selgender']))?$rdata['selgender']:"") }}" />
+            <input type="hidden" name="hidselemp" value="{{ (!empty($rdata['selemp']))?$rdata['selemp']:"") }}" />
+            <input type="hidden" name="hidselcandidate" value="{{ (!empty($rdata['selcandidate']))?$rdata['selcandidate']:"") }}" />
+            @if(!empty($rdata['position']))
+            	@foreach($rdata['position'] as $hidpos)
+                	<input type="hidden" name="hidposition[]" value="{{ $hidpos }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['agebracket']))
+            	@foreach($rdata['agebracket'] as $hidageb)
+                	<input type="hidden" name="hidagebracket[]" value="{{ $hidageb }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['to']))
+            	@foreach($rdata['to'] as $hidto)
+                	<input type="hidden" name="hidto[]" value="{{ $hidto }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['civilstatus']))
+            	@foreach($rdata['civilstatus'] as $hidciv)
+                	<input type="hidden" name="hidcivilstatus[]" value="{{ $hidciv }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['empstatus']))
+            	@foreach($rdata['empstatus'] as $hidemp)
+                	<input type="hidden" name="hidempstatus[]" value="{{ $hidemp }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['gender']))
+            	@foreach($rdata['gender'] as $hidgen)
+                	<input type="hidden" name="hidgender[]" value="{{ $hidgen }}" />
+                @endforeach
+            @endif
+            @if(!empty($rdata['candidate']))
+            	@foreach($rdata['candidate'] as $hidcan)
+                	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
+                @endforeach
+            @endif
+        </form>
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
         @csrf
         <div class="col-md-12">
@@ -966,10 +1010,76 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
-	$('#printpreview').on('click',function(e){
+	function makeAjaxCall(url, formdata, callback) {
+		$.ajax({
+			type:'POST',
+			dataType:'json',
+			contentType: false,
+			processData: false,
+			data: formdata,
+			url:url,
+			success: function(data){
+				callback(data);				
+			}, 
+			error: function (xhr, ajaxOptions, thrownError) {
+				//alert(xhr.status);
+				//alert(thrownError);
+			}  
+		});  
+	}
+	//$('#printpreview').on('click',function(e){	
+	function submitData(){	
 		var formData = new FormData();
-		formData.append('order_id', orderid);
-	});
+		
+		var ch_datapos = [];
+		$('input[type="checkbox"][name="position[]"]:checked').each(function(){
+		  	ch_datapos.push($(this).attr('id'));
+		});
+		var ch_dataab = [];
+		$('input[type="checkbox"][name="agebracket[]"]:checked').each(function(){
+		  	ch_dataab.push($(this).attr('id'));
+		});
+		var ch_datato = [];
+		$('input[type="checkbox"][name="to[]"]:checked').each(function(){
+		  	ch_datato.push($(this).attr('id'));
+		});
+		var ch_dataciv = [];
+		$('input[type="checkbox"][name="civilstatus[]"]:checked').each(function(){
+		  	ch_dataciv.push($(this).attr('id'));
+		});
+		var ch_datagen = [];
+		$('input[type="checkbox"][name="gender[]"]:checked').each(function(){
+		  	ch_datagen.push($(this).attr('id'));
+		});
+		var ch_dataemp = [];
+		$('input[type="checkbox"][name="empstatus[]"]:checked').each(function(){
+		  	ch_dataemp.push($(this).attr('id'));
+		});
+		var ch_datacan = [];
+		$('input[type="checkbox"][name="candidate[]"]:checked').each(function(){
+		  	ch_datacan.push($(this).attr('id'));
+		});
+		
+		formData.append('selsurvey', $('#selsurvey').val());
+		formData.append('selagebracket', $('#selagebracket').val());
+		formData.append('selposition', $('#selposition').val());
+		formData.append('selcivil', $('#selcivil').val());
+		formData.append('selgender', $('#selgender').val());
+		formData.append('selemp', $('#selemp').val());
+		formData.append('selcandidate', $('#selcandidate').val());
+		
+		formData.append('position', ch_datapos);
+		formData.append('agebracket', ch_dataab);
+		formData.append('to', ch_datato);
+		formData.append('civilstatus', ch_dataciv);
+		formData.append('gender', ch_datagen);
+		formData.append('empstatus', ch_dataemp);
+		formData.append('candidate', ch_datacan);
+		
+		makeAjaxCall( "{{ route('announcement.store') }}", formData, function(data) {
+			console.log("callback response",data);
+		});
+	}
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
 	});
