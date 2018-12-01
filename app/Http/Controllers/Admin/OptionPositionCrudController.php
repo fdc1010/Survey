@@ -79,7 +79,7 @@ class OptionPositionCrudController extends CrudController
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
-					'name'             => 'option_id', // the method that defines the relationship in your Model
+					'name'             => 'options', // the method that defines the relationship in your Model
 					'entity'           => 'options', // the method that defines the relationship in your Model
 					'entity_secondary' => 'positions', // the method that defines the relationship in your Model
 					'attribute'        => 'option', // foreign key attribute that is shown to user
@@ -89,7 +89,7 @@ class OptionPositionCrudController extends CrudController
 				],
 				'secondary' => [
 					'label'          => 'Positions',
-					'name'           => 'position_id', // the method that defines the relationship in your Model
+					'name'           => 'positions', // the method that defines the relationship in your Model
 					'entity'         => 'positions', // the method that defines the relationship in your Model
 					'entity_primary' => 'options', // the method that defines the relationship in your Model
 					'attribute'      => 'name', // foreign key attribute that is shown to user
