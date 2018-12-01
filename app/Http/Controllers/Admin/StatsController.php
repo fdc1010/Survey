@@ -63,9 +63,10 @@ class StatsController extends Controller
             ->setOption('margin-top', 10)
             ->setOption('margin-left', 10)
             ->setOption('margin-right', 10)
-            ->setOption('margin-bottom', 15)		
+            ->setOption('margin-bottom', 15)
+			->setOption('--orientation', 15);	
 			//->setOption('zoom', 1.33)
-			->setOption('enable-smart-shrinking',true);
+			//->setOption('enable-smart-shrinking',true);
 			//->setOption('enable-smart-width',true)
 			//->setOption('page-width', '21.59cm')
 			//->setOption('page-height', '33.02cm')
