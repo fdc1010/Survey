@@ -60,7 +60,8 @@ class OptionQualityCrudController extends CrudController
 			'name' => 'positions', 
 			'entity' => 'position',
 			'attribute' => 'name', 
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\PositionCandidate",
+			'fake'=>true
 		]);
 		
         // add asterisk for fields that are required in OptionQualityRequest
