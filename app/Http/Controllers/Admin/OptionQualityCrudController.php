@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use App\Models\OptionPosition;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\OptionQualityRequest as StoreRequest;
 use App\Http\Requests\OptionQualityRequest as UpdateRequest;
@@ -74,6 +74,14 @@ class OptionQualityCrudController extends CrudController
         $redirect_location = $this->storeCrud($request); //parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
+		$options = $this->crud->entry->position_id;
+		foreach($options as $posid){
+			$optionquality = OptionPosition::create([
+				'position_id' => $posid,
+				'option_id' => $optid
+			]);			
+		}
         return $redirect_location;
     }
 
