@@ -541,6 +541,7 @@
                 </div>
             </div>            
         </div>
+        {{ $rdata['hidincgraph'] }}
         @if($rdata['hidincgraph'])
         <div class="row">
     	<div class="col-md-6">
@@ -621,8 +622,9 @@
                 <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
-        @endif
+       
     </div>
+     @endif
     </div>
 	 	  
     </section>
