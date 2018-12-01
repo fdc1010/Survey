@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\cr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App;
+use PDF;
 
 class StatsController extends Controller
 {
@@ -83,7 +84,7 @@ class StatsController extends Controller
      * @param  \App\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function show(cr $cr)
+    public function show(Request $request)
     {
         //
     }
@@ -94,7 +95,7 @@ class StatsController extends Controller
      * @param  \App\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function edit(cr $cr)
+    public function edit(Request $request)
     {
         //
     }
@@ -106,7 +107,7 @@ class StatsController extends Controller
      * @param  \App\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cr $cr)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -117,7 +118,7 @@ class StatsController extends Controller
      * @param  \App\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cr $cr)
+    public function destroy(Request $request)
     {
         //
     }
