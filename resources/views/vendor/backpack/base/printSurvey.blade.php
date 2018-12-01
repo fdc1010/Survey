@@ -39,12 +39,9 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
     <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="hold-transition {{ config('backpack.base.skin') }}">
     <!-- Site wrapper -->
     <div class="wrapper">
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Main content -->
         <section class="content">
 
           @php
@@ -616,13 +613,9 @@
         </div>
     </div>
 		  
-        </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
-
-    </div>
-    <!-- ./wrapper -->
+    </section>
+</div>
+<!-- ./wrapper -->
 
     <!-- jQuery 2.2.3 -->
     <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery/dist/jquery.min.js"></script>
