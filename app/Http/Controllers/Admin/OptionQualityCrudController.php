@@ -74,7 +74,7 @@ class OptionQualityCrudController extends CrudController
         $redirect_location = $this->storeCrud($request); //parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		dd($this->crud->entry);
+		//dd($this->crud->entry);
 		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->positions;
 		foreach($options as $posid){
