@@ -1029,6 +1029,7 @@
 $(document).ready(function ($) {
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).val());
+		console.log($(this).val());
 	});
 	$('#checkprintGender').on('change',function(e){
 		$('#hidincgen').val($(this).val());
