@@ -27,6 +27,7 @@ class OptionQualityRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'option_id' => 'required|unique:option_qualities,option_id',
         ];
     }
 
@@ -38,7 +39,7 @@ class OptionQualityRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'option_id'
         ];
     }
 
@@ -50,7 +51,7 @@ class OptionQualityRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'option_id.unique' => 'Option already exists!'
         ];
     }
 }

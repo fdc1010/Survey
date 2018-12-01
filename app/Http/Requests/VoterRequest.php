@@ -61,7 +61,7 @@ class VoterRequest extends FormRequest
     {
         return [
             'work.required_if'=>'The work field is required when employment status is Employed.',
-			'gender_id'=>'The gender field is required.'
+			'gender_id.required'=>'The gender field is required.'
         ];
     }
 }
