@@ -145,12 +145,8 @@
             }
         }
         
-        if(!empty($rdata['hidposition'])){
-        	$qualities = App\Models\OptionPosition::with('options','positions')
-                                                        ->whereIn('position_id',$rdata['hidposition'])->get();
-   		}else{
-        	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
-        }
+        $qualities = App\Models\OptionQuality::with('options')->get();
+        
         $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
         if(!empty($rdata['hidposition']) && empty($rdata['hidselcandidate'])){
             $positions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['hidposition'])->get();
