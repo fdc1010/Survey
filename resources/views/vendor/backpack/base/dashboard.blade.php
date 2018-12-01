@@ -162,7 +162,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5"> 
-                                    <a href="#"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                                    <a href="#" id="printpreview"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                                 </div>
                                 <div class="col-md-1">
                                 	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
@@ -966,6 +966,10 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
+	$('#printpreview').on('click',function(e){
+		var formData = new FormData();
+		formData.append('order_id', orderid);
+	});
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
 	});
