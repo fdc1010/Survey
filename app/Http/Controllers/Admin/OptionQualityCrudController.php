@@ -80,7 +80,7 @@ class OptionQualityCrudController extends CrudController
 		foreach($options as $posid){
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
-				'option_id' => $optid
+				'option_id' => $oqid
 			]);			
 		}
         return $redirect_location;
@@ -99,7 +99,7 @@ class OptionQualityCrudController extends CrudController
 		foreach($options as $posid){
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
-				'option_id' => $optid
+				'option_id' => $oqid
 			]);			
 		}
         return $redirect_location;
