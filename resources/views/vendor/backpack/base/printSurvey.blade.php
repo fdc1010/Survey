@@ -38,11 +38,12 @@
 			.element-that-contains-table {
 				overflow: visible !important;
 			}
-		}
+		}*/
 		.contentBlock, div, h2, h3, p { 
 			display:block ! important; 
-			page-break-inside:avoid ! important; 
-		}*/
+			/*page-break-inside:avoid ! important; */
+			page-break-before:always !important;
+		}
     </style>
 </head>
 <body class="hold-transition {{ config('backpack.base.skin') }}">
