@@ -176,7 +176,7 @@
         }
     @endphp
     <div class="row">    	
-    	<div class="col-md-3">
+    	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -221,7 +221,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-3">
+    	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -232,7 +232,7 @@
                 <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -286,7 +286,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -297,7 +297,7 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -354,7 +354,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -365,7 +365,7 @@
                 <div class="box-body"><div id="chartagebracket"></div></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -417,7 +417,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -428,7 +428,7 @@
                 <div class="box-body"><div id="chartcivil"></div></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -480,7 +480,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -493,7 +493,7 @@
         </div>     
     </div>
     <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -545,7 +545,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <div class="col-md-12">                      
@@ -557,7 +557,7 @@
                 </div>
             </div>
         
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <div class="col-md-12">                      
@@ -599,7 +599,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <div class="col-md-12">                      
