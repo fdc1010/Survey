@@ -75,7 +75,7 @@ class OptionPositionCrudController extends CrudController
 			'label'             => 'Candidate Qualities',
 			'field_unique_name' => 'option_positions',
 			'type'              => 'checklist_dependency',
-			'name'              => 'option_id_and_position_id', // the methods that defines the relationship in your Model
+			'name'              => 'optionspositions', // the methods that defines the relationship in your Model
 			'subfields'         => [
 				'primary' => [
 					'label'            => 'Qualities',
