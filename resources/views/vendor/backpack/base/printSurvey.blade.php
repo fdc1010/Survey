@@ -221,17 +221,7 @@
                 </div>
             </div>
         </div>
-    	<div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart (Summary)</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chart"></div></div>
-            </div>
-        </div>
+    	
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -286,17 +276,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Chart Tally by Gender</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartgender"></div></div>
-            </div>
-        </div>
+        
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -354,18 +334,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartagebracket"></div></div>
-            </div>
-        </div>
-        <div class="col-md-12">
+        
+        <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -417,17 +387,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Civil Status</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartcivil"></div></div>
-            </div>
-        </div>
+        
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -480,18 +440,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Employment Status</div>                	                        	
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartemp"></div></div>
-            </div>
-        </div>     
-    </div>
+        
     <div class="row">
     	<div class="col-md-12">
             <div class="box box-default">
@@ -545,17 +494,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <div class="col-md-12">                      
-                                <div class="box-title">Candidate Qualities</div>                	                        	
-                        </div>
-                    </div>
-    
-                    <div class="box-body"><div id="chartqualities"></div></div>
-                </div>
-            </div>
+            
         
             <div class="col-md-12">
                 <div class="box box-default">
@@ -599,17 +538,84 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <div class="col-md-12">                      
-                                <div class="box-title">Concerns Per Barangay</div>                	                        	
-                        </div>
-                    </div>
-    
-                    <div class="box-body"><div id="chartproblem"></div></div>
-                </div>
-            </div>
+              <div class="col-md-6">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">Main Chart (Summary)</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chart"></div></div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">Chart Tally by Gender</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chartgender"></div></div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">By Age Bracket</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chartagebracket"></div></div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">By Civil Status</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chartcivil"></div></div>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="box box-default">
+                      <div class="box-header with-border">
+                          <div class="col-md-12">                      
+                                  <div class="box-title">By Employment Status</div>                	                        	
+                          </div>
+                      </div>
+      
+                      <div class="box-body"><div id="chartemp"></div></div>
+                  </div>
+              </div>     
+          </div>
+          <div class="col-md-12">
+              <div class="box box-default">
+                  <div class="box-header with-border">
+                      <div class="col-md-12">                      
+                              <div class="box-title">Candidate Qualities</div>                	                        	
+                      </div>
+                  </div>
+        
+                  <div class="box-body"><div id="chartqualities"></div></div>
+              </div>
+          </div>
+          <div class="col-md-12">
+              <div class="box box-default">
+                  <div class="box-header with-border">
+                      <div class="col-md-12">                      
+                              <div class="box-title">Concerns Per Barangay</div>                	                        	
+                      </div>
+                  </div>
+  
+                  <div class="box-body"><div id="chartproblem"></div></div>
+              </div>
+          </div>
         </div>
     </div>
 		  
