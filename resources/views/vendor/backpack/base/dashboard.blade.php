@@ -106,13 +106,8 @@
             	$empstatuses = App\Models\EmploymentStatus::all(); 
             }
         }
+        $qualities = App\Models\OptionQuality::with('options')->get(); 
         
-        if(!empty($rdata['position'])){
-        	$qualities = App\Models\OptionPosition::with('options','positions')            											
-                                                        ->whereIn('position_id',$rdata['position'])->get();
-   		}else{
-        	$qualities = App\Models\OptionPosition::with('options','positions')->where('position_id',$surveypos)->get();
-        }
         $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
