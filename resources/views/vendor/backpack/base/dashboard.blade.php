@@ -1024,6 +1024,9 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
+	$('#printpreview').on('click',function(e){
+		$('#my_formprint').submit();
+	});
 	$('#checkAllPosition').on('change',function(e){
 		$("input[type='checkbox'][name='position[]']").prop('checked',$(this).is(":checked"));
 	});
