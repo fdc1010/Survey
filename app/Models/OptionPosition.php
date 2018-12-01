@@ -26,11 +26,11 @@ class OptionPosition extends Model
         'extras' => 'array','extras_2'=>'array'
     ];
 	protected $appends = ['option_selection','position_selection'];
-	/*protected $casts = [
+	protected $casts = [
         'option_id' => 'array',
 		'position_id' => 'array'
     ];
-		
+	/*	
 	public function options()
     {
         return $this->hasMany('App\Models\QuestionOption','option_positions','option_id','position_id');
