@@ -76,7 +76,7 @@ class OptionQualityCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		dd($this->crud->entry);
 		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->position_id;
+		$options = $this->crud->entry->positions;
 		foreach($options as $posid){
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
@@ -95,7 +95,7 @@ class OptionQualityCrudController extends CrudController
 		
 		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
 		OptionPosition::where('option_id',$oqid)->delete();
-		$options = $this->crud->entry->position_id;
+		$options = $this->crud->entry->positions;
 		foreach($options as $posid){
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
