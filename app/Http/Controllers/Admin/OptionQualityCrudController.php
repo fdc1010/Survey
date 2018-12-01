@@ -58,7 +58,7 @@ class OptionQualityCrudController extends CrudController
 			'entity' => 'optionpositions',
 			'attribute' => 'option', 
 			'model' => "App\Models\PositionCandidate", 
-			//'pivot' => true
+			'pivot' => false
 		]);
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
