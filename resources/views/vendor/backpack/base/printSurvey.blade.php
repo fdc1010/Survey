@@ -540,9 +540,8 @@
                     </div>
                 </div>
             </div>            
-        </div>
-        {{ $rdata['hidincgraph'] }}
-        @if($rdata['hidincgraph'])
+        </div>        
+        @if($rdata['hidincgraph']==true)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
