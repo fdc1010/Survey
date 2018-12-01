@@ -1076,7 +1076,7 @@ $(document).ready(function ($) {
 		formData.append('empstatus', ch_dataemp);
 		formData.append('candidate', ch_datacan);
 		
-		makeAjaxCall( "{{ route('stat') }}", formData, function(data) {
+		makeAjaxCall( "{{ URL('stat') }}", formData, function(data) {
 			console.log("callback response",data);
 		});
 	}*/
