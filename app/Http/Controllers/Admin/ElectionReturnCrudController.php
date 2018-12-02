@@ -35,10 +35,12 @@ class ElectionReturnCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         //$this->crud->setFromDb();
 		$this->crud->addColumn([
-            'name' => 'precinct_id',			
+            'name' => 'precinct_id',
+            'type' => 'select',
             'label' => 'Precinct',
-            'type' => 'model_function',
-			'function_name' => 'getPrecinct'
+			'entity' => 'precinct', // the relationship name in your Model
+			'attribute' => 'precinct_info', // attribute on Article that is shown to admin
+			'model' => "App\Models\Precinct"
 	    ])->makeFirstColumn();
 		$this->crud->addColumn([
             'name' => 'election_id',
