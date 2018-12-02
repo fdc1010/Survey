@@ -14,13 +14,13 @@
 
 @section('content')
 	@php
-    	$showGraph = !empty($rdata['checkprintGraph'])?false:true;
-        $showGender = !empty($rdata['checkprintGender'])?false:true;
-        $showAgeBracket = !empty($rdata['checkprintAge'])?false:true;
-        $showCivil = !empty($rdata['checkprintCivil'])?false:true;
-        $showEmployment = !empty($rdata['checkprintEmp'])?false:true;
-        $showProblem = !empty($rdata['checkprintProb'])?false:true;
-        $showQuality = !empty($rdata['checkprintCanQ'])?false:true;
+    	$showGraph = !empty($rdata['checkprintGraph']);
+        $showGender = !empty($rdata['checkprintGender']);
+        $showAgeBracket = !empty($rdata['checkprintAge']);
+        $showCivil = !empty($rdata['checkprintCivil']);
+        $showEmployment = !empty($rdata['checkprintEmp']);
+        $showProblem = !empty($rdata['checkprintProb']);
+        $showQuality = !empty($rdata['checkprintCanQ']);
     
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
