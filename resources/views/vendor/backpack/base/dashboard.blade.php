@@ -20,27 +20,27 @@
                 $showGraph = true;
             else
             	$showGraph = false;
-            if(!empty($rdata['checkprintGraph']))
+            if(!empty($rdata['checkprintGender']))
                 $showGender = true;
             else
             	$showGender = false;
-            if(!empty($rdata['checkprintGraph']))	
+            if(!empty($rdata['checkprintAge']))	
                 $showAgeBracket = true;
             else
             	$showAgeBracket = false;
-            if(!empty($rdata['checkprintGraph']))	
+            if(!empty($rdata['checkprintCivil']))	
                 $showCivil = true;
             else
             	$showCivil = false;
-            if(!empty($rdata['checkprintGraph']))	
+            if(!empty($rdata['checkprintEmp']))	
                 $showEmployment = true;
             else
             	$showEmployment = false;
-            if(!empty($rdata['checkprintGraph']))	
+            if(!empty($rdata['checkprintProb']))	
                 $showProblem = true;
             else
             	$showProblem = false;
-            if(!empty($rdata['checkprintGraph']))	
+            if(!empty($rdata['checkprintCanQ']))	
                 $showQuality = true;
             else
             	$showQuality = false;
