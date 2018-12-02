@@ -54,7 +54,7 @@
           @php
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
-        
+        print_r($rdata['hidselsurvey']);
     	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1; 
         
         $tallyagebrackets=[];
