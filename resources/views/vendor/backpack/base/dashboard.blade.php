@@ -237,9 +237,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title"> 
-                            	
-                            </div>                	                        	
+                      		<div class="box-title">Survey & Print Preview Options</div>                	                        	
                     </div>
                 </div>
 				<div class="box-body">
