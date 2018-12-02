@@ -241,6 +241,7 @@
                 @endforeach
             @endif    
             <input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ (!empty($rdata['selsurveycompare'])?$rdata['selsurveycompare']:1) }}" />
+            <input type="hidden" name="hidselelection" id="hidselelection" value="{{ (!empty($rdata['selelection'])?$rdata['selelection']:"") }}" />
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="1" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="1" />
             <input type="hidden" name="hidincageb" id="hidincageb" value="1" />
