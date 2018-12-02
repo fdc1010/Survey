@@ -144,7 +144,7 @@
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}" target="_blank">
         	@csrf
             @if(!empty($rdata['selsurvey']))
-            	<input type="hidden" name="hidselsurvey" value="{{ $rdata['selsurvey'] }}" />
+            	<input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ $rdata['selsurvey'] }}" />
             @endif
             @if(!empty($rdata['selagebracket']))
             <input type="hidden" name="hidselagebracket" value="{{ $rdata['selagebracket'] }}" />
@@ -1050,7 +1050,6 @@ $(document).ready(function ($) {
 	
 	$('#selsurvey').on('change',function(e){
 		$('#hidselsurvey').val($(this).val());
-		console.log($(this).val());
 	});
 	$('#selsurveycompare').on('change',function(e){
 		$('#hidselsurveycompare').val($(this).val());
