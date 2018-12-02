@@ -213,7 +213,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Include in Print Preview</div>                	                        	
+                      		<div class="box-title">Includes in Print Preview</div>                	                        	
                     </div>
                 </div>
 
