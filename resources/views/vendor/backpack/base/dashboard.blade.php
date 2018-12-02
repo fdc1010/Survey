@@ -1050,6 +1050,7 @@ $(document).ready(function ($) {
 	
 	$('#selsurvey').on('change',function(e){
 		$('#hidselsurvey').val($(this).val());
+		console.log($(this).val());
 	});
 	$('#selsurveycompare').on('change',function(e){
 		$('#hidselsurveycompare').val($(this).val());
