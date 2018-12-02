@@ -256,7 +256,7 @@
                         </select>
                     </div>
                     <div class="col-md-3"> 
-                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> <strong>Print Preview</strong></a>                                    
+                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>                                    
                     </div>
                     <div class="col-md-1"> 
                         <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
