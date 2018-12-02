@@ -14,6 +14,14 @@
 
 @section('content')
 	@php
+    	$showGraph = !empty($rdata['checkprintGraph'])?:true;
+        $showGender = !empty($rdata['checkprintGender'])?:true;
+        $showAgeBracket = !empty($rdata['checkprintAge'])?:true;
+        $showCivil = !empty($rdata['checkprintCivil'])?:true;
+        $showEmployment = !empty($rdata['checkprintEmp'])?:true;
+        $showProblem = !empty($rdata['checkprintProb'])?:true;
+        $showQuality = !empty($rdata['checkprintCanQ'])?:true;
+    
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
@@ -673,7 +681,7 @@
             </div>
         </div>
         @endif
-    	@if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
+    	@if($showGender)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -785,7 +793,7 @@
         </div>
         @endif
        @endif
-       @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
+       @if($showCivil)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -893,7 +901,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
+        @if($showEmployment)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1005,7 +1013,7 @@
    
     <div class="row">
     	
-        @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
+        @if($showAgeBracket)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1123,7 +1131,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
+        @if($showQuality)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1231,7 +1239,7 @@
             </div>
             @endif
             @endif
-        	@if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
+        	@if($showProblem)
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -1348,7 +1356,7 @@
             </div>
         </div>
         @endif
-        @if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
+        @if($showGender)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1374,7 +1382,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
+        @if($showCivil)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1400,7 +1408,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
+        @if($showEmployment)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1426,7 +1434,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
+        @if($showAgeBracket)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1452,7 +1460,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
+        @if($showQuality)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1478,7 +1486,7 @@
         </div>
     	@endif
     	@endif
-        @if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
+        @if($showProblem)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1875,7 +1883,7 @@ $(document).ready(function ($) {
         }
       });
 	  @endif
-      @if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
+      @if($showGender)
 	  var chartgender = c3.generate({
 		bindto: '#chartgender',				
         data: {
@@ -1959,7 +1967,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
+      @if($showAgeBracket)
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket',				
         data: {
@@ -2043,7 +2051,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
+      @if($showCivil)
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil',				
         data: {
@@ -2127,7 +2135,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
+      @if($showEmployment)
 	  var chartemp = c3.generate({
 		bindto: '#chartemp',				
         data: {
@@ -2211,7 +2219,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
+      @if($showQuality)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -2295,7 +2303,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
+      @if($showProblem)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
