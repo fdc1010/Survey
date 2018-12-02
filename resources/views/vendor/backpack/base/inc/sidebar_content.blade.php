@@ -57,6 +57,7 @@
             <li><a href='{{ backpack_url('optionquality') }}'><i class='fa fa-check-square-o'></i> <span>Option Tag Qualities</span></a></li>
   		</ul>
     </li>
+    <li><a href='{{ backpack_url('electionreturn') }}'><i class='fa fa-bar-chart'></i> <span>Election Returns</span></a></li>
   </ul>
 </li>
 <li class="treeview">
