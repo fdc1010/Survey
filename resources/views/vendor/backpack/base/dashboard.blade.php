@@ -211,7 +211,7 @@
             <input type="hidden" name="hidincprob" id="hidincprob" value="0" />
             <input type="hidden" name="hidinccanq" id="hidinccanq" value="0" />
         </form>
-    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
+    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}" enctype="multipart/form-data">
         @csrf
         <div class="col-md-12" id="printdetails">
             <div class="box box-default">
