@@ -20,7 +20,7 @@
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
         
-        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " .($rdata['selsurvey'] != $rdata['selsurveycompare']);
+        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " . (!empty($tallysurvey!=$tallysurveycompare));
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
         $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         
