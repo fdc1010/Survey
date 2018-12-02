@@ -51,7 +51,46 @@
     <div class="wrapper">
         <section class="content">
 
-          @php
+        @php
+        if(!empty($rdata['hidselsurvey'])){
+            if(!empty($rdata['hidincgraph']))
+                $showGraph = true;
+            else
+            	$showGraph = false;
+            if(!empty($rdata['hidincgen']))
+                $showGender = true;
+            else
+            	$showGender = false;
+            if(!empty($rdata['hidincageb']))	
+                $showAgeBracket = true;
+            else
+            	$showAgeBracket = false;
+            if(!empty($rdata['hidincciv']))	
+                $showCivil = true;
+            else
+            	$showCivil = false;
+            if(!empty($rdata['hidincemp']))	
+                $showEmployment = true;
+            else
+            	$showEmployment = false;
+            if(!empty($rdata['hidincprob']))	
+                $showProblem = true;
+            else
+            	$showProblem = false;
+            if(!empty($rdata['hidinccanq']))	
+                $showQuality = true;
+            else
+            	$showQuality = false;
+    	}else{
+        	$showGraph = true;
+            $showGender = true;
+            $showAgeBracket = true;
+            $showCivil = true;
+            $showEmployment = true;
+            $showProblem = true;
+            $showQuality = true;
+        }
+
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
@@ -273,7 +312,7 @@
             </div>
         </div>
         @endif
-    	@if($rdata['hidincgen']=="true")
+    	@if($showGender)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -385,7 +424,7 @@
         </div>
         @endif
        @endif
-       @if($rdata['hidincciv']=="true")
+       @if($showCivil)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -493,7 +532,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincemp']=="true")
+        @if($showEmployment)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -605,7 +644,7 @@
    
     <div class="row">
     	
-        @if($rdata['hidincageb']=="true")
+        @if($showAgeBracket)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -723,7 +762,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidinccanq']=="true")
+        @if($showQuality)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -831,7 +870,7 @@
             </div>
             @endif
             @endif
-        	@if($rdata['hidincprob']=="true")
+        	@if($showProblem)
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -921,7 +960,7 @@
             @endif          
         </div>     
            
-        @if($rdata['hidincgraph']=="true")
+        @if($showGraph)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -948,7 +987,7 @@
             </div>
         </div>
         @endif
-        @if($rdata['hidincgen']=="true")
+        @if($showGender)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -974,7 +1013,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincciv']=="true")
+        @if($showCivil)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1000,7 +1039,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincemp']=="true")
+        @if($showEmployment)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1026,7 +1065,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincageb']=="true")
+        @if($showAgeBracket)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1052,7 +1091,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidinccanq']=="true")
+        @if($showQuality)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1078,7 +1117,7 @@
         </div>
     	@endif
     	@endif
-        @if($rdata['hidincprob']=="true")
+        @if($showProblem)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1122,7 +1161,7 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 	$(document).ready(function ($) {
-	@if($rdata['hidincgraph']=="true")
+	@if($showGraph)
 	Function.prototype.bind = Function.prototype.bind || function (thisp) {
 		var fn = this;
 		return function () {
@@ -1207,7 +1246,7 @@
         }
       });
 	  @endif
-      @if($rdata['hidincgen']=="true")
+      @if($showGender)
 	  var chartgender = c3.generate({
 		bindto: '#chartgender',				
         data: {
@@ -1291,7 +1330,7 @@
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincageb']=="true")
+      @if($showAgeBracket)
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket',				
         data: {
@@ -1375,7 +1414,7 @@
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincciv']=="true")
+      @if($showCivil)
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil',				
         data: {
@@ -1459,7 +1498,7 @@
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincemp']=="true")
+      @if($showEmployment)
 	  var chartemp = c3.generate({
 		bindto: '#chartemp',				
         data: {
@@ -1543,7 +1582,7 @@
       });
 	  @endif
 	  @endif
-      @if($rdata['hidinccanq']=="true")
+      @if($showQuality)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -1627,7 +1666,7 @@
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincprob']=="true")
+      @if($showProblem)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
