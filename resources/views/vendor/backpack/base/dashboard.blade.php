@@ -17,31 +17,31 @@
     	
         if(!empty($rdata['selsurvey'])){
             if(!empty($rdata['checkprintGraph']))
-                $showGraph = !empty($rdata['checkprintGraph']);
+                $showGraph = true;
             else
             	$showGraph = false;
             if(!empty($rdata['checkprintGraph']))
-                $showGender = !empty($rdata['checkprintGender']);
+                $showGender = true;
             else
             	$showGender = false;
             if(!empty($rdata['checkprintGraph']))	
-                $showAgeBracket = !empty($rdata['checkprintAge']);
+                $showAgeBracket = true;
             else
             	$showAgeBracket = false;
             if(!empty($rdata['checkprintGraph']))	
-                $showCivil = !empty($rdata['checkprintCivil']);
+                $showCivil = true;
             else
             	$showCivil = false;
             if(!empty($rdata['checkprintGraph']))	
-                $showEmployment = !empty($rdata['checkprintEmp']);
+                $showEmployment = true;
             else
             	$showEmployment = false;
             if(!empty($rdata['checkprintGraph']))	
-                $showProblem = !empty($rdata['checkprintProb']);
+                $showProblem = true;
             else
             	$showProblem = false;
             if(!empty($rdata['checkprintGraph']))	
-                $showQuality = !empty($rdata['checkprintCanQ']);
+                $showQuality = true;
             else
             	$showQuality = false;
     	}else{
