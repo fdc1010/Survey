@@ -299,7 +299,7 @@
                         </select>
                         /
                         <select name="selelection" id="selelection">
-                        	<option value="">Election</option>
+                        	<option value="">--Select Election--</option>
                         @foreach($elections as $election)	
                             <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
