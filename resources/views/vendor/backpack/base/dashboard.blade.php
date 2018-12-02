@@ -20,7 +20,7 @@
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
         $showcomparison = !empty($compareresults)?$compareresults:false;
-        echo !empty($showcomparison);
+        echo $showcomparison==1;
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
         $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         
