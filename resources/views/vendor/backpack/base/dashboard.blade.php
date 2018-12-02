@@ -246,11 +246,9 @@
                                     @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-3"> 
+                                <div class="col-md-4"> 
                                     <a href="#" id="printpreview"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
-                                </div>
-                                <div class="col-md-1"> 
-                                	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
+                                    <a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                                 <div class="col-md-1">Compare:</div>
                                 <div class="col-md-3"> 
