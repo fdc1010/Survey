@@ -219,7 +219,6 @@
                       		<div class="box-title">Include in Print Preview</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
