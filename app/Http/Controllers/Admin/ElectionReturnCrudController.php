@@ -24,7 +24,7 @@ class ElectionReturnCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\ElectionReturn');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/electionreturn');
-        $this->crud->setEntityNameStrings('electionreturn', 'election_returns');
+        $this->crud->setEntityNameStrings('election return', 'Election Returns');
 
         /*
         |--------------------------------------------------------------------------
