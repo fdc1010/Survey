@@ -239,7 +239,7 @@
                     <div class="col-md-12">                      
                       		<div class="box-title"> 
                             	<div class="col-md-1">Survey:</div>
-                            	<div class="col-md-2"> 
+                            	<div class="col-md-3"> 
                                     <select name="selsurvey" id="selsurvey">
                                     @foreach($surveydetails as $surveydetail)	
                                         <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
@@ -253,7 +253,7 @@
                                 	<a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
                                 </div>
                                 <div class="col-md-2">Compare:</div>
-                                <div class="col-md-2"> 
+                                <div class="col-md-3"> 
                                     <select name="selsurveycompare" id="selsurveycompare">
                                     @foreach($surveydetails as $surveydetail)	
                                         <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
