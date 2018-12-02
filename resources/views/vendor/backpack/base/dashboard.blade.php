@@ -240,13 +240,13 @@
                 @endforeach
             @endif    
             <input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ (!empty($rdata['selsurveycompare'])?$rdata['selsurveycompare']:1) }}" />
-            <input type="hidden" name="hidincgraph" id="hidincgraph" value="0" />
-            <input type="hidden" name="hidincgen" id="hidincgen" value="0" />
-            <input type="hidden" name="hidincageb" id="hidincageb" value="0" />
-            <input type="hidden" name="hidincciv" id="hidincciv" value="0" />
-            <input type="hidden" name="hidincemp" id="hidincemp" value="0" />
-            <input type="hidden" name="hidincprob" id="hidincprob" value="0" />
-            <input type="hidden" name="hidinccanq" id="hidinccanq" value="0" />
+            <input type="hidden" name="hidincgraph" id="hidincgraph" value="1" />
+            <input type="hidden" name="hidincgen" id="hidincgen" value="1" />
+            <input type="hidden" name="hidincageb" id="hidincageb" value="1" />
+            <input type="hidden" name="hidincciv" id="hidincciv" value="1" />
+            <input type="hidden" name="hidincemp" id="hidincemp" value="1" />
+            <input type="hidden" name="hidincprob" id="hidincprob" value="1" />
+            <input type="hidden" name="hidinccanq" id="hidinccanq" value="1" />
         </form>
     	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
         @csrf

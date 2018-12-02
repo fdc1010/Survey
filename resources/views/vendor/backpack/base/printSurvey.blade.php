@@ -53,31 +53,31 @@
 
         @php
         if(!empty($rdata['hidselsurvey'])){
-            if(!empty($rdata['hidincgraph']))
+            if(!empty($rdata['hidincgraph']) && !is_numeric($rdata['hidincgraph']))
                 $showGraph = true;
             else
             	$showGraph = false;
-            if(!empty($rdata['hidincgen']))
+            if(!empty($rdata['hidincgen']) && !is_numeric($rdata['hidincgen']))
                 $showGender = true;
             else
             	$showGender = false;
-            if(!empty($rdata['hidincageb']))	
+            if(!empty($rdata['hidincageb']) && !is_numeric($rdata['hidincageb']))	
                 $showAgeBracket = true;
             else
             	$showAgeBracket = false;
-            if(!empty($rdata['hidincciv']))	
+            if(!empty($rdata['hidincciv']) && !is_numeric($rdata['hidincciv']))	
                 $showCivil = true;
             else
             	$showCivil = false;
-            if(!empty($rdata['hidincemp']))	
+            if(!empty($rdata['hidincemp']) && !is_numeric($rdata['hidincemp']))	
                 $showEmployment = true;
             else
             	$showEmployment = false;
-            if(!empty($rdata['hidincprob']))	
+            if(!empty($rdata['hidincprob']) && !is_numeric($rdata['hidincprob']))	
                 $showProblem = true;
             else
             	$showProblem = false;
-            if(!empty($rdata['hidinccanq']))	
+            if(!empty($rdata['hidinccanq']) && !is_numeric($rdata['hidinccanq']))	
                 $showQuality = true;
             else
             	$showQuality = false;
