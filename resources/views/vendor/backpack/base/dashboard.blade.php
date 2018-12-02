@@ -19,8 +19,8 @@
         
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
-        
-        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " . (!empty($tallysurvey!=$tallysurveycompare));
+        $compareresults = ($tallysurvey != $tallysurveycompare);
+        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " . $compareresults;
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
         $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         
@@ -628,7 +628,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if($compareresults)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
