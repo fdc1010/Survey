@@ -20,7 +20,7 @@
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
         
-        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " .($tallysurvey < $tallysurveycompare);
+        echo $tallysurvey . " " . $tallysurveycompare . " = " . is_numeric($tallysurvey) . " " . is_numeric($tallysurveycompare) . " " .($tallysurvey != $tallysurveycompare);
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
         $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         
@@ -211,7 +211,7 @@
             <input type="hidden" name="hidincprob" id="hidincprob" value="0" />
             <input type="hidden" name="hidinccanq" id="hidinccanq" value="0" />
         </form>
-    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}" enctype="multipart/form-data">
+    	<form method="post" id="my_form" action="{{ backpack_url('stats') }}">
         @csrf
         <div class="col-md-12" id="printdetails">
             <div class="box box-default">
