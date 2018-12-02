@@ -90,7 +90,12 @@
             $showProblem = true;
             $showQuality = true;
         }
-
+        $selinitelections = App\Models\Election::all();
+		if(!empty($rdata['hidselelection'])){	
+            $election = App\Models\Election::find($rdata['hidselelection']);
+        }else{
+        	$election = App\Models\Election::all();
+        }
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         

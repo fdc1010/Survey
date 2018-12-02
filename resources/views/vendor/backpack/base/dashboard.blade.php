@@ -90,7 +90,12 @@
         $selinitcivilstatuses = App\Models\CivilStatus::all();
         $selinitempstatuses = App\Models\EmploymentStatus::all(); 
         $problems = App\Models\OptionProblem::with('option')->get();
-        $elections = App\Models\Election::all();
+        $selinitelections = App\Models\Election::all();
+        if(!empty($rdata['selelection'])){	
+            $elections = App\Models\Election::find($rdata['selelection']);
+        }else{
+        	$elections = App\Models\Election::all();
+        }
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
             $tallygenders=$genders->pluck('id')->toArray();
@@ -301,7 +306,7 @@
                         /
                         <select name="selelection" id="selelection">
                         	<option value="">--Select Election--</option>
-                        @foreach($elections as $election)	
+                        @foreach($selinitelections as $election)	
                             <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
                         </select>
@@ -1584,12 +1589,16 @@ $(document).ready(function ($) {
 	$('#hidincemp').val($('#checkprintEmp').is(":checked"));
 	$('#hidincprob').val($('#checkprintProb').is(":checked"));
 	$('#hidinccanq').val($('#checkprintCanQ').is(":checked"));
+	$('#hidselelection').val($('#selelection').val());
 	
 	$('#selsurvey').on('change',function(e){
 		$('#hidselsurvey').val($(this).val());
 	});
 	$('#selsurveycompare').on('change',function(e){
 		$('#hidselsurveycompare').val($(this).val());
+	});
+	$('#selelection').on('change',function(e){
+		$('#hidselelection').val($(this).val());
 	});
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).is(":checked"));
