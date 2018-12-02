@@ -288,19 +288,19 @@
                         @foreach($surveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                         @endforeach
-                        </select>
-                        /
-                        <select name="selelection" id="selelection">
-                        @foreach($elections as $election)	
-                            <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
-                        @endforeach
-                        </select>
+                        </select>                        
                     </div>                    
                     <div class="col-md-1"><strong>Compare:</strong></div>
                     <div class="col-md-3"> 
                         <select name="selsurveycompare" id="selsurveycompare">
                         @foreach($surveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurveycompare'])&&$rdata['selsurveycompare']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                        @endforeach
+                        </select>
+                        /
+                        <select name="selelection" id="selelection">
+                        @foreach($elections as $election)	
+                            <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
                         </select>
                     </div>
