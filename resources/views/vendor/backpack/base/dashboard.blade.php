@@ -239,7 +239,7 @@
                     </div>
                 </div>
 				<div class="box-body">
-                	<div class="col-md-1">Survey:</div>
+                	<div class="col-md-1"><strong>Survey:</strong></div>
                     <div class="col-md-3"> 
                         <select name="selsurvey" id="selsurvey">
                         @foreach($surveydetails as $surveydetail)	
@@ -248,12 +248,12 @@
                         </select>
                     </div>
                     <div class="col-md-3"> 
-                        <a href="#" id="printpreview"><span class="fa fa-file-pdf-o"></span> Print Preview</a>                                    
+                        <a href="#" id="printpreview"><span class="fa fa-file-pdf-o"></span> <strong>Print Preview</strong></a>                                    
                     </div>
                     <div class="col-md-1"> 
-                        <a href="#" id="btn_printdetails"><span class="fa fa-plus" id="spanprintdetails"> </span></a>
+                        <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
                     </div>
-                    <div class="col-md-1">Compare:</div>
+                    <div class="col-md-1"><strong>Compare:</strong></div>
                     <div class="col-md-3"> 
                         <select name="selsurveycompare" id="selsurveycompare">
                         @foreach($surveydetails as $surveydetail)	
