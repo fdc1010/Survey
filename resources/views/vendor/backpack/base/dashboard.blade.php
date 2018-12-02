@@ -283,7 +283,7 @@
                 </div>
 				<div class="box-body">
                 	<div class="col-md-1"><strong>Survey:</strong></div>
-                    <div class="col-md-3"> 
+                    <div class="col-md-2"> 
                         <select name="selsurvey" id="selsurvey">
                         @foreach($surveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
@@ -291,7 +291,7 @@
                         </select>                        
                     </div>                    
                     <div class="col-md-1"><strong>Compare:</strong></div>
-                    <div class="col-md-3"> 
+                    <div class="col-md-4"> 
                         <select name="selsurveycompare" id="selsurveycompare">
                         @foreach($surveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurveycompare'])&&$rdata['selsurveycompare']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
