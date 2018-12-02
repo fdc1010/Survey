@@ -1584,6 +1584,48 @@
           },
         }
       });
+	  @if($tallysurvey!=$tallysurveycompare)
+	  var chartqualitiescompare = c3.generate({
+		bindto: '#chartqualitiescompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($qualities as $quality)
+				['{{ $quality->options->option }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyq[$candidate->id][$quality->option_id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @endif
 	  @endif
       @if($rdata['hidincprob']=="true")
 	  var chartproblem = c3.generate({

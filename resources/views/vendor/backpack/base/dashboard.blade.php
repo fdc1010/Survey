@@ -222,13 +222,13 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprint[]" value="1" checked="checked" /> Graphs</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprint[]" value="1" checked="checked" /> Gender</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprint[]" value="1" checked="checked" /> Age Bracket</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprint[]" value="1" checked="checked" /> Civil Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprint[]" value="1" checked="checked" /> Employment Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprint[]" value="1" checked="checked" /> Problems</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprint[]" value="1" checked="checked" /> Candidate Qualities</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprintGraph" class="checkprint[]" value="1" checked="checked" /> Graphs</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprintGender" class="checkprint[]" value="1" checked="checked" /> Gender</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprintAge" class="checkprint[]" value="1" checked="checked" /> Age Bracket</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprintCivil" class="checkprint[]" value="1" checked="checked" /> Civil Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprintEmp" class="checkprint[]" value="1" checked="checked" /> Employment Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprintProb" class="checkprint[]" value="1" checked="checked" /> Problems</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprintCanQ" class="checkprint[]" value="1" checked="checked" /> Candidate Qualities</label></div>
                         </div>
                     </div>
                 </div>
@@ -673,7 +673,7 @@
             </div>
         </div>
         @endif
-    	@if($rdata['hidincgen']=="true")
+    	@if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -785,7 +785,7 @@
         </div>
         @endif
        @endif
-       @if($rdata['hidincciv']=="true")
+       @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -893,7 +893,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincemp']=="true")
+        @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1005,7 +1005,7 @@
    
     <div class="row">
     	
-        @if($rdata['hidincageb']=="true")
+        @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1123,7 +1123,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidinccanq']=="true")
+        @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1231,7 +1231,7 @@
             </div>
             @endif
             @endif
-        	@if($rdata['hidincprob']=="true")
+        	@if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -1321,7 +1321,7 @@
             @endif          
         </div>     
            
-        @if($rdata['hidincgraph']=="true")
+        @if(!empty($rdata['hidincgraph']) && $rdata['hidincgraph']=="true")
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -1348,7 +1348,7 @@
             </div>
         </div>
         @endif
-        @if($rdata['hidincgen']=="true")
+        @if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1374,7 +1374,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincciv']=="true")
+        @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1400,7 +1400,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincemp']=="true")
+        @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1426,7 +1426,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidincageb']=="true")
+        @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1452,7 +1452,7 @@
         </div>
         @endif
         @endif
-        @if($rdata['hidinccanq']=="true")
+        @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1478,7 +1478,7 @@
         </div>
     	@endif
     	@endif
-        @if($rdata['hidincprob']=="true")
+        @if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1586,7 +1586,7 @@ $(document).ready(function ($) {
 		$("input[type='checkbox'][name='empstatus[]']").prop('checked',$(this).is(":checked"));
 	});
 	$('#checkAllPrint').on('change',function(e){
-		$("input[type='checkbox'][name='checkprint[]']").prop('checked',$(this).is(":checked"));		
+		$("input[type='checkbox'][class='checkprint[]']").prop('checked',$(this).is(":checked"));		
 		$('#hidincgraph').val($(this).is(":checked"));
 		$('#hidincgen').val($(this).is(":checked"));
 		$('#hidincageb').val($(this).is(":checked"));
@@ -1790,7 +1790,7 @@ $(document).ready(function ($) {
 		theme:"3d",
 		scrollbarPosition:"outside"
 	});
-	@if($rdata['hidincgraph']=="true")
+	@if(!empty($rdata['hidincgraph']) && $rdata['hidincgraph']=="true")
 	/*Function.prototype.bind = Function.prototype.bind || function (thisp) {
 		var fn = this;
 		return function () {
@@ -1875,7 +1875,7 @@ $(document).ready(function ($) {
         }
       });
 	  @endif
-      @if($rdata['hidincgen']=="true")
+      @if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
 	  var chartgender = c3.generate({
 		bindto: '#chartgender',				
         data: {
@@ -1959,7 +1959,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincageb']=="true")
+      @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket',				
         data: {
@@ -2043,7 +2043,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincciv']=="true")
+      @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil',				
         data: {
@@ -2127,7 +2127,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($rdata['hidincemp']=="true")
+      @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
 	  var chartemp = c3.generate({
 		bindto: '#chartemp',				
         data: {
@@ -2211,7 +2211,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($rdata['hidinccanq']=="true")
+      @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -2252,8 +2252,50 @@ $(document).ready(function ($) {
           },
         }
       });
+	  @if($tallysurvey!=$tallysurveycompare)
+	  var chartqualitiescompare = c3.generate({
+		bindto: '#chartqualitiescompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($qualities as $quality)
+				['{{ $quality->options->option }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyq[$candidate->id][$quality->option_id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
 	  @endif
-      @if($rdata['hidincprob']=="true")
+	  @endif
+      @if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
