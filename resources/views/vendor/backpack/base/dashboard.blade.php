@@ -143,9 +143,7 @@
     	
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}" target="_blank">
         	@csrf
-            @if(!empty($rdata['selsurvey']))
-            	<input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ $rdata['selsurvey'] }}" />
-            @endif
+            <input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:1) }}" />
             @if(!empty($rdata['selagebracket']))
             <input type="hidden" name="hidselagebracket" value="{{ $rdata['selagebracket'] }}" />
             @endif
@@ -199,9 +197,7 @@
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
             @endif    
-            @if(!empty($rdata['selsurveycompare']))
-            	<input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ $rdata['selsurveycompare'] }}" />
-            @endif  
+            <input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ (!empty($rdata['selsurveycompare'])?$rdata['selsurveycompare']:1) }}" />
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="0" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="0" />
             <input type="hidden" name="hidincageb" id="hidincageb" value="0" />
