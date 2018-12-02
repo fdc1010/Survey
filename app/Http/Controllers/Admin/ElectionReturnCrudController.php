@@ -86,7 +86,7 @@ class ElectionReturnCrudController extends CrudController
             'label' => 'Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\Candidate"
 	    ]);
 		$this->crud->addField([
             'name' => 'voter_id',
