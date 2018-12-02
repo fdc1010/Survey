@@ -1699,12 +1699,12 @@ $(document).ready(function ($) {
 			return value.length > 0;
 		}
 	});
-	/*$("#tblviewdetails").mCustomScrollbar({
+	$("#tblviewdetails").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
 		theme:"3d",
 		scrollbarPosition:"outside"
-	});*/
+	});
 	$("#tblvotes").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
