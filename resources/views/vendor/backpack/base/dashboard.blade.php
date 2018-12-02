@@ -198,8 +198,10 @@
             	@foreach($rdata['candidate'] as $hidcan)
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
-            @endif            
-            <input type="hidden" name="hidselsurveycompare"  id="hidselsurveycompare" value="1" />
+            @endif    
+            @if(!empty($rdata['selsurveycompare']))
+            	<input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ $rdata['selsurveycompare'] }}" />
+            @endif  
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="0" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="0" />
             <input type="hidden" name="hidincageb" id="hidincageb" value="0" />
