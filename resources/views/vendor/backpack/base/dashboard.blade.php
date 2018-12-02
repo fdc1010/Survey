@@ -237,7 +237,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title" style="border: 1px solid #00F;"> 
+                      		<div class="box-title" style="border: 1px solid #00F; width: 100%;"> 
                             	<div class="col-md-2">Survey:</div>
                             	<div class="col-md-3"> 
                                     <select name="selsurvey" id="selsurvey">
