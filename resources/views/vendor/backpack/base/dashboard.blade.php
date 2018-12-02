@@ -199,6 +199,7 @@
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
             @endif            
+            <input type="hidden" name="hidselsurveycompare"  id="hidselsurveycompare" value="1" />
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="0" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="0" />
             <input type="hidden" name="hidincageb" id="hidincageb" value="0" />
@@ -259,7 +260,7 @@
                     <div class="col-md-3"> 
                         <select name="selsurveycompare" id="selsurveycompare">
                         @foreach($surveydetails as $surveydetail)	
-                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurveycompare'])&&$rdata['selsurveycompare']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                         @endforeach
                         </select>
                     </div>
@@ -1035,6 +1036,8 @@
     <script src="{{ asset('js/c3.js') }}"></script>
     <script>
 $(document).ready(function ($) {
+	$('#hidselsurvey').val($('#selsurvey').val());
+	$('#hidselsurveycompare').val($('#selsurveycompare').val());
 	$('#hidincgraph').val($('#checkprintGraph').is(":checked"));
 	$('#hidincgen').val($('#checkprintGender').is(":checked"));
 	$('#hidincageb').val($('#checkprintAge').is(":checked"));
@@ -1043,6 +1046,12 @@ $(document).ready(function ($) {
 	$('#hidincprob').val($('#checkprintProb').is(":checked"));
 	$('#hidinccanq').val($('#checkprintCanQ').is(":checked"));
 	
+	$('#selsurvey').on('change',function(e){
+		$('#hidselsurvey').val($(this).val());
+	});
+	$('#selsurveycompare').on('change',function(e){
+		$('#hidselsurveycompare').val($(this).val());
+	});
 	$('#checkprintGraph').on('change',function(e){
 		$('#hidincgraph').val($(this).is(":checked"));
 	});
