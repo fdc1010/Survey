@@ -14,13 +14,13 @@
 
 @section('content')
 	@php
-    	$showGraph = !empty($rdata['checkprintGraph'])?(($rdata['checkprintGraph']=="true")?true:false):true;
-        $showGender = !empty($rdata['checkprintGender'])?(($rdata['checkprintGender']=="true")?true:false):true;
-        $showAgeBracket = !empty($rdata['checkprintAge'])?(($rdata['checkprintAge']=="true")?true:false):true;
-        $showCivil = !empty($rdata['checkprintCivil'])?(($rdata['checkprintCivil']=="true")?true:false):true;
-        $showEmployment = !empty($rdata['checkprintEmp'])?(($rdata['checkprintEmp']=="true")?true:false):true;
-        $showProblem = !empty($rdata['checkprintProb'])?(($rdata['checkprintProb']=="true")?true:false):true;
-        $showQuality = !empty($rdata['checkprintCanQ'])?(($rdata['checkprintCanQ']=="true")?true:false):true;
+    	$showGraph = !empty($rdata['checkprintGraph'])?false:true;
+        $showGender = !empty($rdata['checkprintGender'])?false:true;
+        $showAgeBracket = !empty($rdata['checkprintAge'])?false:true;
+        $showCivil = !empty($rdata['checkprintCivil'])?false:true;
+        $showEmployment = !empty($rdata['checkprintEmp'])?false:true;
+        $showProblem = !empty($rdata['checkprintProb'])?false:true;
+        $showQuality = !empty($rdata['checkprintCanQ'])?false:true;
     
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
