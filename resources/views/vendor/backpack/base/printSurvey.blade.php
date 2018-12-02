@@ -948,7 +948,6 @@
             </div>
         </div>
         @endif
-        @endif
         @if($rdata['hidincgen']=="true")
         <div class="col-md-6">
             <div class="box box-default">
@@ -1207,7 +1206,6 @@
           },
         }
       });
-	  @endif
 	  @endif
       @if($rdata['hidincgen']=="true")
 	  var chartgender = c3.generate({
