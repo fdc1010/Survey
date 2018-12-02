@@ -18,18 +18,32 @@
         if(!empty($rdata['selsurvey'])){
             if(!empty($rdata['checkprintGraph']))
                 $showGraph = !empty($rdata['checkprintGraph']);
+            else
+            	$showGraph = false;
             if(!empty($rdata['checkprintGraph']))
                 $showGender = !empty($rdata['checkprintGender']);
+            else
+            	$showGender = false;
             if(!empty($rdata['checkprintGraph']))	
                 $showAgeBracket = !empty($rdata['checkprintAge']);
+            else
+            	$showAgeBracket = false;
             if(!empty($rdata['checkprintGraph']))	
                 $showCivil = !empty($rdata['checkprintCivil']);
+            else
+            	$showCivil = false;
             if(!empty($rdata['checkprintGraph']))	
                 $showEmployment = !empty($rdata['checkprintEmp']);
+            else
+            	$showEmployment = false;
             if(!empty($rdata['checkprintGraph']))	
                 $showProblem = !empty($rdata['checkprintProb']);
+            else
+            	$showProblem = false;
             if(!empty($rdata['checkprintGraph']))	
                 $showQuality = !empty($rdata['checkprintCanQ']);
+            else
+            	$showQuality = false;
     	}else{
         	$showGraph = true;
             $showGender = true;
