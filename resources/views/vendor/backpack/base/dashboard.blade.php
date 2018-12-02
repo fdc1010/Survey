@@ -628,7 +628,7 @@
                 </div>
             </div>
         </div>
-        @if($compareresults)
+        @if($showcomparison)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
