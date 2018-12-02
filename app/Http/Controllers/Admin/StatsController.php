@@ -49,9 +49,9 @@ class StatsController extends Controller
     {
 		
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-		
+		$compareresults = $request->selsurvey != $request->selsurveycompare;
 		$rdata = $request->except(['q','_token']);
-        return view('backpack::dashboard', [$this->data,'rdata'=>$rdata]);
+        return view('backpack::dashboard', [$this->data,'rdata'=>$rdata,'compareresults'=>$compareresults]);
     }
 	public function printsurvey(Request $request){
 		$this->data['title'] = trans('backpack::base.dashboard'); // set the page title
