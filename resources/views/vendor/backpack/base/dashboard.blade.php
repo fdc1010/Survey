@@ -222,13 +222,13 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprintGraph" class="checkprint[]" value="1" checked="checked" /> Graphs</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprintGender" class="checkprint[]" value="1" checked="checked" /> Gender</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprintAge" class="checkprint[]" value="1" checked="checked" /> Age Bracket</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprintCivil" class="checkprint[]" value="1" checked="checked" /> Civil Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprintEmp" class="checkprint[]" value="1" checked="checked" /> Employment Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprintProb" class="checkprint[]" value="1" checked="checked" /> Problems</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprintCanQ" class="checkprint[]" value="1" checked="checked" /> Candidate Qualities</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprintGraph" class="checkprint[]" value="true" checked="checked" /> Graphs</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprintGender" class="checkprint[]" value="true" checked="checked" /> Gender</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprintAge" class="checkprint[]" value="true" checked="checked" /> Age Bracket</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprintCivil" class="checkprint[]" value="true" checked="checked" /> Civil Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprintEmp" class="checkprint[]" value="true" checked="checked" /> Employment Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprintProb" class="checkprint[]" value="true" checked="checked" /> Problems</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprintCanQ" class="checkprint[]" value="true" checked="checked" /> Candidate Qualities</label></div>
                         </div>
                     </div>
                 </div>
