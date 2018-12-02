@@ -36,7 +36,7 @@ class ElectionReturn extends Model
     }
 	public function precinct()
     {
-        return $this->belongsTo('App\Models\Candidate','precinct_id');
+        return $this->belongsTo('App\Models\Precinct','precinct_id');
     }
 	public function getPrecinct(){
 		$precinct = Precinct::find($this->precinct_id)->with('barangay');
