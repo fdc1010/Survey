@@ -33,7 +33,9 @@ class ElectionReturnCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        //$this->crud->setFromDb();
+        $this->crud->setFromDb();
+		$this->crud->removeColumns(['election_id','candidate_id','voter_id','precinct_id','subject','description']);
+		$this->crud->removeFields(['election_id','candidate_id','voter_id','precinct_id','subject','description']);
 		$this->crud->addColumn([
             'name' => 'precinct_id',
             'type' => 'select',
