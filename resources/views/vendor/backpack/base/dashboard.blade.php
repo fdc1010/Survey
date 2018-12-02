@@ -1329,7 +1329,7 @@
             @endif          
         </div>     
            
-        @if(!empty($rdata['hidincgraph']) && $rdata['hidincgraph']=="true")
+        @if($showGraph)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -1798,7 +1798,7 @@ $(document).ready(function ($) {
 		theme:"3d",
 		scrollbarPosition:"outside"
 	});
-	@if(!empty($rdata['hidincgraph']) && $rdata['hidincgraph']=="true")
+	@if($showGraph)
 	/*Function.prototype.bind = Function.prototype.bind || function (thisp) {
 		var fn = this;
 		return function () {
