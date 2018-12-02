@@ -90,6 +90,7 @@
         $selinitcivilstatuses = App\Models\CivilStatus::all();
         $selinitempstatuses = App\Models\EmploymentStatus::all(); 
         $problems = App\Models\OptionProblem::with('option')->get();
+        $elections = App\Models\Election::all();
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
             $tallygenders=$genders->pluck('id')->toArray();
@@ -286,6 +287,12 @@
                         <select name="selsurvey" id="selsurvey">
                         @foreach($surveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                        @endforeach
+                        </select>
+                        /
+                        <select name="selelection" id="selelection">
+                        @foreach($elections as $election)	
+                            <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
                         </select>
                     </div>                    
