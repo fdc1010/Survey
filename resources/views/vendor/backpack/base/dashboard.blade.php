@@ -261,13 +261,13 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPrint" /> Check All</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprintGraph" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintGraph'])?"checked='checked'":"") }} /> Graphs</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprintGender" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintGender'])?"checked='checked'":"") }} /> Gender</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprintAge" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintAge'])?"checked='checked'":"") }} /> Age Bracket</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprintCivil" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintCivil'])?"checked='checked'":"") }} /> Civil Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprintEmp" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintEmp'])?"checked='checked'":"") }} /> Employment Status</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprintProb" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintProb'])?"checked='checked'":"") }} /> Problems</label></div>
-                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprintCanQ" class="checkprint[]" value="1" {{ (!empty($rdata['checkprintCanQ'])?"checked='checked'":"") }} /> Candidate Qualities</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGraph" name="checkprintGraph" class="checkprint[]" value="1" {{ ($showGraph)?"checked='checked'":"") }} /> Graphs</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintGender" name="checkprintGender" class="checkprint[]" value="1" {{ ($showGender)?"checked='checked'":"") }} /> Gender</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintAge" name="checkprintAge" class="checkprint[]" value="1" {{ ($showAgeBracket)?"checked='checked'":"") }} /> Age Bracket</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCivil" name="checkprintCivil" class="checkprint[]" value="1" {{ ($showCivil)?"checked='checked'":"") }} /> Civil Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintEmp" name="checkprintEmp" class="checkprint[]" value="1" {{ ($showEmployment)?"checked='checked'":"") }} /> Employment Status</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintProb" name="checkprintProb" class="checkprint[]" value="1" {{ ($showProblem)?"checked='checked'":"") }} /> Problems</label></div>
+                        <div class="col-md-3"><label class="control-label"><input type="checkbox" id="checkprintCanQ" name="checkprintCanQ" class="checkprint[]" value="1" {{ ($showQuality)?"checked='checked'":"") }} /> Candidate Qualities</label></div>
                         </div>
                     </div>
                 </div>
