@@ -673,7 +673,7 @@
             </div>
         </div>
         @endif
-    	@if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
+    	@if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -785,7 +785,7 @@
         </div>
         @endif
        @endif
-       @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
+       @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -893,7 +893,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
+        @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1005,7 +1005,7 @@
    
     <div class="row">
     	
-        @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
+        @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1123,7 +1123,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
+        @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1231,7 +1231,7 @@
             </div>
             @endif
             @endif
-        	@if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
+        	@if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -1348,7 +1348,7 @@
             </div>
         </div>
         @endif
-        @if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
+        @if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1374,7 +1374,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
+        @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1400,7 +1400,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
+        @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1426,7 +1426,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
+        @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1452,7 +1452,7 @@
         </div>
         @endif
         @endif
-        @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
+        @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1478,7 +1478,7 @@
         </div>
     	@endif
     	@endif
-        @if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
+        @if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1875,7 +1875,7 @@ $(document).ready(function ($) {
         }
       });
 	  @endif
-      @if(!empty($rdata['hidincgen']) && $rdata['hidincgen']=="true")
+      @if(!empty($rdata['checkprintGender']) && $rdata['checkprintGender']=="true")
 	  var chartgender = c3.generate({
 		bindto: '#chartgender',				
         data: {
@@ -1959,7 +1959,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['hidincageb']) && $rdata['hidincageb']=="true")
+      @if(!empty($rdata['checkprintAge']) && $rdata['checkprintAge']=="true")
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket',				
         data: {
@@ -2043,7 +2043,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['hidincciv']) && $rdata['hidincciv']=="true")
+      @if(!empty($rdata['checkprintCivil']) && $rdata['checkprintCivil']=="true")
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil',				
         data: {
@@ -2127,7 +2127,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['hidincemp']) && $rdata['hidincemp']=="true")
+      @if(!empty($rdata['checkprintEmp']) && $rdata['checkprintEmp']=="true")
 	  var chartemp = c3.generate({
 		bindto: '#chartemp',				
         data: {
@@ -2211,7 +2211,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['hidinccanq']) && $rdata['hidinccanq']=="true")
+      @if(!empty($rdata['checkprintCanQ']) && $rdata['checkprintCanQ']=="true")
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -2295,7 +2295,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if(!empty($rdata['hidincprob']) && $rdata['hidincprob']=="true")
+      @if(!empty($rdata['checkprintProb']) && $rdata['checkprintProb']=="true")
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
