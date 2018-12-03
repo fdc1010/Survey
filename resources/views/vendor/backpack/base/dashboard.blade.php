@@ -195,6 +195,14 @@
                                                             ->get();
             }
         }
+        $tally = array();  
+        $tallyg = array(); 
+        $tallycv = array();  
+        $tallyemp = array(); 
+        $tallyab = array(); 
+        $tallyq = array();    
+        $tallyp = array();                                                      
+
     @endphp
     <div class="row">
     	
@@ -704,9 +712,7 @@
                                         <th>Tally</th>
                                     </tr>                                    
                                 </thead>
-                            	@php
-                                    $tally = array();                                    
-                                @endphp
+                            	
             					@foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -756,7 +762,7 @@
                                     </tr>                                    
                                 </thead>
                                 @php
-                                	$tallyg = array();                                    
+                                	                                    
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -815,7 +821,7 @@
                                     </tr>                                    
                                 </thead>
                                 @php
-                                	$tallycv = array();                                    
+                                	                                  
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -872,7 +878,7 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	$tallyemp = array();                                    
+                                	                              
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -929,7 +935,7 @@
                                     </tr>                             
                                 </thead>
                                 @php
-                                	$tallyab = array();                                    
+                                	                                 
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -991,7 +997,7 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                	$tallyq = array();                                    
+                                	                           
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1049,7 +1055,7 @@
                                     </thead>
                                     <tbody>
                                     @php
-                                        $tallyp = array();                                    
+                                                                   
                                     @endphp
                                     @foreach($brgysurveys as $barangay)
                                         <tr>
