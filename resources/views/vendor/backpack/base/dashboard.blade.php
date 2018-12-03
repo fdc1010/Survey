@@ -59,7 +59,7 @@
         
     	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
-        $tallyelection = (!empty($rdata['selelection']))?$$rdata['selelection']:1;
+        $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:1;
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
         $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         
@@ -678,7 +678,7 @@
                 </div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -725,7 +725,7 @@
                 </div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -828,7 +828,7 @@
                 </div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -883,7 +883,7 @@
                 </div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -993,7 +993,7 @@
                 </div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1046,7 +1046,7 @@
                 </div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1154,7 +1154,7 @@
                 </div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1207,7 +1207,7 @@
                 </div>
             </div>
         </div>
-       	@elseif(!empty($tallyelection))
+       	@elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1324,7 +1324,7 @@
                 </div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1382,7 +1382,7 @@
                 </div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1495,7 +1495,7 @@
                     </div>
                 </div>
             </div>
-            @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+            @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
             <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1593,7 +1593,7 @@
                     </div>
                 </div>
             </div> 
-            @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+            @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -1653,7 +1653,7 @@
                 <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -1666,7 +1666,7 @@
                 <div class="box-body"><div id="chartcompare"></div></div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -1692,7 +1692,7 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1704,7 +1704,7 @@
                 <div class="box-body"><div id="chartgendercompare"></div></div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1730,7 +1730,7 @@
                 <div class="box-body"><div id="chartcivil"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1742,7 +1742,7 @@
                 <div class="box-body"><div id="chartcivilcompare"></div></div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1768,7 +1768,7 @@
                 <div class="box-body"><div id="chartemp"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1780,7 +1780,7 @@
                 <div class="box-body"><div id="chartempcompare"></div></div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1806,7 +1806,7 @@
                 <div class="box-body"><div id="chartagebracket"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1818,7 +1818,7 @@
                 <div class="box-body"><div id="chartagebracketcompare"></div></div>
             </div>
         </div>
-        @elseif(!empty($tallyelection))
+        @elseif(!empty($rdata['selelection']))
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1844,7 +1844,7 @@
                 <div class="box-body"><div id="chartqualities"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1870,7 +1870,7 @@
                 <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
-        @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -2219,7 +2219,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartcompare = c3.generate({
 		bindto: '#chartcompare',				
         data: {
@@ -2258,7 +2258,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @elseif(!empty($tallyelection))
+	  @elseif(!empty($rdata['selelection']))
 	  var chartelection = c3.generate({
 		bindto: '#chartelection',				
         data: {
@@ -2339,7 +2339,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartgendercompare = c3.generate({
 		bindto: '#chartgendercompare',				
         data: {
@@ -2380,7 +2380,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @elseif(!empty($tallyelection))
+	  @elseif(!empty($rdata['selelection']))
 	  var chartgenderelection = c3.generate({
 		bindto: '#chartgenderelection',				
         data: {
@@ -2464,7 +2464,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartagebracketcompare = c3.generate({
 		bindto: '#chartagebracketcompare',				
         data: {
@@ -2505,7 +2505,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @elseif(!empty($tallyelection))
+	  @elseif(!empty($rdata['selelection']))
 	  var chartagebracketelection = c3.generate({
 		bindto: '#chartagebracketelection',				
         data: {
@@ -2589,7 +2589,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartcivilcompare = c3.generate({
 		bindto: '#chartcivilcompare',				
         data: {
@@ -2630,7 +2630,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @elseif(!empty($tallyelection))
+	  @elseif(!empty($rdata['selelection']))
 	  var chartcivilelection = c3.generate({
 		bindto: '#chartcivilelection',				
         data: {
@@ -2714,7 +2714,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartempcompare = c3.generate({
 		bindto: '#chartempcompare',				
         data: {
@@ -2755,7 +2755,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @elseif(!empty($tallyelection))
+	  @elseif(!empty($rdata['selelection']))
 	  var chartempelection = c3.generate({
 		bindto: '#chartempelection',				
         data: {
@@ -2839,7 +2839,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartqualitiescompare = c3.generate({
 		bindto: '#chartqualitiescompare',				
         data: {
@@ -2919,7 +2919,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @if(empty($tallyelection) && $tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartproblemcompare = c3.generate({
 		bindto: '#chartproblemcompare',				
         data: {
