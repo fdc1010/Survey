@@ -1485,7 +1485,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chart_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chart_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach        
@@ -1499,7 +1499,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartgender_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chartgender_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1514,7 +1514,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartcivil_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chartcivil_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1529,7 +1529,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartemp_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chartemp_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1544,7 +1544,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartagebracket_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chartagebracket_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -2186,7 +2186,7 @@ $(document).ready(function ($) {
 	  
 	  @foreach($elections as $election)
 	var chart = c3.generate({
-		bindto: '#chart_{{ $election->id }}',				
+		bindto: '#chart_election_{{ $election->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -2227,7 +2227,7 @@ $(document).ready(function ($) {
       @if($showGender)
 	  @foreach($elections as $election)
 	  var chartgender = c3.generate({
-		bindto: '#chartgender_{{ $election->id }}',				
+		bindto: '#chartgender_election_{{ $election->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -2271,7 +2271,7 @@ $(document).ready(function ($) {
       @if($showAgeBracket)
 	  @foreach($elections as $election)
 	  var chartagebracket = c3.generate({
-		bindto: '#chartagebracket_{{ $election->id }}',				
+		bindto: '#chartagebracket_election_{{ $election->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -2315,7 +2315,7 @@ $(document).ready(function ($) {
       @if($showCivil)
 	  @foreach($elections as $election)
 	  var chartcivil = c3.generate({
-		bindto: '#chartcivil_{{ $election->id }}',				
+		bindto: '#chartcivil_election_{{ $election->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -2359,7 +2359,7 @@ $(document).ready(function ($) {
       @if($showEmployment)
 	  @foreach($elections as $election)
 	  var chartemp = c3.generate({
-		bindto: '#chartemp_{{ $election->id }}',				
+		bindto: '#chartemp_election_{{ $election->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
