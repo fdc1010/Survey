@@ -717,13 +717,13 @@
                                   <tbody>                                  
                                   @foreach($position->candidates as $candidate)
                                       @php
-                                          $tally[$candidate->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);   
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
-                                          <td>{{ $tally[$candidate->id] }}</td>
+                                          <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
                                       </tr>
                                   @endforeach                                
                                   </tbody>
@@ -774,12 +774,12 @@
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
                                         @php
-                                        	$tallyg[$candidate->id][$gender->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                        	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                       [$gender->id], $tallyempstatus,$tallycivilstatus,
                                                                                                       $tallyoccstatus,$tallyvoterstatus);
                                                                                         
                                         @endphp
-                                        <td>{{ $tallyg[$candidate->id][$gender->id] }}</td>
+                                        <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
                                         @endforeach
                                     </tr>
                                   @endforeach                                
@@ -832,11 +832,11 @@
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
                                             @php
-                                                $tallycv[$candidate->id][$civilstatus->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                                $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                     $tallygenders, $tallyempstatus,[$civilstatus->id],
                                                                                                                     $tallyoccstatus,$tallyvoterstatus);                                            
                                             @endphp
-                                            <td>{{ $tallycv[$candidate->id][$civilstatus->id] }}</td>
+                                            <td>{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }}</td>
                                             @endforeach
                                         </tr>
                                   	@endforeach                                
@@ -889,11 +889,11 @@
                                               <td>{{ $candidate->voter->full_name }}</td>
                                               @foreach($empstatuses as $empstatus)
                                               @php
-                                                  $tallyemp[$candidate->id][$empstatus->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                                  $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                       $tallygenders,[$empstatus->id],$tallycivilstatus,
                                                                                                                       $tallyoccstatus,$tallyvoterstatus);                                            
                                               @endphp
-                                              <td>{{ $tallyemp[$candidate->id][$empstatus->id] }}</td>
+                                              <td>{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }}</td>
                                               @endforeach
                                           </tr>
                                   	@endforeach                                
@@ -951,11 +951,11 @@
                                               for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
                                                   array_push($gtallyagebrackets,$tallyiage);
                                               }
-                                              $tallyab[$candidate->id][$agebracket->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$gtallyagebrackets,$tallybrgy,
+                                              $tallyab[$candidate->id][$agebracket->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$gtallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                         $tallyoccstatus,$tallyvoterstatus);                                            
                                           @endphp
-                                          <td>{{ $tallyab[$candidate->id][$agebracket->id] }}</td>
+                                          <td>{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }}</td>
                                           @endforeach
                                       </tr>
                                   @endforeach                                
@@ -1008,11 +1008,11 @@
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
                                             @php
-                                                $tallyq[$candidate->id][$quality->option_id]=$tallyotherpoll->tally($candidate->id,$quality->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                                $tallyq[$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tally($candidate->id,$quality->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                 $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                                 $tallyoccstatus,$tallyvoterstatus);
                                             @endphp
-                                            <td>{{ $tallyq[$candidate->id][$quality->option_id] }}</td>
+                                            <td>{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }}</td>
                                             @endforeach
                                           </tr>
                                   	@endforeach                                
@@ -1056,11 +1056,11 @@
                                             <td>{{ $barangay->name }}</td>
                                             @foreach($problems as $problem)
                                             @php
-                                                $tallyp[$barangay->id][$problem->option_id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                                $tallyp[$barangay->id][$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                 	$tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                                 	$tallyoccstatus,$tallyvoterstatus);
                                             @endphp
-                                            <td>{{ $tallyp[$barangay->id][$problem->option_id] }}</td>
+                                            <td>{{ $tallyp[$barangay->id][$problem->option_id][$surveydetail->id] }}</td>
                                             @endforeach
                                         </tr>
                                     @endforeach
@@ -1084,7 +1084,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chart"></div></div>
+                <div class="box-body"><div id="chart_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach        
@@ -1098,7 +1098,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartgender"></div></div>
+                <div class="box-body"><div id="chartgender_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1113,7 +1113,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartcivil"></div></div>
+                <div class="box-body"><div id="chartcivil_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1128,7 +1128,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartemp"></div></div>
+                <div class="box-body"><div id="chartemp_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1143,7 +1143,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartagebracket"></div></div>
+                <div class="box-body"><div id="chartagebracket_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1158,7 +1158,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartqualities"></div></div>
+                <div class="box-body"><div id="chartqualities_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1173,7 +1173,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div id="chartproblem"></div></div>
+                <div class="box-body"><div id="chartproblem_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1512,7 +1512,7 @@ $(document).ready(function ($) {
 	};*/
 	@foreach($selinitsurveydetails as $surveydetail)
 	var chart = c3.generate({
-		bindto: '#chart',				
+		bindto: '#chart_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1526,7 +1526,7 @@ $(document).ready(function ($) {
 			['Votes',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
-					{{ $tally[$candidate->id] }},
+					{{ $tally[$candidate->id][$surveydetail->id] }},
 				@endforeach
 			@endforeach
 			]
@@ -1553,7 +1553,7 @@ $(document).ready(function ($) {
       @if($showGender)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartgender = c3.generate({
-		bindto: '#chartgender',				
+		bindto: '#chartgender_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1568,7 +1568,7 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$candidate->id][$gender->id] }},
+						{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1597,7 +1597,7 @@ $(document).ready(function ($) {
       @if($showAgeBracket)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartagebracket = c3.generate({
-		bindto: '#chartagebracket',				
+		bindto: '#chartagebracket_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1612,7 +1612,7 @@ $(document).ready(function ($) {
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyab[$candidate->id][$agebracket->id] }},
+						{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1641,7 +1641,7 @@ $(document).ready(function ($) {
       @if($showCivil)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartcivil = c3.generate({
-		bindto: '#chartcivil',				
+		bindto: '#chartcivil_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1656,7 +1656,7 @@ $(document).ready(function ($) {
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$candidate->id][$civilstatus->id] }},
+						{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1685,7 +1685,7 @@ $(document).ready(function ($) {
       @if($showEmployment)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartemp = c3.generate({
-		bindto: '#chartemp',				
+		bindto: '#chartemp_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1700,7 +1700,7 @@ $(document).ready(function ($) {
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$candidate->id][$empstatus->id] }},
+						{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1729,7 +1729,7 @@ $(document).ready(function ($) {
       @if($showQuality)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartqualities = c3.generate({
-		bindto: '#chartqualities',				
+		bindto: '#chartqualities_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1744,7 +1744,7 @@ $(document).ready(function ($) {
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyq[$candidate->id][$quality->option_id] }},
+						{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1773,7 +1773,7 @@ $(document).ready(function ($) {
       @if($showProblem)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartproblem = c3.generate({
-		bindto: '#chartproblem',				
+		bindto: '#chartproblem_{{ $surveydetail->id }}',				
         data: {
 		  x: 'Barangays',
 		  columns: [
@@ -1785,7 +1785,7 @@ $(document).ready(function ($) {
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
 				@foreach($brgysurveys as $barangay)
-					{{ $tallyp[$barangay->id][$problem->option_id] }},
+					{{ $tallyp[$barangay->id][$problem->option_id][$surveydetail->id] }},
 				@endforeach
 				],
 			@endforeach
