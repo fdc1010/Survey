@@ -40,7 +40,7 @@ class SurveyAnswerController extends Controller
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
 			info($request);
-		
+			$ok = true;
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
@@ -178,9 +178,6 @@ class SurveyAnswerController extends Controller
 					}		
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
-			}	
-			
-			return response()->json(['success'=>false,'msg'=>'Answers already been saved!']);
 			
 	}
     /**
