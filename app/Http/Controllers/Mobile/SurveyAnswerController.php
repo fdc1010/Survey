@@ -187,8 +187,8 @@ class SurveyAnswerController extends Controller
 								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 								$tallyproblem->save();
 							}	
-						}								
-					
+						}
+					}		
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 			}else{
