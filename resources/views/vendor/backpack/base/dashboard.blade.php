@@ -1590,7 +1590,7 @@ $(document).ready(function ($) {
           },
         }
       });
-	  @endforech
+	  @endforeach
 	  @endif
       @if($showAgeBracket)
 	  @foreach($selinitsurveydetails as $surveydetail)
