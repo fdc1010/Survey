@@ -1178,6 +1178,7 @@
         </div>
         @endforeach
         @endif
+        @endif
     </div>
 @endsection
 @section('chartcss')
