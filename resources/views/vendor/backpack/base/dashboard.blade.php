@@ -344,7 +344,7 @@
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllElectionReturns" /> Check All</label></div>
                         @foreach($selinitelections as $election)                        
                         		@if(!empty($rdata['election_return']) && in_array($election->id,$rdata['election_return']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $surveydetail->name }}</label></div>                        
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $election->name }}</label></div>                        
                         		@else
                                 <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" /> {{ $election->name }}</label></div> 
                                 @endif
