@@ -178,9 +178,10 @@ class SurveyAnswerController extends Controller
 					}		
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
-			}else{
-				return response()->json(['success'=>false,'msg'=>'Answers already been saved!']);
-			}
+			}	
+			
+			return response()->json(['success'=>false,'msg'=>'Answers already been saved!']);
+			
 	}
     /**
      * Show the form for creating a new resource.
