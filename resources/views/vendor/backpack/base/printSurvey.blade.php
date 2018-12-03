@@ -2285,6 +2285,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });    <!-- JavaScripts -->
+	
+	window.print();
 	});
 	</script>
 </body>
