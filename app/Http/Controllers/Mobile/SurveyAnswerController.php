@@ -106,7 +106,7 @@ class SurveyAnswerController extends Controller
 					$voterstatuses->status_id = $vstatus;
 					$voterstatuses->save();
 				}
-			}
+			
 			
 				
 				$receivedans = json_decode($request->q_and_a, true);
@@ -186,10 +186,9 @@ class SurveyAnswerController extends Controller
 								$tallyproblem->survey_detail_id = $surveydetailid;
 								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 								$tallyproblem->save();
-								}	
-							}
-						}
-					}		
+							}	
+						}								
+					}
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 			}else{
