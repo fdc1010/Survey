@@ -35,6 +35,7 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
+			
 			$surveyanswers = SurveyAnswer::where('user_id',$userid)
 											->where('voter_id',$voterid)
 											->where('survey_detail_id',$surveydetailid)
@@ -42,8 +43,8 @@ class SurveyAnswerController extends Controller
 			if(empty($surveyanswers)){
 				$voterdetails = json_decode($request->voter_detail,true);
 				$profilepic="";
-				if($request->hasFile('profilepic')){
-					
+				if($request->hasFile('profilepic')){	
+					$voter = Voter::find($voterid);				
 					$path = config('app.root') . '/public/profilepic/';
 					$photo=$path.basename($voter->profilepic);
 					
@@ -74,7 +75,7 @@ class SurveyAnswerController extends Controller
 					$profilepic =  config('app.url') . '/profilepic/' . $filename;
 		
 				}
-				$voter->save();		
+				//$voter->save();		
 				 Voter::where('id',$voterid)
 						->update([
 									'age'=>$voterdetails['age'],
