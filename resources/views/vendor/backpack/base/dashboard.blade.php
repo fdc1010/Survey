@@ -90,12 +90,12 @@
         
         if(!empty($rdata['survey_detail'])){
         	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['survey_detail'])->get();
-        else{
+        }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
         if(!empty($rdata['election_return'])){
         	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
-        else{  
+        }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
 
