@@ -94,9 +94,9 @@
         $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
         if(!empty($rdata['selelection'])){	
-            $elections = App\Models\Election::find($rdata['selelection']);
+            $elections = App\Models\Election::find($tallyelection);
         }else{
-        	$elections = App\Models\Election::all();
+        	$elections = App\Models\Election::find();
         }
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
@@ -733,7 +733,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Tabular Stats (Summary): {{ $elections }}</div>
+                      		<div class="box-title">Tabular Stats (Summary): {{ $elections->name }}</div>
                     </div>
                 </div>                
                 <div class="box-body">                	
