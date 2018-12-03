@@ -243,13 +243,8 @@
             	@foreach($rdata['candidate'] as $hidcan)
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
-            @endif
-            @foreach($surveydetails as $surveydetail)
-                	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="0" />
-            @endforeach
-            @foreach($elections as $election)
-                	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="0" />
-            @endforeach
+            @endif    
+            <input type="hidden" name="hidselsurveycompare" id="hidselsurveycompare" value="{{ (!empty($rdata['selsurveycompare'])?$rdata['selsurveycompare']:1) }}" />
             <input type="hidden" name="hidselelection" id="hidselelection" value="{{ (!empty($rdata['selelection'])?$rdata['selelection']:"") }}" />
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="1" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="1" />
@@ -284,52 +279,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" id="printsurveydetails">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Surveys:</div>                	                        	
-                    </div>
-                </div>
-                <div class="box-body">
-                	<div class="col-md-12">
-                        <div class="form-group">
-                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllSurveys" /> Check All</label></div>
-                        @foreach($surveydetails as $surveydetail)                        
-                        		@if(!empty($rdata['survey_detail']) && in_array($surveydetail->id,$rdata['survey_detail']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" checked="checked" /> {{ $surveydetail->subject }}</label></div>                        
-                        		@else
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" /> {{ $surveydetail->subject }}</label></div> 
-                                @endif
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12" id="printelectionreturns">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Election Returns:</div>                	                        	
-                    </div>
-                </div>
-                <div class="box-body">
-                	<div class="col-md-12">
-                        <div class="form-group">
-                        <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllElectionReturns" /> Check All</label></div>
-                        @foreach($elections as $election)                        
-                        		@if(!empty($rdata['election_return']) && in_array($election->id,$rdata['election_return']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $surveydetail->name }}</label></div>                        
-                        		@else
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" /> {{ $election->name }}</label></div> 
-                                @endif
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -346,8 +295,14 @@
                         @endforeach
                         </select>                        
                     </div>                    
-                    <div class="col-md-1"><strong>Election Returns:</strong></div>
-                    <div class="col-md-4">                        
+                    <div class="col-md-1"><strong>Compare:</strong></div>
+                    <div class="col-md-4"> 
+                        <select name="selsurveycompare" id="selsurveycompare">
+                        @foreach($surveydetails as $surveydetail)	
+                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurveycompare'])&&$rdata['selsurveycompare']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                        @endforeach
+                        </select>
+                        /
                         <select name="selelection" id="selelection">
                         	<option value="">--Select Election--</option>
                         @foreach($selinitelections as $election)	
@@ -355,12 +310,12 @@
                         @endforeach
                         </select>
                     </div>
+                    <div class="col-md-3"> 
+                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>                                    
+                    </div>
                     <div class="col-md-1"> 
                         <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
                     </div>
-                    <div class="col-md-3"> 
-                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>                                    
-                    </div>                    
                 </div>
                 <div class="box-body">
                 	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap">
@@ -1953,6 +1908,7 @@
     <script>
 $(document).ready(function ($) {
 	$('#hidselsurvey').val($('#selsurvey').val());
+	$('#hidselsurveycompare').val($('#selsurveycompare').val());
 	$('#hidincgraph').val($('#checkprintGraph').is(":checked"));
 	$('#hidincgen').val($('#checkprintGender').is(":checked"));
 	$('#hidincageb').val($('#checkprintAge').is(":checked"));
@@ -1964,6 +1920,9 @@ $(document).ready(function ($) {
 	
 	$('#selsurvey').on('change',function(e){
 		$('#hidselsurvey').val($(this).val());
+	});
+	$('#selsurveycompare').on('change',function(e){
+		$('#hidselsurveycompare').val($(this).val());
 	});
 	$('#selelection').on('change',function(e){
 		$('#hidselelection').val($(this).val());
@@ -2020,34 +1979,6 @@ $(document).ready(function ($) {
 		$('#hidincprob').val($(this).is(":checked"));
 		$('#hidinccanq').val($(this).is(":checked"));
 	});
-	@foreach($surveydetails as $surveydetail) 
-		$('#survey_detail_{{ $surveydetail->id }}').on('change',function(e){
-			if($(this).is(":checked")
-				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
-			else
-				$('#hidsurvey_detail_{{ $surveydetail->id }}').val(0);
-		});
-	@endforeach
-	@foreach($elections as $election)
-		$('#election_return_{{ $election->id }}').on('change',function(e){
-			if($(this).is(":checked")
-				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
-			else
-				$('#hidelection_return_{{ $election->id }}').val(0);
-		});
-	@endforeach
-	$('#checkAllSurveys').on('change',function(e){
-		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($elections as $election)
-			$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
-		@endforeach	
-	});
-	$('#checkAllElectionReturns').on('change',function(e){
-		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($elections as $election)
-			$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
-		@endforeach	
-	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
 			$("input[type='checkbox'][class='candidate_{{ $position->id }}[]']").prop('checked',$(this).is(":checked"));
@@ -2061,13 +1992,8 @@ $(document).ready(function ($) {
 	$('#civdetails').hide('slow');
 	$('#empdetails').hide('slow');
 	$('#printdetails').hide('slow');
-	$('#printsurveydetails').hide('slow');
-	$('#printelectionreturns').hide('slow');
-	
 	$('#btn_printdetails').on('click',function(e){
 		$('#printdetails').toggle('slow');
-		$('#printsurveydetails').toggle('slow');
-		$('#printelectionreturns').toggle('slow');
 		if($('#spanprintdetails').hasClass('fa-plus')){
 			$('#spanprintdetails').removeClass('fa-plus');
 			$('#spanprintdetails').addClass('fa-minus');
