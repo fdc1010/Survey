@@ -1548,7 +1548,6 @@ $(document).ready(function ($) {
         }
       });
 	  @endforeach
-	  @endif
       @if($showGender)
 	  @foreach($selinitsurveydetails as $surveydetail)
 	  var chartgender = c3.generate({
