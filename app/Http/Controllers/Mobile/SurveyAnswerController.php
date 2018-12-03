@@ -106,7 +106,7 @@ class SurveyAnswerController extends Controller
 					$voterstatuses->status_id = $vstatus;
 					$voterstatuses->save();
 				}
-			
+			}
 			
 				
 				$receivedans = json_decode($request->q_and_a, true);

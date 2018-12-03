@@ -57,11 +57,16 @@
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
-    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1; 
-        $tallysurveycompare = (!empty($rdata['selsurveycompare']))?$rdata['selsurveycompare']:1;
+    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1;                
         $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:1;
-        $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
-        $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
+        
+        $selinitgenders = App\Models\Gender::all();
+        $selinitagebrackets = App\Models\AgeBracket::all();
+        $selinitcivilstatuses = App\Models\CivilStatus::all();
+        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
+        $problems = App\Models\OptionProblem::with('option')->get();
+        $selinitelections = App\Models\Election::all();
+        $selinitsurveydetails = App\Models\SurveyDetail::all();
         
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();        
@@ -78,22 +83,27 @@
         $tallyvoterstatus = [];
         
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
-        $surveydetails = App\Models\SurveyDetail::all();
+        
         $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
+        
+        if(!empty($rdata['survey_detail'])){
+        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['survey_detail'])->get();
+        else{
+            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
+        }
+        if(!empty($rdata['election_return'])){
+        	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+        else{  
+            $elections = App\Models\Election::where('id',$tallyelection)->get();         
+        }
+
         if(!empty($rdata['position'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['position'])->get();
         }else{
         	$selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         }
-        $selinitgenders = App\Models\Gender::all();
-        $selinitagebrackets = App\Models\AgeBracket::all();
-        $selinitcivilstatuses = App\Models\CivilStatus::all();
-        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
-        $problems = App\Models\OptionProblem::with('option')->get();
-        $selinitelections = App\Models\Election::all();
-        $elections = App\Models\Election::find($tallyelection);
         
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
@@ -244,7 +254,7 @@
                 	<input type="hidden" name="hidcandidate[]" value="{{ $hidcan }}" />
                 @endforeach
             @endif
-            @foreach($surveydetails as $surveydetail)
+            @foreach($selinitsurveydetails as $surveydetail)
                 	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="0" />
             @endforeach
             @foreach($selinitelections as $election)
@@ -295,7 +305,7 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllSurveys" /> Check All</label></div>
-                        @foreach($surveydetails as $surveydetail)                        
+                        @foreach($selinitsurveydetails as $surveydetail)                        
                         		@if(!empty($rdata['survey_detail']) && in_array($surveydetail->id,$rdata['survey_detail']))
                                 <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" checked="checked" /> {{ $surveydetail->subject }}</label></div>                        
                         		@else
@@ -341,7 +351,7 @@
                 	<div class="col-md-1"><strong>Survey:</strong></div>
                     <div class="col-md-2"> 
                         <select name="selsurvey" id="selsurvey">
-                        @foreach($surveydetails as $surveydetail)	
+                        @foreach($selinitsurveydetails as $surveydetail)	
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                         @endforeach
                         </select>                        
@@ -677,7 +687,7 @@
             </div>
         </div>
         </form>
-    	    	
+    	@if(!empty($rdata['survey_detail']))    	
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -722,55 +732,8 @@
                       </div>
                 </div>
             </div>
-        </div>
-        @if(empty($rdata['selelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Tabular Stats (Summary): {{ $surveyinfocompare->subject }}</div>
-                    </div>
-                </div>                
-                <div class="box-body">                	
-                      <div id="tblvotescompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-                           	<thead>
-                                    <tr>
-                                        <th>Cadidates</th>
-                                        <th>Tally</th>
-                                    </tr>                                    
-                                </thead>
-                            	@php
-                                    $tallycompare = array();                                    
-                                @endphp
-            					@foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          <th></th>
-                                      </tr>                                    
-                                  </thead>
-                                  <tbody>                                  
-                                  @foreach($position->candidates as $candidate)
-                                      @php
-                                          	$tallycompare[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurveycompare,$tallyagebrackets,$tallybrgy,
-                                                                                  $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                  $tallyoccstatus,$tallyvoterstatus);   
-                                      	  
-                                      @endphp
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          <td>{{ $tallycompare[$candidate->id] }}</td>
-                                      </tr>
-                                  @endforeach                                
-                                  </tbody>
-                                @endforeach
-                            </table>
-                      </div>
-                </div>
-            </div>
-        </div>
-        @elseif(!empty($rdata['selelection']))
+        </div>        
+        @if(!empty($rdata['selelection']))
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -2020,7 +1983,7 @@ $(document).ready(function ($) {
 		$('#hidincprob').val($(this).is(":checked"));
 		$('#hidinccanq').val($(this).is(":checked"));
 	});
-	@foreach($surveydetails as $surveydetail) 
+	@foreach($selinitsurveydetails as $surveydetail) 
 		$('#survey_detail_{{ $surveydetail->id }}').on('change',function(e){
 			if($(this).is(":checked"))
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
@@ -2038,7 +2001,7 @@ $(document).ready(function ($) {
 	@endforeach
 	$('#checkAllSurveys').on('change',function(e){
 		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($surveydetails as $surveydetail) 
+		@foreach($selinitsurveydetails as $surveydetail) 
 			if($(this).is(":checked"))
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
 			else
