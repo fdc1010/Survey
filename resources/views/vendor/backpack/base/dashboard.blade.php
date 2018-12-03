@@ -1832,7 +1832,7 @@
         </div>
         @endif
         @endif
-        @if($showQuality)
+        @if(empty($rdata['selelection']) && $showQuality)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1858,7 +1858,7 @@
         </div>
     	@endif
     	@endif
-        @if($showProblem)
+        @if(empty($rdata['selelection']) && $showProblem)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -2798,7 +2798,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($showQuality)
+      @if(empty($rdata['selelection']) && $showQuality)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -2882,7 +2882,7 @@ $(document).ready(function ($) {
       });
 	  @endif
 	  @endif
-      @if($showProblem)
+      @if(empty($rdata['selelection']) && $showProblem)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
