@@ -32,7 +32,7 @@ class ElectionReturn extends Model
     }
 	public function voter()
     {
-        return $this->belongsTo('App\Models\Candidate','voter_id');
+        return $this->belongsTo('App\Models\Voter','voter_id');
     }
 	public function precinct()
     {
@@ -41,6 +41,60 @@ class ElectionReturn extends Model
 	public function getPrecinct(){
 		$precinct = Precinct::find($this->precinct_id)->with('barangay');
 		return $precinct->precinct_number . " (" . $precinct->barangay->name . ")";
+	}
+	public function tally($candidateid=1,$electionid=1, $agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+							$civilstatus = [], $occstatus = [], $voterstatus = []){
+		return $this->where('candidate_id',$candidateid)
+					->where('election_id',$electionid)
+					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+								if(count($agebrackets)>0)
+									$q->whereIn('age',$agebrackets);
+								
+								if(count($genders)>0)
+									$q->whereIn('gender_id',$genders);
+									
+								if(count($empstatus)>0)
+									$q->whereIn('employment_status_id',$empstatus);
+									
+								if(count($civilstatus)>0)
+									$q->whereIn('civil_status_id',$civilstatus);
+									
+								if(count($occstatus)>0)
+									$q->whereIn('occupancy_status_id',$occstatus);
+									
+								if(count($voterstatus)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												});			
+								}
+								
+								if(count($brgy)>0){
+									$q->whereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});			
+								}
+									/*->where(function($query)use($empstatus){
+											 $query->whereNotNull('employment_status_id')
+											 		->whereIn('employment_status_id',$empstatus);										
+										})
+									->where(function($query)use($civilstatus){
+											 $query->whereNotNull('civil_status_id')
+											 		->whereIn('civil_status_id',$civilstatus);
+										})										
+									->where(function($query)use($occstatus){
+											 $query->whereNotNull('occupancy_status_id')
+											 		->whereIn('occupancy_status_id',$occstatus);
+										})
+									->whereHas('statuses',function($qv)use($voterstatus){
+															$qv->whereIn('status_id',$voterstatus);
+												})
+									->orWhereHas('precinct',function($qb)use($brgy){
+															$qb->whereIn('barangay_id',$brgy);
+												});*/											
+							})
+						->sum('tally');	
 	}
     /*
     |--------------------------------------------------------------------------
