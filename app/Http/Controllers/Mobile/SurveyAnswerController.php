@@ -188,7 +188,7 @@ class SurveyAnswerController extends Controller
 								$tallyproblem->save();
 							}	
 						}								
-					}
+					
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 			}else{
