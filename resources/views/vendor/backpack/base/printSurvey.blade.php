@@ -90,12 +90,12 @@
             $showProblem = true;
             $showQuality = true;
         }
+        
+        $tallyelection = (!empty($rdata['hidselelection']))?$rdata['hidselelection']:1;
         $selinitelections = App\Models\Election::all();
-		if(!empty($rdata['hidselelection'])){	
-            $election = App\Models\Election::find($rdata['hidselelection']);
-        }else{
-        	$election = App\Models\Election::all();
-        }
+		$elections = App\Models\Election::find($tallyelection);
+        
+        $tallyvote = new App\Models\ElectionReturn;
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
@@ -233,9 +233,9 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes">
-                      		<table class="table table-striped display" cellspacing="0">
-                            	<thead>
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                             	<thead>
                                     <tr>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
@@ -270,7 +270,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -279,9 +279,9 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes">
-                      		<table class="table table-striped display" cellspacing="0">
-                            	<thead>
+                      <div id="tblvotescompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                           	<thead>
                                     <tr>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
@@ -300,9 +300,57 @@
                                   <tbody>                                  
                                   @foreach($position->candidates as $candidate)
                                       @php
-                                          $tallycompare[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurveycompare,$tallyagebrackets,$tallybrgy,
+                                          	$tallycompare[$candidate->id]=$tallypoll->tally($candidate->id,$tallysurveycompare,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);   
+                                      	  
+                                      @endphp
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          <td>{{ $tallycompare[$candidate->id] }}</td>
+                                      </tr>
+                                  @endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Tabular Stats (Summary): {{ $elections->name }}</div>
+                    </div>
+                </div>                
+                <div class="box-body">                	
+                      <div id="tblvotescompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      	<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                           	<thead>
+                                    <tr>
+                                        <th>Cadidates</th>
+                                        <th>Votes</th>
+                                    </tr>                                    
+                                </thead>
+                            	@php
+                                    $tallycompare = array();                                    
+                                @endphp
+            					@foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          <th></th>
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>                                  
+                                  @foreach($position->candidates as $candidate)
+                                      @php
+                                          	$tallycompare[$candidate->id]=$tallyvote->tally($candidate->id,$tallyelection,$tallyagebrackets,$tallybrgy,
+                                                                                  $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                  $tallyoccstatus,$tallyvoterstatus);
+                                          
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
@@ -327,8 +375,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender">
-                      		<table class="table table-striped display" cellspacing="0">
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -372,7 +420,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -382,8 +430,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender">
-                      		<table class="table table-striped display" cellspacing="0">
+                      <div id="tblgendercompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -427,6 +475,61 @@
                 </div>
             </div>
         </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Tabular Tally by Gender: {{ $elections->name }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblgendercompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                    <tr>
+                                        <th>Cadidates</th>
+                                        @foreach($genders as $gender)
+                                        <th>{{ $gender->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                @php
+                                	$tallygcompare = array();                                    
+                                @endphp
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($genders as $gender)
+                                          <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>                                  
+                                <tbody>
+                               	
+                                 @foreach($position->candidates as $candidate)                             	
+                                	<tr>
+                                    	<td>{{ $candidate->voter->full_name }}</td>
+                                        @foreach($genders as $gender)
+                                        @php
+                                        	$tallygcompare[$candidate->id][$gender->id]=$tallyvote->tally($candidate->id,$tallyelection,$tallyagebrackets,$tallybrgy,
+                                                                                                      [$gender->id], $tallyempstatus,$tallycivilstatus,
+                                                                                                      $tallyoccstatus,$tallyvoterstatus);
+                                                                                        
+                                        @endphp
+                                        <td>{{ $tallygcompare[$candidate->id][$gender->id] }}</td>
+                                        @endforeach
+                                    </tr>
+                                  @endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
         @endif
        @endif
        @if($showCivil)
@@ -439,9 +542,9 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus">
-                      		<table class="table table-striped display" cellspacing="0">
-            					<thead>
+                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            						<thead>
                                     <tr>
                                     	<th>Candidates</th>
                                         @foreach($civilstatuses as $civilstatus)
@@ -482,7 +585,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -492,8 +595,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus">
-                      		<table class="table table-striped display" cellspacing="0">
+                       <div id="tblcivilstatuscompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
                                     	<th>Candidates</th>
@@ -535,6 +638,59 @@
                 </div>
             </div>
         </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Civil Status: {{ $elections->name }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                       <div id="tblcivilstatuscompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                    <tr>
+                                    	<th>Candidates</th>
+                                        @foreach($civilstatuses as $civilstatus)
+                                        <th>{{ $civilstatus->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                @php
+                                	$tallycvcompare = array();                                    
+                                @endphp
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($civilstatuses as $civilstatus)
+                                          <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>                                
+                                	@foreach($position->candidates as $candidate)                               	
+                                        <tr>
+                                            <td>{{ $candidate->voter->full_name }}</td>
+                                            @foreach($civilstatuses as $civilstatus)
+                                            @php
+                                                $tallycvcompare[$candidate->id][$civilstatus->id]=$tallyvote->tally($candidate->id,$tallyelection,$tallyagebrackets,$tallybrgy,
+                                                                                                                    $tallygenders, $tallyempstatus,[$civilstatus->id],
+                                                                                                                    $tallyoccstatus,$tallyvoterstatus);                                            
+                                            @endphp
+                                            <td>{{ $tallycvcompare[$candidate->id][$civilstatus->id] }}</td>
+                                            @endforeach
+                                        </tr>
+                                  	@endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
         @endif
         @endif
         @if($showEmployment)
@@ -547,8 +703,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus">
-                      		<table class="table table-striped display" cellspacing="0">
+                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($empstatuses as $empstatus)
@@ -590,7 +746,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -600,8 +756,8 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus">
-                      		<table class="table table-striped display" cellspacing="0">
+                      <div id="tblempstatuscompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($empstatuses as $empstatus)
@@ -643,6 +799,59 @@
                 </div>
             </div>
         </div>
+       	@elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Employment Status: {{ $elections->name }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblempstatuscompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            					<thead>
+                                    	<th>Candidates</th>
+                                        @foreach($empstatuses as $empstatus)
+                                        <th>{{ $empstatus->name }}</th>
+                                        @endforeach
+                                    </tr>                                    
+                                </thead>
+                                <tbody>
+                                @php
+                                	$tallyempcompare = array();                                    
+                                @endphp
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($empstatuses as $empstatus)
+                                          <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>                                
+                                	@foreach($position->candidates as $candidate)                                    	             	
+                                          <tr>
+                                              <td>{{ $candidate->voter->full_name }}</td>
+                                              @foreach($empstatuses as $empstatus)
+                                              @php
+                                                  $tallyempcompare[$candidate->id][$empstatus->id]=$tallyvote->tally($candidate->id,$tallyelection,$tallyagebrackets,$tallybrgy,
+                                                                                                                      $tallygenders,[$empstatus->id],$tallycivilstatus,
+                                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
+                                              @endphp
+                                              <td>{{ $tallyempcompare[$candidate->id][$empstatus->id] }}</td>
+                                              @endforeach
+                                          </tr>
+                                  	@endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
         @endif  
         @endif           
     </div>
@@ -659,9 +868,9 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket">
-                      		<table class="table table-striped display" cellspacing="0">
-            					<thead>
+                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            						<thead>
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($agebrackets as $agebracket)
@@ -707,7 +916,7 @@
                 </div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -717,9 +926,9 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket">
-                      		<table class="table table-striped display" cellspacing="0">
-            					<thead>
+                      <div id="tblagebracketcompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            						<thead>
                                 	<tr>
                                     	<th>Candidates</th>
                                         @foreach($agebrackets as $agebracket)
@@ -765,6 +974,64 @@
                 </div>
             </div>
         </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket: {{ $elections->name }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body">                	
+                      <div id="tblagebracketcompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+            						<thead>
+                                	<tr>
+                                    	<th>Candidates</th>
+                                        @foreach($agebrackets as $agebracket)
+                                        <th>{{ $agebracket->title }}</th>
+                                        @endforeach
+                                    </tr>                             
+                                </thead>
+                                @php
+                                	$tallyabcompare = array();                                    
+                                @endphp
+                                @foreach($positions as $position)
+                                  <thead>
+                                      <tr>
+                                          <th>{{ $position->name }}</th>
+                                          @foreach($agebrackets as $agebracket)
+                                       	  <th></th>
+                                          @endforeach
+                                      </tr>                                    
+                                  </thead>
+                                  <tbody>
+                                  
+                                  @foreach($position->candidates as $candidate)                               	
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          @foreach($agebrackets as $agebracket)
+                                          @php
+                                              $gtallyagebrackets=[];
+                                              for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
+                                                  array_push($gtallyagebrackets,$tallyiage);
+                                              }
+                                              $tallyabcompare[$candidate->id][$agebracket->id]=$tallyvote->tally($candidate->id,$tallyelection,$gtallyagebrackets,$tallybrgy,
+                                                                                                        $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
+                                          @endphp
+                                          <td>{{ $tallyabcompare[$candidate->id][$agebracket->id] }}</td>
+                                          @endforeach
+                                      </tr>
+                                  @endforeach                                
+                                  </tbody>
+                                @endforeach
+                            </table>
+                      </div>
+                </div>
+            </div>
+        </div>
         @endif
         @endif
         @if($showQuality)
@@ -777,8 +1044,8 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div id="tblqualities">                                
-                                <table class="table table-striped display" cellspacing="0">
+                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">                                
+                            <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -820,7 +1087,7 @@
                     </div>
                 </div>
             </div>
-            @if($tallysurvey!=$tallysurveycompare)
+            @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
             <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -830,8 +1097,8 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div id="tblqualities">                                
-                                <table class="table table-striped display" cellspacing="0">
+                         <div id="tblqualitiescompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">                                
+                            <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -885,9 +1152,9 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div id="tblproblem">
-                                <table class="table table-striped display" cellspacing="0">
-                                    <thead>
+                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                                   <thead>
                                         <tr>
                                             <th>Barangays</th>
                                             @foreach($problems as $problem)
@@ -918,7 +1185,7 @@
                     </div>
                 </div>
             </div> 
-            @if($tallysurvey!=$tallysurveycompare)
+            @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -928,8 +1195,8 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div id="tblproblem">
-                                <table class="table table-striped display" cellspacing="0">
+                          <div id="tblproblemcompare" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Barangays</th>
@@ -978,7 +1245,7 @@
                 <div class="box-body"><div id="chart"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -989,6 +1256,19 @@
                 </div>
 
                 <div class="box-body"><div id="chartcompare"></div></div>
+            </div>
+        </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="row">
+    	<div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Main Chart (Summary): {{ $elections->name }}</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartelection"></div></div>
             </div>
         </div>
         @endif
@@ -1004,7 +1284,7 @@
                 <div class="box-body"><div id="chartgender"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1014,6 +1294,18 @@
                 </div>
 
                 <div class="box-body"><div id="chartgendercompare"></div></div>
+            </div>
+        </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">Chart Tally by Gender: {{ $elections->name }}</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartgenderelection"></div></div>
             </div>
         </div>
         @endif
@@ -1030,7 +1322,7 @@
                 <div class="box-body"><div id="chartcivil"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1040,6 +1332,18 @@
                 </div>
 
                 <div class="box-body"><div id="chartcivilcompare"></div></div>
+            </div>
+        </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Civil Status: {{ $elections->name }}</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartcivilelection"></div></div>
             </div>
         </div>
         @endif
@@ -1056,7 +1360,7 @@
                 <div class="box-body"><div id="chartemp"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1066,6 +1370,18 @@
                 </div>
 
                 <div class="box-body"><div id="chartempcompare"></div></div>
+            </div>
+        </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Employment Status: {{ $elections->name }}</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartempelection"></div></div>
             </div>
         </div>
         @endif
@@ -1082,7 +1398,7 @@
                 <div class="box-body"><div id="chartagebracket"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1094,9 +1410,21 @@
                 <div class="box-body"><div id="chartagebracketcompare"></div></div>
             </div>
         </div>
+        @elseif(!empty($rdata['hidselelection']))
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">                      
+                      		<div class="box-title">By Age Bracket: {{ $elections->name }}</div>                	                        	
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartagebracketelection"></div></div>
+            </div>
+        </div>
         @endif
         @endif
-        @if($showQuality)
+        @if(empty($rdata['hidselelection']) && $showQuality)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1108,7 +1436,7 @@
                 <div class="box-body"><div id="chartqualities"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1122,7 +1450,7 @@
         </div>
     	@endif
     	@endif
-        @if($showProblem)
+        @if(empty($rdata['hidselelection']) && $showProblem)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1134,7 +1462,7 @@
                 <div class="box-body"><div id="chartproblem"></div></div>
             </div>
         </div>
-        @if($tallysurvey!=$tallysurveycompare)
+        @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1211,9 +1539,48 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartcompare = c3.generate({
 		bindto: '#chartcompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			['Votes',
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					{{ $tally[$candidate->id] }},
+				@endforeach
+			@endforeach
+			]
+          ],
+		  labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @elseif(!empty($rdata['hidselelection']))
+	  var chartelection = c3.generate({
+		bindto: '#chartelection',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1292,9 +1659,50 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartgendercompare = c3.generate({
 		bindto: '#chartgendercompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($genders as $gender)
+				['{{ $gender->name }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyg[$candidate->id][$gender->id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @elseif(!empty($rdata['hidselelection']))
+	  var chartgenderelection = c3.generate({
+		bindto: '#chartgenderelection',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1376,9 +1784,50 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartagebracketcompare = c3.generate({
 		bindto: '#chartagebracketcompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($agebrackets as $agebracket)
+				['{{ $agebracket->title }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyab[$candidate->id][$agebracket->id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @elseif(!empty($rdata['hidselelection']))
+	  var chartagebracketelection = c3.generate({
+		bindto: '#chartagebracketelection',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1460,9 +1909,50 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartcivilcompare = c3.generate({
 		bindto: '#chartcivilcompare',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($civilstatuses as $civilstatus)
+				['{{ $civilstatus->name }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallycv[$candidate->id][$civilstatus->id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @elseif(!empty($rdata['hidselelection']))
+	  var chartcivilelection = c3.generate({
+		bindto: '#chartcivilelection',				
         data: {
 		  x: 'Candidates',
 		  columns: [
@@ -1544,7 +2034,7 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartempcompare = c3.generate({
 		bindto: '#chartempcompare',				
         data: {
@@ -1585,9 +2075,50 @@
           },
         }
       });
+	  @elseif(!empty($rdata['hidselelection']))
+	  var chartempelection = c3.generate({
+		bindto: '#chartempelection',				
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates', 
+			@foreach($positions as $position)
+				@foreach($position->candidates as $candidate)
+					'{{ $candidate->voter->full_name }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($empstatuses as $empstatus)
+				['{{ $empstatus->name }}',
+				@foreach($positions as $position)
+					@foreach($position->candidates as $candidate)
+						{{ $tallyemp[$candidate->id][$empstatus->id] }},
+					@endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
 	  @endif
 	  @endif
-      @if($showQuality)
+      @if(empty($rdata['hidselelection']) && $showQuality)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities',				
         data: {
@@ -1628,7 +2159,7 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartqualitiescompare = c3.generate({
 		bindto: '#chartqualitiescompare',				
         data: {
@@ -1671,7 +2202,7 @@
       });
 	  @endif
 	  @endif
-      @if($showProblem)
+      @if(empty($rdata['hidselelection']) && $showProblem)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem',				
         data: {
@@ -1708,7 +2239,7 @@
           },
         }
       });
-	  @if($tallysurvey!=$tallysurveycompare)
+	  @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
 	  var chartproblemcompare = c3.generate({
 		bindto: '#chartproblemcompare',				
         data: {
