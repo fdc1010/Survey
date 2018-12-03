@@ -31,19 +31,19 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2"> <link href="{{ asset('css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
 	<style type="text/css"> 
-		thead { display: table-header-group }
+		/*thead { display: table-header-group }
 		tfoot { display: table-row-group }
 		tr { page-break-inside: avoid }
 		@media print {
 			.element-that-contains-table {
 				overflow: visible !important;
 			}
-		}
-		/*.contentBlock, div, h2, h3, p { 
+		}*/
+		.contentBlock, div, h2, h3, p { 
 			display:block ! important; 
 			page-break-inside:avoid ! important; 
-			page-break-before:always !important;
-		}*/
+			/*page-break-before:always !important;*/
+		}
     </style>
 </head>
 <body class="hold-transition {{ config('backpack.base.skin') }}">
@@ -225,7 +225,7 @@
         }
     @endphp
     <div class="row">    	
-    	<div class="col-md-6">
+    	<div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -271,7 +271,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -318,7 +318,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -366,7 +366,7 @@
         </div>
         @endif
     	@if($showGender)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -421,7 +421,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -476,7 +476,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -533,7 +533,7 @@
         @endif
        @endif
        @if($showCivil)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -586,7 +586,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -639,7 +639,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -694,7 +694,7 @@
         @endif
         @endif
         @if($showEmployment)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -747,7 +747,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -800,7 +800,7 @@
             </div>
         </div>
        	@elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1234,7 +1234,7 @@
            
         @if($showGraph)
         <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1247,7 +1247,7 @@
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
         <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1260,7 +1260,7 @@
         </div>
         @elseif(!empty($rdata['hidselelection']))
         <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1273,7 +1273,7 @@
         </div>
         @endif
         @if($showGender)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1285,7 +1285,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1297,7 +1297,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1311,7 +1311,7 @@
         @endif
         @endif
         @if($showCivil)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1323,7 +1323,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1335,7 +1335,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1349,7 +1349,7 @@
         @endif
         @endif
         @if($showEmployment)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1361,7 +1361,7 @@
             </div>
         </div>
         @if(empty($rdata['hidselelection']) && $tallysurvey!=$tallysurveycompare)
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1373,7 +1373,7 @@
             </div>
         </div>
         @elseif(!empty($rdata['hidselelection']))
-        <div class="col-md-6">
+        <div class="col-md-6 contentBlock">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
