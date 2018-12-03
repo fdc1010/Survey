@@ -346,8 +346,8 @@
                         @endforeach
                         </select>                        
                     </div>                    
-                    <div class="col-md-1"><strong>Election Returns:</strong></div>
-                    <div class="col-md-4">                        
+                    <div class="col-md-2"><strong>Election Returns:</strong></div>
+                    <div class="col-md-3">                        
                         <select name="selelection" id="selelection">
                         	<option value="">--Select Election--</option>
                         @foreach($selinitelections as $election)	
