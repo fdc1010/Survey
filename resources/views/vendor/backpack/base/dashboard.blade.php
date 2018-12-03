@@ -2039,13 +2039,19 @@ $(document).ready(function ($) {
 	$('#checkAllSurveys').on('change',function(e){
 		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
 		@foreach($elections as $election)
-			$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
+			if($(this).is(":checked")
+				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
+			else
+				$('#hidsurvey_detail_{{ $surveydetail->id }}').val(0);
 		@endforeach	
 	});
 	$('#checkAllElectionReturns').on('change',function(e){
 		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));		
 		@foreach($elections as $election)
-			$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
+			if($(this).is(":checked")
+				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
+			else
+				$('#hidelection_return_{{ $election->id }}').val(0);
 		@endforeach	
 	});
 	@foreach($selinitpositions as $position)
