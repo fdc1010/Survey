@@ -1212,7 +1212,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">By Employment Status: {{ $elections->subject }}</div>
+                      		<div class="box-title">By Employment Status: {{ $elections->name }}</div>
                     </div>
                 </div>
 
@@ -1672,7 +1672,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart (Summary): {{ $elections->subject }}</div>                	                        	
+                      		<div class="box-title">Main Chart (Summary): {{ $elections->name }}</div>                	                        	
                     </div>
                 </div>
 
@@ -1709,7 +1709,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">Chart Tally by Gender: {{ $elections->subject }}</div>                	                        	
+                      		<div class="box-title">Chart Tally by Gender: {{ $elections->name }}</div>                	                        	
                     </div>
                 </div>
 
@@ -1747,7 +1747,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">By Civil Status: {{ $elections->subject }}</div>                	                        	
+                      		<div class="box-title">By Civil Status: {{ $elections->name }}</div>                	                        	
                     </div>
                 </div>
 
@@ -1785,7 +1785,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">By Employment Status: {{ $elections->subject }}</div>                	                        	
+                      		<div class="box-title">By Employment Status: {{ $elections->name }}</div>                	                        	
                     </div>
                 </div>
 
@@ -1823,7 +1823,7 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket: {{ $elections->subject }}</div>                	                        	
+                      		<div class="box-title">By Age Bracket: {{ $elections->name }}</div>                	                        	
                     </div>
                 </div>
 
