@@ -93,11 +93,8 @@
         $selinitempstatuses = App\Models\EmploymentStatus::all(); 
         $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
-        if(!empty($rdata['selelection'])){	
-            $elections = App\Models\Election::find($tallyelection);
-        }else{
-        	$elections = App\Models\Election::find();
-        }
+        $elections = App\Models\Election::find($tallyelection);
+        
         if(!empty($rdata['gender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
             $tallygenders=$genders->pluck('id')->toArray();
