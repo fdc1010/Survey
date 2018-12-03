@@ -16,7 +16,15 @@ use App\Models\VoterStatus;
 use App\Models\StatusDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Session;
+use Excel;
+use File;
+use Image;
 class SurveyAnswerController extends Controller
 {
     /**
