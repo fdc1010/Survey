@@ -247,7 +247,7 @@
             @foreach($surveydetails as $surveydetail)
                 	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="0" />
             @endforeach
-            @foreach($elections as $election)
+            @foreach($selinitelections as $election)
                 	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="0" />
             @endforeach
             <input type="hidden" name="hidselelection" id="hidselelection" value="{{ (!empty($rdata['selelection'])?$rdata['selelection']:"") }}" />
@@ -318,7 +318,7 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllElectionReturns" /> Check All</label></div>
-                        @foreach($elections as $election)                        
+                        @foreach($selinitelections as $election)                        
                         		@if(!empty($rdata['election_return']) && in_array($election->id,$rdata['election_return']))
                                 <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $surveydetail->name }}</label></div>                        
                         		@else
