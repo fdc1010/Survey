@@ -1178,9 +1178,6 @@
         </div>
         @endforeach
         @endif
-       	@endif
-    </div>
-     @endif
     </div>
 @endsection
 @section('chartcss')
