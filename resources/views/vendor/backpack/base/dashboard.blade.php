@@ -695,7 +695,7 @@
             </div>
         </div>
         </form>
-    	@foreach($selinitsurveydetails as $surveydetail)    	
+    	@foreach($surveydetails as $surveydetail)    	
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -741,7 +741,7 @@
         </div>        
         @endforeach
         @if($showGender)
-        @foreach($selinitsurveydetails as $surveydetail)  
+        @foreach($surveydetails as $surveydetail)  
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -800,7 +800,7 @@
         @endif
         
          @if($showCivil)
-         @foreach($selinitsurveydetails as $surveydetail)
+         @foreach($surveydetails as $surveydetail)
         	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -857,7 +857,7 @@
         @endif
         
         @if($showEmployment)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -914,7 +914,7 @@
         @endif
         
         @if($showAgeBracket)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -976,7 +976,7 @@
         @endif
         
         @if($showQuality)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
     	<div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1033,7 +1033,7 @@
         	@endif
             
         	@if($showProblem)
-            @foreach($selinitsurveydetails as $surveydetail)
+            @foreach($surveydetails as $surveydetail)
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -1080,7 +1080,7 @@
         @endif   
            
         @if($showGraph)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
@@ -1095,7 +1095,7 @@
         </div>
         @endforeach        
         @if($showGender)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1110,7 +1110,7 @@
         @endforeach
         @endif
         @if($showCivil)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1125,7 +1125,7 @@
         @endforeach
         @endif
         @if($showEmployment)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1140,7 +1140,7 @@
         @endforeach
         @endif
         @if($showAgeBracket)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1155,7 +1155,7 @@
         @endforeach
         @endif
         @if($showQuality)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1170,7 +1170,7 @@
         @endforeach
     	@endif
         @if($showProblem)
-        @foreach($selinitsurveydetails as $surveydetail)
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -1516,7 +1516,7 @@ $(document).ready(function ($) {
 			return fn.apply(thisp, arguments);
 		};
 	};*/
-	@foreach($selinitsurveydetails as $surveydetail)
+	@foreach($surveydetails as $surveydetail)
 	var chart = c3.generate({
 		bindto: '#chart_{{ $surveydetail->id }}',				
         data: {
@@ -1557,7 +1557,7 @@ $(document).ready(function ($) {
       });
 	  @endforeach
       @if($showGender)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartgender = c3.generate({
 		bindto: '#chartgender_{{ $surveydetail->id }}',				
         data: {
@@ -1601,7 +1601,7 @@ $(document).ready(function ($) {
 	  @endforeach
 	  @endif
       @if($showAgeBracket)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartagebracket = c3.generate({
 		bindto: '#chartagebracket_{{ $surveydetail->id }}',				
         data: {
@@ -1645,7 +1645,7 @@ $(document).ready(function ($) {
 	  @endforeach
 	  @endif
       @if($showCivil)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil_{{ $surveydetail->id }}',				
         data: {
@@ -1689,7 +1689,7 @@ $(document).ready(function ($) {
 	  @endforeach
 	  @endif
       @if($showEmployment)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartemp = c3.generate({
 		bindto: '#chartemp_{{ $surveydetail->id }}',				
         data: {
@@ -1733,7 +1733,7 @@ $(document).ready(function ($) {
 	  @endforeach
 	  @endif
       @if($showQuality)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities_{{ $surveydetail->id }}',				
         data: {
@@ -1777,7 +1777,7 @@ $(document).ready(function ($) {
 	  @endforeach
 	  @endif
       @if($showProblem)
-	  @foreach($selinitsurveydetails as $surveydetail)
+	  @foreach($surveydetails as $surveydetail)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem_{{ $surveydetail->id }}',				
         data: {
