@@ -186,7 +186,8 @@ class SurveyAnswerController extends Controller
 								$tallyproblem->survey_detail_id = $surveydetailid;
 								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 								$tallyproblem->save();
-							}	
+								}	
+							}
 						}
 					}		
 				}

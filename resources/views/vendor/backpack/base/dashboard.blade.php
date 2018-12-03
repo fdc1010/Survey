@@ -2028,7 +2028,7 @@ $(document).ready(function ($) {
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val(0);
 		});
 	@endforeach
-	@foreach($elections as $election)
+	@foreach($selinitelections as $election)
 		$('#election_return_{{ $election->id }}').on('change',function(e){
 			if($(this).is(":checked")
 				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
@@ -2038,7 +2038,7 @@ $(document).ready(function ($) {
 	@endforeach
 	$('#checkAllSurveys').on('change',function(e){
 		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($elections as $election)
+		@foreach($surveydetails as $surveydetail) 
 			if($(this).is(":checked")
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
 			else
@@ -2047,7 +2047,7 @@ $(document).ready(function ($) {
 	});
 	$('#checkAllElectionReturns').on('change',function(e){
 		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($elections as $election)
+		@foreach($selinitelections as $election)
 			if($(this).is(":checked")
 				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
 			else
