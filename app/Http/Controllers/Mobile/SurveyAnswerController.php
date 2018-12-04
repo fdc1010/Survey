@@ -52,7 +52,7 @@ class SurveyAnswerController extends Controller
 			else
 				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
 											'survey_count'=>'no survey(s) yet!',
-											'survey_quota'=>'not speficied quota yet!');
+											'survey_quota'=>'not speficied quota yet!']);
 	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
