@@ -88,7 +88,7 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
-        $rdatahidsurvey = $rdata['hidsurvey'];
+        $rdatahidsurvey = $rdata['survey_detail'];
         foreach($rdatahidsurvey as $key => $rsurvey){
         	if(empty($rsurvey)){
             	unset($rdatahidsurvey[$key]);
