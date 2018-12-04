@@ -246,6 +246,7 @@
 								totalquota += value.number;
 							});
 							$('#trquota').html(totalquota);
+							isSameQuota(totalquota);
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -271,6 +272,7 @@
 						totalquota += value.number;
 					});
 					$('#trquota').html(totalquota);
+					isSameQuota(totalquota);
 					
                 }
 
@@ -287,6 +289,7 @@
 							totalquota += value.number;
 						});
 						$('#trquota').html(totalquota);
+						isSameQuota(totalquota);
                     }
 
                     if( typeof $scope.items != 'undefined' ){
@@ -325,6 +328,15 @@
 						});
 					}
 				});	
+			}
+			function isSameQuota(mquota){
+				if(typeof $('#quota') != "undefined"){
+					if($('#quota').val()==mquota){
+						$('button[type="submit"]').show('slow');
+					}else{
+						$('button[type="submit"]').hide('slow');
+					}
+				}
 			}
 			jQuery(document).ready(function($) {
 				  $('.select2_field').each(function (i, obj) {
