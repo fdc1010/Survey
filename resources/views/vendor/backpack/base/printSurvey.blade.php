@@ -99,6 +99,9 @@
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
+        $selinitelections = App\Models\Election::all();
+        $selinitsurveydetails = App\Models\SurveyDetail::all();
+        
     	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1; 
         $tallysurveycompare = (!empty($rdata['hidselsurveycompare']))?$rdata['hidselsurveycompare']:1;
         $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
@@ -122,6 +125,18 @@
         $brgyarr = !empty($rdata['hidto'])?$rdata['hidto']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
+        
+        if(!empty($rdata['survey_detail'])){
+        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['survey_detail'])->get();
+        }else{
+            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
+        }
+        if(!empty($rdata['election_return'])){
+        	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+        }else{  
+            $elections = App\Models\Election::where('id',$tallyelection)->get();         
+        }
+        
         if(!empty($rdata['hidposition'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['hidposition'])->get();
         }else{
