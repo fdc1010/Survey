@@ -127,12 +127,10 @@
         
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
-        if(!empty($rdata['hidsurvey'])){
-        	print_r($rdata['hidsurvey']);
+        if(!empty($rdata['hidsurvey'])){        	
         	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
         }else{
-            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
-            print_r($surveydetails);
+            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();                        
         }
         
         if(!empty($rdata['hidelectionreturn'])){
