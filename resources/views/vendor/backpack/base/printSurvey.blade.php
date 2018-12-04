@@ -126,13 +126,13 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
-        if(!empty($rdata['survey_detail'])){
-        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
+        if(!empty($rdata['hidsurvey_detail'])){
+        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey_detail'])->get();
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        if(!empty($rdata['election_return'])){
-        	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
+        if(!empty($rdata['hidelection_return'])){
+        	$elections = App\Models\Election::whereIn('id',$rdata['hidelection_return'])->get();
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
