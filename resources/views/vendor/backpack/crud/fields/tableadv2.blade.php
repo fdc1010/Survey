@@ -333,10 +333,10 @@
 				if(typeof $('#quota') != "undefined"){
 					if($('#quota').val()==mquota){
 						$('button[type="submit"]').show('slow');
-						$('button[type="button"][class="dropdown-toggle"]').show('slow');
+						$('button[type="button"][class="btn btn-success dropdown-toggle"]').show('slow');
 					}else{
 						$('button[type="submit"]').hide('slow');
-						$('button[type="button"][class="dropdown-toggle"]').hide('slow');
+						$('button[type="button"][class="btn btn-success dropdown-toggle"]').hide('slow');
 					}
 				}
 			}
