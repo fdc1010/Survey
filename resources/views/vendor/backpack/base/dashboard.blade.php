@@ -269,10 +269,10 @@
                 @endforeach
             @endif
             @foreach($selinitsurveydetails as $surveydetail)
-                	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="0" />
+                	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="" />
             @endforeach
             @foreach($selinitelections as $election)
-                	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="0" />
+                	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="" />
             @endforeach
             @if(empty($rdata['to']))            	
             	@foreach($brgyarr as $brgyrand)
