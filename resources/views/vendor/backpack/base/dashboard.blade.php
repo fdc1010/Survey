@@ -270,7 +270,7 @@
             @endif
             @foreach($selinitsurveydetails as $surveydetail)
                 	@if(empty($rdata['survey_detail']))
-                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="{{ ($tallysurvey==$surveydetail->id?$tallysurvey:1) }}" />
+                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
                    	@else
                     	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
                     @endif
