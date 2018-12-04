@@ -22,7 +22,7 @@
 ?>
 <div ng-app="backPackTableApp" ng-controller="tableController" @include('crud::inc.field_wrapper_attributes') >
 
-    <label>{!! $field['label'] !!} (count:<span id="trcount">1</span>)</label>
+    <label>{!! $field['label'] !!} (count:<span id="trcount">1</span>)(Quota:<span id="trquota">0</span>)</label>
     @include('crud::inc.field_translatable_icon')
 
     <input class="array-json" type="hidden" id="{{ $field['name'] }}" name="{{ $field['name'] }}">
@@ -215,7 +215,7 @@
                 $interpolateProvider.startSymbol('<%');
                 $interpolateProvider.endSymbol('%>');
             });
-
+			var totalquota=0;
             window.angularApp.controller('tableController', function($scope){
 				//resetSelect2();
                 $scope.sortableOptions = {
@@ -235,11 +235,13 @@
 				
                 $scope.addItem = function(){
 					//resetSelect2();
+					
                     if( $scope.max > -1 ){
                         if( $scope.items.length < $scope.max ){
                             var item = {};
                             $scope.items.push(item);
-							$('#trcount').html($scope.items.length);							
+							$('#trcount').html($scope.items.length);
+							$('#trquota').html($scope.item[1].value);						
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -260,6 +262,7 @@
                     var index = $scope.items.indexOf(item);
                     $scope.items.splice(index, 1);
 					$('#trcount').html($scope.items.length);
+					$('#trquota').html($scope.item[1].value);
                 }
 
                 $scope.$watch('items', function(a, b){
@@ -269,6 +272,7 @@
                             $scope.addItem();
                         }
 						$('#trcount').html($scope.items.length);
+						$('#trquota').html($scope.item[1].value);
                     }
 
                     if( typeof $scope.items != 'undefined' ){
