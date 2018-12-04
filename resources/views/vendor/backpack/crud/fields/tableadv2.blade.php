@@ -242,7 +242,7 @@
                             $scope.items.push(item);
 							$('#trcount').html($scope.items.length);
 							//$('#trquota').html($scope.item[1].value);						
-							
+							console.log($scope);
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -275,7 +275,7 @@
                         }
 						$('#trcount').html($scope.items.length);
 						//$('#trquota').html($scope.item[1].value);
-						console.log(a.number);
+						
                     }
 
                     if( typeof $scope.items != 'undefined' ){
