@@ -1113,12 +1113,12 @@
     <script>
 	$(document).ready(function ($) {
 	@if($showGraph)
-	Function.prototype.bind = Function.prototype.bind || function (thisp) {
+	/*Function.prototype.bind = Function.prototype.bind || function (thisp) {
 		var fn = this;
 		return function () {
 			return fn.apply(thisp, arguments);
 		};
-	};
+	};*/
 	@foreach($surveydetails as $surveydetail)
 	var chart = c3.generate({
 		bindto: '#chart_{{ $surveydetail->id }}',				
