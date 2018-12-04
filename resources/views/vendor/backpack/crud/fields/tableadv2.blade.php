@@ -241,8 +241,8 @@
                             var item = {};
                             $scope.items.push(item);
 							$('#trcount').html($scope.items.length);
-							$('#trquota').html($scope.items.number);						
-							//console.log($scope.items);
+							//$('#trquota').html($scope.item[1].value);						
+							console.log($scope.items);
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -263,8 +263,8 @@
                     var index = $scope.items.indexOf(item);
                     $scope.items.splice(index, 1);
 					$('#trcount').html($scope.items.length);
-					$('#trquota').html($scope.items.number);
-					//console.log($scope.items);
+					//$('#trquota').html($scope.item[1].value);
+					console.log($scope.items);
                 }
 
                 $scope.$watch('items', function(a, b){
@@ -275,7 +275,7 @@
                         }
 						$('#trcount').html($scope.items.length);
 						//$('#trquota').html($scope.item[1].value);
-						console.log($scope.items.number);
+						console.log($scope.items);
                     }
 
                     if( typeof $scope.items != 'undefined' ){
