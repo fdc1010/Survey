@@ -269,7 +269,11 @@
                 @endforeach
             @endif
             @foreach($selinitsurveydetails as $surveydetail)
-                	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
+                	@if(empty($rdata['survey_detail']))
+                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="{{ ($tallysurvey==$surveydetail->id?$tallysurvey:1) }}" />
+                   	@else
+                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
+                    @endif
             @endforeach
             @foreach($selinitelections as $election)
                 	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" />

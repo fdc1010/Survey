@@ -126,11 +126,7 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
-        foreach ($rdata['hidsurvey'] as $key => $value) {
-            if (empty($value)) {
-               unset($rdata[$key]);
-            }
-        }
+       
         if(!empty($rdata['hidsurvey'])){        	
         	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
         }else{
