@@ -329,7 +329,7 @@
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllSurveys" /> Check All</label></div>
                         @foreach($selinitsurveydetails as $surveydetail)
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" {{ ($tallysurvey==$surveydetail->id?"checked='checked'":"") }} /> {{ $surveydetail->subject }}</label></div> 
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" /> {{ $surveydetail->subject }}</label></div> 
                         @endforeach
                         </div>
                     </div>
