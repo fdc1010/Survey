@@ -274,6 +274,11 @@
             @foreach($selinitelections as $election)
                 	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="0" />
             @endforeach
+            @if(empty($rdata['to']))            	
+            	@foreach($brgyarr as $brgyrand)
+                	<input type="hidden" name="hidbrgyrand[]" value="{{ $brgyrand }}" />
+                @endforeach
+            @endif
             <input type="hidden" name="hidselelection" id="hidselelection" value="{{ (!empty($rdata['selelection'])?$rdata['selelection']:"") }}" />
             <input type="hidden" name="hidincgraph" id="hidincgraph" value="1" />
             <input type="hidden" name="hidincgen" id="hidincgen" value="1" />

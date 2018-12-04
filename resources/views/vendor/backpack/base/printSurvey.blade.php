@@ -122,8 +122,9 @@
         
         $surveypos = !empty($rdata['hidselposition'])?$rdata['hidselposition']:1;
         
-        $brgyarr = !empty($rdata['hidto'])?$rdata['hidto']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
+        $brgyarr = !empty($rdata['hidto'])?$rdata['hidto']:$rdata['hidbrgyrand'];        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
+        
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
         if(!empty($rdata['hidsurvey'])){
