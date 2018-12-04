@@ -132,6 +132,7 @@
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
+        print_r($surveydetails);
         if(!empty($rdata['hidelectionreturn'])){
         	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
         }else{  
