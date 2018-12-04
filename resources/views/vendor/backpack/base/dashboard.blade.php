@@ -329,13 +329,9 @@
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllSurveys" /> Check All</label></div>
                         @foreach($selinitsurveydetails as $surveydetail)                        
-                        		@if(!empty($rdata['survey_detail']) && in_array($surveydetail->id,$rdata['survey_detail']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" checked="checked" /> {{ $surveydetail->subject }}</label></div>                                                		
-                                @elseif(!empty($rdata['survey_detail']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" /> {{ $surveydetail->subject }}</label></div> 
-                                @else
+                        		
                                 <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" {{ ($tallysurvey==$surveydetail->id?"checked='checked'":"") }} /> {{ $surveydetail->subject }}</label></div> 
-                                @endif
+                                
                         @endforeach
                         </div>
                     </div>
@@ -377,7 +373,7 @@
                     <div class="col-md-2"> 
                         <select name="selsurvey" id="selsurvey">
                         @foreach($selinitsurveydetails as $surveydetail)	
-                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"" }}>{{ $surveydetail->subject }}</option>
                         @endforeach
                         </select>                        
                     </div>                    
