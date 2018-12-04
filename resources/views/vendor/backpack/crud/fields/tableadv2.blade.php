@@ -215,7 +215,7 @@
                 $interpolateProvider.startSymbol('<%');
                 $interpolateProvider.endSymbol('%>');
             });
-			var totalquota=0;
+			
             window.angularApp.controller('tableController', function($scope){
 				//resetSelect2();
                 $scope.sortableOptions = {
@@ -275,7 +275,11 @@
                         }
 						$('#trcount').html($scope.items.length);
 						//$('#trquota').html($scope.item[1].value);
-						console.log($scope);
+						var totalquota=0;
+						$.each($scope.items,function(key,value){
+							totalquota += value;
+						});
+						$('#trquota').html(totalquota);
                     }
 
                     if( typeof $scope.items != 'undefined' ){
