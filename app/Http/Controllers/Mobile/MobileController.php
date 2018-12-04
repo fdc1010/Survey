@@ -72,6 +72,7 @@ class MobileController extends Controller
 																						}]);
 																			}]);
 															}])
+													->select(['user_id','survey_detail_id','quota','completed'])
 			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,

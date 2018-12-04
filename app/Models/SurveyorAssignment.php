@@ -55,15 +55,12 @@ class SurveyorAssignment extends Model
 										->where('user_id',$this->user_id)
 										->count();
 		
-		return number_format((($this->getSurveyCount()/$this->quota)*100),2);
+		return (($this->getSurveyCount()/$this->quota)*100);
 	}
-	public function getProgressPercent(){
-		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
-										->where('user_id',$this->user_id)
-										->count();
-		
+	public function getProgressPercent(){		
 		return (($this->getSurveyCount()/$this->quota)*100) . " %";
 	}
+	
 	public function getSurveyCount(){
 		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
@@ -74,6 +71,9 @@ class SurveyorAssignment extends Model
 			return count($countsurvey);
 		else
 			return 0;
+	}
+	public function getSurveyCountPerArea(){
+		$surveyarea = $this->with('assignments'	
 	}
 	/*
 	public function barangay()

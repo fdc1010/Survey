@@ -37,6 +37,7 @@ class AssignmentDetail extends Model
 	public function surveyor(){
 		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
 	}
+	
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
