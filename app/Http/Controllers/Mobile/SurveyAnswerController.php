@@ -62,7 +62,7 @@ class SurveyAnswerController extends Controller
 			if($surveyorassignment)	{
 				$surveyedvoters = [];
 				if(!empty($surveyorassignment->assignments->sitio->voters)){
-					$surveyedvoters = $surveyorassignment->assignments->sitio->voters
+					$surveyedvoters = $surveyorassignment->assignments->sitio->voters;
 				}
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
 											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
