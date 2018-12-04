@@ -131,9 +131,8 @@
         	if(empty($rsurvey)){
             	unset($rdatahidsurvey[$key]);
             }
-       	}
-        print_r($rdatahidsurvey);
-        if(!empty($rdata['hidsurvey'])){        	
+       	}       
+        if(!empty($rdatahidsurvey)){        	
         	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();                        
