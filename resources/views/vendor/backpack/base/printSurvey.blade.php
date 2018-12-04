@@ -136,7 +136,9 @@
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
-
+		if(!empty($rdata['hidto']))
+        	$tallybrgy=$rdata['hidto'];            
+        }
         if(!empty($rdata['hidposition'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['hidposition'])->get();
         }else{
