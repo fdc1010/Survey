@@ -99,13 +99,8 @@
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        $rdatahiders = $rdata['election_return'];
-        foreach($rdatahiders as $key => $rers){
-        	if(empty($rers)){
-            	unset($rdatahiders[$key]);
-            }
-       	}       
-        if(!empty($rdatahiders)){
+        
+        if(!empty($rdata['election_return'])){
         	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
