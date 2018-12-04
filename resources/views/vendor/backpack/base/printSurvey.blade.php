@@ -925,7 +925,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chart_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chart_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach        
@@ -939,7 +939,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartgender_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartgender_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -954,7 +954,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartcivil_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartcivil_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -969,7 +969,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartemp_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartemp_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -984,7 +984,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartagebracket_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartagebracket_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -999,7 +999,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartqualities_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartqualities_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1014,7 +1014,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartproblem_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartproblem_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1031,7 +1031,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chart_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chart_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach        
@@ -1045,7 +1045,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartgender_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartgender_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1060,7 +1060,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartcivil_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartcivil_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1075,7 +1075,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartemp_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartemp_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1090,7 +1090,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:850px;" id="chartagebracket_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div style="width:750px;" id="chartagebracket_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
