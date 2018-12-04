@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Models\Question;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\SurveyorAssignment;
 use App\Models\AnsweredOption;
 use App\Models\OptionCandidate;
 use App\Models\OptionPosition;
@@ -36,6 +37,15 @@ class SurveyAnswerController extends Controller
     {
         //
     }
+	public function getSurveyorProgress(Request $request){
+			$userid = $request->user_id;
+			$surveydetailid = $request->survey_detail_id;
+			$surveyorassignment = SurveyorAssignment::where('survey_detail_id',$surveydetailid)
+														->where('user_id',$userid)
+														->first();
+														
+			return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent()]);
+	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);

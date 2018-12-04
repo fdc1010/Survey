@@ -29,7 +29,8 @@ Route::group(['prefix' => 'mobile',
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");			
 			Route::get('logout', 'MobileController@logout');				
-			Route::get('getQuestions','QuestionController@getQuestions');			
+			Route::get('getQuestions','QuestionController@getQuestions');
+			Route::get('getSurveyorProgress','SurveyAnswerController@getSurveyorProgress');		
 			Route::resource('voter', 'VoterController');
 			Route::post('sendInfo','VoterController@sendInfo');
 			Route::post('syncInData', 'VoterController@syncInData');
