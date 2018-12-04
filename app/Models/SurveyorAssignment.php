@@ -55,7 +55,7 @@ class SurveyorAssignment extends Model
 										->where('user_id',$this->user_id)
 										->count();
 		
-		return (($this->getSurveyCount()/$this->quota)*100);
+		return number_format((($this->getSurveyCount()/$this->quota)*100),2);
 	}
 	public function getProgressPercent(){
 		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
