@@ -43,8 +43,10 @@ class SurveyAnswerController extends Controller
 			$surveyorassignment = SurveyorAssignment::where('survey_detail_id',$surveydetailid)
 														->where('user_id',$userid)
 														->first();
-														
-			return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent()]);
+			if($surveyorassignment)											
+				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent()]);
+			else
+				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %');
 	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
