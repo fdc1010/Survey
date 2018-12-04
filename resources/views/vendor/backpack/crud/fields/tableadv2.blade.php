@@ -275,7 +275,7 @@
                         }
 						$('#trcount').html($scope.items.length);
 						//$('#trquota').html($scope.item[1].value);
-						
+						console.log($scope);
                     }
 
                     if( typeof $scope.items != 'undefined' ){
