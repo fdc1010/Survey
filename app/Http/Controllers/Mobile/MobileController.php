@@ -61,8 +61,7 @@ class MobileController extends Controller
 			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
 			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
 			  $genderstatus = Gender::select(['id','name','description'])->get();
-			  $surveyordetails = SurveyorAssignment::select(['user_id','survey_detail_id','quota','completed'])
-			  										->where('user_id',$user->id)
+			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
 																		$q->with(['sitio'=>function($qu){
