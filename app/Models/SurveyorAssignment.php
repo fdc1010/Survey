@@ -72,9 +72,9 @@ class SurveyorAssignment extends Model
 		else
 			return 0;
 	}
-	public function getSurveyCountPerArea(){
+	/*public function getSurveyCountPerArea(){
 		$surveyarea = $this->with('assignments'	
-	}
+	}*/
 	/*
 	public function barangay()
     {
