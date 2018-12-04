@@ -241,8 +241,11 @@
                             var item = {};
                             $scope.items.push(item);
 							$('#trcount').html($scope.items.length);
-							//$('#trquota').html($scope.item[1].value);						
-							console.log($scope);
+							var totalquota=0;
+							$.each($scope.items,function(key,value){
+								totalquota += value.number;
+							});
+							$('#trquota').html(totalquota);
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -263,7 +266,11 @@
                     var index = $scope.items.indexOf(item);
                     $scope.items.splice(index, 1);
 					$('#trcount').html($scope.items.length);
-					//$('#trquota').html($scope.item[1].value);
+					var totalquota=0;
+					$.each($scope.items,function(key,value){
+						totalquota += value.number;
+					});
+					$('#trquota').html(totalquota);
 					
                 }
 
