@@ -61,7 +61,8 @@ class MobileController extends Controller
 			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
 			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
 			  $genderstatus = Gender::select(['id','name','description'])->get();
-			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
+			  $surveyordetails = SurveyorAssignment::select(['user_id','survey_detail_id','quota','completed'])
+			  										->where('user_id',$user->id)
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
 																		$q->with(['sitio'=>function($qu){
@@ -71,8 +72,7 @@ class MobileController extends Controller
 																												},'precinct']);
 																						}]);
 																			}]);
-															}])
-													->select(['user_id','survey_detail_id','quota','completed'])
+															}])													
 			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
