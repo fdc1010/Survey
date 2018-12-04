@@ -373,7 +373,7 @@
                     <div class="col-md-2"> 
                         <select name="selsurvey" id="selsurvey">
                         @foreach($selinitsurveydetails as $surveydetail)	
-                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
+                            <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":($tallysurvey==$surveydetail->id?"selected='selected'":"")) }}>{{ $surveydetail->subject }}</option>
                         @endforeach
                         </select>                        
                     </div>                    
