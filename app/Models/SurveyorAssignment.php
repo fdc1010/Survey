@@ -55,7 +55,7 @@ class SurveyorAssignment extends Model
 										->where('user_id',$this->user_id)
 										->count();
 		
-		return ($countsurvey/$this->quota);
+		return (($countsurvey/$this->quota)*100);
 	}
 	/*
 	public function barangay()
