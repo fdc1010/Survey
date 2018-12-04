@@ -46,20 +46,12 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
 		])->makeFirstColumn();
-		/*$this->crud->addColumn([
-            'label' => "Barangay",
-			'type' => 'select',
-			'name' => 'barangay_id', // the relationship name in your Model
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay" // on create&update, do you need to add/delete pivot table entries?
-		])->afterColumn('user_id');*/
-		/*$this->crud->addColumn([
-            'name' => 'areas',			
-            'label' => 'Assigned Areas',
+		$this->crud->addColumn([
+            'name' => 'progress',			
+            'label' => 'Progress',
             'type' => 'model_function',
-			'function_name' => 'getAreas'
-		])->afterColumn('user_id');	*/
+			'function_name' => 'getProgress'
+	    ]);
 		$this->crud->addColumn([
             'label' => "Survey",
 			'type' => 'select',
