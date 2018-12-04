@@ -277,7 +277,7 @@
 						//$('#trquota').html($scope.item[1].value);
 						var totalquota=0;
 						$.each($scope.items,function(key,value){
-							totalquota += value;
+							totalquota += value.number;
 						});
 						$('#trquota').html(totalquota);
                     }
