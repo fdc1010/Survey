@@ -41,7 +41,7 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$surveydetailid = $request->survey_detail_id;
 			
-			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q){
+			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
 															$q->with(['sitio'=>function($qs)use($request){											
 																$qs->with(['voters'=>function($qv)use($request){												
 																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
