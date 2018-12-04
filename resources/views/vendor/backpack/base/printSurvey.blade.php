@@ -91,21 +91,21 @@
             $showQuality = true;
         }
         
-        $tallyelection = (!empty($rdata['hidselelection']))?$rdata['hidselelection']:1;
-        $selinitelections = App\Models\Election::all();
-		$elections = App\Models\Election::find($tallyelection);
-        
         $tallyvote = new App\Models\ElectionReturn;
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
+    	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1;                
+        $tallyelection = (!empty($rdata['hidselelection']))?$rdata['hidselelection']:0;
+        
+        $selinitgenders = App\Models\Gender::all();
+        $selinitagebrackets = App\Models\AgeBracket::all();
+        $selinitcivilstatuses = App\Models\CivilStatus::all();
+        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
+        $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
         $selinitsurveydetails = App\Models\SurveyDetail::all();
         
-    	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1; 
-        $tallysurveycompare = (!empty($rdata['hidselsurveycompare']))?$rdata['hidselsurveycompare']:1;
-        $surveyinfo = App\Models\SurveyDetail::find($tallysurvey);
-        $surveyinfocompare = App\Models\SurveyDetail::find($tallysurveycompare);
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();        
 		foreach($tempagebrackets as $ageb){
@@ -121,32 +121,28 @@
         $tallyvoterstatus = [];
         
         $surveypos = !empty($rdata['hidselposition'])?$rdata['hidselposition']:1;
-        $surveydetails = App\Models\SurveyDetail::all();
+        
         $brgyarr = !empty($rdata['hidto'])?$rdata['hidto']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
         if(!empty($rdata['survey_detail'])){
-        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['survey_detail'])->get();
+        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
         if(!empty($rdata['election_return'])){
-        	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+        	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
-        
+
         if(!empty($rdata['hidposition'])){
         	$selinitcandidates = App\Models\Candidate::with('voter')->whereIn('position_id',$rdata['hidposition'])->get();
         }else{
         	$selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         }
-        $selinitgenders = App\Models\Gender::all();
-        $selinitagebrackets = App\Models\AgeBracket::all();
-        $selinitcivilstatuses = App\Models\CivilStatus::all();
-        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
-        $problems = App\Models\OptionProblem::with('option')->get();
+        
         if(!empty($rdata['hidgender'])){	
             $genders = App\Models\Gender::whereIn('id',$rdata['hidgender'])->get(); 
             $tallygenders=$genders->pluck('id')->toArray();
@@ -205,8 +201,7 @@
             	$empstatuses = App\Models\EmploymentStatus::all(); 
             }
         }
-        
-        $qualities = App\Models\OptionQuality::with('options')->get();
+        $qualities = App\Models\OptionQuality::with('options')->get(); 
         
         $positions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();
         if(!empty($rdata['hidposition']) && empty($rdata['hidselcandidate'])){
@@ -238,6 +233,19 @@
                                                             ->get();
             }
         }
+        $tally = array();  
+        $tallyg = array(); 
+        $tallycv = array();  
+        $tallyemp = array(); 
+        $tallyab = array(); 
+        $tallyq = array();    
+        $tallyp = array();
+        
+        $tallyelection = array();     
+        $tallygelection = array();    
+        $tallycvelection = array();                                       
+        $tallyempelection = array();
+        $tallyabelection = array();
     @endphp
     @foreach($surveydetails as $surveydetail)    	
     	<div class="col-md-6">
