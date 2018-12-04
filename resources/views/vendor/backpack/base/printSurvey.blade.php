@@ -95,7 +95,7 @@
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
         
-    	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1;                
+    	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:2;                
         $tallyelection = (!empty($rdata['hidselelection']))?$rdata['hidselelection']:0;
         echo $tallysurvey;
         $selinitgenders = App\Models\Gender::all();
