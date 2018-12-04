@@ -60,15 +60,17 @@ class SurveyAnswerController extends Controller
 			
 			
 			if($surveyorassignment)	{
-				$surveyedvoters = [];
-				if(!empty($surveyorassignment->assignments->sitio->voters)){
-					$surveyedvoters = $surveyorassignment->assignments->sitio->voters;
+				$survey_per_area_count = array();
+				if(!empty($surveyarea->assignments)){
+					foreach($surveyarea->assignments as $assignment){
+						array_push($survey_per_area_count,$assignment->sitio->voters);
+					}
 				}
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
 											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
 											'survey_count'=>$surveyorassignment->getSurveyCount(),
 											'survey_quota'=>$surveyorassignment->quota,
-											'survey_count_per_quota'=>$surveyedvoters]);
+											'survey_count_per_quota'=>$survey_per_area_count]);
 			}else{
 				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
 											'survey_count'=>'no survey(s) yet!',

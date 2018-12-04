@@ -72,7 +72,7 @@ class SurveyorAssignment extends Model
 		else
 			return 0;
 	}
-	/*public function getSurveyCountPerArea(){
+	public function getSurveyCountPerArea(){
 		$surveyarea = $this->with(['assignments'=>function($q){
 										$q->with(['sitio'=>function($qs){											
 											$qs->with(['voters'=>function($qv){												
@@ -86,13 +86,20 @@ class SurveyorAssignment extends Model
 										}]);
 									}])
 							->get();
-		if(!empty($surveyarea->assignments->sitio->voters->surveyvoter)){
+		$survey_per_area_count = array();
+		if(!empty($surveyarea->assignments)){
+			foreach($surveyarea->assignments as $assignment){
+				array_push($survey_per_area_count,$assignment->sitio->voters);
+			}
+		}
+		return $survey_per_area_count;
+		/*if(!empty($surveyarea->assignments->sitio->voters->surveyvoter)){
 			return count($surveyarea->assignments->sitio->voters->surveyvoter);
 		}else{
 			return 0;	
-		}
+		}*/
 		//return $surveyarea;
-	}*/
+	}
 	/*
 	public function barangay()
     {
