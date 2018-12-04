@@ -97,7 +97,7 @@
         
     	$tallysurvey = (!empty($rdata['hidselsurvey']))?$rdata['hidselsurvey']:1;                
         $tallyelection = (!empty($rdata['hidselelection']))?$rdata['hidselelection']:0;
-        
+        echo $tallysurvey;
         $selinitgenders = App\Models\Gender::all();
         $selinitagebrackets = App\Models\AgeBracket::all();
         $selinitcivilstatuses = App\Models\CivilStatus::all();
@@ -132,7 +132,7 @@
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        print_r($surveydetails);
+        
         if(!empty($rdata['hidelectionreturn'])){
         	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
         }else{  
