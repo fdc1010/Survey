@@ -57,6 +57,13 @@ class SurveyorAssignment extends Model
 		
 		return (($countsurvey/$this->quota)*100);
 	}
+	public function getProgressPercent(){
+		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+										->where('user_id',$this->user_id)
+										->count();
+		
+		return (($countsurvey/$this->quota)*100) . " %";
+	}
 	/*
 	public function barangay()
     {
