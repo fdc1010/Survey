@@ -40,13 +40,19 @@ class SurveyAnswerController extends Controller
 	public function getSurveyorProgress(Request $request){
 			$userid = $request->user_id;
 			$surveydetailid = $request->survey_detail_id;
+			
 			$surveyorassignment = SurveyorAssignment::where('survey_detail_id',$surveydetailid)
 														->where('user_id',$userid)
 														->first();
 			if($surveyorassignment)											
-				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent()]);
+				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
+											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
+											'survey_count'=>$surveyorassignment->getSurveyCount(),
+											'survey_quota'=>$surveyorassignment->quota]);
 			else
-				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %']);
+				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
+											'survey_count'=>'no survey(s) yet!',
+											'survey_quota'=>'not speficied quota yet!');
 	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
