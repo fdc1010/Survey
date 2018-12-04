@@ -41,18 +41,40 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$surveydetailid = $request->survey_detail_id;
 			
-			$surveyorassignment = SurveyorAssignment::where('survey_detail_id',$surveydetailid)
+			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q){
+															$q->with(['sitio'=>function($qs)use($request){											
+																$qs->with(['voters'=>function($qv)use($request){												
+																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+																				->where('user_id',$request->user_id)
+																				->select(['voter_id'])
+																				->groupBy('voter_id')
+																				->get()->pluck('voter_id')->toArray();
+																			$qv->whereIn('id',$surveyansvoterid);
+																		}]);
+															}]);
+														}])
+														->where('survey_detail_id',$surveydetailid)
 														->where('user_id',$userid)
 														->first();
-			if($surveyorassignment)											
+														
+			
+			
+			if($surveyorassignment)	{
+				$surveyedvoters = [];
+				if(!empty($surveyorassignment->assignments->sitio->voters)){
+					$surveyedvoters = $surveyorassignment->assignments->sitio->voters
+				}
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
 											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
 											'survey_count'=>$surveyorassignment->getSurveyCount(),
-											'survey_quota'=>$surveyorassignment->quota]);
-			else
+											'survey_quota'=>$surveyorassignment->quota,
+											'survey_count_per_quota'=>$surveyedvoters]);
+			}else{
 				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
 											'survey_count'=>'no survey(s) yet!',
-											'survey_quota'=>'not speficied quota yet!']);
+											'survey_quota'=>'no speficied quota yet!',
+											'survey_count_per_quota'=>'no speficied quota yet!']);
+			}
 	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;

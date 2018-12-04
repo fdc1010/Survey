@@ -59,7 +59,7 @@ class Voter extends Model
     }
 	public function surveyvoter()
 	{
-		return $this->hasMany('App\Models\SurveyAnswer','voter_id')->groupBy('voter_id');
+		return $this->hasMany('App\Models\SurveyAnswer','voter_id');
 	}
 	public function getStatusName(){		
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
