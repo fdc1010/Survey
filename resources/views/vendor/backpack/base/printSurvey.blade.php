@@ -136,7 +136,7 @@
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
-		if(!empty($rdata['hidto']))
+		if(!empty($rdata['hidto'])){
         	$tallybrgy=$rdata['hidto'];            
         }
         if(!empty($rdata['hidposition'])){
