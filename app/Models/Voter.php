@@ -57,6 +57,10 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\OccupancyStatus','occupancy_status_id');
     }
+	public function surveyvoter()
+	{
+		return $this->hasMany('App\Models\SurveyAnswer','voter_id')->groupBy('voter_id');
+	}
 	public function getStatusName(){		
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "<ul>";

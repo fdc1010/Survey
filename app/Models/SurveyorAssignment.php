@@ -72,9 +72,23 @@ class SurveyorAssignment extends Model
 		else
 			return 0;
 	}
-	/*public function getSurveyCountPerArea(){
-		$surveyarea = $this->with('assignments'	
-	}*/
+	public function getSurveyCountPerArea(){
+		$surveyarea = $this->with(['assignments'=>function($q){
+										$q->with(['sitio'=>function($qs){											
+											$qs->with(['voters'=>function($qv){												
+														$qv->with('surveyvoter');
+													}]);
+										}]);
+									}])
+							->where('user_id',$this->user_id)
+							->where('survey_detail_id',$this->survey_detail_id)
+							->get();
+		if(!empty($surveyarea->assignments->sitio->voters->surveyvoter)){
+			return count($surveyarea->assignments->sitio->voters->surveyvoter);
+		}else{
+			return 0;	
+		}
+	}
 	/*
 	public function barangay()
     {
