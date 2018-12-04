@@ -126,13 +126,13 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
         
-        if(!empty($rdata['hidsurvey_detail'])){
-        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey_detail'])->get();
+        if(!empty($rdata['hidsurvey'])){
+        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        if(!empty($rdata['hidelection_return'])){
-        	$elections = App\Models\Election::whereIn('id',$rdata['hidelection_return'])->get();
+        if(!empty($rdata['hidelectionreturn'])){
+        	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
@@ -953,7 +953,6 @@
                       		<div class="box-title">By Civil Status: {{ $surveydetail->subject }}</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body"><div style="width:750px;" id="chartcivil_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
@@ -968,7 +967,6 @@
                       		<div class="box-title">By Employment Status: {{ $surveydetail->subject }}</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body"><div style="width:750px;" id="chartemp_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
@@ -983,7 +981,6 @@
                       		<div class="box-title">By Age Bracket: {{ $surveydetail->subject }}</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body"><div style="width:750px;" id="chartagebracket_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
@@ -998,7 +995,6 @@
                             <div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body"><div style="width:750px;" id="chartqualities_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
@@ -1013,7 +1009,6 @@
                             <div class="box-title">Concerns Per Barangay: {{ $surveydetail->subject }}</div>                	                        	
                     </div>
                 </div>
-
                 <div class="box-body"><div style="width:750px;" id="chartproblem_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
