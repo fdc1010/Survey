@@ -333,10 +333,10 @@
 				if(typeof $('#quota') != "undefined"){
 					if($('#quota').val()==mquota){
 						$('button[type="submit"]').show('slow');
-						$('button[type="button"]').show('slow');
+						//$('button[type="button"]').show('slow');
 					}else{
 						$('button[type="submit"]').hide('slow');
-						$('button[type="button"]').hide('slow');
+						//$('button[type="button"]').hide('slow');
 					}
 				}
 			}
