@@ -61,11 +61,11 @@ class SurveyAnswerController extends Controller
 			
 			if($surveyorassignment)	{
 				$survey_per_area_count = array();
-				if(!empty($surveyarea->assignments)){
-					foreach($surveyarea->assignments as $assignment){
-						array_push($survey_per_area_count,$assignment->sitio->voters);
-					}
+				
+				foreach($surveyorassignment->assignments as $assignment){
+					array_push($survey_per_area_count,$assignment->sitio->voters);
 				}
+				
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
 											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
 											'survey_count'=>$surveyorassignment->getSurveyCount(),
