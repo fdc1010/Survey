@@ -214,7 +214,7 @@
     	
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}" target="_blank">
         	@csrf
-            <input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:1) }}" />
+            <input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:1) }}" checked="checked" />
             @if(!empty($rdata['selagebracket']))
             <input type="hidden" name="hidselagebracket" value="{{ $rdata['selagebracket'] }}" />
             @endif
