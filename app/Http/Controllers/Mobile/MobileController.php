@@ -62,7 +62,8 @@ class MobileController extends Controller
 			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
 			  $genderstatus = Gender::select(['id','name','description'])->get();
 			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
-			  										->where('completed',0)
+			  										->where('completed',0)													
+													->select(['user_id','survey_detail_id','quota','completed'])
 													->with(['assignments'=>function($q){
 																		$q->with(['sitio'=>function($qu){
 																				$qu->with(['voters'=>function($qs){
@@ -72,7 +73,6 @@ class MobileController extends Controller
 																						}]);
 																			}]);
 															}])
-													->select(['user_id','survey_detail_id','quota','completed'])
 			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
