@@ -58,7 +58,7 @@ class SurveyorAssignment extends Model
 		return (($this->getSurveyCount()/$this->quota)*100);
 	}
 	public function getProgressPercent(){		
-		return (($this->getSurveyCount()/$this->quota)*100) . " %";
+		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
 	
 	public function getSurveyCount(){
