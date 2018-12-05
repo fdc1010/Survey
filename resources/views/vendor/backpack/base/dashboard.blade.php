@@ -189,14 +189,14 @@
         $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){        														
         														$q->select(DB::raw('COUNT(tally) as ctally'))
                                                                    ->from('tally_votes')
-                                                                   ->groupBy('candidate_id'))
+                                                                   ->groupBy('candidate_id')
                                                                    ->orderBy('ctally','DESC');
         													}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->select(DB::raw('COUNT(tally) as ctally'))
                                                                    ->from('tally_votes')
-                                                                   ->groupBy('candidate_id'))
+                                                                   ->groupBy('candidate_id')
                                                                    ->orderBy('ctally','DESC');
         													}])->whereIn('id',$rdata['position'])->get();
 
@@ -205,7 +205,7 @@
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
                 												$q->select(DB::raw('COUNT(tally) as ctally'))
                                                                    ->from('tally_votes')
-                                                                   ->groupBy('candidate_id'))
+                                                                   ->groupBy('candidate_id')
                                                                    ->orderBy('ctally','DESC');
         													}])
                                                             ->whereIn('id',$rdata['position'])
