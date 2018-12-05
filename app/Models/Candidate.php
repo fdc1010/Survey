@@ -43,7 +43,7 @@ class Candidate extends Model
     }
 	public function tally()
 	{
-		return $this->hasMany(App\Models\TallyVote::class,'candidate_id');	
+		return $this->hasMany(TallyVote::class,'candidate_id');	
 	}
 	public function getCandidateName()
 	{
