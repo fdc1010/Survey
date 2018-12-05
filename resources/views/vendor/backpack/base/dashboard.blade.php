@@ -192,7 +192,10 @@
                                                                     	->groupBy('candidate_id')
                                                                         ->orderBy('tally_count','DESC');
                                                                 }]);
-        													}])->where('id',$surveypos)->get();        
+        													}])
+                                                            ->where('id',$surveypos)
+                                                            ->select(['id','name'])
+                                                            ->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['voter','tally'=>function($qt){
@@ -200,7 +203,10 @@
                                                                     	->groupBy('candidate_id')
                                                                         ->orderBy('tally_count','DESC');
                                                                 }]);
-        													}])->whereIn('id',$rdata['position'])->get();
+        													}])
+                                                            ->whereIn('id',$rdata['position'])
+                                                            ->select(['id','name'])
+                                                            ->get();
 
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
@@ -212,6 +218,7 @@
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
+                                                            ->select(['id','name'])
                                                             ->get();
 
             }else if(!empty($rdata['candidate'])){
@@ -223,6 +230,7 @@
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
+                                                            ->select(['id','name'])
                                                             ->get();
 
             }
@@ -235,6 +243,7 @@
                                                                         ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
+                                                            ->select(['id','name'])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
             	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
@@ -244,10 +253,11 @@
                                                                         ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
+                                                            ->select(['id','name'])
                                                             ->get();
             }
         }        
-        $positions = $temppositions;//->groupBy('candidates.candidate_id')->sortByDesc('candidates.tally.tally_count');
+        $positions = $temppositions->groupBy('candidates.candidate_id')->sortByDesc('candidates.tally.tally_count');
         
         $tally = array();  
         $tallyg = array(); 
