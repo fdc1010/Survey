@@ -186,10 +186,9 @@
         }
         $qualities = App\Models\OptionQuality::with('options')->get(); 
         
-        $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){        														
         														$q->select(['*',
-                                                                			App\Models\TallyVote::where('candidate_id',$q->voter_id)
-                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                			App\Models\TallyVote::select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
                                                                    ->orderBy('ctally','DESC');
@@ -197,8 +196,7 @@
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->select(['*',
-                                                                			App\Models\TallyVote::where('candidate_id',$q->voter_id)
-                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                			App\Models\TallyVote::select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
                                                                    ->orderBy('ctally','DESC');
@@ -208,11 +206,10 @@
         	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
                 												$q->select(['*',
-                                                                			App\Models\TallyVote::where('candidate_id',$q->voter_id)
-                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                			App\Models\TallyVote::select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
-                                                                   ->orderBy('ctally','DESC');        														
+                                                                   ->orderBy('ctally','DESC');
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -220,8 +217,7 @@
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->select(['*',
-                                                                			App\Models\TallyVote::where('candidate_id',$q->voter_id)
-                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                			App\Models\TallyVote::select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
                                                                    ->orderBy('ctally','DESC');
