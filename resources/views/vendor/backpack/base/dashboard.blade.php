@@ -207,11 +207,10 @@
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
                 												$q->select(['*',
                                                                 			App\Models\TallyVote::where('candidate_id',$q->id)
-                                                                            					->select(DB::raw('COUNT(tally) as ctally')))
-                                                                                                ->groupBy('candidate_id'),
+                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                                                ->groupBy('candidate_id')
                                                                             ])
-                                                                   ->orderBy('tally','DESC');
-        														
+                                                                   ->orderBy('tally','DESC');        														
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
