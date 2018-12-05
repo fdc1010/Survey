@@ -718,7 +718,7 @@
         </div>
         </form>
     	@foreach($surveydetails as $surveydetail)    	
-    	<div class="col-md-6">
+    	<div class="col-md-6" style="font-size:24px;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -888,7 +888,7 @@
                     </div>
                 </div>
 
-                <div class="box-body" style="font-size:24px;">                	
+                <div class="box-body">                	
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
