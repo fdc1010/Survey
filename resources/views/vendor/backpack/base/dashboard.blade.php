@@ -728,7 +728,7 @@
         </div>
         </form>
     	@foreach($surveydetails as $surveydetail)    	
-    	<div class="col-md-6" style="font-size:24px;">
+    	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1113,7 +1113,7 @@
         
         
         @foreach($elections as $election)    	
-    	<div class="col-md-6" style="font-size:24px;">
+    	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
