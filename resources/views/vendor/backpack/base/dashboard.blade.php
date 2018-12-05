@@ -217,11 +217,12 @@
 
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qt){
-                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id')
-                                                                        ->orderBy('tally_count','DESC');
-                                                                }]);
+        														$q->select(['*',
+                                                                			App\Models\TallyVote::where('candidate_id',$q->id)
+                                                                            					->select(DB::raw('COUNT(tally) as ctally'))
+                                                                                                ->groupBy('candidate_id')
+                                                                            ])
+                                                                   ->orderBy('tally','DESC');
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
