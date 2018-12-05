@@ -258,7 +258,7 @@
             }
         }        
         $positions = $temppositions->groupBy('candidates.candidate_id')->sortByDesc('candidates.tally.tally_count');
-        
+        dd($positions);
         $tally = array();  
         $tallyg = array(); 
         $tallycv = array();  
