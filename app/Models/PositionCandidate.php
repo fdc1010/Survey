@@ -29,7 +29,7 @@ class PositionCandidate extends Model
 		return $this->belongsTo('App\Models\QuestionOption','option_id');
 	}
 	public function candidates(){
-		return $this->hasMany(Candidate::class,'position_id')->with('voter','tally');	
+		return $this->belongsTo('App\Models\Candidate','position_id')->with('voter','tally');	
 	}
 	public function tally()
 	{
