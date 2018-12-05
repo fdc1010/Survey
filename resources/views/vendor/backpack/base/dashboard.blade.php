@@ -888,7 +888,7 @@
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body" style="font-size:24px;">                	
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
