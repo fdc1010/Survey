@@ -192,7 +192,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });                                                                			
+                                                                }]);                                                                			
         													}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
@@ -201,7 +201,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });
+                                                                }]);
         													}])->whereIn('id',$rdata['position'])->get();
 
         }else if(!empty($rdata['position'])){
@@ -212,7 +212,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });
+                                                                }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -224,7 +224,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });
+                                                                }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -238,7 +238,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });
+                                                                }]);
         													}])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
@@ -248,7 +248,7 @@
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                });
+                                                                }]);
         													}])
                                                             ->get();
             }
