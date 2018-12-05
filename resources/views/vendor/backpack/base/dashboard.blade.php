@@ -247,7 +247,7 @@
                                                             ->get();
             }
         }        
-        $positions = $temppositions->candidates->tally()->groupBy('candidate_id')->sortByDesc('tally_count');
+        $positions = $temppositions->candidates()->tally()->groupBy('candidate_id')->sortByDesc('tally_count');
         
         $tally = array();  
         $tallyg = array(); 
