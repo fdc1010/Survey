@@ -187,7 +187,7 @@
         $qualities = App\Models\OptionQuality::with('options')->get(); 
         
         $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        													$temp = $q->with('tally');
+        													$temp = $q->with('tally')->get();
         													$temp->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
         													$q=$temp;
                                                         }])->where('id',$surveypos)->get();
