@@ -216,7 +216,7 @@
             if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate'])
-                                                                      ->select("SELECT COUNT(v.tally) FROM tally_votes v WHERE v.candidate_id=candidates.id GROUP BY v.candidate_id ORDER BY tally_count DESC");
+                                                                      ->select("'(SELECT COUNT(v.tally) FROM tally_votes v WHERE v.candidate_id=candidates.id GROUP BY v.candidate_id ORDER BY tally_count DESC)'");
                 												}])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
