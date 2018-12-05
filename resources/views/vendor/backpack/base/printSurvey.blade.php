@@ -263,7 +263,8 @@
                     <div class="col-md-12">                      
                       		<div class="box-title">Tabular Stats (Summary): {{ $surveydetail->subject }}</div>
                     </div>
-                </div>                
+                </div>      
+                          
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
