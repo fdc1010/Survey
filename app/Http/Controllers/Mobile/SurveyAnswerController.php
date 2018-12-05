@@ -73,9 +73,9 @@ class SurveyAnswerController extends Controller
 											'survey_count_per_quota'=>$survey_per_area_count]);
 			}else{
 				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
-											'survey_count'=>'no survey(s) yet!',
-											'survey_quota'=>'no speficied quota yet!',
-											'survey_count_per_quota'=>'no speficied quota yet!']);
+											'survey_count'=>0,
+											'survey_quota'=>0,
+											'survey_count_per_quota'=>0]);
 			}
 	}
 	public function storeAnswers(Request $request){
