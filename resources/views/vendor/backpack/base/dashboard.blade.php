@@ -210,7 +210,7 @@
                                                                             					->select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
-                                                                   ->orderBy('tally','DESC');        														
+                                                                   ->orderBy('ctally','DESC');        														
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -222,7 +222,7 @@
                                                                             					->select(DB::raw('COUNT(tally) as ctally'))
                                                                                                 ->groupBy('candidate_id')
                                                                             ])
-                                                                   ->orderBy('tally','DESC');
+                                                                   ->orderBy('ctally','DESC');
         													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
