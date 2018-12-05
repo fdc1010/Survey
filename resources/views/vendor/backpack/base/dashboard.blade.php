@@ -193,34 +193,51 @@
                                                                 }]);
         													}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
-            $temppositions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
+            $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['tally'=>function($qt){
+                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
+                                                                    	->groupBy('candidate_id');
+                                                                }]);
+        													}])->whereIn('id',$rdata['position'])->get();
 
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
-                $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->where('id',$rdata['selcandidate']);
-                												}])
+                $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['tally'=>function($qt){
+                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
+                                                                    	->groupBy('candidate_id');
+                                                                }]);
+        													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
 
             }else if(!empty($rdata['candidate'])){
-            	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->whereIn('id',$rdata['candidate']);
-                												}])
+            	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['tally'=>function($qt){
+                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
+                                                                    	->groupBy('candidate_id');
+                                                                }]);
+        													}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
 
             }
         }else{
             if(!empty($rdata['selcandidate'])){
-                $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->where('id',$rdata['selcandidate']);
-                												}])
+                $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['tally'=>function($qt){
+                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
+                                                                    	->groupBy('candidate_id');
+                                                                }]);
+        													}])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
-            	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
-                													$q->whereIn('id',$rdata['candidate']);
-                												}])
+            	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['tally'=>function($qt){
+                                                                	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
+                                                                    	->groupBy('candidate_id');
+                                                                }]);
+        													}])
                                                             ->get();
             }
         }
