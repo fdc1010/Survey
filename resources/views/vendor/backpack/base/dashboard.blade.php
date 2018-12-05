@@ -186,7 +186,7 @@
         }
         $qualities = App\Models\OptionQuality::with('options')->get(); 
         
-        $temppositions = App\Models\PositionCandidate::with('candidates','tally')->where('id',$surveypos)->get();        
+        $temppositions = App\Models\PositionCandidate::with('candidates')->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $temppositions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
 
@@ -219,7 +219,7 @@
                                                             ->get();
             }
         }
-        $positions = $temppositions->select(DB::raw('count(candidates.tally.tally) as tally_count'))->groupBy('candidates.tally.candidate_id')->sortBy('tally_count');
+        $positions = $temppositions->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
         $tally = array();  
         $tallyg = array(); 
         $tallycv = array();  
