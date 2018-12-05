@@ -189,8 +189,8 @@
         $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')]);
-                                                                });
-        													})->where('id',$surveypos)->get();        
+                                                                }]);
+        													}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $temppositions = App\Models\PositionCandidate::with('candidates')->whereIn('id',$rdata['position'])->get();
 
