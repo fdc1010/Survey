@@ -105,7 +105,17 @@
         }
         
         if(!empty($rdata['election_return'])){
-        	$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+        	$rdatahidelection = $rdata['election_return'];
+            foreach($rdatahidelection as $key => $relection){
+                if(empty($relection)){
+                    unset($rdatahidelection[$key]);
+                }
+            }
+            if(!empty($rdatahidelection)){
+        		$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+            }else{
+        		$elections = App\Models\Election::where('id',$tallyelection)->get();
+            }
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
