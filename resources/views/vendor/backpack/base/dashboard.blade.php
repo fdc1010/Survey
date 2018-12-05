@@ -219,7 +219,7 @@
                                                             ->get();
             }
         }
-        $positions = $temppositions->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+        $positions = $temppositions->select(DB::raw('count(candidates.tally.tally) as tally_count'))->groupBy('candidates.tally.candidate_id')->sortBy('tally_count');
         $tally = array();  
         $tallyg = array(); 
         $tallycv = array();  
