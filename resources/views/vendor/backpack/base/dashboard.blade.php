@@ -187,9 +187,7 @@
         $qualities = App\Models\OptionQuality::with('options')->get(); 
         
         $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        													$temp = $q->with('tally')->get();
-        													$temp->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
-        													$q=$temp;
+        													$q->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');        													
                                                         }])->where('id',$surveypos)->get();
         
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
