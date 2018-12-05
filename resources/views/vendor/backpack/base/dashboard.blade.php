@@ -1103,7 +1103,7 @@
         
         
         @foreach($elections as $election)    	
-    	<div class="col-md-6">
+    	<div class="col-md-6" style="font-size:24px;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1208,7 +1208,7 @@
         
          @if($showCivil)
          @foreach($elections as $election)
-        	<div class="col-md-6">
+        <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
