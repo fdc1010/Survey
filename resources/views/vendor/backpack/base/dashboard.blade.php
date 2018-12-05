@@ -187,18 +187,18 @@
         $qualities = App\Models\OptionQuality::with('options')->get(); 
         
         $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        												$q->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+        												$q->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
         											}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                                                                $q->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+                                                                $q->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
                                                             }])->whereIn('id',$rdata['position'])->get();
 
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){                													
                 													$q->where('id',$rdata['selcandidate'])
-                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
                 												}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -206,7 +206,7 @@
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->whereIn('id',$rdata['candidate'])
-                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
                 												}])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -216,13 +216,13 @@
             if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->where('id',$rdata['selcandidate'])
-                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
                 												}])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q)use($rdata){
                 													$q->whereIn('id',$rdata['candidate'])
-                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->sortBy('tally_count');
+                                                                      ->select(DB::raw('count(tally.tally) as tally_count'))->groupBy('tally.candidate_id')->orderBy('tally_count','DESC');
                 												}])
                                                             ->get();
             }
