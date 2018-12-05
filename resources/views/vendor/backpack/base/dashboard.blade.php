@@ -189,14 +189,16 @@
         $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])->where('id',$surveypos)->get();        
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])->whereIn('id',$rdata['position'])->get();
 
@@ -205,7 +207,8 @@
                 $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
@@ -215,7 +218,8 @@
             	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
@@ -227,7 +231,8 @@
                 $temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
                                                             ->get();
@@ -235,12 +240,14 @@
             	$temppositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['tally'=>function($qt){
                                                                 	$qt->select(['candidate_id',DB::raw('count(tally) as tally_count')])
-                                                                    	->groupBy('candidate_id');
+                                                                    	->groupBy('candidate_id')
+                                                                        ->orderBy('tally_count','DESC');
                                                                 }]);
         													}])
                                                             ->get();
             }
         }
+        print_r($temppositions->sortByDesc('candidates.tally.tally_count'));
         $positions = $temppositions->sortByDesc('candidates.tally.tally_count');
         $tally = array();  
         $tallyg = array(); 
