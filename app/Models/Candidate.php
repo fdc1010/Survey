@@ -28,6 +28,7 @@ class Candidate extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+	
 	public function position()
     {
         return $this->belongsTo('App\Models\PositionCandidate','position_id');
@@ -40,6 +41,10 @@ class Candidate extends Model
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
     }
+	public function tally()
+	{
+		return $this->hasMany('App\Models\TallyVotes','candidate_id');	
+	}
 	public function getCandidateName()
 	{
 		$voter = Voter::find($this->voter_id);
