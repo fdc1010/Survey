@@ -265,7 +265,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblvotes">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
@@ -312,7 +312,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblgender">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -371,7 +371,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblcivilstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                     <tr>
@@ -428,7 +428,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblempstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -485,7 +485,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblagebracket">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                 	<tr>
@@ -547,7 +547,7 @@
                 </div>
            
                     <div class="box-body">                	
-                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark">                                
+                          <div id="tblqualities">                                
                             <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -604,7 +604,7 @@
                     </div>
     
                     <div class="box-body">                	
-                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                          <div id="tblproblem">
                                 <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                                    <thead>
                                         <tr>
@@ -650,7 +650,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblvotes">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
@@ -697,7 +697,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblgender">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
@@ -756,7 +756,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblcivilstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                     <tr>
@@ -813,7 +813,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblempstatus">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
@@ -870,7 +870,7 @@
                 </div>
 
                 <div class="box-body">                	
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark">
+                      <div id="tblagebracket">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                 	<tr>
