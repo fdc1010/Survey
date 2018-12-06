@@ -143,6 +143,7 @@ class QuestionOptionCrudController extends CrudController
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
+		dd($this->crud->entry);
 		if($this->crud->entry->for_candidate_quality){
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
