@@ -92,7 +92,7 @@ class QualityPositionCrudController extends CrudController
 		$options = $this->crud->entry->options;
 		foreach($options as $optid){
 			foreach($positions as $posid){
-				$optionposition = OptionPosition::create([
+				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
@@ -123,7 +123,7 @@ class QualityPositionCrudController extends CrudController
 		
 		foreach($options as $optid){
 			foreach($positions as $posid){
-				$optionquality = OptionPosition::create([
+				$optionquality = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
