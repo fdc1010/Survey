@@ -206,9 +206,9 @@
         {{-- YOUR JS HERE --}}
         <!-- include select2 js-->
         <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.14.3/sortable.min.js"></script>        
+        <script type="text/javascript" src="{{ asset('js/angular.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/sortable.min.js') }}"></script>        
 		<script>
 
             window.angularApp = window.angularApp || angular.module('backPackTableApp', ['ui.sortable'], function($interpolateProvider){

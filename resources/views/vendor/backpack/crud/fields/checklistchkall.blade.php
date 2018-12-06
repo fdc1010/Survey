@@ -34,6 +34,7 @@
         <p class="help-block">{!! $field['hint'] !!}</p>
     @endif
 </div>
+<script type="text/javascript" src="{{ asset('js/jquery-1.12.4.js') }}"></script>
 <script>
 	jQuery(document).ready(function($) {
 		$('#checkAll').on('change',function(e){
