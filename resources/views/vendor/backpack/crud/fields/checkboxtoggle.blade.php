@@ -31,6 +31,10 @@
 <script>
 	jQuery(document).ready(function($) {
 		$('#div_{{ $field['toggle_field'] }}').hide('slow');
+		if($('#{{ $field['name'] }}').is(":checked"))
+			$('#div_{{ $field['toggle_field'] }}').show('slow');
+		else
+			$('#div_{{ $field['toggle_field'] }}').hide('slow');
 		$('#{{ $field['name'] }}').on('change',function(e){
 			if($(this).is(":checked"))
 				$('#div_{{ $field['toggle_field'] }}').show('slow');
