@@ -138,6 +138,7 @@ class QuestionOptionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$positionsarr = array();
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
@@ -153,17 +154,22 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
+				array_push($positionsarr,array('positions'=>$posid));
 			}
 			$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
 				'candidate_id' => $candid
 			]);	
+			$questionoption = QuestionOption::find($optid);
+			$questionoption->positions = $positionsarr;
+			$questionoption->save();
 		}
 		if($this->crud->entry->for_issues){
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
 			]);
 		}
+		
         return $redirect_location;
     }
 
@@ -194,7 +200,13 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
+				array_push($positionsarr,array('positions'=>$posid));
 			}
+			
+			$questionoption = QuestionOption::find($optid);
+			$questionoption->positions = $positionsarr;
+			$questionoption->save();
+			
 			$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
 				'candidate_id' => $candid
