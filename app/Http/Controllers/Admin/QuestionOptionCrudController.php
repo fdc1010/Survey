@@ -34,21 +34,14 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
+	
 		$this->crud->addColumn([
-            'name' => 'option_id',
-            'type' => 'select2_multiple',
-            'label' => 'Positions Tagged',
-			'entity' => 'optionspositions', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\PositionCandidate"
-	    ])->afterColumn('priority');
-		/*$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions Tagged',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ])->afterColumn('priority');*/
+	    ])->afterColumn('priority');
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
             'label' => 'Is Option for Candidate Qualities',

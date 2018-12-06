@@ -31,9 +31,10 @@ class QuestionOption extends Model
         $optpositions = OptionPosition::with('positions')->where('option_id',$this->id)->get();		
 		$result = "";
 		foreach($optpositions as $optposition){
-			$result .= $optposition->positions->name."<br />";
+			$result .= $optposition->positions->name.", ";
 		}
-		return $result;
+		
+		return substr($result, 0, -2);
     }
 	public function forCandidateQuality(){
 		if($this->for_candidate_quality){
