@@ -168,8 +168,7 @@ class QuestionOptionCrudController extends CrudController
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
 			]);
-		}
-		
+		}		
         return $redirect_location;
     }
 
