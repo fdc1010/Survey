@@ -144,13 +144,13 @@ class QuestionOptionCrudController extends CrudController
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
 		
-		if($this->crud->entry->for_candidate_quality){
+		if(intval($this->crud->entry->for_candidate_quality)){
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
 				'positions'=>$positions
 			]);		
 		}
-		if($this->crud->entry->for_candidate_votes){
+		if(intval($this->crud->entry->for_candidate_votes)){
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -166,7 +166,7 @@ class QuestionOptionCrudController extends CrudController
 			$questionoption->positions = $positionsarr;
 			$questionoption->save();
 		}
-		if($this->crud->entry->for_issues){
+		if(intval($this->crud->entry->for_issues)){
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
 			]);
@@ -184,8 +184,8 @@ class QuestionOptionCrudController extends CrudController
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
-		dd($this->crud->entry);
-		if($this->crud->entry->for_candidate_quality){
+		//dd($this->crud->entry);
+		if(intval($this->crud->entry->for_candidate_quality)){
 			OptionQuality::where('option_id',$optid)->delete();
 			
 			$optionquality = OptionQuality::updateOrCreate([
@@ -193,7 +193,7 @@ class QuestionOptionCrudController extends CrudController
 				'positions'=>$positions
 			]);	
 		}
-		if($this->crud->entry->for_candidate_votes){
+		if(intval($this->crud->entry->for_candidate_votes)){
 			OptionPosition::where('option_id',$optid)->delete();
 			OptionCandidate::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
@@ -213,7 +213,7 @@ class QuestionOptionCrudController extends CrudController
 				'candidate_id' => $candid
 			]);		
 		}
-		if($this->crud->entry->for_issues){
+		if(intval($this->crud->entry->for_issues)){
 			OptionProblem::where('option_id',$optid)->delete();
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
