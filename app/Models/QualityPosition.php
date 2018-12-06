@@ -32,6 +32,7 @@ class QualityPosition extends Model
 	public function positions(){
 		return $this->belongsTo('App\Models\PositionCandidate','position_id');	
 	}
+	
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
