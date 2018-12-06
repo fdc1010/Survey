@@ -55,6 +55,7 @@ class MobileController extends Controller
 		
 			  $user->rollApiKey(); //Model Function
 			  $user->is_online=1;
+			  $user->imei=$request->imei;
 			  $user->save();
 			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
 			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();

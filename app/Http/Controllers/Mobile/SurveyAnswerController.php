@@ -172,8 +172,14 @@ class SurveyAnswerController extends Controller
 							$surveyans->user_id = $userid;
 							$surveyans->voter_id = $voterid;
 							$surveyans->other_answer = $ansid['otherAnswer'];
-							//$surveyans->latitude = $request->latitude;		
-							//$surveyans->longitude = $request->longitude;
+							
+							if($request->has('latitude')){
+								$surveyans->latitude = $request->latitude;
+							}
+							if($request->has('longitude')){
+								$surveyans->longitude = $request->longitude;
+							}
+							
 							$surveyansid=$surveyans->save();				
 							
 							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
