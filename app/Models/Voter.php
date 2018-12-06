@@ -90,8 +90,8 @@ class Voter extends Model
 	}
 	public function getCandidateNameAttribute()
 	{
-		$voter = $this->doesnthave('candidate');
-		return ucwords($voter->attributes['first_name'] . ' ' . $voter->attributes['middle_name'] . ' ' . $voter->attributes['last_name']);
+		$this = $this->doesnthave('candidate');
+		return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
 	}
 	public function getFullNameAttribute()
     {
