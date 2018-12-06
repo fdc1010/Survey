@@ -62,7 +62,7 @@ class CandidateCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
 			'label' => "Candidate",
-			'type' => 'select2adv2',
+			'type' => 'select2entity2',
 			'name' => 'voter_id', // the relationship name in your Model
 			'entity' => 'voter', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
