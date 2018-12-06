@@ -36,7 +36,7 @@ class QuestionOptionCrudController extends CrudController
         $this->crud->setFromDb();	
 		$this->crud->addColumn([
             'name' => 'option_id',
-            'type' => 'checklist',
+            'type' => 'select2_multiple',
             'label' => 'Positions Tagged',
 			'entity' => 'optionspositions', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
