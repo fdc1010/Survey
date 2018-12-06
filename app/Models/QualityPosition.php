@@ -30,7 +30,7 @@ class QualityPosition extends Model
 		return $this->belongsTo('App\Models\QuestionOption','option_id');	
 	}
 	public function positions(){
-		return $this->belongsTo('App\Models\PositionCadidate','position_id');	
+		return $this->belongsTo('App\Models\PositionCandidate','position_id');	
 	}
     /*
     |--------------------------------------------------------------------------
