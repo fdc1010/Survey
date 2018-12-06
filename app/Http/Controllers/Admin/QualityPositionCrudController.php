@@ -36,7 +36,7 @@ class QualityPositionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumns(['option_id','position_id','description']);
+		$this->crud->removeColumns(['option_id','position_id','options','positions']);
 		$this->crud->removeFields(['option_id','position_id','options','positions','description']);
 		
 		$this->crud->addField([
