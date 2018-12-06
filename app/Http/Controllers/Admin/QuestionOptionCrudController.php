@@ -7,6 +7,7 @@ use App\Models\OptionQuality;
 use App\Models\OptionCandidate;
 use App\Models\OptionPosition;
 use App\Models\OptionProblem;
+use App\Models\QuestionOption;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionOptionRequest as StoreRequest;
 use App\Http\Requests\QuestionOptionRequest as UpdateRequest;
