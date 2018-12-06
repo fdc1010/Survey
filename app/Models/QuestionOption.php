@@ -19,6 +19,7 @@ class QuestionOption extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
+	protected $fakeColumns = ['position_id'];
     protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues'];
     // protected $hidden = [];
     // protected $dates = [];

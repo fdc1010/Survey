@@ -104,8 +104,8 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
-			'name' => 'positions', 
-			'entity' => 'optionspositions',
+			'name' => 'position_id', 
+			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
 		]);
@@ -140,7 +140,7 @@ class QuestionOptionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
-		$positions = $this->crud->entry->positions;
+		$positions = $this->crud->entry->position_id;
 		if($this->crud->entry->for_candidate_quality){
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
@@ -176,7 +176,7 @@ class QuestionOptionCrudController extends CrudController
 		
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
-		$positions = $this->crud->entry->positions;
+		$positions = $this->crud->entry->position_id;
 		
 		if($this->crud->entry->for_candidate_quality){
 			OptionQuality::where('option_id',$optid)->delete();
