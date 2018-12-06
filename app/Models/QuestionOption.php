@@ -35,6 +35,12 @@ class QuestionOption extends Model
 		}
 		return $result;
     }
+	public function forCandidates(){
+		if($for_candidate){
+			return "<span class='fa fa-check-o'></span>";	
+		}	
+		return "";
+	}
 	public function barangaysurveys()
     {
         return $this->hasMany('App\Models\BarangaySurveyable','barangay_id');
