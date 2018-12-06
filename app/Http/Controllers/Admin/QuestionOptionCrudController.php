@@ -34,24 +34,43 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
-		
 		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'checklist',
+            'label' => 'Positions Tagged',
+			'entity' => 'optionspositions', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate"
+	    ])->afterColumn('priority');
+		/*$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions Tagged',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ])->afterColumn('priority');
+	    ])->afterColumn('priority');*/
 		$this->crud->addColumn([
-            'name' => 'for_candidate',			
-            'label' => 'Is Option for Candidates',
+            'name' => 'for_candidate_quality',			
+            'label' => 'Is Option for Candidate Qualities',
             'type' => 'model_function',
-			'function_name' => 'forCandidates',
+			'function_name' => 'forCandidateQuality',
 			//'fake' => true
 	    ])->afterColumn('position');
+		$this->crud->addColumn([
+            'name' => 'for_candidate_votes',			
+            'label' => 'Is Option for Candidate Votes',
+            'type' => 'model_function',
+			'function_name' => 'forCandidateVotes',
+			//'fake' => true
+	    ])->afterColumn('for_candidate_quality');
         $this->crud->addField([
-            'name' => 'for_candidate',
-			'label' => 'Is Option for Candidates',
+            'name' => 'for_candidate_quality',
+			'label' => 'Is Option for Candidate Qualities',
+			'type' => 'checkbox'
+	    ]);
+		$this->crud->addField([
+            'name' => 'for_candidate_votes',
+			'label' => 'Is Option for Candidate Votes',
 			'type' => 'checkbox'
 	    ]);
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');

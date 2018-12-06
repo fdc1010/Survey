@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsforposqoTable extends Migration
+class AddForcandidatevotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddIsforposqoTable extends Migration
     public function up()
     {
         Schema::table('question_options', function (Blueprint $table) {
-            $table->boolean('for_candidate_quality')->default(0);
+            $table->boolean('for_candidate_votes')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsforposqoTable extends Migration
     public function down()
     {
         Schema::table('question_options', function (Blueprint $table) {
-            $table->dropColumn('for_candidate_quality');
+            $table->dropColumn('for_candidate_votes');
         });
     }
 }

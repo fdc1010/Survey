@@ -19,7 +19,7 @@ class QuestionOption extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option','priority','for_candidate'];
+    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes'];
     // protected $hidden = [];
     // protected $dates = [];
 	public function questions()
@@ -35,8 +35,14 @@ class QuestionOption extends Model
 		}
 		return $result;
     }
-	public function forCandidates(){
-		if($this->for_candidate){
+	public function forCandidateQuality(){
+		if($this->for_candidate_quality){
+			return "<span class='fa fa-check-circle-o'></span>";	
+		}	
+		return "";
+	}
+	public function forCandidateVotes(){
+		if($this->for_candidate_votes){
 			return "<span class='fa fa-check-circle-o'></span>";	
 		}	
 		return "";
@@ -52,10 +58,10 @@ class QuestionOption extends Model
 	public function positions(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
 	}
-	/*
-	public function optionposition(){
-		return $this->hasMany('App\Models\OptionPosition','option_id');
-	}*/
+	
+	public function optionspositions(){
+		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
