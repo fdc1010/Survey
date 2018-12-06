@@ -37,7 +37,7 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
 		$this->crud->removeFields(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
 		$this->crud->addColumn([
-            'name' => 'option_id',
+            'name' => 'option',
 			'label' => 'Option',
 			'type' => 'text'
 	    ]);
