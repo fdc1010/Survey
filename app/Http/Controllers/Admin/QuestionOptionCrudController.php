@@ -55,7 +55,7 @@ class QuestionOptionCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'forCandidateVotes',
 			//'fake' => true
-	    ])->afterColumn('for_candidate_quality');
+	    ])->beforeColumn('candidate_id');
 		$this->crud->addColumn([
             'name' => 'candidate_id',
             'type' => 'select2',
@@ -63,7 +63,7 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
-	    ])->afterColumn('positions');
+	    ])->afterColumn('for_candidate_votes');
         $this->crud->addField([
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
