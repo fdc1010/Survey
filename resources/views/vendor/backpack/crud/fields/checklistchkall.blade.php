@@ -3,13 +3,15 @@
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
     <?php $entity_model = $crud->getModel(); ?>
-
-    <div class="row">
-    		<div class="col-sm-12">
-            	<div class="checkbox">
-                  <label><input type="checkbox" name="checkAll" id="checkAll" /> Check All</label>
-                </div>
+	<div class="row">
+    	<div class="col-sm-12">
+            <div class="checkbox">
+              <label><input type="checkbox" name="checkAll" id="checkAll" /> <strong>Check All</strong></label>
             </div>
+        </div>
+    </div>
+    <div class="row">
+    		
         @foreach ($field['model']::all() as $connected_entity_entry)
             <div class="col-sm-4">
                 <div class="checkbox">
