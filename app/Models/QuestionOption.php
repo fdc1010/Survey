@@ -36,7 +36,7 @@ class QuestionOption extends Model
 		return $result;
     }
 	public function forCandidates(){
-		if($for_candidate){
+		if($this->for_candidate){
 			return "<span class='fa fa-check-o'></span>";	
 		}	
 		return "";
