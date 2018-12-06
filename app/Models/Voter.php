@@ -67,7 +67,7 @@ class Voter extends Model
 	}
 	public function untaggedcandidate()
 	{
-		return $this->hasNot(Candidate::class,'voter_id');
+		return $this->hasNot('App\Models\Candidate','voter_id');
 	}
 	public function getStatusName(){		
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
