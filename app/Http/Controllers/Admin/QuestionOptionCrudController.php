@@ -77,13 +77,13 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
-		])->afterField('for_candidate_quality');
+		])->beforeField('for_candidate_votes');
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
 			'label' => 'Is Option for Candidate Votes (if Option is Name of Candidate)',
 			'type' => 'checkboxtoggle',
 			'toggle_field' => 'candidate_id'
-	    ])->afterField('positions');
+	    ])->beforeField('candidate_id');
 		$this->crud->addField([
             'name' => 'candidate_id',
             'type' => 'select2',
