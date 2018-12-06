@@ -37,6 +37,22 @@ class QualityPositionCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['option_id','position_id','options','positions','description']);
 		$this->crud->removeFields(['option_id','position_id','options','positions','description']);
+		$this->crud->addColumn([
+            'name' => 'option_id',
+            'type' => 'select',
+            'label' => 'Qualities',
+			'entity' => 'options', // the relationship name in your Model
+			'attribute' => 'option', // attribute on Article that is shown to admin
+			'model' => "App\Models\QuestionOption"
+	    ]);
+		$this->crud->addColumn([
+            'name' => 'position_id',
+            'type' => 'select',
+            'label' => 'Positions',
+			'entity' => 'positions', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\PositionCandidate"
+	    ]);
 		$this->crud->addField([
 			'label' => "Options",
 			'type' => 'checklistchkall',
