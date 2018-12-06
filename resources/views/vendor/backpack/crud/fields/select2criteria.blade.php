@@ -20,7 +20,7 @@
         @endif
 
         @if (isset($field['model']))
-            @foreach ($field['model']::doesntHave('positions',function($q){$q->doesntHave('positions')->doesntHave('options');})->where($field['compare_field'],$field['compare_value'])->get() as $connected_entity_entry)
+            @foreach ($field['model']::doesntHave($field['entity2'],function($q){$q->doesntHave($field['entity3'])->doesntHave($field['entity4']);})->where($field['compare_field'],$field['compare_value'])->get() as $connected_entity_entry)
                 @if($current_value == $connected_entity_entry->getKey())
                     <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['attribute']} }}</option>
                 @else
