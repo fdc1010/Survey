@@ -35,22 +35,8 @@ class QualityPositionCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        //$this->crud->setFromDb();
-		$this->crud->setModel('App\Models\OptionQuality');
-		$this->crud->removeColumns(['option_id','position_id','positions','description']);
-		$this->crud->removeFields(['option_id','position_id','description','positions']);
-		//$this->crud->denyAccess(['update']);
-		$this->crud->addColumn([
-            'name' => 'option_id',
-            'type' => 'select',
-            'label' => 'Qualities',
-			'entity' => 'options', // the relationship name in your Model
-			'attribute' => 'option', // attribute on Article that is shown to admin
-			'model' => "App\Models\QuestionOption"
-	    ]);
-		
-		$this->crud->setModel('App\Models\QualityPosition');
-		$this->crud->removeColumns(['option_id','position_id','options','positions','description']);
+        $this->crud->setFromDb();
+		$this->crud->removeColumns(['option_id','position_id','description']);
 		$this->crud->removeFields(['option_id','position_id','options','positions','description']);
 		
 		$this->crud->addField([
