@@ -150,10 +150,10 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				//array_push($positionsarr,array('positions'=>$posid));
+				array_push($positionsarr,array('positions'=>$posid));
 			}	
 			$questionoption = QuestionOption::find($optid);
-			$questionoption->positions = $positions;
+			$questionoption->positions = $positionsarr;
 			$questionoption->save();
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
@@ -164,10 +164,10 @@ class QuestionOptionCrudController extends CrudController
 				]);
 				//array_push($positionsarr,array('positions'=>$posid));
 			}
-			/*$optioncandidate = OptionCandidate::updateOrCreate([
+			$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
 				'candidate_id' => $candid
-			]);	*/
+			]);	
 			
 		}
 		if(intval($this->crud->entry->for_issues)){
@@ -196,16 +196,16 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				//array_push($positionsarr,array('positions'=>$posid));
+				array_push($positionsarr,array('positions'=>$posid));
 			}
 			
-			/*$questionoption = QuestionOption::find($optid);
+			$questionoption = QuestionOption::find($optid);
 			$questionoption->positions = $positionsarr;
-			$questionoption->save();*/
+			$questionoption->save();
 			
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
-				'positions'=>$positions
+				'positions'=>$positionsarr
 			]);	
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
