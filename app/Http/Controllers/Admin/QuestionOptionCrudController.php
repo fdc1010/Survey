@@ -44,14 +44,14 @@ class QuestionOptionCrudController extends CrudController
 	    ])->afterColumn('priority');
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
-            'label' => 'Is Option for Candidate Qualities',
+            'label' => 'for Candidate Qualities',
             'type' => 'model_function',
 			'function_name' => 'forCandidateQuality',
 			//'fake' => true
 	    ])->afterColumn('position');
 		$this->crud->addColumn([
             'name' => 'for_candidate_votes',			
-            'label' => 'Is Option for Candidate Votes',
+            'label' => 'for Candidate Votes',
             'type' => 'model_function',
 			'function_name' => 'forCandidateVotes',
 			//'fake' => true
