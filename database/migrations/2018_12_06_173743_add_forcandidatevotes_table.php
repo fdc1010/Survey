@@ -15,6 +15,8 @@ class AddForcandidatevotesTable extends Migration
     {
         Schema::table('question_options', function (Blueprint $table) {
             $table->boolean('for_candidate_votes')->default(0);
+			$table->longText('positions')->nullable();
+			$table->integer('candidate_id')->nullable();
         });
     }
 
@@ -27,6 +29,8 @@ class AddForcandidatevotesTable extends Migration
     {
         Schema::table('question_options', function (Blueprint $table) {
             $table->dropColumn('for_candidate_votes');
+			$table->dropColumn('positions');
+			$table->dropColumn('candidate_id');
         });
     }
 }
