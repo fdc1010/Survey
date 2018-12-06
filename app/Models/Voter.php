@@ -88,7 +88,6 @@ class Voter extends Model
 		if(!empty($surveyor->surveyor->user))
 			return $surveyor->surveyor->user->name;
 	}
-	
 	public function getFullNameAttribute()
     {
         return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);

@@ -62,11 +62,12 @@ class CandidateCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
 			'label' => "Candidate",
-			'type' => 'select2',
+			'type' => 'select2candidate',
 			'name' => 'voter_id', // the relationship name in your Model
 			'entity' => 'voter', // the relationship name in your Model
-			'attribute' => 'candidate_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
+			'attribute' => 'full_name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Voter", // on create&update, do you need to add/delete pivot table entries?
+			'model2' => "App\Models\Candidate"
 		])->beforeField('position_id');
 		$this->crud->addField([
 			'label' => "Position",
