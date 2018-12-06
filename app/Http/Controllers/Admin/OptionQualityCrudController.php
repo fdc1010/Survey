@@ -90,9 +90,9 @@ class OptionQualityCrudController extends CrudController
 			]);
 			array_push($positionsarr,array('positions'=>$posid));
 		}
-		$optionquality = OptionQuality::find($oqid);
+		/*$optionquality = OptionQuality::find($oqid);
 		$optionquality->positions = $positionsarr;
-		$optionquality->save();
+		$optionquality->save();*/
 		
         return $redirect_location;
     }
@@ -114,9 +114,9 @@ class OptionQualityCrudController extends CrudController
 			]);			
 			array_push($positionsarr,array('positions'=>$posid));
 		}
-		$optionquality = OptionQuality::find($oqid);
+		/*$optionquality = OptionQuality::find($oqid);
 		$optionquality->positions = $positionsarr;
-		$optionquality->save();
+		$optionquality->save();*/
 		
         return $redirect_location;
     }
