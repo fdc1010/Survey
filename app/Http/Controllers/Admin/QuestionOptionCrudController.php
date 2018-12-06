@@ -105,7 +105,7 @@ class QuestionOptionCrudController extends CrudController
 			'label' => "Positions",
 			'type' => 'checklistchkall',
 			'name' => 'positions', 
-			'entity' => 'positions',
+			'entity' => 'optionspositions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
 		]);
