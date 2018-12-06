@@ -63,7 +63,7 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
-	    ]);
+	    ])->afterColumn('for_candidate_votes');
         $this->crud->addField([
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
