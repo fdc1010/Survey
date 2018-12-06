@@ -24,7 +24,7 @@ class Voter extends Model
 							'yearly_household','work'];
     // protected $hidden = [];
     // protected $dates = [];
-	protected $appends = ['full_name'];
+	protected $appends = ['full_name','candidate_name'];
 	
 	public function sitio()
     {
@@ -91,6 +91,11 @@ class Voter extends Model
 		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();
 		if(!empty($surveyor->surveyor->user))
 			return $surveyor->surveyor->user->name;
+	}
+	public function getCandidateNameAttribute()
+	{
+		$voter = $this->hasNot('candidate');
+		return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
 	}
 	public function getFullNameAttribute()
     {
