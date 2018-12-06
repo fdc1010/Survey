@@ -55,20 +55,30 @@ class QualityPositionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
 			'label' => "Options",
-			'type' => 'checklistchkall',
+			'type' => 'checklistchkall2',
 			'name' => 'options', 
 			'entity' => 'options',
 			'attribute' => 'option', 
-			'model' => "App\Models\QuestionOption"
+			'model' => "App\Models\QuestionOption",
+			'compare_value' => 1,
+			'compare_field' => 'for_candidate',
+			'entity2' => 'positions', // for doesntHave
+			'entity3' => 'positions',
+			'entity4' => 'options'
 		]);
 		
 		$this->crud->addField([
 			'label' => "Positions",
-			'type' => 'checklistchkall',
+			'type' => 'checklistchkall2',
 			'name' => 'positions', 
 			'entity' => 'positions',
 			'attribute' => 'name', 
-			'model' => "App\Models\PositionCandidate"
+			'model' => "App\Models\PositionCandidate",
+			'compare_value' => 1,
+			'compare_field' => 'for_candidate',
+			'entity2' => 'positions', // for doesntHave
+			'entity3' => 'positions',
+			'entity4' => 'options'
 		]);
         // add asterisk for fields that are required in QualityPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
