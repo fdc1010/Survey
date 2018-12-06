@@ -40,12 +40,12 @@ class QuestionOptionCrudController extends CrudController
             'name' => 'option_id',
 			'label' => 'Option',
 			'type' => 'text'
-	    ])
+	    ]);
 		$this->crud->addColumn([
             'name' => 'priority',
 			'label' => 'Priority',
 			'type' => 'number'
-	    ])
+	    ]);
 		$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions Tagged',
