@@ -19,7 +19,7 @@ class QuestionOption extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id'];
+    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
@@ -51,6 +51,12 @@ class QuestionOption extends Model
 	}
 	public function forCandidateVotes(){
 		if($this->for_candidate_votes){
+			return "<span class='fa fa-check-circle-o'></span>";	
+		}	
+		return "";
+	}
+	public function forIssues(){
+		if($this->for_issues){
 			return "<span class='fa fa-check-circle-o'></span>";	
 		}	
 		return "";

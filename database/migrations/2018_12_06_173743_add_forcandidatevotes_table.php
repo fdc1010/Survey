@@ -17,6 +17,7 @@ class AddForcandidatevotesTable extends Migration
             $table->boolean('for_candidate_votes')->default(0);
 			$table->longText('positions')->nullable();
 			$table->integer('candidate_id')->nullable();
+			$table->boolean('for_issues')->default(0);
         });
     }
 
@@ -31,6 +32,7 @@ class AddForcandidatevotesTable extends Migration
             $table->dropColumn('for_candidate_votes');
 			$table->dropColumn('positions');
 			$table->dropColumn('candidate_id');
+			$table->dropColumn('for_issues');
         });
     }
 }

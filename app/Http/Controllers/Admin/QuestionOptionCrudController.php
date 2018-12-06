@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use App\Models\OptionQuality;
+use App\Models\OptionCandidate;
+use App\Models\OptionPosition;
+use App\Models\OptionProblem;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionOptionRequest as StoreRequest;
 use App\Http\Requests\QuestionOptionRequest as UpdateRequest;
@@ -34,8 +37,8 @@ class QuestionOptionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
-		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
-		$this->crud->removeFields(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
+		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues']);
+		$this->crud->removeFields(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues']);
 		$this->crud->addColumn([
             'name' => 'option',
 			'label' => 'Option',
@@ -75,6 +78,13 @@ class QuestionOptionCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
+		$this->crud->addColumn([
+            'name' => 'for_issues',			
+            'label' => 'Tagged Option for Issues/Concerns/Problems',
+            'type' => 'model_function',
+			'function_name' => 'forIssues',
+			//'fake' => true
+	    ]);
 		$this->crud->addField([
             'name' => 'option',
 			'label' => 'Option',
@@ -113,6 +123,11 @@ class QuestionOptionCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
+		$this->crud->addField([
+            'name' => 'for_issues',
+			'label' => 'Is Option Tagged for Issues/Concerns/Problems',
+			'type' => 'checkbox'
+	    ]);
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
@@ -123,6 +138,32 @@ class QuestionOptionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		$optid = $this->crud->entry->id;
+		$candid = $this->crud->entry->candidate_id;
+		$positions = $this->crud->entry->positions;
+		if($this->crud->entry->for_candidate_quality){
+			$optionquality = OptionQuality::updateOrCreate([
+				'option_id' => $optid,
+				'positions'=>$positions
+			]);
+			$optioncandidate = OptionCandidate::updateOrCreate([
+				'option_id' => $optid,
+				'candidate_id' => $candid
+			]);			
+		}
+		if($this->crud->entry->for_candidate_votes){
+			foreach($positions as $posid){
+				$optionposition = OptionPosition::updateOrCreate([
+					'position_id' => $posid,
+					'option_id' => $optid
+				]);
+			}
+		}
+		if($this->crud->entry->for_issues){
+			$optionproblem = OptionProblem::updateOrCreate([
+				'option_id' => $optid
+			]);
+		}
         return $redirect_location;
     }
 
@@ -132,6 +173,50 @@ class QuestionOptionCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+		
+		$optid = $this->crud->entry->id;
+		$candid = $this->crud->entry->candidate_id;
+		$positions = $this->crud->entry->positions;
+		
+		if($this->crud->entry->for_candidate_quality){
+			OptionQuality::where('option_id',$optid)->delete();
+			OptionCandidate::where('option_id',$optid)->delete();
+			
+			$optionquality = OptionQuality::updateOrCreate([
+				'option_id' => $optid,
+				'positions'=>$positions
+			]);
+			$optioncandidate = OptionCandidate::updateOrCreate([
+				'option_id' => $optid,
+				'candidate_id' => $candid
+			]);			
+		}
+		if($this->crud->entry->for_candidate_votes){
+			OptionPosition::where('option_id',$optid)->delete();
+			foreach($positions as $posid){
+				$optionposition = OptionPosition::updateOrCreate([
+					'position_id' => $posid,
+					'option_id' => $optid
+				]);
+			}
+		}
+		if($this->crud->entry->for_issues){
+			OptionProblem::where('option_id',$optid)->delete();
+			$optionproblem = OptionProblem::updateOrCreate([
+				'option_id' => $optid
+			]);
+		}
         return $redirect_location;
     }
+	public function destroy($id)
+	{
+		$this->crud->hasAccessOrFail('delete');
+		
+		OptionQuality::where('option_id',$id)->delete();
+		OptionCandidate::where('option_id',$id)->delete();
+		OptionPosition::where('option_id',$id)->delete();
+		OptionProblem::where('option_id',$id)->delete();
+		
+		return $this->crud->delete($id);
+	}
 }
