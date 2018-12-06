@@ -42,7 +42,11 @@ class QuestionOptionCrudController extends CrudController
 			'function_name' => 'getPositions',
 			'fake' => true
 	    ])->afterColumn('priority');
-        
+        $this->crud->addField([
+            'name' => 'for_candidate',
+			'label' => 'Is Option for Candidate',
+			'type' => 'checkbox'
+	    ]);
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
