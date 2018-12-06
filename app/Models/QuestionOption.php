@@ -20,7 +20,7 @@ class QuestionOption extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
 	protected $fakeColumns = ['position_id'];
-    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues'];
+    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues','position_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
