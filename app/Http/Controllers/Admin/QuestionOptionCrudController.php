@@ -77,7 +77,7 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
-		])->afterField('positions');
+		])->afterField('for_candidate_quality');
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
 			'label' => 'Is Option for Candidate Votes (if Option is Name of Candidate)',
@@ -91,7 +91,7 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
-	    ])->afterField('candidate_id');
+	    ])->afterField('for_candidate_votes');
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
