@@ -62,7 +62,7 @@ class OptionQualityCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
-			'name' => 'positions', 
+			'name' => 'position_id', 
 			'entity' => 'positionsoptions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
