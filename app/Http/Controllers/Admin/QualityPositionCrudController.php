@@ -59,12 +59,14 @@ class QualityPositionCrudController extends CrudController
 			'name' => 'options', 
 			'entity' => 'options',
 			'attribute' => 'option', 
-			'model' => "App\Models\QuestionOption"
+			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
+			'compare_value' => 1,
+			'compare_field' => 'for_candidate'
 		]);
 		
 		$this->crud->addField([
 			'label' => "Positions",
-			'type' => 'checklistchkall2',
+			'type' => 'checklistchkall',
 			'name' => 'positions', 
 			'entity' => 'positions',
 			'attribute' => 'name', 
