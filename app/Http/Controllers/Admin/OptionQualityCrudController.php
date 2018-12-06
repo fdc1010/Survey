@@ -54,8 +54,8 @@ class OptionQualityCrudController extends CrudController
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			'compare_value' => 1,
-			'compare_field' => 'for_candidate'
-			//'pivot' => true
+			'compare_field' => 'for_candidate',
+			'entity2' => "optionspositions" // for doesntHave
 		]);
 		$this->crud->addField([
 			'label' => "Positions",
