@@ -3,7 +3,7 @@
 	$current_value = old($field['name']) ?? $field['value'] ?? $field['default'] ?? '';
 @endphp
 
-<div @include('crud::inc.field_wrapper_attributes') >
+<div @include('crud::inc.field_wrapper_attributes') id="div_{{ $field['name'] }}" >
 
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
