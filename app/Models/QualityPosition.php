@@ -23,7 +23,7 @@ class QualityPosition extends Model
     // protected $hidden = [];
     // protected $dates = [];
 	protected $casts = [
-        'options' => 'array'
+        'options' => 'array',
 		'positions' => 'array'
     ];
 	public function options(){
