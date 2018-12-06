@@ -37,26 +37,36 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
 		$this->crud->removeFields(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id']);
 		$this->crud->addColumn([
+            'name' => 'option_id',
+			'label' => 'Option',
+			'type' => 'text'
+	    ])
+		$this->crud->addColumn([
+            'name' => 'priority',
+			'label' => 'Priority',
+			'type' => 'number'
+	    ])
+		$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions Tagged',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ])->afterColumn('priority');
+	    ]);
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
             'label' => 'for Candidate Qualities',
             'type' => 'model_function',
 			'function_name' => 'forCandidateQuality',
 			//'fake' => true
-	    ])->afterColumn('positions');
+	    ]);
 		$this->crud->addColumn([
             'name' => 'for_candidate_votes',			
             'label' => 'for Candidate Votes',
             'type' => 'model_function',
 			'function_name' => 'forCandidateVotes',
 			//'fake' => true
-	    ])->beforeColumn('candidate_id');
+	    ]);
 		$this->crud->addColumn([
             'name' => 'candidate_id',
             'type' => 'select2',
@@ -64,13 +74,13 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
-	    ])->afterColumn('for_candidate_votes');
+	    ]);
         $this->crud->addField([
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
 			'type' => 'checkboxtoggle',
 			'toggle_field' => 'positions'
-	    ])->afterField('priority');
+	    ]);
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
@@ -78,13 +88,13 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
-		])->afterField('for_candidate_quality');
+		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
 			'label' => 'Is Option for Candidate Votes (if Option is Name of Candidate)',
 			'type' => 'checkboxtoggle',
 			'toggle_field' => 'candidate_id'
-	    ])->afterField('positions');
+	    ]);
 		$this->crud->addField([
             'name' => 'candidate_id',
             'type' => 'select2',
@@ -92,7 +102,7 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
-	    ])->afterField('for_candidate_votes');
+	    ]);
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
