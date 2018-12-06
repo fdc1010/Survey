@@ -72,7 +72,7 @@ class QuestionOption extends Model
     }
 	public function positions()
     {
-        return $this->belongsTo('App\Models\PositionCandidate','position_id');
+        return $this->hasMany('App\Models\OptionPosition','position_id');
     }
 	
 	public function optionspositions(){
