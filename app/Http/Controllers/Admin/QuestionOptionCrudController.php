@@ -8,6 +8,7 @@ use App\Models\OptionCandidate;
 use App\Models\OptionPosition;
 use App\Models\OptionProblem;
 use App\Models\QuestionOption;
+use App\Models\PositionCandidate;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QuestionOptionRequest as StoreRequest;
 use App\Http\Requests\QuestionOptionRequest as UpdateRequest;
@@ -196,7 +197,7 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,PositionCandidate::find($posid)->pluck('id')->toArray());
+				array_push($positionsarr,array('positions'=>$posid));
 			}
 			
 			$questionoption = QuestionOption::find($optid);
