@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use App\Models\OptionQuality;
 use App\Models\OptionPosition;
 use App\Models\QualityPosition;
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -91,11 +92,16 @@ class QualityPositionCrudController extends CrudController
 		$options = $this->crud->entry->options;
 		foreach($options as $optid){
 			foreach($positions as $posid){
-				$optionquality = OptionPosition::create([
+				$optionposition = OptionPosition::create([
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
 			}
+			$optionquality = OptionQuality::updateOrCreate([
+				'position_id' => $posid,
+				'option_id' => $optid,
+				'positions'=>$positions
+			]);
 		}
         return $redirect_location;
     }
@@ -110,8 +116,9 @@ class QualityPositionCrudController extends CrudController
 		$options = $this->crud->entry->options;
 		foreach($options as $optid){
 			foreach($positions as $posid){
-				OptionPosition::where('option_id',$optid)->where('position_id',$posid)->delete();
+				OptionPosition::where('option_id',$optid)->where('position_id',$posid)->delete();				
 			}
+			OptionQuality::where('option_id',$optid)->delete();
 		}
 		
 		foreach($options as $optid){
@@ -119,6 +126,11 @@ class QualityPositionCrudController extends CrudController
 				$optionquality = OptionPosition::create([
 					'position_id' => $posid,
 					'option_id' => $optid
+				]);
+				$optionquality = OptionQuality::updateOrCreate([
+					'position_id' => $posid,
+					'option_id' => $optid,
+					'positions'=>$positions
 				]);
 			}
 		}
@@ -132,6 +144,7 @@ class QualityPositionCrudController extends CrudController
 			foreach($qualitiespositions->positions as $posid){
 				OptionPosition::where('option_id',$optid)->where('position_id',$posid)->delete();
 			}
+			OptionQuality::where('option_id',$optid)->delete();
 		}
 		return $this->crud->delete($id);
 	}
