@@ -39,7 +39,7 @@ class Candidate extends Model
     }
 	public function voter()
     {
-        return $this->belongsTo('App\Models\Voter','voter_id');
+        return $this->belongsTo('App\Models\Voter','voter_id')->hasNot('candidate');
     }
 	public function tally()
 	{
