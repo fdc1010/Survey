@@ -76,14 +76,20 @@ class OptionQualityCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		//dd($this->crud->entry);
+		$positionsarr = array();
 		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->positions;
 		foreach($options as $posid){
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
 				'option_id' => $oqid
-			]);			
+			]);
+			array_push($positionsarr,array('positions'=>$posid));
 		}
+		$optionquality = OptionQuality::find($oqid);
+		$optionquality->positions = $positionsarr;
+		$optionquality->save();
+		
         return $redirect_location;
     }
 
@@ -93,7 +99,7 @@ class OptionQualityCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+		$positionsarr = array();
 		$oqid = $this->crud->entry->id; // <-- SHOULD WORK
 		OptionPosition::where('option_id',$oqid)->delete();
 		$options = $this->crud->entry->positions;
@@ -102,7 +108,12 @@ class OptionQualityCrudController extends CrudController
 				'position_id' => $posid,
 				'option_id' => $oqid
 			]);			
+			array_push($positionsarr,array('positions'=>$posid));
 		}
+		$optionquality = OptionQuality::find($oqid);
+		$optionquality->positions = $positionsarr;
+		$optionquality->save();
+		
         return $redirect_location;
     }
 	public function destroy($id)
