@@ -75,6 +75,16 @@ class QuestionOptionCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
+		$this->crud->addField([
+            'name' => 'option',
+			'label' => 'Option',
+			'type' => 'text'
+	    ]);
+		$this->crud->addField([
+            'name' => 'priority',
+			'label' => 'Priority',
+			'type' => 'number'
+	    ]);
         $this->crud->addField([
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
