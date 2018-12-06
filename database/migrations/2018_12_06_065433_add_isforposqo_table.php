@@ -28,6 +28,5 @@ class AddIsforposqoTable extends Migration
         Schema::table('question_options', function (Blueprint $table) {
             $table->dropColumn('for_candidate');
         });
-        });
     }
 }
