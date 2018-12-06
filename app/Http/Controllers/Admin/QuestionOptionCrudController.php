@@ -202,7 +202,7 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,{'positions'=>$posid});
+				array_push($positionsarr,PositionCandidate::find($posid)->pluck('id')->toArray());
 			}
 			
 			$questionoption = QuestionOption::find($optid);
