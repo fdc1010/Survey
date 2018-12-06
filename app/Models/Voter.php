@@ -65,7 +65,7 @@ class Voter extends Model
 	{
 		return $this->hasOne('App\Models\Candidate','voter_id');
 	}
-	public function untaggedcandidate();
+	public function untaggedcandidate()
 	{
 		return $this->hasNot(Candidate::class,'voter_id');
 	}
