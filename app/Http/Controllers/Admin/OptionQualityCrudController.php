@@ -50,7 +50,7 @@ class OptionQualityCrudController extends CrudController
 			'label' => "Qualities",
 			'type' => 'select2criteria',
 			'name' => 'option_id', // the relationship name in your Model
-			'entity' => 'options', // the relationship name in your Model
+			'entity' => 'optionspositions', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			'compare_value' => 1,
@@ -63,7 +63,7 @@ class OptionQualityCrudController extends CrudController
 			'label' => "Positions",
 			'type' => 'checklistchkall',
 			'name' => 'positions', 
-			'entity' => 'positions',
+			'entity' => 'positionsoptions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
 		]);
