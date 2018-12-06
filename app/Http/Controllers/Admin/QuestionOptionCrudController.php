@@ -48,7 +48,7 @@ class QuestionOptionCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'forCandidateQuality',
 			//'fake' => true
-	    ])->afterColumn('position');
+	    ])->afterColumn('positions');
 		$this->crud->addColumn([
             'name' => 'for_candidate_votes',			
             'label' => 'for Candidate Votes',
