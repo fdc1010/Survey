@@ -30,7 +30,6 @@
 <script type="text/javascript" src="{{ asset('js/jquery-1.12.4.js') }}"></script>
 <script>
 	jQuery(document).ready(function($) {
-		$('#div_{{ $field['toggle_field'] }}').hide('slow');
 		if($('#{{ $field['name'] }}').is(":checked"))
 			$('#div_{{ $field['toggle_field'] }}').show('slow');
 		else
