@@ -64,9 +64,9 @@ class CandidateCrudController extends CrudController
 			'label' => "Candidate",
 			'type' => 'select2',
 			'name' => 'voter_id', // the relationship name in your Model
-			'entity' => 'untaggedcandidate', // the relationship name in your Model
+			'entity' => 'voter', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\Voter::hasNot('candidate')" // on create&update, do you need to add/delete pivot table entries?
 		])->beforeField('position_id');
 		$this->crud->addField([
 			'label' => "Position",
@@ -84,7 +84,6 @@ class CandidateCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Party" // on create&update, do you need to add/delete pivot table entries?
 		]);
-		
         // add asterisk for fields that are required in CandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
