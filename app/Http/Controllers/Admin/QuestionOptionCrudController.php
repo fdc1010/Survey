@@ -105,8 +105,8 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
-			'name' => 'positions', 
-			'entity' => 'positions',
+			'name' => 'position_id', 
+			'entity' => 'optionpositions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate"
 		]);
@@ -162,12 +162,12 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,array('positions'=>$posid));
+				//array_push($positionsarr,array('positions'=>$posid));
 			}
-			$optioncandidate = OptionCandidate::updateOrCreate([
+			/*$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
 				'candidate_id' => $candid
-			]);	
+			]);	*/
 			
 		}
 		if(intval($this->crud->entry->for_issues)){
@@ -196,12 +196,12 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,array('positions'=>$posid));
+				//array_push($positionsarr,array('positions'=>$posid));
 			}
 			
-			$questionoption = QuestionOption::find($optid);
+			/*$questionoption = QuestionOption::find($optid);
 			$questionoption->positions = $positionsarr;
-			$questionoption->save();
+			$questionoption->save();*/
 			
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
