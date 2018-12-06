@@ -25,7 +25,7 @@ class OptionQualityCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OptionQuality');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionquality');
-        $this->crud->setEntityNameStrings('option quality', 'Option Qualities');
+        $this->crud->setEntityNameStrings('option tag quality', 'Option Tag Qualities');
 
         /*
         |--------------------------------------------------------------------------

@@ -24,7 +24,7 @@ class OptionProblemCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OptionProblem');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionproblem');
-        $this->crud->setEntityNameStrings('option problem', 'Option Problems');
+        $this->crud->setEntityNameStrings('option tag problem', 'Option Tag Problems');
 
         /*
         |--------------------------------------------------------------------------

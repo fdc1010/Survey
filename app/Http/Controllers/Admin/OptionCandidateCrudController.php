@@ -24,7 +24,7 @@ class OptionCandidateCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OptionCandidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optioncandidate');
-        $this->crud->setEntityNameStrings('option candidate', 'Option Candidates');
+        $this->crud->setEntityNameStrings('option tag candidate', 'Option Tag Candidates');
 		
         /*
         |--------------------------------------------------------------------------
