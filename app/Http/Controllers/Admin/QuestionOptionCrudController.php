@@ -41,7 +41,7 @@ class QuestionOptionCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ]);
+	    ])->afterColumn('priority');
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
             'label' => 'Is Option for Candidate Qualities',
