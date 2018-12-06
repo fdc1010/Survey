@@ -65,10 +65,6 @@ class Voter extends Model
 	{
 		return $this->hasOne('App\Models\Candidate','voter_id');
 	}
-	public function untaggedcandidate()
-	{
-		return $this->hasNot('App\Models\Candidate','voter_id');
-	}
 	public function getStatusName(){		
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "<ul>";
@@ -94,7 +90,7 @@ class Voter extends Model
 	}
 	public function getCandidateNameAttribute()
 	{
-		$voter = $this->hasNot('candidate');
+		$voter = $this->whereHasNot('candidate');
 		return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
 	}
 	public function getFullNameAttribute()

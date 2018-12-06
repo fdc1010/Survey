@@ -45,10 +45,6 @@ class Candidate extends Model
 	{
 		return $this->hasMany('App\Models\TallyVote','candidate_id');	
 	}
-	public function untaggedcandidate()
-	{
-		return $this->hasNot('App\Models\Candidate','voter_id');
-	}
 	public function getCandidateName()
 	{
 		$voter = Voter::find($this->voter_id);
