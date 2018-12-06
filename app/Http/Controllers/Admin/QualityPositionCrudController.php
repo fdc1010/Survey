@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use App\Models\OptionPosition;
+use App\Models\QualityPosition;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\QualityPositionRequest as StoreRequest;
 use App\Http\Requests\QualityPositionRequest as UpdateRequest;
