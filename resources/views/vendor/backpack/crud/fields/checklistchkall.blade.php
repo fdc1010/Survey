@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         @foreach ($field['model']::all() as $connected_entity_entry)
-        	{!! {{ $connected_entity_entry->getKey() !!}
+        	{!! $connected_entity_entry->getKey() !!}
             <div class="col-sm-4">
                 <div class="checkbox">
                   <label>
