@@ -51,7 +51,7 @@ class SurveyorAssignmentCrudController extends CrudController
             'label' => 'Count',
             'type' => 'model_function',
 			'function_name' => 'getSurveyCount'
-	    ]);
+	    ])->afterColumn('quota');
 		$this->crud->addColumn([
             'name' => 'progress',			
             'label' => 'Progress',
