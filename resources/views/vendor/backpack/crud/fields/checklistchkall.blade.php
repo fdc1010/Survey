@@ -13,7 +13,7 @@
     <div class="row">
         @foreach ($field['model']::all() as $connected_entity_entry)
         	{!! $field['value'] !!}
-        	{!! $connected_entity_entry->getKey() !!}
+        	@php print_r($connected_entity_entry->getKey()); @endphp
             
         @endforeach
     </div>
