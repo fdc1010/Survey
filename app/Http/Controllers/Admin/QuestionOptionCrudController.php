@@ -100,7 +100,7 @@ class QuestionOptionCrudController extends CrudController
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
 			'type' => 'checkboxtoggle',
-			'toggle_field' => 'positions'
+			'toggle_field' => 'extras'
 	    ]);
 		$optid = null;
 		if($this->crud->entry){
