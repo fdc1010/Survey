@@ -129,7 +129,7 @@ class QuestionOptionCrudController extends CrudController
 			'model' => "App\Models\Candidate",
 			'compare_value' => 1,
 			'compare_field' => 'for_candidate_votes',
-			'entity2' => 'positions', // for doesntHave
+			'entity2' => 'position', // for doesntHave
 			'entity3' => 'positions',
 			'entity4' => 'options'
 	    ]);
