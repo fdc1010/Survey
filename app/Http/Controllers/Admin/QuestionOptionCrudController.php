@@ -107,9 +107,11 @@ class QuestionOptionCrudController extends CrudController
 			'type' => 'checklistchkall3',
 			'name' => 'positions', 
 			'entity' => 'positions',
-			'value' => 'optionspositions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate",
+			'model2' => "App\Models\OptionPosition",
+			'entity2' => 'optionpositions',
+			'attribute2' => 'position_id',			
 		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
