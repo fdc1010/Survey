@@ -68,7 +68,7 @@ class SurveyAnswerController extends Controller
 															'quota'=>$assignment->quota,
 															'count'=>$assignment->getSurveyCount(),
 															'surveyor_progress'=>$assignment->getProgress(),
-															'surveyor_progress_percent'=>$assignment->getProgressPercent())));
+															'surveyor_progress_percent'=>$assignment->getProgressPercent()));
 				}
 				
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
