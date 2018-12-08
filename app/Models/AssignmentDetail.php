@@ -41,11 +41,22 @@ class AssignmentDetail extends Model
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
 	public function getSurveyCount(){
-		if(count($this->sitio->voters))
-			return count($this->sitio->voters);
-		else
+		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
+		if($surveyassignment){
+				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
+											->where('user_id',$surveyassignment->user_id)
+											->select(['voter_id'])
+											->groupBy('voter_id')
+											->get();
+				if($countsurvey)
+					return count($countsurvey);
+				else
+					return 0;
+		}else{
 			return 0;
+		}
 	}
+	
 	public function getProgress(){
 		
 		return (($this->getSurveyCount()/$this->quota)*100);
