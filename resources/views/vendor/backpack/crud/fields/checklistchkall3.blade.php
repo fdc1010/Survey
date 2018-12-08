@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">    		
-        @foreach ($field['model']::all() as $connected_entity_entry)
+        @foreach ($field['model1']::all() as $connected_entity_entry)
             <div class="col-sm-4">
                 <div class="checkbox">
                   <label>
@@ -21,7 +21,7 @@
 
                       @if( (isset($field['value']) && in_array($connected_entity_entry->getKey(), $field['model2']->$field['entity2']->pluck($field['attribute2'])->toArray())))
                              checked = "checked"
-                      @endif > {!! $connected_entity_entry->{$field['attribute']} !!}
+                      @endif > {!! $connected_entity_entry->{$field['attribute1']} !!}
                   </label>
                 </div>
             </div>
