@@ -41,7 +41,7 @@ class AssignmentDetail extends Model
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
 	public function getSurveyCount(){
-		$surveyassignment = SurveyorAssignment::with('sitio')->find($this->assignment_id);
+		$surveyassignment = SurveyorAssignment::with(['sitio'=>function($q){$q->with('voters');}])->find($this->assignment_id);
 		if($surveyassignment){
 				$voters = $surveyassignment->sitio->voters;
 				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
