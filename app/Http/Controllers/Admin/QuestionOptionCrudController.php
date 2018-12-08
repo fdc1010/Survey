@@ -149,6 +149,7 @@ class QuestionOptionCrudController extends CrudController
 		$positions = $this->crud->entry->positions;
 		
 		if(intval($this->crud->entry->for_candidate_quality)){
+			OptionQuality::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -198,7 +199,7 @@ class QuestionOptionCrudController extends CrudController
 		$positions = $this->crud->entry->positions;
 		//dd($this->crud->entry);
 		if(intval($this->crud->entry->for_candidate_quality)){
-			//OptionQuality::where('option_id',$optid)->delete();
+			OptionQuality::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
