@@ -36,7 +36,7 @@ class QuestionOptionCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-		dd($this->crud);
+		
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
 		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues','position_id']);
