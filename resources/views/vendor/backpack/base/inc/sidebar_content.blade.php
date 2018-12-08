@@ -26,7 +26,7 @@
   </ul>
 </li>
 <li class="treeview">
-  <a href="#"><i class="fa fa-certificate"></i> <span>Voters, Candidates</span> <i class="fa fa-angle-left pull-right"></i></a>
+  <a href="#"><i class="fa fa-certificate"></i> <span>Voters, Candidates, Positions, Parties</span> <i class="fa fa-angle-left pull-right"></i></a>
   <ul class="treeview-menu">
 	<li><a href='{{ backpack_url('party') }}'><i class='fa fa-list'></i> <span>Parties</span></a></li>
 	<li><a href='{{ backpack_url('positioncandidate') }}'><i class='fa fa-list'></i> <span>Positions</span></a></li>
