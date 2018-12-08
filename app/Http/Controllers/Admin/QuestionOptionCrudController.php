@@ -53,21 +53,21 @@ class QuestionOptionCrudController extends CrudController
 	    ]);
 		$this->crud->addColumn([
             'name' => 'position',			
-            'label' => 'Positions Tagged',
+            'label' => 'Positions',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
-            'label' => 'for Candidate Qualities',
+            'label' => 'for Qualities',
             'type' => 'model_function',
 			'function_name' => 'forCandidateQuality',
 			//'fake' => true
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_candidate_votes',			
-            'label' => 'for Candidate Votes',
+            'label' => 'for Votes',
             'type' => 'model_function',
 			'function_name' => 'forCandidateVotes',
 			//'fake' => true
@@ -75,14 +75,14 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->addColumn([
             'name' => 'candidate_id',
             'type' => 'select2',
-            'label' => 'Tagged Option to Candidate',
+            'label' => 'Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_issues',			
-            'label' => 'Tagged Option for Issues/Concerns/Problems',
+            'label' => 'for Issues/Concerns/Problems',
             'type' => 'model_function',
 			'function_name' => 'forIssues',
 			//'fake' => true
