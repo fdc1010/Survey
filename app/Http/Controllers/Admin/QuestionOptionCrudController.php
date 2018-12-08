@@ -74,11 +74,16 @@ class QuestionOptionCrudController extends CrudController
 	    ]);
 		$this->crud->addColumn([
             'name' => 'candidate_id',
-            'type' => 'select',
+            'type' => 'select2criteria',
             'label' => 'Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Candidate"
+			'model' => "App\Models\Candidate",
+			'compare_value' => 1,
+			'compare_field' => 'for_candidate_votes',
+			'entity2' => 'positions', // for doesntHave
+			'entity3' => 'positions',
+			'entity4' => 'options'
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_issues',			
