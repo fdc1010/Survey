@@ -1,5 +1,4 @@
 <!-- select2 -->
-{{ $id }}
 <div @include('crud::inc.field_wrapper_attributes') id="div_{{ $field['name'] }}" >
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
@@ -20,7 +19,7 @@
                       name="{{ $field['name'] }}[]"
                       value="{{ $connected_entity_entry->getKey() }}"
 
-                      @if(in_array($connected_entity_entry->getKey(), $field['model2']::where('option_id',$field['value'])->get()->pluck($field['attribute2'])->toArray())))
+                      @if(in_array($connected_entity_entry->getKey(), $field['model2']::where('option_id',$id)->get()->pluck($field['attribute2'])->toArray())))
                              checked = "checked"
                       @endif > {!! $connected_entity_entry->{$field['attribute1']} !!}
                   </label>
