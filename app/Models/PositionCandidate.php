@@ -36,7 +36,10 @@ class PositionCandidate extends Model
 		return $this->hasMany('App\Models\TallyVote','candidate_id');	
 	}
 	public function optionspositions(){
-		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','position_id','option_id');
+		return $this->belongsToMany('App\Models\PositionCandidate','option_positions','option_id','position_id');
+	}
+	public function optionpositions(){
+		return $this->hasMany('App\Models\OptionPosition','position_id');
 	}
 	public function getOptionSelections(){
 		$options = OptionPosition::with('options')->where('position_id',$this->id)->get();

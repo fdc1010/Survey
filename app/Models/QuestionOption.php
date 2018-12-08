@@ -20,7 +20,7 @@ class QuestionOption extends Model
     // public $timestamps = false;
     // protected $guarded = ['id'];
 	//protected $fakeColumns = ['position_id'];
-    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues','position_id'];
+    protected $fillable = ['option','priority','for_candidate_quality','for_candidate_votes','extras','candidate_id','for_issues'];
     // protected $hidden = [];
     // protected $dates = [];
 	/*protected $casts = [
@@ -72,7 +72,7 @@ class QuestionOption extends Model
     }
 	public function positions()
     {
-        return $this->belongsTo('App\Models\PositionCandidate','position_id');
+        return $this->belongsTo('App\Models\PositionCandidate','extras');
     }
 	public function optionpositions(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
