@@ -1,5 +1,5 @@
 <!-- select2 -->
-<div @include('crud::inc.field_wrapper_attributes') id="div_{{ $field['name'] }}" >
+<div @include('crud::inc.field_wrapper_attributes') id="div_{{ $field['name1'] }}" >
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
     <?php $entity_model = $crud->getModel(); ?>
@@ -16,7 +16,7 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox"
-                      name="{{ $field['name'] }}[]"
+                      name="{{ $field['name1'] }}[]"
                       value="{{ $connected_entity_entry->getKey() }}"
 
                       @if( (isset($field['value']) && in_array($connected_entity_entry->getKey(), $field['model2']->$field['entity2']->pluck($field['attribute2'])->toArray())))
@@ -37,7 +37,7 @@
 <script>
 	jQuery(document).ready(function($) {
 		$('#checkAll').on('change',function(e){
-			$("input[type='checkbox'][name='{{ $field['name'] }}[]']").prop('checked',$(this).is(":checked"));
+			$("input[type='checkbox'][name='{{ $field['name1'] }}[]']").prop('checked',$(this).is(":checked"));
 		});			
 	});
 </script>

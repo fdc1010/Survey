@@ -109,7 +109,7 @@ class QuestionOptionCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
-			'name' => 'positions', 
+			'name1' => 'positions', 
 			'entity1' => 'positions',
 			'attribute1' => 'name', 
 			'model1' => "App\Models\PositionCandidate",
