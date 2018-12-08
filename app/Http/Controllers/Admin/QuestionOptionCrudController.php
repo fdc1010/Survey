@@ -74,7 +74,7 @@ class QuestionOptionCrudController extends CrudController
 	    ]);
 		$this->crud->addColumn([
             'name' => 'candidate_id',
-            'type' => 'select2',
+            'type' => 'select',
             'label' => 'Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
