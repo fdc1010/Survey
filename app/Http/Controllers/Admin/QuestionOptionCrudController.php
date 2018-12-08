@@ -106,6 +106,7 @@ class QuestionOptionCrudController extends CrudController
 		if($this->crud->entry){
 			$optid = $this->crud->entry;
 		}
+		echo $optid;
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
