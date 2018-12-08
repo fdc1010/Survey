@@ -46,6 +46,10 @@ class AssignmentDetail extends Model
 		else
 			return 0;
 	}
+	public function getProgress(){
+		
+		return (($this->getSurveyCount()/$this->quota)*100);
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
