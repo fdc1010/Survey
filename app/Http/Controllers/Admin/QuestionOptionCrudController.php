@@ -51,13 +51,13 @@ class QuestionOptionCrudController extends CrudController
 			'label' => 'Priority',
 			'type' => 'number'
 	    ]);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'position',			
             'label' => 'Positions',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ]);
+	    ]);*/
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
             'label' => 'for Qualities',
