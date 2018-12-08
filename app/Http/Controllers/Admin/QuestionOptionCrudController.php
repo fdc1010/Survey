@@ -106,7 +106,7 @@ class QuestionOptionCrudController extends CrudController
 			'label' => "Positions",
 			'type' => 'checklistchkall',
 			'name' => 'positions', 
-			'value' => 'position_id',
+			'value' => 'positions',
 			'entity' => 'positions',
 			'attribute' => 'name', 
 			'model' => "App\Models\PositionCandidate",
@@ -140,7 +140,7 @@ class QuestionOptionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$positionsarr = array();
+		//$positionsarr = array();
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
@@ -151,11 +151,11 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,array('positions'=>$posid));
+				//array_push($positionsarr,array('positions'=>$posid));
 			}	
-			$questionoption = QuestionOption::find($optid);
+			/*$questionoption = QuestionOption::find($optid);
 			$questionoption->positions = $positionsarr;
-			$questionoption->save();
+			$questionoption->save();*/
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
 			foreach($positions as $posid){
@@ -185,7 +185,7 @@ class QuestionOptionCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		$positionsarr = array();
+		//$positionsarr = array();
 		$optid = $this->crud->entry->id;
 		$candid = $this->crud->entry->candidate_id;
 		$positions = $this->crud->entry->positions;
@@ -197,12 +197,12 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				array_push($positionsarr,array('positions'=>$posid));
+				//array_push($positionsarr,array('positions'=>$posid));
 			}
 			
-			$questionoption = QuestionOption::find($optid);
+			/*$questionoption = QuestionOption::find($optid);
 			$questionoption->positions = $positionsarr;
-			$questionoption->save();
+			$questionoption->save();*/
 			
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
