@@ -32,7 +32,7 @@ class AssignmentDetail extends Model
     }
 	public function sitio()
     {
-        return $this->belongsTo('App\Models\Sitio','sitio_id');
+        return $this->belongsTo('App\Models\Sitio','sitio_id')->with('voters');
     }
 	public function surveyor(){
 		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
@@ -41,7 +41,7 @@ class AssignmentDetail extends Model
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
 	public function getSurveyCount(){
-		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
+		$surveyassignment = SurveyorAssignment::with('sitio')->find($this->assignment_id);
 		if($surveyassignment){
 				$voters = $surveyassignment->sitio->voters;
 				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
