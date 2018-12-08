@@ -103,7 +103,7 @@ class QuestionOptionCrudController extends CrudController
 			'toggle_field' => 'extras'
 	    ]);		
 		//if ($this->crud->entry) {
-			dd("fred" . $this->crud->entry->id);	
+		//	dd("fred" . $this->crud->entry->id);	
 		//}
 		$this->crud->addField([
 			'label' => "Positions",
