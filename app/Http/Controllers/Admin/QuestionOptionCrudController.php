@@ -150,11 +150,15 @@ class QuestionOptionCrudController extends CrudController
 					'position_id' => $posid,
 					'option_id' => $optid
 				]);
-				//array_push($positionsarr,array('positions'=>$posid));
+				array_push($positionsarr,array('positions'=>$posid));
 			}	
 			/*$questionoption = QuestionOption::find($optid);
 			$questionoption->positions = $positionsarr;
 			$questionoption->save();*/
+			$optionquality = OptionQuality::updateOrCreate([
+				'option_id' => $optid,
+				'positions'=>$positions
+			]);	
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
 			foreach($positions as $posid){
@@ -205,7 +209,7 @@ class QuestionOptionCrudController extends CrudController
 			
 			$optionquality = OptionQuality::updateOrCreate([
 				'option_id' => $optid,
-				'positions'=>$positionsarr
+				'positions'=>$positions
 			]);	
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
