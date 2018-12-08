@@ -101,8 +101,7 @@ class QuestionOptionCrudController extends CrudController
 			'label' => 'Is Option for Candidate Qualities',
 			'type' => 'checkboxtoggle',
 			'toggle_field' => 'extras'
-	    ]);
-		dd($this->crud->getId);
+	    ]);		
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
