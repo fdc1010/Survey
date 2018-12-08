@@ -149,7 +149,7 @@ class QuestionOptionCrudController extends CrudController
 		$positions = $this->crud->entry->positions;
 		
 		if(intval($this->crud->entry->for_candidate_quality)){
-			OptionQuality::where('option_id',$optid)->delete();
+			//OptionQuality::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -200,6 +200,7 @@ class QuestionOptionCrudController extends CrudController
 		//dd($this->crud->entry);
 		if(intval($this->crud->entry->for_candidate_quality)){
 			OptionQuality::where('option_id',$optid)->delete();
+			OptionPosition::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -218,8 +219,7 @@ class QuestionOptionCrudController extends CrudController
 			]);	
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
-			//OptionPosition::where('option_id',$optid)->delete();
-			//OptionCandidate::where('option_id',$optid)->delete();
+			OptionCandidate::where('option_id',$optid)->delete();
 			
 			$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
@@ -227,7 +227,7 @@ class QuestionOptionCrudController extends CrudController
 			]);		
 		}
 		if(intval($this->crud->entry->for_issues)){
-			//OptionProblem::where('option_id',$optid)->delete();
+			OptionProblem::where('option_id',$optid)->delete();
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
 			]);
