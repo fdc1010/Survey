@@ -102,7 +102,7 @@ class QuestionOptionCrudController extends CrudController
 			'type' => 'checkboxtoggle',
 			'toggle_field' => 'extras'
 	    ]);		
-		dd($this->id);
+		dd($this->crud->getFields('create/update/both'));
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
