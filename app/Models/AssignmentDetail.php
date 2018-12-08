@@ -37,7 +37,15 @@ class AssignmentDetail extends Model
 	public function surveyor(){
 		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
 	}
-	
+	public function getProgressPercent(){		
+		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
+	}
+	public function getSurveyCount(){
+		if(count($this->sitio->voters))
+			return count($this->sitio->voters);
+		else
+			return 0;
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
