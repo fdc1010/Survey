@@ -21,6 +21,7 @@ class QuestionOptionCrudController extends CrudController
 {
     public function setup()
     {
+		
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
@@ -35,7 +36,13 @@ class QuestionOptionCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-
+		$optid = null;
+		if ($this->getMode() == 'edit') {
+		
+			$optid=$this->getEditId();
+			dd($optid);
+		   // remaining code
+		}
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
 		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues','position_id']);
@@ -100,22 +107,19 @@ class QuestionOptionCrudController extends CrudController
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
 			'type' => 'checkboxtoggle',
-			'toggle_field' => 'extras'
-	    ]);		
-		//if ($this->crud->entry) {
-		//	dd("fred" . $this->crud->entry->id);	
-		//}
+			'toggle_field' => 'positions'
+	    ]);				
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
-			'name' => 'extras', 
+			'name' => 'positions', 
 			'entity1' => 'positions',
 			'attribute1' => 'name', 
 			'model1' => "App\Models\PositionCandidate",
 			'model2' => "App\Models\OptionPosition",
 			'entity2' => 'optionpositions',
 			'attribute2' => 'position_id',	
-			'model_id' => 'id'	
+			'model_id' => 'id'
 		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
