@@ -112,8 +112,7 @@ class QuestionOptionCrudController extends CrudController
 			'model' => "App\Models\PositionCandidate",
 			'model2' => "App\Models\OptionPosition",
 			'entity2' => 'optionpositions',
-			'attribute2' => 'position_id',	
-			'model_id' => 'id'
+			'attribute2' => 'position_id'
 		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
