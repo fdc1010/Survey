@@ -43,8 +43,10 @@ class AssignmentDetail extends Model
 	public function getSurveyCount(){
 		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
 		if($surveyassignment){
+				$voters = $surveyassignment->sitio->voters;
 				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
 											->where('user_id',$surveyassignment->user_id)
+											->whereIn('voter_id',$voters)
 											->select(['voter_id'])
 											->groupBy('voter_id')
 											->get();
