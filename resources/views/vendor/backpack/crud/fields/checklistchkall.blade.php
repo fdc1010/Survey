@@ -12,8 +12,8 @@
     </div>
     <div class="row">
         @foreach ($field['model']::all() as $connected_entity_entry)
-        	{{ $field['value'] }}
-        	{{ $connected_entity_entry->getKey() }}
+        	{!! $field['value'] !!}
+        	{!! $connected_entity_entry->getKey() !!}
             
         @endforeach
     </div>
