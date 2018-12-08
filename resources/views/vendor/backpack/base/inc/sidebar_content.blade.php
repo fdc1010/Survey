@@ -50,14 +50,6 @@
   		</ul>
     </li>
     <li class="treeview">
-      	<a href="#"><i class="fa fa-tag"></i> <span>Tagged Option Tally</span> <i class="fa fa-angle-left pull-right"></i></a>
-      	<ul class="treeview-menu">
-    		<li><a href='{{ backpack_url('optionproblem') }}'><i class='fa fa-check-square-o'></i> <span>Option Tag Problem</span></a></li>
-            <li><a href='{{ backpack_url('optioncandidate') }}'><i class='fa fa-thumbs-o-up'></i> <span>Option Tag Candidate</span></a></li>
-            <li><a href='{{ backpack_url('optionquality') }}'><i class='fa fa-check-square-o'></i> <span>Option Tag Qualities</span></a></li>
-  		</ul>
-    </li>
-    <li class="treeview">
       	<a href="#"><i class="fa fa-tag"></i> <span>Election</span> <i class="fa fa-angle-left pull-right"></i></a>
       	<ul class="treeview-menu">
     		<li><a href='{{ backpack_url('election') }}'><i class='fa fa-check-square-o'></i> <span>Details</span></a></li>
