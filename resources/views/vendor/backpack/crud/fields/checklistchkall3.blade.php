@@ -12,19 +12,9 @@
     </div>
     <div class="row">    		
         @foreach ($field['model']::all() as $connected_entity_entry)
-            <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"
-                      name="{{ $field['name'] }}[]"
-                      value="{{ $connected_entity_entry->getKey() }}"
-
-                      @if( ( old( $field["name"] ) && in_array($connected_entity_entry->getKey(), old( $field["name"])) ) || (isset($field['value']) && in_array($connected_entity_entry->getKey(), $field['value']->pluck($connected_entity_entry->getKeyName(), $connected_entity_entry->getKeyName())->toArray())))
-                             checked = "checked"
-                      @endif > {!! $connected_entity_entry->{$field['attribute']} !!}
-                  </label>
-                </div>
-            </div>
+            {{ $connected_entity_entry->getKey() }}
+            {{ $field['value'] }}
+            {{ $connected_entity_entry->getKeyName() }}
         @endforeach
     </div>
 
