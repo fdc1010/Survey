@@ -11,7 +11,6 @@
         </div>
     </div>
     <div class="row">
-    		fred - {!! $field['value'] !!}
         @foreach ($field['model']::all() as $connected_entity_entry)
             <div class="col-sm-4">
                 <div class="checkbox">
