@@ -35,7 +35,7 @@
   </ul>
 </li>
 <li class="treeview">
-  <a href="#"><i class="fa fa-bar-chart"></i> <span>Poll</span> <i class="fa fa-angle-left pull-right"></i></a>
+  <a href="#"><i class="fa fa-bar-chart"></i> <span>Surveys</span> <i class="fa fa-angle-left pull-right"></i></a>
   <ul class="treeview-menu">
   	<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
 	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
