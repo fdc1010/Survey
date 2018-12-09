@@ -27,7 +27,7 @@ class SitioRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-			'name' => 'required|unique:sitios',
+			'name' => 'required|unique:sitios,id',
         ];
     }
 
