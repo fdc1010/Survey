@@ -26,7 +26,8 @@ class StatusDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'status_id' => 'required',
+			 'voter_id' => 'required'
         ];
     }
 

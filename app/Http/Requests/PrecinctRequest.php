@@ -27,6 +27,9 @@ class PrecinctRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'name' => 'required',
+			'precinct_number' => 'required',
+			'barangay_id' => 'required'
         ];
     }
 

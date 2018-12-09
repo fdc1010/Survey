@@ -26,7 +26,8 @@ class CandidateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'position_id' => 'required',
+			'voter_id' => 'required'
         ];
     }
 

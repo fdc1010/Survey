@@ -26,7 +26,11 @@ class SurveyAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'user_id' => 'required',
+			 'voter_id' => 'required',
+			 'question_id' => 'required',
+			 'survey_detail_id' => 'required',
+			 'option_id' => 'required'
         ];
     }
 

@@ -26,7 +26,9 @@ class BarangayRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required',
+			'province_id' => 'required',
+			'district_id' => 'required'
         ];
     }
 
