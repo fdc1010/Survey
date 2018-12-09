@@ -34,8 +34,8 @@ class CandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['position_id', 'party_id','voter_id']);
-		$this->crud->removeField(['position_id', 'party_id','voter_id']);
+		$this->crud->removeColumns(['position_id', 'party_id','voter_id']);
+		$this->crud->removeFields(['position_id', 'party_id','voter_id']);
         $this->crud->addColumn([
             'label' => "Position",
 			'type' => 'select',

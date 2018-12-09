@@ -22,6 +22,7 @@ class Sitio extends Model
     protected $fillable = ['name','barangay_id','description'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $appends = ['sitio_barangay'];
 	public function barangay(){
 		return $this->belongsTo('App\Models\Barangay','barangay_id');
 	}
@@ -31,6 +32,10 @@ class Sitio extends Model
 	public function surveyor(){
 		return $this->hasMany('App\Models\AssignmentDetail','sitio_id');
 	}
+	public function getSitioBarangayAttribute()
+    {		
+        return $this->barangay->name;
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
