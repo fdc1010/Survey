@@ -126,23 +126,38 @@
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
-        $rdatahidsurvey = $rdata['hidsurvey'];
-        foreach($rdatahidsurvey as $key => $rsurvey){
-        	if(empty($rsurvey)){
-            	unset($rdatahidsurvey[$key]);
+        if(!empty($rdata['hidsurvey'])){       
+        	$rdatahidsurvey = $rdata['hidsurvey'];
+            foreach($rdatahidsurvey as $key => $rsurvey){
+                if(empty($rsurvey)){
+                    unset($rdatahidsurvey[$key]);
+                }
             }
-       	}       
-        if(!empty($rdatahidsurvey)){        	
-        	$surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
+            if(!empty($rdatahidsurvey)){
+                $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
+            }else{
+                $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
+            }
         }else{
-            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();                        
+            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
         
         if(!empty($rdata['hidelectionreturn'])){
-        	$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
+        	$rdatahidelection = $rdata['hidelectionreturn'];
+            foreach($rdatahidelection as $key => $relection){
+                if(empty($relection)){
+                    unset($rdatahidelection[$key]);
+                }
+            }
+            if(!empty($rdatahidelection)){
+        		$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
+            }else{
+        		$elections = App\Models\Election::where('id',$tallyelection)->get();
+            }
         }else{  
             $elections = App\Models\Election::where('id',$tallyelection)->get();         
         }
+       
 		if(!empty($rdata['hidto'])){
         	$tallybrgy=$rdata['hidto'];            
         }
