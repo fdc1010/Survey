@@ -20,8 +20,8 @@
         @endif
 
         @if (isset($field['model']))
-            @foreach ($field['model']::whereDoesntHave($field['entity2'])->get() as $connected_entity_entry)
-                @if($current_value == $connected_entity_entry->getKey())
+            @foreach ($field['model']::with($field['entity2'])->get() as $connected_entity_entry)
+                @if($connected_entity_entry->{$field['entity2']}->candidate_id == $connected_entity_entry->getKey())
                     <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['attribute']} }}</option>
                 @else
                     <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['attribute']} }}</option>
