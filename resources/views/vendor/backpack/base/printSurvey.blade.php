@@ -141,7 +141,7 @@
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        
+        print_r($rdata);
         if(!empty($rdata['hidelectionreturn'])){
         	$rdatahidelection = $rdata['hidelectionreturn'];
             foreach($rdatahidelection as $key => $relection){
