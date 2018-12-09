@@ -52,7 +52,8 @@ class BarangayRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'province_id.required'=>'The Province field is required.',
+            'district_id.required'=>'The District field is required.'
         ];
     }
 }

@@ -51,7 +51,8 @@ class StatusDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'status_id.required'=>'The Status field is required.',
+            'voter_id.required'=>'The Voter field is required.'
         ];
     }
 }

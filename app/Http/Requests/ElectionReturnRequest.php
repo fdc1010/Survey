@@ -39,7 +39,8 @@ class ElectionReturnRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'election_id',
+            'candidate_id'
         ];
     }
 
@@ -51,7 +52,8 @@ class ElectionReturnRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'election_id.required'=>'The Election Year field is required.',
+            'candidate_id.required'=>'The Candidate field is required.'
         ];
     }
 }

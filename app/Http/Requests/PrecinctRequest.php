@@ -41,7 +41,7 @@ class PrecinctRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'name','precinct_number','barangay_id'
         ];
     }
 
@@ -53,7 +53,8 @@ class PrecinctRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+			'precinct_number.required'=>'The Precinct Number field is required.',
+            'barangay_id.required'=>'The barangay field is required.'
         ];
     }
 }

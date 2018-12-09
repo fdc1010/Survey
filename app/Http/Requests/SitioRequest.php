@@ -52,7 +52,7 @@ class SitioRequest extends FormRequest
     public function messages()
     {
         return [
-            
+            'barangay_id.required'=>'The Barangay field is required.'
         ];
     }
 }
