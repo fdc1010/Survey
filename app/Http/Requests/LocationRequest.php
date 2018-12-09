@@ -26,7 +26,7 @@ class LocationRequest extends FormRequest
     public function rules()
     {
         return [
-             'area_id' => 'required'
+            // 'area_id' => 'required'
         ];
     }
 
@@ -50,7 +50,7 @@ class LocationRequest extends FormRequest
     public function messages()
     {
         return [
-            'area_id.required'=>'The Area field is required.'
+            //'area_id.required'=>'The Area field is required.'
         ];
     }
 }
