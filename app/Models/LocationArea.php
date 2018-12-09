@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class LocationCoordinate extends Model
+class LocationArea extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class LocationCoordinate extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'location_coordinates';
+    protected $table = 'location_areas';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];

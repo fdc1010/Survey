@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LocationCoordinateRequest extends FormRequest
+class LocationAreaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class LocationCoordinateRequest extends FormRequest
     public function rules()
     {
         return [
-            'shape_id' => 'required'
+             'name' => 'required'
         ];
     }
 
@@ -50,7 +50,7 @@ class LocationCoordinateRequest extends FormRequest
     public function messages()
     {
         return [
-            'shape_id.required'=>'The Shape field is required.'
+            //
         ];
     }
 }
