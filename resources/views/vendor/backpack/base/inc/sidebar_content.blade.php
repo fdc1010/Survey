@@ -23,7 +23,7 @@
   	<li><a href='{{ backpack_url('precinct') }}'><i class='fa fa-list'></i> <span>Precincts</span></a></li>
 	<li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-building'></i> <span>Barangays</span></a></li>
     <li><a href='{{ backpack_url('sitio') }}'><i class='fa fa-crosshairs'></i> <span>Sitio</span></a></li>
-    <li><a href='{{ backpack_url('locationcoordinate') }}'><i class='fa fa-crosshairs'></i> <span>Coordinates</span></a></li>
+    <li><a href='{{ backpack_url('location') }}'><i class='fa fa-crosshairs'></i> <span>Coordinates</span></a></li>
   </ul>
 </li>
 <li class="treeview">
