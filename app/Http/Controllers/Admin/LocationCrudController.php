@@ -36,7 +36,16 @@ class LocationCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['area','name','description','municipality_id','barangay_id','sitio_id']);
 		$this->crud->removeFields(['area','name','description','municipality_id','barangay_id','sitio_id']);
-		
+		$this->crud->addColumn([   // Enum
+			'name' => 'area',
+			'label' => 'Area',
+			'type' => 'enum'
+		]);
+		$this->crud->addField([   // Enum
+			'name' => 'area',
+			'label' => 'Area',
+			'type' => 'enum'
+		]);
         // add asterisk for fields that are required in LocationRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
