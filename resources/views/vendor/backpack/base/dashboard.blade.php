@@ -328,14 +328,18 @@
                 @endforeach
             @endif
             @foreach($selinitsurveydetails as $surveydetail)
-                	@if(empty($rdata['survey_detail']))
-                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
+                	@if(!empty($rdata['survey_detail']) && in_array($surveydetail->id,$rdata['survey_detail']))
+                    	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" value="{{ $surveydetail->id }}" />
                    	@else
                     	<input type="hidden" name="hidsurvey[]" id="hidsurvey_detail_{{ $surveydetail->id }}" />
                     @endif
             @endforeach
             @foreach($selinitelections as $election)
-                	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" />
+            		@if(!empty($rdata['election_return']))
+                		<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" value="{{ $election->id }}" />
+                    @else
+                    	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" />
+                    @endif
             @endforeach
             @if(empty($rdata['to']))            	
             	@foreach($brgyarr as $brgyrand)
