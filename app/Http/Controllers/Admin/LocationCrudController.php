@@ -44,7 +44,7 @@ class LocationCrudController extends CrudController
 		$this->crud->addField([   // Enum
 			'name' => 'area',
 			'label' => 'Area',
-			'type' => 'enum'
+			'type' => 'checkbox'
 		]);
         // add asterisk for fields that are required in LocationRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
