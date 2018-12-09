@@ -36,11 +36,11 @@ class LocationCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['area_id','name','description','municipality_id','barangay_id','sitio_id']);
 		$this->crud->removeFields(['area_id','name','description','municipality_id','barangay_id','sitio_id']);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'name',
             'type' => 'text',
             'label' => 'Name'
-	    ]);
+	    ]);*/
 		$this->crud->addColumn([
             'name' => 'area_id',
             'type' => 'select',
@@ -73,11 +73,11 @@ class LocationCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Sitio"
 	    ]);
-		$this->crud->addField([
+		/*$this->crud->addField([
             'name' => 'name',
             'type' => 'text',
             'label' => 'Name'
-	    ]);
+	    ]);*/
 		$this->crud->addField([
             'name' => 'area_id',
             'type' => 'checklist',
