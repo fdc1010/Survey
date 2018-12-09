@@ -27,7 +27,7 @@ class SitioRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-			'name' => 'required|unique:sitios,id,{$this->id}',
+			'name' => 'required',
         ];
     }
 
@@ -39,7 +39,7 @@ class SitioRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'
+            
         ];
     }
 
@@ -51,7 +51,7 @@ class SitioRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Sitio name already exists!'
+            
         ];
     }
 }
