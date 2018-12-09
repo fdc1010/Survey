@@ -78,14 +78,14 @@ class LocationCrudController extends CrudController
             'type' => 'text',
             'label' => 'Name'
 	    ]);*/
-		$this->crud->addField([
+		/*$this->crud->addField([
             'name' => 'area_id',
             'type' => 'checklist',
             'label' => 'Area',
 			'entity' => 'area', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\LocationArea"
-	    ]);
+	    ]);*/
 		$this->crud->addField([
             'name' => 'municipality_id',
             'type' => 'select2',
