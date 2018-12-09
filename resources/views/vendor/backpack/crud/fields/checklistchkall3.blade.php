@@ -19,7 +19,7 @@
                       name="{{ $field['name'] }}[]"
                       value="{{ $connected_entity_entry->getKey() }}"
 
-                      @if(!empty($id) && in_array($connected_entity_entry->getKey(), $field['model2']::where('option_id',$id)->get()->pluck($field['attribute2'])->toArray())))
+                      @if(!empty($id) && in_array($connected_entity_entry->getKey(), $field['model2']::where($field['model_id'],$id)->get()->pluck($field['attribute2'])->toArray())))
                              checked = "checked"
                       @endif > {!! $connected_entity_entry->{$field['attribute']} !!}
                   </label>

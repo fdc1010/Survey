@@ -112,7 +112,8 @@ class QuestionOptionCrudController extends CrudController
 			'model' => "App\Models\PositionCandidate",
 			'model2' => "App\Models\OptionPosition",
 			'entity2' => 'optionpositions',
-			'attribute2' => 'position_id'
+			'attribute2' => 'position_id',
+			'model_id' => 'option_id'
 		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
@@ -127,7 +128,10 @@ class QuestionOptionCrudController extends CrudController
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate",
-			'entity2' => 'options'
+			'model2' => "App\Models\OptionCandidate",
+			'entity2' => 'optionpositions',
+			'attribute2' => 'candidate_id',
+			'model_id' => 'option_id'
 	    ]);
 		$this->crud->addField([
             'name' => 'for_issues',
