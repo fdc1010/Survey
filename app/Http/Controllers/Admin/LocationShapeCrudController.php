@@ -24,7 +24,7 @@ class LocationShapeCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\LocationShape');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/locationshape');
-        $this->crud->setEntityNameStrings('locationshape', 'location_shapes');
+        $this->crud->setEntityNameStrings('location shape', 'Location Shapes');
 
         /*
         |--------------------------------------------------------------------------

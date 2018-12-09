@@ -24,7 +24,7 @@ class LocationAreaCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\LocationArea');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/locationarea');
-        $this->crud->setEntityNameStrings('locationarea', 'location_areas');
+        $this->crud->setEntityNameStrings('location area', 'Location Areas');
 
         /*
         |--------------------------------------------------------------------------
