@@ -44,6 +44,14 @@ class SitioCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Barangay"
 	    ]);
+		$this->crud->addField([
+            'name' => 'barangay_id',
+            'type' => 'select2',
+            'label' => 'Barangay',
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay"
+	    ]);
         // add asterisk for fields that are required in SitioRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
