@@ -96,7 +96,7 @@
                 }
             }
             if(!empty($rdatahidsurvey)){
-                $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['survey_detail'])->get();
+                $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdatahidsurvey)->get();
             }else{
                 $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
             }
@@ -112,7 +112,7 @@
                 }
             }
             if(!empty($rdatahidelection)){
-        		$elections = App\Models\Election::whereIn('id',$rdata['election_return'])->get();
+        		$elections = App\Models\Election::whereIn('id',$rdatahidelection)->get();
             }else{
         		$elections = App\Models\Election::where('id',$tallyelection)->get();
             }
@@ -1728,19 +1728,13 @@ $(document).ready(function ($) {
 	$('#checkAllSurveys').on('change',function(e){
 		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
 		@foreach($selinitsurveydetails as $surveydetail) 
-			if($(this).is(":checked"))
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
-			else
-				$('#hidsurvey_detail_{{ $surveydetail->id }}').val(0);
 		@endforeach	
 	});
 	$('#checkAllElectionReturns').on('change',function(e){
 		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));		
 		@foreach($selinitelections as $election)
-			if($(this).is(":checked"))
 				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
-			else
-				$('#hidelection_return_{{ $election->id }}').val(0);
 		@endforeach	
 	});
 	@foreach($selinitpositions as $position)

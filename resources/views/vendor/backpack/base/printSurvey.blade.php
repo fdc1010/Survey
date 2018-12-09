@@ -134,14 +134,13 @@
                 }
             }
             if(!empty($rdatahidsurvey)){
-                $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdata['hidsurvey'])->get();
+                $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdatahidsurvey)->get();
             }else{
                 $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
             }
         }else{
             $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
         }
-        print_r($rdata);
         if(!empty($rdata['hidelectionreturn'])){
         	$rdatahidelection = $rdata['hidelectionreturn'];
             foreach($rdatahidelection as $key => $relection){
@@ -150,7 +149,7 @@
                 }
             }
             if(!empty($rdatahidelection)){
-        		$elections = App\Models\Election::whereIn('id',$rdata['hidelectionreturn'])->get();
+        		$elections = App\Models\Election::whereIn('id',$rdatahidelection)->get();
             }else{
         		$elections = App\Models\Election::where('id',$tallyelection)->get();
             }
