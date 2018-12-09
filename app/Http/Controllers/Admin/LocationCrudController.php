@@ -80,7 +80,7 @@ class LocationCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'area_id',
-            'type' => 'checkbox',
+            'type' => 'checklist',
             'label' => 'Area',
 			'entity' => 'area', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
