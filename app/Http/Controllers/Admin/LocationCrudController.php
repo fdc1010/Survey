@@ -24,7 +24,7 @@ class LocationCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Location');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/location');
-        $this->crud->setEntityNameStrings('location', 'locations');
+        $this->crud->setEntityNameStrings('coordinates', 'Coordinates');
 
         /*
         |--------------------------------------------------------------------------
