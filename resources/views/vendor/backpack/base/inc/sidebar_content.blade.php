@@ -23,6 +23,13 @@
   	<li><a href='{{ backpack_url('precinct') }}'><i class='fa fa-list'></i> <span>Precincts</span></a></li>
 	<li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-building'></i> <span>Barangays</span></a></li>
     <li><a href='{{ backpack_url('sitio') }}'><i class='fa fa-crosshairs'></i> <span>Area/Sitio</span></a></li>
+    <li class="treeview">
+      <a href="#"><i class="fa fa-map-marker"></i> <span>Area/Coordinates</span> <i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+          <li><a href='{{ backpack_url('location') }}'><i class='fa fa-crosshairs'></i> <span>Location</span></a></li>
+          <li><a href='{{ backpack_url('locationcoordinate') }}'><i class='fa fa-crosshairs'></i> <span>Coordinates</span></a></li>
+      </ul>
+    </li>
   </ul>
 </li>
 <li class="treeview">
