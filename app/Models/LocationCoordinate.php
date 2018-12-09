@@ -19,10 +19,17 @@ class LocationCoordinate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['location_id','shape_id','name','description','coordinate'];
+    protected $fillable = ['location_id','shape_id','name','description','coordinate','latitude','longitude'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function location()
+    {
+        return $this->belongsTo('App\Models\Location','location_id');
+    }
+	public function shape()
+    {
+        return $this->belongsTo('App\Models\LocationShape','shape_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
