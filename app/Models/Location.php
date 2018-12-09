@@ -19,10 +19,25 @@ class Location extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['area_id','name','description','municipality_id','barangay_id','sitio_id'];
     // protected $hidden = [];
     // protected $dates = [];
-
+	public function area()
+    {
+        return $this->belongsTo('App\Models\LocationArea','area_id');
+    }
+	public function municipality()
+    {
+        return $this->belongsTo('App\Models\Municipality','municipality_id');
+    }
+	public function barangay()
+    {
+        return $this->belongsTo('App\Models\Barangay','barangay_id');
+    }
+	public function sitio()
+    {
+        return $this->belongsTo('App\Models\Sitio','sitio_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

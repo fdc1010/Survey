@@ -19,7 +19,7 @@ class LocationCoordinate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name','description'];
+    protected $fillable = ['location_id','shape_id','name','description','coordinate'];
     // protected $hidden = [];
     // protected $dates = [];
 
