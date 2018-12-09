@@ -15,9 +15,9 @@ class CreateLocationCoordinatesTable extends Migration
     {
         Schema::create('location_coordinates', function (Blueprint $table) {
             $table->increments('id');
-			$table->enum('shape',['polygon','circle','rectangle','polyline']);
+			$table->enum('shape',['polygon','circle','rectangle','polyline'])->nullable();
 			$table->unsignedInteger('location_id');
-			$table->decimal('coordinate',10,2);
+			$table->decimal('coordinate',10,2)->nullable();
 			$table->string('name')->nullable();
 			$table->longText('description')->nullable();
             $table->timestamps();

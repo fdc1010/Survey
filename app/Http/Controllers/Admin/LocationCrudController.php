@@ -34,7 +34,9 @@ class LocationCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+		$this->crud->removeColumns(['area','name','description','municipality_id','barangay_id','sitio_id']);
+		$this->crud->removeFields(['area','name','description','municipality_id','barangay_id','sitio_id']);
+		
         // add asterisk for fields that are required in LocationRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
