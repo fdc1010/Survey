@@ -51,10 +51,13 @@ class SurveyorAssignment extends Model
 		return $result;
 	}
 	public function getProgressBar(){
-		$result = "<div class='progress'>".
-					  "<div class='progress-bar' style='width:".$this->getProgressPercent()."'>".$this->getProgressPercent()."</div>".
-				  "</div>";	
-		return $result;	
+		$result = '<div class="progress">'.
+					  '<div class="progress-bar" role="progressbar" aria-valuenow="'.$this->getProgressPercent().'"'.
+					  'aria-valuemin="0" aria-valuemax="100" style="width:'.$this->getProgressPercent().'">'.
+					  $this->getProgressPercent() .
+					  '</div>'.
+					'</div>';	
+		return $result;
 	}
 	public function getProgress(){
 		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
