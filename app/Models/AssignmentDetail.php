@@ -58,7 +58,14 @@ class AssignmentDetail extends Model
 			return 0;
 		}
 	}
-	
+	public function getProgressBar(){
+		$result = '<div class="progress">'.
+					  '<div class="progress-bar" role="progressbar" aria-valuenow="70"'.
+					  'aria-valuemin="0" aria-valuemax="100" style="width:'.$this->getProgressPercent().'">'.
+					  $this->getProgressPercent() .
+					  '</div>'.
+					'</div>';	
+	}
 	public function getProgress(){
 		
 		return (($this->getSurveyCount()/$this->quota)*100);
