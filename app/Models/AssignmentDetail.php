@@ -59,8 +59,9 @@ class AssignmentDetail extends Model
 		}
 	}
 	public function getProgressBar(){
+		echo($this);
 		$result = "<div class='progress'>".
-					  "<div class='progress-bar' style='width:".$this->getProgress().";'>".$this->getProgressPrecent()."</div>".
+					  "<div class='progress-bar' style='width:".$this->getProgress().";'>".$this->getProgressPercent()."</div>".
 					"</div>";	
 		return $result;
 	}
