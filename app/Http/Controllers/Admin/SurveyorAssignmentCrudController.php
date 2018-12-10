@@ -165,11 +165,11 @@ class SurveyorAssignmentCrudController extends CrudController
 										->get();
 		$result = "<h4>Assigned Areas:</h4><div class='col-lg-8'>";
 		foreach($areas as $area){
-			$result .= "<div class='col-lg-2'>".$area->sitio->name.
-						"</div><div class='col-lg-3'>quota: ".$area->quota.
-						"</div><div class='col-lg-3'>count: ".$area->getSurveyCount().
-						"</div><div class='col-lg-4'>progress: ".$area->getProgressBar().
-						"</div>";
+			$result .= "<div class='col-lg-2'>".$area->sitio->name."</div>".
+						"<div class='col-lg-2'>quota: ".$area->quota."</div>".
+						"<div class='col-lg-2'>count: ".$area->getSurveyCount()."</div>".
+						"<div class='col-lg-2'>progress:</div>".
+						"<div class='col-lg-2'>".$area->getProgressBar()."</div>";
 		}
 		$result .= "</div>";
 		return $result;
