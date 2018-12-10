@@ -100,6 +100,7 @@ class SurveyAnswerController extends Controller
 				$voterdetails = json_decode($request->voter_detail,true);
 				$profilepic=null;
 				if($request->hasFile('profilepic')){	
+					info('profilepic');
 					$voter = Voter::find($voterid);				
 					$path = config('app.root') . '/public/profilepic/';
 					$photo=$path.basename($voter->profilepic);
