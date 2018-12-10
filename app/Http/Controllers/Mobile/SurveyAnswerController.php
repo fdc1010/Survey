@@ -99,7 +99,7 @@ class SurveyAnswerController extends Controller
 			if(empty($checksurveyvoter)){
 				$voterdetails = json_decode($request->voter_detail,true);
 				$profilepic=null;
-				//if($request->hasFile('profilepic')){	
+				if($request->hasFile('profilepic')){	
 					$voter = Voter::find($voterid);				
 					$path = config('app.root') . '/public/profilepic/';
 					$photo=$path.basename($voter->profilepic);
@@ -130,7 +130,7 @@ class SurveyAnswerController extends Controller
 					$filename = $md5profName.'.'.$guessExtensionprof;
 					$profilepic =  config('app.url') . '/profilepic/' . $filename;
 		
-				//}
+				}
 				//$voter->save();		
 				 Voter::where('id',$voterid)
 						->update([
