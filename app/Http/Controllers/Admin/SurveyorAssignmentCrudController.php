@@ -56,7 +56,7 @@ class SurveyorAssignmentCrudController extends CrudController
             'name' => 'progress',			
             'label' => 'Progress',
             'type' => 'model_function',
-			'function_name' => 'getProgressPercent'
+			'function_name' => 'getProgressBar'
 	    ]);
 		$this->crud->addColumn([
             'label' => "Survey",
