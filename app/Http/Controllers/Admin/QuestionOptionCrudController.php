@@ -21,6 +21,7 @@ class QuestionOptionCrudController extends CrudController
 {
     public function setup()
     {
+		
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
@@ -35,7 +36,7 @@ class QuestionOptionCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-
+		
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();	
 		$this->crud->removeColumns(['option','priority','for_candidate_quality','for_candidate_votes','positions','candidate_id','for_issues','position_id']);
@@ -50,38 +51,38 @@ class QuestionOptionCrudController extends CrudController
 			'label' => 'Priority',
 			'type' => 'number'
 	    ]);
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'position',			
-            'label' => 'Positions Tagged',
+            'label' => 'Positions',
             'type' => 'model_function',
 			'function_name' => 'getPositions',
 			//'fake' => true
-	    ]);
+	    ]);*/
 		$this->crud->addColumn([
             'name' => 'for_candidate_quality',			
-            'label' => 'for Candidate Qualities',
+            'label' => 'for Qualities',
             'type' => 'model_function',
 			'function_name' => 'forCandidateQuality',
 			//'fake' => true
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_candidate_votes',			
-            'label' => 'for Candidate Votes',
+            'label' => 'for Votes',
             'type' => 'model_function',
 			'function_name' => 'forCandidateVotes',
 			//'fake' => true
 	    ]);
 		$this->crud->addColumn([
             'name' => 'candidate_id',
-            'type' => 'select2',
-            'label' => 'Tagged Option to Candidate',
+            'type' => 'select',
+            'label' => 'Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Candidate"
 	    ]);
 		$this->crud->addColumn([
             'name' => 'for_issues',			
-            'label' => 'Tagged Option for Issues/Concerns/Problems',
+            'label' => 'for Issues/Concerns/Problems',
             'type' => 'model_function',
 			'function_name' => 'forIssues',
 			//'fake' => true
@@ -100,20 +101,19 @@ class QuestionOptionCrudController extends CrudController
             'name' => 'for_candidate_quality',
 			'label' => 'Is Option for Candidate Qualities',
 			'type' => 'checkboxtoggle',
-			'toggle_field' => 'extras'
-	    ]);		
-		
+			'toggle_field' => 'positions'
+	    ]);				
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall3',
-			'name' => 'extras', 
-			'entity1' => 'positions',
-			'attribute1' => 'name', 
-			'model1' => "App\Models\PositionCandidate",
+			'name' => 'positions', 
+			'entity' => 'positions',
+			'attribute' => 'name', 
+			'model' => "App\Models\PositionCandidate",
 			'model2' => "App\Models\OptionPosition",
 			'entity2' => 'optionpositions',
-			'attribute2' => 'position_id',	
-			'model_id' => 1		
+			'attribute2' => 'position_id',
+			'model_id' => 'option_id'
 		]);
 		$this->crud->addField([
             'name' => 'for_candidate_votes',
@@ -123,11 +123,15 @@ class QuestionOptionCrudController extends CrudController
 	    ]);
 		$this->crud->addField([
             'name' => 'candidate_id',
-            'type' => 'select2',
+            'type' => 'select2criteria2',
             'label' => 'Tagged Option to Candidate',
 			'entity' => 'candidate', // the relationship name in your Model
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Candidate"
+			'model' => "App\Models\Candidate",
+			'model2' => "App\Models\OptionCandidate",
+			'entity2' => 'optionpositions',
+			'attribute2' => 'candidate_id',
+			'model_id' => 'option_id'
 	    ]);
 		$this->crud->addField([
             'name' => 'for_issues',
@@ -150,6 +154,7 @@ class QuestionOptionCrudController extends CrudController
 		$positions = $this->crud->entry->positions;
 		
 		if(intval($this->crud->entry->for_candidate_quality)){
+			//OptionQuality::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -199,7 +204,8 @@ class QuestionOptionCrudController extends CrudController
 		$positions = $this->crud->entry->positions;
 		//dd($this->crud->entry);
 		if(intval($this->crud->entry->for_candidate_quality)){
-			//OptionQuality::where('option_id',$optid)->delete();
+			OptionQuality::where('option_id',$optid)->delete();
+			OptionPosition::where('option_id',$optid)->delete();
 			foreach($positions as $posid){
 				$optionposition = OptionPosition::updateOrCreate([
 					'position_id' => $posid,
@@ -218,8 +224,7 @@ class QuestionOptionCrudController extends CrudController
 			]);	
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
-			//OptionPosition::where('option_id',$optid)->delete();
-			//OptionCandidate::where('option_id',$optid)->delete();
+			OptionCandidate::where('option_id',$optid)->delete();
 			
 			$optioncandidate = OptionCandidate::updateOrCreate([
 				'option_id' => $optid,
@@ -227,7 +232,7 @@ class QuestionOptionCrudController extends CrudController
 			]);		
 		}
 		if(intval($this->crud->entry->for_issues)){
-			//OptionProblem::where('option_id',$optid)->delete();
+			OptionProblem::where('option_id',$optid)->delete();
 			$optionproblem = OptionProblem::updateOrCreate([
 				'option_id' => $optid
 			]);

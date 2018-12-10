@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SurveyAnswerRequest extends FormRequest
+class LocationShapeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,7 @@ class SurveyAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-             'user_id' => 'required',
-			 'voter_id' => 'required',
-			 'question_id' => 'required',
-			 'survey_detail_id' => 'required',
-			 'option_id' => 'required'
+            'name' => 'required'
         ];
     }
 

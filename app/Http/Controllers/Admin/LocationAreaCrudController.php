@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\SitioRequest as StoreRequest;
-use App\Http\Requests\SitioRequest as UpdateRequest;
+use App\Http\Requests\LocationAreaRequest as StoreRequest;
+use App\Http\Requests\LocationAreaRequest as UpdateRequest;
 
 /**
- * Class SitioCrudController
+ * Class LocationAreaCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class SitioCrudController extends CrudController
+class LocationAreaCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class SitioCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Sitio');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/sitio');
-        $this->crud->setEntityNameStrings('sitio', 'sitios');
+        $this->crud->setModel('App\Models\LocationArea');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/locationarea');
+        $this->crud->setEntityNameStrings('location area', 'Location Areas');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,25 +34,8 @@ class SitioCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumns(['barangay_id','description']);
-		$this->crud->removeFields(['barangay_id','description']);
-		$this->crud->addColumn([
-            'name' => 'barangay_id',
-            'type' => 'select',
-            'label' => 'Barangay',
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay"
-	    ]);
-		$this->crud->addField([
-            'name' => 'barangay_id',
-            'type' => 'select2',
-            'label' => 'Barangay',
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay"
-	    ]);
-        // add asterisk for fields that are required in SitioRequest
+
+        // add asterisk for fields that are required in LocationAreaRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

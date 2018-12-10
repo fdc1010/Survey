@@ -32,12 +32,37 @@ class AssignmentDetail extends Model
     }
 	public function sitio()
     {
-        return $this->belongsTo('App\Models\Sitio','sitio_id');
+        return $this->belongsTo('App\Models\Sitio','sitio_id')->with('voters');
     }
 	public function surveyor(){
 		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
 	}
+	public function getProgressPercent(){		
+		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
+	}
+	public function getSurveyCount(){
+		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
+		if($surveyassignment){
+				$voters = $this->sitio->voters->pluck('id')->toArray();
+				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
+											->where('user_id',$surveyassignment->user_id)
+											->whereIn('voter_id',$voters)
+											->select(['voter_id'])
+											->groupBy('voter_id')
+											->get();
+				if($countsurvey)
+					return count($countsurvey);
+				else
+					return 0;
+		}else{
+			return 0;
+		}
+	}
 	
+	public function getProgress(){
+		
+		return (($this->getSurveyCount()/$this->quota)*100);
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

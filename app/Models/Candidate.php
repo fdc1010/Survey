@@ -28,7 +28,10 @@ class Candidate extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-	
+	public function options()
+    {
+        return $this->hasMany('App\Models\OptionCandidate','candidate_id');
+    }
 	public function position()
     {
         return $this->belongsTo('App\Models\PositionCandidate','position_id');

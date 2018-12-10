@@ -68,6 +68,11 @@ class ElectionReturnCrudController extends CrudController
 			'attribute' => 'full_name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Voter"
 	    ]);
+		$this->crud->addColumn([
+            'name' => 'tally',
+            'type' => 'number',
+            'label' => 'Votes'
+	    ]);
 		$this->crud->addField([
             'name' => 'election_id',
             'type' => 'select2',

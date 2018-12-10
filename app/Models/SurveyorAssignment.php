@@ -51,9 +51,9 @@ class SurveyorAssignment extends Model
 		return $result;
 	}
 	public function getProgress(){
-		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
-										->count();
+										->count();*/
 		
 		return (($this->getSurveyCount()/$this->quota)*100);
 	}

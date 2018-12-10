@@ -27,6 +27,8 @@ class SitioRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+			'name' => 'required',
+			'barangay_id' => 'required'
         ];
     }
 
@@ -38,7 +40,7 @@ class SitioRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            
         ];
     }
 
@@ -50,7 +52,7 @@ class SitioRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'barangay_id.required'=>'The Barangay field is required.'
         ];
     }
 }

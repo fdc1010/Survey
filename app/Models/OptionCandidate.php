@@ -34,6 +34,9 @@ class OptionCandidate extends Model
     {
         return $this->belongsTo('App\Models\Voter','candidate_id');
     }
+	public function optioncandidates(){
+		return $this->hasMany('App\Models\QuestionOption');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

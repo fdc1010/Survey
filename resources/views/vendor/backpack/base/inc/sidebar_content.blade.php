@@ -22,7 +22,8 @@
   <ul class="treeview-menu">
   	<li><a href='{{ backpack_url('precinct') }}'><i class='fa fa-list'></i> <span>Precincts</span></a></li>
 	<li><a href='{{ backpack_url('barangay') }}'><i class='fa fa-building'></i> <span>Barangays</span></a></li>
-    <li><a href='{{ backpack_url('sitio') }}'><i class='fa fa-crosshairs'></i> <span>Area/Sitio</span></a></li>
+    <li><a href='{{ backpack_url('sitio') }}'><i class='fa fa-crosshairs'></i> <span>Sitio</span></a></li>
+    <!--<li><a href='{{ backpack_url('location') }}'><i class='fa fa-crosshairs'></i> <span>Area</span></a></li>-->
   </ul>
 </li>
 <li class="treeview">
@@ -35,7 +36,7 @@
   </ul>
 </li>
 <li class="treeview">
-  <a href="#"><i class="fa fa-bar-chart"></i> <span>Poll</span> <i class="fa fa-angle-left pull-right"></i></a>
+  <a href="#"><i class="fa fa-bar-chart"></i> <span>Surveys</span> <i class="fa fa-angle-left pull-right"></i></a>
   <ul class="treeview-menu">
   	<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
 	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
@@ -47,14 +48,6 @@
       	<ul class="treeview-menu">
     		<li><a href='{{ backpack_url('question') }}'><i class='fa fa-question-circle'></i> <span>Questions</span></a></li>
     		<li><a href='{{ backpack_url('questionoption') }}'><i class='fa fa-info-circle'></i> <span>Question Options</span></a></li>
-  		</ul>
-    </li>
-    <li class="treeview">
-      	<a href="#"><i class="fa fa-tag"></i> <span>Tagged Option Tally</span> <i class="fa fa-angle-left pull-right"></i></a>
-      	<ul class="treeview-menu">
-    		<li><a href='{{ backpack_url('optionproblem') }}'><i class='fa fa-check-square-o'></i> <span>Option Tag Problem</span></a></li>
-            <li><a href='{{ backpack_url('optioncandidate') }}'><i class='fa fa-thumbs-o-up'></i> <span>Option Tag Candidate</span></a></li>
-            <li><a href='{{ backpack_url('optionquality') }}'><i class='fa fa-check-square-o'></i> <span>Option Tag Qualities</span></a></li>
   		</ul>
     </li>
     <li class="treeview">

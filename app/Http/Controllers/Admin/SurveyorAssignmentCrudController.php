@@ -47,6 +47,12 @@ class SurveyorAssignmentCrudController extends CrudController
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
 		])->makeFirstColumn();
 		$this->crud->addColumn([
+            'name' => 'count',			
+            'label' => 'Count',
+            'type' => 'model_function',
+			'function_name' => 'getSurveyCount'
+	    ])->afterColumn('quota');
+		$this->crud->addColumn([
             'name' => 'progress',			
             'label' => 'Progress',
             'type' => 'model_function',
@@ -159,7 +165,11 @@ class SurveyorAssignmentCrudController extends CrudController
 										->get();
 		$result = "<h4>Assigned Areas:</h4><div class='col-lg-6'>";
 		foreach($areas as $area){
-			$result .= "<div class='col-lg-6'>".$area->sitio->name."</div><div class='col-lg-6'>quota: ".$area->quota."</div>";
+			$result .= "<div class='col-lg-3'>".$area->sitio->name.
+						"</div><div class='col-lg-3'>quota: ".$area->quota.
+						"</div><div class='col-lg-3'>count: ".$area->getSurveyCount().
+						"</div><div class='col-lg-3'>progress: ".$area->getProgressPercent().
+						"</div>";
 		}
 		$result .= "</div>";
 		return $result;

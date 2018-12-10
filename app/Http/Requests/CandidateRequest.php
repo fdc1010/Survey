@@ -26,7 +26,8 @@ class CandidateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'position_id' => 'required',
+			'voter_id' => 'required'
         ];
     }
 
@@ -38,7 +39,8 @@ class CandidateRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'position_id.required'=>'The Position field is required.',
+            'voter_id.required'=>'The Voter field is required.'
         ];
     }
 
