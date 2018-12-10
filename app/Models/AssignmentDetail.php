@@ -60,7 +60,7 @@ class AssignmentDetail extends Model
 	}
 	public function getProgressBar(){
 		$result = "<div class='progress'>".
-					  "<div class='progress-bar' style='width:60%'>60%</div>".
+					  "<div class='progress-bar' style='width:".$this->getProgress().";'>".$this->getProgressPrecent()."</div>".
 					"</div>";	
 		return $result;
 	}
