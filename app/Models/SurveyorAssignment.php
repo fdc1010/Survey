@@ -51,11 +51,9 @@ class SurveyorAssignment extends Model
 		return $result;
 	}
 	public function getProgressBar(){
-		$result = '<div class="progress">'.
-    '<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">'.
-     ' 70%'.
-    '</div>'.
-  '</div>';
+		$result = "<div class='progress'>".
+					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgressPercent()."</div>".
+					"</div>";
 		return $result;
 	}
 	public function getProgress(){
