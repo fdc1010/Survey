@@ -168,7 +168,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			$result .= "<div class='col-lg-3'>".$area->sitio->name.
 						"</div><div class='col-lg-3'>quota: ".$area->quota.
 						"</div><div class='col-lg-3'>count: ".$area->getSurveyCount().
-						"</div><div class='col-lg-3'>progress: ".$area->getProgressBar().
+						"</div><div class='col-lg-3'>progress: ".$area->getProgressPercent().
 						"</div>";
 		}
 		$result .= "</div>";
