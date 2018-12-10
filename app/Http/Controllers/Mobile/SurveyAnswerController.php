@@ -86,7 +86,7 @@ class SurveyAnswerController extends Controller
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
-			//info($request);
+			info($request);
 			$ok = true;
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
