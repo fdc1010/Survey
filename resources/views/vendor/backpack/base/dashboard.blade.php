@@ -784,21 +784,21 @@
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
-                             	<thead style="font-size:14px;">
-                                    <tr>
+                             	<thead>
+                                    <tr style="font-size:14px;">
                                         <th>Cadidates</th>
                                         <th>Tally</th>
                                     </tr>                                    
                                 </thead>
                             	
             					@foreach($positions as $position)
-                                  <thead style="font-size:14px;">
-                                      <tr>
+                                  <thead>
+                                      <tr style="font-size:14px;">
                                           <th>{{ $position->name }}</th>
                                           <th></th>
                                       </tr>                                    
                                   </thead>
-                                  <tbody>                                  
+                                  <tbody style="font-size:14px;">                                  
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
