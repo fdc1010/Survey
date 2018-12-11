@@ -242,12 +242,7 @@
                             var item = {};
                             $scope.items.push(item);
 							$('#trcount').html($scope.items.length);
-							var totalquota=0;
-							$.each($scope.items,function(key,value){
-								totalquota += value.number;
-							});
-							$('#trquota').html(totalquota);
-							isSameQuota(totalquota);
+							
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -260,6 +255,12 @@
                         var item = {};
                         $scope.items.push(item);
                     }
+					var totalquota=0;
+					$.each($scope.items,function(key,value){
+						totalquota += value.number;
+					});
+					$('#trquota').html(totalquota);
+					isSameQuota(totalquota);
 					
                 }
 
@@ -285,12 +286,7 @@
                         }
 						$('#trcount').html($scope.items.length);
 						//$('#trquota').html($scope.item[1].value);
-						var totalquota=0;
-						$.each($scope.items,function(key,value){
-							totalquota += value.number;
-						});
-						$('#trquota').html(totalquota);
-						isSameQuota(totalquota);
+						
                     }
 
                     if( typeof $scope.items != 'undefined' ){
@@ -302,6 +298,12 @@
                             $scope.field.val( $scope.items.length ? angular.toJson($scope.items) : null );
                         }
                     }
+					var totalquota=0;
+					$.each($scope.items,function(key,value){
+						totalquota += value.number;
+					});
+					$('#trquota').html(totalquota);
+					isSameQuota(totalquota);
 					
                 }, true);
 
