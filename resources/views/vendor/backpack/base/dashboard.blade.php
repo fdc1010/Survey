@@ -774,7 +774,7 @@
         </div>
         </form>
     	@foreach($surveydetails as $surveydetail)    	
-    	<div class="col-md-6" style="font-size:24px;">
+    	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -820,7 +820,7 @@
         @endforeach
         @if($showGender)
         @foreach($surveydetails as $surveydetail)  
-        <div class="col-md-6" style="font-size:24px;">
+        <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -879,7 +879,7 @@
         
          @if($showCivil)
          @foreach($surveydetails as $surveydetail)
-        	<div class="col-md-6" style="font-size:24px;">
+        	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -936,7 +936,7 @@
         
         @if($showEmployment)
         @foreach($surveydetails as $surveydetail)
-        <div class="col-md-6" style="font-size:24px;">
+        <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -993,7 +993,7 @@
         
         @if($showAgeBracket)
         @foreach($surveydetails as $surveydetail)
-    	<div class="col-md-12" style="font-size:24px;">
+    	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1055,7 +1055,7 @@
         
         @if($showQuality)
         @foreach($surveydetails as $surveydetail)
-    	<div class="col-md-12" style="font-size:24px;">
+    	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1112,7 +1112,7 @@
             
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
-            <div class="col-md-12" style="font-size:24px;">
+            <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <div class="col-md-12">                      
@@ -1159,7 +1159,7 @@
         
         
         @foreach($elections as $election)    	
-    	<div class="col-md-6" style="font-size:24px;">
+    	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1205,7 +1205,7 @@
         @endforeach
         @if($showGender)
         @foreach($elections as $election)
-        <div class="col-md-6" style="font-size:24px;">
+        <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1264,7 +1264,7 @@
         
          @if($showCivil)
          @foreach($elections as $election)
-        <div class="col-md-6" style="font-size:24px;">
+        <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1321,7 +1321,7 @@
         
         @if($showEmployment)
         @foreach($elections as $election)
-        <div class="col-md-6" style="font-size:24px;">
+        <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -1378,7 +1378,7 @@
         
         @if($showAgeBracket)
         @foreach($elections as $election)
-    	<div class="col-md-12" style="font-size:24px;">
+    	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
