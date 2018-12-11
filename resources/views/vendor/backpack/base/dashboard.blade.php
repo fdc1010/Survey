@@ -774,7 +774,7 @@
         </div>
         </form>
     	@foreach($surveydetails as $surveydetail)    	
-    	<div class="col-md-6">
+    	<div class="col-md-6" style="font-size:24px;">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">                      
@@ -785,7 +785,7 @@
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
-                                    <tr style="font-size:24px;">
+                                    <tr style>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
                                     </tr>                                    
@@ -793,12 +793,12 @@
                             	
             					@foreach($positions as $position)
                                   <thead>
-                                      <tr style="font-size:24px;">
+                                      <tr>
                                           <th>{{ $position->name }}</th>
                                           <th></th>
                                       </tr>                                    
                                   </thead>
-                                  <tbody style="font-size:24px;">                                  
+                                  <tbody>                                  
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
