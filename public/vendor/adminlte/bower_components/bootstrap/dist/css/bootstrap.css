@@ -2318,7 +2318,7 @@ th {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #5A4AE8; /*#f9f9f9;*/
+  background-color: #DBCFFE; /*#f9f9f9;*/
 }
 .table-striped > tbody > tr:nth-of-type(even) {
   background-color: #B3A0FA; /*#f9f9f9;*/
