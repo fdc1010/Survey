@@ -359,6 +359,14 @@
 						  theme: "bootstrap"
 					  });
 				  });
+				  $('#quota').on('change',function(e){
+						var totalquota=0;
+						$.each($scope.items,function(key,value){
+							totalquota += value.number;
+						});
+						$('#trquota').html(totalquota);
+						isSameQuota(totalquota);
+				  });
 				  /*$(document).on('change','.select2_field',function(e){
 					  $('.select2_field option:selected').each(function (i, obj) {
 						 

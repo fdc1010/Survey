@@ -782,7 +782,7 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px; font-size:14px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
