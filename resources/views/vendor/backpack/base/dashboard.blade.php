@@ -793,7 +793,7 @@
                             	
             					@foreach($positions as $position)
                                   <thead>
-                                      <tr style="font-size:14px;">
+                                      <tr style="font-size:24px;">
                                           <th>{{ $position->name }}</th>
                                           <th></th>
                                       </tr>                                    
