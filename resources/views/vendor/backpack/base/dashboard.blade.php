@@ -783,8 +783,8 @@
                 </div>                
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0" style="font-size:14px;">
-                             	<thead>
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                             	<thead style="font-size:14px;">
                                     <tr>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
@@ -792,7 +792,7 @@
                                 </thead>
                             	
             					@foreach($positions as $position)
-                                  <thead>
+                                  <thead style="font-size:14px;">
                                       <tr>
                                           <th>{{ $position->name }}</th>
                                           <th></th>
