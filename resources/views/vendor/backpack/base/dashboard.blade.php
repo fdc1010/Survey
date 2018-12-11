@@ -782,8 +782,8 @@
                     </div>
                 </div>                
                 <div class="box-body">                	
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px; font-size:14px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0" style="font-size:14px;">
                              	<thead>
                                     <tr>
                                         <th>Cadidates</th>
