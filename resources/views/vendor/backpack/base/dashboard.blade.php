@@ -785,7 +785,7 @@
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
-                                    <tr style="font-size:14px;">
+                                    <tr style="font-size:24px;">
                                         <th>Cadidates</th>
                                         <th>Tally</th>
                                     </tr>                                    
@@ -798,7 +798,7 @@
                                           <th></th>
                                       </tr>                                    
                                   </thead>
-                                  <tbody style="font-size:14px;">                                  
+                                  <tbody style="font-size:24px;">                                  
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
