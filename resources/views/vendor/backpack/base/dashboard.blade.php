@@ -459,7 +459,7 @@
                     </div>                    
                 </div>
                 <div class="box-body">
-                	<table id="tblviewdetails" class="table table-striped table-hover display responsive nowrap">
+                	<table id="tblviewdetails" class="table table-striped_dashboard table-hover display responsive nowrap">
                     	<thead>
                             <tr>
                                 <th width="5%">Barangays:</th>
@@ -783,7 +783,7 @@
                 </div>                
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr style>
                                         <th>Cadidates</th>
@@ -830,7 +830,7 @@
 
                 <div class="box-body">                	
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -889,7 +889,7 @@
 
                 <div class="box-body">                	
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                     <tr>
                                     	<th>Candidates</th>
@@ -946,7 +946,7 @@
 
                 <div class="box-body">                	
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($empstatuses as $empstatus)
@@ -1003,7 +1003,7 @@
 
                 <div class="box-body">                	
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                 	<tr>
                                     	<th>Candidates</th>
@@ -1065,7 +1065,7 @@
            
                     <div class="box-body">                	
                           <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">                                
-                            <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                            <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -1122,7 +1122,7 @@
     
                     <div class="box-body">                	
                           <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                                <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                                <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                    <thead>
                                         <tr>
                                             <th>Barangays</th>
@@ -1168,7 +1168,7 @@
                 </div>                
                 <div class="box-body">                	
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -1215,7 +1215,7 @@
 
                 <div class="box-body">                	
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     <tr>
                                         <th>Cadidates</th>
@@ -1274,7 +1274,7 @@
 
                 <div class="box-body">                	
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                     <tr>
                                     	<th>Candidates</th>
@@ -1331,7 +1331,7 @@
 
                 <div class="box-body">                	
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($empstatuses as $empstatus)
@@ -1388,7 +1388,7 @@
 
                 <div class="box-body">                	
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                      		<table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                      		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
                                 	<tr>
                                     	<th>Candidates</th>

@@ -2318,9 +2318,12 @@ th {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+.table-striped_dashboard > tbody > tr:nth-of-type(odd) {
   background-color: #DBCFFE; /*#f9f9f9;*/
 }
-.table-striped > tbody > tr:nth-of-type(even) {
+.table-striped_dashboard > tbody > tr:nth-of-type(even) {
   background-color: #B3A0FA; /*#f9f9f9;*/
 }
 .table-hover > tbody > tr:hover {
