@@ -2266,7 +2266,7 @@ $(document).ready(function ($) {
 			['Votes',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
-					{{ (!empty($tally[$candidate->id][$election->id]):$tally[$candidate->id][$election->id]:"") }},
+					{{ (!empty($tally[$candidate->id][$election->id])?$tally[$candidate->id][$election->id]:"") }},
 				@endforeach
 			@endforeach
 			]
