@@ -1969,7 +1969,7 @@ $(document).ready(function ($) {
 			['Votes',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
-					{{ $tally[$candidate->id][$surveydetail->id] }},
+					{{ (!empty($tally[$candidate->id][$surveydetail->id])?$tally[$candidate->id][$surveydetail->id]:"") }},
 				@endforeach
 			@endforeach
 			]
@@ -2011,7 +2011,7 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }},
+						{{ (!empty($tallyg[$candidate->id][$gender->id][$surveydetail->id])?$tallyg[$candidate->id][$gender->id][$surveydetail->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2055,7 +2055,7 @@ $(document).ready(function ($) {
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }},
+						{{ (!empty($tallyab[$candidate->id][$agebracket->id][$surveydetail->id])?$tallyab[$candidate->id][$agebracket->id][$surveydetail->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2099,7 +2099,7 @@ $(document).ready(function ($) {
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }},
+						{{ (!empty($tallycv[$candidate->id][$civilstatus->id][$surveydetail->id])?$tallycv[$candidate->id][$civilstatus->id][$surveydetail->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2143,7 +2143,7 @@ $(document).ready(function ($) {
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }},
+						{{ (!empty($tallyemp[$candidate->id][$empstatus->id][$surveydetail->id])?$tallyemp[$candidate->id][$empstatus->id][$surveydetail->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2313,7 +2313,7 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$candidate->id][$gender->id][$election->id] }},
+						{{ (!empty($tallyg[$candidate->id][$gender->id][$election->id])?$tallyg[$candidate->id][$gender->id][$election->id:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2357,7 +2357,7 @@ $(document).ready(function ($) {
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyab[$candidate->id][$agebracket->id][$election->id] }},
+						{{ (!empty($tallyab[$candidate->id][$agebracket->id][$election->id])?$tallyab[$candidate->id][$agebracket->id][$election->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2401,7 +2401,7 @@ $(document).ready(function ($) {
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$candidate->id][$civilstatus->id][$election->id] }},
+						{{ (!empty($tallycv[$candidate->id][$civilstatus->id][$election->id])?$tallycv[$candidate->id][$civilstatus->id][$election->id]:"") }},
 					@endforeach
 				@endforeach
 				],
@@ -2445,7 +2445,7 @@ $(document).ready(function ($) {
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$candidate->id][$empstatus->id][$election->id] }},
+						{{ (!empty($tallyemp[$candidate->id][$empstatus->id][$election->id])?$tallyemp[$candidate->id][$empstatus->id][$election->id]:"") }},
 					@endforeach
 				@endforeach
 				],
