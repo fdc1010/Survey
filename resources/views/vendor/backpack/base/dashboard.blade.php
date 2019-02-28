@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+	@if(!empty($candidate) && count($candidate) > 0)
 	@php
     	
         if(!empty($rdata['selsurvey'])){
@@ -1622,9 +1623,13 @@
         @endforeach
         @endif
         
-        @endif
-        
+        @endif        
     </div>
+   @else
+	<div class="row">
+		No Tagged Candidates for Survey...!
+	</div>
+   @endif
 @endsection
 @section('chartcss')
 	<link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />

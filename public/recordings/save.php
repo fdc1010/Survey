@@ -2,10 +2,11 @@
 // Muaz Khan     - www.MuazKhan.com 
 // MIT License   - https://www.webrtc-experiment.com/licence/
 // Documentation - https://github.com/muaz-khan/RecordRTC
-exec("mkdir -p " . $_POST['recording-path']);
-exec("chmod -R 777 /var/www/html/recordings/" . $_POST['recording-path']);
 
-header("Access-Control-Allow-Origin: *");
+exec("mkdir -p " . $_POST['appnode'] . "/" . $_POST['recording-path']);
+exec("chmod -R 777 /var/www/html/survey/public/recordings/" . $_POST['appnode'] . "/" . $_POST['recording-path']);
+
+//header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -46,7 +47,7 @@ function selfInvoker()
     }
 
    
-    $filePath ="/var/www/html/recordings/". $_POST['recording-path'] . $fileName;
+    $filePath ="/var/www/html/survey/public/recordings/". $_POST['appnode'] . "/" . $_POST['recording-path'] . $fileName;
     
     // make sure that one can upload only allowed audio/video files
     $allowed = array(
