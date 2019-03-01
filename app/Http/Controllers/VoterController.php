@@ -119,7 +119,7 @@ class VoterController extends Controller
                       foreach ($results as $row) {
                           $data[] = $row;
                           //$data = Excel::load($path, function($reader) { })->get();
-                          if(!empty($data) && $data->count()){
+                          if(!empty($data) && count($data)>0){
                               //foreach ($data as $key => $value) {
                               for($i = $index; $i < $data->count(); $i++){
                                   if($index<1000){
