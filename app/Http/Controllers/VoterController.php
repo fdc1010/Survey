@@ -109,6 +109,7 @@ class VoterController extends Controller
           // $this->validate($request, array(
           //     'filevoters'      => 'required'
           // ));
+          $i = 0;
           $index=$request->index;
           if($request->hasFile('filevoters')){
               $extension = File::extension($request->file('filevoters')->getClientOriginalName());
@@ -131,7 +132,7 @@ class VoterController extends Controller
                                         			// 'address' => $value->address
                                               ];
                               }
-
+                              $index=$i++;
                               if(!empty($insert)){
 
                                   //$insertData = DB::table('voters')->insert($insert);
