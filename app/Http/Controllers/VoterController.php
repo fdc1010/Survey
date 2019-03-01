@@ -116,14 +116,15 @@ class VoterController extends Controller
               if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                   $path = $request->file('filevoters')->getRealPath();
                   $data = [];
-                  Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data,&$index) {
+                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index) {
                       $messages['messages'] = [];
                       foreach ($results as $row) {
-                          $data[] = $row;
+                          $data[] = $row->toArray();
                           //$data = Excel::load($path, function($reader) { })->get();
                           // if(!empty($data) && count($data)>0){
                           //     foreach ($data as $key => $value) {
-                                info($data);
+                                if($index==0)
+                                  info($data);
                                 // $insert[] = [
                                 //         'precinct_id' => $value->precinct,
                                 //         'seq_num' => $value->seqnum,
@@ -154,6 +155,7 @@ class VoterController extends Controller
                         }
                         return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index,'data'=>$data],200);
                       }, $shouldQueue = false);
+                      info($data[$index-1]);
                 }else {
                     // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                     // return back();
