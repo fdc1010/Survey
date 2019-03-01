@@ -20,7 +20,7 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
-	
+
 	/*public function getMedia($userId, $collection)
     {
         $user = Voter::findOrFail($userId);
@@ -30,7 +30,7 @@ class VoterController extends Controller
     }*/
 	public function extramiddlename(){
 		$voters = Voter::get();
-		
+
 		foreach($voters as $voter){
 			$explodefm = explode(" ",$voter->first_name);
 			echo $voter->first_name . " : ";
@@ -104,16 +104,16 @@ class VoterController extends Controller
         $this->validate($request, array(
             'file'      => 'required'
         ));
- 
+
         if($request->hasFile('file')){
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
- 
+
                 $path = $request->file->getRealPath();
                 $data = Excel::load($path, function($reader) {
                 })->get();
                 if(!empty($data) && $data->count()){
- 
+
                     foreach ($data as $key => $value) {
                         $insert[] = [
                         'precinct_number' => $value->prec,
@@ -121,13 +121,12 @@ class VoterController extends Controller
                         ];
 			echo $value->prec . "<br>" . $value->brgy;			
                     }
- 			
                     if(!empty($insert)){
  			try{
                         $insertData = DB::table('precincts')->insert($insert);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
-                        }else {                        
+                        }else {
                             Session::flash('error', 'Error inserting the data..');
                             return back();
                         }
@@ -137,9 +136,9 @@ class VoterController extends Controller
 			}
                     }
                 }
- 
+
                 return back();
- 
+
             }else {
                 Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                 return back();
