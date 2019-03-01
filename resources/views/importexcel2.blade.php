@@ -99,21 +99,25 @@ $(function() {
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
             success: function(response) {
-                var msg = response;
+                var msg = response.messages;
                 console.log(msg);
+                $('#uploaderror').empty
                 $('#index').val(parseInt(msg.index)-1);
-                $('#uploaderror').html(msg.messages);
+                $.each(msg.messages,function(key,value){
+                      $('#uploaderror').append(value[0]);
+                });
                 $('#uploaderror').show('slow');
                 l.stop();
             }, error: function (xhr, ajaxOptions, thrownError) {
                 var msg = xhr.responseJSON;
                 console.log(msg);
+                $('#uploaderror').empty
                 $.each(msg.errors,function(key,value){
-                      $('#uploaderror').html(value[0]);
+                      $('#uploaderror').append(value[0]);
                 });
                 $('#uploaderror').show('slow');
                 l.stop();
-    			  }
+            }
         });
     }
   });
