@@ -137,7 +137,6 @@ class VoterController extends Controller
                                 $index++;
                               }
                               //if(!empty($insert)){
-
                                   //$insertData = DB::table('voters')->insert($insert);
                                   //if ($insertData) {
                                   if(count($data)>0){
