@@ -151,7 +151,7 @@ class VoterController extends Controller
                                       //return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
                                   }
                               //}
-                          }
+                          //}
                         }
                         return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index,'data'=>$data],200);
                       }, $shouldQueue = false);
