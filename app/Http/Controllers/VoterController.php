@@ -117,32 +117,26 @@ class VoterController extends Controller
                   $data = [];
                   Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data) {
                       foreach ($results as $row) {
-                          $data[] = $row;
                           //$data = Excel::load($path, function($reader) { })->get();
-                          if(!empty($data) && count($data)>0){
-                              //foreach ($data as $key => $value) {
-                              for($i = $index; $i < $data->count(); $i++){
-                                  if($index<1000){
+                          if(!empty($row) && $row->count()>0){
+                              foreach ($row as $key => $value) {
                                       $insert[] = [
-                      						            'precinct_id' => $data[$i]->precinct,
-                                              'seq_num' => $data[$i]['seqnum'],
-                                              // 'status_id' => $data[$i]['status'],
-                                        			// 'sitio_id' => $data[$i]['sitio'],
-                                              'last_name' => $data[$i]['lastname'],
-                                  						'first_name' => $data[$i]['firstname'],
-                                        			// 'middle_name' => $data[$i]['middlename'],
-                                        			// 'address' => $data[$i]['address']
+                      						            'precinct_id' => $value->precinct,
+                                              'seq_num' => $value->seqnum,
+                                              // 'status_id' => $value->status,
+                                        			// 'sitio_id' => $value->sitio,
+                                              'last_name' => $value->lastname,
+                                  						'first_name' => $value->firstname,
+                                        			// 'middle_name' => $value->middlename,
+                                        			// 'address' => $value->address
                                               ];
-
-                                      $index = $i;
-                                  }
                               }
 
                               if(!empty($insert)){
 
                                   //$insertData = DB::table('voters')->insert($insert);
                                   //if ($insertData) {
-                                  if($data->count()>0){
+                                  if($row->count()>0){
                                       //Session::flash('success', 'Your Data has successfully imported');
                                       $messages = array('messages' => array("Your Data has successfully imported"));
                                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
