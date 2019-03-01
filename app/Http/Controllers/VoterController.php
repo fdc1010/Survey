@@ -44,10 +44,10 @@ class VoterController extends Controller
 	public function importvoters(Request $request){
         //validate the xls file
         $this->validate($request, array(
-            'file'      => 'required'
+            'filevoters'      => 'required'
         ));
         $index=$request->index;
-        if($request->hasFile('file')){
+        if($request->hasFile('filevoters')){
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
 
@@ -98,7 +98,7 @@ class VoterController extends Controller
                 return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
             }
         }
-        $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('file')));
+        $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
         return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
     }
 	public function importprecinct(Request $request){
