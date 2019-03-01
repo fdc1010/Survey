@@ -85,7 +85,7 @@ class SurveyorAssignmentCrudController extends CrudController
 				'number' => 'Quota',
 				'entity' => 'barangay', // the method that defines the relationship in your Model
 				'attribute' => 'name', // foreign key attribute that is shown to user
-				'model' => "App\Models\Precinct",
+				'model' => "App\Models\Barangay",
 			],
 			'max' => 1000, // maximum rows allowed in the table
 			'min' => 1 // minimum rows allowed in the table
