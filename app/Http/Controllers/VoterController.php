@@ -80,10 +80,10 @@ class VoterController extends Controller
                     }, $shouldQueue = false);
                     if($ok){
                       $messages = array('messages' => array("Your Data has successfully uploaded"));
-                      return response()->json(['success'=>true,'messages'=>$messages],200);
+                      return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
                     }else{
                       $messages = array('messages' => array("Error inserting the data.."));
-                      return response()->json(['success'=>false,'messages'=>$messages],401);
+                      return response()->json(['success'=>false,'messages'=>$messages,'index'=>$index],401);
                     }
               }else {
                   // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
