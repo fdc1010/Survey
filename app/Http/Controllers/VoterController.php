@@ -141,7 +141,7 @@ class VoterController extends Controller
                               //if(!empty($insert)){
                                   //$insertData = DB::table('voters')->insert($insert);
                                   //if ($insertData) {
-                                  if(count($data)>0){
+                                  if($index>0){
                                       //Session::flash('success', 'Your Data has successfully imported');
                                       array_push($messages['messages'],array("Your Data has successfully imported"));
                                       //return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
