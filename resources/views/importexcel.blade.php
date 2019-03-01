@@ -64,7 +64,7 @@
 <h1>Import Excel Masterlist of Voters</h1>
 <form action="{{ route('importvoters') }}" method="POST" enctype="multipart/form-data" id="formvoters">
     {{ csrf_field() }}
-    Choose your xls/csv File : <input type="file" name="file" id="filevoters" class="form-control">
+    Choose your xls/csv File : <input type="file" name="filevoters" id="filevoters" class="form-control">
 
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
     <input type="hidden" name="index" id="index" value="0">
@@ -98,10 +98,12 @@
 $(function() {
   $("#formvoters").validate({
     rules: {
-      file: {
+      filevoters: {
         required: true,
-        accept: "application/vnd.ms, excel, application/vnd.openxmlformats, officedocument.spreadsheetml.sheet"
+        extension: "xls|xlsx|csv"
       }
+      messages: {
+        filevoters: "File must be XLS, XLSX or CSV" }
     },
     submitHandler: function(form) {
         var formData = new FormData();
