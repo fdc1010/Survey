@@ -153,7 +153,9 @@ class VoterController extends Controller
                                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
                                   }
                               }
-                          }                          
+                          }
+                        }
+
                       }, $shouldQueue = false);
 
                 }else {
@@ -162,7 +164,6 @@ class VoterController extends Controller
                     $messages = array('messages' => array("File is a ".$extension." file.!! Please upload a valid xls/csv file..!!"));
                     return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
                 }
-              }
           }
           $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
           return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
