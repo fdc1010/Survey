@@ -119,8 +119,8 @@ class VoterController extends Controller
                   })->get();
                   if(!empty($data) && $data->count()){
                       //foreach ($data as $key => $value) {
-                      for($i = $index; $i <= $data->count(); $i++){
-                          if($index<=1000){
+                      for($i = $index; $i < $data->count(); $i++){
+                          if($index<1000){
                               $insert[] = [
               						            'precinct_id' => $data[$i]->precinct,
                                       'seq_num' => $data[$i]['seqnum'],
