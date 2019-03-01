@@ -43,9 +43,9 @@ class VoterController extends Controller
 	}
 	public function importvoters(Request $request){
         //validate the xls file
-        $this->validate($request, array(
-            'filevoters'      => 'required'
-        ));
+        // $this->validate($request, array(
+        //     'filevoters'      => 'required'
+        // ));
         $index=$request->index;
         if($request->hasFile('filevoters')){
             $extension = File::extension($request->file->getClientOriginalName());
