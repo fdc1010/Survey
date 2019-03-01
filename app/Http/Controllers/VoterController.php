@@ -22,7 +22,7 @@ class VoterController extends Controller
     }
     public function importVotersExcel2()
     {
-        return view('importexcel');
+        return view('importexcel2');
     }
 	/*public function getMedia($userId, $collection)
     {
