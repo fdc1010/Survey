@@ -124,7 +124,7 @@ class VoterController extends Controller
                           // if(!empty($data) && count($data)>0){
                           //     foreach ($data as $key => $value) {
                                 if($index==0)
-                                  info($data);
+                                  info($data[0]);
                                 // $insert[] = [
                                 //         'precinct_id' => $value->precinct,
                                 //         'seq_num' => $value->seqnum,
