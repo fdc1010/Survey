@@ -156,7 +156,7 @@ class VoterController extends Controller
                         //}
                       }, $shouldQueue = false);
                       //info($data[$index-1]);
-                      info("index:".$index)
+                      info("index:".$index);
                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
                 }else {
                     // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
