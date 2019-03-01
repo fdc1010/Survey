@@ -48,10 +48,10 @@ class VoterController extends Controller
         // ));
         $index=$request->index;
         if($request->hasFile('filevoters')){
-            $extension = File::extension($request->file->getClientOriginalName());
+            $extension = File::extension($request->file('filevoters')->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
 
-                $path = $request->file->getRealPath();
+                $path = $request->file('filevoters')->getRealPath();
                 $data = Excel::load($path, function($reader) {
                 })->get();
                 if(!empty($data) && $data->count()){
