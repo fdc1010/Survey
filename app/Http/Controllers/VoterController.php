@@ -118,14 +118,13 @@ class VoterController extends Controller
                   $data = [];
                   $messages['messages'] = [];
                   Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages) {
-
                       foreach ($results as $row) {
                           $data[] = $row->toArray();
                           //$data = Excel::load($path, function($reader) { })->get();
                           // if(!empty($data) && count($data)>0){
                           //     foreach ($data as $key => $value) {
                                 if($index==0)
-                                  info($data[0]);
+                                    info($data[0]);
                                 // $insert[] = [
                                 //         'precinct_id' => $value->precinct,
                                 //         'seq_num' => $value->seqnum,
@@ -137,7 +136,7 @@ class VoterController extends Controller
                                 //         // 'address' => $value->address
                                 //         ];
                                 $index++;
-                              }
+                          }
                               //if(!empty($insert)){
                                   //$insertData = DB::table('voters')->insert($insert);
                                   //if ($insertData) {
