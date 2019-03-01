@@ -17,7 +17,9 @@
 
     @yield('before_styles')
     @stack('before_styles')
+    
 	@yield('chartcss')
+    
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/bower_components/bootstrap/dist/css/bootstrap.css') }}">
@@ -102,7 +104,7 @@
 
         <!-- Main content -->
         <section class="content">
-
+	
           @yield('content')
 		  
         </section>
@@ -124,7 +126,9 @@
 
     @yield('before_scripts')
     @stack('before_scripts')
+    
 	@yield('chartsjs')
+   
     <!-- jQuery 2.2.3 -->
     <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery/dist/jquery.min.js"></script>
     {{-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>

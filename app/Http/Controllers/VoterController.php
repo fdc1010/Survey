@@ -60,12 +60,12 @@ class VoterController extends Controller
                         $insert[] = [						
 						'precinct_id' => $value->precinct,
                         'seq_num' => $value->seqnum,
-                        'status_id' => $value->status,
-						'sitio_id' => $value->sitio,
+                        //'status_id' => $value->status,
+			//			'sitio_id' => $value->sitio,
                         'last_name' => $value->lastname,
 						'first_name' => $value->firstname,
-						'middle_name' => $value->middlename,
-						'address' => $value->address
+			//			'middle_name' => $value->middlename,
+			//			'address' => $value->address
                         ];
                     }
  
