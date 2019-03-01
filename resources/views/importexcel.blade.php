@@ -121,7 +121,7 @@ $(function() {
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
             success: function(response) {
-                var msg = response.messages;
+                var msg = response;
                 console.log(msg);
                 $('#uploaderror').empty
                 $('#index').val(parseInt(msg.index)-1);
