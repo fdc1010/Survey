@@ -37,6 +37,12 @@ class Barangay extends Model
 	public function sitio(){
 		return $this->hasMany('App\Models\Sitio','barangay_id');
 	}
+  public function precincts(){
+		return $this->hasMany('App\Models\Precinct','barangay_id');
+	}
+  public function surveyor(){
+		return $this->hasMany('App\Models\AssignmentDetail','barangay_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
