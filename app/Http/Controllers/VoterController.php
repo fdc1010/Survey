@@ -118,9 +118,10 @@ class VoterController extends Controller
                   $data = [];
                   Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data) {
                       foreach ($results as $row) {
+                          $data[] = $row;
                           //$data = Excel::load($path, function($reader) { })->get();
-                          if(!empty($row) && $row->count()>0){
-                              foreach ($row as $value) {
+                          if(!empty($data) && count($data)>0){
+                              foreach ($data as $value) {
                                       info($value);
                                       $insert[] = [
                       						            'precinct_id' => $value['precinct'],
@@ -138,7 +139,7 @@ class VoterController extends Controller
 
                                   //$insertData = DB::table('voters')->insert($insert);
                                   //if ($insertData) {
-                                  if($row->count()>0){
+                                  if(count($data)>0){
                                       //Session::flash('success', 'Your Data has successfully imported');
                                       $messages = array('messages' => array("Your Data has successfully imported"));
                                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
