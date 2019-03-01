@@ -116,8 +116,9 @@ class VoterController extends Controller
               if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                   $path = $request->file('filevoters')->getRealPath();
                   $data = [];
-                  $messages = [];
-                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages) {
+                  $messages['messages'] = [];
+                  $ok = true;
+                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages,&$ok) {
                       foreach ($results as $key => $value) {
                                 $insert = [
                                         'precinct_id' => $value->precinct,
@@ -132,15 +133,21 @@ class VoterController extends Controller
 
                                 $insertData = DB::table('voters')->insert($insert);
                                 if ($insertData) {
-                                    array_push($messages,array("messages"=>array("Your Data has successfully imported",$insert),"index"=>$index));
+                                    array_push($messages['messages'],array("Your Data has successfully inserted"));
+                                    array_push($messages['messages'],$insert);
                                 }else {
-                                    array_push($messages,array("messages"=>array("Error inserting the data..",$insert),"index"=>$index));
+                                    $ok = false;
+                                    array_push($messages['messages'],array("Error inserting the data.."));
+                                    array_push($messages['messages'],$insert);
                                 }
                                 $index++;
                           }
 
                       }, $shouldQueue = false);
-                      return response()->json($messages,200);
+                      if($ok)
+                        return response()->json(['success'=>true,$messages],200);
+                      else
+                        return response()->json(['success'=>false,$messages],401);
                 }else {
                     // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                     // return back();
