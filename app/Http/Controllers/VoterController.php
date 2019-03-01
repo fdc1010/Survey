@@ -60,12 +60,12 @@ class VoterController extends Controller
                         $insert[] = [						
 						'precinct_id' => $value->precinct,
                         'seq_num' => $value->seqnum,
-                        'status_id' => $value->status,
-						'sitio_id' => $value->sitio,
+                        //'status_id' => $value->status,
+			//			'sitio_id' => $value->sitio,
                         'last_name' => $value->lastname,
 						'first_name' => $value->firstname,
-						'middle_name' => $value->middlename,
-						'address' => $value->address
+			//			'middle_name' => $value->middlename,
+			//			'address' => $value->address
                         ];
                     }
  
@@ -109,11 +109,11 @@ class VoterController extends Controller
                         'precinct_number' => $value->prec,
                         'barangay_id' => $value->brgy
                         ];
-						
+			echo $value->prec . "<br>" . $value->brgy;			
                     }
- 
+ 			
                     if(!empty($insert)){
- 
+ 			try{
                         $insertData = DB::table('precincts')->insert($insert);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
@@ -121,6 +121,10 @@ class VoterController extends Controller
                             Session::flash('error', 'Error inserting the data..');
                             return back();
                         }
+			}catch(\Exception $e){			    
+			    echo $e;
+			    info($e);	
+			}
                     }
                 }
  

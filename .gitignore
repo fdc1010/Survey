@@ -1,6 +1,7 @@
 /config
 /node_modules
 /public/hot
+/public/recordings
 /public/storage
 /storage/*.key
 /vendor/
