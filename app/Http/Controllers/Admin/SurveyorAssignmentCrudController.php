@@ -81,9 +81,9 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity_singular' => 'area', // used on the "Add X" button
 			'columns' => [
 				'name' => 'areas',
-				'select_group' => 'Area',
+				'select' => 'Area',
 				'number' => 'Quota',
-				'entity' => 'surveyareas', // the method that defines the relationship in your Model
+				'entity' => 'sitio', // the method that defines the relationship in your Model
 				'attribute' => 'name', // foreign key attribute that is shown to user
 				'model' => "App\Models\Barangay",
 			],
