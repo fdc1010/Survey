@@ -61,7 +61,7 @@
 </div>
 @endif
 <h1>Import Excel Masterlist of Voters</h1>
-<form action="{{ route('importvoters') }}" method="POST" enctype="multipart/form-data" id="formvoters">
+<form action="{{ route('importvoters2') }}" method="POST" enctype="multipart/form-data" id="formvoters">
     {{ csrf_field() }}
     Choose your xls/csv File : <input type="file" name="filevoters" id="filevoters" class="form-control">
     <button class="ladda-button" data-style="expand-right" id="btnsubmit"><span class="ladda-label">Submit</span></button>
