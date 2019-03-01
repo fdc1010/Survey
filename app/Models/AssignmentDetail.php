@@ -48,9 +48,7 @@ class AssignmentDetail extends Model
   		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
   		if($surveyassignment){
   				$precincts = Precinct::where('barangay_id',$this->barangay_id)->get()->pluck('id')->toArray();
-          $voters = $this->barangay
-                          ->voters
-                          ->whereIn('precinct_id',$precincts)
+          $voters = Voter::whereIn('precinct_id',$precincts)
                           ->get()
                           ->pluck('id')
                           ->toArray();
