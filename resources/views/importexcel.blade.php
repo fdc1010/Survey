@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 
     <title>Laravel Excel Import csv and XLS file in Database</title>
-
+    <link rel="stylesheet" href="{{ asset('css/ladda-themeless.min.css') }}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -94,8 +94,11 @@
 <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.js') }}"></script>
 <script src="{{ asset('js/additional-methods.js') }}"></script>
+<script src="{{ asset('js/spin.min.js') }}"></script>
+<script src="{{ asset('js/ladda.min.js') }}"></script>
 <script>
 $(function() {
+  var l = Ladda.create( document.querySelector( '#btnsubmit' ) );
   $("#formvoters").validate({
     rules: {
       filevoters: {
@@ -107,7 +110,9 @@ $(function() {
         filevoters: "File must be XLS, XLSX or CSV"
     },
     submitHandler: function(form) {
+        l.start();
         var formData = new FormData();
+        formData.append('index', $('#index').val());
         formData.append('file', $('#filevoters')[0].files[0]);
         $.ajax({
             url: form.action,
@@ -121,6 +126,7 @@ $(function() {
                 $('#index').val(parseInt(msg.index)-1);
                 $('#uploaderror').html(msg.messages);
                 $('#uploaderror').show('slow');
+                l.stop();
             }, error: function (xhr, ajaxOptions, thrownError) {
                 var msg = xhr.responseJSON;
                 console.log(msg);
@@ -128,6 +134,7 @@ $(function() {
                       $('#uploaderror').html(value[0]);
                 });
                 $('#uploaderror').show('slow');
+                l.stop();
     			  }
         });
     }

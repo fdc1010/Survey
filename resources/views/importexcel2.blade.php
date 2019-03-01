@@ -89,6 +89,7 @@ $(function() {
     submitHandler: function(form) {
         l.start();
         var formData = new FormData();
+        formData.append('index', $('#index').val());
         formData.append('file', $('#filevoters')[0].files[0]);
         $.ajax({
             url: form.action,
