@@ -66,7 +66,7 @@
     {{ csrf_field() }}
     Choose your xls/csv File : <input type="file" name="filevoters" id="filevoters" class="form-control">
 
-    <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
+    <button class="ladda-button btn btn-primary btn-lg" data-style="expand-right" id="btnsubmit" style="margin-top: 3%"><span class="ladda-label">Submit</span></button>
     <input type="hidden" name="index" id="index" value="0">
 </form>
 <h1>Import Excel Masterlist of Precincts</h1>
