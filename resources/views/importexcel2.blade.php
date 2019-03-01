@@ -101,7 +101,7 @@ $(function() {
             success: function(response) {
                 var msg = response;
                 console.log(msg);
-                $('#uploaderror').empty
+                $('#uploaderror').empty();
                 $('#index').val(parseInt(msg.index)-1);
                 $.each(msg.messages,function(key,value){
                       $('#uploaderror').append(value[0]);
@@ -111,8 +111,8 @@ $(function() {
             }, error: function (xhr, ajaxOptions, thrownError) {
                 var msg = xhr.responseJSON;
                 console.log(msg);
-                $('#uploaderror').empty
-                $.each(msg.errors,function(key,value){
+                $('#uploaderror').empty();
+                $.each(msg.messages,function(key,value){
                       $('#uploaderror').append(value[0]);
                 });
                 $('#uploaderror').show('slow');
