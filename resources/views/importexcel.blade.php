@@ -102,8 +102,9 @@ $(function() {
         required: true,
         extension: "xls|xlsx|csv"
       }
-      messages: {
-        filevoters: "File must be XLS, XLSX or CSV" }
+    },
+    messages: {
+        filevoters: "File must be XLS, XLSX or CSV"
     },
     submitHandler: function(form) {
         var formData = new FormData();
