@@ -47,8 +47,7 @@ class AssignmentDetail extends Model
   	public function getSurveyCount(){
   		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
   		if($surveyassignment){
-  				$precincts = $this->barangay->precincts->get()->pluck('id')->toArray();
-          dd($precincts);
+  				$precincts = $this->barangay->precincts()->get()->pluck('id')->toArray();
           $voters = $this->barangay
                           ->voters
                           ->whereIn('precinct_id',$precincts)
