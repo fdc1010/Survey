@@ -121,7 +121,7 @@ class SurveyorAssignmentCrudController extends CrudController
 		$sid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->areas;
 		foreach($options as $option){
-			$optid = $option['select_group'];
+			$optid = $option['select'];
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
@@ -143,7 +143,7 @@ class SurveyorAssignmentCrudController extends CrudController
 
 		$options = $this->crud->entry->areas;
 		foreach($options as $option){
-			$optid = $option['select_group'];
+			$optid = $option['select'];
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
