@@ -93,10 +93,6 @@ class SurveyorAssignment extends Model
 		else
 			return 0;
 	}
-  public function barangay()
-    {
-        return $this->belongsTo('App\Barangay','barangay_id');
-    }
 	/*public function getSurveyCountPerArea(){
 		$surveyarea = $this->with(['assignments'=>function($q){
 										$q->with(['sitio'=>function($qs){
