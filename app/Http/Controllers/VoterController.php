@@ -118,24 +118,24 @@ class VoterController extends Controller
                   $data = [];
                   $messages['messages'] = [];
                   Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages) {
-                      foreach ($results as $row) {
-                          $data[] = $row->toArray();
+                      foreach ($results as $key => $value) {
+                          //$data[] = $row->toArray();
                           //$data = Excel::load($path, function($reader) { })->get();
                           // if(!empty($data) && count($data)>0){
                           //     foreach ($data as $key => $value) {
                                 if($index==0){
-                                    info($data[0]);
+                                    info($value);
                                 }
-                                // $insert[] = [
-                                //         'precinct_id' => $value->precinct,
-                                //         'seq_num' => $value->seqnum,
-                                //         // 'status_id' => $value->status,
-                                //         // 'sitio_id' => $value->sitio,
-                                //         'last_name' => $value->lastname,
-                                //         'first_name' => $value->firstname,
-                                //         // 'middle_name' => $value->middlename,
-                                //         // 'address' => $value->address
-                                //         ];
+                                $insert[] = [
+                                        'precinct_id' => $value->precinct,
+                                        'seq_num' => $value->seqnum,
+                                        // 'status_id' => $value->status,
+                                        // 'sitio_id' => $value->sitio,
+                                        'last_name' => $value->lastname,
+                                        'first_name' => $value->firstname,
+                                        // 'middle_name' => $value->middlename,
+                                        // 'address' => $value->address
+                                        ];
                                 $index++;
                           }
                               //if(!empty($insert)){
@@ -155,7 +155,8 @@ class VoterController extends Controller
                           //}
                         //}
                       }, $shouldQueue = false);
-                      info($data[$index-1]);
+                      //info($data[$index-1]);
+                      info("index:".$index)
                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index,'data'=>$data],200);
                 }else {
                     // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
