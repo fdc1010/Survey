@@ -62,14 +62,14 @@ class VoterController extends Controller
                     //for($i = $index; $i <= $data->count(); $i++){
                     //    if($index<=1000){
                             $insert[] = [
-            						            'precinct_id' => $data[$i]->precinct,
-                                    'seq_num' => $data[$i]->seqnum,
-                                    // 'status_id' => $data[$i]->status,
-                              			// 'sitio_id' => $data[$i]->sitio,
-                                    'last_name' => $data[$i]->lastname,
-                        						'first_name' => $data[$i]->firstname,
-                              			// 'middle_name' => $data[$i]->middlename,
-                              			// 'address' => $data[$i]->address
+            						            'precinct_id' => $value->precinct,
+                                    'seq_num' => $value->seqnum,
+                                    // 'status_id' => $value->status,
+                              			// 'sitio_id' => $value->sitio,
+                                    'last_name' => $value->lastname,
+                        						'first_name' => $value->firstname,
+                              			// 'middle_name' => $value->middlename,
+                              			// 'address' => $value->address
                                     ];
 
                             $index++;
