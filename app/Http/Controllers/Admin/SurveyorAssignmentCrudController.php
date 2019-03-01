@@ -83,7 +83,7 @@ class SurveyorAssignmentCrudController extends CrudController
 				'name' => 'areas',
 				'select_group' => 'Area',
 				'number' => 'Quota',
-				'entity' => 'sitio', // the method that defines the relationship in your Model
+				'entity' => 'barangay', // the method that defines the relationship in your Model
 				'attribute' => 'name', // foreign key attribute that is shown to user
 				'model' => "App\Models\Barangay",
 			],
@@ -125,7 +125,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
-				'sitio_id' => $optid,
+				'barangay_id' => $optid,
 				'quota' => $quota
 			]);
 		}
@@ -147,7 +147,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
-				'sitio_id' => $optid,
+				'barangay_id' => $optid,
 				'quota' => $quota
 			]);
 		}
