@@ -47,13 +47,13 @@ class SurveyorAssignmentCrudController extends CrudController
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
 		])->makeFirstColumn();
 		$this->crud->addColumn([
-            'name' => 'count',			
+            'name' => 'count',
             'label' => 'Count',
             'type' => 'model_function',
 			'function_name' => 'getSurveyCount'
 	    ])->afterColumn('quota');
 		$this->crud->addColumn([
-            'name' => 'progress',			
+            'name' => 'progress',
             'label' => 'Progress',
             'type' => 'model_function',
 			'function_name' => 'getProgressBar'
@@ -65,7 +65,7 @@ class SurveyorAssignmentCrudController extends CrudController
 			'entity' => 'surveydetail', // the relationship name in your Model
 			'attribute' => 'subject', // attribute on Article that is shown to admin
 			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
-		])->afterColumn('progress');	
+		])->afterColumn('progress');
 		$this->crud->addField([
 			'label' => "User",
 			'type' => 'select',
@@ -80,11 +80,11 @@ class SurveyorAssignmentCrudController extends CrudController
 			'type' => 'tableadv2',
 			'entity_singular' => 'area', // used on the "Add X" button
 			'columns' => [
-				'name' => 'areas',				
-				'select_group' => 'Area',
+				'name' => 'areas',
+				'select' => 'Area',
 				'number' => 'Quota',
-				'entity' => 'sitio', // the method that defines the relationship in your Model
-				'attribute' => 'name', // foreign key attribute that is shown to user				
+				'entity' => 'surveyareas', // the method that defines the relationship in your Model
+				'attribute' => 'name', // foreign key attribute that is shown to user
 				'model' => "App\Models\Barangay",
 			],
 			'max' => 1000, // maximum rows allowed in the table
@@ -121,13 +121,13 @@ class SurveyorAssignmentCrudController extends CrudController
 		$sid = $this->crud->entry->id; // <-- SHOULD WORK
 		$options = $this->crud->entry->areas;
 		foreach($options as $option){
-			$optid = $option['select_group'];
+			$optid = $option['select'];
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
-				'sitio_id' => $optid,
+				'barangay_id' => $optid,
 				'quota' => $quota
-			]);			
+			]);
 		}
         return $redirect_location;
     }
@@ -140,16 +140,16 @@ class SurveyorAssignmentCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$sid = $this->crud->entry->id; // <-- SHOULD WORK
 		$adetail = AssignmentDetail::where('assignment_id',$sid)->delete();
-				
+
 		$options = $this->crud->entry->areas;
 		foreach($options as $option){
-			$optid = $option['select_group'];
+			$optid = $option['select'];
 			$quota = $option['number'];
 			$areaoptions = AssignmentDetail::create([
 				'assignment_id' => $sid,
-				'sitio_id' => $optid,
+				'barangay_id' => $optid,
 				'quota' => $quota
-			]);			
+			]);
 		}
         return $redirect_location;
     }
@@ -161,11 +161,11 @@ class SurveyorAssignmentCrudController extends CrudController
 	}
 	public function showDetailsRow($id){
 		$areas = AssignmentDetail::where('assignment_id',$id)
-										->with('sitio')
+										->with('barangay')
 										->get();
 		$result = "<h4>Assigned Areas:</h4><div class='col-lg-8'>";
 		foreach($areas as $area){
-			$result .= "<div class='col-lg-2'>".$area->sitio->name."</div>".
+			$result .= "<div class='col-lg-2'>".$area->barangay->name."</div>".
 						"<div class='col-lg-2'>quota: ".$area->quota."</div>".
 						"<div class='col-lg-2'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
@@ -173,6 +173,6 @@ class SurveyorAssignmentCrudController extends CrudController
 		}
 		$result .= "</div>";
 		return $result;
-		
+
 	}
 }

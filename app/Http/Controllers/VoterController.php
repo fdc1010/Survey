@@ -20,7 +20,10 @@ class VoterController extends Controller
     {
         return view('importexcel');
     }
-	
+    public function importVotersExcel2()
+    {
+        return view('importexcel2');
+    }
 	/*public function getMedia($userId, $collection)
     {
         $user = Voter::findOrFail($userId);
@@ -30,7 +33,7 @@ class VoterController extends Controller
     }*/
 	public function extramiddlename(){
 		$voters = Voter::get();
-		
+
 		foreach($voters as $voter){
 			$explodefm = explode(" ",$voter->first_name);
 			echo $voter->first_name . " : ";
@@ -43,93 +46,160 @@ class VoterController extends Controller
 	}
 	public function importvoters(Request $request){
         //validate the xls file
-        $this->validate($request, array(
-            'file'      => 'required'
-        ));
- 
-        if($request->hasFile('file')){
-            $extension = File::extension($request->file->getClientOriginalName());
+        // $this->validate($request, array(
+        //     'filevoters'      => 'required'
+        // ));
+        $index=$request->index;
+        if($request->hasFile('filevoters')){
+            $extension = File::extension($request->file('filevoters')->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
- 
-                $path = $request->file->getRealPath();
-                $data = Excel::load($path, function($reader) {
-                })->get();
-                if(!empty($data) && $data->count()){
- 
-                    foreach ($data as $key => $value) {
-                        $insert[] = [						
-						'precinct_id' => $value->precinct,
-                        'seq_num' => $value->seqnum,
-                        //'status_id' => $value->status,
-			//			'sitio_id' => $value->sitio,
-                        'last_name' => $value->lastname,
-						'first_name' => $value->firstname,
-			//			'middle_name' => $value->middlename,
-			//			'address' => $value->address
-                        ];
-                    }
- 
-                    if(!empty($insert)){
- 
-                        $insertData = DB::table('voters')->insert($insert);
-                        if ($insertData) {
-                            Session::flash('success', 'Your Data has successfully imported');
-                        }else {                        
-                            Session::flash('error', 'Error inserting the data..');
-                            return back();
+                $path = $request->file('filevoters')->getRealPath();
+                $data = [];
+                $messages['messages'] = [];
+                $ok = true;
+                Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages,&$ok) {
+                    foreach ($results as $key => $value) {
+                              $insert = [
+                                      'precinct_id' => $value->precinct,
+                                      'seq_num' => $value->seqnum,
+                                      // 'status_id' => $value->status,
+                                      // 'sitio_id' => $value->sitio,
+                                      'last_name' => $value->lastname,
+                                      'first_name' => $value->firstname,
+                                      // 'middle_name' => $value->middlename,
+                                      // 'address' => $value->address
+                                      ];
+
+                              $insertData = DB::table('voters')->insert($insert);
+                              if (!$insertData) {
+                                  $ok = false;
+                              }
+                              $index++;
                         }
+
+                    }, $shouldQueue = false);
+                    if($ok){
+                      $messages = array('messages' => array("Your Data has successfully uploaded"));
+                      return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
+                    }else{
+                      $messages = array('messages' => array("Error inserting the data.."));
+                      return response()->json(['success'=>false,'messages'=>$messages,'index'=>$index],401);
                     }
-                }
- 
-                return back();
- 
-            }else {
-                Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
-                return back();
-            }
+              }else {
+                  // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
+                  // return back();
+                  $messages = array('messages' => array("File is a ".$extension." file.!! Please upload a valid xls/csv file..!!"));
+                  return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
+              }
         }
+        $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
+        return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
     }
+    public function importvoters2(Request $request){
+          //validate the xls file
+          // $this->validate($request, array(
+          //     'filevoters'      => 'required'
+          // ));
+
+          $index=$request->index;
+          if($request->hasFile('filevoters')){
+              $extension = File::extension($request->file('filevoters')->getClientOriginalName());
+              if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
+                  $path = $request->file('filevoters')->getRealPath();
+                  $data = [];
+                  $messages['messages'] = [];
+                  $ok = true;
+                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages,&$ok) {
+                      foreach ($results as $key => $value) {
+                                $insert = [
+                                        'precinct_id' => $value->precinct,
+                                        'seq_num' => $value->seqnum,
+                                        // 'status_id' => $value->status,
+                                        // 'sitio_id' => $value->sitio,
+                                        'last_name' => $value->lastname,
+                                        'first_name' => $value->firstname,
+                                        // 'middle_name' => $value->middlename,
+                                        // 'address' => $value->address
+                                        ];
+
+                                $insertData = DB::table('voters')->insert($insert);
+                                if (!$insertData) {
+                                    $ok = false;
+                                }
+                                $index++;
+                          }
+
+                      }, $shouldQueue = false);
+                      if($ok){
+                        $messages = array('messages' => array("Your Data has successfully uploaded"));
+                        return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
+                      }else{
+                        $messages = array('messages' => array("Error inserting the data.."));
+                        return response()->json(['success'=>false,'messages'=>$messages,'index'=>$index],401);
+                      }
+                }else {
+                    // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
+                    // return back();
+                    $messages = array('messages' => array("File is a ".$extension." file.!! Please upload a valid xls/csv file..!!"));
+                    return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
+                }
+          }
+          $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
+          return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
+      }
 	public function importprecinct(Request $request){
         //validate the xls file
         $this->validate($request, array(
             'file'      => 'required'
         ));
- 
+
         if($request->hasFile('file')){
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
- 
+
                 $path = $request->file->getRealPath();
                 $data = Excel::load($path, function($reader) {
                 })->get();
                 if(!empty($data) && $data->count()){
- 
+
                     foreach ($data as $key => $value) {
                         $insert[] = [
                         'precinct_number' => $value->prec,
                         'barangay_id' => $value->brgy
                         ];
-			echo $value->prec . "<br>" . $value->brgy;			
+<<<<<<< HEAD
+			echo $value->prec . "<br>" . $value->brgy;
                     }
- 			
+
+=======
+			echo $value->prec . "<br>" . $value->brgy;
+                    }
+
+>>>>>>> 159ce63e4f4c22098ff1293aaabf3078e4a33236
                     if(!empty($insert)){
  			try{
                         $insertData = DB::table('precincts')->insert($insert);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
-                        }else {                        
+                        }else {
                             Session::flash('error', 'Error inserting the data..');
                             return back();
                         }
-			}catch(\Exception $e){			    
+<<<<<<< HEAD
+			}catch(\Exception $e){
 			    echo $e;
-			    info($e);	
+			    info($e);
+=======
+			}catch(\Exception $e){
+			    echo $e;
+			    info($e);
+>>>>>>> 159ce63e4f4c22098ff1293aaabf3078e4a33236
 			}
                     }
                 }
- 
+
                 return back();
- 
+
             }else {
                 Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                 return back();

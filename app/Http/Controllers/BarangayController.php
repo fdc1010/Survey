@@ -25,39 +25,40 @@ class BarangayController extends Controller
         $this->validate($request, array(
             'file'      => 'required'
         ));
- 
+
         if($request->hasFile('file')){
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
- 
+
                 $path = $request->file->getRealPath();
                 $data = Excel::load($path, function($reader) {
                 })->get();
                 if(!empty($data) && $data->count()){
- 
+
                     foreach ($data as $key => $value) {
-                        $insert[] = [						
-						'name' => $value->barangay,
-                        'district_id' => $value->district,
-                        'municipality_id' => $value->municipality,
-                        'province_id' => $value->province,
-                        ];
+                        $insert[] = [
+                                'id' => $value->brgy_id,
+                    						'name' => $value->barangay,
+                                'district_id' => $value->district,
+                                'municipality_id' => $value->municipality,
+                                'province_id' => $value->province,
+                            ];
                     }
- 
+
                     if(!empty($insert)){
- 
+
                         $insertData = DB::table('barangays')->insert($insert);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
-                        }else {                        
+                        }else {
                             Session::flash('error', 'Error inserting the data..');
                             return back();
                         }
                     }
                 }
- 
+
                 return back();
- 
+
             }else {
                 Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                 return back();

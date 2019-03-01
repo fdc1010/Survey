@@ -29,9 +29,13 @@ class SurveyorAssignment extends Model
     {
         return $this->belongsTo('App\User','user_id');
     }
-	public function surveyareas()
+	public function surveyareassitio()
     {
         return $this->belongsToMany('App\Models\Sitio','assignment_details','sitio_id','assignment_id');
+    }
+  public function surveyareas()
+    {
+        return $this->belongsToMany('App\Models\Barangay','assignment_details','barangay_id','assignment_id');
     }
 	public function assignments(){
 		return $this->hasMany('App\Models\AssignmentDetail','assignment_id');
@@ -40,13 +44,23 @@ class SurveyorAssignment extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
-	public function getAreas(){
+	public function getAreasSitio(){
 		$areas = AssignmentDetail::where('assignment_id',$this->id)
 										->with('sitio')
 										->get();
 		$result = "";
 		foreach($areas as $area){
 			$result .= $area->sitio->name." - quota: ".$area->quota."<br>";
+		}
+		return $result;
+	}
+  public function getAreas(){
+		$areas = AssignmentDetail::where('assignment_id',$this->id)
+										->with('barangay')
+										->get();
+		$result = "";
+		foreach($areas as $area){
+			$result .= $area->barangay->name." - quota: ".$area->quota."<br>";
 		}
 		return $result;
 	}
@@ -61,13 +75,13 @@ class SurveyorAssignment extends Model
 		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
 										->count();*/
-		
+
 		return (($this->getSurveyCount()/$this->quota)*100);
 	}
-	public function getProgressPercent(){		
+	public function getProgressPercent(){
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
-	
+
 	public function getSurveyCount(){
 		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
@@ -81,8 +95,8 @@ class SurveyorAssignment extends Model
 	}
 	/*public function getSurveyCountPerArea(){
 		$surveyarea = $this->with(['assignments'=>function($q){
-										$q->with(['sitio'=>function($qs){											
-											$qs->with(['voters'=>function($qv){												
+										$q->with(['sitio'=>function($qs){
+											$qs->with(['voters'=>function($qv){
 														$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 															->where('user_id',$this->user_id)
 															->select(['voter_id'])
@@ -100,7 +114,7 @@ class SurveyorAssignment extends Model
 			}
 		}
 		return $survey_per_area_count;
-	
+
 	}*/
 	/*
 	public function barangay()
