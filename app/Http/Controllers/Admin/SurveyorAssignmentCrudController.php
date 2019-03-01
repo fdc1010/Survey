@@ -77,7 +77,7 @@ class SurveyorAssignmentCrudController extends CrudController
 		$this->crud->addField([
 			'name' => 'areas',
 			'label' => 'Areas',
-			'type' => 'tableadv2',
+			'type' => 'tableadv',
 			'entity_singular' => 'area', // used on the "Add X" button
 			'columns' => [
 				'name' => 'areas',
