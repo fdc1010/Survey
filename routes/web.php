@@ -13,11 +13,12 @@
 Route::get('getQuestions','QuestionController@getQuestions');
 Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('importexcel', 'VoterController@index')->name('index');
+Route::get('importvoters2', 'VoterController@importvoters2');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
 Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
 Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
 Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
-Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');	
+Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
@@ -25,10 +26,10 @@ Route::get('/', function () {
 });
 Route::group([
 	 'prefix' => config('backpack.base.route_prefix', 'admin'),
-	 'middleware' => ['web', 'auth'], 
+	 'middleware' => ['web', 'auth'],
 	 'namespace' => 'Admin'], function () {
-    // Backpack\MenuCRUD	
-    CRUD::resource('menu-item', 'MenuItemCrudController');	
+    // Backpack\MenuCRUD
+    CRUD::resource('menu-item', 'MenuItemCrudController');
 	Route::post('stats', 'StatsController@stats');
 	Route::post('printsurvey', 'StatsController@printsurvey');
 });
@@ -36,7 +37,5 @@ Route::group([
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
 Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
     ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
-	
+
 Route::get('/home', 'HomeController@index')->name('home');
-
-
