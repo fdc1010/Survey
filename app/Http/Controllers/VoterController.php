@@ -109,14 +109,14 @@ class VoterController extends Controller
           // $this->validate($request, array(
           //     'filevoters'      => 'required'
           // ));
-          $i = 0;
+          
           $index=$request->index;
           if($request->hasFile('filevoters')){
               $extension = File::extension($request->file('filevoters')->getClientOriginalName());
               if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                   $path = $request->file('filevoters')->getRealPath();
                   $data = [];
-                  Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data) {
+                  Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data,&$index) {
                       foreach ($results as $row) {
                           $data[] = $row;
                           //$data = Excel::load($path, function($reader) { })->get();
@@ -134,7 +134,7 @@ class VoterController extends Controller
                                         			// 'address' => $value['address']
                                               ];
                               }
-                              $index=$i++;
+                              $index++;
                               if(!empty($insert)){
 
                                   //$insertData = DB::table('voters')->insert($insert);
