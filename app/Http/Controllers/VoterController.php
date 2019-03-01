@@ -116,8 +116,9 @@ class VoterController extends Controller
               if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                   $path = $request->file('filevoters')->getRealPath();
                   $data = [];
-                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index) {
-                      $messages['messages'] = [];
+                  $messages['messages'] = [];
+                  Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages) {
+
                       foreach ($results as $row) {
                           $data[] = $row->toArray();
                           //$data = Excel::load($path, function($reader) { })->get();
