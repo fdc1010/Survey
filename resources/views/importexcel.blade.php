@@ -104,12 +104,14 @@ $(function() {
       }
     },
     submitHandler: function(form) {
+
         $.ajax({
             url: form.action,
             type: form.method,
-            data: $(form).serialize(),
+            data: new FormData(form),
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
+            cache: false,
             success: function(response) {
                 var msg = response;
                 console.log(msg);
