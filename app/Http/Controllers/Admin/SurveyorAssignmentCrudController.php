@@ -83,7 +83,7 @@ class SurveyorAssignmentCrudController extends CrudController
 				'name' => 'areas',
 				'select' => 'Area',
 				'number' => 'Quota',
-				'entity' => 'sitio', // the method that defines the relationship in your Model
+				'entity' => 'barangay', // the method that defines the relationship in your Model
 				'attribute' => 'name', // foreign key attribute that is shown to user
 				'model' => "App\Models\Barangay",
 			],
