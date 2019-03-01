@@ -119,7 +119,7 @@ $(function() {
                       $('#uploadmsg').append(value[0]);
                 });
                 $('#uploadmsg').removeClass('alert-success');
-                $('#uploadmsg').addClass('alert-danger')                
+                $('#uploadmsg').addClass('alert-danger')
                 $('#uploadmsg').show('slow');
                 l.stop();
             }
