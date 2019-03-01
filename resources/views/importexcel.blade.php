@@ -108,10 +108,9 @@ $(function() {
         $.ajax({
             url: form.action,
             type: form.method,
-            data: new FormData(form),
+            data: new FormData(this),
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
-            cache: false,
             success: function(response) {
                 var msg = response;
                 console.log(msg);
