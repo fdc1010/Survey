@@ -118,7 +118,7 @@ $(function() {
             }, error: function (xhr, ajaxOptions, thrownError) {
                 var msg = xhr.responseJSON;
                 console.log(msg);
-                $.each(msg.messages,function(key,value){
+                $.each(msg.errors,function(key,value){
                       $('#uploaderror').html(value[0]);
                 });
                 $('#uploaderror').show('slow');
