@@ -64,7 +64,7 @@
 <h1>Import Excel Masterlist of Voters</h1>
 <form action="{{ route('importvoters') }}" method="POST" enctype="multipart/form-data" id="formvoters">
     {{ csrf_field() }}
-    Choose your xls/csv File : <input type="file" name="file" class="form-control">
+    Choose your xls/csv File : <input type="file" name="file" id="filevoters" class="form-control">
 
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
     <input type="hidden" name="index" id="index" value="0">
@@ -104,11 +104,12 @@ $(function() {
       }
     },
     submitHandler: function(form) {
-
+        var formData = new FormData();
+        formData.append('file', $('#filevoters')[0].files[0]);
         $.ajax({
             url: form.action,
             type: form.method,
-            data: new FormData(this),
+            data: new FormData(form),
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
             success: function(response) {
