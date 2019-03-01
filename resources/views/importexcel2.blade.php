@@ -38,7 +38,7 @@
         <strong>{{ Session::get('success') }}</strong>
     </div>
     @endif
-    <div class="alert alert-danger alert-dismissible" role="alert" id="uploaderror">
+    <div class="alert alert-danger alert-dismissible" role="alert" id="uploadmsg">
     </div>
     @if ( Session::has('error') )
     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -102,27 +102,31 @@ $(function() {
             success: function(response) {
                 var msg = response;
                 console.log(msg);
-                $('#uploaderror').empty();
+                $('#uploadmsg').empty();
                 $('#index').val(parseInt(msg.index)-1);
                 $.each(msg.messages,function(key,value){
-                      $('#uploaderror').append(value[0]);
+                      $('#uploadmsg').append(value[0]);
                 });
-                $('#uploaderror').show('slow');
+                $('#uploadmsg').removeClass('alert-danger')
+                $('#uploadmsg').addClass('alert-success');
+                $('#uploadmsg').show('slow');
                 l.stop();
             }, error: function (xhr, ajaxOptions, thrownError) {
                 var msg = xhr.responseJSON;
                 console.log(msg);
-                $('#uploaderror').empty();
+                $('#uploadmsg').empty();
                 $.each(msg.messages,function(key,value){
-                      $('#uploaderror').append(value[0]);
+                      $('#uploadmsg').append(value[0]);
                 });
-                $('#uploaderror').show('slow');
+                $('#uploadmsg').removeClass('alert-success');
+                $('#uploadmsg').addClass('alert-danger')                
+                $('#uploadmsg').show('slow');
                 l.stop();
             }
         });
     }
   });
-  $('#uploaderror').hide();
+  $('#uploadmsg').hide();
   $('#index').val(0);
 });
 </script>
