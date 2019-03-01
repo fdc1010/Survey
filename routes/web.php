@@ -13,9 +13,10 @@
 Route::get('getQuestions','QuestionController@getQuestions');
 Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('importexcel', 'VoterController@index')->name('index');
-Route::get('importvoters2', 'VoterController@importvoters2');
+Route::get('importVotersExcel2', 'VoterController@importVotersExcel2');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
 Route::post('importvoters', 'VoterController@importvoters')->name('importvoters');
+Route::post('importvoters2', 'VoterController@importvoters2')->name('importvoters2');
 Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
 Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
