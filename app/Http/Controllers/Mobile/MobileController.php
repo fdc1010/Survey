@@ -27,11 +27,11 @@ class MobileController extends Controller
      */
     public function index()
     {
-        
+
     }
 	public function login(Request $request)
-	{	
-		
+	{
+
 		/*$this->validate($request, [
 		   'email' => 'required|email',
 		   'password' => 'required|string',
@@ -49,10 +49,10 @@ class MobileController extends Controller
 			), 400);
 		}
 		$user = User::where('email', $request->get('email'))->first();
-		if($user){		   
+		if($user){
 		   $auth = Hash::check($request->get('password'), $user->password);
 		   if($auth){
-		
+
 			  $user->rollApiKey(); //Model Function
 			  $user->is_online=1;
 			  $user->imei=$request->imei;
@@ -65,14 +65,16 @@ class MobileController extends Controller
 			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
-																		$q->with(['sitio'=>function($qu){
-																				$qu->with(['voters'=>function($qs){
-																									$qs->with(['statuses'=>function($qvs){
-																													$qvs->select(['voter_id','status_id']);
-																												},'precinct']);
-																						}]);
+																		$q->with(['barangay'=>function($qb){
+                                        $q->with(['precincts'=>function($qu){
+    																				$qu->with(['voters'=>function($qs){
+    																									$qs->with(['statuses'=>function($qvs){
+    																													$qvs->select(['voter_id','status_id']);
+    																												},'precinct']);
+    																						}]);
+                                        }]);
 																			}]);
-															}])													
+															}])
 			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
@@ -81,8 +83,8 @@ class MobileController extends Controller
 		   }
 		}
 		return response()->json(['success'=>false,'msg'=>'Unauthorized, Check your credentials.']);
-		
-		
+
+
 	}
 	public function logout(Request $request){
 		$validator = Validator::make($request->all(), [
@@ -95,18 +97,18 @@ class MobileController extends Controller
 				'reason' => $validator->getMessageBag()->toArray(),
 				'success'=>false
 			), 400);
-		}		
+		}
 		$user = User::where('email', $request->get('email'))->first();
-		if($user){	
-		
+		if($user){
+
 			  $user->api_token = null;
 			  $user->is_online = 0;
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful']);
-		   
+
 		}
 		return response()->json(['success'=>false,'msg'=>'Opps! an error occured, Check your credentials/device.']);
     }
-	
+
     /**
      * Show the form for creating a new resource.
      *
