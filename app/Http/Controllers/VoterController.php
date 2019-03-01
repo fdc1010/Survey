@@ -132,22 +132,20 @@ class VoterController extends Controller
                                         ];
 
                                 $insertData = DB::table('voters')->insert($insert);
-                                if ($insertData) {
-                                    array_push($messages['messages'],array("Your Data has successfully inserted"));
-                                    array_push($messages['messages'],$insert);
-                                }else {
-                                    $ok = false;
-                                    array_push($messages['messages'],array("Error inserting the data.."));
-                                    array_push($messages['messages'],$insert);
+                                if (!$insertData) {
+                                    $ok = false;                                    
                                 }
                                 $index++;
                           }
 
                       }, $shouldQueue = false);
-                      if($ok)
-                        return response()->json(['success'=>true,$messages],200);
-                      else
-                        return response()->json(['success'=>false,$messages],401);
+                      if($ok){
+                        $messages = array('messages' => array("Your Data has successfully uploaded"));
+                        return response()->json(['success'=>true,'messages'=>$messages],200);
+                      }else{
+                        $messages = array('messages' => array("Error inserting the data.."));
+                        return response()->json(['success'=>false,'messages'=>$messages],401);
+                      }
                 }else {
                     // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
                     // return back();
