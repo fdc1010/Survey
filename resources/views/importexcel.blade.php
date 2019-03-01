@@ -96,7 +96,6 @@
 <script src="{{ asset('js/additional-methods.js') }}"></script>
 <script>
 $(function() {
-
   $("#formvoters").validate({
     rules: {
       file: {
@@ -109,6 +108,8 @@ $(function() {
             url: form.action,
             type: form.method,
             data: $(form).serialize(),
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
             success: function(response) {
                 var msg = response;
                 console.log(msg);
