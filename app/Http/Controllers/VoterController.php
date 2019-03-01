@@ -98,6 +98,8 @@ class VoterController extends Controller
                 return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
             }
         }
+        $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('file')));
+        return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
     }
 	public function importprecinct(Request $request){
         //validate the xls file
