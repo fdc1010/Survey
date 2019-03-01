@@ -142,12 +142,12 @@ class VoterController extends Controller
                                   //if ($insertData) {
                                   if(count($data)>0){
                                       //Session::flash('success', 'Your Data has successfully imported');
-                                      array_push($messages['messages'],array("Your Data has successfully imported")));
+                                      array_push($messages['messages'],array("Your Data has successfully imported"));
                                       //return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
                                   }else {
                                       //Session::flash('error', 'Error inserting the data..');
                                       //return back();
-                                      array_push($messages['messages'],array("Error inserting the data..")));
+                                      array_push($messages['messages'],array("Error inserting the data.."));
                                       //return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
                                   }
                               //}
