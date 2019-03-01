@@ -118,7 +118,7 @@ $(function() {
             success: function(response) {
                 var msg = response;
                 console.log(msg);
-                $('#index').val(parseInt(msg.index));
+                $('#index').val(parseInt(msg.index)-1);
                 $('#uploaderror').html(msg.messages);
                 $('#uploaderror').show('slow');
             }, error: function (xhr, ajaxOptions, thrownError) {
