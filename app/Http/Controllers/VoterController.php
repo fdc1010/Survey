@@ -112,7 +112,7 @@ class VoterController extends Controller
           $index=$request->index;
           if($request->hasFile('filevoters')){
               $extension = File::extension($request->file('filevoters')->getClientOriginalName());
-              if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {                
+              if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                   $path = $request->file('filevoters')->getRealPath();
                   $data = [];
                   Excel::filter('chunk')->load($path)->chunk(1000, function ($results) use (&$data) {
@@ -153,17 +153,16 @@ class VoterController extends Controller
                                       return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
                                   }
                               }
-                          }
-                          //return back();
+                          }                          
+                      }, $shouldQueue = false);
 
-                      }else {
-                          // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
-                          // return back();
-                          $messages = array('messages' => array("File is a ".$extension." file.!! Please upload a valid xls/csv file..!!"));
-                          return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
-                      }
-                    }
-                }, $shouldQueue = false);
+                }else {
+                    // Session::flash('error', 'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
+                    // return back();
+                    $messages = array('messages' => array("File is a ".$extension." file.!! Please upload a valid xls/csv file..!!"));
+                    return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
+                }
+              }
           }
           $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
           return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
