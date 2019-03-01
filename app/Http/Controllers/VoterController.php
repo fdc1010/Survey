@@ -121,6 +121,7 @@ class VoterController extends Controller
                           //$data = Excel::load($path, function($reader) { })->get();
                           if(!empty($row) && $row->count()>0){
                               foreach ($row as $value) {
+                                      info($value);
                                       $insert[] = [
                       						            'precinct_id' => $value['precinct'],
                                               'seq_num' => $value['seqnum'],
