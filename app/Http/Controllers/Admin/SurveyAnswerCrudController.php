@@ -34,7 +34,7 @@ class SurveyAnswerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumns('answered_option');
+        $this->crud->removeColumns(['answered_option']);
         // add asterisk for fields that are required in SurveyAnswerRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
