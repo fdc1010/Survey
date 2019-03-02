@@ -61,11 +61,19 @@ class VoterCrudController extends CrudController
 			'height' => '50px',
 		])->beforeColumn('first_name');
 
-		$this->crud->addColumn([
-            'name' => 'barangay',
+		// $this->crud->addColumn([
+    //         'name' => 'barangay',
+    //         'label' => 'Barangay',
+    //         'type' => 'model_function',
+		// 	'function_name' => 'getVoterBarangay'
+	  //   ]);
+    $this->crud->addColumn([
+            'name' => 'barangay_id',
+            'type' => 'select',
             'label' => 'Barangay',
-            'type' => 'model_function',
-			'function_name' => 'getVoterBarangay'
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay"
 	    ]);
 		$this->crud->addColumn([
             'name' => 'gender_id',
