@@ -53,7 +53,7 @@ class CandidateCrudController extends CrudController
 			'model' => "App\Models\Party" // on create&update, do you need to add/delete pivot table entries?
 		]);
 		$this->crud->addColumn([
-            'label' => "Candidate",
+      'label' => "Candidate",
 			'type' => 'select',
 			'name' => 'voter_id', // the relationship name in your Model
 			'entity' => 'voter', // the relationship name in your Model
