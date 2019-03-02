@@ -50,7 +50,7 @@ class SurveyAnswer extends Model
   public function getAnsweredOption(){
     $ansval = "";
     foreach ($this->answered_option as $value) {
-        $ansval .= "ID " . $value['id'] . ", Other Answer " . $value['otherAnswer'];
+        $ansval .= $value['id'] . " : " . $value['otherAnswer'];
     }
     return $ansval;
   }
