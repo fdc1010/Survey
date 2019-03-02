@@ -32,17 +32,17 @@ class VoterController extends Controller
         return Image::make($media->getPath())->response();
     }*/
 	public function extramiddlename(){
-		$voters = Voter::get();
-
-		foreach($voters as $voter){
-			$explodefm = explode(" ",$voter->first_name);
-			echo $voter->first_name . " : ";
-			if(count($explodefm)>1){
-				$curvoter = Voter::find($voter->id);
-				$curvoter->middle_name = $explodefm[count($explodefm)-1];
-				$curvoter->save();
-			}
-		}
+		Voter::get()->chunk(400, function ($voters)
+    		foreach($voters as $voter){
+    			$explodefm = explode(" ",$voter->first_name);
+    			echo $voter->first_name . " : ";
+    			if(count($explodefm)>1){
+    				$curvoter = Voter::find($voter->id);
+    				$curvoter->middle_name = $explodefm[count($explodefm)-1];
+    				$curvoter->save();
+    			}
+    		}
+      });
 	}
 	public function importvoters(Request $request){
         //validate the xls file
@@ -168,7 +168,7 @@ class VoterController extends Controller
                                 'precinct_number' => $value->prec_code,
                                 'barangay_id' => $value->brgy_id
                         ];
-			echo $value->prec . "<br>" . $value->brgy;			
+			echo $value->prec . "<br>" . $value->brgy;
                     }
                     if(!empty($insert)){
  			try{
@@ -179,9 +179,9 @@ class VoterController extends Controller
                             Session::flash('error', 'Error inserting the data..');
                             return back();
                         }
-			}catch(\Exception $e){			    
+			}catch(\Exception $e){
 			    echo $e;
-			    info($e);	
+			    info($e);
 			}
                     }
                 }
