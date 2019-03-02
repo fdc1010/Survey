@@ -14,9 +14,9 @@
 
 
 @section('content')
-@if(!empty($candidate) && count($candidate)>0)
+
 	@php
-    	
+
         if(!empty($rdata['selsurvey'])){
             if(!empty($rdata['checkprintGraph']))
                 $showGraph = true;
@@ -26,23 +26,23 @@
                 $showGender = true;
             else
             	$showGender = false;
-            if(!empty($rdata['checkprintAge']))	
+            if(!empty($rdata['checkprintAge']))
                 $showAgeBracket = true;
             else
             	$showAgeBracket = false;
-            if(!empty($rdata['checkprintCivil']))	
+            if(!empty($rdata['checkprintCivil']))
                 $showCivil = true;
             else
             	$showCivil = false;
-            if(!empty($rdata['checkprintEmp']))	
+            if(!empty($rdata['checkprintEmp']))
                 $showEmployment = true;
             else
             	$showEmployment = false;
-            if(!empty($rdata['checkprintProb']))	
+            if(!empty($rdata['checkprintProb']))
                 $showProblem = true;
             else
             	$showProblem = false;
-            if(!empty($rdata['checkprintCanQ']))	
+            if(!empty($rdata['checkprintCanQ']))
                 $showQuality = true;
             else
             	$showQuality = false;
@@ -58,39 +58,39 @@
         $tallyvote = new App\Models\ElectionReturn;
     	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
-        
-    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1;                
+
+    	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1;
         $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:0;
-        
+
         $selinitgenders = App\Models\Gender::all();
         $selinitagebrackets = App\Models\AgeBracket::all();
         $selinitcivilstatuses = App\Models\CivilStatus::all();
-        $selinitempstatuses = App\Models\EmploymentStatus::all(); 
+        $selinitempstatuses = App\Models\EmploymentStatus::all();
         $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
         $selinitsurveydetails = App\Models\SurveyDetail::all();
-        
+
         $tallyagebrackets=[];
-        $tempagebrackets = App\Models\AgeBracket::all();        
+        $tempagebrackets = App\Models\AgeBracket::all();
 		foreach($tempagebrackets as $ageb){
         	for($iage = $ageb->from; $iage<=$ageb->to; $iage++){
         		array_push($tallyagebrackets,$iage);
             }
-        }      
+        }
         $tallybrgy=App\Models\Barangay::get()->pluck('id')->toArray();
         $tallygenders=App\Models\Gender::get()->pluck('id')->toArray();
         $tallyempstatus=[];
         $tallycivilstatus=[];
         $tallyoccstatus = [];
         $tallyvoterstatus = [];
-        
+
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
-        
-        $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));        
+
+        $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
-                
-        if(!empty($rdata['survey_detail'])){       
+
+        if(!empty($rdata['survey_detail'])){
         	$rdatahidsurvey = $rdata['survey_detail'];
             foreach($rdatahidsurvey as $key => $rsurvey){
                 if(empty($rsurvey)){
@@ -100,12 +100,12 @@
             if(!empty($rdatahidsurvey)){
                 $surveydetails = App\Models\SurveyDetail::whereIn('id',$rdatahidsurvey)->get();
             }else{
-                $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
+                $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();
             }
         }else{
-            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();            
+            $surveydetails = App\Models\SurveyDetail::where('id',$tallysurvey)->get();
         }
-        
+
         if(!empty($rdata['election_return'])){
         	$rdatahidelection = $rdata['election_return'];
             foreach($rdatahidelection as $key => $relection){
@@ -118,8 +118,8 @@
             }else{
         		$elections = App\Models\Election::where('id',$tallyelection)->get();
             }
-        }else{  
-            $elections = App\Models\Election::where('id',$tallyelection)->get();         
+        }else{
+            $elections = App\Models\Election::where('id',$tallyelection)->get();
         }
 
         if(!empty($rdata['position'])){
@@ -127,9 +127,9 @@
         }else{
         	$selinitcandidates = App\Models\Candidate::with('voter')->where('position_id',$surveypos)->get();
         }
-        
-        if(!empty($rdata['gender'])){	
-            $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get(); 
+
+        if(!empty($rdata['gender'])){
+            $genders = App\Models\Gender::whereIn('id',$rdata['gender'])->get();
             $tallygenders=$genders->pluck('id')->toArray();
         }else{
         	if(!empty($rdata['selgender'])){
@@ -139,21 +139,21 @@
             	$genders = App\Models\Gender::all();
             }
         }
-        
-        $barangays = App\Models\Barangay::all();     
-        	
-        
+
+        $barangays = App\Models\Barangay::all();
+
+
         if(!empty($rdata['agebracket'])){
-        	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get(); 
+        	$agebrackets = App\Models\AgeBracket::whereIn('id',$rdata['agebracket'])->get();
             $tallyagebrackets=[];
             foreach($agebrackets as $agebracket){
                 for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
                     array_push($tallyagebrackets,$iage);
-                }                
+                }
             }
         }else{
         	if(!empty($rdata['selagebracket'])){
-        		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get(); 
+        		$agebrackets = App\Models\AgeBracket::where('id',$rdata['selagebracket'])->get();
                 $tallyagebrackets=[];
                 foreach($agebrackets as $agebracket){
                     for($iage = $agebracket->from; $iage<=$agebracket->to; $iage++){
@@ -161,7 +161,7 @@
                     }
                 }
             }else{
-            	$agebrackets = App\Models\AgeBracket::all(); 
+            	$agebrackets = App\Models\AgeBracket::all();
             }
         }
         if(!empty($rdata['civilstatus'])){
@@ -176,26 +176,26 @@
             }
         }
         if(!empty($rdata['empstatus'])){
-        	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get(); 
+        	$empstatuses = App\Models\EmploymentStatus::whereIn('id',$rdata['empstatus'])->get();
             $tallyempstatus=$empstatuses->pluck('id')->toArray();
         }else{
         	if(!empty($rdata['selemp'])){
-        		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['selemp'])->get(); 
+        		$empstatuses = App\Models\EmploymentStatus::where('id',$rdata['selemp'])->get();
                 $tallyempstatus=$empstatuses->pluck('id')->toArray();
             }else{
-            	$empstatuses = App\Models\EmploymentStatus::all(); 
+            	$empstatuses = App\Models\EmploymentStatus::all();
             }
         }
-        $qualities = App\Models\OptionQuality::with('options')->get(); 
-        
-        $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){        														
+        $qualities = App\Models\OptionQuality::with('options')->get();
+
+        $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['voter','tally'=>function($qc){
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
                                                                             ->orderBy('ctally','DESC');
-                                                                }]);                                                                			
-        													}])->where('id',$surveypos)->get();        
+                                                                }]);
+        													}])->where('id',$surveypos)->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
             $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
         														$q->with(['voter','tally'=>function($qc){
@@ -254,25 +254,25 @@
         													}])
                                                             ->get();
             }
-        }        
-        
-        $tally = array();  
-        $tallyg = array(); 
-        $tallycv = array();  
-        $tallyemp = array(); 
-        $tallyab = array(); 
-        $tallyq = array();    
+        }
+
+        $tally = array();
+        $tallyg = array();
+        $tallycv = array();
+        $tallyemp = array();
+        $tallyab = array();
+        $tallyq = array();
         $tallyp = array();
-        
-        $tallyelection = array();     
-        $tallygelection = array();    
-        $tallycvelection = array();                                       
+
+        $tallyelection = array();
+        $tallygelection = array();
+        $tallycvelection = array();
         $tallyempelection = array();
         $tallyabelection = array();
 
     @endphp
     <div class="row">
-    	
+
 		<form method="post" id="my_formprint" action="{{ backpack_url('printsurvey') }}" target="_blank">
         	@csrf
             <input type="hidden" name="hidselsurvey" id="hidselsurvey" value="{{ (!empty($rdata['selsurvey'])?$rdata['selsurvey']:1) }}" />
@@ -343,7 +343,7 @@
                     	<input type="hidden" name="hidelectionreturn[]" id="hidelection_return_{{ $election->id }}" />
                     @endif
             @endforeach
-            @if(empty($rdata['to']))            	
+            @if(empty($rdata['to']))
             	@foreach($brgyarr as $brgyrand)
                 	<input type="hidden" name="hidbrgyrand[]" value="{{ $brgyrand }}" />
                 @endforeach
@@ -362,8 +362,8 @@
         <div class="col-md-12" id="printdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Include in Print Preview</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Include in Print Preview</div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -385,8 +385,8 @@
         <div class="col-md-12" id="printsurveydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Surveys:</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Surveys:</div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -395,9 +395,9 @@
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllSurveys" /> Check All</label></div>
                         @foreach($selinitsurveydetails as $surveydetail)
                                 @if(!empty($rdata['survey_detail']) && in_array($surveydetail->id,$rdata['survey_detail']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" checked="checked" /> {{ $surveydetail->subject }}</label></div> 
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" checked="checked" /> {{ $surveydetail->subject }}</label></div>
                                 @else
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" /> {{ $surveydetail->subject }}</label></div> 
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="survey_detail_{{ $surveydetail->id }}" name="survey_detail[]" value="{{ $surveydetail->id }}" /> {{ $surveydetail->subject }}</label></div>
                                 @endif
                         @endforeach
                         </div>
@@ -408,19 +408,19 @@
         <div class="col-md-12" id="printelectionreturns">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Election Returns:</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Election Returns:</div>
                     </div>
                 </div>
                 <div class="box-body">
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllElectionReturns" /> Check All</label></div>
-                        @foreach($selinitelections as $election)                        
+                        @foreach($selinitelections as $election)
                         		@if(!empty($rdata['election_return']) && in_array($election->id,$rdata['election_return']))
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $election->name }}</label></div>                        
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" checked="checked" /> {{ $election->name }}</label></div>
                         		@else
-                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" /> {{ $election->name }}</label></div> 
+                                <div class="col-md-3"><label class="control-label"><input type="checkbox" id="election_return_{{ $election->id }}" name="election_return[]" value="{{ $election->id }}" /> {{ $election->name }}</label></div>
                                 @endif
                         @endforeach
                         </div>
@@ -431,34 +431,34 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Survey & Print Preview Options</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Survey & Print Preview Options</div>
                     </div>
                 </div>
 				<div class="box-body">
                 	<div class="col-md-1"><strong>Survey:</strong></div>
-                    <div class="col-md-2"> 
+                    <div class="col-md-2">
                         <select name="selsurvey" id="selsurvey">
-                        @foreach($selinitsurveydetails as $surveydetail)	
+                        @foreach($selinitsurveydetails as $surveydetail)
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                         @endforeach
-                        </select>                        
-                    </div>                    
+                        </select>
+                    </div>
                     <div class="col-md-2"><strong>Election Returns:</strong></div>
-                    <div class="col-md-3">                        
+                    <div class="col-md-3">
                         <select name="selelection" id="selelection">
                         	<option value="">--Select Election--</option>
-                        @foreach($selinitelections as $election)	
+                        @foreach($selinitelections as $election)
                             <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
                         </select>
                     </div>
-                    <div class="col-md-1"> 
+                    <div class="col-md-1">
                         <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
                     </div>
-                    <div class="col-md-3"> 
-                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>                                    
-                    </div>                    
+                    <div class="col-md-3">
+                        <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                    </div>
                 </div>
                 <div class="box-body">
                 	<table id="tblviewdetails" class="table table-striped_dashboard table-hover display responsive nowrap">
@@ -470,7 +470,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selposition" id="selposition">
                                     	<option value="0">Run for</option>
-                                    @foreach($selinitpositions as $position)	
+                                    @foreach($selinitpositions as $position)
                                     	<option value="{{ $position->id }}" {{ ((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
                                     @endforeach
                                 	</select>
@@ -493,7 +493,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selagebracket" id="selagebracket">
                                     	<option value="0">Age</option>
-                                    @foreach($selinitagebrackets as $agebracket)	
+                                    @foreach($selinitagebrackets as $agebracket)
                                     	<option value="{{ $agebracket->id }}" {{ ((!empty($rdata['selagebracket'])&&$rdata['selagebracket']==$agebracket->id)?"selected='selected'":"") }}>{{ $agebracket->title }}</option>
                                     @endforeach
                                 	</select>
@@ -502,7 +502,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selgender" id="selgender">
                                     	<option value="0">Gender</option>
-                                    @foreach($selinitgenders as $gender)	
+                                    @foreach($selinitgenders as $gender)
                                     	<option value="{{ $gender->id }}" {{ ((!empty($rdata['selgender'])&&$rdata['selgender']==$gender->id)?"selected='selected'":"") }}>{{ $gender->name }}</option>
                                     @endforeach
                                 	</select>
@@ -511,7 +511,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selcivil" id="selcivil">
                                     	<option value="0">Civil</option>
-                                    @foreach($selinitcivilstatuses as $civilstatus)	
+                                    @foreach($selinitcivilstatuses as $civilstatus)
                                     	<option value="{{ $civilstatus->id }}" {{ ((!empty($rdata['selcivil'])&&$rdata['selcivil']==$civilstatus->id)?"selected='selected'":"") }}>{{ $civilstatus->name }}</option>
                                     @endforeach
                                 	</select>
@@ -520,7 +520,7 @@
                                 <td width="5%" align="center">
                                 	<select name="selemp" id="selemp">
                                     	<option value="0">Employment</option>
-                                    @foreach($selinitempstatuses as $empstatus)	
+                                    @foreach($selinitempstatuses as $empstatus)
                                     	<option value="{{ $empstatus->id }}" {{ ((!empty($rdata['selemp'])&&$rdata['selemp']==$empstatus->id)?"selected='selected'":"") }}>{{ $empstatus->name }}</option>
                                     @endforeach
                                 	</select>
@@ -531,37 +531,37 @@
                                         <span class="fa fa-search"></span> View
                                     </button>
                               </th>
-                            </tr>                                    
+                            </tr>
                         </thead>
                     </table>
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-12" id="brgydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Barangays</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Barangays</div>
                     </div>
                 </div>
                 <div class="box-body">
                         <div class="col-ls-12">
-                        	<div class="col-lg-5">    
-                                <div class="form-group">  
-                                    <div class="col-lg-12">                             	
-										<label class="col-lg-12 control-label">Select</label>                                     
+                        	<div class="col-lg-5">
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+										<label class="col-lg-12 control-label">Select</label>
                                     </div>
-                                </div>                                            
-                                <select name="from[]" id="brgycriteria" class="form-control" size="8" multiple="multiple">               
-                                    @foreach($barangays as $barangay)                                    	
-                                       	<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
+                                </div>
+                                <select name="from[]" id="brgycriteria" class="form-control" size="8" multiple="multiple">
+                                    @foreach($barangays as $barangay)
+                                       	<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                     @endforeach
-                                </select>                                        
+                                </select>
                           </div>
-                          
+
                           <div class="col-lg-2">
-                              <div class="form-group" style="padding-bottom:10px;"> 
+                              <div class="form-group" style="padding-bottom:10px;">
                                   <div class="col-lg-12">&nbsp;</div>
                               </div>
                               <button type="button" id="brgycriteria_undo" class="btn btn-primary btn-block">undo</button>
@@ -571,35 +571,35 @@
                               <button type="button" id="brgycriteria_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
                               <button type="button" id="brgycriteria_redo" class="btn btn-success btn-block">redo</button>
                           </div>
-                          
+
                           <div class="col-lg-5">
                                   <div class="form-group">
                                       <div class="col-lg-12">
                                           <label class="col-lg-12 control-label">Selected</label>
                                       </div>
                                   </div>
-                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">                                                                        
-                                    @if(!empty($rdata['to']))	
+                              <select name="to[]" id="brgycriteria_to" class="form-control" size="8" multiple="multiple">
+                                    @if(!empty($rdata['to']))
                                     	@foreach($barangays as $barangay)
                                         	@if(in_array($barangay->id,$rdata['to']))
-                                        		<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>                                        	
+                                        		<option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
                                             @endif
                                     	@endforeach
                                         @php
                                             $tallybrgy=$rdata['to'];
                                         @endphp
-                                    @endif                                    
+                                    @endif
                               </select>
-                          </div> 
-                      </div>     
+                          </div>
+                      </div>
                 </div>
             </div>
-        </div>        
+        </div>
         <div class="col-md-12" id="posdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Position</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Position</div>
                     </div>
                 </div>
 
@@ -607,7 +607,7 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllPosition" /> Check All</label></div>
-                        @foreach($selinitpositions as $position)                        		
+                        @foreach($selinitpositions as $position)
                                 <div class="col-md-4">
                                     <label class="control-label">
                                     	@if(!empty($rdata['position']) && in_array($position->id,$rdata['position']))
@@ -627,8 +627,8 @@
         <div class="col-md-12" id="candetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Candidates</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Candidates</div>
                     </div>
                 </div>
 
@@ -636,7 +636,7 @@
                 	<div class="col-md-12">
                         <div class="form-group">
                         <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate" /> Check All</label></div>
-                        @foreach($selinitpositions as $position)                        	
+                        @foreach($selinitpositions as $position)
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
                             <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate_{{ $position->id }}" /> Check All Candidates for {{ $position->name }}</label></div>
                             @foreach($position->candidates as $candidate)
@@ -661,8 +661,8 @@
         <div class="col-md-12" id="agedetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Age Brackets</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Age Brackets</div>
                     </div>
                 </div>
 
@@ -676,7 +676,7 @@
                                         @if(!empty($rdata['agebracket']) && in_array($agebracket->id,$rdata['agebracket']))
                                         	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" checked="checked" />
 										@else
-                                        	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />                                          
+                                        	<input type="checkbox" id="{{ $agebracket->id }}" name="agebracket[]" value=" {{ $agebracket->id }}" />
                                         @endif
                                         {{ $agebracket->title }}
                                     </label>
@@ -690,8 +690,8 @@
         <div class="col-md-12" id="gendetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Gender</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Gender</div>
                     </div>
                 </div>
 
@@ -702,7 +702,7 @@
                         @foreach($selinitgenders as $gender)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(!empty($rdata['gender']) && in_array($gender->id,$rdata['gender']))	
+                                        @if(!empty($rdata['gender']) && in_array($gender->id,$rdata['gender']))
                                             <input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $gender->id }}" name="gender[]" value=" {{ $gender->id }}" />
@@ -719,8 +719,8 @@
         <div class="col-md-12" id="civdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Civil Status</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Civil Status</div>
                     </div>
                 </div>
 
@@ -731,7 +731,7 @@
                         @foreach($selinitcivilstatuses as $civilstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(!empty($rdata['civilstatus']) && in_array($civilstatus->id,$rdata['civilstatus']))		
+                                        @if(!empty($rdata['civilstatus']) && in_array($civilstatus->id,$rdata['civilstatus']))
                                             <input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $civilstatus->id }}" name="civilstatus[]" value=" {{ $civilstatus->id }}" />
@@ -748,8 +748,8 @@
         <div class="col-md-12" id="empdetails">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Employment Status</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Employment Status</div>
                     </div>
                 </div>
 
@@ -760,7 +760,7 @@
                         @foreach($selinitempstatuses as $empstatus)
                                 <div class="col-md-4">
                                     <label class="control-label">
-                                        @if(!empty($rdata['empstatus']) && in_array($empstatus->id,$rdata['empstatus']))	
+                                        @if(!empty($rdata['empstatus']) && in_array($empstatus->id,$rdata['empstatus']))
                                             <input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" checked="checked" />
                                         @else
                                         	<input type="checkbox" id="{{ $empstatus->id }}" name="empstatus[]" value=" {{ $empstatus->id }}" />
@@ -775,62 +775,62 @@
             </div>
         </div>
         </form>
-    	@foreach($surveydetails as $surveydetail)    	
+    	@foreach($surveydetails as $surveydetail)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">Tabular Stats (Summary): {{ $surveydetail->subject }}</div>
                     </div>
-                </div>                
-                <div class="box-body">                	
+                </div>
+                <div class="box-body">
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr style>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
-                            	
+
             					@foreach($positions as $position)
                                   <thead>
                                       <tr>
                                           <th>{{ $position->name }}</th>
                                           <th></th>
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                  
+                                  <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                  $tallyoccstatus,$tallyvoterstatus);   
+                                                                                  $tallyoccstatus,$tallyvoterstatus);
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
                                       </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
                       </div>
                 </div>
             </div>
-        </div>        
+        </div>
         @endforeach
         @if($showGender)
-        @foreach($surveydetails as $surveydetail)  
+        @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">Tabular Tally by Gender: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
@@ -839,10 +839,10 @@
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                    
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -851,11 +851,11 @@
                                           @foreach($genders as $gender)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
-                                  </thead>                                  
+                                      </tr>
+                                  </thead>
                                 <tbody>
-                               	
-                                 @foreach($position->candidates as $candidate)                             	
+
+                                 @foreach($position->candidates as $candidate)
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
@@ -863,12 +863,12 @@
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                       [$gender->id], $tallyempstatus,$tallycivilstatus,
                                                                                                       $tallyoccstatus,$tallyvoterstatus);
-                                                                                        
+
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
                                         @endforeach
                                     </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -878,18 +878,18 @@
         </div>
         @endforeach
         @endif
-        
+
          @if($showCivil)
          @foreach($surveydetails as $surveydetail)
         	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Civil Status: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
@@ -898,10 +898,10 @@
                                         @foreach($civilstatuses as $civilstatus)
                                         <th>{{ $civilstatus->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                  
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -910,22 +910,22 @@
                                           @foreach($civilstatuses as $civilstatus)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                
-                                	@foreach($position->candidates as $candidate)                               	
+                                  <tbody>
+                                	@foreach($position->candidates as $candidate)
                                         <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
                                             @php
                                                 $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                     $tallygenders, $tallyempstatus,[$civilstatus->id],
-                                                                                                                    $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                                    $tallyoccstatus,$tallyvoterstatus);
                                             @endphp
                                             <td>{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }}</td>
                                             @endforeach
                                         </tr>
-                                  	@endforeach                                
+                                  	@endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -935,18 +935,18 @@
         </div>
         @endforeach
         @endif
-        
+
         @if($showEmployment)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Employment Status: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
@@ -954,11 +954,11 @@
                                         @foreach($empstatuses as $empstatus)
                                         <th>{{ $empstatus->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @php
-                                	                              
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -967,22 +967,22 @@
                                           @foreach($empstatuses as $empstatus)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                
-                                	@foreach($position->candidates as $candidate)                                    	             	
+                                  <tbody>
+                                	@foreach($position->candidates as $candidate)
                                           <tr>
                                               <td>{{ $candidate->voter->full_name }}</td>
                                               @foreach($empstatuses as $empstatus)
                                               @php
                                                   $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                       $tallygenders,[$empstatus->id],$tallycivilstatus,
-                                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                                      $tallyoccstatus,$tallyvoterstatus);
                                               @endphp
                                               <td>{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }}</td>
                                               @endforeach
                                           </tr>
-                                  	@endforeach                                
+                                  	@endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -992,18 +992,18 @@
         </div>
         @endforeach
         @endif
-        
+
         @if($showAgeBracket)
         @foreach($surveydetails as $surveydetail)
     	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Age Bracket: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
@@ -1012,10 +1012,10 @@
                                         @foreach($agebrackets as $agebracket)
                                         <th>{{ $agebracket->title }}</th>
                                         @endforeach
-                                    </tr>                             
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                 
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1024,11 +1024,11 @@
                                           @foreach($agebrackets as $agebracket)
                                        	  <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
                                   <tbody>
-                                  
-                                  @foreach($position->candidates as $candidate)                               	
+
+                                  @foreach($position->candidates as $candidate)
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
@@ -1039,12 +1039,12 @@
                                               }
                                               $tallyab[$candidate->id][$agebracket->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$gtallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                        $tallyoccstatus,$tallyvoterstatus);
                                           @endphp
                                           <td>{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }}</td>
                                           @endforeach
                                       </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1054,30 +1054,30 @@
         </div>
         @endforeach
         @endif
-        
+
         @if($showQuality)
         @foreach($surveydetails as $surveydetail)
     	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
-           
-                    <div class="box-body">                	
-                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">                                
+
+                    <div class="box-body">
+                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
                                     	<th>Candidates</th>
                                         @foreach($qualities as $quality)
                                         <th>{{ $quality->options->option }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @php
-                                	                           
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1086,10 +1086,10 @@
                                           @foreach($qualities as $quality)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                
-                                	@foreach($position->candidates as $candidate)                                   	             	
+                                  <tbody>
+                                	@foreach($position->candidates as $candidate)
                                           <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
@@ -1101,7 +1101,7 @@
                                             <td>{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }}</td>
                                             @endforeach
                                           </tr>
-                                  	@endforeach                                
+                                  	@endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1111,18 +1111,18 @@
             </div>
             @endforeach
         	@endif
-            
+
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
             <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <div class="col-md-12">                      
+                        <div class="col-md-12">
                                 <div class="box-title">Concerns Per Barangay: {{ $surveydetail->subject }}</div>
                         </div>
                     </div>
-    
-                    <div class="box-body">                	
+
+                    <div class="box-body">
                           <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                                 <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                    <thead>
@@ -1131,11 +1131,11 @@
                                             @foreach($problems as $problem)
                                             <th>{{ $problem->option->option }}</th>
                                             @endforeach
-                                        </tr>                                    
+                                        </tr>
                                     </thead>
                                     <tbody>
                                     @php
-                                                                   
+
                                     @endphp
                                     @foreach($brgysurveys as $barangay)
                                         <tr>
@@ -1155,67 +1155,67 @@
                           </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         @endforeach
-        @endif   
-        
-        
-        @foreach($elections as $election)    	
+        @endif
+
+
+        @foreach($elections as $election)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">Tabular Stats (Summary): {{ $election->name }}</div>
                     </div>
-                </div>                
-                <div class="box-body">                	
+                </div>
+                <div class="box-body">
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
-                            	
+
             					@foreach($positions as $position)
                                   <thead>
                                       <tr>
                                           <th>{{ $position->name }}</th>
                                           <th></th>
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                  
+                                  <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tallyelection[$candidate->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                  $tallyoccstatus,$tallyvoterstatus);   
+                                                                                  $tallyoccstatus,$tallyvoterstatus);
                                       @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           <td>{{ $tallyelection[$candidate->id][$election->id] }}</td>
                                       </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
                       </div>
                 </div>
             </div>
-        </div>        
+        </div>
         @endforeach
         @if($showGender)
         @foreach($elections as $election)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">Tabular Tally by Gender: {{ $election->name }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
@@ -1224,10 +1224,10 @@
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                    
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1236,11 +1236,11 @@
                                           @foreach($genders as $gender)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
-                                  </thead>                                  
+                                      </tr>
+                                  </thead>
                                 <tbody>
-                               	
-                                 @foreach($position->candidates as $candidate)                             	
+
+                                 @foreach($position->candidates as $candidate)
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
@@ -1248,12 +1248,12 @@
                                         	$tallygelection[$candidate->id][$gender->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
                                                                                                       [$gender->id], $tallyempstatus,$tallycivilstatus,
                                                                                                       $tallyoccstatus,$tallyvoterstatus);
-                                                                                        
+
                                         @endphp
                                         <td>{{ $tallygelection[$candidate->id][$gender->id][$election->id] }}</td>
                                         @endforeach
                                     </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1263,18 +1263,18 @@
         </div>
         @endforeach
         @endif
-        
+
          @if($showCivil)
          @foreach($elections as $election)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Civil Status: {{ $election->name }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
@@ -1283,10 +1283,10 @@
                                         @foreach($civilstatuses as $civilstatus)
                                         <th>{{ $civilstatus->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                  
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1295,22 +1295,22 @@
                                           @foreach($civilstatuses as $civilstatus)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                
-                                	@foreach($position->candidates as $candidate)                               	
+                                  <tbody>
+                                	@foreach($position->candidates as $candidate)
                                         <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
                                             @php
                                                 $tallycvelection[$candidate->id][$civilstatus->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
                                                                                                                     $tallygenders, $tallyempstatus,[$civilstatus->id],
-                                                                                                                    $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                                    $tallyoccstatus,$tallyvoterstatus);
                                             @endphp
                                             <td>{{ $tallycvelection[$candidate->id][$civilstatus->id][$election->id] }}</td>
                                             @endforeach
                                         </tr>
-                                  	@endforeach                                
+                                  	@endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1320,18 +1320,18 @@
         </div>
         @endforeach
         @endif
-        
+
         @if($showEmployment)
         @foreach($elections as $election)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Employment Status: {{ $election->id }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					<thead>
@@ -1339,11 +1339,11 @@
                                         @foreach($empstatuses as $empstatus)
                                         <th>{{ $empstatus->name }}</th>
                                         @endforeach
-                                    </tr>                                    
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @php
-                                	                              
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1352,22 +1352,22 @@
                                           @foreach($empstatuses as $empstatus)
                                           <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
-                                  <tbody>                                
-                                	@foreach($position->candidates as $candidate)                                    	             	
+                                  <tbody>
+                                	@foreach($position->candidates as $candidate)
                                           <tr>
                                               <td>{{ $candidate->voter->full_name }}</td>
                                               @foreach($empstatuses as $empstatus)
                                               @php
                                                   $tallyempelection[$candidate->id][$empstatus->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
                                                                                                                       $tallygenders,[$empstatus->id],$tallycivilstatus,
-                                                                                                                      $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                                      $tallyoccstatus,$tallyvoterstatus);
                                               @endphp
                                               <td>{{ $tallyempelection[$candidate->id][$empstatus->id][$election->id] }}</td>
                                               @endforeach
                                           </tr>
-                                  	@endforeach                                
+                                  	@endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1377,18 +1377,18 @@
         </div>
         @endforeach
         @endif
-        
+
         @if($showAgeBracket)
         @foreach($elections as $election)
     	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
+                    <div class="col-md-12">
                       		<div class="box-title">By Age Bracket: {{ $election->name }}</div>
                     </div>
                 </div>
 
-                <div class="box-body">                	
+                <div class="box-body">
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             						<thead>
@@ -1397,10 +1397,10 @@
                                         @foreach($agebrackets as $agebracket)
                                         <th>{{ $agebracket->title }}</th>
                                         @endforeach
-                                    </tr>                             
+                                    </tr>
                                 </thead>
                                 @php
-                                	                                 
+
                                 @endphp
                                 @foreach($positions as $position)
                                   <thead>
@@ -1409,11 +1409,11 @@
                                           @foreach($agebrackets as $agebracket)
                                        	  <th></th>
                                           @endforeach
-                                      </tr>                                    
+                                      </tr>
                                   </thead>
                                   <tbody>
-                                  
-                                  @foreach($position->candidates as $candidate)                               	
+
+                                  @foreach($position->candidates as $candidate)
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
@@ -1424,12 +1424,12 @@
                                               }
                                               $tallyabelection[$candidate->id][$agebracket->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$gtallyagebrackets,$tallybrgy,
                                                                                                         $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                        $tallyoccstatus,$tallyvoterstatus);                                            
+                                                                                                        $tallyoccstatus,$tallyvoterstatus);
                                           @endphp
                                           <td>{{ $tallyabelection[$candidate->id][$agebracket->id][$election->id] }}</td>
                                           @endforeach
                                       </tr>
-                                  @endforeach                                
+                                  @endforeach
                                   </tbody>
                                 @endforeach
                             </table>
@@ -1439,31 +1439,31 @@
         </div>
         @endforeach
         @endif
-                
-        
-           
+
+
+
         @if($showGraph)
         @foreach($surveydetails as $surveydetail)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart (Summary): {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Main Chart (Summary): {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
                 <div class="box-body"><div id="chart_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
-        @endforeach        
+        @endforeach
         @if($showGender)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Chart Tally by Gender: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Chart Tally by Gender: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1477,8 +1477,8 @@
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Civil Status: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Civil Status: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1492,8 +1492,8 @@
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Employment Status: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Employment Status: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1507,8 +1507,8 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Age Bracket: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1522,8 +1522,8 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                            <div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                            <div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1537,8 +1537,8 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                            <div class="box-title">Concerns Per Barangay: {{ $surveydetail->subject }}</div>                	                        	
+                    <div class="col-md-12">
+                            <div class="box-title">Concerns Per Barangay: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
 
@@ -1547,29 +1547,29 @@
         </div>
         @endforeach
         @endif
-        
-        
+
+
         @foreach($elections as $election)
         <div class="row">
     	<div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Main Chart (Summary): {{ $election->name }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Main Chart (Summary): {{ $election->name }}</div>
                     </div>
                 </div>
 
                 <div class="box-body"><div id="chart_election_{{ $election->id }}"></div></div>
             </div>
         </div>
-        @endforeach        
+        @endforeach
         @if($showGender)
         @foreach($elections as $election)
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">Chart Tally by Gender: {{ $election->name }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">Chart Tally by Gender: {{ $election->name }}</div>
                     </div>
                 </div>
 
@@ -1583,8 +1583,8 @@
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Civil Status: {{ $election->name }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Civil Status: {{ $election->name }}</div>
                     </div>
                 </div>
 
@@ -1598,8 +1598,8 @@
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Employment Status: {{ $election->name }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Employment Status: {{ $election->name }}</div>
                     </div>
                 </div>
 
@@ -1613,8 +1613,8 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="col-md-12">                      
-                      		<div class="box-title">By Age Bracket: {{ $election->name }}</div>                	                        	
+                    <div class="col-md-12">
+                      		<div class="box-title">By Age Bracket: {{ $election->name }}</div>
                     </div>
                 </div>
 
@@ -1623,13 +1623,11 @@
         </div>
         @endforeach
         @endif
-        
+
         @endif
-        
+
     </div>
-@else
-No Tagged Candidates to Survey with...!
-@endif
+
 @endsection
 @section('chartcss')
 	<link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -1639,7 +1637,7 @@ No Tagged Candidates to Survey with...!
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
     <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
 @endsection
-@section('chartsjs')		
+@section('chartsjs')
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('js/multiselect.js') }}"></script>
@@ -1648,7 +1646,6 @@ No Tagged Candidates to Survey with...!
 	<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/d3.v5.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/c3.js') }}"></script>
-@if(!empty($candidate) && count($candidate)>0)
     <script>
 $(document).ready(function ($) {
 	$('#hidselsurvey').val($('#selsurvey').val());
@@ -1660,7 +1657,7 @@ $(document).ready(function ($) {
 	$('#hidincprob').val($('#checkprintProb').is(":checked"));
 	$('#hidinccanq').val($('#checkprintCanQ').is(":checked"));
 	$('#hidselelection').val($('#selelection').val());
-	
+
 	$('#selsurvey').on('change',function(e){
 		$('#hidselsurvey').val($(this).val());
 	});
@@ -1710,7 +1707,7 @@ $(document).ready(function ($) {
 		$("input[type='checkbox'][name='empstatus[]']").prop('checked',$(this).is(":checked"));
 	});
 	$('#checkAllPrint').on('change',function(e){
-		$("input[type='checkbox'][class='checkprint[]']").prop('checked',$(this).is(":checked"));		
+		$("input[type='checkbox'][class='checkprint[]']").prop('checked',$(this).is(":checked"));
 		$('#hidincgraph').val($(this).is(":checked"));
 		$('#hidincgen').val($(this).is(":checked"));
 		$('#hidincageb').val($(this).is(":checked"));
@@ -1719,7 +1716,7 @@ $(document).ready(function ($) {
 		$('#hidincprob').val($(this).is(":checked"));
 		$('#hidinccanq').val($(this).is(":checked"));
 	});
-	@foreach($selinitsurveydetails as $surveydetail) 
+	@foreach($selinitsurveydetails as $surveydetail)
 		$('#survey_detail_{{ $surveydetail->id }}').on('change',function(e){
 			if($(this).is(":checked"))
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
@@ -1736,16 +1733,16 @@ $(document).ready(function ($) {
 		});
 	@endforeach
 	$('#checkAllSurveys').on('change',function(e){
-		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));		
-		@foreach($selinitsurveydetails as $surveydetail) 
+		$("input[type='checkbox'][name='survey_detail[]']").prop('checked',$(this).is(":checked"));
+		@foreach($selinitsurveydetails as $surveydetail)
 				$('#hidsurvey_detail_{{ $surveydetail->id }}').val({{ $surveydetail->id }});
-		@endforeach	
+		@endforeach
 	});
 	$('#checkAllElectionReturns').on('change',function(e){
-		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));		
+		$("input[type='checkbox'][name='election_return[]']").prop('checked',$(this).is(":checked"));
 		@foreach($selinitelections as $election)
 				$('#hidelection_return_{{ $election->id }}').val({{ $election->id }});
-		@endforeach	
+		@endforeach
 	});
 	@foreach($selinitpositions as $position)
 		$('#checkAllCandidate_{{ $position->id }}').on('change',function(e){
@@ -1762,7 +1759,7 @@ $(document).ready(function ($) {
 	$('#printdetails').hide('slow');
 	$('#printsurveydetails').hide('slow');
 	$('#printelectionreturns').hide('slow');
-	
+
 	$('#btn_printdetails').on('click',function(e){
 		$('#printdetails').toggle('slow');
 		$('#printsurveydetails').toggle('slow');
@@ -1904,7 +1901,7 @@ $(document).ready(function ($) {
 		theme:"3d",
 		scrollbarPosition:"outside"
 	});
-	
+
 	$("#tblvotescompare").mCustomScrollbar({
 		axis:"yx",
 		scrollButtons:{enable:true},
@@ -1956,11 +1953,11 @@ $(document).ready(function ($) {
 	};*/
 	@foreach($surveydetails as $surveydetail)
 	var chart = c3.generate({
-		bindto: '#chart_{{ $surveydetail->id }}',				
+		bindto: '#chart_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -1997,11 +1994,11 @@ $(document).ready(function ($) {
       @if($showGender)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartgender = c3.generate({
-		bindto: '#chartgender_{{ $surveydetail->id }}',				
+		bindto: '#chartgender_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2041,11 +2038,11 @@ $(document).ready(function ($) {
       @if($showAgeBracket)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartagebracket = c3.generate({
-		bindto: '#chartagebracket_{{ $surveydetail->id }}',				
+		bindto: '#chartagebracket_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2085,11 +2082,11 @@ $(document).ready(function ($) {
       @if($showCivil)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartcivil = c3.generate({
-		bindto: '#chartcivil_{{ $surveydetail->id }}',				
+		bindto: '#chartcivil_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2129,11 +2126,11 @@ $(document).ready(function ($) {
       @if($showEmployment)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartemp = c3.generate({
-		bindto: '#chartemp_{{ $surveydetail->id }}',				
+		bindto: '#chartemp_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2173,11 +2170,11 @@ $(document).ready(function ($) {
       @if($showQuality)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartqualities = c3.generate({
-		bindto: '#chartqualities_{{ $surveydetail->id }}',				
+		bindto: '#chartqualities_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2217,11 +2214,11 @@ $(document).ready(function ($) {
       @if($showProblem)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartproblem = c3.generate({
-		bindto: '#chartproblem_{{ $surveydetail->id }}',				
+		bindto: '#chartproblem_{{ $surveydetail->id }}',
         data: {
 		  x: 'Barangays',
 		  columns: [
-		  	['Barangays', 
+		  	['Barangays',
 			@foreach($brgysurveys as $barangay)
 				'{{ $barangay->name }}',
 			@endforeach
@@ -2254,15 +2251,15 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-	  
-	  
+
+
 	  @foreach($elections as $election)
 	var chart = c3.generate({
-		bindto: '#chart_election_{{ $election->id }}',				
+		bindto: '#chart_election_{{ $election->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2299,11 +2296,11 @@ $(document).ready(function ($) {
       @if($showGender)
 	  @foreach($elections as $election)
 	  var chartgender = c3.generate({
-		bindto: '#chartgender_election_{{ $election->id }}',				
+		bindto: '#chartgender_election_{{ $election->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2343,11 +2340,11 @@ $(document).ready(function ($) {
       @if($showAgeBracket)
 	  @foreach($elections as $election)
 	  var chartagebracket = c3.generate({
-		bindto: '#chartagebracket_election_{{ $election->id }}',				
+		bindto: '#chartagebracket_election_{{ $election->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2387,11 +2384,11 @@ $(document).ready(function ($) {
       @if($showCivil)
 	  @foreach($elections as $election)
 	  var chartcivil = c3.generate({
-		bindto: '#chartcivil_election_{{ $election->id }}',				
+		bindto: '#chartcivil_election_{{ $election->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2431,11 +2428,11 @@ $(document).ready(function ($) {
       @if($showEmployment)
 	  @foreach($elections as $election)
 	  var chartemp = c3.generate({
-		bindto: '#chartemp_election_{{ $election->id }}',				
+		bindto: '#chartemp_election_{{ $election->id }}',
         data: {
 		  x: 'Candidates',
 		  columns: [
-		  	['Candidates', 
+		  	['Candidates',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
 					'{{ $candidate->voter->full_name }}',
@@ -2472,10 +2469,7 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-	 @endif	  
+	 @endif
 });
     </script>
-@else
-//No Tagged Candidates to Survey with...!
-@endif
 @endsection
