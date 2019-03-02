@@ -43,6 +43,9 @@ class Barangay extends Model
   public function surveyor(){
 		return $this->hasMany('App\Models\AssignmentDetail','barangay_id');
 	}
+  public function voters(){
+		return $this->hasMany('App\Models\Voter','barangay_id');
+	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
