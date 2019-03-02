@@ -88,8 +88,8 @@ class Voter extends Model
 		return $precinct->precinct_number;
 	}
 	public function getVoterBarangay(){
-		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
-		return $barangay->barangay->name;
+		//$barangay = Precinct::where('id',$this->barangay_id)->with('barangay')->first();
+		return $this->barangay->name;
 	}
 	public function getSurveyor(){
 		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();
