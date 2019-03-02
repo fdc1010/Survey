@@ -47,6 +47,11 @@ class SurveyAnswer extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
+  public function getAnsweredOption(){
+    foreach ($this->answered_option as $key => $value) {
+        echo $value;
+    }
+  }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
