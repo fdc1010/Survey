@@ -138,6 +138,7 @@ class QuestionOptionCrudController extends CrudController
 			'label' => 'Is Option Tagged for Issues/Concerns/Problems',
 			'type' => 'checkbox'
 	    ]);
+    $this->crud->orderBy('priority');
 		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
