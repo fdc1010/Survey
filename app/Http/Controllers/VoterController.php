@@ -34,6 +34,7 @@ class VoterController extends Controller
 	public function extramiddlename(){
 		Voter::get()->chunk(400, function ($results){
         foreach ($results as $key => $voter) {
+          info($voter);
     			$explodefm = explode(" ",$voter->first_name);
     			echo $voter->first_name . " : ";
     			if(count($explodefm)>1){
