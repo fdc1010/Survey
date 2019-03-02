@@ -32,7 +32,7 @@ class Voter extends Model
     }
     public function barangay()
       {
-          return $this->belongsTo('App\Models\Sitio','barangay_id');
+          return $this->belongsTo('App\Models\Barangay','barangay_id');
       }
 	public function status()
     {
