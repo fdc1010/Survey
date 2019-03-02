@@ -18,7 +18,7 @@ class Voter extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['precinct_id','is_candidate', 'first_name','last_name','middle_name', 'birth_date','contact',
+    protected $fillable = ['precinct_id','barangay_id','is_candidate', 'first_name','last_name','middle_name', 'birth_date','contact',
 							'address', 'birth_place','age','gender_id', 'profilepic','status_id','employment_status_id',
 							'civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 							'yearly_household','work'];
@@ -30,6 +30,10 @@ class Voter extends Model
     {
         return $this->belongsTo('App\Models\Sitio','sitio_id');
     }
+    public function barangay()
+      {
+          return $this->belongsTo('App\Models\Sitio','barangay_id');
+      }
 	public function status()
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');

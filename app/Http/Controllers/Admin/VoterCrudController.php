@@ -36,10 +36,10 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
+		$this->crud->removeColumn(['precinct_id','barangay_id','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
-		$this->crud->removeField(['employment_status_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
+		$this->crud->removeField(['employment_status_id','barangay_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
 		$this->crud->addColumn([
             'name' => 'precinct_id',
             'label' => 'Precinct',
@@ -166,12 +166,12 @@ class VoterCrudController extends CrudController
 			'name' => 'monthly_household'
 		]);
 		$this->crud->addField([
-			'label' => "Sitio",
+			'label' => "Barangay",
 			'type' => 'select2',
-			'name' => 'sitio_id', // the relationship name in your Model
-			'entity' => 'sitio', // the relationship name in your Model
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Sitio", // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
 			//'attribute2' => 'name', // attribute on Article that is shown to admin
 			//'entity2' => "barangay"
 		]);
@@ -180,7 +180,7 @@ class VoterCrudController extends CrudController
             'type' => 'checkbox',
             'label' => 'Is candidate',
       ]);
-      
+
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
