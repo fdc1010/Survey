@@ -84,6 +84,7 @@ class CandidateCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Party" // on create&update, do you need to add/delete pivot table entries?
 		]);
+    $this->crud->orderBy('position_id');
         // add asterisk for fields that are required in CandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
