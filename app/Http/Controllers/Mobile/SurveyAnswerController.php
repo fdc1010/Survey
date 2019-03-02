@@ -40,10 +40,10 @@ class SurveyAnswerController extends Controller
 	public function getSurveyorProgress(Request $request){
 			$userid = $request->user_id;
 			$surveydetailid = $request->survey_detail_id;
-			
+
 			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
-															$q->with(['sitio'=>function($qs)use($request){											
-																$qs->with(['voters'=>function($qv)use($request){												
+															$q->with(['barangay'=>function($qs)use($request){
+																$qs->with(['voters'=>function($qv)use($request){
 																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
 																				->where('user_id',$request->user_id)
 																				->select(['voter_id'])
@@ -56,21 +56,21 @@ class SurveyAnswerController extends Controller
 														->where('survey_detail_id',$surveydetailid)
 														->where('user_id',$userid)
 														->first();
-														
-			
-			
+
+
+
 			if($surveyorassignment)	{
 				$survey_per_area_count = array();
-				
+
 				foreach($surveyorassignment->assignments as $assignment){
-					array_push($survey_per_area_count,array('sitio_id'=>$assignment->sitio->id,
-															'name'=>$assignment->sitio->name,
+					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
+															'name'=>$assignment->barangay->name,
 															'quota'=>$assignment->quota,
 															'count'=>$assignment->getSurveyCount(),
 															'surveyor_progress'=>$assignment->getProgress(),
 															'surveyor_progress_percent'=>$assignment->getProgressPercent()));
 				}
-				
+
 				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
 											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
 											'survey_count'=>$surveyorassignment->getSurveyCount(),
@@ -91,7 +91,7 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
-			
+
 			$checksurveyvoter = SurveyAnswer::where('user_id',$userid)
 											->where('voter_id',$voterid)
 											->where('survey_detail_id',$surveydetailid)
@@ -99,24 +99,24 @@ class SurveyAnswerController extends Controller
 			if(empty($checksurveyvoter)){
 				$voterdetails = json_decode($request->voter_detail,true);
 				$profilepic=null;
-				if($request->hasFile('profilepic')){	
+				if($request->hasFile('profilepic')){
 					info('profilepic');
-					$voter = Voter::find($voterid);				
+					$voter = Voter::find($voterid);
 					$path = config('app.root') . '/public/profilepic/';
 					$photo=$path.basename($voter->profilepic);
-					
+
 					File::delete($photo);
-					
+
 					$md5profName = md5_file($request->file('profilepic')->getRealPath());
 					$guessExtensionprof = $request->file('profilepic')->guessExtension();
-		
+
 					$srvroot = $_SERVER['DOCUMENT_ROOT'];
 					$pathimage =  $srvroot . '/profilepic/';
 					$path = url('/profilepic/');
 					if (!File::exists($path)) {
 						File::makeDirectory($path,0777);
 					}
-		
+
 					$width = 160;
 					$height = 160;
 					$image = Image::make($request->file('profilepic')->getRealPath());
@@ -125,14 +125,14 @@ class SurveyAnswerController extends Controller
 						$constraint->aspectRatio();
 						$constraint->upsize();
 					});
-		
+
 					$image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
-		
+
 					$filename = $md5profName.'.'.$guessExtensionprof;
 					$profilepic =  config('app.url') . '/profilepic/' . $filename;
-		
+
 				}
-				//$voter->save();		
+				//$voter->save();
 				 Voter::where('id',$voterid)
 						->update([
 									'age'=>$voterdetails['age'],
@@ -150,18 +150,18 @@ class SurveyAnswerController extends Controller
 				$vstatusarr = json_decode($voterdetails['status'],true);
 				foreach($vstatusarr as $vstatus){
 					StatusDetail::where('voter_id',$voterid)->delete();
-					$voterstatuses = new StatusDetail;	
+					$voterstatuses = new StatusDetail;
 					$voterstatuses->voter_id = $voterid;
 					$voterstatuses->status_id = $vstatus;
 					$voterstatuses->save();
 				}
-			
+
 			}
-				
+
 				$receivedans = json_decode($request->q_and_a, true);
-				
+
 				foreach($receivedans as $voteranswers){
-					foreach($voteranswers['answers'] as $ansid){								
+					foreach($voteranswers['answers'] as $ansid){
 						$optid = $ansid['id'];
 						$surveyanswers = SurveyAnswer::where('user_id',$userid)
 											->where('voter_id',$voterid)
@@ -170,7 +170,7 @@ class SurveyAnswerController extends Controller
 											->where('option_id',$optid)
 											->first();
 						if(empty($surveyanswers)){
-							$surveyans = new SurveyAnswer;		
+							$surveyans = new SurveyAnswer;
 							$surveyans->survey_detail_id = $surveydetailid;
 							$surveyans->question_id = $voteranswers['questionId'];
 							$surveyans->answered_option = $voteranswers['answers'];
@@ -178,16 +178,16 @@ class SurveyAnswerController extends Controller
 							$surveyans->user_id = $userid;
 							$surveyans->voter_id = $voterid;
 							$surveyans->other_answer = $ansid['otherAnswer'];
-							
+
 							if($request->has('latitude')){
 								$surveyans->latitude = $request->latitude;
 							}
 							if($request->has('longitude')){
 								$surveyans->longitude = $request->longitude;
 							}
-							
-							$surveyansid=$surveyans->save();				
-							
+
+							$surveyansid=$surveyans->save();
+
 							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
 							if($optioncandidate){
 								$tallycandidate = new TallyVote;
@@ -199,11 +199,11 @@ class SurveyAnswerController extends Controller
 							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
 							if($relquestion){
 								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-														->where('question_id',$relquestion->related_question_id)										
+														->where('question_id',$relquestion->related_question_id)
 														->first();
 								if($surans){
 									$question = Question::find($relquestion->question_id);
-									if(!empty($question->for_position) && is_numeric($question->for_position)){							
+									if(!empty($question->for_position) && is_numeric($question->for_position)){
 										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
 										if($optioncandidate){
 											$tallycandidate = new TallyOtherVote;
@@ -213,11 +213,11 @@ class SurveyAnswerController extends Controller
 											$tallycandidate->survey_detail_id = $surveydetailid;
 											$tallycandidate->save();
 										}
-									
+
 									}
 								}
 							}
-							
+
 							$optionproblem = OptionProblem::where('option_id',$optid)->first();
 							if($optionproblem){
 								$voterbrgy = Voter::with('precinct')->find($voterid);
@@ -227,12 +227,12 @@ class SurveyAnswerController extends Controller
 								$tallyproblem->survey_detail_id = $surveydetailid;
 								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
 								$tallyproblem->save();
-							}	
+							}
 						}
-					}		
+					}
 				}
 				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
-			
+
 	}
     /**
      * Show the form for creating a new resource.
