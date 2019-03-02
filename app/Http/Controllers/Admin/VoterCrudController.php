@@ -36,7 +36,7 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','is_candidate','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
+		$this->crud->removeColumn(['precinct_id',profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
 		$this->crud->removeField(['employment_status_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
@@ -89,11 +89,6 @@ class VoterCrudController extends CrudController
             'type' => 'model_function',
 			'function_name' => 'getSurveyor'
 	    ]);
-    $this->crud->addColumn([
-            'name' => 'is_candidate',
-            'type' => 'checkbox',
-            'label' => 'Is candidate',
-      ]);
 		$this->crud->addField([
 			'label' => "Precinct",
 			'type' => 'select2',
