@@ -65,12 +65,13 @@ class MobileController extends Controller
 			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
-												$q->with(['barangay'=>function($qu){
-    																				// $qu->with(['voters'=>function($qs){
-    																				// 					$qs->with(['statuses'=>function($qvs){
-    																				// 									$qvs->select(['voter_id','status_id']);
-    																				// 								},'precinct']);
-    																				// 		}]);
+
+																		$q->with(['barangay'=>function($qu){
+    																				$qu->with(['voters'=>function($qs){
+    																									$qs->with(['statuses'=>function($qvs){
+    																													$qvs->select(['voter_id','status_id']);
+    																												},'precinct']);
+    																						}]);
 
 																			}]);
 															}])
