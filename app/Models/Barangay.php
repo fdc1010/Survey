@@ -45,6 +45,7 @@ class Barangay extends Model
 	}
 public function voters(){
 		return $this->hasMany('App\Models\Voter','barangay_id'); 	
+
 	}
     /*
     |--------------------------------------------------------------------------
