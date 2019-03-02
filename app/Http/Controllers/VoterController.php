@@ -60,14 +60,14 @@ class VoterController extends Controller
                 Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages,&$ok) {
                     foreach ($results as $key => $value) {
                               $insert = [
-                                      'precinct_id' => $value->precinct,
-                                      'seq_num' => $value->seqnum,
-                                      // 'status_id' => $value->status,
-                                      // 'sitio_id' => $value->sitio,
-                                      'last_name' => $value->lastname,
-                                      'first_name' => $value->firstname,
-                                      // 'middle_name' => $value->middlename,
-                                      // 'address' => $value->address
+                                        'precinct_id' => $value->prec_id,
+                                        'seq_num' => $value->seq_num,
+                                        // 'status_id' => $value->status,
+                                        'barangay_id' => $value->brgy_id,
+                                        'last_name' => $value->lastname,
+                                        'first_name' => $value->firstname,
+                                        // 'middle_name' => $value->middlename,
+                                        'address' => $value->address
                                       ];
 
                               $insertData = DB::table('voters')->insert($insert);
@@ -112,14 +112,14 @@ class VoterController extends Controller
                   Excel::filter('chunk')->load($path)->chunk(400, function ($results) use (&$data,&$index,&$messages,&$ok) {
                       foreach ($results as $key => $value) {
                                 $insert = [
-                                        'precinct_id' => $value->precinct,
-                                        'seq_num' => $value->seqnum,
+                                        'precinct_id' => $value->prec_id,
+                                        'seq_num' => $value->seq_num,
                                         // 'status_id' => $value->status,
-                                        // 'sitio_id' => $value->sitio,
+                                        'barangay_id' => $value->brgy_id,
                                         'last_name' => $value->lastname,
                                         'first_name' => $value->firstname,
                                         // 'middle_name' => $value->middlename,
-                                        // 'address' => $value->address
+                                        'address' => $value->address
                                         ];
 
                                 $insertData = DB::table('voters')->insert($insert);
@@ -164,37 +164,23 @@ class VoterController extends Controller
 
                     foreach ($data as $key => $value) {
                         $insert[] = [
-                        'precinct_number' => $value->prec,
-                        'barangay_id' => $value->brgy
-                        ];
-<<<<<<< HEAD
-			echo $value->prec . "<br>" . $value->brgy;
-                    }
-
-=======
-			echo $value->prec . "<br>" . $value->brgy;
-                    }
-
->>>>>>> 159ce63e4f4c22098ff1293aaabf3078e4a33236
+                                'id' => $value->precinct,
+                                'precinct_number' => $value->prec_code,
+                                'barangay_id' => $value->brgy_id
+                            ];
                     if(!empty($insert)){
- 			try{
-                        $insertData = DB::table('precincts')->insert($insert);
-                        if ($insertData) {
-                            Session::flash('success', 'Your Data has successfully imported');
-                        }else {
-                            Session::flash('error', 'Error inserting the data..');
-                            return back();
-                        }
-<<<<<<< HEAD
-			}catch(\Exception $e){
-			    echo $e;
-			    info($e);
-=======
-			}catch(\Exception $e){
-			    echo $e;
-			    info($e);
->>>>>>> 159ce63e4f4c22098ff1293aaabf3078e4a33236
-			}
+ 			                  try{
+                            $insertData = DB::table('precincts')->insert($insert);
+                            if ($insertData) {
+                                Session::flash('success', 'Your Data has successfully imported');
+                            }else {
+                                Session::flash('error', 'Error inserting the data..');
+                                return back();
+                            }
+                  			}catch(\Exception $e){
+                  			    echo $e;
+                  			    info($e);
+                  			}
                     }
                 }
 
