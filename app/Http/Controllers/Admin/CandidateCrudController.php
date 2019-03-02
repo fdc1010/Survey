@@ -67,7 +67,7 @@ class CandidateCrudController extends CrudController
 		// 	'entity' => 'voter', // the relationship name in your Model
 		// 	'attribute' => 'full_name', // attribute on Article that is shown to admin
 		// 	'model' => "App\Models\Voter"
-		])->beforeField('position_id');
+		//])->beforeField('position_id');
 		$this->crud->addField([
 			'label' => "Position",
 			'type' => 'select',
