@@ -40,12 +40,16 @@ class VoterCrudController extends CrudController
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
 		$this->crud->removeField(['employment_status_id','barangay_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
-		$this->crud->addColumn([
+    $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+	    ])->makeFirstColumn();
+    $this->crud->addColumn([
             'name' => 'precinct_id',
             'label' => 'Precinct',
             'type' => 'model_function',
 			'function_name' => 'getPrecinct'
-	    ])->makeFirstColumn();
+	    ]);
 		$this->crud->addColumn([
             'name' => 'status',
             'label' => 'Status',
