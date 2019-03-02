@@ -50,6 +50,7 @@ class SurveyAnswer extends Model
   public function getAnsweredOption(){
     $ansval = "";
     foreach ($this->answered_option as $value) {
+        info($value);
         $ansval .= $value;
     }
     return $ansval;
