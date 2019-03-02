@@ -32,8 +32,8 @@ class VoterController extends Controller
         return Image::make($media->getPath())->response();
     }*/
 	public function extramiddlename(){
-		Voter::get()->chunk(400, function ($voters){
-    		foreach($voters as $voter){
+		Voter::get()->chunk(400, function ($results){
+        foreach ($results as $key => $voter) {
     			$explodefm = explode(" ",$voter->first_name);
     			echo $voter->first_name . " : ";
     			if(count($explodefm)>1){
