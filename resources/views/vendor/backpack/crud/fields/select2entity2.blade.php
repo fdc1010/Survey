@@ -19,15 +19,19 @@
             <option value="">-</option>
         @endif
 
-        @if (isset($field['model']))
-            @foreach ($field['model']::doesntHave($field['entity2'])->get() as $connected_entity_entry)
-                @if($current_value == $connected_entity_entry->getKey())
-                    <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['attribute']} }}</option>
-                @else
-                    <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['attribute']} }}</option>
-                @endif
-            @endforeach
-        @endif
+        @php
+        if (isset($field['model'])){
+            $field['model']::doesntHave($field['entity2'])->chunk(400, function ($records) use ($current_value,$field) {
+              foreach ($records as $connected_entity_entry){
+                if($current_value == $connected_entity_entry->getKey()){
+                    echo "<option value='{{ $connected_entity_entry->getKey() }}' selected>{{ $connected_entity_entry->{$field['attribute']} }}</option>";
+                }else{
+                    echo "<option value='{{ $connected_entity_entry->getKey() }}'>{{ $connected_entity_entry->{$field['attribute']} }}</option>";
+                }
+              }
+            });
+        }
+        @endphp
     </select>
 
     {{-- HINT --}}
