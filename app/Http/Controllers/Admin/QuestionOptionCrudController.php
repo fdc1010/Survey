@@ -172,7 +172,7 @@ class QuestionOptionCrudController extends CrudController
 			]);
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
-      if(count($positions)>0){
+      if(!empty($positions) && count($positions)>0){
     			foreach($positions as $posid){
     				$optionposition = OptionPosition::updateOrCreate([
     					'position_id' => $posid,
