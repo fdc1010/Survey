@@ -66,11 +66,11 @@ class MobileController extends Controller
 			  										->where('completed',0)
 													->with(['assignments'=>function($q){
 																		$q->with(['barangay'=>function($qu){
-    																				// $qu->with(['voters'=>function($qs){
-    																				// 					$qs->with(['statuses'=>function($qvs){
-    																				// 									$qvs->select(['voter_id','status_id']);
-    																				// 								},'precinct']);
-    																				// 		}]);
+    																				$qu->with(['voters'=>function($qs){
+    																									$qs->with(['statuses'=>function($qvs){
+    																													$qvs->select(['voter_id','status_id']);
+    																												},'precinct']);
+    																						}]);
 																			}]);
 															}])
 			  										->first();
