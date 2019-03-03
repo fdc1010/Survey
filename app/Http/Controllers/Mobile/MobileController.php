@@ -36,7 +36,7 @@ class MobileController extends Controller
 
 
   		    $userid = $request->id;
-          $user = User::find($userid);
+          $user = User::find($userid)->select(['name','email','api_token','imei']);
   			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
   			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
   			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
