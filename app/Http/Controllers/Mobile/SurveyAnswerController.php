@@ -39,7 +39,7 @@ class SurveyAnswerController extends Controller
         //
     }
 	public function getSurveyorProgress(Request $request){
-
+    if(!empty($request->user_id) && $request->user_id > 0){
         $userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
@@ -98,6 +98,7 @@ class SurveyAnswerController extends Controller
   											'survey_quota'=>0,
   											'survey_count_per_quota'=>0]);
   			}
+    }
 
 	}
 	public function storeAnswers(Request $request){
