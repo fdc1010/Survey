@@ -58,7 +58,7 @@ class MobileController extends Controller
                                   }
                               });
           }
-  			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
+  			  return response()->json(['user'=>$user,
   			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
   										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
   										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails,'voters'=>$data]);
