@@ -45,6 +45,7 @@ class MobileController extends Controller
           $data = [];
   			  $surveyordetails = SurveyorAssignment::where('user_id',$userid)
   			  										->where('completed',0)
+                              ->select(['id','user_id','survey_detail_id','quota','count','progress','task','description'])
                               ->first();
           if($surveyordetails){
                 $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
