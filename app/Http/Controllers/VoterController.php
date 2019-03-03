@@ -48,7 +48,11 @@ class VoterController extends Controller
     Voter::chunk(400, function ($results){
         foreach ($results as $voter) {
             $firstname = str_replace($voter->middle_name, '', $voter->first_name);
-            echo "ID# " . $voter->id . " " . $firstname ." <br>";
+            if(!empty($firstname)){
+                echo "ID# " . $voter->id . " " . $firstname ." <br>";
+            }else {
+                echo "ID# " . $voter->id . " BLANK first name";
+            }
             //$curvoter->save();
         }
       });
