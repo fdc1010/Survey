@@ -49,9 +49,32 @@ class MobileController extends Controller
           if($surveyordetails){
                 $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
                 $voters = Voter::whereIn('barangay_id',$assignmentarea)
-  													  ->with(['precinct','statuses'=>function($qvs){
+  													  ->with(['precinct'=>function($qvs){
+                                            $qvs->select('precinct_number');
+                                      },
+                                      'statuses'=>function($qvs){
                                             $qvs->select(['voter_id','status_id']);
-                                }])
+                                      },
+                                      'barangay'=>function($qvs){
+                                            $qvs->select('name');
+                                      },
+                                      'employmentstatus'=>function($qvs){
+                                            $qvs->select('name');
+                                      },
+                                      'civilstatus'=>function($qvs){
+                                            $qvs->select('name');
+                                      },
+                                      'occupancystatus'=>function($qvs){
+                                            $qvs->select('name');
+                                      },
+                                      'gender'=>function($qvs){
+                                            $qvs->select('name');
+                                      }
+                                    ])
+                              ->select(['first_name','last_name','middle_name', 'birth_date','contact',
+                          							'address', 'birth_place','age','profilepic',
+                          							'occupancy_length','monthly_household',
+                          							'yearly_household','work'])
   			  										->chunk(400, function ($results) use (&$data){
                                   foreach ($results as $voter) {
                                       array_push($data,$voter);
