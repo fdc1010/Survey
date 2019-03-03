@@ -40,6 +40,7 @@ class SurveyAnswerController extends Controller
     }
 	public function getSurveyorProgress(Request $request){
 
+        $userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
   			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
