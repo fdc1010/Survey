@@ -34,7 +34,7 @@ class SurveyAnswerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumns(['user_id','answered_option']);
+        $this->crud->removeColumns(['user_id','voter_id','answered_option']);
         $this->crud->addColumn([
             'label' => "User",
       			'type' => 'select',
@@ -43,6 +43,14 @@ class SurveyAnswerCrudController extends CrudController
       			'attribute' => 'name', // attribute on Article that is shown to admin
       			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
     		])->makeFirstColumn();
+        $this->crud->addColumn([
+            'label' => "Voter",
+      			'type' => 'select',
+      			'name' => 'voter_id', // the relationship name in your Model
+      			'entity' => 'voter', // the relationship name in your Model
+      			'attribute' => 'name', // attribute on Article that is shown to admin
+      			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
+    		])
         $this->crud->addColumn([
                 'name' => 'answered_option',
                 'label' => 'Answered Option',
