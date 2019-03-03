@@ -48,28 +48,35 @@ class MobileController extends Controller
                               ->select(['id','user_id','survey_detail_id','quota','count','progress','task','description'])
                               ->first();
           if($surveyordetails){
-                $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
-                $voters = Voter::whereIn('barangay_id',$assignmentarea)
-  													  ->with(['precinct'=>function($qvs){
-                                            $qvs->select('precinct_number');
+                $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)
+                                                      ->with(['barangay'=>function($q){
+                                                                    $q->select('name');
+                                                              }
+                                                            ])
+                                                      ->select(['assignment_id','barangay_id','quota','count','progress','task','description'])
+                                                      ->get();
+                $assignmentbrgy = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
+                $voters = Voter::whereIn('barangay_id',$assignmentbrgy)
+  													  ->with(['precinct'=>function($q){
+                                            $q->select('precinct_number');
                                       },
-                                      'statuses'=>function($qvs){
-                                            $qvs->select(['voter_id','status_id']);
+                                      'statuses'=>function($q){
+                                            $q->select(['voter_id','status_id']);
                                       },
-                                      'barangay'=>function($qvs){
-                                            $qvs->select('name');
+                                      'barangay'=>function($q){
+                                            $q->select('name');
                                       },
-                                      'employmentstatus'=>function($qvs){
-                                            $qvs->select('name');
+                                      'employmentstatus'=>function($q){
+                                            $q->select('name');
                                       },
-                                      'civilstatus'=>function($qvs){
-                                            $qvs->select('name');
+                                      'civilstatus'=>function($q){
+                                            $q->select('name');
                                       },
-                                      'occupancystatus'=>function($qvs){
-                                            $qvs->select('name');
+                                      'occupancystatus'=>function($q){
+                                            $q->select('name');
                                       },
-                                      'gender'=>function($qvs){
-                                            $qvs->select('name');
+                                      'gender'=>function($q){
+                                            $q->select('name');
                                       }
                                     ])
                               ->select(['id','precinct_id','barangay_id','gender_id','status_id','employment_status_id','civil_status_id','occupancy_status_id',
@@ -86,7 +93,8 @@ class MobileController extends Controller
   			  return response()->json(['user'=>$user,
   			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
   										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
-  										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails,'voters'=>$data]);
+  										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails,
+                      'assignmentarea'=>$assignmentarea,'voters'=>$data]);
 
   	}
 	public function login(Request $request)
