@@ -36,7 +36,7 @@ class MobileController extends Controller
 
 
   		    $userid = $request->id;
-          $user = User::find($userid)->select(['name','email','api_token','imei']);
+          $user = User::where('id',$userid)->select(['name','email','api_token','imei'])->first();
   			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
   			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
   			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
