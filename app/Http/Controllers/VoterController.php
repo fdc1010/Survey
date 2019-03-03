@@ -50,7 +50,7 @@ class VoterController extends Controller
             $firstname = str_replace($voter->middle_name, '', $voter->first_name);
             if(!empty($firstname)){
                 echo "ID# " . $voter->id . " " . $firstname ." <br>";
-                $updateData = Voter::where('voter_id',$voter->id)
+                $updateData = Voter::where('id',$voter->id)
                                   ->update(['first_name' => $firstname]);
             }else {
                 echo "ID# " . $voter->id . " BLANK first name";
