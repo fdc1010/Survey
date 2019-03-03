@@ -58,10 +58,7 @@ class VoterController extends Controller
         // $this->validate($request, array(
         //     'filevoters'      => 'required'
         // ));
-<<<<<<< HEAD
-=======
         try{
->>>>>>> 560fef8af83a86bb290013097119c32b621be208
         $index=$request->index;
         if($request->hasFile('fileupdatevoters')){
             $extension = File::extension($request->file('fileupdatevoters')->getClientOriginalName());
@@ -108,12 +105,9 @@ class VoterController extends Controller
                   return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
               }
         }
-<<<<<<< HEAD
-=======
       }catch(\Exception $e){
         info($e);
       }
->>>>>>> 560fef8af83a86bb290013097119c32b621be208
         $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
         return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
     }
