@@ -90,6 +90,14 @@
 
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
 </form>
+<h1>Import Excel Masterlist of Update Firstname Voters</h1>
+<form action="{{ route('updatedfnvoters') }}" method="POST" enctype="multipart/form-data" id="formupdatevoters">
+    {{ csrf_field() }}
+    Choose your xls/csv File : <input type="file" name="fileupdatevoters" id="fileupdatevoters" class="form-control">
+
+    <button class="ladda-button btn btn-primary btn-lg" data-style="expand-right" id="btnsubmitupdate" style="margin-top: 3%"><span class="ladda-label">Submit</span></button>
+    <input type="hidden" name="index" id="index" value="0">
+</form>
 </div>
 <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.js') }}"></script>
@@ -99,6 +107,7 @@
 <script>
 $(function() {
   var l = Ladda.create( document.querySelector( '#btnsubmit' ) );
+  var updatel = Ladda.create( document.querySelector( '#btnsubmitupdate' ) );
   $("#formvoters").validate({
     rules: {
       filevoters: {
@@ -148,6 +157,56 @@ $(function() {
         });
     }
   });
+  $("#formupdatevoters").validate({
+    rules: {
+      filevoters: {
+        required: true,
+        extension: "xls|xlsx|csv"
+      }
+    },
+    messages: {
+        filevoters: "File must be XLS, XLSX or CSV"
+    },
+    submitHandler: function(form) {
+        updatel.start();
+        var formData = new FormData();
+        formData.append('index', $('#index').val());
+        formData.append('file', $('#fileupdatevoters')[0].files[0]);
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: new FormData(form),
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            cache: false,
+            success: function(response) {
+                var msg = response;
+                console.log(msg);
+                $('#uploadmsg').empty();
+                $('#index').val(parseInt(msg.index)-1);
+                $.each(msg.messages,function(key,value){
+                      $('#uploadmsg').append(value[0]);
+                });
+                $('#uploadmsg').removeClass('alert-danger')
+                $('#uploadmsg').addClass('alert-success');
+                $('#uploadmsg').show('slow');
+                updatel.stop();
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                var msg = xhr.responseJSON;
+                console.log(msg);
+                $('#uploadmsg').empty();
+                $.each(msg.messages,function(key,value){
+                      $('#uploadmsg').append(value[0]);
+                });
+                $('#uploadmsg').removeClass('alert-success');
+                $('#uploadmsg').addClass('alert-danger')
+                $('#uploadmsg').show('slow');
+                updatel.stop();
+            }
+        });
+    }
+  });
+
   $('#uploadmsg').hide();
   $('#index').val(0);
 });

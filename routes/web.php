@@ -20,6 +20,8 @@ Route::post('importvoters2', 'VoterController@importvoters2')->name('importvoter
 Route::post('importbarangays', 'BarangayController@importbarangays')->name('importbarangays');
 Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
+Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
+Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
