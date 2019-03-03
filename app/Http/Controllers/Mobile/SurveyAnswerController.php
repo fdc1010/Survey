@@ -38,6 +38,52 @@ class SurveyAnswerController extends Controller
     {
         //
     }
+    public function getSurveyorProgressB(Request $request){
+  			$userid = $request->user_id;
+  			$surveydetailid = $request->survey_detail_id;
+
+  			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
+  															$q->with(['sitio'=>function($qs)use($request){
+  																$qs->with(['voters'=>function($qv)use($request){
+  																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+  																				->where('user_id',$request->user_id)
+  																				->select(['voter_id'])
+  																				->groupBy('voter_id')
+  																				->get()->pluck('voter_id')->toArray();
+  																			$qv->whereIn('id',$surveyansvoterid);
+  																		}]);
+  															}]);
+  														}])
+  														->where('survey_detail_id',$surveydetailid)
+  														->where('user_id',$userid)
+  														->first();
+
+
+
+  			if($surveyorassignment)	{
+  				$survey_per_area_count = array();
+
+  				foreach($surveyorassignment->assignments as $assignment){
+  					array_push($survey_per_area_count,array('sitio_id'=>$assignment->sitio->id,
+  															'name'=>$assignment->sitio->name,
+  															'quota'=>$assignment->quota,
+  															'count'=>$assignment->count,
+  															'surveyor_progress'=>$assignment->getProgressB(),
+  															'surveyor_progress_percent'=>$assignment->getProgressPercentB()));
+  				}
+
+  				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgressB(),
+  											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercentB(),
+  											'survey_count'=>$surveyorassignment->count,
+  											'survey_quota'=>$surveyorassignment->quota,
+  											'survey_count_per_quota'=>$survey_per_area_count]);
+  			}else{
+  				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
+  											'survey_count'=>0,
+  											'survey_quota'=>0,
+  											'survey_count_per_quota'=>0]);
+  			}
+  	}
     public function getSurveyorProgress(Request $request){
   			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;

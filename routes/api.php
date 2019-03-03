@@ -27,6 +27,7 @@ Route::group(['prefix' => 'mobile',
 		Route::get('getVoterInfoByName', 'VoterController@getVoterInfoByName');
 		Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 		Route::get('getSurveyorProgress','SurveyAnswerController@getSurveyorProgress');
+		Route::get('getSurveyorProgressB','SurveyAnswerController@getSurveyorProgressB');
 		Route::get('getSurveyorInfo','MobileController@getSurveyorInfo');
 
 		Route::group(['middleware' => 'auth:api'], function () {
