@@ -48,9 +48,7 @@ class SurveyorAssignmentCrudController extends CrudController
 		])->makeFirstColumn();
 		$this->crud->addColumn([
             'name' => 'count',
-            'label' => 'Count',
-            'type' => 'model_function',
-			'function_name' => 'getSurveyCount'
+            'label' => 'Count'
 	    ])->afterColumn('quota');
 		$this->crud->addColumn([
             'name' => 'progress',
