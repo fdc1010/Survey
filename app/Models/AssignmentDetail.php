@@ -19,7 +19,7 @@ class AssignmentDetail extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['assignment_id','barangay_id','sitio_id','quota','progress','task','description'];
+    protected $fillable = ['assignment_id','barangay_id','sitio_id','quota','count','progress','task','description'];
     // protected $hidden = [];
     // protected $dates = [];
   	public function assignareas()
@@ -42,6 +42,9 @@ class AssignmentDetail extends Model
   		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
   	}
   	public function getProgressPercent(){
+  		return number_format((($this->count/$this->quota)*100),2) . " %";
+  	}
+    public function getProgressPercentB(){
   		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
   	}
   	public function getSurveyCount(){
@@ -74,6 +77,10 @@ class AssignmentDetail extends Model
   		return $result;
   	}
   	public function getProgress(){
+
+  		return (($this->count/$this->quota)*100);
+  	}
+    public function getProgressB(){
 
   		return (($this->getSurveyCount()/$this->quota)*100);
   	}

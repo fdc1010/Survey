@@ -18,13 +18,14 @@ class AddBrgyIdSitioTable extends Migration
 			$table->integer('barangay_id')->nullable();
 			$table->integer('sitio_id')->nullable();
         });
-		
-		Schema::table('sitios', function (Blueprint $table) {            
+
+		Schema::table('sitios', function (Blueprint $table) {
 			$table->integer('barangay_id')->nullable();
         });
-		
-		Schema::table('voters', function (Blueprint $table) {            
+
+		Schema::table('voters', function (Blueprint $table) {
 			$table->integer('sitio_id')->nullable();
+      $table->integer('barangay_id')->nullable();
         });
     }
 
