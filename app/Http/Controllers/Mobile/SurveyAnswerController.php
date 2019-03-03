@@ -65,7 +65,7 @@ class SurveyAnswerController extends Controller
 
   				foreach($surveyorassignment->assignments as $assignment){
   					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-  															'name'=>$assignment->sitio->name,
+  															'name'=>$assignment->barangay->name,
   															'quota'=>$assignment->quota,
   															'count'=>$assignment->count,
   															'surveyor_progress'=>$assignment->getProgressB(),
@@ -111,7 +111,7 @@ class SurveyAnswerController extends Controller
 
   				foreach($surveyorassignment->assignments as $assignment){
   					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-  															'name'=>$assignment->sitio->name,
+  															'name'=>$assignment->barangay->name,
   															'quota'=>$assignment->quota,
   															'count'=>$assignment->getSurveyCount(),
   															'surveyor_progress'=>$assignment->getProgress(),
