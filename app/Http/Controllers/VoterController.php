@@ -47,9 +47,8 @@ class VoterController extends Controller
   public function removeMNfromLN(){
     Voter::chunk(400, function ($results){
         foreach ($results as $voter) {
-            $curvoter = Voter::find($voter->id);
-            $firstname = str_replace($curvoter->middle_name, '', $curvoter->first_name);
-            echo $firstname . "<br>";
+            $firstname = str_replace($voter->middle_name, '', $voter->first_name);
+            echo "ID# " . $voter->id . " " . $firstname ." <br>";
             //$curvoter->save();
         }
       });
