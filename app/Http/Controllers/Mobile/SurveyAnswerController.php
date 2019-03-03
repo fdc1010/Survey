@@ -38,13 +38,12 @@ class SurveyAnswerController extends Controller
     {
         //
     }
-	public function getSurveyorProgress(Request $request){
-    //if(!empty($request->user_id) && $request->user_id > 0){
-        $userid = $request->user_id;
+    public function getSurveyorProgress(Request $request){
+  			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
   			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
-  															$q->with(['barangay'=>function($qs)use($request){
+  															$q->with(['sitio'=>function($qs)use($request){
   																$qs->with(['voters'=>function($qv)use($request){
   																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
   																				->where('user_id',$request->user_id)
@@ -65,8 +64,8 @@ class SurveyAnswerController extends Controller
   				$survey_per_area_count = array();
 
   				foreach($surveyorassignment->assignments as $assignment){
-  					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-  															'name'=>$assignment->barangay->name,
+  					array_push($survey_per_area_count,array('sitio_id'=>$assignment->sitio->id,
+  															'name'=>$assignment->sitio->name,
   															'quota'=>$assignment->quota,
   															'count'=>$assignment->getSurveyCount(),
   															'surveyor_progress'=>$assignment->getProgress(),
@@ -78,29 +77,13 @@ class SurveyAnswerController extends Controller
   											'survey_count'=>$surveyorassignment->getSurveyCount(),
   											'survey_quota'=>$surveyorassignment->quota,
   											'survey_count_per_quota'=>$survey_per_area_count]);
-          // foreach($surveyorassignment->assignments as $assignment){
-  				// 	array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-  				// 											'name'=>$assignment->barangay->name,
-  				// 											'quota'=>$assignment->quota,
-  				// 											'count'=>$assignment->count,
-  				// 											'surveyor_progress'=>$assignment->getProgress(),
-  				// 											'surveyor_progress_percent'=>$assignment->getProgressPercent()));
-  				// }
-          //
-  				// return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
-  				// 							'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
-  				// 							'survey_count'=>$surveyorassignment->count,
-  				// 							'survey_quota'=>$surveyorassignment->quota,
-  				// 							'survey_count_per_quota'=>$survey_per_area_count]);
   			}else{
   				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
   											'survey_count'=>0,
   											'survey_quota'=>0,
   											'survey_count_per_quota'=>0]);
   			}
-    //}
-
-	}
+  	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
