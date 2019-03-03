@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Models\Voter;
 use App\Models\VoterStatus;
 use App\Models\StatusDetails;
 use App\Models\EmploymentStatus;
@@ -42,7 +43,7 @@ class MobileController extends Controller
   			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
   			  $genderstatus = Gender::select(['id','name','description'])->get();
           $data = [];
-  			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
+  			  $surveyordetails = SurveyorAssignment::where('user_id',$userid)
   			  										->where('completed',0)
                               ->first();
           if($surveyordetails){
