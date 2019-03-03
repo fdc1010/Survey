@@ -34,7 +34,7 @@ class SurveyAnswerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumns(['user_id','voter_id','question_id','option_id','answered_option']);
+        $this->crud->removeColumns(['user_id','voter_id','question_id','option_id','answered_option','survey_detail_id']);
         $this->crud->addColumn([
             'label' => "User",
       			'type' => 'select',
