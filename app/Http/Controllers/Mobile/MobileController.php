@@ -74,7 +74,7 @@ class MobileController extends Controller
 
 																			}]);
 															}])
-			  										->paginate(10);
+			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
