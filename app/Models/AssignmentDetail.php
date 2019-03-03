@@ -41,10 +41,10 @@ class AssignmentDetail extends Model
   	public function surveyor(){
   		return $this->belongsTo('App\Models\SurveyorAssignment','assignment_id');
   	}
-  	public function getProgressPercentB(){
+  	public function getProgressPercent(){
   		return number_format((($this->count/$this->quota)*100),2) . " %";
   	}
-    public function getProgressPercent(){
+    public function getProgressPercentB(){
   		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
   	}
   	public function getSurveyCount(){
@@ -76,11 +76,11 @@ class AssignmentDetail extends Model
   					"</div>";
   		return $result;
   	}
-  	public function getProgressB(){
+  	public function getProgress(){
 
   		return (($this->count/$this->quota)*100);
   	}
-    public function getProgress(){
+    public function getProgressB(){
 
   		return (($this->getSurveyCount()/$this->quota)*100);
   	}
