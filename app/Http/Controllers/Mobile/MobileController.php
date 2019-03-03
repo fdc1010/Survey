@@ -31,7 +31,7 @@ class MobileController extends Controller
     {
 
     }
-    public function getSurveyInfo(Request $request)
+    public function getSurveyorInfo(Request $request)
   	{
 
 
