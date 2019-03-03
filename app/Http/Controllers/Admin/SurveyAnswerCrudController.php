@@ -53,6 +53,10 @@ class SurveyAnswerCrudController extends CrudController
     		])->afterColumn('user_id');
         $this->crud->addColumn([
             'label' => "Question",
+      			'name' => 'question_id'
+    		])->beforeColumn('question_id');
+        $this->crud->addColumn([
+            'label' => "Question",
       			'type' => 'select',
       			'name' => 'question_id', // the relationship name in your Model
       			'entity' => 'question', // the relationship name in your Model
