@@ -71,7 +71,7 @@ class MobileController extends Controller
                                             $qvs->select('name');
                                       }
                                     ])
-                              ->select(['id','barangay_id','gender_id','status_id','employment_status_id','civil_status_id','occupancy_status_id',
+                              ->select(['id','precinct_id','barangay_id','gender_id','status_id','employment_status_id','civil_status_id','occupancy_status_id',
                                         'first_name','last_name','middle_name', 'birth_date','contact',
                           							'address', 'birth_place','age','profilepic',
                           							'occupancy_length','monthly_household',
