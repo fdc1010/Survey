@@ -47,8 +47,14 @@ class VoterController extends Controller
   public function removeMNfromLN(){
     Voter::chunk(400, function ($results){
         foreach ($results as $voter) {
-            $curvoter = Voter::find($voter->id);
-            echo str_replace($curvoter->middle_name, '', $curvoter->first_name) . "<br>";
+            $firstname = str_replace($voter->middle_name, '', $voter->first_name);
+            if(!empty($firstname)){
+                echo "ID# " . $voter->id . " " . $firstname ." <br>";
+                $updateData = Voter::where('id',$voter->id)
+                                  ->update(['first_name' => $firstname]);
+            }else {
+                echo "ID# " . $voter->id . " BLANK first name";
+            }
             //$curvoter->save();
         }
       });
@@ -58,6 +64,7 @@ class VoterController extends Controller
         // $this->validate($request, array(
         //     'filevoters'      => 'required'
         // ));
+        try{
         $index=$request->index;
         if($request->hasFile('fileupdatevoters')){
             $extension = File::extension($request->file('fileupdatevoters')->getClientOriginalName());
@@ -104,6 +111,9 @@ class VoterController extends Controller
                   return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],200);
               }
         }
+      }catch(\Exception $e){
+        info($e);
+      }
         $messages = array('messages' => array("Error uploading the data..","Has File: ".$request->hasFile('filevoters')));
         return response()->json(['success'=>true,'messages'=>$messages,'index'=>$index],401);
     }
