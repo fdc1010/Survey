@@ -73,6 +73,11 @@ class Voter extends Model
     {
         return $this->belongsToMany('App\Models\PositionCandidate','candidates','position_id','voter_id');
     }
+  public function getCandidatePosition(){
+		$candidate = Candidate::where('voter_id',$this->id)->with('position')->first();
+    if($candidate)
+        return $candidate->position->name;    
+	}
 	public function getStatusName(){
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "<ul>";
