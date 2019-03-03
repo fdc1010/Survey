@@ -64,8 +64,7 @@ class MobileController extends Controller
 			  $genderstatus = Gender::select(['id','name','description'])->get();
 			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
 			  										->where('completed',0)
-													->with(['assignments'=>function($q){
-
+													  ->with(['assignments'=>function($q){
 																		$q->with(['barangay'=>function($qu){
     																				$qu->with(['voters'=>function($qs){
     																									$qs->with(['statuses'=>function($qvs){
@@ -75,9 +74,9 @@ class MobileController extends Controller
 
 																			}]);
 															}])
-			  										->first();
+			  										->paginate(10);
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
-			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
+			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
 										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails]);
 		   }
