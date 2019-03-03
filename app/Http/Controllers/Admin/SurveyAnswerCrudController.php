@@ -56,7 +56,7 @@ class SurveyAnswerCrudController extends CrudController
       			'type' => 'select',
       			'name' => 'question_id', // the relationship name in your Model
       			'entity' => 'question', // the relationship name in your Model
-      			'attribute' => 'question', // attribute on Article that is shown to admin
+      			'attribute' => 'question_name', // attribute on Article that is shown to admin
       			'model' => "App\Models\Question" // on create&update, do you need to add/delete pivot table entries?
     		])->afterColumn('voter_id');
         $this->crud->addColumn([
