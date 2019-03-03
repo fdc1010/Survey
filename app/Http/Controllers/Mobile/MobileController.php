@@ -17,6 +17,7 @@ use App\Models\CivilStatus;
 use App\Models\OccupancyStatus;
 use App\Models\Gender;
 use App\Models\SurveyorAssignment;
+use App\Models\AssignmentDetail;
 
 class MobileController extends Controller
 {
@@ -29,6 +30,39 @@ class MobileController extends Controller
     {
 
     }
+    public function getSurveyInfo(Request $request)
+  	{
+
+
+  		    $userid = $request->id;
+          $user = User::find($userid);
+  			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
+  			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
+  			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
+  			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
+  			  $genderstatus = Gender::select(['id','name','description'])->get();
+          $data = [];
+  			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
+  			  										->where('completed',0)
+                              ->first();
+          if($surveyordetails){
+                $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
+                $voters = Voter::whereIn('barangay_id',$assignmentarea)
+  													  ->with(['precinct','statuses'=>function($qvs){
+                                            $qvs->select(['voter_id','status_id']);
+                                }])
+  			  										->chunk(400, function ($results) use (&$data){
+                                  foreach ($results as $voter) {
+                                      array_push($data,$voter);
+                                  }
+                              });
+          }
+  			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
+  			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
+  										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
+  										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails],'voters'=>$data);
+
+  	}
 	public function login(Request $request)
 	{
 
