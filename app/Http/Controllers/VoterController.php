@@ -32,17 +32,18 @@ class VoterController extends Controller
         return Image::make($media->getPath())->response();
     }*/
 	public function extramiddlename(){
-		$voters = Voter::get();
-
-		foreach($voters as $voter){
-			$explodefm = explode(" ",$voter->first_name);
-			echo $voter->first_name . " : ";
-			if(count($explodefm)>1){
-				$curvoter = Voter::find($voter->id);
-				$curvoter->middle_name = $explodefm[count($explodefm)-1];
-				$curvoter->save();
-			}
-		}
+		Voter::get()->chunk(400, function ($results){
+        foreach ($results as $key => $voter) {
+          info($voter);
+    			$explodefm = explode(" ",$voter->first_name);
+    			echo $voter->first_name . " : ";
+    			if(count($explodefm)>1){
+    				$curvoter = Voter::find($voter->id);
+    				$curvoter->middle_name = $explodefm[count($explodefm)-1];
+    				$curvoter->save();
+    			}
+    		}
+      });
 	}
 	public function importvoters(Request $request){
         //validate the xls file
@@ -68,7 +69,11 @@ class VoterController extends Controller
                                         'first_name' => $value->firstname,
                                         // 'middle_name' => $value->middlename,
                                         'address' => $value->address
+<<<<<<< HEAD
                                       ];
+=======
+                                        ];
+>>>>>>> b760dc325a7c565a8d8a0830d0013511e770265b
 
                               $insertData = DB::table('voters')->insert($insert);
                               if (!$insertData) {

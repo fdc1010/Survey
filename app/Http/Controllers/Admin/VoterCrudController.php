@@ -27,7 +27,7 @@ class VoterCrudController extends CrudController
         $this->crud->setModel('App\Models\Voter');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/voter');
         $this->crud->setEntityNameStrings('voter', 'voters');
-		
+
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -36,23 +36,27 @@ class VoterCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['precinct_id','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
+		$this->crud->removeColumn(['precinct_id','barangay_id','profilepic','gender_id','middle_name','address','age','contact','birth_date','birth_place', 'status_id',
 									'employment_status_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 									'yearly_household','work']);
-		$this->crud->removeField(['employment_status_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
-		$this->crud->addColumn([
-            'name' => 'precinct_id',			
+		$this->crud->removeField(['employment_status_id','barangay_id','gender_id','civil_status_id','occupancy_status_id','occupancy_length','monthly_household', 'status_id','yearly_household','work']);
+    $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+	    ])->makeFirstColumn();
+    $this->crud->addColumn([
+            'name' => 'precinct_id',
             'label' => 'Precinct',
             'type' => 'model_function',
 			'function_name' => 'getPrecinct'
-	    ])->makeFirstColumn();
+	    ]);
 		$this->crud->addColumn([
-            'name' => 'status',			
+            'name' => 'status',
             'label' => 'Status',
             'type' => 'model_function',
 			'function_name' => 'getStatusName'
 	    ]);
-		
+
 		$this->crud->addColumn([   // CustomHTML
 			'label' => "Profile Image",
 			'name' => "profilepic",
@@ -60,12 +64,20 @@ class VoterCrudController extends CrudController
 			'width' => '50px',
 			'height' => '50px',
 		])->beforeColumn('first_name');
-		
-		$this->crud->addColumn([
-            'name' => 'barangay',			
+
+		// $this->crud->addColumn([
+    //         'name' => 'barangay',
+    //         'label' => 'Barangay',
+    //         'type' => 'model_function',
+		// 	'function_name' => 'getVoterBarangay'
+	  //   ]);
+    $this->crud->addColumn([
+            'name' => 'barangay_id',
+            'type' => 'select',
             'label' => 'Barangay',
-            'type' => 'model_function',
-			'function_name' => 'getVoterBarangay'
+			'entity' => 'barangay', // the relationship name in your Model
+			'attribute' => 'name', // attribute on Article that is shown to admin
+			'model' => "App\Models\Barangay"
 	    ]);
 		$this->crud->addColumn([
             'name' => 'gender_id',
@@ -84,7 +96,7 @@ class VoterCrudController extends CrudController
 			'model' => "App\Models\Sitio", // on create&update, do you need to add/delete pivot table entries?
 		]);
 		$this->crud->addColumn([
-            'name' => 'surveyor',			
+            'name' => 'surveyor',
             'label' => 'Surveyor',
             'type' => 'model_function',
 			'function_name' => 'getSurveyor'
@@ -166,15 +178,21 @@ class VoterCrudController extends CrudController
 			'name' => 'monthly_household'
 		]);
 		$this->crud->addField([
-			'label' => "Sitio",
+			'label' => "Barangay",
 			'type' => 'select2',
-			'name' => 'sitio_id', // the relationship name in your Model
-			'entity' => 'sitio', // the relationship name in your Model
+			'name' => 'barangay_id', // the relationship name in your Model
+			'entity' => 'barangay', // the relationship name in your Model
 			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Sitio", // on create&update, do you need to add/delete pivot table entries?
+			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
 			//'attribute2' => 'name', // attribute on Article that is shown to admin
 			//'entity2' => "barangay"
 		]);
+    $this->crud->addField([
+            'name' => 'is_candidate',
+            'type' => 'checkbox',
+            'label' => 'Is candidate',
+      ]);
+
         // add asterisk for fields that are required in VoterRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -186,7 +204,7 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+
         return $redirect_location;
     }
 
@@ -196,7 +214,7 @@ class VoterCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+
         return $redirect_location;
     }
 	public function destroy($id)
@@ -205,8 +223,8 @@ class VoterCrudController extends CrudController
 		//Voter::where('id',$id)->delete();
 		$voter=Voter::find($id);
 		$path = public_path('profilepic/');
-		$photo=$path.basename($voter->profilepic);		
-		File::delete($photo);		
+		$photo=$path.basename($voter->profilepic);
+		File::delete($photo);
 		return $this->crud->delete($id);
 	}
 }

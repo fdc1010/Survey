@@ -18,18 +18,22 @@ class Voter extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['precinct_id', 'first_name','last_name','middle_name', 'birth_date','contact',
+    protected $fillable = ['precinct_id','barangay_id','is_candidate', 'first_name','last_name','middle_name', 'birth_date','contact',
 							'address', 'birth_place','age','gender_id', 'profilepic','status_id','employment_status_id',
 							'civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
 							'yearly_household','work'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $appends = ['full_name'];
-	
+
 	public function sitio()
     {
         return $this->belongsTo('App\Models\Sitio','sitio_id');
     }
+    public function barangay()
+      {
+          return $this->belongsTo('App\Models\Barangay','barangay_id');
+      }
 	public function status()
     {
         return $this->belongsTo('App\Models\VoterStatus','status_id');
@@ -65,7 +69,11 @@ class Voter extends Model
 	{
 		return $this->hasOne('App\Models\Candidate','voter_id');
 	}
-	public function getStatusName(){		
+  public function positions()
+    {
+        return $this->belongsToMany('App\Models\PositionCandidate','candidates','position_id','voter_id');
+    }
+	public function getStatusName(){
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "<ul>";
 		foreach($voterstatus as $vstatus){
@@ -73,15 +81,15 @@ class Voter extends Model
 		}
 		$result .= "</ul>";
 		return $result;
-		
+
 	}
 	public function getPrecinct(){
 		$precinct = Precinct::find($this->precinct_id);
 		return $precinct->precinct_number;
 	}
 	public function getVoterBarangay(){
-		$barangay = Precinct::where('id',$this->precinct_id)->with('barangay')->first();
-		return $barangay->barangay->name;
+		//$barangay = Precinct::where('id',$this->barangay_id)->with('barangay')->first();
+		return $this->barangay->name;
 	}
 	public function getSurveyor(){
 		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();

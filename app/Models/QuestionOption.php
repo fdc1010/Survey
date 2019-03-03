@@ -36,7 +36,7 @@ class QuestionOption extends Model
     }
 	public function getPositions()
     {
-        $optpositions = OptionPosition::with('positions')->where('option_id',$this->id)->get();		
+        $optpositions = OptionPosition::with('positions')->where('option_id',$this->id)->get();
 		$result = "";
 		foreach($optpositions as $optposition){
 			$result .= $optposition->positions->name.", ";
@@ -46,20 +46,20 @@ class QuestionOption extends Model
     }
 	public function forCandidateQuality(){
 		if($this->for_candidate_quality){
-			return "<span class='fa fa-check-circle-o'></span>";	
-		}	
+			return "<span class='fa fa-check-circle-o'></span>";
+		}
 		return "";
 	}
 	public function forCandidateVotes(){
 		if($this->for_candidate_votes){
-			return "<span class='fa fa-check-circle-o'></span>";	
-		}	
+			return "<span class='fa fa-check-circle-o'></span>";
+		}
 		return "";
 	}
 	public function forIssues(){
 		if($this->for_issues){
-			return "<span class='fa fa-check-circle-o'></span>";	
-		}	
+			return "<span class='fa fa-check-circle-o'></span>";
+		}
 		return "";
 	}
 	public function barangaysurveys()
@@ -72,7 +72,7 @@ class QuestionOption extends Model
     }
 	public function positions()
     {
-        return $this->belongsTo('App\Models\PositionCandidate','positions');
+        return $this->belongsTo('App\Models\PositionCandidate','id');
     }
 	public function optionpositions(){
 		return $this->hasMany('App\Models\OptionPosition','option_id');
