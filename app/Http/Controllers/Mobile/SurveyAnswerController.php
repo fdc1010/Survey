@@ -39,7 +39,7 @@ class SurveyAnswerController extends Controller
         //
     }
 	public function getSurveyorProgress(Request $request){
-    if(!empty($request->user_id) && $request->user_id > 0){
+    //if(!empty($request->user_id) && $request->user_id > 0){
         $userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
@@ -64,41 +64,41 @@ class SurveyAnswerController extends Controller
   			if($surveyorassignment)	{
   				$survey_per_area_count = array();
 
-  				// foreach($surveyorassignment->assignments as $assignment){
-  				// 	array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-  				// 											'name'=>$assignment->barangay->name,
-  				// 											'quota'=>$assignment->quota,
-  				// 											'count'=>$assignment->getSurveyCount(),
-  				// 											'surveyor_progress'=>$assignment->getProgress(),
-  				// 											'surveyor_progress_percent'=>$assignment->getProgressPercent()));
-  				// }
-          //
-  				// return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
-  				// 							'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
-  				// 							'survey_count'=>$surveyorassignment->getSurveyCount(),
-  				// 							'survey_quota'=>$surveyorassignment->quota,
-  				// 							'survey_count_per_quota'=>$survey_per_area_count]);
-          foreach($surveyorassignment->assignments as $assignment){
+  				foreach($surveyorassignment->assignments as $assignment){
   					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
   															'name'=>$assignment->barangay->name,
   															'quota'=>$assignment->quota,
-  															'count'=>$assignment->count,
+  															'count'=>$assignment->getSurveyCount(),
   															'surveyor_progress'=>$assignment->getProgress(),
   															'surveyor_progress_percent'=>$assignment->getProgressPercent()));
   				}
 
   				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
   											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
-  											'survey_count'=>$surveyorassignment->count,
+  											'survey_count'=>$surveyorassignment->getSurveyCount(),
   											'survey_quota'=>$surveyorassignment->quota,
   											'survey_count_per_quota'=>$survey_per_area_count]);
+          // foreach($surveyorassignment->assignments as $assignment){
+  				// 	array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
+  				// 											'name'=>$assignment->barangay->name,
+  				// 											'quota'=>$assignment->quota,
+  				// 											'count'=>$assignment->count,
+  				// 											'surveyor_progress'=>$assignment->getProgress(),
+  				// 											'surveyor_progress_percent'=>$assignment->getProgressPercent()));
+  				// }
+          //
+  				// return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
+  				// 							'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
+  				// 							'survey_count'=>$surveyorassignment->count,
+  				// 							'survey_quota'=>$surveyorassignment->quota,
+  				// 							'survey_count_per_quota'=>$survey_per_area_count]);
   			}else{
   				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
   											'survey_count'=>0,
   											'survey_quota'=>0,
   											'survey_count_per_quota'=>0]);
   			}
-    }
+    //}
 
 	}
 	public function storeAnswers(Request $request){
