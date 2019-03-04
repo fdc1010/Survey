@@ -203,7 +203,7 @@ class SurveyAnswerController extends Controller
                             ->where('survey_detail_id',$surveydetailid)
                             ->update(['count'=>$newcount]);
 
-        $voter = Voter::find('id',$voterid);
+        $voter = Voter::find($voterid);
         $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
                                     ->where('survey_detail_id',$surveydetailid)
                                     ->first();
