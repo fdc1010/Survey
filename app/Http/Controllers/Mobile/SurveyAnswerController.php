@@ -194,7 +194,7 @@ class SurveyAnswerController extends Controller
 									'gender_id'=>(empty($voterdetails['genderId'])?1:$voterdetails['genderId']),
 									'profilepic'=>$profilepic
 								]);
-
+	/*
         $surveyassignment = SurveyorAssignment::where('user_id',$userid)
                                     ->where('survey_detail_id',$surveydetailid)
                                     ->first();
@@ -211,14 +211,15 @@ class SurveyAnswerController extends Controller
         AssignmentDetail::where('barangay_id',$voter->barangay_id)
                             ->where('survey_detail_id',$surveydetailid)
                             ->update(['count'=>$newcountad]);
-
-				$vstatusarr = json_decode($voterdetails['status'],true);
-				foreach($vstatusarr as $vstatus){
-					StatusDetail::where('voter_id',$voterid)->delete();
-					$voterstatuses = new StatusDetail;
-					$voterstatuses->voter_id = $voterid;
-					$voterstatuses->status_id = $vstatus;
-					$voterstatuses->save();
+*/				if(!empty($voterdetails['status'])){
+					$vstatusarr = json_decode($voterdetails['status'],true);
+					foreach($vstatusarr as $vstatus){
+						StatusDetail::where('voter_id',$voterid)->delete();
+						$voterstatuses = new StatusDetail;
+						$voterstatuses->voter_id = $voterid;
+						$voterstatuses->status_id = $vstatus;
+						$voterstatuses->save();
+					}
 				}
 
 			}

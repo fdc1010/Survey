@@ -46,9 +46,15 @@ class SurveyorAssignmentCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
 		])->makeFirstColumn();
-		$this->crud->addColumn([
+		/*$this->crud->addColumn([
             'name' => 'count',
             'label' => 'Count'
+	    ])->afterColumn('quota');*/
+$this->crud->addColumn([
+            'name' => 'count',			
+            'label' => 'Count',
+            'type' => 'model_function',
+			'function_name' => 'getSurveyCount'
 	    ])->afterColumn('quota');
 		$this->crud->addColumn([
             'name' => 'progress',
