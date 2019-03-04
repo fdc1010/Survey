@@ -195,22 +195,22 @@ class SurveyAnswerController extends Controller
 									'profilepic'=>$profilepic
 								]);
 
-        // $surveyassignment = SurveyorAssignment::where('user_id',$userid)
-        //                             ->where('survey_detail_id',$surveydetailid)
-        //                             ->first();
-        // $newcount = $surveyassignment->count + 1;
-        // SurveyorAssignment::where('user_id',$userid)
-        //                     ->where('survey_detail_id',$surveydetailid)
-        //                     ->update(['count'=>$newcount]);
-        //
-        // $voter = Voter::find($voterid);
-        // $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
-        //                             ->where('survey_detail_id',$surveydetailid)
-        //                             ->first();
-        // $newcountad = $assignmentdetail->count + 1;
-        // AssignmentDetail::where('barangay_id',$voter->barangay_id)
-        //                     ->where('survey_detail_id',$surveydetailid)
-        //                     ->update(['count'=>$newcountad]);
+        $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                                    ->where('survey_detail_id',$surveydetailid)
+                                    ->first();
+        $newcount = $surveyassignment->count + 1;
+        SurveyorAssignment::where('user_id',$userid)
+                            ->where('survey_detail_id',$surveydetailid)
+                            ->update(['count'=>$newcount]);
+
+        $voter = Voter::find($voterid);
+        $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                    ->where('survey_detail_id',$surveydetailid)
+                                    ->first();
+        $newcountad = $assignmentdetail->count + 1;
+        AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                            ->where('survey_detail_id',$surveydetailid)
+                            ->update(['count'=>$newcountad]);
 
 				$vstatusarr = json_decode($voterdetails['status'],true);
 				foreach($vstatusarr as $vstatus){
