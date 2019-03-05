@@ -63,11 +63,13 @@ class SurveyAnswerController extends Controller
                                               ->skip($i)
                                               ->first();
             if($tallyothervote){
+              if($survey->question_id == $qid[$i]){
                 $tallyov = TallyOtherVote::find($tallyothervote->id);
                 $tallyov->candidate_id = $survey->option->candidate_id;
                 $tallyov->question_id = $qid[$i];
                 $tallyov->user_id = $survey->user_id;
                 $tallyov->save();
+              }
             }
             $i++;
         }
