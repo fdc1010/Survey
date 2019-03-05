@@ -855,9 +855,6 @@
                                         @endforeach
                                     </tr>
                                 </thead>
-                                @php
-
-                                @endphp
                                 @foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -869,8 +866,10 @@
                                       </tr>
                                   </thead>
                                 <tbody>
+                                @foreach($genders as $gender)
+                                  $tallytotalvgcandidate[$gender->id] = 0;
+                                @endforeach
                                 @php
-                                  $tallytotalvgcandidate = [];
                                   $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
