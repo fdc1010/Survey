@@ -55,7 +55,7 @@ class SurveyAnswerController extends Controller
                                               ->get();
             if(!empty($tallyothervotes) && count($tallyothervotes)>0){
                 echo "Other Tally:<br>";
-                foreach($tallyothervotes as $tallyothervote)
+                foreach($tallyothervotes as $tallyothervote){
                     echo $tallyothervote->question_id . " " . $tallyothervote->option_id . " " . $tallyothervote->option->candidate_id . " " .
                          $tallyothervote->voter_id . " " . $tallyothervote->option->option . " " . $tallyothervote->user_id . "<br>";
                 }
