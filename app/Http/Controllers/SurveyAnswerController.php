@@ -43,7 +43,7 @@ class SurveyAnswerController extends Controller
                                   ->get();
       if(!empty($surveyans) && count($surveyans)>0){
         echo "Survey Answer:<br>";
-        foreach($surveyans as $survey)
+        foreach($surveyans as $survey){
             echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
                  $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
 
@@ -60,6 +60,7 @@ class SurveyAnswerController extends Controller
                          $tallyothervote->voter_id . " " . $tallyothervote->option->option . " " . $tallyothervote->user_id . "<br>";
                 }
             }
+        }
       }
 
   }
