@@ -34,6 +34,10 @@ class TallyVote extends Model
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
+    public function surveyanswer()
+      {
+          return $this->belongsTo('App\Models\Voter','voter_id');
+      }
 	/*public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
@@ -92,6 +96,7 @@ class TallyVote extends Model
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
+          ->has('surveyanswer')
 					->whereHas('voter',function($q)use($brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
