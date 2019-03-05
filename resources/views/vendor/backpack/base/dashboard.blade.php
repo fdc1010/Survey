@@ -782,27 +782,20 @@
         </div>
         </form>
       @php
-        $tallyagebracketsv = array_values($tallyagebrackets);
-        $tallybrgyv = array_values($tallybrgy);
-        $tallygendersv = array_values($tallygenders);
-        $tallyempstatusv = array_values($tallyempstatus);
-        $tallycivilstatusv = array_values($tallycivilstatus);
-        $tallyoccstatusv = array_values($tallyoccstatus);
-        $tallyvoterstatusv = array_values($tallyvoterstatus);
         info("tallyagebrackets: ");
-        info($tallyagebracketsv);
+        info($tallyagebrackets);
         info("tallybrgy: ");
-        info($tallybrgyv);
+        info($tallybrgy);
         info("tallygenders: ");
-        info($tallygendersv);
+        info($tallygenders);
         info("tallyempstatus: ");
-        info($tallyempstatusv);
+        info($tallyempstatus);
         info("tallycivilstatus: ");
-        info($tallycivilstatusv);
+        info($tallycivilstatus);
         info("tallyoccstatus: ");
-        info($tallyoccstatusv);
+        info($tallyoccstatus);
         info("tallyvoterstatus: ");
-        info($tallyvoterstatusv);
+        info($tallyvoterstatus);
       @endphp
     	@foreach($surveydetails as $surveydetail)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
