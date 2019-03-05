@@ -61,8 +61,7 @@ class SurveyAnswerController extends Controller
                                               ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                               ->orderBy('id')
                                               ->skip($i)
-                                              ->take(1)
-                                              ->get();
+                                              ->first();
             if($tallyothervote){
                 $tallyov = TallyOtherVote::find($tallyothervote->id);
                 $tallyov->candidate_id = $survey->option->candidate_id;
