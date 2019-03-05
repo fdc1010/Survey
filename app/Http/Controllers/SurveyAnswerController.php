@@ -52,12 +52,13 @@ class SurveyAnswerController extends Controller
                                               ->where('survey_detail_id',1)
                                               ->whereNull('barangay_id')
                                               ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                              ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                               ->get();
             if(!empty($tallyothervotes) && count($tallyothervotes)>0){
                 echo "Other Tally:<br>";
                 foreach($tallyothervotes as $tallyothervote){
-                    echo $tallyothervote->question_id . " " . $tallyothervote->option_id . " " . $tallyothervote->option->candidate_id . " " .
-                         $tallyothervote->voter_id . " " . $tallyothervote->option->option . " " . $tallyothervote->user_id . "<br>";
+                    echo $tallyothervote->question_id . " " . $tallyothervote->option_id . " " . $tallyothervote->option->option . " " . 
+                         $tallyothervote->voter_id . " " . $tallyothervote->candidate_id . " " . $tallyothervote->user_id . "<br>";
                 }
             }
         }
