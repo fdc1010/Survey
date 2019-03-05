@@ -835,6 +835,9 @@
         </div>
         @endforeach
         @if($showGender)
+        @php
+        $tallytotalvgcandidate = [];
+        @endphp
         @foreach($genders as $gender)
             $tallytotalvgcandidate[$gender->id] = 0;
         @endforeach
