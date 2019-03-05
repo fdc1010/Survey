@@ -855,7 +855,7 @@
                                         <th>Cadidates</th>
                                         @foreach($genders as $gender)
                                           @php
-                                              array_push($tallytotalvgcandidate,array($gender->id=>0));
+                                              $tallytotalvgcandidate[$gender->id]=0;
                                           @endphp
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
