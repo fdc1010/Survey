@@ -143,11 +143,11 @@ class TallyVote extends Model
 							})
 						->sum('tally');
 	}
-  public function tallydetails($candidateid=1,$surveydetailid=1,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
+  public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->has('surveyanswer')
-					->whereHas('voter',function($q)use($brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
+					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
 								if($brgyid>0){
 									$q->where('barangay_id',$brgyid);
@@ -163,6 +163,10 @@ class TallyVote extends Model
 								}
                 if($occstatusid>0){
 									$q->where('occupancy_status_id',$occstatusid);
+								}
+                if(count($agebrackets)>0){
+									$q->whereIn('age',$agebrackets)->orWhereNull('age');
+									//info("agebrackets: ");info($agebrackets);
 								}
 							})
 						->sum('tally');
