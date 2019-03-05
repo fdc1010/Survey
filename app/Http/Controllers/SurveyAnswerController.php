@@ -66,7 +66,7 @@ class SurveyAnswerController extends Controller
                                                     ->orderBy('id')
                                                     ->take(3)
                                                     ->get();
-                  if(!empty($tallyothervote) && count($tallyothervote)>){
+                  if(!empty($tallyothervote) && count($tallyothervote)>0){
                       $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
                       $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
                       $tallyov->question_id = $survey->question_id;
