@@ -37,7 +37,7 @@ class SurveyAnswerController extends Controller
 	}
   public function updateothertallyvotesquality(Request $request){
       $i = 0;
-      $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12]])
+      $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
                                   ->where('survey_detail_id',1)
                                   ->orderBy('id')
                                   ->get();
