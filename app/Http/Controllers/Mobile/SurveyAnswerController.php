@@ -140,7 +140,7 @@ class SurveyAnswerController extends Controller
 			$surveydetailid = $request->survey_detail_id;
       $voter = Voter::find($voterid);
       if($voter){
-        info("Storing voter survey: ".$voter->full_name);
+        info("Storing voter survey: ".$voter->first_name . " " . $voter->last_name);
         if($voter->is_done_survey==0){
             $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
                           ->where('voter_id',$voterid)
@@ -235,7 +235,7 @@ class SurveyAnswerController extends Controller
       			}
 
       				$receivedans = json_decode($request->q_and_a, true);
-              info("Storing answers: ".$voter->full_name);
+              info("Storing answers: ".$voter->first_name . " " . $voter->last_name);
               info($receivedans);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
