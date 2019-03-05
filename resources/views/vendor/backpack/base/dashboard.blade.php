@@ -835,9 +835,6 @@
         </div>
         @endforeach
         @if($showGender)
-        @php
-        $tallytotalvgcandidate = [];
-        @endphp
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -884,7 +881,7 @@
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
                                           $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          if(empty($tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id])){
+                                          if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
                                               $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }else{
                                               $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
