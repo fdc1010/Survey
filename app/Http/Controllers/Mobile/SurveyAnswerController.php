@@ -199,7 +199,6 @@ class SurveyAnswerController extends Controller
       									'profilepic'=>$profilepic
       								]);
 
-      	/*
               $surveyassignment = SurveyorAssignment::where('user_id',$userid)
                                           ->where('survey_detail_id',$surveydetailid)
                                           ->first();
@@ -216,25 +215,23 @@ class SurveyAnswerController extends Controller
               AssignmentDetail::where('barangay_id',$voter->barangay_id)
                                   ->where('survey_detail_id',$surveydetailid)
                                   ->update(['count'=>$newcountad]);
-      */				if(!empty($voterdetails['status'])){
-          					$vstatusarr = json_decode($voterdetails['status'],true);
-          					foreach($vstatusarr as $vstatus){
-          						StatusDetail::where('voter_id',$voterid)->delete();
-          						$voterstatuses = new StatusDetail;
-          						$voterstatuses->voter_id = $voterid;
-          						$voterstatuses->status_id = $vstatus;
-          						$voterstatuses->save();
-          					}
-      				  }else{
-                    $voterstatuses = new StatusDetail;
-                    $voterstatuses->voter_id = $voterid;
-                    $voterstatuses->status_id = 5;
-                    $voterstatuses->save();
-                }
 
-      			}
-
-      				$receivedans = json_decode($request->q_and_a, true);
+      				if(!empty($voterdetails['status'])){
+        					$vstatusarr = json_decode($voterdetails['status'],true);
+        					foreach($vstatusarr as $vstatus){
+        						StatusDetail::where('voter_id',$voterid)->delete();
+        						$voterstatuses = new StatusDetail;
+        						$voterstatuses->voter_id = $voterid;
+        						$voterstatuses->status_id = $vstatus;
+        						$voterstatuses->save();
+        					}
+    				  }else{
+                  $voterstatuses = new StatusDetail;
+                  $voterstatuses->voter_id = $voterid;
+                  $voterstatuses->status_id = 5;
+                  $voterstatuses->save();
+              }
+              $receivedans = json_decode($request->q_and_a, true);
               info("Storing answers: ".$voter->first_name . " " . $voter->last_name);
               info($receivedans);
       				foreach($receivedans as $voteranswers){
@@ -310,7 +307,11 @@ class SurveyAnswerController extends Controller
       						}
       					}
 
-              return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
+
+
+                    return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
+
+    			}
             }
 				}
         return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
