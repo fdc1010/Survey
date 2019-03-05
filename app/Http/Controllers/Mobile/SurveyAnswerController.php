@@ -209,11 +209,11 @@ class SurveyAnswerController extends Controller
 
 
               $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                          ->where('survey_detail_id',$surveydetailid)
+                                          ->where('assignment_id',$surveydetailid)
                                           ->first();
               $newcountad = $assignmentdetail->count + 1;
               AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                  ->where('survey_detail_id',$surveydetailid)
+                                  ->where('assignment_id',$surveydetailid)
                                   ->update(['count'=>$newcountad]);
 
       				if(!empty($voterdetails['status'])){
