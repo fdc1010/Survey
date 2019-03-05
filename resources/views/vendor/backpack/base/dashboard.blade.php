@@ -1319,7 +1319,7 @@
                                           @endforeach
                                           <th>{{ $tallytotalacandidate }}</th>
                                           @php
-                                            $tallytotalovbcandidate += $tallytotalacandidate;
+                                            $tallytotalovbcandidate += $tallytotalvbcandidate;
                                           @endphp
                                       </tr>
                                   @endforeach
