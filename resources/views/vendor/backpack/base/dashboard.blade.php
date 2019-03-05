@@ -782,12 +782,19 @@
         </div>
         </form>
       @php
+        info("tallyagebrackets: ");
         info($tallyagebrackets);
+        info("tallybrgy: ");
         info($tallybrgy);
+        info("tallygenders: ");
         info($tallygenders);
+        info("tallyempstatus: ");
         info($tallyempstatus);
+        info("tallycivilstatus: ");
         info($tallycivilstatus);
+        info("tallyoccstatus: ");
         info($tallyoccstatus);
+        info("tallyvoterstatus: ");
         info($tallyvoterstatus);
       @endphp
     	@foreach($surveydetails as $surveydetail)
