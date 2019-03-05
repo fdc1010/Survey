@@ -56,7 +56,7 @@ class SurveyAnswerController extends Controller
                                             ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
                                             ->get();
-            //foreach($surveyansocs as $surveyansoc){
+                dd($surveyansocs);
                   $tallyothervote = TallyOtherVote::where('voter_id',$surveyansocs[$i]->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
