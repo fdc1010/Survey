@@ -57,6 +57,7 @@ class MobileController extends Controller
                                                       ->get();
                 $assignmentbrgy = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
                 $voters = Voter::whereIn('barangay_id',$assignmentbrgy)
+                              ->where('is_done_survey',0)
   													  ->with(['precinct'=>function($q){
                                             $q->select('precinct_number');
                                       },

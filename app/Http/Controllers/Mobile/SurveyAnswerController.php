@@ -138,172 +138,180 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
+      $voter = Voter::find($voterid);
+      if($voter){
+        if($voter->is_done_survey==0){
+            $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
+                          ->where('voter_id',$voterid)
+                          ->where('survey_detail_id',$surveydetailid)
+                          ->first();
+      			if(empty($checksurveyvoter)){
+      				$voterdetails = json_decode($request->voter_detail,true);
+      				$profilepic=null;
+      				if($request->hasFile('profilepic')){
+      					info('profilepic');
+      					$voter = Voter::find($voterid);
+      					$path = config('app.root') . '/public/profilepic/';
+      					$photo=$path.basename($voter->profilepic);
 
-			$checksurveyvoter = SurveyAnswer::where('user_id',$userid)
-											->where('voter_id',$voterid)
-											->where('survey_detail_id',$surveydetailid)
-											->first();
-			if(empty($checksurveyvoter)){
-				$voterdetails = json_decode($request->voter_detail,true);
-				$profilepic=null;
-				if($request->hasFile('profilepic')){
-					info('profilepic');
-					$voter = Voter::find($voterid);
-					$path = config('app.root') . '/public/profilepic/';
-					$photo=$path.basename($voter->profilepic);
+      					File::delete($photo);
 
-					File::delete($photo);
+      					$md5profName = md5_file($request->file('profilepic')->getRealPath());
+      					$guessExtensionprof = $request->file('profilepic')->guessExtension();
 
-					$md5profName = md5_file($request->file('profilepic')->getRealPath());
-					$guessExtensionprof = $request->file('profilepic')->guessExtension();
+      					$srvroot = $_SERVER['DOCUMENT_ROOT'];
+      					$pathimage =  $srvroot . '/profilepic/';
+      					$path = url('/profilepic/');
+      					if (!File::exists($path)) {
+      						File::makeDirectory($path,0777);
+      					}
 
-					$srvroot = $_SERVER['DOCUMENT_ROOT'];
-					$pathimage =  $srvroot . '/profilepic/';
-					$path = url('/profilepic/');
-					if (!File::exists($path)) {
-						File::makeDirectory($path,0777);
-					}
+      					$width = 160;
+      					$height = 160;
+      					$image = Image::make($request->file('profilepic')->getRealPath());
+      					$image->width() > $image->height() ? $width=null : $height=null;
+      					$image->resize($width, $height, function ($constraint) {
+      						$constraint->aspectRatio();
+      						$constraint->upsize();
+      					});
 
-					$width = 160;
-					$height = 160;
-					$image = Image::make($request->file('profilepic')->getRealPath());
-					$image->width() > $image->height() ? $width=null : $height=null;
-					$image->resize($width, $height, function ($constraint) {
-						$constraint->aspectRatio();
-						$constraint->upsize();
-					});
+      					$image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
 
-					$image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
+      					$filename = $md5profName.'.'.$guessExtensionprof;
+      					$profilepic =  config('app.url') . '/profilepic/' . $filename;
 
-					$filename = $md5profName.'.'.$guessExtensionprof;
-					$profilepic =  config('app.url') . '/profilepic/' . $filename;
+      				}
+      				//$voter->save();
+      				 Voter::where('id',$voterid)
+      						->update([
+      									'age'=>$voterdetails['age'],
+      									'contact'=>$voterdetails['contactNum'],
+      									'work'=>$voterdetails['work'],
+      									'monthly_household'=>$voterdetails['monthlyIncome'],
+      									'yearly_household'=>$voterdetails['yearlyIncome'],
+      									'occupancy_length'=>$voterdetails['occuLength'],
+      									'occupancy_status_id'=>(empty($voterdetails['occuStatusId'])?1:$voterdetails['occuStatusId']),
+      									'civil_status_id'=>(empty($voterdetails['civilStatusId'])?1:$voterdetails['civilStatusId']),
+      									'employment_status_id'=>(empty($voterdetails['empStatusId'])?1:$voterdetails['empStatusId']),
+      									'gender_id'=>(empty($voterdetails['genderId'])?1:$voterdetails['genderId']),
+                        'is_done_survey'=>1,
+      									'profilepic'=>$profilepic
+      								]);
 
+      	/*
+              $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                                          ->where('survey_detail_id',$surveydetailid)
+                                          ->first();
+              $newcount = $surveyassignment->count + 1;
+              SurveyorAssignment::where('user_id',$userid)
+                                  ->where('survey_detail_id',$surveydetailid)
+                                  ->update(['count'=>$newcount]);
+
+
+              $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                          ->where('survey_detail_id',$surveydetailid)
+                                          ->first();
+              $newcountad = $assignmentdetail->count + 1;
+              AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                  ->where('survey_detail_id',$surveydetailid)
+                                  ->update(['count'=>$newcountad]);
+      */				if(!empty($voterdetails['status'])){
+          					$vstatusarr = json_decode($voterdetails['status'],true);
+          					foreach($vstatusarr as $vstatus){
+          						StatusDetail::where('voter_id',$voterid)->delete();
+          						$voterstatuses = new StatusDetail;
+          						$voterstatuses->voter_id = $voterid;
+          						$voterstatuses->status_id = $vstatus;
+          						$voterstatuses->save();
+          					}
+      				  }else{
+                    $voterstatuses = new StatusDetail;
+                    $voterstatuses->voter_id = $voterid;
+                    $voterstatuses->status_id = 5;
+                    $voterstatuses->save();
+                }
+
+      			}
+
+      				$receivedans = json_decode($request->q_and_a, true);
+
+      				foreach($receivedans as $voteranswers){
+      					foreach($voteranswers['answers'] as $ansid){
+      						$optid = $ansid['id'];
+      						$surveyanswers = SurveyAnswer::where('user_id',$userid)
+      											->where('voter_id',$voterid)
+      											->where('survey_detail_id',$surveydetailid)
+      											->where('question_id',$voteranswers['questionId'])
+      											->where('option_id',$optid)
+      											->first();
+      						if(empty($surveyanswers)){
+      							$surveyans = new SurveyAnswer;
+      							$surveyans->survey_detail_id = $surveydetailid;
+      							$surveyans->question_id = $voteranswers['questionId'];
+      							$surveyans->answered_option = $voteranswers['answers'];
+      							$surveyans->option_id = $optid;
+      							$surveyans->user_id = $userid;
+      							$surveyans->voter_id = $voterid;
+      							$surveyans->other_answer = $ansid['otherAnswer'];
+
+      							if($request->has('latitude')){
+      								$surveyans->latitude = $request->latitude;
+      							}
+      							if($request->has('longitude')){
+      								$surveyans->longitude = $request->longitude;
+      							}
+
+      							$surveyansid=$surveyans->save();
+
+      							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+      							if($optioncandidate){
+      								$tallycandidate = new TallyVote;
+      								$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+      								$tallycandidate->voter_id = $voterid;
+      								$tallycandidate->survey_detail_id = $surveydetailid;
+      								$tallycandidate->save();
+      							}
+      							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
+      							if($relquestion){
+      								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+      														->where('question_id',$relquestion->related_question_id)
+      														->first();
+      								if($surans){
+      									$question = Question::find($relquestion->question_id);
+      									if(!empty($question->for_position) && is_numeric($question->for_position)){
+      										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+      										if($optioncandidate){
+      											$tallycandidate = new TallyOtherVote;
+      											$tallycandidate->option_id = $optid;
+      											$tallycandidate->voter_id = $voterid;
+      											$tallycandidate->candidate_id = $optioncandidate->candidate_id;
+      											$tallycandidate->survey_detail_id = $surveydetailid;
+      											$tallycandidate->save();
+      										}
+
+      									}
+      								}
+      							}
+
+      							$optionproblem = OptionProblem::where('option_id',$optid)->first();
+      							if($optionproblem){
+      								$voterbrgy = Voter::with('precinct')->find($voterid);
+      								$tallyproblem = new TallyOtherVote;
+      								$tallyproblem->option_id = $optid;
+      								$tallyproblem->voter_id = $voterid;
+      								$tallyproblem->survey_detail_id = $surveydetailid;
+      								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
+      								$tallyproblem->save();
+      							}
+      						}
+      					}
+
+                return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
+              }
+            }
+            return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
 				}
-				//$voter->save();
-				 Voter::where('id',$voterid)
-						->update([
-									'age'=>$voterdetails['age'],
-									'contact'=>$voterdetails['contactNum'],
-									'work'=>$voterdetails['work'],
-									'monthly_household'=>$voterdetails['monthlyIncome'],
-									'yearly_household'=>$voterdetails['yearlyIncome'],
-									'occupancy_length'=>$voterdetails['occuLength'],
-									'occupancy_status_id'=>(empty($voterdetails['occuStatusId'])?1:$voterdetails['occuStatusId']),
-									'civil_status_id'=>(empty($voterdetails['civilStatusId'])?1:$voterdetails['civilStatusId']),
-									'employment_status_id'=>(empty($voterdetails['empStatusId'])?1:$voterdetails['empStatusId']),
-									'gender_id'=>(empty($voterdetails['genderId'])?1:$voterdetails['genderId']),
-                  'is_done_survey'=>1,
-									'profilepic'=>$profilepic
-								]);
-	/*
-        $surveyassignment = SurveyorAssignment::where('user_id',$userid)
-                                    ->where('survey_detail_id',$surveydetailid)
-                                    ->first();
-        $newcount = $surveyassignment->count + 1;
-        SurveyorAssignment::where('user_id',$userid)
-                            ->where('survey_detail_id',$surveydetailid)
-                            ->update(['count'=>$newcount]);
-
-        $voter = Voter::find($voterid);
-        $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                    ->where('survey_detail_id',$surveydetailid)
-                                    ->first();
-        $newcountad = $assignmentdetail->count + 1;
-        AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                            ->where('survey_detail_id',$surveydetailid)
-                            ->update(['count'=>$newcountad]);
-*/				if(!empty($voterdetails['status'])){
-    					$vstatusarr = json_decode($voterdetails['status'],true);
-    					foreach($vstatusarr as $vstatus){
-    						StatusDetail::where('voter_id',$voterid)->delete();
-    						$voterstatuses = new StatusDetail;
-    						$voterstatuses->voter_id = $voterid;
-    						$voterstatuses->status_id = $vstatus;
-    						$voterstatuses->save();
-    					}
-				  }else{
-              $voterstatuses = new StatusDetail;
-              $voterstatuses->voter_id = $voterid;
-              $voterstatuses->status_id = 5;
-              $voterstatuses->save();
-          }
-
-			}
-
-				$receivedans = json_decode($request->q_and_a, true);
-
-				foreach($receivedans as $voteranswers){
-					foreach($voteranswers['answers'] as $ansid){
-						$optid = $ansid['id'];
-						$surveyanswers = SurveyAnswer::where('user_id',$userid)
-											->where('voter_id',$voterid)
-											->where('survey_detail_id',$surveydetailid)
-											->where('question_id',$voteranswers['questionId'])
-											->where('option_id',$optid)
-											->first();
-						if(empty($surveyanswers)){
-							$surveyans = new SurveyAnswer;
-							$surveyans->survey_detail_id = $surveydetailid;
-							$surveyans->question_id = $voteranswers['questionId'];
-							$surveyans->answered_option = $voteranswers['answers'];
-							$surveyans->option_id = $optid;
-							$surveyans->user_id = $userid;
-							$surveyans->voter_id = $voterid;
-							$surveyans->other_answer = $ansid['otherAnswer'];
-
-							if($request->has('latitude')){
-								$surveyans->latitude = $request->latitude;
-							}
-							if($request->has('longitude')){
-								$surveyans->longitude = $request->longitude;
-							}
-
-							$surveyansid=$surveyans->save();
-
-							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-							if($optioncandidate){
-								$tallycandidate = new TallyVote;
-								$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-								$tallycandidate->voter_id = $voterid;
-								$tallycandidate->survey_detail_id = $surveydetailid;
-								$tallycandidate->save();
-							}
-							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
-							if($relquestion){
-								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-														->where('question_id',$relquestion->related_question_id)
-														->first();
-								if($surans){
-									$question = Question::find($relquestion->question_id);
-									if(!empty($question->for_position) && is_numeric($question->for_position)){
-										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
-										if($optioncandidate){
-											$tallycandidate = new TallyOtherVote;
-											$tallycandidate->option_id = $optid;
-											$tallycandidate->voter_id = $voterid;
-											$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-											$tallycandidate->survey_detail_id = $surveydetailid;
-											$tallycandidate->save();
-										}
-
-									}
-								}
-							}
-
-							$optionproblem = OptionProblem::where('option_id',$optid)->first();
-							if($optionproblem){
-								$voterbrgy = Voter::with('precinct')->find($voterid);
-								$tallyproblem = new TallyOtherVote;
-								$tallyproblem->option_id = $optid;
-								$tallyproblem->voter_id = $voterid;
-								$tallyproblem->survey_detail_id = $surveydetailid;
-								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
-								$tallyproblem->save();
-							}
-						}
-					}
-				}
-				return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
+				return response()->json(['success'=>false,'msg'=>'An Error Occured!']);
 
 	}
     /**
