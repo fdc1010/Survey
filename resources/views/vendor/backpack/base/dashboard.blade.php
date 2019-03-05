@@ -822,11 +822,13 @@
                                           <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
                                       </tr>
                                   @endforeach
-                                      <tr>
-                                          <td>Total:</td>
-                                          <td>{{ $tallytotalcandidate }}</td>
-                                      </tr>
                                   </tbody>
+                                  <tfoot>
+                                      <tr>
+                                          <th>Total:</th>
+                                          <th>{{ $tallytotalcandidate }}</th>
+                                      </tr>
+                                  </tfoot>
                                 @endforeach
                             </table>
                       </div>
@@ -853,6 +855,7 @@
                                         @foreach($genders as $gender)
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 @foreach($positions as $position)
@@ -862,12 +865,10 @@
                                           @foreach($genders as $gender)
                                           <th></th>
                                           @endforeach
-                                          <th>Total</th>
+                                          <th></th>
                                       </tr>
                                   </thead>
                                 <tbody>
-
-
                                 @php
                                   $tallytotalogcandidate = 0;
                                 @endphp
@@ -899,11 +900,11 @@
                                 @endforeach
                                 <tfoot>
                                   <tr>
-                                      <td>Total:</td>
+                                      <th>Total:</td>
                                       @foreach($genders as $gender)
-                                        <td>{{ $tallytotalvgcandidate[$gender->id][$surveydetail->id] }}</td>
+                                        <th>{{ $tallytotalvgcandidate[$gender->id][$surveydetail->id] }}</th>
                                       @endforeach
-                                      <td>{{ $tallytotalogcandidate }}</td>
+                                      <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
                               </tfoot>
                             </table>
@@ -933,11 +934,9 @@
                                         @foreach($civilstatuses as $civilstatus)
                                         <th>{{ $civilstatus->name }}</th>
                                         @endforeach
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
-                                @php
-
-                                @endphp
                                 @foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -945,22 +944,48 @@
                                           @foreach($civilstatuses as $civilstatus)
                                           <th></th>
                                           @endforeach
+                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
+                                  @php
+                                    $tallytotaloccandidate = 0;
+                                  @endphp
                                 	@foreach($position->candidates as $candidate)
+                                        @php
+                                          $tallytotalccandidate = 0;
+                                        @endphp
                                         <tr>
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
                                             @php
                                                 $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,$civilstatus->id,0,0,0,0);
+                                                $tallytotalccandidate += $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id];
+                                                if(empty($tallytotalvccandidate[$civilstatus->id][$surveydetail->id])){
+                                                    $tallytotalvccandidate[$civilstatus->id][$surveydetail->id] = $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id];
+                                                }else{
+                                                    $tallytotalvccandidate[$civilstatus->id][$surveydetail->id] += $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id];
+                                                }
                                             @endphp
                                             <td>{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }}</td>
                                             @endforeach
+                                            <td>{{ $tallytotalccandidate }}</td>
+                                            @php
+                                              $tallytotaloccandidate += $tallytotalccandidate;
+                                            @endphp
                                         </tr>
                                   	@endforeach
                                   </tbody>
                                 @endforeach
+                                <tfoot>
+                                  <tr>
+                                      <th>Total:</td>
+                                      @foreach($civilstatuses as $civilstatus)
+                                        <th>{{ $tallytotalvccandidate[$civilstatus->id][$surveydetail->id] }}</th>
+                                      @endforeach
+                                      <th>{{ $tallytotaloccandidate }}</th>
+                                  </tr>
+                              </tfoot>
                             </table>
                       </div>
                 </div>
