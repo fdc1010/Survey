@@ -43,6 +43,7 @@ class SurveyAnswerController extends Controller
                                   ->where('question_id',3)
                                   ->where('survey_detail_id',1)
                                   ->orderBy('id')
+                                  ->take(3)
                                   ->get();
       if(!empty($surveyans) && count($surveyans)>0){
         echo "Survey Answer:<br>";
@@ -58,8 +59,10 @@ class SurveyAnswerController extends Controller
                                               ->whereNull('barangay_id')
                                               ->whereIn('option_id',[10,11,12,13,14,15,16,17])
                                               ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-                                              ->where('candidate_id','<>',$survey->option->candidate_id)
-                                              ->first();
+                                              ->orderBy('id')
+                                              ->skip($i)
+                                              ->take(1)
+                                              ->get();
             if($tallyothervote){
                 $tallyov = TallyOtherVote::find($tallyothervote->id);
                 $tallyov->candidate_id = $survey->option->candidate_id;
