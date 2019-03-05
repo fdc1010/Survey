@@ -1167,13 +1167,7 @@
 
 	@if($showVotesBrgy)
           @php
-            info($tallyagebrackets);
-            info($tallybrgy);
-            info($tallygenders);
-            info($tallyempstatus);
-            info($tallycivilstatus);
-            info($tallyoccstatus);
-            info($tallyvoterstatus);
+            
           @endphp
           @foreach($surveydetails as $surveydetail)
           <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
