@@ -838,9 +838,6 @@
         @php
         $tallytotalvgcandidate = [];
         @endphp
-        @foreach($genders as $gender)
-            $tallytotalvgcandidate[$gender->id] = 0;
-        @endforeach
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -857,6 +854,9 @@
                                     <tr>
                                         <th>Cadidates</th>
                                         @foreach($genders as $gender)
+                                          @php
+                                              push($tallytotalvgcandidate,array($gender->id=>0);
+                                          @endphp
                                         <th>{{ $gender->name }}</th>
                                         @endforeach
                                     </tr>
@@ -875,6 +875,7 @@
 
 
                                 @php
+                                  var_dump($tallytotalvgcandidate);
                                   $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
