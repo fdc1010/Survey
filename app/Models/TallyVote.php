@@ -96,11 +96,6 @@ class TallyVote extends Model
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 
-
-
-
-
-
 								if($brgyid>0){
 									$q->where('barangay_id',$brgyid);
 								}
@@ -115,13 +110,13 @@ class TallyVote extends Model
 								}
 
 								if(count($agebrackets)>0){
-									$q->whereIn('age',$agebrackets)
-									   ->orWhereNull('age');
+									$q->whereIn('age',$agebrackets);
+									   //->orWhereNull('age');
 									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
-									$q->whereIn('gender_id',$genders)
-										->orWhereNull('gender_id');
+									$q->whereIn('gender_id',$genders);
+										//->orWhereNull('gender_id');
 									//info("genders: ");info($genders);
 								}
 								if(count($empstatus)>0){
