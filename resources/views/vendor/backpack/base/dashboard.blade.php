@@ -886,7 +886,7 @@
                                         @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
-                                          $tallytotalvgcandidate[$gender-id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          $tallytotalvgcandidate[$gender->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
