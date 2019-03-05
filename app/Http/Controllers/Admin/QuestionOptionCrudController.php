@@ -141,7 +141,6 @@ class QuestionOptionCrudController extends CrudController
         $this->crud->orderBy('priority');
 
         $this->crud->setDefaultPageLength(100); // number of rows shown in list view
-        $this->crud->setPageLengthMenu([100, 200, 300, -1]); // page length menu to show in the list view
 
     		$this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
