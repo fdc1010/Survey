@@ -883,8 +883,12 @@
                                         @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
-                                          $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          if(empty($tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id])){
+                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }else{
+                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
                                         @endforeach
@@ -899,14 +903,11 @@
                                 <tfoot>
                                   <tr>
                                       <td>Total:</td>
-                                  @foreach($genders as $gender)
-                                      <td></td>
-                                  @endforeach
+                                      @foreach($genders as $gender)
+                                        <td>{{ $tallytotalvgcandidate[$gender->id][$surveydetail->id] }}</td>
+                                      @endforeach
                                       <td>{{ $tallytotalogcandidate }}</td>
                                   </tr>
-                                  @php
-                                    var_dump($tallytotalvgcandidate);
-                                  @endphp
                               </tfoot>
                             </table>
                       </div>
