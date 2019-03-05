@@ -142,8 +142,8 @@ class VoterController extends Controller
                                         // 'middle_name' => $value->middlename,
                                         'address' => $value->address
                                         ];
-                              info($value->lastname . ", " . $value->firstname)
-                              
+                              info($value->lastname . ", " . $value->firstname);
+
                               $insertData = DB::table('voters')->insert($insert);
                               if (!$insertData) {
                                   $ok = false;
