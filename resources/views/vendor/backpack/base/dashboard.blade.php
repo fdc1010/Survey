@@ -1282,6 +1282,7 @@
                                           @foreach($brgysurveys as $barangay)
                                           <th>{{ $barangay->name }}</th>
                                           @endforeach
+                                          <th>Total</th>
                                     </tr>
                                 </thead>
                                 @foreach($positions as $position)
@@ -1291,24 +1292,49 @@
                                           @foreach($brgysurveys as $barangay)
                                           <th></th>
                                           @endforeach
+                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
-                                	@foreach($position->candidates as $candidate)
+                                    @php
+                                      $tallytotalovbcandidate = 0;
+                                    @endphp
+                                    @foreach($position->candidates as $candidate)
+                                        @php
+                                          $tallytotalvbcandidate = 0;
+                                        @endphp
                                         <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($brgysurveys as $barangay)
                                           @php
-
                                               $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$barangay->id,0,0,0,0);
+                                              $tallytotalvbcandidate += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                              if(empty($tallytotalvvbcandidate[$barangay->id][$surveydetail->id])){
+                                                  $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] = $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                              }else{
+                                                  $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                              }
                                           @endphp
                                           <td>{{ $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id] }}</td>
                                           @endforeach
+                                          <th>{{ $tallytotalacandidate }}</th>
+                                          @php
+                                            $tallytotalovbcandidate += $tallytotalacandidate;
+                                          @endphp
                                       </tr>
                                   @endforeach
                                   </tbody>
-			      @endforeach
-                              </table>
+                                @endforeach
+                                <tfoot>
+                                  <tr>
+                                      <th>Total:</td>
+                                      @foreach($brgysurveys as $barangay)
+                                        <th>{{ $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] }}</th>
+                                      @endforeach
+                                      <th>{{ $tallytotalovbcandidate }}</th>
+                                  </tr>
+                              </tfoot>
+                            </table>
                         </div>
                   </div>
               </div>
