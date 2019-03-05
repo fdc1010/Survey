@@ -1092,11 +1092,9 @@
                                         @foreach($agebrackets as $agebracket)
                                         <th>{{ $agebracket->title }}</th>
                                         @endforeach
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
-                                @php
-
-                                @endphp
                                 @foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -1104,11 +1102,17 @@
                                           @foreach($agebrackets as $agebracket)
                                        	  <th></th>
                                           @endforeach
+                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
-
+                                  @php
+                                    $tallytotaloacandidate = 0;
+                                  @endphp
                                   @foreach($position->candidates as $candidate)
+                                      @php
+                                        $tallytotalacandidate = 0;
+                                      @endphp
                                       <tr>
                                           <td>{{ $candidate->voter->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
@@ -1118,13 +1122,32 @@
                                                   array_push($gtallyagebrackets,$tallyiage);
                                               }
                                               $tallyab[$candidate->id][$agebracket->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,$gtallyagebrackets,0,0,0,0,0,0);
+                                              $tallytotalacandidate += $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
+                                              if(empty($tallytotalvacandidate[$agebracket->id][$surveydetail->id])){
+                                                  $tallytotalvacandidate[$agebracket->id][$surveydetail->id] = $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
+                                              }else{
+                                                  $tallytotalvacandidate[$agebracket->id][$surveydetail->id] += $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
+                                              }
                                           @endphp
                                           <td>{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }}</td>
                                           @endforeach
+                                          <th>{{ $tallytotalacandidate }}</th>
+                                          @php
+                                            $tallytotaloacandidate += $tallytotalacandidate;
+                                          @endphp
                                       </tr>
                                   @endforeach
                                   </tbody>
                                 @endforeach
+                                <tfoot>
+                                  <tr>
+                                      <th>Total:</td>
+                                      @foreach($agebrackets as $agebracket)
+                                        <th>{{ $tallytotalvacandidate[$agebracket->id][$surveydetail->id] }}</th>
+                                      @endforeach
+                                      <th>{{ $tallytotaloacandidate }}</th>
+                                  </tr>
+                              </tfoot>
                             </table>
                       </div>
                 </div>
