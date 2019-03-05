@@ -140,6 +140,7 @@ class SurveyAnswerController extends Controller
 			$surveydetailid = $request->survey_detail_id;
       $voter = Voter::find($voterid);
       if($voter){
+        info("Storing voter survey: ".$voter->full_name);
         if($voter->is_done_survey==0){
             $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
                           ->where('voter_id',$voterid)
@@ -148,8 +149,8 @@ class SurveyAnswerController extends Controller
       			if(empty($checksurveyvoter)){
       				$voterdetails = json_decode($request->voter_detail,true);
       				$profilepic=null;
+              info($request);
       				if($request->hasFile('profilepic')){
-      					info('profilepic');
       					$voter = Voter::find($voterid);
       					$path = config('app.root') . '/public/profilepic/';
       					$photo=$path.basename($voter->profilepic);
