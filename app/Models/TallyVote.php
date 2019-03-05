@@ -119,20 +119,20 @@ class TallyVote extends Model
 									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
-									$q->whereIn('gender_id',$genders);//->orWhereNull('gender_id');
+									//$q->whereIn('gender_id',$genders);//->orWhereNull('gender_id');
 									//info("genders: ");info($genders);
 								}
 								if(count($empstatus)>0){
-									$q->whereIn('employment_status_id',$empstatus);//->orWhereNull('employment_status_id');
+									//$q->whereIn('employment_status_id',$empstatus);//->orWhereNull('employment_status_id');
 									//info("empstatus: ");info($empstatus);
 								}
 								if(count($civilstatus)>0){
-									$q->whereIn('civil_status_id',$civilstatus);//->orWhereNull('civil_status_id');
+									//$q->whereIn('civil_status_id',$civilstatus);//->orWhereNull('civil_status_id');
 									//info("civilstatus: ");info($civilstatus);
 								}
 
 								if(count($occstatus)>0){
-									$q->whereIn('occupancy_status_id',$occstatus);//->orWhereNull('occupancy_status_id');
+									//$q->whereIn('occupancy_status_id',$occstatus);//->orWhereNull('occupancy_status_id');
 									//info("occstatus: ");info($occstatus);
 								}
 								if(count($voterstatus)>0){
@@ -140,7 +140,7 @@ class TallyVote extends Model
                               if($voterstatusid>0){
               									$qv->where('status_id',$voterstatusid);
               								}else{
-                                $qv->whereIn('status_id',$voterstatus);
+                                //$qv->whereIn('status_id',$voterstatus);
                               }
 												});//->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
@@ -148,7 +148,7 @@ class TallyVote extends Model
 
 								if(count($brgy)>0){
 									//$q->whereHas('precinct',function($qb)use($brgy){
-										$q->whereIn('barangay_id',$brgy);
+										//$q->whereIn('barangay_id',$brgy);
 									//});
 									//info("brgy: ");info($brgy);
 								}
