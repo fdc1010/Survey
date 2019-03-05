@@ -835,6 +835,9 @@
         </div>
         @endforeach
         @if($showGender)
+        @foreach($genders as $gender)
+            $tallytotalvgcandidate[$gender->id] = 0;
+        @endforeach
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -871,9 +874,6 @@
                                 @php
                                   $tallytotalogcandidate = 0;
                                 @endphp
-                                @foreach($genders as $gender)
-                                    $tallytotalvgcandidate[$gender->id] = 0;
-                                @endforeach
                                  @foreach($position->candidates as $candidate)
                                  @php
                                    $tallytotalgcandidate = 0;
