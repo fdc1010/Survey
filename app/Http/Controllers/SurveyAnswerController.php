@@ -53,16 +53,20 @@ class SurveyAnswerController extends Controller
             echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
                  $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
             echo $qid[$i] . "<br>";
-            // $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
-            //                                   ->where('survey_detail_id',1)
-            //                                   ->whereNull('barangay_id')
-            //                                   ->whereIn('option_id',[10,11,12,13,14,15,16,17])
-            //                                   ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-            //                                   ->orderBy('id')
-            //                                   ->update([
-            //                                             'candidate_id'=>$survey->option->candidate_id,
-            //                                             'question_id'=>$qid[$i];
-            //                                           ]);
+            $tallyothervote = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                              ->where('survey_detail_id',1)
+                                              ->whereNull('barangay_id')
+                                              ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                              ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                              ->where('candidate_id','<>',$survey->option->candidate_id)
+                                              ->first();
+            if($tallyothervote){
+                $tallyov = TallyOtherVote::find($tallyothervote->id);
+                $tallyov->candidate_id=>$survey->option->candidate_id;
+                $tallyov->question_id=>$qid[$i];
+                $tallyov->user_id=>$survey->user_id;
+                $tallyov->save();
+            }
             $i++;
         }
       }

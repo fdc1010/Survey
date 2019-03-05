@@ -273,6 +273,7 @@ class SurveyAnswerController extends Controller
                       $tallycandidate->option_id = $optid;
       								$tallycandidate->candidate_id = $optioncandidate->candidate_id;
       								$tallycandidate->voter_id = $voterid;
+                      $tallycandidate->user_id = $userid;
       								$tallycandidate->survey_detail_id = $surveydetailid;
       								$tallycandidate->save();
       							}
@@ -290,6 +291,7 @@ class SurveyAnswerController extends Controller
                             $othertallycandidate->question_id = $voteranswers['questionId'];
                             $othertallycandidate->option_id = $optid;
       											$othertallycandidate->voter_id = $voterid;
+                            $othertallycandidate->user_id = $userid;
       											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
       											$othertallycandidate->survey_detail_id = $surveydetailid;
       											$othertallycandidate->save();
@@ -304,8 +306,10 @@ class SurveyAnswerController extends Controller
                       info($receivedans);
       								$voterbrgy = Voter::with('precinct')->find($voterid);
       								$tallyproblem = new TallyOtherVote;
+                      $tallyproblem->question_id = $voteranswers['questionId'];
       								$tallyproblem->option_id = $optid;
       								$tallyproblem->voter_id = $voterid;
+                      $tallyproblem->user_id = $userid;
       								$tallyproblem->survey_detail_id = $surveydetailid;
       								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
       								$tallyproblem->save();
