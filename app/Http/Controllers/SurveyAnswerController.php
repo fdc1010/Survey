@@ -33,16 +33,15 @@ class SurveyAnswerController extends Controller
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
   public function updateothertallyvotesquality(Request $request){
-      $surveyans = SurveyAnswer::with(['option'=>function($q){
-                                              $q->with('candidate');
-                                        }
-                                      ])
+      $surveyans = SurveyAnswer::with('option')
                                   ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                   ->where('question_id',3)
                                   ->where('survey_detail_id',1)
                                   ->get();
       if(!empty($surveyans) && count($surveyans)>0){
-        var_dump($surveyans);
+        foreach($surveyans as $survey)
+            echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
+                 $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id;
       }
 
   }
