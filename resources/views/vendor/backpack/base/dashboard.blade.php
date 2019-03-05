@@ -1317,7 +1317,7 @@
                                           @endphp
                                           <td>{{ $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id] }}</td>
                                           @endforeach
-                                          <th>{{ $tallytotalacandidate }}</th>
+                                          <th>{{ $tallytotalvbcandidate }}</th>
                                           @php
                                             $tallytotalovbcandidate += $tallytotalvbcandidate;
                                           @endphp
