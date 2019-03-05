@@ -234,7 +234,7 @@ class SurveyAnswerController extends Controller
       			}
 
       				$receivedans = json_decode($request->q_and_a, true);
-
+              info($receivedans);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
       						$optid = $ansid['id'];
@@ -306,8 +306,7 @@ class SurveyAnswerController extends Controller
       						}
       					}
 
-                return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
-              }
+              return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
             }
             return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
 				}
