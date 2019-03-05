@@ -904,7 +904,7 @@
                                   <tr>
                                       <td>Total:</td>
                                   @foreach($genders as $gender)
-                                      <td>{{  }}</td>
+                                      <td></td>
                                   @endforeach
                                       <td>{{ $tallytotalogcandidate }}</td>
                                   </tr>
