@@ -208,14 +208,17 @@ class SurveyAnswerController extends Controller
                                   ->update(['count'=>$newcount]);
 
 
-              $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                          ->where('assignment_id',$surveydetailid)
-                                          ->first();
-              $newcountad = $assignmentdetail->count + 1;
-              AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                  ->where('assignment_id',$surveydetailid)
-                                  ->update(['count'=>$newcountad]);
-
+              $assignmentdetails = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                          ->where('assignment_id',$surveyassignment->id)
+                                          ->get();
+              if(!empty($assignmentdetails) && count($assignmentdetails)>0){
+                  foreach($assignmentdetails as $assignmentdetail){
+                      $newcountad = $assignmentdetail->count + 1;
+                      AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                          ->where('id',$assignmentdetail->id)
+                                          ->update(['count'=>$newcountad]);
+                  }
+              }
       				if(!empty($voterdetails['status'])){
         					$vstatusarr = json_decode($voterdetails['status'],true);
         					foreach($vstatusarr as $vstatus){
