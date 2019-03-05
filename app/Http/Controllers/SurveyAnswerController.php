@@ -55,7 +55,6 @@ class SurveyAnswerController extends Controller
                                             ->where('survey_detail_id',1)
                                             ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
-                                            ->take(3)
                                             ->get();
             //foreach($surveyansocs as $surveyansoc){
                   $tallyothervote = TallyOtherVote::where('voter_id',$surveyansocs[$i]->voter_id)
@@ -64,8 +63,6 @@ class SurveyAnswerController extends Controller
                                                     ->whereIn('option_id',[10,11,12,13,14,15,16,17])
                                                     ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                                     ->orderBy('id')
-                                                    ->skip($i)
-                                                    ->take(3)
                                                     ->get();
                   dd($tallyothervote);
                   if(!empty($tallyothervote) && count($tallyothervote)>0){
