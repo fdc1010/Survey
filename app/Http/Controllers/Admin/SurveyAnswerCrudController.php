@@ -34,7 +34,39 @@ class SurveyAnswerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumns(['answered_option']);
+        $this->crud->removeColumns(['user_id','voter_id','question_id','option_id','answered_option','survey_detail_id']);
+        $this->crud->addColumn([
+            'label' => "User",
+      			'type' => 'select',
+      			'name' => 'user_id', // the relationship name in your Model
+      			'entity' => 'user', // the relationship name in your Model
+      			'attribute' => 'name', // attribute on Article that is shown to admin
+      			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
+    		])->makeFirstColumn();
+        $this->crud->addColumn([
+            'label' => "Voter",
+      			'type' => 'select',
+      			'name' => 'voter_id', // the relationship name in your Model
+      			'entity' => 'voter', // the relationship name in your Model
+      			'attribute' => 'full_name', // attribute on Article that is shown to admin
+      			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
+    		])->afterColumn('user_id');
+        $this->crud->addColumn([
+            'label' => "Question",
+      			'type' => 'select',
+      			'name' => 'question_id', // the relationship name in your Model
+      			'entity' => 'question', // the relationship name in your Model
+      			'attribute' => 'question_name', // attribute on Article that is shown to admin
+      			'model' => "App\Models\Question" // on create&update, do you need to add/delete pivot table entries?
+    		])->afterColumn('voter_id');
+        $this->crud->addColumn([
+            'label' => "Answer",
+      			'type' => 'select',
+      			'name' => 'option_id', // the relationship name in your Model
+      			'entity' => 'option', // the relationship name in your Model
+      			'attribute' => 'option', // attribute on Article that is shown to admin
+      			'model' => "App\Models\QuestionOption" // on create&update, do you need to add/delete pivot table entries?
+    		])->afterColumn('question_id');
         $this->crud->addColumn([
                 'name' => 'answered_option',
                 'label' => 'Answered Option',

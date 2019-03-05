@@ -5,6 +5,7 @@ use App\Models\Question;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\SurveyorAssignment;
+use App\Models\AssignmentDetail;
 use App\Models\AnsweredOption;
 use App\Models\OptionCandidate;
 use App\Models\OptionPosition;
@@ -37,56 +38,102 @@ class SurveyAnswerController extends Controller
     {
         //
     }
-	public function getSurveyorProgress(Request $request){
-			$userid = $request->user_id;
-			$surveydetailid = $request->survey_detail_id;
+    public function getSurveyorProgress(Request $request){
+  			$userid = $request->user_id;
+  			$surveydetailid = $request->survey_detail_id;
 
-			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
-															$q->with(['barangay'=>function($qs)use($request){
-																$qs->with(['voters'=>function($qv)use($request){
-																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
-																				->where('user_id',$request->user_id)
-																				->select(['voter_id'])
-																				->groupBy('voter_id')
-																				->get()->pluck('voter_id')->toArray();
-																			$qv->whereIn('id',$surveyansvoterid);
-																		}]);
-															}]);
-														}])
-														->where('survey_detail_id',$surveydetailid)
-														->where('user_id',$userid)
-														->first();
+  			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
+  															$q->with(['sitio'=>function($qs)use($request){
+  																$qs->with(['voters'=>function($qv)use($request){
+  																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+  																				->where('user_id',$request->user_id)
+  																				->select(['voter_id'])
+  																				->groupBy('voter_id')
+  																				->get()->pluck('voter_id')->toArray();
+  																			$qv->whereIn('id',$surveyansvoterid);
+  																		}]);
+  															}]);
+  														}])
+  														->where('survey_detail_id',$surveydetailid)
+  														->where('user_id',$userid)
+  														->first();
 
 
 
-			if($surveyorassignment)	{
-				$survey_per_area_count = array();
+  			if($surveyorassignment)	{
+  				$survey_per_area_count = array();
 
-				foreach($surveyorassignment->assignments as $assignment){
-					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
-															'name'=>$assignment->barangay->name,
-															'quota'=>$assignment->quota,
-															'count'=>$assignment->getSurveyCount(),
-															'surveyor_progress'=>$assignment->getProgress(),
-															'surveyor_progress_percent'=>$assignment->getProgressPercent()));
-				}
+  				foreach($surveyorassignment->assignments as $assignment){
+  					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
+  															'name'=>$assignment->barangay->name,
+  															'quota'=>$assignment->quota,
+  															'count'=>$assignment->count,
+  															'surveyor_progress'=>$assignment->getProgressB(),
+  															'surveyor_progress_percent'=>$assignment->getProgressPercentB()));
+  				}
 
-				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
-											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
-											'survey_count'=>$surveyorassignment->getSurveyCount(),
-											'survey_quota'=>$surveyorassignment->quota,
-											'survey_count_per_quota'=>$survey_per_area_count]);
-			}else{
-				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
-											'survey_count'=>0,
-											'survey_quota'=>0,
-											'survey_count_per_quota'=>0]);
-			}
-	}
+  				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgressB(),
+  											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercentB(),
+  											'survey_count'=>$surveyorassignment->count,
+  											'survey_quota'=>$surveyorassignment->quota,
+  											'survey_count_per_quota'=>$survey_per_area_count]);
+  			}else{
+  				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
+  											'survey_count'=>0,
+  											'survey_quota'=>0,
+  											'survey_count_per_quota'=>0]);
+  			}
+  	}
+    public function getSurveyorProgressB(Request $request){
+  			$userid = $request->user_id;
+  			$surveydetailid = $request->survey_detail_id;
+
+  			$surveyorassignment = SurveyorAssignment::with(['assignments'=>function($q)use($request){
+  															$q->with(['sitio'=>function($qs)use($request){
+  																$qs->with(['voters'=>function($qv)use($request){
+  																			$surveyansvoterid = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+  																				->where('user_id',$request->user_id)
+  																				->select(['voter_id'])
+  																				->groupBy('voter_id')
+  																				->get()->pluck('voter_id')->toArray();
+  																			$qv->whereIn('id',$surveyansvoterid);
+  																		}]);
+  															}]);
+  														}])
+  														->where('survey_detail_id',$surveydetailid)
+  														->where('user_id',$userid)
+  														->first();
+
+
+
+  			if($surveyorassignment)	{
+  				$survey_per_area_count = array();
+
+  				foreach($surveyorassignment->assignments as $assignment){
+  					array_push($survey_per_area_count,array('barangay_id'=>$assignment->barangay->id,
+  															'name'=>$assignment->barangay->name,
+  															'quota'=>$assignment->quota,
+  															'count'=>$assignment->getSurveyCount(),
+  															'surveyor_progress'=>$assignment->getProgress(),
+  															'surveyor_progress_percent'=>$assignment->getProgressPercent()));
+  				}
+
+  				return response()->json(['surveyor_progress'=>$surveyorassignment->getProgress(),
+  											'surveyor_progress_percent'=>$surveyorassignment->getProgressPercent(),
+  											'survey_count'=>$surveyorassignment->getSurveyCount(),
+  											'survey_quota'=>$surveyorassignment->quota,
+  											'survey_count_per_quota'=>$survey_per_area_count]);
+  			}else{
+  				return response()->json(['surveyor_progress'=>0,'surveyor_progress_percent'=>'0.00 %',
+  											'survey_count'=>0,
+  											'survey_quota'=>0,
+  											'survey_count_per_quota'=>0]);
+  			}
+  	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
-			info($request);
+		//info($request);
 			$ok = true;
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
@@ -144,9 +191,27 @@ class SurveyAnswerController extends Controller
 									'occupancy_status_id'=>$voterdetails['occuStatusId'],
 									'civil_status_id'=>$voterdetails['civilStatusId'],
 									'employment_status_id'=>$voterdetails['empStatusId'],
-									'gender_id'=>$voterdetails['genderId'],
+									'gender_id'=>(empty($voterdetails['genderId'])?1:$voterdetails['genderId']),
 									'profilepic'=>$profilepic
 								]);
+
+        $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                                    ->where('survey_detail_id',$surveydetailid)
+                                    ->first();
+        $newcount = $surveyassignment->count + 1;
+        SurveyorAssignment::where('user_id',$userid)
+                            ->where('survey_detail_id',$surveydetailid)
+                            ->update(['count'=>$newcount]);
+
+        $voter = Voter::find($voterid);
+        $assignmentdetail = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                    ->where('survey_detail_id',$surveydetailid)
+                                    ->first();
+        $newcountad = $assignmentdetail->count + 1;
+        AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                            ->where('survey_detail_id',$surveydetailid)
+                            ->update(['count'=>$newcountad]);
+
 				$vstatusarr = json_decode($voterdetails['status'],true);
 				foreach($vstatusarr as $vstatus){
 					StatusDetail::where('voter_id',$voterid)->delete();

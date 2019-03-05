@@ -1,8 +1,9 @@
 /config
 /node_modules
 /public/hot
-/public/recordings
+/public/profilepic
 /public/storage
+/public/recordings
 /storage/*.key
 /vendor/
 /.idea

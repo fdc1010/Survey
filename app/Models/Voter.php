@@ -73,6 +73,11 @@ class Voter extends Model
     {
         return $this->belongsToMany('App\Models\PositionCandidate','candidates','position_id','voter_id');
     }
+  public function getCandidatePosition(){
+		$candidate = Candidate::where('voter_id',$this->id)->with('position')->first();
+    if($candidate)
+        return $candidate->position->name;    
+	}
 	public function getStatusName(){
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();
 		$result = "<ul>";
@@ -92,7 +97,7 @@ class Voter extends Model
 		return $this->barangay->name;
 	}
 	public function getSurveyor(){
-		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('sitio_id',$this->sitio_id)->first();
+		$surveyor = AssignmentDetail::with(['surveyor'=>function($q){$q->with('user');}])->where('barangay_id',$this->barangay_id)->first();
 		if(!empty($surveyor->surveyor->user))
 			return $surveyor->surveyor->user->name;
 	}

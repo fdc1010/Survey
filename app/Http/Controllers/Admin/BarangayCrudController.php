@@ -35,7 +35,11 @@ class BarangayCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['province_id','district_id','municipality_id','description']);
-        $this->crud->addColumn([
+      $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+	    ])->makeFirstColumn();
+      $this->crud->addColumn([
             'name' => 'province_id',
             'type' => 'select',
             'label' => 'Province',

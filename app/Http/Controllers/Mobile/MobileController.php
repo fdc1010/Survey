@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Models\Voter;
 use App\Models\VoterStatus;
 use App\Models\StatusDetails;
 use App\Models\EmploymentStatus;
@@ -17,6 +18,7 @@ use App\Models\CivilStatus;
 use App\Models\OccupancyStatus;
 use App\Models\Gender;
 use App\Models\SurveyorAssignment;
+use App\Models\AssignmentDetail;
 
 class MobileController extends Controller
 {
@@ -29,6 +31,72 @@ class MobileController extends Controller
     {
 
     }
+    public function getSurveyorInfo(Request $request)
+  	{
+
+
+  		    $userid = $request->id;
+          $user = User::where('id',$userid)->select(['name','email','api_token','imei'])->first();
+  			  $voterstatus = VoterStatus::select(['id','status','name','description'])->get();
+  			  $empstatus = EmploymentStatus::select(['id','name','description'])->get();
+  			  $civilstatus = CivilStatus::select(['id','name','description'])->get();
+  			  $occstatus = OccupancyStatus::select(['id','name','description'])->get();
+  			  $genderstatus = Gender::select(['id','name','description'])->get();
+          $data = [];
+  			  $surveyordetails = SurveyorAssignment::where('user_id',$userid)
+  			  										->where('completed',0)
+                              ->select(['id','user_id','survey_detail_id','quota','count','progress','task','description'])
+                              ->first();
+          if($surveyordetails){
+                $assignmentarea = AssignmentDetail::where('assignment_id',$surveyordetails->id)
+                                                      ->with(['barangay'=>function($q){
+                                                                    $q->select('name');
+                                                              }
+                                                            ])
+                                                      ->select(['assignment_id','barangay_id','quota','count','progress','task','description'])
+                                                      ->get();
+                $assignmentbrgy = AssignmentDetail::where('assignment_id',$surveyordetails->id)->get()->pluck('barangay_id')->toArray();
+                $voters = Voter::whereIn('barangay_id',$assignmentbrgy)
+  													  ->with(['precinct'=>function($q){
+                                            $q->select('precinct_number');
+                                      },
+                                      'statuses'=>function($q){
+                                            $q->select(['voter_id','status_id']);
+                                      },
+                                      'barangay'=>function($q){
+                                            $q->select('name');
+                                      },
+                                      'employmentstatus'=>function($q){
+                                            $q->select('name');
+                                      },
+                                      'civilstatus'=>function($q){
+                                            $q->select('name');
+                                      },
+                                      'occupancystatus'=>function($q){
+                                            $q->select('name');
+                                      },
+                                      'gender'=>function($q){
+                                            $q->select('name');
+                                      }
+                                    ])
+                              ->select(['id','precinct_id','barangay_id','gender_id','status_id','employment_status_id','civil_status_id','occupancy_status_id',
+                                        'first_name','last_name','middle_name', 'birth_date','contact',
+                          							'address', 'birth_place','age','profilepic',
+                          							'occupancy_length','monthly_household',
+                          							'yearly_household','work'])
+  			  										->chunk(400, function ($results) use (&$data){
+                                  foreach ($results as $voter) {
+                                      array_push($data,$voter);
+                                  }
+                              });
+          }
+  			  return response()->json(['user'=>$user,
+  			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
+  										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
+  										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails,
+                      'assignmentarea'=>$assignmentarea,'voters'=>$data]);
+
+  	}
 	public function login(Request $request)
 	{
 
@@ -64,8 +132,7 @@ class MobileController extends Controller
 			  $genderstatus = Gender::select(['id','name','description'])->get();
 			  $surveyordetails = SurveyorAssignment::where('user_id',$user->id)
 			  										->where('completed',0)
-													->with(['assignments'=>function($q){
-
+													  ->with(['assignments'=>function($q){
 																		$q->with(['barangay'=>function($qu){
     																				$qu->with(['voters'=>function($qs){
     																									$qs->with(['statuses'=>function($qvs){
@@ -77,7 +144,7 @@ class MobileController extends Controller
 															}])
 			  										->first();
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
-			  							'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
+			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
 										'gender'=>$genderstatus,'surveyordetails'=>$surveyordetails]);
 		   }

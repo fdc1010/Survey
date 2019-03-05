@@ -29,7 +29,7 @@ class CreateVotersTable extends Migration
 			$table->integer('status_id')->nullable();
 			$table->integer('seq_num')->nullable();
             $table->timestamps();
-			
+
 			$table->foreign('precinct_id')->references('id')->on('precincts');
         });
     }

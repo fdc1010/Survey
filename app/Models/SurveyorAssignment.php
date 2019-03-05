@@ -19,7 +19,7 @@ class SurveyorAssignment extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['user_id','quota','progress','task','description','areas','survey_detail_id'];
+    protected $fillable = ['user_id','quota','count','progress','task','description','areas','survey_detail_id'];
     protected $casts = [
         'areas' => 'array'
     ];
@@ -71,17 +71,26 @@ class SurveyorAssignment extends Model
 		echo ($result);
 		//return $result;
 	}
-	public function getProgress(){
+	public function getProgressB(){
+		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+										->where('user_id',$this->user_id)
+										->count();*/
+
+		return (($this->count/$this->quota)*100);
+	}
+  public function getProgress(){
 		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
 										->count();*/
 
 		return (($this->getSurveyCount()/$this->quota)*100);
 	}
-	public function getProgressPercent(){
+	public function getProgressPercentB(){
+		return number_format((($this->count/$this->quota)*100),2) . " %";
+	}
+  public function getProgressPercent(){
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
-
 	public function getSurveyCount(){
 		$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)

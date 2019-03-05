@@ -37,15 +37,14 @@ class QuestionController extends Controller
 								},'forposition'=>function($p){
 									$p->with(['candidates'=>function($c){
 											$c->with('party');
-										}]);	
+										}]);
 								}])
 							->select(['id','question','number_answers','priority',
 													'type_id','for_position','with_other_ans',
 													'with_partyselect'])
 							->orderby('priority')
 							->get();
-		info($result);
-		return response()->json($result);		
+		return response()->json($result);
 	}
     /**
      * Show the form for creating a new resource.

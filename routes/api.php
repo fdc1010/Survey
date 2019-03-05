@@ -17,9 +17,9 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 Route::group(['prefix' => 'mobile',
-	'namespace' => 'Mobile'], function () {	
-		//info("Mobile");	
-		Route::post('login', 'MobileController@login');		
+	'namespace' => 'Mobile'], function () {
+		//info("Mobile");
+		Route::post('login', 'MobileController@login');
 		Route::get('getCivilStatus', 'CivilStatusController@getCivilStatus');
 		Route::get('getEmploymentStatus', 'EmploymentStatusController@getEmploymentStatus');
 		Route::get('getOccupancyStatus', 'OccupancyStatusController@getOccupancyStatus');
@@ -27,10 +27,13 @@ Route::group(['prefix' => 'mobile',
 		Route::get('getVoterInfoByName', 'VoterController@getVoterInfoByName');
 		Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 		Route::get('getSurveyorProgress','SurveyAnswerController@getSurveyorProgress');
+		Route::get('getSurveyorProgressB','SurveyAnswerController@getSurveyorProgressB');
+		Route::get('getSurveyorInfo','MobileController@getSurveyorInfo');
+
 		Route::group(['middleware' => 'auth:api'], function () {
-			//info("Mobile Middleware");			
-			Route::get('logout', 'MobileController@logout');				
-			Route::get('getQuestions','QuestionController@getQuestions');			
+			//info("Mobile Middleware");
+			Route::get('logout', 'MobileController@logout');
+			Route::get('getQuestions','QuestionController@getQuestions');
 			Route::resource('voter', 'VoterController');
 			Route::post('sendInfo','VoterController@sendInfo');
 			Route::post('syncInData', 'VoterController@syncInData');

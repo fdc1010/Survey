@@ -18,7 +18,6 @@
         @if ($entity_model::isColumnNullable($field['name']))
             <option value="">-</option>
         @endif
-
         @php
         if (isset($field['model'])){
             $field['model']::doesntHave($field['entity2'])->chunk(400, function ($records) use ($current_value,$field) {

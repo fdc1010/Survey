@@ -36,46 +36,53 @@ class VoterController extends Controller
         $this->validate($request, array(
             'file'      => 'required'
         ));
- 
+
         if($request->hasFile('file')){
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
- 
+
                 $path = $request->file->getRealPath();
                 $data = Excel::load($path, function($reader) {
                 })->get();
                 if(!empty($data) && $data->count()){
- 
+
                     foreach ($data as $key => $value) {
-                        $insert[] = [						
-						'precinct_id' => $value->email,
+                        $insert[] = [
+            						'precinct_id' => $value->email,
                         'seq_num' => $value->seqnum,
                         'status_id' => $value->status,
-						'sitio_id' => $value->sitio,
+            						'sitio_id' => $value->sitio,
                         'last_name' => $value->lastname,
-						'first_name' => $value->firstname,
-						'middle_name' => $value->middlename,
-						'address' => $value->address
+            						'first_name' => $value->firstname,
+            						'middle_name' => $value->middlename,
+            						'address' => $value->address
                         ];
                     }
- 
+
                     if(!empty($insert)){
- 
+                        // $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                        //                           ->where('survey_detail_id',$surveydetailid)
+                        //                           ->first();
+                        //
+                        // SurveyorAssignment::where('user_id',$userid)
+                        //                   ->where('survey_detail_id',$surveydetailid)
+                        //                   ->update(['count'=>($surveyassignment->count + 1)]);
+
                         $insertData = DB::table('survey_answers')->insert($insert);
                         if ($insertData) {
                             return response()->json(['success'=>true,'message'=>'Your Data has successfully imported']);
-                        }else {                        
+                        }else {
                             return response()->json(['success'=>false,'message'=>'Error inserting the data..']);
-                
+
                         }
                     }
                 }
- 
+
                 return response()->json(['success'=>false,'message'=>'Empty File Content']);
- 
+
             }else {
                 return response()->json(['success'=>false,'message'=>'File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!']);
-                
+
             }
         }
     }
@@ -88,7 +95,7 @@ class VoterController extends Controller
 					->where('middle_name','like', "%{$mname}%")
 					->with(['status','precinct','employmentstatus','civilstatus','occupancystatus','statuses'=>function($q){$q->select(['voter_id','status_id']);}])
 					->first();
-		
+
 		return response()->json(['voter'=>$voters]);
 	}
 	public function getVoterStatuses(Request $request){
@@ -119,7 +126,7 @@ class VoterController extends Controller
      */
     public function store(Request $request)
     {
-        		
+
     }
 
     /**
@@ -165,7 +172,7 @@ class VoterController extends Controller
 			'civil_status_id'=>'required',
 			'occupancy_status_id'=>'required',
 			'occupancy_length'=>'required',
-			'monthly_household'=>'required',			
+			'monthly_household'=>'required',
 			'work'=>'required'
 		]);
 		if ($validator->fails()) {
@@ -179,22 +186,22 @@ class VoterController extends Controller
 			$voter = Voter::find($id);
 			$voter->fill($request->all());
 			if($request->hasFile('profilepic')){
-				
+
 				$path = config('app.root') . '/public/profilepic/';
 				$photo=$path.basename($voter->profilepic);
-				
+
 				File::delete($photo);
-				
+
 				$md5profName = md5_file($request->file('profilepic')->getRealPath());
 				$guessExtensionprof = $request->file('profilepic')->guessExtension();
-	
+
 				$srvroot = $_SERVER['DOCUMENT_ROOT'];
 				$pathimage =  $srvroot . '/profilepic/';
 				$path = url('/profilepic/');
 				if (!File::exists($path)) {
 					File::makeDirectory($path,0777);
 				}
-	
+
 				$width = 160;
 				$height = 160;
 				$image = Image::make($request->file('profilepic')->getRealPath());
@@ -203,12 +210,12 @@ class VoterController extends Controller
 					$constraint->aspectRatio();
 					$constraint->upsize();
 				});
-	
+
 				$image->save($pathimage.$md5profName.'.'.$guessExtensionprof);
-	
+
 				$filename = $md5profName.'.'.$guessExtensionprof;
 				$voter->profilepic =  config('app.url') . '/profilepic/' . $filename;
-	
+
 			}
 			$voter->save();
 			return response()->json(['success'=>true,'msg'=>'Updating Voter Successful!'],200);
@@ -217,7 +224,7 @@ class VoterController extends Controller
 		}
     }
 	public function sendInfo(Request $request){
-		info($request);	
+		info($request);
 		return response()->json(['success'=>true,'msg'=>'Saving Survey Info on the Server Successful!'],200);
 	}
     /**
