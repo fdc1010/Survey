@@ -305,15 +305,12 @@ class SurveyAnswerController extends Controller
       								$tallyproblem->save();
       							}
       						}
+
       					}
-
-
-
-                    return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
-
-    			}
+    			    }
+              return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
             }
-				}
+  				}
         return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
       }
 			return response()->json(['success'=>true,'msg'=>'An Error Occured!']);
