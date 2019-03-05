@@ -809,7 +809,7 @@
                                   <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
-                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,0,0,0,0,0,$tallyagebrackets,$tallybrgy,
+                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,0,0,0,0,0,0,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                       @endphp
