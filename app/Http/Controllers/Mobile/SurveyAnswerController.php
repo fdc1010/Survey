@@ -264,7 +264,8 @@ class SurveyAnswerController extends Controller
       							}
 
       							$surveyansid=$surveyans->save();
-
+                    info("Storing tally: ".$voter->first_name . " " . $voter->last_name);
+                    info($surveyanswers);
       							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
       							if($optioncandidate){
       								$tallycandidate = new TallyVote;
@@ -297,6 +298,7 @@ class SurveyAnswerController extends Controller
 
       							$optionproblem = OptionProblem::where('option_id',$optid)->first();
       							if($optionproblem){
+                      info($receivedans);
       								$voterbrgy = Voter::with('precinct')->find($voterid);
       								$tallyproblem = new TallyOtherVote;
       								$tallyproblem->option_id = $optid;
