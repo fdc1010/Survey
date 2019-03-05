@@ -141,7 +141,7 @@ class SurveyAnswerController extends Controller
       $voter = Voter::find($voterid);
       if($voter){
         info("Storing voter survey: ".$voter->first_name . " " . $voter->last_name);
-        if($voter->is_done_survey==0){
+        //if($voter->is_done_survey==0){
             $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
                           ->where('voter_id',$voterid)
                           ->where('survey_detail_id',$surveydetailid)
@@ -310,8 +310,8 @@ class SurveyAnswerController extends Controller
     			    }
               return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
             }
-  				}
-        return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
+  		//		}
+      //  return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
       }
 			return response()->json(['success'=>true,'msg'=>'An Error Occured!']);
 
