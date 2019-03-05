@@ -92,17 +92,20 @@ class TallyVote extends Model
 							})
 						->sum('tally');
 	}*/
-	public function tally($candidateid=1,$surveydetailid=1,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
+	public function tally($candidateid=1,$surveydetailid=1,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0,$agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->has('surveyanswer')
-					->whereHas('voter',function($q)use($brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$agebrackets,$brgy,$genders,
+					->whereHas('voter',function($q)use($brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid,$agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 
 								if($brgyid>0){
 									$q->where('barangay_id',$brgyid);
+								}
+                if($genderid>0){
+									$q->where('gender_id',$genderid);
 								}
 								if($civilstatusid>0){
 									$q->where('civil_status_id',$civilstatusid);
