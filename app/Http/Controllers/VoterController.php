@@ -36,7 +36,7 @@ class VoterController extends Controller
         Voter::where('barangay_id',$request->brgyid)->chunk(400, function ($results){
             foreach ($results as $voter) {
         			$explodefm = explode(" ",$voter->first_name);
-        			echo $voter->first_name . " : ";
+        			echo $voter->first_name . " : " . $voter->middle_name;
         			if(count($explodefm)>1){
         				$curvoter = Voter::find($voter->id);
         				$curvoter->middle_name = $explodefm[count($explodefm)-1];
@@ -48,7 +48,7 @@ class VoterController extends Controller
     		Voter::chunk(400, function ($results){
             foreach ($results as $voter) {
         			$explodefm = explode(" ",$voter->first_name);
-        			echo $voter->first_name . " : ";
+        			echo $voter->first_name . " : " . $voter->middle_name;
         			if(count($explodefm)>1){
         				$curvoter = Voter::find($voter->id);
         				$curvoter->middle_name = $explodefm[count($explodefm)-1];
