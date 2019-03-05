@@ -36,42 +36,45 @@ class SurveyAnswerController extends Controller
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
   public function updateothertallyvotesquality(Request $request){
-      $qid = array(10,11,12);
       $i = 0;
-      $surveyans = SurveyAnswer::with('option')
-                                  ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-                                  ->where('question_id',3)
+      $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12]])
                                   ->where('survey_detail_id',1)
                                   ->orderBy('id')
-                                  ->take(3)
                                   ->get();
       if(!empty($surveyans) && count($surveyans)>0){
         echo "Survey Answer:<br>";
         foreach($surveyans as $survey){
-            if($i>=3){
-                $i=0;
-            }
             echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
                  $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
-            echo $qid[$i] . "<br>";
-            $tallyothervote = TallyOtherVote::where('voter_id',$survey->voter_id)
-                                              ->where('survey_detail_id',1)
-                                              ->whereNull('barangay_id')
-                                              ->whereIn('option_id',[10,11,12,13,14,15,16,17])
-                                              ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-                                              ->orderBy('id')
-                                              ->skip($i)
-                                              ->first();
-            if($tallyothervote){
-              if($survey->question_id == $qid[$i]){
-                $tallyov = TallyOtherVote::find($tallyothervote->id);
-                $tallyov->candidate_id = $survey->option->candidate_id;
-                $tallyov->question_id = $qid[$i];
-                $tallyov->user_id = $survey->user_id;
-                $tallyov->save();
-              }
-            }
-            $i++;
+                 if($i>=3){
+                   $i = 0;
+                 }
+                 $surveyansocs = SurveyAnswer::with('option')
+                                            ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                            ->whereIn('question_id',3)
+                                            ->where('survey_detail_id',1)
+                                            ->where('voter_id',$survey->voter_id)
+                                            ->orderBy('id')
+                                            ->take(3)
+                                            ->get();
+            //foreach($surveyansocs as $surveyansoc){
+                  $tallyothervote = TallyOtherVote::where('voter_id',$surveyansocs[$i]->voter_id)
+                                                    ->where('survey_detail_id',1)
+                                                    ->whereNull('barangay_id')
+                                                    ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                    ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                                    ->orderBy('id')
+                                                    ->take(3)
+                                                    ->get();
+                  if(!empty($tallyothervote) && count($tallyothervote)>){
+                      $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
+                      $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
+                      $tallyov->question_id = $survey->question_id;
+                      $tallyov->user_id = $survey->user_id;
+                      $tallyov->save();
+                    }
+              $i++;
+          //  }
         }
       }
 
