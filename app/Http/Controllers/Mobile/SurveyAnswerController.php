@@ -282,7 +282,7 @@ class SurveyAnswerController extends Controller
       								if($surans){
       									$question = Question::find($relquestion->question_id);
       									if(!empty($question->for_position) && is_numeric($question->for_position)){
-      										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+      										$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
       										if($optioncandidate){
       											$tallycandidate = new TallyOtherVote;
       											$tallycandidate->option_id = $optid;
