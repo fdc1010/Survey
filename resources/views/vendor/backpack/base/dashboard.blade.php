@@ -782,6 +782,13 @@
         </div>
         </form>
       @php
+        $tallyagebrackets = array_values($tallyagebrackets);
+        $tallybrgy = array_values($tallybrgy);
+        $tallygenders = array_values($tallygenders);
+        $tallyempstatus = array_values($tallyempstatus);
+        $tallycivilstatus = array_values($tallycivilstatus);
+        $tallyoccstatus = array_values($tallyoccstatus);
+        $tallyvoterstatus = array_values($tallyvoterstatus);
         info("tallyagebrackets: ");
         info($tallyagebrackets);
         info("tallybrgy: ");
