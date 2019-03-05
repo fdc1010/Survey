@@ -87,7 +87,7 @@
 
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
 
-        $brgyarr = !empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
+        $brgyarr = App\Models\BarangaySurveyable::get()->pluck('barangay_id')->toArray();//!empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with('candidates')->get();
 
