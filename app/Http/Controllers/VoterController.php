@@ -31,18 +31,32 @@ class VoterController extends Controller
         $filePath = isset($media) ? $media->getPath() : abort(404, 'Media not found.');
         return Image::make($media->getPath())->response();
     }*/
-	 public function extramiddlename(){
-  		Voter::chunk(400, function ($results){
-          foreach ($results as $voter) {
-      			$explodefm = explode(" ",$voter->first_name);
-      			echo $voter->first_name . " : ";
-      			if(count($explodefm)>1){
-      				$curvoter = Voter::find($voter->id);
-      				$curvoter->middle_name = $explodefm[count($explodefm)-1];
-      				$curvoter->save();
-      			}
-      		}
-        });
+	 public function extramiddlename(Request $request){
+      if($request->has('brgyid')){
+        Voter::where('barangay_id',$request->brgyid)->chunk(400, function ($results){
+            foreach ($results as $voter) {
+        			$explodefm = explode(" ",$voter->first_name);
+        			echo $voter->first_name . " : ";
+        			if(count($explodefm)>1){
+        				$curvoter = Voter::find($voter->id);
+        				$curvoter->middle_name = $explodefm[count($explodefm)-1];
+        				$curvoter->save();
+        			}
+        		}
+          });
+      }else{
+    		Voter::chunk(400, function ($results){
+            foreach ($results as $voter) {
+        			$explodefm = explode(" ",$voter->first_name);
+        			echo $voter->first_name . " : ";
+        			if(count($explodefm)>1){
+        				$curvoter = Voter::find($voter->id);
+        				$curvoter->middle_name = $explodefm[count($explodefm)-1];
+        				$curvoter->save();
+        			}
+        		}
+          });
+      }
 	}
   public function removeMNfromLN(){
     Voter::chunk(400, function ($results){
@@ -142,7 +156,7 @@ class VoterController extends Controller
                                         // 'middle_name' => $value->middlename,
                                         'address' => $value->address
                                         ];
-                              info($value->lastname . ", " . $value->firstname);
+                              //info($value->lastname . ", " . $value->firstname);
 
                               $insertData = DB::table('voters')->insert($insert);
                               if (!$insertData) {
