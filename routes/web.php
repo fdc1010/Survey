@@ -22,6 +22,7 @@ Route::post('importsitios', 'SitioController@importsitios')->name('importsitios'
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
+Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateothertallyvotesquality')->name('updateothertallyvotesquality');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {

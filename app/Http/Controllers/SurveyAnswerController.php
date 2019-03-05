@@ -19,7 +19,7 @@ class SurveyAnswerController extends Controller
 	public function storeAnswers(Request $request){
 		$sid = $request->survey_id;
 		$survey = Survey::find($sid);
-		$surveyans = new SurveyAnswer;		
+		$surveyans = new SurveyAnswer;
 		$surveyans->survey_id = $survey->id;
 		$surveyans->question_id = $request->question_id;
 		$surveyans->answered_option = $request->answered_option;
@@ -32,6 +32,20 @@ class SurveyAnswerController extends Controller
 		$surveyans->save();
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
+  public function updateothertallyvotesquality(Request $request){
+      $surveyans = SurveyAnswer::with(['option'=>function($q){
+                                              $q->with('candidate');
+                                        }
+                                      ])
+                                  ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                  ->where('question_id',3)
+                                  ->where('survey_detail_id',1)
+                                  ->get();
+      if(!empty($surveyans) && count($surveyans)>0){
+        var_dump($surveyans);
+      }
+
+  }
     /**
      * Show the form for creating a new resource.
      *
