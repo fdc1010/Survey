@@ -62,9 +62,9 @@ class SurveyAnswerController extends Controller
                                               ->first();
             if($tallyothervote){
                 $tallyov = TallyOtherVote::find($tallyothervote->id);
-                $tallyov->candidate_id=>$survey->option->candidate_id;
-                $tallyov->question_id=>$qid[$i];
-                $tallyov->user_id=>$survey->user_id;
+                $tallyov->candidate_id = $survey->option->candidate_id;
+                $tallyov->question_id = $qid[$i];
+                $tallyov->user_id = $survey->user_id;
                 $tallyov->save();
             }
             $i++;
