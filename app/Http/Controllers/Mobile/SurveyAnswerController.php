@@ -235,7 +235,7 @@ class SurveyAnswerController extends Controller
       			}
 
       				$receivedans = json_decode($request->q_and_a, true);
-              info("Storing answers: ".$receivedans);
+              info("Storing answers: ".$voter->full_name);
               info($receivedans);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
