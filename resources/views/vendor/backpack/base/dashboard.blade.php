@@ -866,12 +866,15 @@
                                       </tr>
                                   </thead>
                                 <tbody>
+
+
+                                @php
+                                  $tallytotalvgcandidate = [];
+                                  $tallytotalogcandidate = 0;
+                                @endphp
                                 @foreach($genders as $gender)
                                   $tallytotalvgcandidate[$gender->id] = 0;
                                 @endforeach
-                                @php
-                                  $tallytotalogcandidate = 0;
-                                @endphp
                                  @foreach($position->candidates as $candidate)
                                  @php
                                    $tallytotalgcandidate = 0;
