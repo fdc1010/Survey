@@ -188,9 +188,9 @@ class SurveyAnswerController extends Controller
 									'monthly_household'=>$voterdetails['monthlyIncome'],
 									'yearly_household'=>$voterdetails['yearlyIncome'],
 									'occupancy_length'=>$voterdetails['occuLength'],
-									'occupancy_status_id'=>(empty($voterdetails['occuStatusId']?1:$voterdetails['occuStatusId']),
-									'civil_status_id'=>(empty($voterdetails['civilStatusId']?1:$voterdetails['civilStatusId']),
-									'employment_status_id'=>(empty($voterdetails['empStatusId']?1:$voterdetails['empStatusId']),
+									'occupancy_status_id'=>(empty($voterdetails['occuStatusId'])?1:$voterdetails['occuStatusId']),
+									'civil_status_id'=>(empty($voterdetails['civilStatusId'])?1:$voterdetails['civilStatusId']),
+									'employment_status_id'=>(empty($voterdetails['empStatusId'])?1:$voterdetails['empStatusId']),
 									'gender_id'=>(empty($voterdetails['genderId'])?1:$voterdetails['genderId']),
 									'profilepic'=>$profilepic
 								]);
