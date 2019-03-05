@@ -311,7 +311,7 @@ class SurveyAnswerController extends Controller
             }
             return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
 				}
-				return response()->json(['success'=>false,'msg'=>'An Error Occured!']);
+				return response()->json(['success'=>true,'msg'=>'An Error Occured!']);
 
 	}
     /**
