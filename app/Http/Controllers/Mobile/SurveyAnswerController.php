@@ -269,6 +269,8 @@ class SurveyAnswerController extends Controller
       							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
       							if($optioncandidate){
       								$tallycandidate = new TallyVote;
+                      $tallycandidate->question_id = $voteranswers['questionId'];
+                      $tallycandidate->option_id = $optid;
       								$tallycandidate->candidate_id = $optioncandidate->candidate_id;
       								$tallycandidate->voter_id = $voterid;
       								$tallycandidate->survey_detail_id = $surveydetailid;
@@ -282,14 +284,15 @@ class SurveyAnswerController extends Controller
       								if($surans){
       									$question = Question::find($relquestion->question_id);
       									if(!empty($question->for_position) && is_numeric($question->for_position)){
-      										$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+      										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
       										if($optioncandidate){
-      											$tallycandidate = new TallyOtherVote;
-      											$tallycandidate->option_id = $optid;
-      											$tallycandidate->voter_id = $voterid;
-      											$tallycandidate->candidate_id = $optioncandidate->candidate_id;
-      											$tallycandidate->survey_detail_id = $surveydetailid;
-      											$tallycandidate->save();
+      											$othertallycandidate = new TallyOtherVote;
+                            $othertallycandidate->question_id = $voteranswers['questionId'];
+                            $othertallycandidate->option_id = $optid;
+      											$othertallycandidate->voter_id = $voterid;
+      											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
+      											$othertallycandidate->survey_detail_id = $surveydetailid;
+      											$othertallycandidate->save();
       										}
 
       									}

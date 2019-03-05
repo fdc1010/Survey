@@ -15,15 +15,19 @@ class CreateTallyVotesTable extends Migration
     {
         Schema::create('tally_votes', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('candidate_id');
-			$table->unsignedInteger('voter_id');
-			$table->unsignedInteger('survey_detail_id');
-			$table->integer('tally')->default(1);
+            $table->unsignedInteger('question_id');
+            $table->unsignedInteger('option_id');
+      			$table->unsignedInteger('candidate_id');
+      			$table->unsignedInteger('voter_id');
+      			$table->unsignedInteger('survey_detail_id');
+      			$table->integer('tally')->default(1);
             $table->timestamps();
-			
-			$table->foreign('candidate_id')->references('id')->on('candidates');
-			$table->foreign('voter_id')->references('id')->on('voters');
-			$table->foreign('survey_detail_id')->references('id')->on('survey_details');
+
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('option_id')->references('id')->on('question_options');
+      			$table->foreign('candidate_id')->references('id')->on('candidates');
+      			$table->foreign('voter_id')->references('id')->on('voters');
+      			$table->foreign('survey_detail_id')->references('id')->on('survey_details');
         });
     }
 
