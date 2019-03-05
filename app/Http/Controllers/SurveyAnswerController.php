@@ -62,8 +62,8 @@ class SurveyAnswerController extends Controller
                     echo $tallyothervote->question_id . " " . $tallyothervote->option_id . " " . $tallyothervote->option->option . " " .
                          $tallyothervote->voter_id . " " . $tallyothervote->candidate_id . " " . $tallyothervote->user_id . "<br>";
 
-                    //TallyOtherVote::where('id',$tallyothervote->id)
-                                      //->update(['candidate_id'=>$tallyothervote->candidate_id,'question_id'=>$tallyothervote->question_id]);
+                    TallyOtherVote::where('id',$tallyothervote->id)
+                                      ->update(['candidate_id'=>$tallyothervote->candidate_id,'question_id'=>$tallyothervote->question_id]);
                 }
             }
         }

@@ -250,10 +250,10 @@ class SurveyAnswerController extends Controller
       							$surveyans = new SurveyAnswer;
       							$surveyans->survey_detail_id = $surveydetailid;
       							$surveyans->question_id = $voteranswers['questionId'];
-      							$surveyans->answered_option = $voteranswers['answers'];
       							$surveyans->option_id = $optid;
       							$surveyans->user_id = $userid;
       							$surveyans->voter_id = $voterid;
+      							$surveyans->answered_option = $voteranswers['answers'];
       							$surveyans->other_answer = $ansid['otherAnswer'];
 
       							if($request->has('latitude')){
