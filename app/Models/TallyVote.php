@@ -154,8 +154,7 @@ class TallyVote extends Model
 
 								if(count($brgy)>0){
 									//$q->whereHas('precinct',function($qb)use($brgy){
-										$q->whereIn('barangay_id',$brgy)
-                        ->orWhereNull('barangay_id');
+										$q->whereIn('barangay_id',$brgy);
 									//});
 									//info("brgy: ");info($brgy);
 								}
