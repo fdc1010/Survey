@@ -142,7 +142,7 @@ class TallyVote extends Model
               								}else{
                                 $qv->whereIn('status_id',$voterstatus);
                               }
-												}->orWhereNull('status_id');
+												})->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
 								}
 
