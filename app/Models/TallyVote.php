@@ -116,7 +116,7 @@ class TallyVote extends Model
 
 								if(count($agebrackets)>0){
 									$q->whereIn('age',$agebrackets)->orWhereNull('age');
-									info("agebrackets: ");info($agebrackets);
+									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
 									$q->whereIn('gender_id',$genders)->orWhereNull('gender_id');
