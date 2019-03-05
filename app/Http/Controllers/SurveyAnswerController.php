@@ -41,7 +41,7 @@ class SurveyAnswerController extends Controller
       if(!empty($surveyans) && count($surveyans)>0){
         foreach($surveyans as $survey)
             echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
-                 $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id;
+                 $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
       }
 
   }
