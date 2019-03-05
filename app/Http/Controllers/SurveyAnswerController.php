@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\TallyOtherVote;
+
 use Illuminate\Http\Request;
 
 class SurveyAnswerController extends Controller
@@ -39,9 +42,24 @@ class SurveyAnswerController extends Controller
                                   ->where('survey_detail_id',1)
                                   ->get();
       if(!empty($surveyans) && count($surveyans)>0){
+        echo "Survey Answer:<br>";
         foreach($surveyans as $survey)
             echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
                  $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
+
+            $tallyothervotes = TallyOtherVote::with('option')
+                                              ->where('voter_id',$survey->voter_id)
+                                              ->where('survey_detail_id',1)
+                                              ->whereNull('barangay_id')
+                                              ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                              ->get();
+            if(!empty($tallyothervotes) && count($tallyothervotes)>0){
+                echo "Other Tally:<br>";
+                foreach($tallyothervotes as $tallyothervote)
+                    echo $tallyothervote->question_id . " " . $tallyothervote->option_id . " " . $tallyothervote->option->candidate_id . " " .
+                         $tallyothervote->voter_id . " " . $tallyothervote->option->option . " " . $tallyothervote->user_id . "<br>";
+                }
+            }
       }
 
   }
