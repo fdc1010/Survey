@@ -38,7 +38,7 @@ class SurveyAnswerController extends Controller
     {
         //
     }
-    public function getSurveyorProgress(Request $request){
+    public function getSurveyorProgressB(Request $request){
   			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
@@ -84,7 +84,7 @@ class SurveyAnswerController extends Controller
   											'survey_count_per_quota'=>0]);
   			}
   	}
-    public function getSurveyorProgressB(Request $request){
+    public function getSurveyorProgress(Request $request){
   			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
