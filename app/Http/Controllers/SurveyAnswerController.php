@@ -67,7 +67,7 @@ class SurveyAnswerController extends Controller
 
                           TallyOtherVote::where('id',$tallyothervote->id)
                                           ->update(['candidate_id'=>$surveyansoc->option->candidate_id,
-                                                    'question_id'=>$surveyansoc->question_id,
+                                                    'question_id'=>$survey->question_id,
                                                     'user_id'=>$survey->user_id]);
 
                         }
