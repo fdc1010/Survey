@@ -64,12 +64,13 @@ class SurveyAnswerController extends Controller
                                                     ->take(3)
                                                     ->get()
                                                     ->toArray();
-
-                  TallyOtherVote::where('id',$tallyothervotes[$i]['id'])
-                                  ->update(['candidate_id'=>$surveyansocs[$i]['option']['candidate_id'],
-                                            'question_id'=>$surveyansocs[$i]['question_id'],
-                                            'user_id'=>$survey->user_id]);
-            $i++;
+                  if(!empty($surveyansocs[$i])){
+                      TallyOtherVote::where('id',$tallyothervotes[$i]['id'])
+                                      ->update(['candidate_id'=>$surveyansocs[$i]['option']['candidate_id'],
+                                                'question_id'=>$surveyansocs[$i]['question_id'],
+                                                'user_id'=>$survey->user_id]);
+                      $i++;
+                  }
         }
       }
 
