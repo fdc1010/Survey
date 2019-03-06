@@ -892,9 +892,10 @@
                                         @endforeach
                                         <th>{{ $tallytotalgcandidate }}</th>
                                     </tr>
-                                    @if($position->id!=3)
-                                      $tallytotalogcandidate += $tallytotalgcandidate;
-                                    @endif
+                                    @php
+                                      if($position->id!=3)
+                                        $tallytotalogcandidate += $tallytotalgcandidate;
+                                    @endphp
                                   @endforeach
                                   </tbody>
                                 @endforeach
@@ -972,9 +973,10 @@
                                             <td>{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }}</td>
                                             @endforeach
                                             <th>{{ $tallytotalccandidate }}</th>
-                                            @if($position->id!=3)
+                                            @php
+                                            if($position->id!=3)
                                               $tallytotaloccandidate += $tallytotalccandidate;
-                                            @endif
+                                            @endphp
                                         </tr>
                                   	@endforeach
                                   </tbody>
