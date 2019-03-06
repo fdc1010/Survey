@@ -57,7 +57,7 @@ class SurveyAnswerController extends Controller
                                             ->orderBy('id')
                                             ->get();
 
-                  $tallyothervote = TallyOtherVote::where('voter_id',$survey->voter_id)
+                  $tallyothervote = TallyOtherVote::where('voter_id',$surveyansocs[$i]->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
                                                     ->whereIn('option_id',[10,11,12,13,14,15,16,17])
