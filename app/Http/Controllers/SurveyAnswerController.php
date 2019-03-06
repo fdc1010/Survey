@@ -37,15 +37,15 @@ class SurveyAnswerController extends Controller
 	}
   public function updateothertallyvotesquality(Request $request){
       $i = 0;
-      $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
-                                  ->where('survey_detail_id',1)
-                                  ->orderBy('id')
-                                  ->get();
-      if(!empty($surveyans) && count($surveyans)>0){
-        echo "Survey Answer:<br>";
-        foreach($surveyans as $survey){
-          if($i>2)
-            $i=0;
+      // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
+      //                             ->where('survey_detail_id',1)
+      //                             ->orderBy('id')
+      //                             ->get();
+      // if(!empty($surveyans) && count($surveyans)>0){
+      //   echo "Survey Answer:<br>";
+      //   foreach($surveyans as $survey){
+      //     if($i>2)
+      //       $i=0;
                  $surveyansocs = SurveyAnswer::with('option')
                                             ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                             ->where('question_id',3)
@@ -53,26 +53,29 @@ class SurveyAnswerController extends Controller
                                             ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
                                             ->take(3)
-                                            ->get()
-                                            ->toArray();
-                  $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
-                                                    ->where('survey_detail_id',1)
-                                                    ->whereNull('barangay_id')
-                                                    ->whereIn('option_id',[10,11,12,13,14,15,16,17])
-                                                    ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-                                                    ->orderBy('id')
-                                                    ->take(3)
-                                                    ->get()
-                                                    ->toArray();
-                  if(!empty($surveyansocs[$i])){
-                      TallyOtherVote::where('id',$tallyothervotes[$i]['id'])
-                                      ->update(['candidate_id'=>$surveyansocs[$i]['option']['candidate_id'],
-                                                'question_id'=>$surveyansocs[$i]['question_id'],
-                                                'user_id'=>$survey->user_id]);
-                      $i++;
-                  }
-        }
-      }
+                                            ->get();
+                foreach($surveyansocs as $survey){
+                      if($i>2)
+                         $i=0;
+                      $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                                        ->where('survey_detail_id',1)
+                                                        ->whereNull('barangay_id')
+                                                        ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                        ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                                        ->orderBy('id')
+                                                        ->skip($i)
+                                                        ->take(1)
+                                                        ->first();
+                      if($tallyothervotes){
+                          TallyOtherVote::where('id',$tallyothervotes->id)
+                                          ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                    'question_id'=>$survey->option->question_id,
+                                                    'user_id'=>$survey->user_id]);
+                          $i++;
+                      }
+              }
+        //}
+      //}
 
   }
     /**
