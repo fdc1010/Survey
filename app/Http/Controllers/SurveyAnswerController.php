@@ -198,8 +198,7 @@ class SurveyAnswerController extends Controller
                                ->orderBy('id')
                                ->get();
           foreach($surveyans as $survey){
-            $surveyansot = SurveyAnswer::with('option')
-                                         where('voter_id',$survey->voter_id)
+            $surveyansot = SurveyAnswer::where('voter_id',$survey->voter_id)
                                          ->where('question_id',8)
                                          ->where('survey_detail_id',1)
                                          ->orderBy('id')
