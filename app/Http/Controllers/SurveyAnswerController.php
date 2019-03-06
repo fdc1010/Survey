@@ -119,6 +119,88 @@ class SurveyAnswerController extends Controller
       //}
 
   }
+  public function updateothertallyvotesqualityViceMayor(Request $request){
+
+
+      // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
+      //                             ->where('survey_detail_id',1)
+      //                             ->orderBy('id')
+      //                             ->get();
+      // if(!empty($surveyans) && count($surveyans)>0){
+      //   echo "Survey Answer:<br>";
+      //   foreach($surveyans as $survey){
+      //     if($i>2)
+      //       $i=0;
+                 $surveyansocs = SurveyAnswer::with('option')
+                                            //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                            ->where('question_id',6)
+                                            ->where('survey_detail_id',1)
+                                            ->orderBy('id')
+                                            ->get();
+                foreach($surveyansocs as $survey){
+                      $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                                        ->where('survey_detail_id',1)
+                                                        ->whereNull('barangay_id')
+                                                        //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                        ->where('question_id',7)
+                                                        //->whereIn('candidate_id',[27,28,41,42,43])
+                                                        //->whereIn('candidate_id',[1,2,16,18,19])
+                                                        ->orderBy('id')
+                                                        ->first();
+                      if($tallyothervotes){
+                          echo $survey->option->candidate_id . " " . $survey->user_id . "<br>";
+                          TallyOtherVote::where('id',$tallyothervotes->id)
+                                          ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                    'question_id'=>5,
+                                                    'user_id'=>$survey->user_id]);
+
+                      }
+              }
+        //}
+      //}
+
+  }
+  public function updateothertallyvotesqualityCong(Request $request){
+
+
+      // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
+      //                             ->where('survey_detail_id',1)
+      //                             ->orderBy('id')
+      //                             ->get();
+      // if(!empty($surveyans) && count($surveyans)>0){
+      //   echo "Survey Answer:<br>";
+      //   foreach($surveyans as $survey){
+      //     if($i>2)
+      //       $i=0;
+                 $surveyansocs = SurveyAnswer::with('option')
+                                            //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                            ->where('question_id',8)
+                                            ->where('survey_detail_id',1)
+                                            ->orderBy('id')
+                                            ->get();
+                foreach($surveyansocs as $survey){
+                      $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                                        ->where('survey_detail_id',1)
+                                                        ->whereNull('barangay_id')
+                                                        //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                        ->where('question_id',9)
+                                                        //->whereIn('candidate_id',[27,28,41,42,43])
+                                                        //->whereIn('candidate_id',[1,2,16,18,19])
+                                                        ->orderBy('id')
+                                                        ->first();
+                      if($tallyothervotes){
+                          echo $survey->option->candidate_id . " " . $survey->user_id . "<br>";
+                          TallyOtherVote::where('id',$tallyothervotes->id)
+                                          ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                    'question_id'=>5,
+                                                    'user_id'=>$survey->user_id]);
+
+                      }
+              }
+        //}
+      //}
+
+  }
     /**
      * Show the form for creating a new resource.
      *
