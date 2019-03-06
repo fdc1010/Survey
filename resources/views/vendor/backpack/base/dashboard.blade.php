@@ -793,7 +793,7 @@
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
-                                    <tr style>
+                                    <tr>
                                         <th>Cadidates</th>
                                         <th>Tally</th>
                                     </tr>
