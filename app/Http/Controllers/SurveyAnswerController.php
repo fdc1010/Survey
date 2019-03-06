@@ -58,7 +58,7 @@ class SurveyAnswerController extends Controller
                                             ->take(3)
                                             ->get();
 
-                  $tallyothervote = TallyOtherVote::where('voter_id',$survey->voter_id)
+                  $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
                                                     ->whereIn('option_id',[10,11,12,13,14,15,16,17])
@@ -66,15 +66,19 @@ class SurveyAnswerController extends Controller
                                                     ->orderBy('id')
                                                     ->take(3)
                                                     ->get();
-                  var_dump($tallyothervote);
-                  if(!empty($tallyothervote) && count($tallyothervote)>0){
-                      // $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
-                      // $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
-                      // $tallyov->question_id = $survey->question_id;
-                      // $tallyov->user_id = $survey->user_id;
-                      //$tallyov->save();
-                      //echo $tallyothervote[$i]->id . " " . $surveyansocs[$i]->candidate_id . " " . $survey->question_id . " " . $survey->user_id;
-                      $i++;
+
+                  if(!empty($tallyothervotes) && count($tallyothervotes)>0){
+                      foreach($surveyansocs as $surveyansoc){
+                        foreach($tallyothervotes as $tallyothervote){
+                          // $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
+                          // $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
+                          // $tallyov->question_id = $survey->question_id;
+                          // $tallyov->user_id = $survey->user_id;
+                          //$tallyov->save();
+                          echo $tallyothervote->id . " " . $surveyansocs->candidate_id . " " . $survey->question_id . " " . $survey->user_id . "<br>";
+                          $i++;
+                        }
+                      }
                     }
 
           //  }
