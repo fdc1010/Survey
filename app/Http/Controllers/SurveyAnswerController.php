@@ -214,7 +214,7 @@ class SurveyAnswerController extends Controller
                       $tallyovs = new TallyOtherVote;
                       $tallyovs->survey_detail_id = $survey->survey_detail_id;
                       $tallyovs->question_id = $survey->question_id;
-                      $tallyovs->candidate_id = $survey->candidate_id;
+                      $tallyovs->candidate_id = $survey->option->candidate_id;
                       $tallyovs->voter_id = $survey->voter_id;
                       $tallyovs->user_id = $survey->user_id;
                       $tallyovs->option_id = $survey->option_id;
