@@ -91,7 +91,7 @@ class SurveyAnswerController extends Controller
       //     if($i>2)
       //       $i=0;
                  $surveyansocs = SurveyAnswer::with('option')
-                                            ->whereIn('option_id',[27,28,41,42,43])
+                                            ->whereIn('option_id',[1,2,16,18,19])
                                             ->where('question_id',5)
                                             ->where('survey_detail_id',1)
                                             ->orderBy('id')
@@ -99,10 +99,10 @@ class SurveyAnswerController extends Controller
                 foreach($surveyansocs as $survey){
                       $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
                                                         ->where('survey_detail_id',1)
-                                                        //->whereNull('barangay_id')
+                                                        ->whereNull('barangay_id')
                                                         ->whereIn('option_id',[10,11,12,13,14,15,16,17])
-                                                        ->whereIn('candidate_id',[27,28,41,42,43])
-                                                        //->whereIn('candidate_id',[1,2,16,18,19])
+                                                        //->whereIn('candidate_id',[27,28,41,42,43])
+                                                        ->whereIn('candidate_id',[1,2,16,18,19])
                                                         ->orderBy('id')
                                                         ->first();
                       if($tallyothervotes){
