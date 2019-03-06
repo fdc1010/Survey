@@ -37,6 +37,7 @@ class SurveyAnswerController extends Controller
 	}
   public function updateothertallyvotesquality(Request $request){
       $i = 0;
+      $qids = array(10,11,12);
       // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
       //                             ->where('survey_detail_id',1)
       //                             ->orderBy('id')
@@ -67,10 +68,11 @@ class SurveyAnswerController extends Controller
                                                         ->take(1)
                                                         ->first();
                       if($tallyothervotes){
-                          TallyOtherVote::where('id',$tallyothervotes->id)
-                                          ->update(['candidate_id'=>$survey->option->candidate_id,
-                                                    'question_id'=>$survey->option->question_id,
-                                                    'user_id'=>$survey->user_id]);
+                          echo $qids[$i] . " " . survey->option->candidate_id . " " . $survey->user_id
+                          // TallyOtherVote::where('id',$tallyothervotes->id)
+                          //                 ->update(['candidate_id'=>$survey->option->candidate_id,
+                          //                           'question_id'=>$survey->option->question_id,
+                          //                           'user_id'=>$survey->user_id]);
                           $i++;
                       }
               }
