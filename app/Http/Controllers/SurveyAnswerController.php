@@ -51,7 +51,7 @@ class SurveyAnswerController extends Controller
                                             ->orderBy('id')
                                             ->take(3)
                                             ->get();
-
+                  var_dump($surveyansocs);
                   $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
@@ -61,20 +61,11 @@ class SurveyAnswerController extends Controller
                                                     ->take(3)
                                                     ->get();
 
-                  if(!empty($tallyothervotes) && count($tallyothervotes)>0){
-                      foreach($surveyansocs as $surveyansoc){
-                        foreach($tallyothervotes as $tallyothervote){
+                  TallyOtherVote::where('id',$tallyothervote->id)
+                                  ->update(['candidate_id'=>$surveyansoc->option->candidate_id,
+                                            'question_id'=>$survey->question_id,
+                                            'user_id'=>$survey->user_id]);
 
-                          TallyOtherVote::where('id',$tallyothervote->id)
-                                          ->update(['candidate_id'=>$surveyansoc->option->candidate_id,
-                                                    'question_id'=>$survey->question_id,
-                                                    'user_id'=>$survey->user_id]);
-
-                        }
-                      }
-                    }
-
-          //  }
         }
       }
 
