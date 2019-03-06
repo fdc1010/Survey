@@ -892,13 +892,14 @@
                                         @endforeach
                                         <th>{{ $tallytotalgcandidate }}</th>
                                     </tr>
-                                    @php
+                                    @if($position->id!=3)
                                       $tallytotalogcandidate += $tallytotalgcandidate;
-                                    @endphp
+                                    @endif
                                   @endforeach
                                   </tbody>
                                 @endforeach
-                                <!-- <tfoot>
+                                @if($tallytotalogcandidate>0)
+                                <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($genders as $gender)
@@ -906,7 +907,8 @@
                                       @endforeach
                                       <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
-                              </tfoot> -->
+                                </tfoot>
+                                @endif
                             </table>
                       </div>
                 </div>
@@ -970,14 +972,15 @@
                                             <td>{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }}</td>
                                             @endforeach
                                             <th>{{ $tallytotalccandidate }}</th>
-                                            @php
+                                            @if($position->id!=3)
                                               $tallytotaloccandidate += $tallytotalccandidate;
-                                            @endphp
+                                            @endif
                                         </tr>
                                   	@endforeach
                                   </tbody>
                                 @endforeach
-                                <!-- <tfoot>
+                                @if($tallytotaloccandidate>0)
+                                <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($civilstatuses as $civilstatus)
@@ -985,7 +988,8 @@
                                       @endforeach
                                       <th>{{ $tallytotaloccandidate }}</th>
                                   </tr>
-                              </tfoot> -->
+                              </tfoot>
+                              @endif
                             </table>
                       </div>
                 </div>

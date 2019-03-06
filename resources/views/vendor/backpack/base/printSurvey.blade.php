@@ -314,12 +314,12 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <!-- <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>Total:</th>
                                             <th>{{ $tallytotalcandidate }}</th>
                                         </tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                   @endforeach
                             </table>
                       </div>
