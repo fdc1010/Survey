@@ -823,12 +823,12 @@
                                       </tr>
                                   @endforeach
                                   </tbody>
-                                  <tfoot>
+                                  <!-- <tfoot>
                                       <tr>
                                           <th>Total:</th>
                                           <th>{{ $tallytotalcandidate }}</th>
                                       </tr>
-                                  </tfoot>
+                                  </tfoot> -->
                                 @endforeach
                             </table>
                       </div>
@@ -898,7 +898,7 @@
                                   @endforeach
                                   </tbody>
                                 @endforeach
-                                <tfoot>
+                                <!-- <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($genders as $gender)
@@ -906,7 +906,7 @@
                                       @endforeach
                                       <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
-                              </tfoot>
+                              </tfoot> -->
                             </table>
                       </div>
                 </div>
@@ -977,7 +977,7 @@
                                   	@endforeach
                                   </tbody>
                                 @endforeach
-                                <tfoot>
+                                <!-- <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($civilstatuses as $civilstatus)
@@ -985,7 +985,7 @@
                                       @endforeach
                                       <th>{{ $tallytotaloccandidate }}</th>
                                   </tr>
-                              </tfoot>
+                              </tfoot> -->
                             </table>
                       </div>
                 </div>
@@ -1056,7 +1056,7 @@
                                   	@endforeach
                                   </tbody>
                                 @endforeach
-                                <tfoot>
+                                <!-- <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($empstatuses as $empstatus)
@@ -1064,7 +1064,7 @@
                                       @endforeach
                                       <th>{{ $tallytotaloecandidate }}</th>
                                   </tr>
-                              </tfoot>
+                              </tfoot> -->
                             </table>
                       </div>
                 </div>
@@ -1139,7 +1139,7 @@
                                   @endforeach
                                   </tbody>
                                 @endforeach
-                                <tfoot>
+                                <!-- <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($agebrackets as $agebracket)
@@ -1147,7 +1147,7 @@
                                       @endforeach
                                       <th>{{ $tallytotaloacandidate }}</th>
                                   </tr>
-                              </tfoot>
+                              </tfoot> -->
                             </table>
                       </div>
                 </div>
@@ -1325,7 +1325,7 @@
                                   @endforeach
                                   </tbody>
                                 @endforeach
-                                <tfoot>
+                                <!-- <tfoot>
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($brgysurveys as $barangay)
@@ -1333,7 +1333,7 @@
                                       @endforeach
                                       <th>{{ $tallytotalovbcandidate }}</th>
                                   </tr>
-                              </tfoot>
+                              </tfoot> -->
                             </table>
                         </div>
                   </div>
