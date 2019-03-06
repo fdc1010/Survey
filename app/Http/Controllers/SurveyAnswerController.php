@@ -103,8 +103,6 @@ class SurveyAnswerController extends Controller
                                                         ->whereIn('option_id',[10,11,12,13,14,15,16,17])
                                                         ->whereIn('candidate_id',[1,2,16,18,19])
                                                         ->orderBy('id')
-                                                        ->skip($i)
-                                                        ->take(1)
                                                         ->first();
                       if($tallyothervotes){
                           echo $survey->option->candidate_id . " " . $survey->user_id . "<br>";
