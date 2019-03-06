@@ -52,7 +52,6 @@ class SurveyAnswerController extends Controller
                                             ->where('question_id',3)
                                             ->where('survey_detail_id',1)
                                             ->orderBy('id')
-                                            ->take(3)
                                             ->get();
                 foreach($surveyansocs as $survey){
                       if($i>2)
