@@ -36,8 +36,6 @@ class SurveyAnswerController extends Controller
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
   public function updateothertallyvotesquality(Request $request){
-      $qid = (!empty($request->qid)?$request->qid:3);
-      $sid = (!empty($request->sid)?$request->sid:1);
       $i = 0;
       $qids = array(10,11,12);
       // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
@@ -50,10 +48,9 @@ class SurveyAnswerController extends Controller
       //     if($i>2)
       //       $i=0;
                  $surveyansocs = SurveyAnswer::with('option')
-                                            //->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
-                                            ->whereIn('option_id',[27,28,41,42,43])
-                                            ->where('question_id',$qid)
-                                            ->where('survey_detail_id',$sid)
+                                            ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                            ->where('question_id',3)
+                                            ->where('survey_detail_id',1)
                                             ->orderBy('id')
                                             ->get();
                 foreach($surveyansocs as $survey){
@@ -63,7 +60,50 @@ class SurveyAnswerController extends Controller
                                                         ->where('survey_detail_id',1)
                                                         ->whereNull('barangay_id')
                                                         ->whereIn('option_id',[10,11,12,13,14,15,16,17])
-                                                        ->whereIn('candidate_id',[27,28,41,42,43])
+                                                        ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                                        ->orderBy('id')
+                                                        ->skip($i)
+                                                        ->take(1)
+                                                        ->first();
+                      if($tallyothervotes){
+                          echo $qids[$i] . " " . $survey->option->candidate_id . " " . $survey->user_id . "<br>";
+                          TallyOtherVote::where('id',$tallyothervotes->id)
+                                          ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                    'question_id'=>$qids[$i],
+                                                    'user_id'=>$survey->user_id]);
+                          $i++;
+                      }
+              }
+        //}
+      //}
+
+  }
+  public function updateothertallyvotesqualityMayor(Request $request){
+      $i = 0;
+      $qids = array(10,11,12);
+      // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
+      //                             ->where('survey_detail_id',1)
+      //                             ->orderBy('id')
+      //                             ->get();
+      // if(!empty($surveyans) && count($surveyans)>0){
+      //   echo "Survey Answer:<br>";
+      //   foreach($surveyans as $survey){
+      //     if($i>2)
+      //       $i=0;
+                 $surveyansocs = SurveyAnswer::with('option')
+                                            ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
+                                            ->where('question_id',3)
+                                            ->where('survey_detail_id',1)
+                                            ->orderBy('id')
+                                            ->get();
+                foreach($surveyansocs as $survey){
+                      if($i>2)
+                         $i=0;
+                      $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                                        ->where('survey_detail_id',1)
+                                                        ->whereNull('barangay_id')
+                                                        ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                        ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                                         ->orderBy('id')
                                                         ->skip($i)
                                                         ->take(1)

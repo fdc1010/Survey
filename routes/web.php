@@ -21,6 +21,7 @@ Route::post('importbarangays', 'BarangayController@importbarangays')->name('impo
 Route::post('importsitios', 'SitioController@importsitios')->name('importsitios');
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
+Route::get('updateothertallyvotesqualityMayor', 'SurveyAnswerController@updateothertallyvotesqualityMayor')->name('updateothertallyvotesqualityMayor');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateothertallyvotesquality')->name('updateothertallyvotesquality');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
