@@ -133,12 +133,12 @@ class SurveyAnswerController extends Controller
                                               ->where('option_id',$survey->option_id)
                                               ->first();
               if($tallyothervotes){
-                      echo "Updating Record: " . $tallyothervotes->id . " " . $survey->option_id . " " . $survey->question_id;
+                      echo "Updating Record: " . $tallyothervotes->id . " " . $survey->option_id . " " . $survey->question_id . "<br>";
                       TallyOtherVote::where('id',$tallyothervotes->id)
                                       ->update(['candidate_id'=>$survey->option->candidate_id,
                                                 'user_id'=>$survey->user_id]);
               }else{
-                      echo "Inserting Record: " . $survey->option_id . " " . $survey->question_id;
+                      echo "Inserting Record: " . $survey->option_id . " " . $survey->question_id . "<br>";
                       $tallyovs = new TallyOtherVote;
                       $tallyovs->survey_detail_id = $survey->survey_detail_id;
                       $tallyovs->question_id = $survey->question_id;
