@@ -51,7 +51,7 @@ class SurveyAnswerController extends Controller
                                             ->orderBy('id')
                                             ->take(3)
                                             ->get()->toArray();
-                  dd($surveyansocs[0]);
+                  dd($surveyansocs[0]->id);
                   $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
