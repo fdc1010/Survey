@@ -56,7 +56,7 @@ class SurveyAnswerController extends Controller
                                             ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
                                             ->get();
-                dd($surveyansocs);
+
                   $tallyothervote = TallyOtherVote::where('voter_id',$surveyansocs[$i]->voter_id)
                                                     ->where('survey_detail_id',1)
                                                     ->whereNull('barangay_id')
@@ -70,7 +70,7 @@ class SurveyAnswerController extends Controller
                       $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
                       $tallyov->question_id = $survey->question_id;
                       $tallyov->user_id = $survey->user_id;
-                      $tallyov->save();
+                      //$tallyov->save();
                     }
               $i++;
           //  }
