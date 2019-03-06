@@ -134,21 +134,18 @@ class SurveyAnswerController extends Controller
                                               ->first();
               if($tallyothervotes){
                       echo "Updating Record: " . $tallyothervotes->id . " " . $survey->option_id . " " . $survey->question_id;
-                      TallyOtherVote::where('voter_id',$survey->voter_id)
-                                      ->where('survey_detail_id',1)
-                                      ->where('question_id',$survey->question_id)
-                                      ->where('option_id',$survey->option_id)
+                      TallyOtherVote::where('id',$tallyothervotes->id)
                                       ->update(['candidate_id'=>$survey->option->candidate_id,
                                                 'user_id'=>$survey->user_id]);
               }else{
                       echo "Inserting Record: " . $survey->option_id . " " . $survey->question_id;
-                      $tallyothervotes = new $TallyOtherVote;
-                      $tallyothervotes->survey_detail_id = $survey->survey_detail_id;
-                      $tallyothervotes->question_id = $survey->question_id;
-                      $tallyothervotes->candidate_id = $survey->candidate_id;
-                      $tallyothervotes->voter_id = $survey->voter_id;
-                      $tallyothervotes->user_id = $survey->user_id;
-                      $tallyothervotes->option_id = $survey->option_id;
+                      $tallyovs = new TallyOtherVote;
+                      $tallyovs->survey_detail_id = $survey->survey_detail_id;
+                      $tallyovs->question_id = $survey->question_id;
+                      $tallyovs->candidate_id = $survey->candidate_id;
+                      $tallyovs->voter_id = $survey->voter_id;
+                      $tallyovs->user_id = $survey->user_id;
+                      $tallyovs->option_id = $survey->option_id;
                       //$tallyothervotes->save();
               }
           }
