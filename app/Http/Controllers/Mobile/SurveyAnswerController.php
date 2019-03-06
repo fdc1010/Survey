@@ -185,7 +185,7 @@ class SurveyAnswerController extends Controller
       				//$voter->save();
       				 Voter::where('id',$voterid)
       						->update([
-      									'age'=>$voterdetails['age'],
+      									'age'=>(empty($voterdetails['age'])?35:$voterdetails['age']),
       									'contact'=>$voterdetails['contactNum'],
       									'work'=>$voterdetails['work'],
       									'monthly_household'=>$voterdetails['monthlyIncome'],
