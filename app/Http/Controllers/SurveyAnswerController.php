@@ -151,7 +151,7 @@ class SurveyAnswerController extends Controller
                           echo $survey->option->candidate_id . " " . $survey->user_id . "<br>";
                           TallyOtherVote::where('id',$tallyothervotes->id)
                                           ->update(['candidate_id'=>$survey->option->candidate_id,
-                                                    'question_id'=>5,
+                                                    'question_id'=>7
                                                     'user_id'=>$survey->user_id]);
 
                       }
@@ -192,7 +192,7 @@ class SurveyAnswerController extends Controller
                           echo $survey->option->candidate_id . " " . $survey->user_id . "<br>";
                           TallyOtherVote::where('id',$tallyothervotes->id)
                                           ->update(['candidate_id'=>$survey->option->candidate_id,
-                                                    'question_id'=>5,
+                                                    'question_id'=>9,
                                                     'user_id'=>$survey->user_id]);
 
                       }
