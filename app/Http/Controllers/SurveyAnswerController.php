@@ -92,7 +92,7 @@ class SurveyAnswerController extends Controller
       //       $i=0;
                  $surveyansocs = SurveyAnswer::with('option')
                                             //->whereIn('option_id',[10,11,12,13,14,15,16,17])
-                                            ->where('question_id',5)
+                                            ->where('question_id',4)
                                             ->where('survey_detail_id',1)
                                             ->orderBy('id')
                                             ->get();
