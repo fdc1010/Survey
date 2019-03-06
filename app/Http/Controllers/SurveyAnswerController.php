@@ -50,6 +50,7 @@ class SurveyAnswerController extends Controller
                                             ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
                                             ->take(3)
+                                            ->get()
                                             ->toArray();
                   die($surveyansocs);
                   $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
