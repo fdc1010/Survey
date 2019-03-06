@@ -51,7 +51,6 @@ class SurveyAnswerController extends Controller
                                             ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                             ->where('question_id',3)
                                             ->where('survey_detail_id',1)
-                                            ->where('voter_id',$survey->voter_id)
                                             ->orderBy('id')
                                             ->take(3)
                                             ->get();
