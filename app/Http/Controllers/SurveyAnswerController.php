@@ -72,8 +72,9 @@ class SurveyAnswerController extends Controller
                       // $tallyov->user_id = $survey->user_id;
                       //$tallyov->save();
                       echo $tallyothervote[$i]->id . " " . $surveyansocs[$i]->candidate_id . " " . $survey->question_id . " " . $survey->user_id;
+                      $i++;
                     }
-              $i++;
+
           //  }
         }
       }
