@@ -67,10 +67,10 @@ class SurveyAnswerController extends Controller
                                                         ->first();
                       if($tallyothervotes){
                           echo $qids[$i] . " " . $survey->option->candidate_id . " " . $survey->user_id . "<br>";
-                          // TallyOtherVote::where('id',$tallyothervotes->id)
-                          //                 ->update(['candidate_id'=>$survey->option->candidate_id,
-                          //                           'question_id'=>$survey->option->question_id,
-                          //                           'user_id'=>$survey->user_id]);
+                          TallyOtherVote::where('id',$tallyothervotes->id)
+                                          ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                    'question_id'=>$qids[$i],
+                                                    'user_id'=>$survey->user_id]);
                           $i++;
                       }
               }
