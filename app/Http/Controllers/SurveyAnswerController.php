@@ -36,7 +36,6 @@ class SurveyAnswerController extends Controller
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
   public function updateothertallyvotesquality(Request $request){
-      $i = 0;
       $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
                                   ->where('survey_detail_id',1)
                                   ->orderBy('id')
@@ -44,11 +43,6 @@ class SurveyAnswerController extends Controller
       if(!empty($surveyans) && count($surveyans)>0){
         echo "Survey Answer:<br>";
         foreach($surveyans as $survey){
-            // echo $survey->question_id . " " . $survey->option_id . " " . $survey->option->candidate_id . " " .
-            //      $survey->voter_id . " " . $survey->option->option . " " . $survey->user_id . "<br>";
-                 if($i>=3){
-                   $i = 0;
-                 }
                  $surveyansocs = SurveyAnswer::with('option')
                                             ->whereIn('option_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                             ->where('question_id',3)
@@ -70,13 +64,13 @@ class SurveyAnswerController extends Controller
                   if(!empty($tallyothervotes) && count($tallyothervotes)>0){
                       foreach($surveyansocs as $surveyansoc){
                         foreach($tallyothervotes as $tallyothervote){
-                          // $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
-                          // $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
-                          // $tallyov->question_id = $survey->question_id;
-                          // $tallyov->user_id = $survey->user_id;
-                          //$tallyov->save();
-                          echo $tallyothervote->id . " " . $surveyansoc->option->candidate_id . " " . $survey->question_id . " " . $survey->user_id . "<br>";
-                          $i++;
+
+                          TallyOtherVote::where('id',$tallyothervote->id)
+                                          ->where('candidate_id','<>',$surveyansoc->option->candidate_id)
+                                          ->where('question_id','<>',$surveyansoc->question_id)
+                                          ->where('user_id','<>',$$survey->user_id)
+                                          ->update(['candidate_id','question_id','user_id']);
+
                         }
                       }
                     }
