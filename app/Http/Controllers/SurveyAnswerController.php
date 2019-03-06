@@ -191,6 +191,37 @@ class SurveyAnswerController extends Controller
       //}
 
   }
+  public function insertmissingothertallyvotesqualityCong(Request $request){
+          $surveyans = SurveyAnswer::with('option')
+                               //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                               ->where('question_id',9)
+                               ->where('survey_detail_id',1)
+                               ->orderBy('id')
+                               ->get();
+          foreach($surveyans as $survey){
+              $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                              ->where('survey_detail_id',1)
+                                              ->where('question_id',9)
+                                              ->where('option_id',$survey->option_id)
+                                              ->first();
+              if($tallyothervotes){
+                      echo "Updating Record: " . $tallyothervotes->id . " " . $survey->option_id . " " . $survey->question_id . "<br>";
+                      TallyOtherVote::where('id',$tallyothervotes->id)
+                                      ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                'user_id'=>$survey->user_id]);
+              }else{
+                      echo "Inserting Record: " . $survey->option_id . " " . $survey->question_id . "<br>";
+                      $tallyovs = new TallyOtherVote;
+                      $tallyovs->survey_detail_id = $survey->survey_detail_id;
+                      $tallyovs->question_id = $survey->question_id;
+                      $tallyovs->candidate_id = $survey->candidate_id;
+                      $tallyovs->voter_id = $survey->voter_id;
+                      $tallyovs->user_id = $survey->user_id;
+                      $tallyovs->option_id = $survey->option_id;
+                      $tallyovs->save();
+              }
+          }
+  }
   public function updateothertallyvotesqualityCong(Request $request){
 
 
