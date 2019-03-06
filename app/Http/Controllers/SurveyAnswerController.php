@@ -119,6 +119,41 @@ class SurveyAnswerController extends Controller
       //}
 
   }
+  public function insertmissingothertallyvotesqualityViceMayor(Request $request){
+          $surveyans = SurveyAnswer::with('option')
+                               //->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                               ->where('question_id',7)
+                               ->where('survey_detail_id',1)
+                               ->orderBy('id')
+                               ->get();
+          foreach($surveyans as $survey){
+              $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
+                                              ->where('survey_detail_id',1)
+                                              ->where('question_id',7)
+                                              ->where('option_id',$survey->option_id)
+                                              ->first();
+              if($tallyothervotes){
+
+
+                      TallyOtherVote::where('voter_id',$survey->voter_id)
+                                      ->where('survey_detail_id',1)
+                                      ->where('question_id',$survey->question_id)
+                                      ->where('option_id',$survey->option_id)
+                                      ->update(['candidate_id'=>$survey->option->candidate_id,
+                                                'user_id'=>$survey->user_id]);
+              }else{
+                      echo "Inserting Record: " . $tallyothervotes->id . " " . $survey->option_id . " " . $survey->question_id
+                      $tallyothervotes = new $TallyOtherVote;
+                      $tallyothervotes->survey_detail_id = $survey->survey_detail_id;
+                      $tallyothervotes->question_id = $survey->question_id;
+                      $tallyothervotes->candidate_id = $survey->candidate_id;
+                      $tallyothervotes->voter_id = $survey->voter_id;
+                      $tallyothervotes->user_id = $survey->user_id;
+                      $tallyothervotes->option_id = $survey->option_id;
+                      //$tallyothervotes->save();
+              }
+          }
+  }
   public function updateothertallyvotesqualityViceMayor(Request $request){
 
 

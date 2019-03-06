@@ -19,6 +19,7 @@ class CreateTallyVotesTable extends Migration
             $table->unsignedInteger('option_id');
       			$table->unsignedInteger('candidate_id');
       			$table->unsignedInteger('voter_id');
+            $table->unsignedInteger('user_id');
       			$table->unsignedInteger('survey_detail_id');
       			$table->integer('tally')->default(1);
             $table->timestamps();

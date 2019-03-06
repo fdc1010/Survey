@@ -279,9 +279,18 @@ class SurveyAnswerController extends Controller
       							}
       							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
       							if($relquestion){
-      								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-      														->where('question_id',$relquestion->related_question_id)
-      														->first();
+                      if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+          								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+          														->where('question_id',$relquestion->related_question_id)
+                                      ->orderBy('id')
+                                      ->skip($relquestion->cardinality)
+                                      ->take(1)
+                                      ->first();
+                      }else{
+                          $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                    ->where('question_id',$relquestion->related_question_id)
+                                    ->first();
+                      }
       								if($surans){
       									$question = Question::find($relquestion->question_id);
       									if(!empty($question->for_position) && is_numeric($question->for_position)){

@@ -15,11 +15,12 @@ class CreateRelatedQuestionsTable extends Migration
     {
         Schema::create('related_questions', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('question_id');
-			$table->unsignedInteger('related_question_id');
-			$table->longText('description')->nullable();
+      			$table->unsignedInteger('question_id');
+      			$table->unsignedInteger('related_question_id');
+      			$table->longText('description')->nullable();
+            $table->integer('cardinality');
             $table->timestamps();
-			
+
 			$table->foreign('question_id')->references('id')->on('questions');
 			$table->foreign('related_question_id')->references('id')->on('questions');
         });
