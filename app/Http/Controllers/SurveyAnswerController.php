@@ -64,14 +64,14 @@ class SurveyAnswerController extends Controller
                                                     ->whereIn('candidate_id',[3,4,5,6,7,8,9,10,11,23,24,25,26,27,28,36,37])
                                                     ->orderBy('id')
                                                     ->get();
-
+                  var_dump($tallyothervote);
                   if(!empty($tallyothervote) && count($tallyothervote)>0){
                       // $tallyov = TallyOtherVote::find($tallyothervote[$i]->id);
                       // $tallyov->candidate_id = $surveyansocs[$i]->candidate_id;
                       // $tallyov->question_id = $survey->question_id;
                       // $tallyov->user_id = $survey->user_id;
                       //$tallyov->save();
-                      echo $tallyothervote[$i]->id . " " . $surveyansocs[$i]->candidate_id . " " . $survey->question_id . " " . $survey->user_id;
+                      //echo $tallyothervote[$i]->id . " " . $surveyansocs[$i]->candidate_id . " " . $survey->question_id . " " . $survey->user_id;
                       $i++;
                     }
 
