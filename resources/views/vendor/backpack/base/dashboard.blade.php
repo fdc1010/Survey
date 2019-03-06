@@ -1201,9 +1201,7 @@
                                             <td>{{ $candidate->voter->full_name }}</td>
                                             @foreach($qualities as $quality)
                                             @php
-                                                $tallyq[$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tally($candidate->id,$quality->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
-                                                                                                                $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                                                $tallyoccstatus,$tallyvoterstatus);
+                                                $tallyq[$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
                                             @endphp
                                             <td>{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }}</td>
                                             @endforeach

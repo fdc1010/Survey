@@ -165,7 +165,7 @@ class TallyVote extends Model
 									$q->where('occupancy_status_id',$occstatusid);
 								}
                 if(count($agebrackets)>0){
-									$q->whereIn('age',$agebrackets)->orWhereNull('age');
+									$q->whereIn('age',$agebrackets);//->orWhereNull('age');
 									//info("agebrackets: ");info($agebrackets);
 								}
 							})
