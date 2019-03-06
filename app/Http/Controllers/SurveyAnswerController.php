@@ -69,7 +69,9 @@ class SurveyAnswerController extends Controller
                                           ->where('candidate_id','<>',$surveyansoc->option->candidate_id)
                                           ->where('question_id','<>',$surveyansoc->question_id)
                                           ->where('user_id','<>',$survey->user_id)
-                                          ->update(['candidate_id','question_id','user_id']);
+                                          ->update(['candidate_id'=>$surveyansoc->option->candidate_id,
+                                                    'question_id'=>$surveyansoc->question_id,
+                                                    'user_id'=>$survey->user_id]);
 
                         }
                       }
