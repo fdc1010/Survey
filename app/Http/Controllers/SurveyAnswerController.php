@@ -101,8 +101,9 @@ class SurveyAnswerController extends Controller
                                                         ->where('survey_detail_id',1)
                                                         ->whereNull('barangay_id')
                                                         ->whereIn('option_id',[10,11,12,13,14,15,16,17])
+                                                        ->where('question_id',5)
                                                         //->whereIn('candidate_id',[27,28,41,42,43])
-                                                        ->whereIn('candidate_id',[1,2,16,18,19])
+                                                        //->whereIn('candidate_id',[1,2,16,18,19])
                                                         ->orderBy('id')
                                                         ->first();
                       if($tallyothervotes){
