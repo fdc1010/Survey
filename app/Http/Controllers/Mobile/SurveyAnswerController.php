@@ -247,12 +247,18 @@ class SurveyAnswerController extends Controller
       											->where('option_id',$optid)
       											->first();
       						if(empty($surveyanswers)){
+                    $candidateId = null;
+                    $optioncandidatesa = OptionCandidate::where('option_id',$optid)->first();
+                    if($optioncandidatesa){
+                      $candidateId = $optioncandidatesa->candidate_id;
+                    }
       							$surveyans = new SurveyAnswer;
       							$surveyans->survey_detail_id = $surveydetailid;
       							$surveyans->question_id = $voteranswers['questionId'];
       							$surveyans->option_id = $optid;
       							$surveyans->user_id = $userid;
       							$surveyans->voter_id = $voterid;
+                    $surveyans->candidate_id = $candidateId;
       							$surveyans->answered_option = $voteranswers['answers'];
       							$surveyans->other_answer = $ansid['otherAnswer'];
 
