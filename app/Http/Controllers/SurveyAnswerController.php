@@ -140,7 +140,7 @@ class SurveyAnswerController extends Controller
                 foreach($surveyansocs as $survey){
                       $tallyothervotes = TallyOtherVote::where('voter_id',$survey->voter_id)
                                                         ->where('survey_detail_id',1)
-                                                        ->whereNull('barangay_id')
+                                                        //->whereNull('barangay_id')
                                                         //->whereIn('option_id',[10,11,12,13,14,15,16,17])
                                                         ->where('question_id',7)
                                                         //->whereIn('candidate_id',[27,28,41,42,43])
