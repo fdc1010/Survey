@@ -107,7 +107,7 @@ class SurveyAnswerController extends Controller
                       $tallyovs = new TallyOtherVote;
                       $tallyovs->survey_detail_id = $survey->survey_detail_id;
                       $tallyovs->question_id = $survey->question_id;
-                      $tallyovs->candidate_id = $surveyansot->option->candidate_id;
+                      $tallyovs->candidate_id = $surveyansot->candidate_id;
                       $tallyovs->voter_id = $survey->voter_id;
                       $tallyovs->user_id = $survey->user_id;
                       $tallyovs->option_id = $survey->option_id;
@@ -188,7 +188,7 @@ class SurveyAnswerController extends Controller
               }
           }
   }
-  
+
     /**
      * Show the form for creating a new resource.
      *
