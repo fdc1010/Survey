@@ -922,7 +922,7 @@
                                               if(empty($tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id])){
                                                   $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] = $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                               }else{
-                                                  $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $tallyg[$position->id][$key][$surveydetail->id];
+                                                  $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                               }
                                               $tallytotalgcandidate += $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                           @endphp
@@ -1011,7 +1011,7 @@
                                              if(empty($tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id])){
                                                  $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] = $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                              }else{
-                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $tallycv[$position->id][$key][$surveydetail->id];
+                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                              }
                                              $tallytotalccandidate += $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                          @endphp
@@ -1100,7 +1100,7 @@
                                            if(empty($tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id])){
                                                $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] = $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                            }else{
-                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] += $tallyemp[$position->id][$key][$surveydetail->id];
+                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] += $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                            }
                                            $tallytotalecandidate += $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                        @endphp
