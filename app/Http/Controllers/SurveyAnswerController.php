@@ -37,7 +37,7 @@ class SurveyAnswerController extends Controller
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
     if($relquestion){
-      echo "Found linked Question: ".$questionId."<br>";
+      echo "Found linked Question: #".$questionId." to #".$relquestion->related_question_id."<br>";
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                       ->where('question_id',$relquestion->related_question_id)
