@@ -907,7 +907,7 @@
                                               }else{
                                                   $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $sortedtallyg[$gender->id][$surveydetail->id];
                                               }
-                                              $tallytotalgcandidate += $sortedtallyg[$position->id][$surveydetail->id];
+                                              $tallytotalgcandidate += $sortedtallyg[$gender->id][$surveydetail->id];
                                           @endphp
                                          <td>{{ $sortedtallyg[$gender->id][$surveydetail->id] }}</td>
                                        @endforeach
