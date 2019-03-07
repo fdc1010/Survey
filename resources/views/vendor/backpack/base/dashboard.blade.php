@@ -999,9 +999,6 @@
                                   $tallytotaloccandidate = 0;
                                 @endphp
                                 @foreach($position->candidates as $candidate)
-                                  @php
-                                   $tallycandidate[$candidate->id] = $candidate->full_name;
-                                  @endphp
                                    @foreach($civilstatuses as $civilstatus)
                                        @php
                                          $tallycv[$position->id][$candidate->id][$civilstatus->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,$civilstatus->id,0,0,0,0);
@@ -1093,9 +1090,6 @@
                                 $tallytotaloecandidate = 0;
                               @endphp
                               @foreach($position->candidates as $candidate)
-                                @php
-                                 $tallycandidate[$candidate->id] = $candidate->full_name;
-                                @endphp
                                 @foreach($empstatuses as $empstatus)
                                      @php
                                        $tallyemp[$position->id][$candidate->id][$empstatus->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,$empstatus->id,0,0,0);
@@ -1189,9 +1183,6 @@
                                     $tallytotaloacandidate = 0;
                                   @endphp
                                   @foreach($position->candidates as $candidate)
-                                        @php
-                                         $tallycandidate[$candidate->id] = $candidate->full_name;
-                                        @endphp
                                         @foreach($agebrackets as $agebracket)
                                             @php
                                                 $gtallyagebrackets=[];
@@ -1268,12 +1259,10 @@
                                         @foreach($qualities as $quality)
                                         <th>{{ $quality->options->option }}</th>
                                         @endforeach
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @php
-
-                                @endphp
                                 @foreach($positions as $position)
                                   <thead>
                                       <tr>
@@ -1281,21 +1270,59 @@
                                           @foreach($qualities as $quality)
                                           <th></th>
                                           @endforeach
+                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
-                                	@foreach($position->candidates as $candidate)
-                                          <tr>
-                                            <td>{{ $candidate->voter->full_name }}</td>
-                                            @foreach($qualities as $quality)
+                                    @php
+                                      $i = 0;
+                                      $tallytotaloqcandidate = 0;
+                                    @endphp
+                                    @foreach($position->candidates as $candidate)
+                                        @foreach($qualities as $quality)
                                             @php
-                                                $tallyq[$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
+                                                $tallyq[$position->id][$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
                                             @endphp
-                                            <td>{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }}</td>
-                                            @endforeach
-                                          </tr>
+                                        @endforeach
                                   	@endforeach
-                                  </tbody>
+                                    @php
+                                    arsort($tallyq[$position->id]);
+                                    @endphp
+                                    @foreach($tallyq[$position->id] as $key => $sortedtallyq)
+                                    <tr>
+                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                         @php
+                                         $tallytotalqcandidate = 0;
+                                         @endphp
+                                         @foreach($qualities as $quality)
+                                            @php
+                                                if(empty($tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id])){
+                                                    $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] = $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                                }else{
+                                                    $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                                }
+                                                $tallytotalqcandidate += $sortedtallyab[$quality->option_id][$surveydetail->id];
+                                            @endphp
+                                           <td>{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }}</td>
+                                         @endforeach
+                                         <th>{{ $tallytotalqcandidate }}</th>
+                                    </tr>
+                                    @php
+                                      $tallytotaloqcandidate += $tallytotalqcandidate;
+                                    @endphp
+                                    @endforeach
+                                    </tbody>
+                                    @if($tallytotaloqcandidate>0)
+                                    <thead>
+                                    <tr>
+                                        <th>Total:</td>
+                                        @foreach($qualities as $quality)
+                                          <th>{{ $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] }}</th>
+                                        @endforeach
+                                        <th>{{ $tallytotaloqcandidate }}</th>
+                                    </tr>
+                                    </thead>
+                                    @endif
                                 @endforeach
                             </table>
                           </div>
@@ -2443,16 +2470,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyq[$position->id] as $key => $sortedtallyq)
+					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }},
+					@foreach($tallyq[$position->id] as $key => $sortedtallyq)
+						{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
