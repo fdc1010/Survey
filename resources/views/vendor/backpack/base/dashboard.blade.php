@@ -817,8 +817,11 @@
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
                                       @endphp
+                                      <tr>
+                                          <td>{{ $candidate->voter->full_name }}</td>
+                                          <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
+                                      </tr>
                                   @endforeach
-                                  
                                   </tbody>
                                   <tfoot>
                                       <tr>
