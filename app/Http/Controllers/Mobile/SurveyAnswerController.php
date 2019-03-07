@@ -291,6 +291,7 @@ class SurveyAnswerController extends Controller
                       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
           														->where('question_id',$relquestion->related_question_id)
+                                      ->where('voter_id',$voterid)
                                       ->orderBy('id')
                                       ->skip($relquestion->cardinality)
                                       ->take(1)
@@ -298,6 +299,7 @@ class SurveyAnswerController extends Controller
                       }else{
                           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                     ->where('question_id',$relquestion->related_question_id)
+                                    ->where('voter_id',$voterid)
                                     ->first();
                       }
       								if($surans){

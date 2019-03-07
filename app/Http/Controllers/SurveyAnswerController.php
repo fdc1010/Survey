@@ -19,6 +19,42 @@ class SurveyAnswerController extends Controller
     {
         //
     }
+  public function testOtherVotersRelQ(Request $request){
+    $surveydetailid = $request->sdid;
+    $voterid = $request->svid;
+    $questionId = $request->qid;
+    $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
+    if($relquestion){
+      if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+          $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                      ->where('question_id',$relquestion->related_question_id)
+                      ->where('voter_id',$voterid)
+                      ->orderBy('id')
+                      ->skip($relquestion->cardinality)
+                      ->take(1)
+                      ->first();
+      }else{
+          $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                    ->where('question_id',$relquestion->related_question_id)
+                    ->where('voter_id',$voterid)
+                    ->first();
+      }
+      if($surans){
+        $question = Question::find($relquestion->question_id);
+        if(!empty($question->for_position) && is_numeric($question->for_position)){
+          echo "Found linked Question: ";
+          var_dump($relquestion);
+          var_dump($question);
+          $optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+          if($optioncandidate){
+            echo "Candidate Qualities: #".$questionId;
+            var_dump($optioncandidate);
+          }
+
+        }
+      }
+    }
+  }
 	public function storeAnswers(Request $request){
 		$sid = $request->survey_id;
 		$survey = Survey::find($sid);

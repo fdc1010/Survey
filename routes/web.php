@@ -29,6 +29,7 @@ Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateotherta
 Route::get('insertmissingothertallyvotesqualityViceMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityViceMayor')->name('insertmissingothertallyvotesqualityViceMayor');
 Route::get('insertmissingothertallyvotesqualityCong', 'SurveyAnswerController@insertmissingothertallyvotesqualityCong')->name('insertmissingothertallyvotesqualityCong');
 Route::get('insertmissingothertallyvotesqualityMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityMayor')->name('insertmissingothertallyvotesqualityMayor');
+Route::get('testOtherVotersRelQ', 'SurveyAnswerController@testOtherVotersRelQ')->name('testOtherVotersRelQ');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
