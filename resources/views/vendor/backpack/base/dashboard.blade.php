@@ -823,7 +823,6 @@
                                   @endforeach
                                   @php
                                   arsort($tally[$position->id]);
-                                  dd($tally[$position->id]);
                                   @endphp
                                   @foreach($tally as $key => $sortedtally)
                                       <tr>
