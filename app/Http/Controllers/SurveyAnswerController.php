@@ -37,7 +37,7 @@ class SurveyAnswerController extends Controller
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
     if($relquestion){
-      echo "Found linked Question: ".$questionId;
+      echo "Found linked Question: ".$questionId."<br>";
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                       ->where('question_id',$relquestion->related_question_id)
@@ -56,7 +56,7 @@ class SurveyAnswerController extends Controller
       if($surans){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
-          echo "Analyzing linked Question: ";
+          echo "Analyzing linked Question: <br>";
           var_dump($relquestion);
           var_dump($question);
           $optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
