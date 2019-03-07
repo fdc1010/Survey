@@ -41,7 +41,7 @@ class SurveyAnswerController extends Controller
     if($relquestion){
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
         SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                    ->where('question_id',$questionid)
+                    ->where('question_id',$relquestion->related_question_id)
                     ->chunk(400, function ($results)use($surveydetailid,$relquestion){
                           foreach ($results as $lsuans) {
                             $otoptId = null;
@@ -74,7 +74,7 @@ class SurveyAnswerController extends Controller
 
       }else{
         SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                    ->where('question_id',$questionid)
+                    ->where('question_id',$relquestion->related_question_id)
                     ->chunk(400, function ($results)use($surveydetailid,$relquestion){
                           foreach ($results as $lsuans) {
                             $otoptId = null;
