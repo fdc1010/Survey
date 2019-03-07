@@ -510,7 +510,7 @@
                                     	<option value="0">Candidate</option>
                                     @foreach($positions as $position)
                                     	<optgroup label="{{ $position->name }}" >
-				                              @foreach($position->candidates->voter as $candidate)
+				                              @foreach($position->candidates[0]->voter as $candidate)
                                     		<option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->full_name }}</option>
                                     	@endforeach
                                         </optgroup>
@@ -668,7 +668,7 @@
                         @foreach($selinitpositions as $position)
                         	<div class="col-md-12"><h5>{{ $position->name }}</h5>
                             <div class="col-md-12"><label class="control-label"><input type="checkbox" id="checkAllCandidate_{{ $position->id }}" /> Check All Candidates for {{ $position->name }}</label></div>
-                            @foreach($position->candidates->voter as $candidate)
+                            @foreach($position->candidates[0]->voter as $candidate)
                                     <div class="col-md-3">
                                         <label class="control-label">
                                             @if(!empty($rdata['candidate']) && in_array($candidate->id,$rdata['candidate']))
@@ -833,7 +833,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                  @foreach($position->candidates->voter as $candidate)
+                                  @foreach($position->candidates[0]->voter as $candidate)
                                       @php
                                           $tallycandidate[$candidate->id] = $candidate->full_name;
                                           $tally[$position->id][$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
@@ -903,7 +903,7 @@
                                 $i = 0;
                                 $tallytotalogcandidate = 0;
                                 @endphp
-                                 @foreach($position->candidates->voter as $candidate)
+                                 @foreach($position->candidates[0]->voter as $candidate)
                                    @php
                                     $tallycandidate[$candidate->id] = $candidate->full_name;
                                    @endphp
@@ -997,7 +997,7 @@
                                   $i = 0;
                                   $tallytotaloccandidate = 0;
                                 @endphp
-                                @foreach($position->candidates->voter as $candidate)
+                                @foreach($position->candidates[0]->voter as $candidate)
                                   @php
                                    $tallycandidate[$candidate->id] = $candidate->full_name;
                                   @endphp
@@ -1091,7 +1091,7 @@
                                 $i = 0;
                                 $tallytotaloecandidate = 0;
                               @endphp
-                              @foreach($position->candidates->voter as $candidate)
+                              @foreach($position->candidates[0]->voter as $candidate)
                                 @php
                                  $tallycandidate[$candidate->id] = $candidate->full_name;
                                 @endphp
@@ -1185,7 +1185,7 @@
                                   @php
                                     $tallytotaloacandidate = 0;
                                   @endphp
-                                  @foreach($position->candidates->voter as $candidate)
+                                  @foreach($position->candidates[0]->voter as $candidate)
                                       @php
                                         $tallytotalacandidate = 0;
                                       @endphp
@@ -1266,7 +1266,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                	@foreach($position->candidates->voter as $candidate)
+                                	@foreach($position->candidates[0]->voter as $candidate)
                                           <tr>
                                             <td>{{ $candidate->full_name }}</td>
                                             @foreach($qualities as $quality)
@@ -1373,7 +1373,7 @@
                                     @php
                                       $tallytotalovbcandidate = 0;
                                     @endphp
-                                    @foreach($position->candidates->voter as $candidate)
+                                    @foreach($position->candidates[0]->voter as $candidate)
                                         @php
                                           $tallytotalvbcandidate = 0;
                                         @endphp
@@ -1442,7 +1442,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                  @foreach($position->candidates->voter as $candidate)
+                                  @foreach($position->candidates[0]->voter as $candidate)
                                       @php
                                           $tallyelection[$candidate->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
@@ -1496,7 +1496,7 @@
                                   </thead>
                                 <tbody>
 
-                                 @foreach($position->candidates->voter as $candidate)
+                                 @foreach($position->candidates[0]->voter as $candidate)
                                 	<tr>
                                     	<td>{{ $candidate->full_name }}</td>
                                         @foreach($genders as $gender)
@@ -1552,7 +1552,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                	@foreach($position->candidates->voter as $candidate)
+                                	@foreach($position->candidates[0]->voter as $candidate)
                                         <tr>
                                             <td>{{ $candidate->full_name }}</td>
                                             @foreach($civilstatuses as $civilstatus)
@@ -1607,7 +1607,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                	@foreach($position->candidates->voter as $candidate)
+                                	@foreach($position->candidates[0]->voter as $candidate)
                                           <tr>
                                               <td>{{ $candidate->full_name }}</td>
                                               @foreach($empstatuses as $empstatus)
@@ -1663,7 +1663,7 @@
                                   </thead>
                                   <tbody>
 
-                                  @foreach($position->candidates->voter as $candidate)
+                                  @foreach($position->candidates[0]->voter as $candidate)
                                       <tr>
                                           <td>{{ $candidate->full_name }}</td>
                                           @foreach($agebrackets as $agebracket)
@@ -2207,14 +2207,14 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
 			],
 			['Votes',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					{{ $tally[$position->id][$candidate->id][$surveydetail->id] }},
 				@endforeach
 			@endforeach
@@ -2248,7 +2248,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2256,7 +2256,7 @@ $(document).ready(function ($) {
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyg[$position->id][$candidate->id][$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
@@ -2292,7 +2292,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2300,7 +2300,7 @@ $(document).ready(function ($) {
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
@@ -2336,7 +2336,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2344,7 +2344,7 @@ $(document).ready(function ($) {
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
@@ -2380,7 +2380,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2388,7 +2388,7 @@ $(document).ready(function ($) {
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
@@ -2424,7 +2424,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2432,7 +2432,7 @@ $(document).ready(function ($) {
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyq[$candidate->id][$quality->option_id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
@@ -2509,14 +2509,14 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
 			],
 			['Votes',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					{{ $tally[$position->id][$candidate->id][$election->id] }},
 				@endforeach
 			@endforeach
@@ -2550,7 +2550,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2558,7 +2558,7 @@ $(document).ready(function ($) {
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyg[$position->id][$candidate->id][$gender->id][$election->id] }},
 					@endforeach
 				@endforeach
@@ -2594,7 +2594,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2602,7 +2602,7 @@ $(document).ready(function ($) {
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyab[$candidate->id][$agebracket->id][$election->id] }},
 					@endforeach
 				@endforeach
@@ -2638,7 +2638,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2646,7 +2646,7 @@ $(document).ready(function ($) {
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
@@ -2682,7 +2682,7 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates->voter as $candidate)
+				@foreach($position->candidates[0]->voter as $candidate)
 					'{{ $candidate->full_name }}',
 				@endforeach
 			@endforeach
@@ -2690,7 +2690,7 @@ $(document).ready(function ($) {
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates->voter as $candidate)
+					@foreach($position->candidates[0]->voter as $candidate)
 						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
