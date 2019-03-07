@@ -61,8 +61,7 @@
         $tallyotherpoll = new App\Models\TallyOtherVote;
 
       	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1;
-        $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:0;->orderBy('full_name')
-
+        $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:0;
 
         $selinitgenders = App\Models\Gender::all();
         $selinitagebrackets = App\Models\AgeBracket::all();
