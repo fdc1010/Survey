@@ -2,9 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\SurveyorAssignment;
+use App\Models\AssignmentDetail;
+use App\Models\AnsweredOption;
+use App\Models\OptionCandidate;
+use App\Models\OptionPosition;
+use App\Models\OptionProblem;
+use App\Models\RelatedQuestion;
+use App\Models\TallyVote;
 use App\Models\TallyOtherVote;
+use App\Models\Voter;
+use App\Models\VoterStatus;
+use App\Models\StatusDetail;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +32,7 @@ class SurveyAnswerController extends Controller
         //
     }
   public function testOtherVotersRelQ(Request $request){
-    $surveydetailid = $request->sdid;
+      $surveydetailid = $request->sdid;
     $voterid = $request->svid;
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
