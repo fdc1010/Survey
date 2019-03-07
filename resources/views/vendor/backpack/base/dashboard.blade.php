@@ -996,11 +996,11 @@
                                       @foreach($civilstatuses as $civilstatus)
                                          @php
                                              if(empty($tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id])){
-                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] = $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id];
+                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] = $sortedtallycv[$civilstatus->id][$surveydetail->id];
                                              }else{
-                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id];
+                                                 $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $sortedtallycv[$civilstatus->id][$surveydetail->id];
                                              }
-                                             $tallytotalccandidate += $sortedtallyg[$civilstatus->id][$surveydetail->id];
+                                             $tallytotalccandidate += $sortedtallycv[$civilstatus->id][$surveydetail->id];
                                          @endphp
                                         <td>{{ $sortedtallycv[$gender->id][$surveydetail->id] }}</td>
                                       @endforeach
