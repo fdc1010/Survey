@@ -1253,7 +1253,7 @@
                     <div class="box-body">
                           <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					             <thead>
+            					           <thead>
                                      </tr>
                                     	 <th>Candidates</th>
                                         @foreach($qualities as $quality)
@@ -1332,6 +1332,85 @@
             @endforeach
         	@endif
 
+          @if($showVotesBrgy)
+           @foreach($surveydetails as $surveydetail)
+           <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
+               <div class="box box-default">
+                   <div class="box-header with-border">
+                       <div class="col-md-12">
+                               <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
+                       </div>
+                   </div>
+
+                   <div class="box-body">
+                         <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                               <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
+                                  <thead>
+                                     <tr>
+                                      <th>Candidates</th>
+                                           @foreach($brgysurveys as $barangay)
+                                           <th>{{ $barangay->name }}</th>
+                                           @endforeach
+                                           <th>Total</th>
+                                     </tr>
+                                 </thead>
+                                 @foreach($positions as $position)
+                                   <thead>
+                                       <tr>
+                                           <th>{{ $position->name }}</th>
+                                           @foreach($brgysurveys as $barangay)
+                                           <th></th>
+                                           @endforeach
+                                           <th></th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                     @php
+                                       $tallytotalovbcandidate = 0;
+                                     @endphp
+                                     @foreach($position->candidates as $candidate)
+                                         @php
+                                           $tallytotalvbcandidate = 0;
+                                         @endphp
+                                         <tr>
+                                           <td>{{ $candidate->voter->full_name }}</td>
+                                           @foreach($brgysurveys as $barangay)
+                                           @php
+                                               $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$barangay->id,0,0,0,0);
+                                               $tallytotalvbcandidate += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                               if(empty($tallytotalvvbcandidate[$barangay->id][$surveydetail->id])){
+                                                   $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] = $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                               }else{
+                                                   $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
+                                               }
+                                           @endphp
+                                           <td>{{ $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id] }}</td>
+                                           @endforeach
+                                           <th>{{ $tallytotalvbcandidate }}</th>
+                                           @php
+                                             $tallytotalovbcandidate += $tallytotalvbcandidate;
+                                           @endphp
+                                       </tr>
+                                   @endforeach
+                                   </tbody>
+                                 @endforeach
+                                 <!-- <tfoot>
+                                   <tr>
+                                       <th>Total:</td>
+                                       @foreach($brgysurveys as $barangay)
+                                         <th>{{ $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] }}</th>
+                                       @endforeach
+                                       <th>{{ $tallytotalovbcandidate }}</th>
+                                   </tr>
+                               </tfoot> -->
+                             </table>
+                         </div>
+                   </div>
+               </div>
+           </div>
+       @endforeach
+       @endif
+       
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
             <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
@@ -1354,9 +1433,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @php
-
-                                    @endphp
                                     @foreach($brgysurveys as $barangay)
                                         <tr>
                                             <td>{{ $barangay->name }}</td>
@@ -1378,88 +1454,6 @@
             </div>
         @endforeach
         @endif
-
-	@if($showVotesBrgy)
-          @php
-
-          @endphp
-          @foreach($surveydetails as $surveydetail)
-          <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
-              <div class="box box-default">
-                  <div class="box-header with-border">
-                      <div class="col-md-12">
-                              <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
-                      </div>
-                  </div>
-
-                  <div class="box-body">
-                        <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                              <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-                                 <thead>
-                                    <tr>
-                                     <th>Candidates</th>
-                                          @foreach($brgysurveys as $barangay)
-                                          <th>{{ $barangay->name }}</th>
-                                          @endforeach
-                                          <th>Total</th>
-                                    </tr>
-                                </thead>
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($brgysurveys as $barangay)
-                                          <th></th>
-                                          @endforeach
-                                          <th></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    @php
-                                      $tallytotalovbcandidate = 0;
-                                    @endphp
-                                    @foreach($position->candidates as $candidate)
-                                        @php
-                                          $tallytotalvbcandidate = 0;
-                                        @endphp
-                                        <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          @foreach($brgysurveys as $barangay)
-                                          @php
-                                              $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$barangay->id,0,0,0,0);
-                                              $tallytotalvbcandidate += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                              if(empty($tallytotalvvbcandidate[$barangay->id][$surveydetail->id])){
-                                                  $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] = $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                              }else{
-                                                  $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                              }
-                                          @endphp
-                                          <td>{{ $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id] }}</td>
-                                          @endforeach
-                                          <th>{{ $tallytotalvbcandidate }}</th>
-                                          @php
-                                            $tallytotalovbcandidate += $tallytotalvbcandidate;
-                                          @endphp
-                                      </tr>
-                                  @endforeach
-                                  </tbody>
-                                @endforeach
-                                <!-- <tfoot>
-                                  <tr>
-                                      <th>Total:</td>
-                                      @foreach($brgysurveys as $barangay)
-                                        <th>{{ $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] }}</th>
-                                      @endforeach
-                                      <th>{{ $tallytotalovbcandidate }}</th>
-                                  </tr>
-                              </tfoot> -->
-                            </table>
-                        </div>
-                  </div>
-              </div>
-          </div>
-      @endforeach
-      @endif
 
         @foreach($elections as $election)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
