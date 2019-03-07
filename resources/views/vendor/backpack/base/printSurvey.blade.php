@@ -1561,6 +1561,21 @@
         </div>
         @endforeach
         @endif
+
+        @foreach($surveydetails as $surveydetail)
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">
+                            <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body"><div style="width:750px;" id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
+            </div>
+        </div>
+        @endforeach
+        
         @if($showQuality)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
@@ -1575,20 +1590,6 @@
         </div>
         @endforeach
     	@endif
-
-      @foreach($surveydetails as $surveydetail)
-      <div class="col-md-12">
-          <div class="box box-default">
-              <div class="box-header with-border">
-                  <div class="col-md-12">
-                          <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
-                  </div>
-              </div>
-
-              <div class="box-body"><div style="width:750px;" id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
-          </div>
-      </div>
-      @endforeach
 
         @if($showProblem)
         @foreach($surveydetails as $surveydetail)

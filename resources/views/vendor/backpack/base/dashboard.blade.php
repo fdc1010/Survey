@@ -1236,98 +1236,6 @@
         @endforeach
         @endif
 
-        @if($showQuality)
-        @foreach($surveydetails as $surveydetail)
-    	<div class="col-md-12" style="font-size:24px; font-weight:bolder;">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">
-                      		<div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>
-                    </div>
-                </div>
-
-                    <div class="box-body">
-                          <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                            <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					           <thead>
-                                     </tr>
-                                    	 <th>Candidates</th>
-                                        @foreach($qualities as $quality)
-                                        <th>{{ $quality->options->option }}</th>
-                                        @endforeach
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($qualities as $quality)
-                                          <th></th>
-                                          @endforeach
-                                          <th></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    @php
-                                      $i = 0;
-                                      $tallytotaloqcandidate = 0;
-                                    @endphp
-                                    @foreach($position->candidates as $candidate)
-                                        @foreach($qualities as $quality)
-                                            @php
-                                                $tallyq[$position->id][$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
-                                            @endphp
-                                        @endforeach
-                                  	@endforeach
-                                    @php
-                                    arsort($tallyq[$position->id]);
-                                    @endphp
-                                    @foreach($tallyq[$position->id] as $key => $sortedtallyq)
-                                    <tr>
-                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                         @php
-                                         $tallytotalqcandidate = 0;
-                                         @endphp
-                                         @foreach($qualities as $quality)
-                                            @php
-                                                if(empty($tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id])){
-                                                    $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] = $sortedtallyq[$quality->option_id][$surveydetail->id];
-                                                }else{
-                                                    $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $sortedtallyq[$quality->option_id][$surveydetail->id];
-                                                }
-                                                $tallytotalqcandidate += $sortedtallyq[$quality->option_id][$surveydetail->id];
-                                            @endphp
-                                           <td>{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }}</td>
-                                         @endforeach
-                                         <th>{{ $tallytotalqcandidate }}</th>
-                                    </tr>
-                                    @php
-                                      $tallytotaloqcandidate += $tallytotalqcandidate;
-                                    @endphp
-                                    @endforeach
-                                    </tbody>
-                                    @if($tallytotaloqcandidate>0)
-                                    <thead>
-                                    <tr>
-                                        <th>Total:</td>
-                                        @foreach($qualities as $quality)
-                                          <th>{{ $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] }}</th>
-                                        @endforeach
-                                        <th>{{ $tallytotaloqcandidate }}</th>
-                                    </tr>
-                                    </thead>
-                                    @endif
-                                @endforeach
-                            </table>
-                          </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        	@endif
-
           @foreach($surveydetails as $surveydetail)
            <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
                <div class="box box-default">
@@ -1416,6 +1324,98 @@
                </div>
            </div>
        @endforeach
+
+       @if($showQuality)
+       @foreach($surveydetails as $surveydetail)
+       <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
+           <div class="box box-default">
+               <div class="box-header with-border">
+                   <div class="col-md-12">
+                         <div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>
+                   </div>
+               </div>
+
+                   <div class="box-body">
+                         <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                           <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
+                                <thead>
+                                    </tr>
+                                      <th>Candidates</th>
+                                       @foreach($qualities as $quality)
+                                       <th>{{ $quality->options->option }}</th>
+                                       @endforeach
+                                       <th>Total</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                               @foreach($positions as $position)
+                                 <thead>
+                                     <tr>
+                                         <th>{{ $position->name }}</th>
+                                         @foreach($qualities as $quality)
+                                         <th></th>
+                                         @endforeach
+                                         <th></th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                   @php
+                                     $i = 0;
+                                     $tallytotaloqcandidate = 0;
+                                   @endphp
+                                   @foreach($position->candidates as $candidate)
+                                       @foreach($qualities as $quality)
+                                           @php
+                                               $tallyq[$position->id][$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
+                                           @endphp
+                                       @endforeach
+                                   @endforeach
+                                   @php
+                                   arsort($tallyq[$position->id]);
+                                   @endphp
+                                   @foreach($tallyq[$position->id] as $key => $sortedtallyq)
+                                   <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                        @php
+                                        $tallytotalqcandidate = 0;
+                                        @endphp
+                                        @foreach($qualities as $quality)
+                                           @php
+                                               if(empty($tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id])){
+                                                   $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] = $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                               }else{
+                                                   $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                               }
+                                               $tallytotalqcandidate += $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                           @endphp
+                                          <td>{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }}</td>
+                                        @endforeach
+                                        <th>{{ $tallytotalqcandidate }}</th>
+                                   </tr>
+                                   @php
+                                     $tallytotaloqcandidate += $tallytotalqcandidate;
+                                   @endphp
+                                   @endforeach
+                                   </tbody>
+                                   @if($tallytotaloqcandidate>0)
+                                   <thead>
+                                   <tr>
+                                       <th>Total:</td>
+                                       @foreach($qualities as $quality)
+                                         <th>{{ $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] }}</th>
+                                       @endforeach
+                                       <th>{{ $tallytotaloqcandidate }}</th>
+                                   </tr>
+                                   </thead>
+                                   @endif
+                               @endforeach
+                           </table>
+                         </div>
+                   </div>
+               </div>
+           </div>
+           @endforeach
+         @endif
 
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
@@ -2097,6 +2097,21 @@
         </div>
         @endforeach
         @endif
+
+        @foreach($surveydetails as $surveydetail)
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">
+                            <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
+            </div>
+        </div>
+        @endforeach
+
         @if($showQuality)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
@@ -2112,20 +2127,6 @@
         </div>
         @endforeach
   	    @endif
-
-        @foreach($surveydetails as $surveydetail)
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="col-md-12">
-                            <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
-                    </div>
-                </div>
-
-                <div class="box-body"><div id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
-            </div>
-        </div>
-        @endforeach
 
         @if($showProblem)
         @foreach($surveydetails as $surveydetail)
