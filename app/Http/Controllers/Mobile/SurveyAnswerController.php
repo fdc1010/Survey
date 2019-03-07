@@ -301,8 +301,13 @@ class SurveyAnswerController extends Controller
       								if($surans){
       									$question = Question::find($relquestion->question_id);
       									if(!empty($question->for_position) && is_numeric($question->for_position)){
+                          info("Found linked Question: ");
+                          info($relquestion);
+                          info($question);
       										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
       										if($optioncandidate){
+                            info("Storing tally for candidate qualities: #".$voteranswers['questionId']);
+                            info($optioncandidate);
       											$othertallycandidate = new TallyOtherVote;
                             $othertallycandidate->question_id = $voteranswers['questionId'];
                             $othertallycandidate->option_id = $optid;
@@ -319,7 +324,8 @@ class SurveyAnswerController extends Controller
 
       							$optionproblem = OptionProblem::where('option_id',$optid)->first();
       							if($optionproblem){
-                      info($receivedans);
+                      info("Storing tally for brgy concerns: #".$voteranswers['questionId']);
+                      info($optionproblem);
       								$voterbrgy = Voter::with('precinct')->find($voterid);
       								$tallyproblem = new TallyOtherVote;
                       $tallyproblem->question_id = $voteranswers['questionId'];
