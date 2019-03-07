@@ -878,22 +878,22 @@
                                   $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
-                                 @php
-                                   $tallytotalgcandidate = 0;
-                                 @endphp
                                 	<tr>
                                     	<td>{{ $candidate->voter->full_name }}</td>
                                         @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
 
-
                                           if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
                                               $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }else{
                                               $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }
-                                          
+                                          if(empty($tallytotalgcandidate[$gender->id][$surveydetail->id])){
+                                              $tallytotalgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }else{
+                                              $tallytotalgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
                                         @endforeach
