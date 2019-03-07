@@ -377,10 +377,7 @@
                                    @endphp
                                @endforeach
                              @endforeach
-                             @php
-                             arsort($tallyg[$position->id]);
-                             @endphp
-                             @foreach($tallyg[$position->id] as $key => $sortedtallyg)
+                             @foreach($tally[$position->id] as $key => $sortedtally)
                              <tr>
                                   <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                   @php
@@ -389,13 +386,13 @@
                                   @foreach($genders as $gender)
                                      @php
                                          if(empty($tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id])){
-                                             $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] = $sortedtallyg[$gender->id][$surveydetail->id];
+                                             $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] = $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                          }else{
-                                             $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $sortedtallyg[$gender->id][$surveydetail->id];
+                                             $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                          }
-                                         $tallytotalgcandidate += $sortedtallyg[$gender->id][$surveydetail->id];
+                                         $tallytotalgcandidate += $tallyg[$position->id][$key][$gender->id][$surveydetail->id];
                                      @endphp
-                                    <td>{{ $sortedtallyg[$gender->id][$surveydetail->id] }}</td>
+                                    <td>{{ $tallyg[$position->id][$key][$gender->id][$surveydetail->id] }}</td>
                                   @endforeach
                                   <th>{{ $tallytotalgcandidate }}</th>
                              </tr>
@@ -468,10 +465,7 @@
                                      @endphp
                                  @endforeach
                                @endforeach
-                               @php
-                               arsort($tallycv[$position->id]);
-                               @endphp
-                               @foreach($tallycv[$position->id] as $key => $sortedtallycv)
+                               @foreach($tally[$position->id] as $key => $sortedtally)
                                <tr>
                                     <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                     @php
@@ -480,13 +474,13 @@
                                     @foreach($civilstatuses as $civilstatus)
                                        @php
                                            if(empty($tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id])){
-                                               $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] = $sortedtallycv[$civilstatus->id][$surveydetail->id];
+                                               $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] = $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                            }else{
-                                               $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $sortedtallycv[$civilstatus->id][$surveydetail->id];
+                                               $tallytotalvccandidate[$position->id][$civilstatus->id][$surveydetail->id] += $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                            }
-                                           $tallytotalccandidate += $sortedtallycv[$civilstatus->id][$surveydetail->id];
+                                           $tallytotalccandidate += $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id];
                                        @endphp
-                                      <td>{{ $sortedtallycv[$civilstatus->id][$surveydetail->id] }}</td>
+                                      <td>{{ $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id] }}</td>
                                     @endforeach
                                     <th>{{ $tallytotalccandidate }}</th>
                                </tr>
@@ -559,10 +553,7 @@
                                      @endphp
                                 @endforeach
                                @endforeach
-                               @php
-                               arsort($tallyemp[$position->id]);
-                               @endphp
-                               @foreach($tallyemp[$position->id] as $key => $sortedtallyem)
+                               @foreach($tally[$position->id] as $key => $sortedtally)
                                <tr>
                                     <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                     @php
@@ -571,13 +562,13 @@
                                     @foreach($empstatuses as $empstatus)
                                        @php
                                            if(empty($tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id])){
-                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] = $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] = $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                            }else{
-                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] += $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] += $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                            }
-                                           $tallytotalecandidate += $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                           $tallytotalecandidate += $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id];
                                        @endphp
-                                      <td>{{ $sortedtallyem[$empstatus->id][$surveydetail->id] }}</td>
+                                      <td>{{ $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id] }}</td>
                                     @endforeach
                                     <th>{{ $tallytotalecandidate }}</th>
                                </tr>
@@ -655,10 +646,7 @@
                                             @endphp
                                         @endforeach
                                    @endforeach
-                                   @php
-                                   arsort($tallyab[$position->id]);
-                                   @endphp
-                                   @foreach($tallyab[$position->id] as $key => $sortedtallyab)
+                                   @foreach($tally[$position->id] as $key => $sortedtally)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                         @php
@@ -667,13 +655,13 @@
                                         @foreach($agebrackets as $agebracket)
                                            @php
                                                if(empty($tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id])){
-                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] = $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] = $tallyab[$position->id][$key][$agebracket->id][$surveydetail->id];
                                                }else{
-                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] += $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] += $tallyab[$position->id][$key][$agebracket->id][$surveydetail->id];
                                                }
-                                               $tallytotalacandidate += $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                               $tallytotalacandidate += $tallyab[$position->id][$key][$agebracket->id][$surveydetail->id];
                                            @endphp
-                                          <td>{{ $sortedtallyab[$agebracket->id][$surveydetail->id] }}</td>
+                                          <td>{{ $tallyab[$position->id][$key][$agebracket->id][$surveydetail->id] }}</td>
                                         @endforeach
                                         <th>{{ $tallytotalacandidate }}</th>
                                    </tr>
@@ -745,10 +733,7 @@
                                          @endphp
                                       @endforeach
                                    @endforeach
-                                   @php
-                                   arsort($tallyvb[$position->id]);
-                                   @endphp
-                                   @foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
+                                   @foreach($tally[$position->id] as $key => $sortedtally)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                         @php
@@ -757,13 +742,13 @@
                                         @foreach($brgysurveys as $barangay)
                                            @php
                                                if(empty($tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id])){
-                                                   $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] = $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                                   $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] = $tallyvb[$position->id][$key][$barangay->id][$surveydetail->id];
                                                }else{
-                                                   $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] += $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                                   $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] += $tallyvb[$position->id][$key][$barangay->id][$surveydetail->id];
                                                }
-                                               $tallytotalvbcandidate += $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                               $tallytotalvbcandidate += $tallyvb[$position->id][$key][$barangay->id][$surveydetail->id];
                                            @endphp
-                                          <td>{{ $sortedtallyvb[$barangay->id][$surveydetail->id] }}</td>
+                                          <td>{{ $tallyvb[$position->id][$key][$barangay->id][$surveydetail->id] }}</td>
                                         @endforeach
                                         <th>{{ $tallytotalvbcandidate }}</th>
                                    </tr>
@@ -839,10 +824,7 @@
                                          @endphp
                                      @endforeach
                                  @endforeach
-                                 @php
-                                 arsort($tallyq[$position->id]);
-                                 @endphp
-                                 @foreach($tallyq[$position->id] as $key => $sortedtallyq)
+                                 @foreach($tally[$position->id] as $key => $sortedtally)
                                  <tr>
                                       <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                       @php
@@ -851,13 +833,13 @@
                                       @foreach($qualities as $quality)
                                          @php
                                              if(empty($tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id])){
-                                                 $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] = $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                                 $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] = $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id];
                                              }else{
-                                                 $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                                 $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id];
                                              }
-                                             $tallytotalqcandidate += $sortedtallyq[$quality->option_id][$surveydetail->id];
+                                             $tallytotalqcandidate += $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id];
                                          @endphp
-                                        <td>{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }}</td>
+                                        <td>{{ $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id] }}</td>
                                       @endforeach
                                       <th>{{ $tallytotalqcandidate }}</th>
                                  </tr>
@@ -1076,10 +1058,7 @@
                                    @endphp
                                @endforeach
                              @endforeach
-                             @php
-                             arsort($tallygelection[$position->id]);
-                             @endphp
-                             @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+                             @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
                              <tr>
                                   <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
                                   @php
@@ -1088,13 +1067,13 @@
                                   @foreach($genders as $gender)
                                      @php
                                          if(empty($tallytotalvgcandidateelection[$position->id][$gender->id][$election->id])){
-                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] = $sortedtallygelection[$gender->id][$election->id];
+                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] = $tallygelection[$position->id][$key][$gender->id][$election->id];
                                          }else{
-                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] += $sortedtallygelection[$gender->id][$election->id];
+                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] += $tallygelection[$position->id][$key][$gender->id][$election->id];
                                          }
-                                         $tallytotalgcandidateelection += $sortedtallygelection[$gender->id][$election->id];
+                                         $tallytotalgcandidateelection += $tallygelection[$position->id][$key][$gender->id][$election->id];
                                      @endphp
-                                    <td>{{ $sortedtallygelection[$gender->id][$election->id] }}</td>
+                                    <td>{{ $tallygelection[$position->id][$key][$gender->id][$election->id] }}</td>
                                   @endforeach
                                   <th>{{ $tallytotalgcandidateelection }}</th>
                              </tr>
@@ -1167,10 +1146,7 @@
                                      @endphp
                                  @endforeach
                                @endforeach
-                               @php
-                               arsort($tallycvelection[$position->id]);
-                               @endphp
-                               @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
+                               @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
                                <tr>
                                     <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
                                     @php
@@ -1179,13 +1155,13 @@
                                     @foreach($civilstatuses as $civilstatus)
                                        @php
                                            if(empty($tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id])){
-                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] = $sortedtallycvelection[$civilstatus->id][$election->id];
+                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] = $tallycvelection[$position->id][$key][$civilstatus->id][$election->id];
                                            }else{
-                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] += $sortedtallycvelection[$civilstatus->id][$election->id];
+                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] += $tallycvelection[$position->id][$key][$civilstatus->id][$election->id];
                                            }
-                                           $tallytotalccandidateelection += $sortedtallycvelection[$civilstatus->id][$election->id];
+                                           $tallytotalccandidateelection += $tallycvelection[$position->id][$key][$civilstatus->id][$election->id];
                                        @endphp
-                                      <td>{{ $sortedtallycvelection[$civilstatus->id][$election->id] }}</td>
+                                      <td>{{ $tallycvelection[$position->id][$key][$civilstatus->id][$election->id] }}</td>
                                     @endforeach
                                     <th>{{ $tallytotalccandidateelection }}</th>
                                </tr>
@@ -1258,10 +1234,7 @@
                                      @endphp
                                 @endforeach
                                @endforeach
-                               @php
-                               arsort($tallyempelection[$position->id]);
-                               @endphp
-                               @foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
+                               @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
                                <tr>
                                     <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
                                     @php
@@ -1270,13 +1243,13 @@
                                     @foreach($empstatuses as $empstatus)
                                        @php
                                            if(empty($tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id])){
-                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] = $sortedtallyemelection[$empstatus->id][$election->id];
+                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] = $tallyempelection[$position->id][$key][$empstatus->id][$election->id];
                                            }else{
-                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] += $sortedtallyemelection[$empstatus->id][$election->id];
+                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] += $tallyempelection[$position->id][$key][$empstatus->id][$election->id];
                                            }
-                                           $tallytotalecandidateelection += $sortedtallyemelection[$empstatus->id][$election->id];
+                                           $tallytotalecandidateelection += $tallyempelection[$position->id][$key][$empstatus->id][$election->id];
                                        @endphp
-                                      <td>{{ $sortedtallyemelection[$empstatus->id][$election->id] }}</td>
+                                      <td>{{ $tallyempelection[$position->id][$key][$empstatus->id][$election->id] }}</td>
                                     @endforeach
                                     <th>{{ $tallytotalecandidateelection }}</th>
                                </tr>
@@ -1354,10 +1327,7 @@
                                             @endphp
                                         @endforeach
                                    @endforeach
-                                   @php
-                                   arsort($tallyabelection[$position->id]);
-                                   @endphp
-                                   @foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
+                                   @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
                                         @php
@@ -1366,13 +1336,13 @@
                                         @foreach($agebrackets as $agebracket)
                                            @php
                                                if(empty($tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id])){
-                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] = $sortedtallyabelection[$agebracket->id][$election->id];
+                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] = $tallyabelection[$position->id][$key][$agebracket->id][$election->id];
                                                }else{
-                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] += $sortedtallyabelection[$agebracket->id][$election->id];
+                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] += $tallyabelection[$position->id][$key][$agebracket->id][$election->id];
                                                }
-                                               $tallytotalacandidateelection += $sortedtallyabelection[$agebracket->id][$election->id];
+                                               $tallytotalacandidateelection += $tallyabelection[$position->id][$key][$agebracket->id][$election->id];
                                            @endphp
-                                          <td>{{ $sortedtallyabelection[$agebracket->id][$election->id] }}</td>
+                                          <td>{{ $tallyabelection[$position->id][$key][$agebracket->id][$election->id] }}</td>
                                         @endforeach
                                         <th>{{ $tallytotalacandidateelection }}</th>
                                    </tr>
@@ -1444,10 +1414,7 @@
                                          @endphp
                                       @endforeach
                                    @endforeach
-                                   @php
-                                   arsort($tallyvbelection[$position->id]);
-                                   @endphp
-                                   @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
+                                   @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
                                         @php
@@ -1456,13 +1423,13 @@
                                         @foreach($brgysurveys as $barangay)
                                            @php
                                                if(empty($tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id])){
-                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] = $sortedtallyvbelection[$barangay->id][$election->id];
+                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] = $tallyvbelection[$position->id][$key][$barangay->id][$election->id];
                                                }else{
-                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] += $sortedtallyvbelection[$barangay->id][$election->id];
+                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] += $tallyvbelection[$position->id][$key][$barangay->id][$election->id];
                                                }
-                                               $tallytotalvbcandidateelection += $sortedtallyvbelection[$barangay->id][$election->id];
+                                               $tallytotalvbcandidateelection += $tallyvbelection[$position->id][$key][$barangay->id][$election->id];
                                            @endphp
-                                          <td>{{ $sortedtallyvbelection[$barangay->id][$election->id] }}</td>
+                                          <td>{{ $tallyvbelection[$position->id][$key][$barangay->id][$election->id] }}</td>
                                         @endforeach
                                         <th>{{ $tallytotalvbcandidateelection }}</th>
                                    </tr>
@@ -1767,7 +1734,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyg[$position->id] as $key => $sortedtallyg)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1775,8 +1742,8 @@
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
-					@foreach($tallyg[$position->id] as $key => $sortedtallyg)
-						{{ $sortedtallyg[$gender->id][$surveydetail->id] }},
+					@foreach($tally[$position->id] as $key => $sortedtally)
+						{{ $tallyg[$position->id][$key][$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1812,7 +1779,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallycv[$position->id] as $key => $sortedtallycv)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1820,8 +1787,8 @@
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($tallycv[$position->id] as $key => $sortedtallycv)
-						{{ $sortedtallycv[$civilstatus->id][$surveydetail->id] }},
+          @foreach($tally[$position->id] as $key => $sortedtally)
+          {{ $tallycv[$position->id][$key][$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1856,7 +1823,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyemp[$position->id] as $key => $sortedtallyem)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1864,9 +1831,9 @@
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($tallyemp[$position->id] as $key => $sortedtallyem)
-						{{ $sortedtallyem[$empstatus->id][$surveydetail->id] }},
-					@endforeach
+          @foreach($tally[$position->id] as $key => $sortedtally)
+          {{ $tallyemp[$position->id][$key][$gender->id][$surveydetail->id] }},
+          @endforeach
 				@endforeach
 				],
 			@endforeach
@@ -1900,7 +1867,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyab[$position->id] as $key => $sortedtallyab)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1908,8 +1875,8 @@
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
-          @foreach($tallyab[$position->id] as $key => $sortedtallyab)
-            {{ $sortedtallyab[$agebracket->id][$surveydetail->id] }},
+          @foreach($tally[$position->id] as $key => $sortedtally)
+          {{ $tallyab[$position->id][$key][$gender->id][$surveydetail->id] }},
           @endforeach
 				@endforeach
 				],
@@ -1944,7 +1911,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyq[$position->id] as $key => $sortedtallyq)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1952,8 +1919,8 @@
 			@foreach($qualities as $quality)
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
-					@foreach($tallyq[$position->id] as $key => $sortedtallyq)
-						{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }},
+          @foreach($tally[$position->id] as $key => $sortedtally)
+          {{ $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1988,7 +1955,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
+				@foreach($tally[$position->id] as $key => $sortedtally)
 					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
@@ -1996,8 +1963,8 @@
 			@foreach($brgysurveys as $barangay)
 				['{{ $barangay->name }}',
 				@foreach($positions as $position)
-          @foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
-            {{ $sortedtallyvb[$barangay->id][$surveydetail->id] }},
+          @foreach($tally[$position->id] as $key => $sortedtally)
+          {{ $tallyvb[$position->id][$key][$gender->id][$surveydetail->id] }},
           @endforeach
 				@endforeach
 				],
@@ -2114,7 +2081,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+        @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
 					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
@@ -2123,7 +2090,7 @@
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
-						{{ $sortedtallygelection[$gender->id][$election->id] }},
+						{{ $tallygelection[$position->id][$key][$gender->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2158,7 +2125,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
+				@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
 					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
@@ -2166,9 +2133,9 @@
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
-					@foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
-						{{ $sortedtallyabelection[$agebracket->id][$election->id] }},
-					@endforeach
+          @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+            {{ $tallyabelection[$position->id][$key][$gender->id][$election->id] }},
+          @endforeach
 				@endforeach
 				],
 			@endforeach
@@ -2202,7 +2169,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				 @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
+				 @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
 					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
@@ -2210,9 +2177,9 @@
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					 @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
-						{{ $sortedtallycvelection[$civilstatus->id][$election->id] }},
-					@endforeach
+            @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+              {{ $tallycvelection[$position->id][$key][$gender->id][$election->id] }},
+            @endforeach
 				@endforeach
 				],
 			@endforeach
@@ -2246,7 +2213,7 @@
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
+				@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
 					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
@@ -2254,9 +2221,9 @@
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
-						{{ $sortedtallyemelection[$empstatus->id][$election->id] }},
-					@endforeach
+          @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+            {{ $tallyempelection[$position->id][$key][$gender->id][$election->id] }},
+          @endforeach
 				@endforeach
 				],
 			@endforeach
@@ -2290,7 +2257,7 @@
       columns: [
         ['Candidates',
       @foreach($positions as $position)
-        @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
+        @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
           '{{ $tallycandidateelection[$key] }}',
         @endforeach
       @endforeach
@@ -2298,8 +2265,8 @@
       @foreach($brgysurveys as $barangay)
         ['{{ $barangay->name }}',
         @foreach($positions as $position)
-          @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
-            {{ $sortedtallyvbelection[$barangay->id][$surveydetail->id] }},
+          @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+            {{ $tallyvbelection[$position->id][$key][$gender->id][$election->id] }},
           @endforeach
         @endforeach
         ],

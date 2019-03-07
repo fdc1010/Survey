@@ -999,7 +999,6 @@
                                        @endphp
                                    @endforeach
                                  @endforeach
-
                                  @foreach($tally[$position->id] as $key => $sortedtally)
                                  <tr>
                                       <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
@@ -1088,7 +1087,6 @@
                                      @endphp
                                 @endforeach
                                @endforeach
-
                                @foreach($tally[$position->id] as $key => $sortedtally)
                                <tr>
                                     <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
@@ -1182,7 +1180,6 @@
                                             @endphp
                                         @endforeach
                                    @endforeach
-
                                    @foreach($tally[$position->id] as $key => $sortedtally)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
@@ -1270,7 +1267,6 @@
                                            @endphp
                                         @endforeach
                                      @endforeach
-
                                      @foreach($tally[$position->id] as $key => $sortedtally)
                                      <tr>
                                           <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
@@ -1359,7 +1355,6 @@
                                            @endphp
                                        @endforeach
                                    @endforeach
-
                                    @foreach($tally[$position->id] as $key => $sortedtally)
                                    <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
@@ -1785,7 +1780,7 @@
                                            }
                                            $tallytotalecandidateelection += $tallyempelection[$position->id][$key][$empstatus->id][$election->id];
                                        @endphp
-                                      <td>{{ $sortedtallyemelection[$empstatus->id][$election->id] }}</td>
+                                      <td>{{ $tallyempelection[$position->id][$key][$empstatus->id][$election->id] }}</td>
                                     @endforeach
                                     <th>{{ $tallytotalecandidateelection }}</th>
                                </tr>
