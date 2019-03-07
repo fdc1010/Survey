@@ -824,7 +824,7 @@
                                   @foreach($tally as $key => $sortedtally)
                                       <tr>
                                           <td>{{ $tallycandidate[$key] }}</td>
-                                          <td>{{ $tally[$key][$surveydetail->id] }}</td>
+                                          <td>{{ $sortedtally }}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>
@@ -886,7 +886,11 @@
                                         @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
-                                          $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          if(empty($tallytotalgcandidate[$gender->id][$surveydetail->id])){
+                                              $tallytotalgcandidate[$candidate->id][$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }else{
+                                              $tallytotalgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          }
                                           if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
                                               $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }else{
@@ -897,10 +901,17 @@
                                         @endforeach
                                         <th>{{ $tallytotalgcandidate }}</th>
                                     </tr>
-                                    @php
-                                      if($position->id!=3)
-                                        $tallytotalogcandidate += $tallytotalgcandidate;
-                                    @endphp
+                                  @endforeach
+                                  @php
+                                  arsort($tallyg);
+                                  @endphp
+                                  @foreach($tallyg as $key => $sortedtallyg)
+                                        <td>{{ $tallycandidate[$key] }}</td>
+                                          @foreach($genders as $gender)
+                                          <td>{{ $tallyg[$key][$gender->id][$surveydetail->id] }}</td>
+                                          @endforeach
+                                          <th>{{ $sortedtallyg }}</th>
+                                      </tr>
                                   @endforeach
                                   </tbody>
                                 @endforeach
