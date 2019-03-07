@@ -2249,16 +2249,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyg[$position->id] as $key => $sortedtallyg)
+					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$position->id][$candidate->id][$gender->id][$surveydetail->id] }},
+					@foreach($tallyg[$position->id] as $key => $sortedtallyg)
+						{{ $sortedtallyg[$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
