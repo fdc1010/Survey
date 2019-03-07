@@ -781,9 +781,6 @@
             </div>
         </div>
         </form>
-      @php
-      $i = 0;
-      @endphp
     	@foreach($surveydetails as $surveydetail)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -803,6 +800,7 @@
                                 </thead>
                     					@foreach($positions as $position)
                                   @php
+                                    $i = 0;
                                     $tallytotalcandidate = 0;
                                   @endphp
                                   <thead>
@@ -845,9 +843,7 @@
         </div>
         @endforeach
         @if($showGender)
-        @php
-        $i = 0;
-        @endphp
+
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -881,6 +877,7 @@
                                   </thead>
                                 <tbody>
                                 @php
+                                $i = 0;
                                 $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
@@ -941,9 +938,6 @@
         @endif
 
          @if($showCivil)
-         @php
-         $i = 0;
-         @endphp
          @foreach($surveydetails as $surveydetail)
         	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -977,6 +971,7 @@
                                   </thead>
                                   <tbody>
                                   @php
+                                    $i = 0;
                                     $tallytotaloccandidate = 0;
                                   @endphp
                                 	@foreach($position->candidates as $candidate)
