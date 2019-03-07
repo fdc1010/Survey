@@ -36,7 +36,7 @@ class SurveyAnswerController extends Controller
     $surveydetailid = $request->sdid;
     $voterid = $request->vid;
     $questionId = $request->qid;
-    $curquestion = Question::where('question_id',$questionId)->first();
+    $curquestion = Question::find($questionId);
     if($relquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
