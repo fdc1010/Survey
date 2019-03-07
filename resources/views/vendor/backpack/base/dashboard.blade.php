@@ -1333,7 +1333,7 @@
         	@endif
 
           @if($showVotesBrgy)
-           @foreach($surveydetails as $surveydetail)
+          @foreach($surveydetails as $surveydetail)
            <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
                <div class="box box-default">
                    <div class="box-header with-border">
@@ -1366,31 +1366,54 @@
                                    </thead>
                                    <tbody>
                                      @php
+                                       $i = 0;
                                        $tallytotalovbcandidate = 0;
                                      @endphp
                                      @foreach($position->candidates as $candidate)
-                                         @php
-                                           $tallytotalvbcandidate = 0;
-                                         @endphp
-                                         <tr>
-                                           <td>{{ $candidate->voter->full_name }}</td>
-                                           @foreach($brgysurveys as $barangay)
+                                        @foreach($brgysurveys as $barangay)
                                            @php
-                                               $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$barangay->id,0,0,0,0);
-                                               $tallytotalvbcandidate += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                               if(empty($tallytotalvvbcandidate[$barangay->id][$surveydetail->id])){
-                                                   $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] = $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                               }else{
-                                                   $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] += $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id];
-                                               }
+                                               $tallyvb[$position->id][$candidate->id][$barangay->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$barangay->id,0,0,0,0);
                                            @endphp
-                                           <td>{{ $tallyvbrgy[$candidate->id][$barangay->id][$surveydetail->id] }}</td>
-                                           @endforeach
-                                           <th>{{ $tallytotalvbcandidate }}</th>
-                                           @php
-                                             $tallytotalovbcandidate += $tallytotalvbcandidate;
-                                           @endphp
-                                       </tr>
+                                        @endforeach
+                                     @endforeach
+                                     @php
+                                     arsort($tallyvb[$position->id]);
+                                     @endphp
+                                     @foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
+                                     <tr>
+                                          <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                          @php
+                                          $tallytotalvbcandidate = 0;
+                                          @endphp
+                                          @foreach($brgysurveys as $barangay)
+                                             @php
+                                                 if(empty($tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id])){
+                                                     $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] = $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                                 }else{
+                                                     $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] += $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                                 }
+                                                 $tallytotalvbcandidate += $sortedtallyvb[$barangay->id][$surveydetail->id];
+                                             @endphp
+                                            <td>{{ $sortedtallyvb[$barangay->id][$surveydetail->id] }}</td>
+                                          @endforeach
+                                          <th>{{ $tallytotalqcandidate }}</th>
+                                     </tr>
+                                     @php
+                                       $tallytotalovbcandidate += $tallytotalvbcandidate;
+                                     @endphp
+                                     @endforeach
+                                     </tbody>
+                                     @if($tallytotalovbcandidate>0)
+                                     <thead>
+                                     <tr>
+                                         <th>Total:</td>
+                                         @foreach($brgysurveys as $barangay)
+                                           <th>{{ $tallytotalvvbcandidate[$barangay->id][$barangay->id][$surveydetail->id] }}</th>
+                                         @endforeach
+                                         <th>{{ $tallytotalovbcandidate }}</th>
+                                     </tr>
+                                     </thead>
+                                     @endif
                                    @endforeach
                                    </tbody>
                                  @endforeach
@@ -1410,7 +1433,6 @@
            </div>
        @endforeach
        @endif
-       
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
             <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
@@ -1818,7 +1840,22 @@
             </div>
         </div>
         @endforeach
-    	@endif
+  	    @endif
+        @if($showVotesBrgy)
+        @foreach($surveydetails as $surveydetail)
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">
+                            <div class="box-title">Votes Per Barangay: {{ $surveydetail->subject }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
+            </div>
+        </div>
+        @endforeach
+  	    @endif
         @if($showProblem)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
@@ -2499,7 +2536,51 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-      @if($showProblem)
+    @if($showVotesBrgy)
+	  @foreach($surveydetails as $surveydetail)
+	  var chartqualities = c3.generate({
+		bindto: '#chartvotesbrgy_{{ $surveydetail->id }}',
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates',
+			@foreach($positions as $position)
+				@foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
+					'{{ $tallycandidate[$key] }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($brgysurveys as $barangay)
+				['{{ $quality->options->option }}',
+				@foreach($positions as $position)
+          @foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
+            {{ $sortedtallyvb[$barangay->id][$surveydetail->id] }},
+          @endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @endforeach
+	  @endif
+    @if($showProblem)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartproblem = c3.generate({
 		bindto: '#chartproblem_{{ $surveydetail->id }}',
