@@ -814,23 +814,21 @@
                                   <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
-                                          $tallycandidate[$candidate->id][$position->id] = $candidate->full_name;
-                                          $tally[$candidate->id][$position->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                          $tallycandidate[$candidate->id] = $candidate->full_name;
+                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
-                                          $tallytotalcandidate += $tally[$candidate->id][$position->id][$surveydetail->id];
+                                          $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
                                       @endphp
                                   @endforeach
                                   @php
                                   arsort($tally);
                                   @endphp
                                   @foreach($tally as $key => $sortedtally)
-                                      @foreach($position->candidates as $candidate)
                                       <tr>
-                                          <td>{{ ++$i . ".) " . $tallycandidate[$key][$position->id] }}</td>
-                                          <td>{{ $sortedtally[$position->id][$surveydetail->id] }}</td>
+                                          <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                          <td>{{ $sortedtally[$surveydetail->id] }}</td>
                                       </tr>
-                                      @endforeach
                                   @endforeach
                                   <tr>
                                       <th>Total:</th>
