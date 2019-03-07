@@ -45,6 +45,7 @@ class SurveyAnswerController extends Controller
                 ->where('voter_id',$voterid)
                 ->first();
       $optid = $csurans->option_id;
+      $otoptId = null;
       $cquestionoption = QuestionOption::find($optid);
       echo "<br>Your Answer: ".$optid." ".$cquestionoption->option;
       echo "<br>Found linked Question: #".$questionId." to #".$relquestion->related_question_id." with a cardinality of ".$relquestion->cardinality."<br>";
@@ -54,17 +55,19 @@ class SurveyAnswerController extends Controller
                       ->where('voter_id',$voterid)
                       ->orderBy('id')
                       ->get();
-
-          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+          if(!empty($surans[$relquestion->cardinality-1])){
+              $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+          }
       }else{
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                     ->where('question_id',$relquestion->related_question_id)
                     ->where('voter_id',$voterid)
                     ->get();
-
-          $otoptId = $surans[0]->option_id;
+          if(!empty($surans[$relquestion->cardinality-1])){
+              $otoptId = $surans[0]->option_id;
+          }
       }
-      if(!empty($surans) && count($surans)>0){
+      if(!empty($otoptId)){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
           echo "<br>Getting survey info of linked Question:";
