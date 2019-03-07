@@ -1301,7 +1301,7 @@
                                                 }else{
                                                     $tallytotalvqcandidate[$position->id][$quality->option_id][$surveydetail->id] += $sortedtallyq[$quality->option_id][$surveydetail->id];
                                                 }
-                                                $tallytotalqcandidate += $sortedtallyab[$quality->option_id][$surveydetail->id];
+                                                $tallytotalqcandidate += $sortedtallyq[$quality->option_id][$surveydetail->id];
                                             @endphp
                                            <td>{{ $sortedtallyq[$quality->option_id][$surveydetail->id] }}</td>
                                          @endforeach
