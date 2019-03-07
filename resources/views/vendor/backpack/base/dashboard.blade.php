@@ -2782,7 +2782,7 @@ $(document).ready(function ($) {
 				['{{ $quality->options->option }}',
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
-          {{ $tallyq[$position->id][$key][$gender->id][$surveydetail->id] }},
+          {{ $tallyq[$position->id][$key][$quality->option_id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
