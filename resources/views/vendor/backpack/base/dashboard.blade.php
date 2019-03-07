@@ -2168,7 +2168,7 @@ $(document).ready(function ($) {
 			['Votes',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
-					{{ $tally[$candidate->id][$surveydetail->id] }},
+					{{ $tally[$position->id][$candidate->id][$surveydetail->id] }},
 				@endforeach
 			@endforeach
 			]
@@ -2470,7 +2470,7 @@ $(document).ready(function ($) {
 			['Votes',
 			@foreach($positions as $position)
 				@foreach($position->candidates as $candidate)
-					{{ $tally[$candidate->id][$election->id] }},
+					{{ $tally[$position->id][$candidate->id][$election->id] }},
 				@endforeach
 			@endforeach
 			]
