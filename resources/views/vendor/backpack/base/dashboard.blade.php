@@ -824,7 +824,7 @@
                                   @php
                                   arsort($tally[$position->id]);
                                   @endphp
-                                  @foreach($tally[$position->id] as $sortedtally)
+                                  @foreach($tally[$position->id] as $key => $sortedtally)
                                       @foreach($position->candidates as $candidate)
                                       <tr>
                                           <td>{{ ++$i . ".) " . $tallycandidate[$position->id][$candidate->id] }}</td>
