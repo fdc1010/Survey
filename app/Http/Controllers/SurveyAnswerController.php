@@ -36,7 +36,7 @@ class SurveyAnswerController extends Controller
     $surveydetailid = $request->sdid;
     $voterid = $request->vid;
     $questionId = $request->qid;
-    $curquestion = Question::find($questionId);    
+    $curquestion = Question::find($questionId);
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
     if($relquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
@@ -63,8 +63,7 @@ class SurveyAnswerController extends Controller
                     ->get();
 
           $otoptId = $surans[0]->option_id;
-      }
-      var_dump($surans);
+      }      
       if(!empty($surans) && count($surans)>0){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
