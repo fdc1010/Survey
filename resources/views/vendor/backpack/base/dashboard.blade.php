@@ -854,7 +854,7 @@
                 <div class="box-body">
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
+            					           <thead>
                                     <tr>
                                         <th>Cadidates</th>
                                         @foreach($genders as $gender)
@@ -878,28 +878,40 @@
                                   $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
-                                 @php
-                                   $tallytotalgcandidate = 0;
-                                 @endphp
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        @foreach($genders as $gender)
+                                   @php
+                                    $tallycandidate[$candidate->id] = $candidate->full_name;
+                                   @endphp
+                                    @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
-                                          $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
-                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          }else{
-                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          }
                                         @endphp
-                                        <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
-                                        @endforeach
-                                        <th>{{ $tallytotalgcandidate }}</th>
-                                    </tr>
+                                    @endforeach
                                   @endforeach
+                                  @php
+                                  arsort($tallyg);
+                                  $tallytotalgcandidate = 0;
+                                  @endphp
+                                  @foreach($tallyg as $key => $sortedtallyg)
+                                 	<tr>
+                                   	   <td>{{ $tallycandidate[$key] }}</td>
+                                       @foreach($genders as $gender)
+                                          @php
+                                              if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
+                                                  $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $sortedtallyg[$gender->id][$surveydetail->id];
+                                              }else{
+                                                  $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $sortedtallyg[$gender->id][$surveydetail->id];
+                                              }
+                                              $tallytotalgcandidate += $sortedtallyg[$gender->id][$surveydetail->id];
+                                          @endphp
+                                       <td>{{ $sortedtallyg[$gender->id][$surveydetail->id] }}</td>
+                                       @endforeach
+                                       <th>{{ $tallytotalgcandidate }}</th>
+                                  </tr>
+                                  @endforeach
+                                  @php
+                                  $tallytotalogcandidate += $tallytotalgcandidate;
+                                  @endphp
                                   </tbody>
-                                @endforeach
                                 @if($tallytotalogcandidate>0)
                                 <tfoot>
                                   <tr>
@@ -911,6 +923,7 @@
                                   </tr>
                                 </tfoot>
                                 @endif
+                              @endforeach
                             </table>
                       </div>
                 </div>
