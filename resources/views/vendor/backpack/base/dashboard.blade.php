@@ -818,7 +818,7 @@
                                           $tally[$position->id][$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
-                                          $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
+                                          $tallytotalcandidate += $tally[$position->id][$candidate->id][$surveydetail->id];
                                       @endphp
                                   @endforeach
                                   @php
