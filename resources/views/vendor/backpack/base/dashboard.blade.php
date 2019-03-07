@@ -823,9 +823,14 @@
                                   @endforeach
                                   @php
                                   arsort($tally[$position->id]);
-                                  var_dump($tally[$position->id]);
+                                  dd($tally[$position->id]);
                                   @endphp
-                                  
+                                  @foreach($tally as $key => $sortedtally)
+                                      <tr>
+                                          <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                          <td>{{ $sortedtally[$surveydetail->id] }}</td>
+                                      </tr>
+                                  @endforeach
                                   <tr>
                                       <th>Total:</th>
                                       <th>{{ $tallytotalcandidate }}</th>
