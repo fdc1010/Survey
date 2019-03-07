@@ -200,8 +200,7 @@
                                                                     },'tally'=>function($qc){
                                                                         $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                 ->from('tally_votes')
-                                                                                ->groupBy('candidate_id')
-                                                                                ->orderBy('ctally','DESC');
+                                                                                ->groupBy('candidate_id');
                                                                     }]);
                                                            }])
                                                            ->where('id',$surveypos)
@@ -213,8 +212,7 @@
                                                                       },'tally'=>function($qc){
                                                                           $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
-                                                                                  ->groupBy('candidate_id')
-                                                                                  ->orderBy('ctally','DESC');
+                                                                                  ->groupBy('candidate_id');
                                                                       }]);
                                                              }])
                                                              ->whereIn('id',$rdata['position'])
@@ -228,8 +226,7 @@
                                                                       },'tally'=>function($qc){
                                                                           $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
-                                                                                  ->groupBy('candidate_id')
-                                                                                  ->orderBy('ctally','DESC');
+                                                                                  ->groupBy('candidate_id');
                                                                       }]);
                                                              }])
                                                             ->whereIn('id',$rdata['position'])
@@ -242,8 +239,7 @@
                                                                       },'tally'=>function($qc){
                                                                           $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
-                                                                                  ->groupBy('candidate_id')
-                                                                                  ->orderBy('ctally','DESC');
+                                                                                  ->groupBy('candidate_id');
                                                                       }]);
                                                              }])
                                                             ->whereIn('id',$rdata['position'])
@@ -258,8 +254,7 @@
                                               },'tally'=>function($qc){
                                                   $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                           ->from('tally_votes')
-                                                          ->groupBy('candidate_id')
-                                                          ->orderBy('ctally','DESC');
+                                                          ->groupBy('candidate_id');
                                               }]);
                                      }])
                                     ->get();
@@ -270,8 +265,7 @@
                                               },'tally'=>function($qc){
                                       		        $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                           ->from('tally_votes')
-                                                          ->groupBy('candidate_id')
-                                                          ->orderBy('ctally','DESC');
+                                                          ->groupBy('candidate_id');
                                               }]);
 							                       }])
                                     ->get();
