@@ -887,14 +887,14 @@
                                    @endphp
                                     @foreach($genders as $gender)
                                         @php
-                                        	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
+                                        	$tallyg[$position->id][$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
                                         @endphp
                                     @endforeach
                                   @endforeach
                                   @php
-                                  arsort($tallyg);
+                                  arsort($tallyg[$position->id]);
                                   @endphp
-                                  @foreach($tallyg as $key => $sortedtallyg)
+                                  @foreach($tallyg[$position->id] as $key => $sortedtallyg)
                                  	<tr>
                                    	   <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
                                        @php
@@ -919,7 +919,7 @@
                                   @endforeach
                                   </tbody>
                                 @if($tallytotalogcandidate>0)
-                                <tfoot>
+
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($genders as $gender)
@@ -927,7 +927,7 @@
                                       @endforeach
                                       <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
-                                </tfoot>
+                                
                                 @endif
                               @endforeach
                             </table>
