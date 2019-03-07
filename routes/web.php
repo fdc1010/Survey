@@ -22,13 +22,13 @@ Route::post('importsitios', 'SitioController@importsitios')->name('importsitios'
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
 
-Route::get('updateothertallyvotesqualityMayor', 'SurveyAnswerController@updateothertallyvotesqualityMayor')->name('updateothertallyvotesqualityMayor');
-Route::get('updateothertallyvotesqualityViceMayor', 'SurveyAnswerController@updateothertallyvotesqualityViceMayor')->name('updateothertallyvotesqualityViceMayor');
-Route::get('updateothertallyvotesqualityCong', 'SurveyAnswerController@updateothertallyvotesqualityCong')->name('updateothertallyvotesqualityCong');
-Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateothertallyvotesquality')->name('updateothertallyvotesquality');
-Route::get('insertmissingothertallyvotesqualityViceMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityViceMayor')->name('insertmissingothertallyvotesqualityViceMayor');
-Route::get('insertmissingothertallyvotesqualityCong', 'SurveyAnswerController@insertmissingothertallyvotesqualityCong')->name('insertmissingothertallyvotesqualityCong');
-Route::get('insertmissingothertallyvotesqualityMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityMayor')->name('insertmissingothertallyvotesqualityMayor');
+// Route::get('updateothertallyvotesqualityMayor', 'SurveyAnswerController@updateothertallyvotesqualityMayor')->name('updateothertallyvotesqualityMayor');
+// Route::get('updateothertallyvotesqualityViceMayor', 'SurveyAnswerController@updateothertallyvotesqualityViceMayor')->name('updateothertallyvotesqualityViceMayor');
+// Route::get('updateothertallyvotesqualityCong', 'SurveyAnswerController@updateothertallyvotesqualityCong')->name('updateothertallyvotesqualityCong');
+// Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateothertallyvotesquality')->name('updateothertallyvotesquality');
+// Route::get('insertmissingothertallyvotesqualityViceMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityViceMayor')->name('insertmissingothertallyvotesqualityViceMayor');
+// Route::get('insertmissingothertallyvotesqualityCong', 'SurveyAnswerController@insertmissingothertallyvotesqualityCong')->name('insertmissingothertallyvotesqualityCong');
+Route::get('updateOtherTallyVotesQuality', 'SurveyAnswerController@updateOtherTallyVotesQuality')->name('updateOtherTallyVotesQuality');
 Route::get('testOtherVotersRelQ', 'SurveyAnswerController@testOtherVotersRelQ')->name('testOtherVotersRelQ');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 
