@@ -234,6 +234,7 @@ class SurveyAnswerController extends Controller
                   $voterstatuses->status_id = 5;
                   $voterstatuses->save();
               }
+            }
               $receivedans = json_decode($request->q_and_a, true);
               info("Storing answers: #".$voter->id." ".$voter->full_name);
               info($receivedans);
@@ -333,8 +334,9 @@ class SurveyAnswerController extends Controller
 
       					}
     			    }
+
               return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
-            }
+
   		//		}
       //  return response()->json(['success'=>true,'msg'=>'Voter already being surveyed']);
       }
