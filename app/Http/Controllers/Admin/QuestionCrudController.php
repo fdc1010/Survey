@@ -34,10 +34,13 @@ class QuestionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		
+
 		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
 		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
-
+    $this->crud->addColumn([
+            'name' => 'id',
+            'label' => 'ID'
+	    ])->makeFirstColumn();
 		$this->crud->addColumn([
             'name' => 'type_id',
             'type' => 'select',
@@ -50,13 +53,13 @@ class QuestionCrudController extends CrudController
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
-	    ]);				
+	    ]);
 		$this->crud->addField([
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers'
 	    ]);
-		
+
 		$this->crud->addField([
 			'label' => "Type",
 			'type' => 'select',
@@ -76,10 +79,10 @@ class QuestionCrudController extends CrudController
 				'checkbox' => 'With Other Answer',
 				'entity' => 'choices', // the method that defines the relationship in your Model
 				'attribute' => 'option', // foreign key attribute that is shown to user
-				'model' => "App\Models\QuestionOption"					
+				'model' => "App\Models\QuestionOption"
 			],
 			'max' => 100, // maximum rows allowed in the table
-			'min' => 1 // minimum rows allowed in the table			
+			'min' => 1 // minimum rows allowed in the table
 		]);
 		$this->crud->addField([
             'name' => 'with_other_ans',
@@ -120,7 +123,7 @@ class QuestionCrudController extends CrudController
 				'question_id' => $qid,
 				'option_id' => $optid,
 				'with_option_other_ans' => $chkhasother
-			]);			
+			]);
 		}
         return $redirect_location;
     }
@@ -132,7 +135,7 @@ class QuestionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		$qid = $this->crud->entry->id; // <-- SHOULD WORK
 		$qdetail = QuestionDetail::where('question_id',$qid)->delete();
-				
+
 		$options = $this->crud->entry->options;
 		foreach($options as $option){
 			$optid = $option['select'];
@@ -141,7 +144,7 @@ class QuestionCrudController extends CrudController
 				'question_id' => $qid,
 				'option_id' => $optid,
 				'with_option_other_ans' => $chkhasother
-			]);			
+			]);
 		}
         return $redirect_location;
     }
@@ -151,5 +154,5 @@ class QuestionCrudController extends CrudController
 		QuestionDetail::where('question_id',$id)->delete();
 		return $this->crud->delete($id);
 	}
-	
+
 }
