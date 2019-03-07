@@ -815,21 +815,17 @@
                                   @foreach($position->candidates as $candidate)
                                       @php
                                           $tallycandidate[$candidate->id] = $candidate->full_name;
-                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                          $tally[$position->id][$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
                                       @endphp
                                   @endforeach
                                   @php
-                                  arsort($tally);
+                                  arsort($tally[$position->id]);
+                                  var_dump($tally[$position->id]);
                                   @endphp
-                                  @foreach($tally as $key => $sortedtally)
-                                      <tr>
-                                          <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                          <td>{{ $sortedtally[$surveydetail->id] }}</td>
-                                      </tr>
-                                  @endforeach
+                                  
                                   <tr>
                                       <th>Total:</th>
                                       <th>{{ $tallytotalcandidate }}</th>
