@@ -1026,7 +1026,7 @@
                                              }
                                              $tallytotalccandidate += $sortedtallycv[$civilstatus->id][$surveydetail->id];
                                          @endphp
-                                        <td>{{ $sortedtallycv[$gender->id][$surveydetail->id] }}</td>
+                                        <td>{{ $sortedtallycv[$civilstatus->id][$surveydetail->id] }}</td>
                                       @endforeach
                                       <th>{{ $tallytotalccandidate }}</th>
                                  </tr>
@@ -1163,72 +1163,88 @@
                 <div class="box-body">
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            						<thead>
-                                	<tr>
-                                    	<th>Candidates</th>
-                                        @foreach($agebrackets as $agebracket)
-                                        <th>{{ $agebracket->title }}</th>
-                                        @endforeach
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                @foreach($positions as $position)
+                            <thead>
+                              <tr>
+                                  <th>Candidates</th>
+                                  @foreach($agebrackets as $agebracket)
+                                  <th>{{ $agebracket->title }}</th>
+                                  @endforeach
+                                  <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($positions as $position)
                                   <thead>
                                       <tr>
                                           <th>{{ $position->name }}</th>
                                           @foreach($agebrackets as $agebracket)
-                                       	  <th></th>
+                                          <th></th>
                                           @endforeach
                                           <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
                                   @php
+                                    $i = 0;
                                     $tallytotaloacandidate = 0;
                                   @endphp
                                   @foreach($position->candidates as $candidate)
-                                      @php
+                                        @php
+                                         $tallycandidate[$candidate->id] = $candidate->full_name;
+                                        @endphp
+                                        @foreach($agebrackets as $agebracket)
+                                            @php
+                                                $gtallyagebrackets=[];
+                                                for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
+                                                    array_push($gtallyagebrackets,$tallyiage);
+                                                }
+                                                $tallyab[$position->id][$candidate->id][$agebracket->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,$gtallyagebrackets,0,0,0,0,0,0);
+                                            @endphp
+                                        @endforeach
+                                   @endforeach
+                                   @php
+                                   arsort($tallyab[$position->id]);
+                                   @endphp
+                                   @foreach($tallyab[$position->id] as $key => $sortedtallyab)
+                                   <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                        @php
                                         $tallytotalacandidate = 0;
-                                      @endphp
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          @foreach($agebrackets as $agebracket)
-                                          @php
-                                              $gtallyagebrackets=[];
-                                              for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
-                                                  array_push($gtallyagebrackets,$tallyiage);
-                                              }
-                                              $tallyab[$candidate->id][$agebracket->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,$gtallyagebrackets,0,0,0,0,0,0);
-                                              $tallytotalacandidate += $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
-                                              if(empty($tallytotalvacandidate[$agebracket->id][$surveydetail->id])){
-                                                  $tallytotalvacandidate[$agebracket->id][$surveydetail->id] = $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
-                                              }else{
-                                                  $tallytotalvacandidate[$agebracket->id][$surveydetail->id] += $tallyab[$candidate->id][$agebracket->id][$surveydetail->id];
-                                              }
-                                          @endphp
-                                          <td>{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }}</td>
-                                          @endforeach
-                                          <th>{{ $tallytotalacandidate }}</th>
-                                          @php
-                                            $tallytotaloacandidate += $tallytotalacandidate;
-                                          @endphp
-                                      </tr>
-                                  @endforeach
-                                  </tbody>
-                                @endforeach
-                                <!-- <tfoot>
-                                  <tr>
-                                      <th>Total:</td>
-                                      @foreach($agebrackets as $agebracket)
-                                        <th>{{ $tallytotalvacandidate[$agebracket->id][$surveydetail->id] }}</th>
-                                      @endforeach
-                                      <th>{{ $tallytotaloacandidate }}</th>
-                                  </tr>
-                              </tfoot> -->
+                                        @endphp
+                                        @foreach($agebrackets as $agebracket)
+                                           @php
+                                               if(empty($tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id])){
+                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] = $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                               }else{
+                                                   $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] += $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                               }
+                                               $tallytotalacandidate += $sortedtallyab[$agebracket->id][$surveydetail->id];
+                                           @endphp
+                                          <td>{{ $sortedtallyab[$agebracket->id][$surveydetail->id] }}</td>
+                                        @endforeach
+                                        <th>{{ $tallytotalacandidate }}</th>
+                                   </tr>
+                                   @php
+                                     $tallytotaloacandidate += $tallytotalacandidate;
+                                   @endphp
+                                   @endforeach
+                                   </tbody>
+                                   @if($tallytotaloacandidate>0)
+                                   <thead>
+                                   <tr>
+                                       <th>Total:</td>
+                                       @foreach($agebrackets as $agebracket)
+                                         <th>{{ $tallytotalvacandidate[$position->id][$agebracket->id][$surveydetail->id] }}</th>
+                                       @endforeach
+                                       <th>{{ $tallytotaloacandidate }}</th>
+                                   </tr>
+                                   </thead>
+                                   @endif
+                                 @endforeach
                             </table>
                       </div>
                 </div>
-            </div>
+            </div></tr>
         </div>
         @endforeach
         @endif
@@ -1246,8 +1262,9 @@
                     <div class="box-body">
                           <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                    	<th>Candidates</th>
+            					             <thead>
+                                     </tr>
+                                    	 <th>Candidates</th>
                                         @foreach($qualities as $quality)
                                         <th>{{ $quality->options->option }}</th>
                                         @endforeach
@@ -2284,51 +2301,8 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-      @if($showAgeBracket)
-	  @foreach($surveydetails as $surveydetail)
-	  var chartagebracket = c3.generate({
-		bindto: '#chartagebracket_{{ $surveydetail->id }}',
-        data: {
-		  x: 'Candidates',
-		  columns: [
-		  	['Candidates',
-			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
-				@endforeach
-			@endforeach
-			],
-			@foreach($agebrackets as $agebracket)
-				['{{ $agebracket->title }}',
-				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyab[$candidate->id][$agebracket->id][$surveydetail->id] }},
-					@endforeach
-				@endforeach
-				],
-			@endforeach
-          ],
-		  //labels: true,
-          type: 'bar',
-          onclick: function (d, element) { console.log("onclick", d, element); },
-          onmouseover: function (d) { console.log("onmouseover", d); },
-          onmouseout: function (d) { console.log("onmouseout", d); }
-        },
-        axis: {
-          x: {
-            type: 'categorized'
-          }
-        },
-        bar: {
-          width: {
-            ratio: 0.3,
-//            max: 30
-          },
-        }
-      });
-	  @endforeach
-	  @endif
-      @if($showCivil)
+
+    @if($showCivil)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartcivil = c3.generate({
 		bindto: '#chartcivil_{{ $surveydetail->id }}',
@@ -2337,16 +2311,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallycv[$position->id] as $key => $sortedtallycv)
+					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$surveydetail->id] }},
+					@foreach($tallycv[$position->id] as $key => $sortedtallycv)
+						{{ $sortedtallycv[$civilstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2381,16 +2355,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyemp[$position->id] as $key => $sortedtallyem)
+					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$surveydetail->id] }},
+					@foreach($tallyemp[$position->id] as $key => $sortedtallyem)
+						{{ $sortedtallyem[$empstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2416,7 +2390,51 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-      @if($showQuality)
+    @if($showAgeBracket)
+	  @foreach($surveydetails as $surveydetail)
+	  var chartagebracket = c3.generate({
+		bindto: '#chartagebracket_{{ $surveydetail->id }}',
+        data: {
+		  x: 'Candidates',
+		  columns: [
+		  	['Candidates',
+			@foreach($positions as $position)
+				@foreach($tallyab[$position->id] as $key => $sortedtallyab)
+					'{{ $tallycandidate[$key] }}',
+				@endforeach
+			@endforeach
+			],
+			@foreach($agebrackets as $agebracket)
+				['{{ $agebracket->title }}',
+				@foreach($positions as $position)
+          @foreach($tallyab[$position->id] as $key => $sortedtallyab)
+            {{ $sortedtallyab[$agebracket->id][$surveydetail->id] }},
+          @endforeach
+				@endforeach
+				],
+			@endforeach
+          ],
+		  //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+//            max: 30
+          },
+        }
+      });
+	  @endforeach
+	  @endif
+    @if($showQuality)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartqualities = c3.generate({
 		bindto: '#chartqualities_{{ $surveydetail->id }}',
