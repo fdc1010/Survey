@@ -902,10 +902,10 @@
                                        @endphp
                                        @foreach($genders as $gender)
                                           @php
-                                              if(empty($tallytotalvgcandidate[$position->id][$surveydetail->id])){
-                                                  $tallytotalvgcandidate[$position->id][$surveydetail->id] = $sortedtallyg[$gender->id][$surveydetail->id];
+                                              if(empty($tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id])){
+                                                  $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] = $sortedtallyg[$gender->id][$surveydetail->id];
                                               }else{
-                                                  $tallytotalvgcandidate[$position->id][$surveydetail->id] += $sortedtallyg[$gender->id][$surveydetail->id];
+                                                  $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] += $sortedtallyg[$gender->id][$surveydetail->id];
                                               }
                                               $tallytotalgcandidate += $sortedtallyg[$position->id][$surveydetail->id];
                                           @endphp
@@ -923,7 +923,7 @@
                                   <tr>
                                       <th>Total:</td>
                                       @foreach($genders as $gender)
-                                        <th>{{ $tallytotalvgcandidate[$gender->id][$surveydetail->id] }}</th>
+                                        <th>{{ $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] }}</th>
                                       @endforeach
                                       <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
