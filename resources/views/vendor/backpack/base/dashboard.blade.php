@@ -814,8 +814,8 @@
                                   <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
-                                          $tallycandidate[$candidate->id] = $candidate->full_name;
-                                          $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                          $tallycandidate[$position->id][$candidate->id] = $candidate->full_name;
+                                          $tally[$position->id][$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
@@ -825,10 +825,12 @@
                                   arsort($tally);
                                   @endphp
                                   @foreach($tally as $key => $sortedtally)
+                                      @foreach($position->candidates as $candidate)
                                       <tr>
-                                          <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                          <td>{{ $sortedtally[$surveydetail->id] }}</td>
+                                          <td>{{ ++$i . ".) " . $tallycandidate[$key][$candidate->id] }}</td>
+                                          <td>{{ $sortedtally[$candidate->id][$surveydetail->id] }}</td>
                                       </tr>
+                                      @endforeach
                                   @endforeach
                                   <tr>
                                       <th>Total:</th>
