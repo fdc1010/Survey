@@ -43,7 +43,7 @@ class SurveyAnswerController extends Controller
                       ->where('question_id',$relquestion->related_question_id)
                       ->where('voter_id',$voterid)
                       ->orderBy('id')
-                      ->skip($relquestion->cardinality)
+                      ->skip(($relquestion->cardinality-1))
                       ->take(1)
                       ->first();
       }else{
