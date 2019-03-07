@@ -1599,7 +1599,7 @@
                             <div class="box-title">Concerns Per Barangay: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
-                <div class="box-body"><div style="width:750px;" id="chartproblem_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div id="chartproblem_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
