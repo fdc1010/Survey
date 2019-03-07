@@ -63,21 +63,21 @@ class SurveyAnswerController extends Controller
                     ->get();
 
           $otoptId = $surans[0]->option_id;
-      }      
+      }
       if(!empty($surans) && count($surans)>0){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
           echo "<br>Getting survey info of linked Question:";
           echo "Analyzing: <br>";
-          echo "<br>Linked QUestion Info: #" . $question->id . " " . $question->question;
+          echo "<br>Linked Question Info: #" . $question->id . " " . $question->question;
           echo "<br>Voter answers:";
+          $optioncandidate = QuestionOption::where('option_id',$otoptId)->first();
           foreach($surans as $suran){
-            echo "#".$suran->id." ".$suran->option_id."<br>";
+            echo "<br>".$suran->id." ".$suran->option_id." ".$optioncandidate->option;
           }
           $questionoption = QuestionOption::find($optid);
-          $optioncandidate = OptionCandidate::where('option_id',$otoptId)->first();
           if($optioncandidate){
-            echo "Candidate Qualities: #".$questionId." option ".$optid;
+            echo "<br>Candidate Qualities: #".$questionId." option ".$optid;
             echo " ".$questionoption->option;
             echo "<br>";
           }
