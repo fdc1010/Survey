@@ -825,7 +825,7 @@
                                   @foreach($tally[$surveydetail->id] as $key => $sortedtally)
                                       <tr>
                                           <td>{{ $tallycandidate[$key] }}</td>
-                                          <td>{{ $sortedtally[$key][$surveydetail->id] }}</td>
+                                          <td>{{ $key }}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>
