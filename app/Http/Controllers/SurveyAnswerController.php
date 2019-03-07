@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\QuestionOption;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\SurveyorAssignment;
@@ -35,36 +36,51 @@ class SurveyAnswerController extends Controller
     $surveydetailid = $request->sdid;
     $voterid = $request->vid;
     $questionId = $request->qid;
-    $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
+    $curquestion = Question::where('question_id',$questionId)->first();
     if($relquestion){
-      echo "Found linked Question: #".$questionId." to #".$relquestion->related_question_id." with a cardinality of ".$relquestion->cardinality."<br>";
+      echo "Current Question: #".$questionId." ".$curquestion->question;
+      $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
+      $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                ->where('question_id',$questionId)
+                ->where('voter_id',$voterid)
+                ->first();
+      $optid = $csurans->option_id;
+      $cquestionoption = QuestionOption::find($optid);
+      echo "<br>Your Answer: ".$optid." ".$cquestionoption->option;
+      echo "<br>Found linked Question: #".$questionId." to #".$relquestion->related_question_id." with a cardinality of ".$relquestion->cardinality."<br>";
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                       ->where('question_id',$relquestion->related_question_id)
                       ->where('voter_id',$voterid)
                       ->orderBy('id')
                       ->get();
-          
+
           $otoptId = $surans[$relquestion->cardinality-1]->option_id;
       }else{
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                     ->where('question_id',$relquestion->related_question_id)
                     ->where('voter_id',$voterid)
-                    ->first();
+                    ->get();
 
-          $otoptId = $surans->option_id;
+          $otoptId = $surans[0]->option_id;
       }
       var_dump($surans);
-      if($surans){
+      if(!empty($surans) && count($surans)>0){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
-          echo "Analyzing linked Question: <br>";
-          var_dump($relquestion);
-          var_dump($question);
+          echo "<br>Getting survey info of linked Question:";
+          echo "Analyzing: <br>";
+          echo "<br>Linked QUestion Info: #" . $question->id . " " . $question->question;
+          echo "<br>Voter answers:";
+          foreach($surans as $suran){
+            echo "#".$suran->id." ".$suran->option_id."<br>";
+          }
+          $questionoption = QuestionOption::find($optid);
           $optioncandidate = OptionCandidate::where('option_id',$otoptId)->first();
           if($optioncandidate){
-            echo "Candidate Qualities: #".$questionId;
-            var_dump($optioncandidate);
+            echo "Candidate Qualities: #".$questionId." option ".$optid;
+            echo " ".$questionoption->option;
+            echo "<br>";
           }
 
         }
