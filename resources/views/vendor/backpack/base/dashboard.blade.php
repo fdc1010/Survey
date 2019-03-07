@@ -820,7 +820,6 @@
                                   @endforeach
                                   @php
                                   arsort($tally);
-                                  var_dump($tally);
                                   @endphp
                                   @foreach($tally[$surveydetail->id] as $key => $sortedtally)
                                       <tr>
