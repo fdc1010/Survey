@@ -1455,7 +1455,7 @@
                                       @endphp
                                       @foreach($problems as $problem)
                                           @php
-                                              $tallyp[$barangay->id][$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                              $tallyp[$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                               	$tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                               	$tallyoccstatus,$tallyvoterstatus);
                                           @endphp
