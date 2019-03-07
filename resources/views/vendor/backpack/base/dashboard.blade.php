@@ -909,10 +909,10 @@
                                        @endforeach
                                        <th>{{ $tallytotalgcandidate }}</th>
                                   </tr>
-                                  @endforeach
                                   @php
                                   $tallytotalogcandidate += $tallytotalgcandidate;
                                   @endphp
+                                  @endforeach
                                   </tbody>
                                 @if($tallytotalogcandidate>0)
                                 <tfoot>
