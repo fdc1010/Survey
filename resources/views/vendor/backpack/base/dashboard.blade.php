@@ -898,6 +898,10 @@
                                         <th>{{ $tallytotalgcandidate }}</th>
                                     </tr>
                                   @endforeach
+                                  @php
+                                  arsort($tallyg);
+                                  var_dump($tallyg);
+                                  @endphp
                                   </tbody>
                                 @endforeach
                                 @if($tallytotalogcandidate>0)
