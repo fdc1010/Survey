@@ -838,8 +838,8 @@
                                       @php
                                           $tallycandidate[$candidate->id] = $candidate->full_name;
                                           $tally[$position->id][$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
-                                          $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                          $tallyoccstatus,$tallyvoterstatus);
+                                                                                                                    $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                                    $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$position->id][$candidate->id][$surveydetail->id];
                                       @endphp
                                   @endforeach
@@ -905,9 +905,6 @@
                                 $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
-                                   @php
-                                    $tallycandidate[$candidate->id] = $candidate->full_name;
-                                   @endphp
                                     @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$position->id][$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
@@ -1332,7 +1329,6 @@
             @endforeach
         	@endif
 
-          @if($showVotesBrgy)
           @foreach($surveydetails as $surveydetail)
            <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
                <div class="box box-default">
@@ -1518,34 +1514,50 @@
                 <div class="box-body">
                       <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-                             	<thead>
+                            <thead>
+                                  <tr>
+                                      <th>Cadidates</th>
+                                      <th>Tally</th>
+                                  </tr>
+                              </thead>
+                            @foreach($positions as $position)
+                                @php
+                                  $i = 0;
+                                  $tallytotalcandidateelection = 0;
+                                @endphp
+                                <thead>
                                     <tr>
-                                        <th>Cadidates</th>
-                                        <th>Tally</th>
+                                        <th>{{ $position->name }}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
-
-            					@foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          <th></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                  @foreach($position->candidates as $candidate)
-                                      @php
-                                          $tallyelection[$candidate->id][$election->id]=$tallyvote->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
-                                                                                  $tallygenders, $tallyempstatus,$tallycivilstatus,
-                                                                                  $tallyoccstatus,$tallyvoterstatus);
-                                      @endphp
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          <td>{{ $tallyelection[$candidate->id][$election->id] }}</td>
-                                      </tr>
-                                  @endforeach
-                                  </tbody>
+                                <tbody>
+                                @foreach($position->candidates as $candidate)
+                                    @php
+                                        $tallycandidateelection[$candidate->id] = $candidate->full_name;
+                                        $tallyelection[$position->id][$candidate->id][$election->id]=$tallypoll->tally($candidate->id,$election->id,$tallyagebrackets,$tallybrgy,
+                                                                                                                        $tallygenders, $tallyempstatus,$tallycivilstatus,
+                                                                                                                        $tallyoccstatus,$tallyvoterstatus);
+                                        $tallytotalcandidateelection += $tallyelection[$position->id][$candidate->id][$election->id];
+                                    @endphp
                                 @endforeach
+                                @php
+                                arsort($tallyelection[$position->id]);
+                                @endphp
+                                @foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
+                                    <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                        <td>{{ $sortedtallyelection[$election->id] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <thead>
+                                <tr>
+                                    <th>Total:</th>
+                                    <th>{{ $tallytotalcandidateelection }}</th>
+                                </tr>
+                              </thead>
+                              @endforeach
                             </table>
                       </div>
                 </div>
@@ -1565,42 +1577,76 @@
                 <div class="box-body">
                       <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                    <tr>
-                                        <th>Cadidates</th>
-                                        @foreach($genders as $gender)
-                                        <th>{{ $gender->name }}</th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                @php
-
-                                @endphp
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($genders as $gender)
-                                          <th></th>
-                                          @endforeach
-                                      </tr>
-                                  </thead>
-                                <tbody>
-
-                                 @foreach($position->candidates as $candidate)
-                                	<tr>
-                                    	<td>{{ $candidate->voter->full_name }}</td>
-                                        @foreach($genders as $gender)
-                                        @php
-                                        	$tallygelection[$candidate->id][$gender->id][$election->id]=$tallyvote->tallydetails($candidate->id,$election->id,[],0,0,0,0,0,$gender->id);
-
-                                        @endphp
-                                        <td>{{ $tallygelection[$candidate->id][$gender->id][$election->id] }}</td>
-                                        @endforeach
-                                    </tr>
+                            <thead>
+                               <tr>
+                                   <th>Cadidates</th>
+                                   @foreach($genders as $gender)
+                                   <th>{{ $gender->name }}</th>
+                                   @endforeach
+                                   <th>Total</th>
+                               </tr>
+                           </thead>
+                           @foreach($positions as $position)
+                             <thead>
+                                 <tr>
+                                     <th>{{ $position->name }}</th>
+                                     @foreach($genders as $gender)
+                                     <th></th>
+                                     @endforeach
+                                     <th></th>
+                                 </tr>
+                             </thead>
+                           <tbody>
+                           @php
+                           $i = 0;
+                           $tallytotalogcandidateelection = 0;
+                           @endphp
+                            @foreach($position->candidates as $candidate)
+                               @foreach($genders as $gender)
+                                   @php
+                                     $tallygelection[$position->id][$candidate->id][$gender->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,[],0,0,0,0,0,$gender->id);
+                                   @endphp
+                               @endforeach
+                             @endforeach
+                             @php
+                             arsort($tallygelection[$position->id]);
+                             @endphp
+                             @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+                             <tr>
+                                  <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                  @php
+                                  $tallytotalgcandidateelection = 0;
+                                  @endphp
+                                  @foreach($genders as $gender)
+                                     @php
+                                         if(empty($tallytotalvgcandidateelection[$position->id][$gender->id][$election->id])){
+                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] = $sortedtallygelection[$gender->id][$election->id];
+                                         }else{
+                                             $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] += $sortedtallygelection[$gender->id][$election->id];
+                                         }
+                                         $tallytotalgcandidateelection += $sortedtallygelection[$gender->id][$election->id];
+                                     @endphp
+                                    <td>{{ $sortedtallygelection[$gender->id][$election->id] }}</td>
                                   @endforeach
-                                  </tbody>
-                                @endforeach
+                                  <th>{{ $tallytotalgcandidateelection }}</th>
+                             </tr>
+                             @php
+                             $tallytotalogcandidateelection += $tallytotalgcandidateelection;
+                             @endphp
+                             @endforeach
+                             </tbody>
+                           @if($tallytotalogcandidateelection>0)
+                           <thead>
+                           <tr>
+                                 <th>Total:</td>
+                                 @foreach($genders as $gender)
+                                   <th>{{ $tallytotalvgcandidateelection[$position->id][$gender->id][$election->id] }}</th>
+                                 @endforeach
+                                 <th>{{ $tallytotalogcandidateelection }}</th>
+                             </tr>
+                             </thead>
+                           @endif
+                         @endforeach
                             </table>
                       </div>
                 </div>
@@ -1622,40 +1668,76 @@
                 <div class="box-body">
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            						<thead>
-                                    <tr>
-                                    	<th>Candidates</th>
-                                        @foreach($civilstatuses as $civilstatus)
-                                        <th>{{ $civilstatus->name }}</th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                @php
-
-                                @endphp
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($civilstatuses as $civilstatus)
-                                          <th></th>
-                                          @endforeach
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                	@foreach($position->candidates as $candidate)
-                                        <tr>
-                                            <td>{{ $candidate->voter->full_name }}</td>
-                                            @foreach($civilstatuses as $civilstatus)
-                                            @php
-                                                $tallycvelection[$candidate->id][$civilstatus->id][$election->id]=$tallyvote->tallydetails($candidate->id,$election->id,[],0,$civilstatus->id,0,0,0,0);
-                                            @endphp
-                                            <td>{{ $tallycvelection[$candidate->id][$civilstatus->id][$election->id] }}</td>
-                                            @endforeach
-                                        </tr>
-                                  	@endforeach
-                                  </tbody>
-                                @endforeach
+                            <thead>
+                                <tr>
+                                  <th>Candidates</th>
+                                    @foreach($civilstatuses as $civilstatus)
+                                    <th>{{ $civilstatus->name }}</th>
+                                    @endforeach
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            @foreach($positions as $position)
+                              <thead>
+                                  <tr>
+                                      <th>{{ $position->name }}</th>
+                                      @foreach($civilstatuses as $civilstatus)
+                                      <th></th>
+                                      @endforeach
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              @php
+                                $i = 0;
+                                $tallytotaloccandidateelection = 0;
+                              @endphp
+                              @foreach($position->candidates as $candidate)
+                                 @foreach($civilstatuses as $civilstatus)
+                                     @php
+                                       $tallycvelection[$position->id][$candidate->id][$civilstatus->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,[],0,$civilstatus->id,0,0,0,0);
+                                     @endphp
+                                 @endforeach
+                               @endforeach
+                               @php
+                               arsort($tallycvelection[$position->id]);
+                               @endphp
+                               @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
+                               <tr>
+                                    <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                    @php
+                                    $tallytotalccandidateelection = 0;
+                                    @endphp
+                                    @foreach($civilstatuses as $civilstatus)
+                                       @php
+                                           if(empty($tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id])){
+                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] = $sortedtallycvelection[$civilstatus->id][$election->id];
+                                           }else{
+                                               $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] += $sortedtallycvelection[$civilstatus->id][$election->id];
+                                           }
+                                           $tallytotalccandidateelection += $sortedtallycvelection[$civilstatus->id][$election->id];
+                                       @endphp
+                                      <td>{{ $sortedtallycvelection[$civilstatus->id][$election->id] }}</td>
+                                    @endforeach
+                                    <th>{{ $tallytotalccandidateelection }}</th>
+                               </tr>
+                               @php
+                               $tallytotaloccandidateelection += $tallytotalccandidateelection;
+                               @endphp
+                               @endforeach
+                               </tbody>
+                             @if($tallytotaloccandidateelection>0)
+                             <thead>
+                             <tr>
+                                   <th>Total:</td>
+                                   @foreach($civilstatuses as $civilstatus)
+                                     <th>{{ $tallytotalvccandidateelection[$position->id][$civilstatus->id][$election->id] }}</th>
+                                   @endforeach
+                                   <th>{{ $tallytotaloccandidateelection }}</th>
+                               </tr>
+                               </thead>
+                             @endif
+                           @endforeach
                             </table>
                       </div>
                 </div>
@@ -1670,47 +1752,83 @@
             <div class="box box-default">
                 <div class="box-header with-border">
                     <div class="col-md-12">
-                      		<div class="box-title">By Employment Status: {{ $election->id }}</div>
+                      		<div class="box-title">By Employment Status: {{ $election->name }}</div>
                     </div>
                 </div>
 
                 <div class="box-body">
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                    	<th>Candidates</th>
-                                        @foreach($empstatuses as $empstatus)
-                                        <th>{{ $empstatus->name }}</th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @php
-
-                                @endphp
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($empstatuses as $empstatus)
-                                          <th></th>
-                                          @endforeach
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                	@foreach($position->candidates as $candidate)
-                                          <tr>
-                                              <td>{{ $candidate->voter->full_name }}</td>
-                                              @foreach($empstatuses as $empstatus)
-                                              @php
-                                                  $tallyempelection[$candidate->id][$empstatus->id][$election->id]=$tallyvote->tallydetails($candidate->id,$election->id,[],0,0,$empstatus->id,0,0,0);
-                                              @endphp
-                                              <td>{{ $tallyempelection[$candidate->id][$empstatus->id][$election->id] }}</td>
-                                              @endforeach
-                                          </tr>
-                                  	@endforeach
-                                  </tbody>
+                            <thead>
+                              <th>Candidates</th>
+                                  @foreach($empstatuses as $empstatus)
+                                  <th>{{ $empstatus->name }}</th>
+                                  @endforeach
+                                  <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($positions as $position)
+                              <thead>
+                                  <tr>
+                                      <th>{{ $position->name }}</th>
+                                      @foreach($empstatuses as $empstatus)
+                                      <th></th>
+                                      @endforeach
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              @php
+                                $i = 0;
+                                $tallytotaloecandidateelection = 0;
+                              @endphp
+                              @foreach($position->candidates as $candidate)
+                                @foreach($empstatuses as $empstatus)
+                                     @php
+                                       $tallyempelection[$position->id][$candidate->id][$empstatus->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,[],0,0,$empstatus->id,0,0,0);
+                                     @endphp
                                 @endforeach
+                               @endforeach
+                               @php
+                               arsort($tallyempelection[$position->id]);
+                               @endphp
+                               @foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
+                               <tr>
+                                    <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                    @php
+                                    $tallytotalecandidateelection = 0;
+                                    @endphp
+                                    @foreach($empstatuses as $empstatus)
+                                       @php
+                                           if(empty($tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id])){
+                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] = $sortedtallyemelection[$empstatus->id][$election->id];
+                                           }else{
+                                               $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] += $sortedtallyemelection[$empstatus->id][$election->id];
+                                           }
+                                           $tallytotalecandidateelection += $sortedtallyemelection[$empstatus->id][$election->id];
+                                       @endphp
+                                      <td>{{ $sortedtallyemelection[$empstatus->id][$election->id] }}</td>
+                                    @endforeach
+                                    <th>{{ $tallytotalecandidateelection }}</th>
+                               </tr>
+                               @php
+                                 $tallytotaloecandidateelection += $tallytotalecandidateelection;
+                               @endphp
+                               @endforeach
+                               </tbody>
+                               @if($tallytotaloecandidateelection>0)
+                               <thead>
+                               <tr>
+                                     <th>Total:</td>
+                                     @foreach($empstatuses as $empstatus)
+                                       <th>{{ $tallytotalvecandidateelection[$position->id][$empstatus->id][$election->id] }}</th>
+                                     @endforeach
+                                     <th>{{ $tallytotaloecandidateelection }}</th>
+                                 </tr>
+                                 </thead>
+                               @endif
+                             @endforeach
                             </table>
                       </div>
                 </div>
@@ -1732,45 +1850,81 @@
                 <div class="box-body">
                       <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            						<thead>
-                                	<tr>
-                                    	<th>Candidates</th>
-                                        @foreach($agebrackets as $agebracket)
-                                        <th>{{ $agebracket->title }}</th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                @php
-
-                                @endphp
-                                @foreach($positions as $position)
+                            <thead>
+                              <tr>
+                                  <th>Candidates</th>
+                                  @foreach($agebrackets as $agebracket)
+                                  <th>{{ $agebracket->title }}</th>
+                                  @endforeach
+                                  <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($positions as $position)
                                   <thead>
                                       <tr>
                                           <th>{{ $position->name }}</th>
                                           @foreach($agebrackets as $agebracket)
-                                       	  <th></th>
+                                          <th></th>
                                           @endforeach
+                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
-
+                                  @php
+                                    $i = 0;
+                                    $tallytotaloacandidateelection = 0;
+                                  @endphp
                                   @foreach($position->candidates as $candidate)
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          @foreach($agebrackets as $agebracket)
-                                          @php
-                                              $gtallyagebrackets=[];
-                                              for($tallyiage = $agebracket->from; $tallyiage<=$agebracket->to; $tallyiage++){
-                                                  array_push($gtallyagebrackets,$tallyiage);
-                                              }
-                                              $tallyabelection[$candidate->id][$agebracket->id][$election->id]=$tallyvote->tallydetails($candidate->id,$election->id,$gtallyagebrackets,0,0,0,0,0,0);
-                                          @endphp
-                                          <td>{{ $tallyabelection[$candidate->id][$agebracket->id][$election->id] }}</td>
-                                          @endforeach
-                                      </tr>
-                                  @endforeach
-                                  </tbody>
-                                @endforeach
+                                        @foreach($agebrackets as $agebracket)
+                                            @php
+                                                $gtallyagebracketselection=[];
+                                                for($tallyiageelection = $agebracket->from; $tallyiageelection<=$agebracket->to; $tallyiageelection++){
+                                                    array_push($gtallyagebracketselection,$tallyiageelection);
+                                                }
+                                                $tallyabelection[$position->id][$candidate->id][$agebracket->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,$gtallyagebrackets,0,0,0,0,0,0);
+                                            @endphp
+                                        @endforeach
+                                   @endforeach
+                                   @php
+                                   arsort($tallyabelection[$position->id]);
+                                   @endphp
+                                   @foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
+                                   <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                        @php
+                                        $tallytotalacandidateelection = 0;
+                                        @endphp
+                                        @foreach($agebrackets as $agebracket)
+                                           @php
+                                               if(empty($tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id])){
+                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] = $sortedtallyabelection[$agebracket->id][$election->id];
+                                               }else{
+                                                   $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] += $sortedtallyabelection[$agebracket->id][$election->id];
+                                               }
+                                               $tallytotalacandidateelection += $sortedtallyabelection[$agebracket->id][$election->id];
+                                           @endphp
+                                          <td>{{ $sortedtallyabelection[$agebracket->id][$election->id] }}</td>
+                                        @endforeach
+                                        <th>{{ $tallytotalacandidateelection }}</th>
+                                   </tr>
+                                   @php
+                                     $tallytotaloacandidateelection += $tallytotalacandidateelection;
+                                   @endphp
+                                   @endforeach
+                                   </tbody>
+                                   @if($tallytotaloacandidateelection>0)
+                                   <thead>
+                                   <tr>
+                                       <th>Total:</td>
+                                       @foreach($agebrackets as $agebracket)
+                                         <th>{{ $tallytotalvacandidateelection[$position->id][$agebracket->id][$election->id] }}</th>
+                                       @endforeach
+                                       <th>{{ $tallytotaloacandidateelection }}</th>
+                                   </tr>
+                                   </thead>
+                                   @endif
+                                 @endforeach
                             </table>
                       </div>
                 </div>
@@ -1779,6 +1933,97 @@
         @endforeach
         @endif
 
+        @foreach($elections as $election)
+         <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
+             <div class="box box-default">
+                 <div class="box-header with-border">
+                     <div class="col-md-12">
+                             <div class="box-title">Votes Per Barangay: {{ $election->name }}</div>
+                     </div>
+                 </div>
+
+                 <div class="box-body">
+                       <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
+                                <thead>
+                                   <tr>
+                                    <th>Candidates</th>
+                                         @foreach($brgysurveys as $barangay)
+                                         <th>{{ $barangay->name }}</th>
+                                         @endforeach
+                                         <th>Total</th>
+                                   </tr>
+                               </thead>
+                               @foreach($positions as $position)
+                                 <thead>
+                                     <tr>
+                                         <th>{{ $position->name }}</th>
+                                         @foreach($brgysurveys as $barangay)
+                                         <th></th>
+                                         @endforeach
+                                         <th></th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                   @php
+                                     $i = 0;
+                                     $tallytotalovbcandidateelection = 0;
+                                   @endphp
+                                   @foreach($position->candidates as $candidate)
+                                      @php
+                                      tallycandidateelection[$candidate->id] = $candidate->full_name;
+                                      @endphp
+                                      @foreach($brgysurveys as $barangay)
+                                         @php
+                                             $tallyvbelection[$position->id][$candidate->id][$barangay->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,[],$barangay->id,0,0,0,0);
+                                         @endphp
+                                      @endforeach
+                                   @endforeach
+                                   @php
+                                   arsort($tallyvbelection[$position->id]);
+                                   @endphp
+                                   @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
+                                   <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidateelection[$key] }}</td>
+                                        @php
+                                        $tallytotalvbcandidateelection = 0;
+                                        @endphp
+                                        @foreach($brgysurveys as $barangay)
+                                           @php
+                                               if(empty($tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id])){
+                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] = $sortedtallyvbelection[$barangay->id][$election->id];
+                                               }else{
+                                                   $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] += $sortedtallyvbelection[$barangay->id][$election->id];
+                                               }
+                                               $tallytotalvbcandidateelection += $sortedtallyvbelection[$barangay->id][$election->id];
+                                           @endphp
+                                          <td>{{ $sortedtallyvbelection[$barangay->id][$election->id] }}</td>
+                                        @endforeach
+                                        <th>{{ $tallytotalvbcandidateelection }}</th>
+                                   </tr>
+                                   @php
+                                     $tallytotalovbcandidateelection += $tallytotalvbcandidateelection;
+                                   @endphp
+                                   @endforeach
+                                   </tbody>
+                                   @if($tallytotalovbcandidateelection>0)
+                                   <thead>
+                                   <tr>
+                                       <th>Total:</td>
+                                       @foreach($brgysurveys as $barangay)
+                                         <th>{{ $tallytotalvvbcandidateelection[$position->id][$barangay->id][$election->id] }}</th>
+                                       @endforeach
+                                       <th>{{ $tallytotalovbcandidateelection }}</th>
+                                   </tr>
+                                   </thead>
+                                   @endif
+                               @endforeach
+                           </table>
+                       </div>
+                 </div>
+             </div>
+         </div>
+     @endforeach
 
 
         @if($showGraph)
@@ -1871,7 +2116,7 @@
         </div>
         @endforeach
   	    @endif
-        @if($showVotesBrgy)
+
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
             <div class="box box-default">
@@ -1978,7 +2223,20 @@
         @endforeach
         @endif
 
-        @endif
+        @foreach($elections as $election)
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">
+                            <div class="box-title">Votes Per Barangay: {{ $election->name }}</div>
+                    </div>
+                </div>
+
+                <div class="box-body"><div id="chartvotesbrgy_election_{{ $election->id }}"></div></div>
+            </div>
+        </div>
+        @endforeach
+    @endif
 
     </div>
 
@@ -2566,9 +2824,9 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
-    @if($showVotesBrgy)
+
 	  @foreach($surveydetails as $surveydetail)
-	  var chartqualities = c3.generate({
+	  var chartvotesbrgy = c3.generate({
 		bindto: '#chartvotesbrgy_{{ $surveydetail->id }}',
         data: {
 		  x: 'Candidates',
@@ -2581,7 +2839,7 @@ $(document).ready(function ($) {
 			@endforeach
 			],
 			@foreach($brgysurveys as $barangay)
-				['{{ $quality->options->option }}',
+				['{{ $barangay->name }}',
 				@foreach($positions as $position)
           @foreach($tallyvb[$position->id] as $key => $sortedtallyvb)
             {{ $sortedtallyvb[$barangay->id][$surveydetail->id] }},
@@ -2609,7 +2867,7 @@ $(document).ready(function ($) {
         }
       });
 	  @endforeach
-	  @endif
+
     @if($showProblem)
 	  @foreach($surveydetails as $surveydetail)
 	  var chartproblem = c3.generate({
@@ -2660,15 +2918,15 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
+					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			['Votes',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					{{ $tally[$position->id][$candidate->id][$election->id] }},
+				@foreach($tallyelection[$position->id] as $key => $sortedtallyelection)
+					{{ $sortedtallyelection[$election->id] }},
 				@endforeach
 			@endforeach
 			]
@@ -2701,16 +2959,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($genders as $gender)
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$position->id][$candidate->id][$gender->id][$election->id] }},
+					@foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
+						{{ $sortedtallygelection[$gender->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2745,16 +3003,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
+					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($agebrackets as $agebracket)
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyab[$candidate->id][$agebracket->id][$election->id] }},
+					@foreach($tallyabelection[$position->id] as $key => $sortedtallyabelection)
+						{{ $sortedtallyabelection[$agebracket->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2789,16 +3047,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				 @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
+					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($civilstatuses as $civilstatus)
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$election->id] }},
+					 @foreach($tallycvelection[$position->id] as $key => $sortedtallycvelection)
+						{{ $sortedtallycvelection[$civilstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2833,16 +3091,16 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
+					'{{ $tallycandidateelection[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			@foreach($empstatuses as $empstatus)
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
-					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$election->id] }},
+					@foreach($tallyempelection[$position->id] as $key => $sortedtallyemelection)
+						{{ $sortedtallyemelection[$empstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2868,6 +3126,49 @@ $(document).ready(function ($) {
       });
 	  @endforeach
 	  @endif
+
+    @foreach($elections as $election)
+    var chartvotesbrgy_election = c3.generate({
+    bindto: '#chartvotesbrgy_election_{{ $election->id }}',
+        data: {
+      x: 'Candidates',
+      columns: [
+        ['Candidates',
+      @foreach($positions as $position)
+        @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
+          '{{ $tallycandidateelection[$key] }}',
+        @endforeach
+      @endforeach
+      ],
+      @foreach($brgysurveys as $barangay)
+        ['{{ $barangay->name }}',
+        @foreach($positions as $position)
+          @foreach($tallyvbelection[$position->id] as $key => $sortedtallyvbelection)
+            {{ $sortedtallyvbelection[$barangay->id][$surveydetail->id] }},
+          @endforeach
+        @endforeach
+        ],
+      @endforeach
+          ],
+      //labels: true,
+          type: 'bar',
+          onclick: function (d, element) { console.log("onclick", d, element); },
+          onmouseover: function (d) { console.log("onmouseover", d); },
+          onmouseout: function (d) { console.log("onmouseout", d); }
+        },
+        axis: {
+          x: {
+            type: 'categorized'
+          }
+        },
+        bar: {
+          width: {
+            ratio: 0.3,
+  //            max: 30
+          },
+        }
+      });
+    @endforeach
 	 @endif
 });
     </script>
