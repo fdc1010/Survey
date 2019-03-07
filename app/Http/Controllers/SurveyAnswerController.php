@@ -71,7 +71,7 @@ class SurveyAnswerController extends Controller
           echo "Analyzing: <br>";
           echo "<br>Linked Question Info: #" . $question->id . " " . $question->question;
           echo "<br>Voter answers:";
-          $optioncandidate = QuestionOption::where('option_id',$otoptId)->first();
+          $optioncandidate = QuestionOption::find($otoptId);
           foreach($surans as $suran){
             echo "<br>".$suran->id." ".$suran->option_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
           }
