@@ -1461,11 +1461,11 @@
                                           @endphp
                                       @endforeach
                                       @php
-                                      arsort($tallyp[$barangay->id]);
+                                      arsort($tallyp);
                                       @endphp
                                       <tr>
                                           <td>{{ ++$i . ".) " . $tallybarangay[$barangay->id] }}</td>
-                                          @foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+                                          @foreach($tallyp as $key => $sortedtallyp)
                                               @php
                                               $tallytotalpbarangay = 0;
                                               @endphp
