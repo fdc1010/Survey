@@ -32,12 +32,12 @@ class SurveyAnswerController extends Controller
         //
     }
   public function testOtherVotersRelQ(Request $request){
-      $surveydetailid = $request->sdid;
+    $surveydetailid = $request->sdid;
     $voterid = $request->svid;
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
-    var_dump($relquestion);
     if($relquestion){
+      echo "Found linked Question: ".$questionId;
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                       ->where('question_id',$relquestion->related_question_id)
@@ -56,7 +56,7 @@ class SurveyAnswerController extends Controller
       if($surans){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
-          echo "Found linked Question: ";
+          echo "Analyzing linked Question: ";
           var_dump($relquestion);
           var_dump($question);
           $optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
