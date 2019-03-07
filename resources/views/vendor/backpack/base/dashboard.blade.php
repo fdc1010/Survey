@@ -1500,7 +1500,6 @@
                                     </thead>
                                     @endif
                                 @endforeach
-                                    </tbody>
                                 </table>
                           </div>
                     </div>
