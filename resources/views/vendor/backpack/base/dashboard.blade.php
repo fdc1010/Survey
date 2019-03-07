@@ -1489,7 +1489,7 @@
                                     @endforeach
                                     </tbody>
                                     @if($tallytotalopbarangay>0)
-                                    <thead>
+                                    <tfoot>
                                     <tr>
                                         <th>Total:</td>
                                         @foreach($problems as $problem)
@@ -1497,9 +1497,8 @@
                                         @endforeach
                                         <th>{{ $tallytotalopbarangay }}</th>
                                     </tr>
-                                    </thead>
+                                    </tfoot>
                                     @endif
-                                @endforeach
                                 </table>
                           </div>
                     </div>
