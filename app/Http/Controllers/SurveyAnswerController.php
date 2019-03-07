@@ -182,7 +182,7 @@ class SurveyAnswerController extends Controller
 		$surveyans->save();
 		return response()->json(['success'=>true,'msg'=>'Answers are saved!']);
 	}
-  public function updateothertallyvotesquality(Request $request){
+  public function updateothertallyvotesqualityb(Request $request){
       $i = 0;
       $qids = array(10,11,12);
       // $surveyans = SurveyAnswer::whereIn('question_id',[10,11,12])
