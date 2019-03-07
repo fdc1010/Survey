@@ -2695,6 +2695,7 @@ $(document).ready(function ($) {
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
           {{ $tallyemp[$position->id][$key][$gender->id][$surveydetail->id] }},
+          @endforeach
 				@endforeach
 				],
 			@endforeach
