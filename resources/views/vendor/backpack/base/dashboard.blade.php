@@ -1371,7 +1371,9 @@
                                        @endforeach
                                    @endforeach
                                    @php
+                                   var_dump($tallyq[$position->id]);
                                    arsort($tallyq[$position->id]);
+                                   var_dump($tallyq[$position->id]);
                                    @endphp
                                    @foreach($tallyq[$position->id] as $key => $sortedtallyq)
                                    <tr>
