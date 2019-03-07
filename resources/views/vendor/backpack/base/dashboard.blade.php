@@ -817,9 +817,14 @@
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
                                       @endphp
+                                  @endforeach
+                                  @php
+                                  arsort($tally);
+                                  @endphp
+                                  @foreach($tally as $key => $sortedtally)
                                       <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
+                                          <td>{{ $tallycandidate[$key] }}</td>
+                                          <td>{{ $sortedtally }}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>
