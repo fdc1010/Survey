@@ -886,32 +886,17 @@
                                         @foreach($genders as $gender)
                                         @php
                                         	$tallyg[$candidate->id][$gender->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,0,0,0,$gender->id);
-                                          if(empty($tallytotalgcandidate[$gender->id][$surveydetail->id])){
-                                              $tallytotalgcandidate[$candidate->id][$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          $tallytotalgcandidate += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
+                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }else{
-                                              $tallytotalgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          }
-                                          if(empty($tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id])){
-                                              $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
-                                          }else{
-                                              $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }
                                         @endphp
-
+                                        <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
                                         @endforeach
-                                        
+                                        <th>{{ $tallytotalgcandidate }}</th>
                                     </tr>
-                                  @endforeach
-                                  @php
-                                  arsort($tallyg);
-                                  @endphp
-                                  @foreach($tallyg as $key => $sortedtallyg)
-                                        <td>{{ $tallycandidate[$key] }}</td>
-                                          @foreach($genders as $gender)
-                                          <td>{{ $tallyg[$key][$gender->id][$surveydetail->id] }}</td>
-                                          @endforeach
-                                          <th>{{ $sortedtallyg[$surveydetail->id] }}</th>
-                                      </tr>
                                   @endforeach
                                   </tbody>
                                 @endforeach
