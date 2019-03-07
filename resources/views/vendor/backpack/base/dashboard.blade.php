@@ -781,6 +781,9 @@
             </div>
         </div>
         </form>
+      @php
+      $i = 0;
+      @endphp
     	@foreach($surveydetails as $surveydetail)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -823,7 +826,7 @@
                                   @endphp
                                   @foreach($tally as $key => $sortedtally)
                                       <tr>
-                                          <td>{{ $tallycandidate[$key] }}</td>
+                                          <td>{{ $i++ . " " . $tallycandidate[$key] }}</td>
                                           <td>{{ $sortedtally[$surveydetail->id] }}</td>
                                       </tr>
                                   @endforeach
@@ -842,6 +845,9 @@
         </div>
         @endforeach
         @if($showGender)
+        @php
+        $i = 0;
+        @endphp
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -892,7 +898,7 @@
                                   @endphp
                                   @foreach($tallyg as $key => $sortedtallyg)
                                  	<tr>
-                                   	   <td>{{ $tallycandidate[$key] }}</td>
+                                   	   <td>{{ $i++ . " " . $tallycandidate[$key] }}</td>
                                        @php
                                        $tallytotalgcandidate = 0;
                                        @endphp
