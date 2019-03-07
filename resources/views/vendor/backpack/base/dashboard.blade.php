@@ -2618,13 +2618,13 @@ $(document).ready(function ($) {
 		  x: 'Barangays',
 		  columns: [
 		  	['Barangays',
-			@foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+			@foreach($tallyp as $key => $sortedtallyp)
 				'{{ $tallybarangay[$key] }}',
 			@endforeach
 			],
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
-				@foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+				@foreach($tallyp as $key => $sortedtallyp)
 					{{ $sortedtallyp[$problem->option_id][$surveydetail->id] }},
 				@endforeach
 				],
