@@ -897,9 +897,9 @@
                                               $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }
                                         @endphp
-                                        <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
+
                                         @endforeach
-                                        <th>{{ $tallytotalgcandidate }}</th>
+                                        
                                     </tr>
                                   @endforeach
                                   @php
