@@ -1556,7 +1556,7 @@
                       		<div class="box-title">By Age Bracket: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
-                <div class="box-body"><div style="width:750px;" id="chartagebracket_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div id="chartagebracket_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1570,7 +1570,7 @@
                             <div class="box-title">Candidate Qualities: {{ $surveydetail->subject }}</div>
                     </div>
                 </div>
-                <div class="box-body"><div style="width:750px;" id="chartqualities_{{ $surveydetail->id }}"></div></div>
+                <div class="box-body"><div id="chartqualities_{{ $surveydetail->id }}"></div></div>
             </div>
         </div>
         @endforeach
@@ -1675,7 +1675,7 @@
                     </div>
                 </div>
 
-                <div class="box-body"><div style="width:750px;" id="chartagebracket_election_{{ $election->id }}"></div></div>
+                <div class="box-body"><div id="chartagebracket_election_{{ $election->id }}"></div></div>
             </div>
         </div>
         @endforeach
