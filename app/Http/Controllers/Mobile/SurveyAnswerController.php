@@ -38,7 +38,7 @@ class SurveyAnswerController extends Controller
     {
         //
     }
-    public function getSurveyorProgressB(Request $request){
+    public function getSurveyorProgress(Request $request){
   			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
@@ -84,7 +84,7 @@ class SurveyAnswerController extends Controller
   											'survey_count_per_quota'=>0]);
   			}
   	}
-    public function getSurveyorProgress(Request $request){
+    public function getSurveyorProgressB(Request $request){
   			$userid = $request->user_id;
   			$surveydetailid = $request->survey_detail_id;
 
@@ -146,7 +146,7 @@ class SurveyAnswerController extends Controller
                           ->where('voter_id',$voterid)
                           ->where('survey_detail_id',$surveydetailid)
                           ->first();
-      			if(empty($checksurveyvoter)){
+      			if(empty($checksurveyvoter) || $checksurveyvoter==null){
       				$voterdetails = json_decode($request->voter_detail,true);
       				$profilepic=null;
               info($request);
@@ -248,7 +248,8 @@ class SurveyAnswerController extends Controller
       											->where('option_id',$optid)
       											->first();
       						if(empty($surveyanswers)){
-                    $candidateId = null;
+                    $candidateId = null;      				//$voter->save();
+
                     $optioncandidatesa = OptionCandidate::where('option_id',$optid)->first();
                     if($optioncandidatesa){
                       $candidateId = $optioncandidatesa->candidate_id;
@@ -260,7 +261,8 @@ class SurveyAnswerController extends Controller
       							$surveyans->user_id = $userid;
       							$surveyans->voter_id = $voterid;
                     $surveyans->candidate_id = $candidateId;
-      							$surveyans->answered_option = $voteranswers['answers'];
+      							$surveyans->answered_option = $voteranswers['answer      				//$voter->save();
+s'];
       							$surveyans->other_answer = $ansid['otherAnswer'];
 
       							if($request->has('latitude')){
