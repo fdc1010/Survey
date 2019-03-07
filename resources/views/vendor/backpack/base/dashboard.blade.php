@@ -822,7 +822,12 @@
                                   arsort($tally);
                                   var_dump($tally);
                                   @endphp
-                                  
+                                  @foreach($tally[$surveydetail->id] as $key => $sortedtally)
+                                      <tr>
+                                          <td>{{ $tallycandidate[$key][$key[$surveydetail->id]] }}</td>
+                                          <td>{{ $sortedtally[$key][$key[$surveydetail->id]] }}</td>
+                                      </tr>
+                                  @endforeach
                                   </tbody>
                                   <tfoot>
                                       <tr>
