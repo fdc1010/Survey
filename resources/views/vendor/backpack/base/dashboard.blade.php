@@ -798,7 +798,6 @@
                                         <th>Tally</th>
                                     </tr>
                                 </thead>
-
                     					@foreach($positions as $position)
                                   @php
                                     $tallytotalcandidate = 0;
@@ -812,16 +811,17 @@
                                   <tbody>
                                   @foreach($position->candidates as $candidate)
                                       @php
+                                          $tallycandidate[$candidate->id] = $candidate->full_name;
                                           $tally[$candidate->id][$surveydetail->id]=$tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                   $tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                   $tallyoccstatus,$tallyvoterstatus);
                                           $tallytotalcandidate += $tally[$candidate->id][$surveydetail->id];
                                       @endphp
-                                      <tr>
-                                          <td>{{ $candidate->voter->full_name }}</td>
-                                          <td>{{ $tally[$candidate->id][$surveydetail->id] }}</td>
-                                      </tr>
                                   @endforeach
+                                  @php
+                                  arsort($tally);
+                                  var_dump($tally);
+                                  @endphp
                                   </tbody>
                                   <tfoot>
                                       <tr>
