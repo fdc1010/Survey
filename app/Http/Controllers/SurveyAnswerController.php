@@ -44,11 +44,15 @@ class SurveyAnswerController extends Controller
                       ->where('voter_id',$voterid)
                       ->orderBy('id')
                       ->get();
+
+          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
       }else{
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                     ->where('question_id',$relquestion->related_question_id)
                     ->where('voter_id',$voterid)
                     ->first();
+
+          $otoptId = $surans->option_id;
       }
       var_dump($surans);
       if($surans){
@@ -57,7 +61,7 @@ class SurveyAnswerController extends Controller
           echo "Analyzing linked Question: <br>";
           var_dump($relquestion);
           var_dump($question);
-          $optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+          $optioncandidate = OptionCandidate::where('option_id',$otoptId)->first();
           if($optioncandidate){
             echo "Candidate Qualities: #".$questionId;
             var_dump($optioncandidate);
