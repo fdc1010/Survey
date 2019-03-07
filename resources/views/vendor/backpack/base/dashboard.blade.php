@@ -1396,7 +1396,7 @@
                                              @endphp
                                             <td>{{ $sortedtallyvb[$barangay->id][$surveydetail->id] }}</td>
                                           @endforeach
-                                          <th>{{ $tallytotalqcandidate }}</th>
+                                          <th>{{ $tallytotalvbcandidate }}</th>
                                      </tr>
                                      @php
                                        $tallytotalovbcandidate += $tallytotalvbcandidate;
