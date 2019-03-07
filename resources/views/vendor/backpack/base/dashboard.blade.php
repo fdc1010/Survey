@@ -2210,7 +2210,7 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }},
+						{{ $tallyg[$position->id][$candidate->id][$gender->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2512,7 +2512,7 @@ $(document).ready(function ($) {
 				['{{ $gender->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyg[$candidate->id][$gender->id][$election->id] }},
+						{{ $tallyg[$position->id][$candidate->id][$gender->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
