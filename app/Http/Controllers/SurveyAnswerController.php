@@ -44,7 +44,7 @@ class SurveyAnswerController extends Controller
                       ->where('voter_id',$voterid)
                       ->orderBy('id')
                       ->get();
-          dd($surans);
+          
           $otoptId = $surans[$relquestion->cardinality-1]->option_id;
       }else{
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
