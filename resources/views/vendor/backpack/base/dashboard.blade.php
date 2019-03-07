@@ -1475,7 +1475,7 @@
                                                     if(empty($tallytotalvpbarangay[$problem->option_id][$surveydetail->id])){
                                                         $tallytotalvpbarangay[$problem->option_id][$surveydetail->id] = $sortedtallyp[$problem->option_id][$surveydetail->id];
                                                     }else{
-                                                        $tallytotalvpbarangay[$surveydetail->id] += $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                        $tallytotalvpbarangay[$problem->option_id][$surveydetail->id] += $sortedtallyp[$problem->option_id][$surveydetail->id];
                                                     }
                                                     $tallytotalpbarangay += $sortedtallyp[$problem->option_id][$surveydetail->id];
                                                 @endphp
