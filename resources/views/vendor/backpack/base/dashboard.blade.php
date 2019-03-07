@@ -826,7 +826,7 @@
                                   @endphp
                                   @foreach($tally as $key => $sortedtally)
                                       <tr>
-                                          <td>{{ $i++ . " " . $tallycandidate[$key] }}</td>
+                                          <td>{{ ++$i . " " . $tallycandidate[$key] }}</td>
                                           <td>{{ $sortedtally[$surveydetail->id] }}</td>
                                       </tr>
                                   @endforeach
@@ -898,7 +898,7 @@
                                   @endphp
                                   @foreach($tallyg as $key => $sortedtallyg)
                                  	<tr>
-                                   	   <td>{{ $i++ . " " . $tallycandidate[$key] }}</td>
+                                   	   <td>{{ ++$i . " " . $tallycandidate[$key] }}</td>
                                        @php
                                        $tallytotalgcandidate = 0;
                                        @endphp
@@ -942,7 +942,7 @@
 
          @if($showCivil)
          @php
-         $i=0;
+         $i = 0;
          @endphp
          @foreach($surveydetails as $surveydetail)
         	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
