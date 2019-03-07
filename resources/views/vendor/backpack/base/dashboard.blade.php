@@ -2208,15 +2208,15 @@ $(document).ready(function ($) {
 		  columns: [
 		  	['Candidates',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					'{{ $candidate->voter->full_name }}',
+				@foreach($tally[$position->id] as $key => $sortedtally)
+					'{{ $tallycandidate[$key] }}',
 				@endforeach
 			@endforeach
 			],
 			['Votes',
 			@foreach($positions as $position)
-				@foreach($position->candidates as $candidate)
-					{{ $tally[$position->id][$candidate->id][$surveydetail->id] }},
+				@foreach($tally[$position->id] as $key => $sortedtally)
+					{{ $sortedtally[$surveydetail->id] }},
 				@endforeach
 			@endforeach
 			]
