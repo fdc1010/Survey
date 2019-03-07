@@ -1132,7 +1132,6 @@
                                  </thead>
                                @endif
                              @endforeach
-                  					<thead>
                           </table>
                       </div>
                 </div>
