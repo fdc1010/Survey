@@ -820,8 +820,9 @@
                                   @endforeach
                                   @php
                                   arsort($tally);
+                                  var_dump($tally);
                                   @endphp
-                                  
+
                                   </tbody>
                                   <tfoot>
                                       <tr>
