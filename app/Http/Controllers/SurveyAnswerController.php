@@ -73,8 +73,8 @@ class SurveyAnswerController extends Controller
           echo "<br>Voter answers:";
 
           $optioncandidate = QuestionOption::find($otoptId);
-          
-          echo "<br>".$suran->id." ".$suran->option_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+
+          echo "<br>".$otoptId." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
 
           $questionoption = QuestionOption::find($optid);
           if($optioncandidate){
