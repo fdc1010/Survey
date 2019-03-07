@@ -36,6 +36,7 @@ class SurveyAnswerController extends Controller
     $voterid = $request->svid;
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
+    var_dump($relquestion);
     if($relquestion){
       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -51,6 +52,7 @@ class SurveyAnswerController extends Controller
                     ->where('voter_id',$voterid)
                     ->first();
       }
+      var_dump($surans);
       if($surans){
         $question = Question::find($relquestion->question_id);
         if(!empty($question->for_position) && is_numeric($question->for_position)){
