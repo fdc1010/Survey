@@ -831,10 +831,12 @@
                                       </tr>
                                   @endforeach
                                   </tbody>
-                                  <tr style="background: #fff;">
+                                  <thead>
+                                  <tr>
                                       <th>Total:</th>
                                       <th>{{ $tallytotalcandidate }}</th>
                                   </tr>
+                                </thead>
                                 @endforeach
                             </table>
                       </div>
