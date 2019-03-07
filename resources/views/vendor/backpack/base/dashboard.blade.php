@@ -1970,9 +1970,6 @@
                                      $tallytotalovbcandidateelection = 0;
                                    @endphp
                                    @foreach($position->candidates as $candidate)
-                                      @php
-                                      tallycandidateelection[$candidate->id] = $candidate->full_name;
-                                      @endphp
                                       @foreach($brgysurveys as $barangay)
                                          @php
                                              $tallyvbelection[$position->id][$candidate->id][$barangay->id][$election->id]=$tallypoll->tallydetails($candidate->id,$election->id,[],$barangay->id,0,0,0,0);
