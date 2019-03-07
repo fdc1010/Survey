@@ -1414,18 +1414,7 @@
                                      </tr>
                                      </thead>
                                      @endif
-                                   @endforeach
-                                   </tbody>
                                  @endforeach
-                                 <!-- <tfoot>
-                                   <tr>
-                                       <th>Total:</td>
-                                       @foreach($brgysurveys as $barangay)
-                                         <th>{{ $tallytotalvvbcandidate[$barangay->id][$surveydetail->id] }}</th>
-                                       @endforeach
-                                       <th>{{ $tallytotalovbcandidate }}</th>
-                                   </tr>
-                               </tfoot> -->
                              </table>
                          </div>
                    </div>
