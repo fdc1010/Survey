@@ -1455,7 +1455,7 @@
                                         @endphp
                                         @foreach($problems as $problem)
                                             @php
-                                                $tallyp[$barangay->id][$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+                                                $tallyp[$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                 	$tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                                 	$tallyoccstatus,$tallyvoterstatus);
                                             @endphp
@@ -1472,14 +1472,14 @@
                                             @endphp
                                             @foreach($problems as $problem)
                                                 @php
-                                                    if(empty($tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id])){
-                                                        $tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id] = $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                    if(empty($tallytotalvpbarangay[$problem->option_id][$surveydetail->id])){
+                                                        $tallytotalvpbarangay[$problem->option_id][$surveydetail->id] = $sortedtallyp[$surveydetail->id];
                                                     }else{
-                                                        $tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id] += $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                        $tallytotalvpbarangay[$problem->option_id][$surveydetail->id] += $sortedtallyp[$surveydetail->id];
                                                     }
-                                                    $tallytotalpbarangay += $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                    $tallytotalpbarangay += $sortedtallyp[$surveydetail->id];
                                                 @endphp
-                                               <td>{{ $sortedtallyp[$problem->option_id][$surveydetail->id] }}</td>
+                                               <td>{{ $sortedtallyp[$surveydetail->id] }}</td>
                                              @endforeach
                                              <th>{{ $tallytotalpbarangay }}</th>
                                         </tr>
@@ -1492,12 +1492,10 @@
                                     <tfoot>
                                     <tr>
                                         <th>Total:</td>
-                                        @foreach($brgysurveys as $barangay)
                                           @foreach($problems as $problem)
-                                            <th>{{ $tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id] }}</th>
+                                            <th>{{ $tallytotalvpbarangay[$problem->option_id][$surveydetail->id] }}</th>
                                           @endforeach
                                           <th>{{ $tallytotalopbarangay }}</th>
-                                        @endforeach
                                     </tr>
                                     </tfoot>
                                     @endif
@@ -2620,14 +2618,14 @@ $(document).ready(function ($) {
 		  x: 'Barangays',
 		  columns: [
 		  	['Barangays',
-			@foreach($tallyp as $key => $sortedtallyp)
-				'{{ $tallybarangay[$key] }}',
+        @foreach($brgysurveys as $barangay)
+				'{{ $tallybarangay[$barangay->id] }}',
 			@endforeach
 			],
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
 				@foreach($tallyp as $key => $sortedtallyp)
-					{{ $sortedtallyp[$problem->option_id][$surveydetail->id] }},
+					{{ $sortedtallyp[$surveydetail->id] }},
 				@endforeach
 				],
 			@endforeach
