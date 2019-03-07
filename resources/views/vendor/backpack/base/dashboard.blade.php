@@ -824,7 +824,7 @@
                                   @foreach($tally as $key => $sortedtally)
                                       <tr>
                                           <td>{{ $tallycandidate[$key] }}</td>
-                                          <td>{{ $sortedtally }}</td>
+                                          <td>{{ $sortedtally[$key] }}</td>
                                       </tr>
                                   @endforeach
                                   </tbody>
@@ -910,7 +910,7 @@
                                           @foreach($genders as $gender)
                                           <td>{{ $tallyg[$key][$gender->id][$surveydetail->id] }}</td>
                                           @endforeach
-                                          <th>{{ $sortedtallyg }}</th>
+                                          <th>{{ $sortedtallyg[$key] }}</th>
                                       </tr>
                                   @endforeach
                                   </tbody>
