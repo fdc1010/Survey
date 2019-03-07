@@ -1585,7 +1585,7 @@
                   </div>
               </div>
 
-              <div class="box-body"><div id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
+              <div class="box-body"><div style="width:750px;" id="chartvotesbrgy_{{ $surveydetail->id }}"></div></div>
           </div>
       </div>
       @endforeach
