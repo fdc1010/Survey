@@ -821,12 +821,7 @@
                                   @php
                                   arsort($tally);
                                   @endphp
-                                  @foreach($tally as $key => $sortedtally)
-                                      <tr>
-                                          <td>{{ $tallycandidate[$key] }}</td>
-                                          <td>{{ $sortedtally }}</td>
-                                      </tr>
-                                  @endforeach
+                                  
                                   </tbody>
                                   <tfoot>
                                       <tr>
