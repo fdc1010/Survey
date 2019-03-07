@@ -831,7 +831,7 @@
                                       </tr>
                                   @endforeach
                                   </tbody>
-                                  <tr class="nohover">
+                                  <tr class="table-disable-hover">
                                       <th>Total:</th>
                                       <th>{{ $tallytotalcandidate }}</th>
                                   </tr>
