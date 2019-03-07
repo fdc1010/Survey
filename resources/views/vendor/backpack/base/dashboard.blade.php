@@ -1441,22 +1441,65 @@
                                             @foreach($problems as $problem)
                                             <th>{{ $problem->option->option }}</th>
                                             @endforeach
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @php
+                                      $i = 0;
+                                      $tallytotalopbarangay = 0;
+                                    @endphp
                                     @foreach($brgysurveys as $barangay)
-                                        <tr>
-                                            <td>{{ $barangay->name }}</td>
-                                            @foreach($problems as $problem)
+                                        @php
+                                        $tallybarangay[$barangay->id] = $barangay->name;
+                                        @endphp
+                                        @foreach($problems as $problem)
                                             @php
                                                 $tallyp[$barangay->id][$problem->option_id][$surveydetail->id]=$tallyotherpoll->tallyproblem($barangay->id,$problem->option_id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
                                                                                                                 	$tallygenders, $tallyempstatus,$tallycivilstatus,
                                                                                                                 	$tallyoccstatus,$tallyvoterstatus);
                                             @endphp
-                                            <td>{{ $tallyp[$barangay->id][$problem->option_id][$surveydetail->id] }}</td>
-                                            @endforeach
-                                        </tr>
+                                        @endforeach
                                     @endforeach
+                                    @php
+                                    arsort($tallyp[$barangay->id]);
+                                    @endphp
+                                    @foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+                                        <tr>
+                                            <td>{{ ++$i . ".) " . $tallybarangay[$key] }}</td>
+                                            @php
+                                            $tallytotalpbarangay = 0;
+                                            @endphp
+                                            @foreach($problems as $problem)
+                                                @php
+                                                    if(empty($tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id])){
+                                                        $tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id] = $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                    }else{
+                                                        $tallytotalvpbarangay[$barangay->id][$surveydetail->id] += $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                    }
+                                                    $tallytotalpbarangay += $sortedtallyp[$problem->option_id][$surveydetail->id];
+                                                @endphp
+                                               <td>{{ $sortedtallyp[$problem->option_id][$surveydetail->id] }}</td>
+                                             @endforeach
+                                             <th>{{ $tallytotalpbarangay }}</th>
+                                        </tr>
+                                    @php
+                                      $tallytotalopbarangay += $tallytotalpbarangay;
+                                    @endphp
+                                    @endforeach
+                                    </tbody>
+                                    @if($tallytotalopbarangay>0)
+                                    <thead>
+                                    <tr>
+                                        <th>Total:</td>
+                                        @foreach($problems as $problem)
+                                          <th>{{ $tallytotalvpbarangay[$barangay->id][$problem->option_id][$surveydetail->id] }}</th>
+                                        @endforeach
+                                        <th>{{ $tallytotalopbarangay }}</th>
+                                    </tr>
+                                    </thead>
+                                    @endif
+                                @endforeach
                                     </tbody>
                                 </table>
                           </div>
@@ -2577,14 +2620,14 @@ $(document).ready(function ($) {
 		  x: 'Barangays',
 		  columns: [
 		  	['Barangays',
-			@foreach($brgysurveys as $barangay)
-				'{{ $barangay->name }}',
+			@foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+				'{{ $tallybarangay[$key] }}',
 			@endforeach
 			],
 			@foreach($problems as $problem)
 				['{{ $problem->option->option }}',
-				@foreach($brgysurveys as $barangay)
-					{{ $tallyp[$barangay->id][$problem->option_id][$surveydetail->id] }},
+				@foreach($tallyp[$barangay->id] as $key => $sortedtallyp)
+					{{ $sortedtallyp[$problem->option_id][$surveydetail->id] }},
 				@endforeach
 				],
 			@endforeach
