@@ -1417,7 +1417,7 @@
                </div>
            </div>
        @endforeach
-       
+
         	@if($showProblem)
             @foreach($surveydetails as $surveydetail)
             <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
@@ -2130,7 +2130,7 @@
             </div>
         </div>
         @endforeach
-  	    @endif
+
         @if($showProblem)
         @foreach($surveydetails as $surveydetail)
         <div class="col-md-12">
