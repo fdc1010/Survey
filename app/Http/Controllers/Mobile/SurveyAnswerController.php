@@ -261,8 +261,8 @@ class SurveyAnswerController extends Controller
       							$surveyans->user_id = $userid;
       							$surveyans->voter_id = $voterid;
                     $surveyans->candidate_id = $candidateId;
-      							$surveyans->answered_option = $voteranswers['answer      				//$voter->save();
-s'];
+      							$surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
       							$surveyans->other_answer = $ansid['otherAnswer'];
 
       							if($request->has('latitude')){
