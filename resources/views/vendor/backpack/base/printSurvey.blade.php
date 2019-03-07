@@ -1788,7 +1788,7 @@
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
-          {{ $tallycv[$position->id][$key][$gender->id][$surveydetail->id] }},
+          {{ $tallycv[$position->id][$key][$civilstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -1832,7 +1832,7 @@
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
-          {{ $tallyemp[$position->id][$key][$gender->id][$surveydetail->id] }},
+          {{ $tallyemp[$position->id][$key][$empstatus->id][$surveydetail->id] }},
           @endforeach
 				@endforeach
 				],
@@ -1876,7 +1876,7 @@
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
-          {{ $tallyab[$position->id][$key][$gender->id][$surveydetail->id] }},
+          {{ $tallyab[$position->id][$key][$agebracket->id][$surveydetail->id] }},
           @endforeach
 				@endforeach
 				],
@@ -1964,7 +1964,7 @@
 				['{{ $barangay->name }}',
 				@foreach($positions as $position)
           @foreach($tally[$position->id] as $key => $sortedtally)
-          {{ $tallyvb[$position->id][$key][$gender->id][$surveydetail->id] }},
+          {{ $tallyvb[$position->id][$key][$barangay->id][$surveydetail->id] }},
           @endforeach
 				@endforeach
 				],
@@ -2134,7 +2134,7 @@
 				['{{ $agebracket->title }}',
 				@foreach($positions as $position)
           @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
-            {{ $tallyabelection[$position->id][$key][$gender->id][$election->id] }},
+            {{ $tallyabelection[$position->id][$key][$agebracket->id][$election->id] }},
           @endforeach
 				@endforeach
 				],
@@ -2178,7 +2178,7 @@
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
             @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
-              {{ $tallycvelection[$position->id][$key][$gender->id][$election->id] }},
+              {{ $tallycvelection[$position->id][$key][$civilstatus->id][$election->id] }},
             @endforeach
 				@endforeach
 				],
@@ -2222,7 +2222,7 @@
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
           @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
-            {{ $tallyempelection[$position->id][$key][$gender->id][$election->id] }},
+            {{ $tallyempelection[$position->id][$key][$empstatus->id][$election->id] }},
           @endforeach
 				@endforeach
 				],
@@ -2266,7 +2266,7 @@
         ['{{ $barangay->name }}',
         @foreach($positions as $position)
           @foreach($tallygelection[$position->id] as $key => $sortedtallygelection)
-            {{ $tallyvbelection[$position->id][$key][$gender->id][$election->id] }},
+            {{ $tallyvbelection[$position->id][$key][$barangay->id][$election->id] }},
           @endforeach
         @endforeach
         ],
