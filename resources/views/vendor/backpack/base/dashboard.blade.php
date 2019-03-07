@@ -830,13 +830,11 @@
                                           <td>{{ $sortedtally[$surveydetail->id] }}</td>
                                       </tr>
                                   @endforeach
+                                  <tr>
+                                      <th>Total:</th>
+                                      <th>{{ $tallytotalcandidate }}</th>
+                                  </tr>
                                   </tbody>
-                                  <tfoot>
-                                      <tr>
-                                          <th>Total:</th>
-                                          <th>{{ $tallytotalcandidate }}</th>
-                                      </tr>
-                                  </tfoot>
                                 @endforeach
                             </table>
                       </div>
