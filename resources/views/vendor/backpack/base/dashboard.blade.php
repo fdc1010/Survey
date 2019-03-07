@@ -199,7 +199,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])->where('id',$surveypos)->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
@@ -208,7 +209,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])->whereIn('id',$rdata['position'])->get();
 
@@ -219,7 +221,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
@@ -231,7 +234,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])
                                                             ->whereIn('id',$rdata['position'])
@@ -245,7 +249,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])
                                                             ->get();
@@ -255,7 +260,8 @@
                                                                 		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                             ->from('tally_votes')
                                                                             ->groupBy('candidate_id')
-                                                                            ->orderBy('ctally','DESC');
+                                                                            ->orderBy('last_name','DESC');
+                                                                            //->orderBy('ctally','DESC');
                                                                 }]);
         													}])
                                                             ->get();
@@ -950,7 +956,7 @@
                 <div class="box-body">
                       <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-                                <thead>
+                              <thead>
                                   <tr>
                                     <th>Candidates</th>
                                       @foreach($civilstatuses as $civilstatus)
@@ -1044,65 +1050,81 @@
                 <div class="box-body">
                       <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-            					<thead>
-                                    	<th>Candidates</th>
-                                        @foreach($empstatuses as $empstatus)
-                                        <th>{{ $empstatus->name }}</th>
-                                        @endforeach
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($positions as $position)
-                                  <thead>
-                                      <tr>
-                                          <th>{{ $position->name }}</th>
-                                          @foreach($empstatuses as $empstatus)
-                                          <th></th>
-                                          @endforeach
-                                          <th></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                  @php
-                                    $tallytotaloecandidate = 0;
-                                  @endphp
-                                	@foreach($position->candidates as $candidate)
-                                          @php
-                                            $tallytotalecandidate = 0;
-                                          @endphp
-                                          <tr>
-                                              <td>{{ $candidate->voter->full_name }}</td>
-                                              @foreach($empstatuses as $empstatus)
-                                              @php
-                                                  $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,$empstatus->id,0,0,0);
-                                                  $tallytotalecandidate += $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id];
-                                                  if(empty($tallytotalvecandidate[$empstatus->id][$surveydetail->id])){
-                                                      $tallytotalvecandidate[$empstatus->id][$surveydetail->id] = $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id];
-                                                  }else{
-                                                      $tallytotalvecandidate[$empstatus->id][$surveydetail->id] += $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id];
-                                                  }
-                                              @endphp
-                                              <td>{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }}</td>
-                                              @endforeach
-                                              <th>{{ $tallytotalecandidate }}</th>
-                                              @php
-                                                $tallytotaloecandidate += $tallytotalecandidate;
-                                              @endphp
-                                          </tr>
-                                  	@endforeach
-                                  </tbody>
-                                @endforeach
-                                <!-- <tfoot>
+                            <thead>
+                              <th>Candidates</th>
+                                  @foreach($empstatuses as $empstatus)
+                                  <th>{{ $empstatus->name }}</th>
+                                  @endforeach
+                                  <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($positions as $position)
+                              <thead>
                                   <tr>
-                                      <th>Total:</td>
+                                      <th>{{ $position->name }}</th>
                                       @foreach($empstatuses as $empstatus)
-                                        <th>{{ $tallytotalvecandidate[$empstatus->id][$surveydetail->id] }}</th>
+                                      <th></th>
                                       @endforeach
-                                      <th>{{ $tallytotaloecandidate }}</th>
+                                      <th></th>
                                   </tr>
-                              </tfoot> -->
-                            </table>
+                              </thead>
+                              <tbody>
+                              @php
+                                $i = 0;
+                                $tallytotaloecandidate = 0;
+                              @endphp
+                              @foreach($position->candidates as $candidate)
+                                @php
+                                 $tallycandidate[$candidate->id] = $candidate->full_name;
+                                @endphp
+                                @foreach($empstatuses as $empstatus)
+                                     @php
+                                       $tallyemp[$position->id][$candidate->id][$empstatus->id][$surveydetail->id]=$tallypoll->tallydetails($candidate->id,$surveydetail->id,[],0,0,$empstatus->id,0,0,0);
+                                     @endphp
+                                @endforeach
+                               @endforeach
+                               @php
+                               arsort($tallyemp[$position->id]);
+                               @endphp
+                               @foreach($tallyemp[$position->id] as $key => $sortedtallyem)
+                               <tr>
+                                    <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                    @php
+                                    $tallytotalecandidate = 0;
+                                    @endphp
+                                    @foreach($empstatuses as $empstatus)
+                                       @php
+                                           if(empty($tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id])){
+                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] = $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                           }else{
+                                               $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] += $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                           }
+                                           $tallytotalecandidate += $sortedtallyem[$empstatus->id][$surveydetail->id];
+                                       @endphp
+                                      <td>{{ $sortedtallyem[$empstatus->id][$surveydetail->id] }}</td>
+                                    @endforeach
+                                    <th>{{ $tallytotalecandidate }}</th>
+                               </tr>
+                               @php
+                                 $tallytotaloecandidate += $tallytotalecandidate;
+                               @endphp
+                               @endforeach
+                               </tbody>
+                               @if($tallytotaloecandidate>0)
+                               <thead>
+                               <tr>
+                                     <th>Total:</td>
+                                     @foreach($empstatuses as $empstatus)
+                                       <th>{{ $tallytotalvecandidate[$position->id][$empstatus->id][$surveydetail->id] }}</th>
+                                     @endforeach
+                                     <th>{{ $tallytotaloecandidate }}</th>
+                                 </tr>
+                                 </thead>
+                               @endif
+                             @endforeach
+                  					<thead>
+                          </table>
                       </div>
                 </div>
             </div>
@@ -2350,7 +2372,7 @@ $(document).ready(function ($) {
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$candidate->id][$empstatus->id][$surveydetail->id] }},
+						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2652,7 +2674,7 @@ $(document).ready(function ($) {
 				['{{ $empstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallyemp[$candidate->id][$empstatus->id][$election->id] }},
+						{{ $tallyemp[$position->id][$candidate->id][$empstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
