@@ -33,7 +33,7 @@ class SurveyAnswerController extends Controller
     }
   public function testOtherVotersRelQ(Request $request){
     $surveydetailid = $request->sdid;
-    $voterid = $request->svid;
+    $voterid = $request->vid;
     $questionId = $request->qid;
     $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
     if($relquestion){
