@@ -32,6 +32,82 @@ class SurveyAnswerController extends Controller
     {
         //
     }
+  public function updateOtherTallyVotesQuality(Request $request){
+    $questionid = $request->qid;
+    $surveydetailid = $request->sid;
+
+
+    $relquestion = RelatedQuestion::where('question_id',$questionid)->first();
+    if($relquestion){
+      if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+        SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                    ->where('question_id',$questionid)
+                    ->chunk(400, function ($results)use($surveydetailid,$relquestion){
+                          foreach ($results as $lsuans) {
+                            $otoptId = null;
+                            $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                        ->where('question_id',$relquestion->related_question_id)
+                                        ->where('voter_id',$lsuans->voter_id)
+                                        ->orderBy('id')
+                                        ->get();
+                            if(!empty($surans[$relquestion->cardinality-1])){
+                                $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                if(!empty($otoptId)){
+                                  $question = Question::find($relquestion->question_id);
+                                  if(!empty($question->for_position) && is_numeric($question->for_position)){
+                                    $optioncandidate = QuestionOption::find($otoptId);
+                                    if($optioncandidate){
+                                      echo "Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                      ->where('question_id',$relquestion->question_id)
+                                                      ->where('voter_id',$lsuans->voter_id)
+                                                      ->update([
+                                                                  'candidate_id'=>$optioncandidate->candidate_id
+                                                              ]);
+                                    }
+
+                                  }
+                                }
+                            }
+                          }
+                    });
+
+      }else{
+        SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                    ->where('question_id',$questionid)
+                    ->chunk(400, function ($results)use($surveydetailid,$relquestion){
+                          foreach ($results as $lsuans) {
+                            $otoptId = null;
+                            $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                        ->where('question_id',$relquestion->related_question_id)
+                                        ->where('voter_id',$lsuans->voter_id)
+                                        ->orderBy('id')
+                                        ->get();
+                            if(!empty($surans[$relquestion->cardinality-1])){
+                                $otoptId = $surans[0]->option_id;
+                                if(!empty($otoptId)){
+                                  $question = Question::find($relquestion->question_id);
+                                  if(!empty($question->for_position) && is_numeric($question->for_position)){
+                                    $optioncandidate = QuestionOption::find($otoptId);
+                                    if($optioncandidate){
+                                      echo "Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                      ->where('question_id',$relquestion->question_id)
+                                                      ->where('voter_id',$lsuans->voter_id)
+                                                      ->update([
+                                                                  'candidate_id'=>$optioncandidate->candidate_id
+                                                              ]);
+                                    }
+
+                                  }
+                                }
+                            }
+                          }
+                    });
+      }
+
+    }
+  }
   public function testOtherVotersRelQ(Request $request){
     $surveydetailid = $request->sdid;
     $voterid = $request->vid;

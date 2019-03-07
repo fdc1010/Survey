@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mobile;
 use App\Models\Question;
+use App\Models\QuestionOption;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\SurveyorAssignment;
@@ -237,7 +238,6 @@ class SurveyAnswerController extends Controller
             }
               $receivedans = json_decode($request->q_and_a, true);
               info("Storing answers: #".$voter->id." ".$voter->full_name);
-              info($receivedans);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
       						$optid = $ansid['id'];
@@ -274,7 +274,6 @@ class SurveyAnswerController extends Controller
 
       							$surveyansid=$surveyans->save();
                     info("Storing tally: #".$voter->id." ".$voter->full_name);
-                    info($surveyanswers);
       							$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
       							if($optioncandidate){
       								$tallycandidate = new TallyVote;
@@ -286,6 +285,7 @@ class SurveyAnswerController extends Controller
       								$tallycandidate->survey_detail_id = $surveydetailid;
       								$tallycandidate->save();
       							}
+                    $otoptId = null;
       							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
       							if($relquestion){
                       if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
@@ -293,25 +293,26 @@ class SurveyAnswerController extends Controller
           														->where('question_id',$relquestion->related_question_id)
                                       ->where('voter_id',$voterid)
                                       ->orderBy('id')
-                                      ->skip($relquestion->cardinality)
-                                      ->take(1)
-                                      ->first();
+                                      ->get();
+                          if(!empty($surans[$relquestion->cardinality-1])){
+                              $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                          }
                       }else{
                           $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                     ->where('question_id',$relquestion->related_question_id)
                                     ->where('voter_id',$voterid)
-                                    ->first();
+                                    ->get();
+                          if(!empty($surans[$relquestion->cardinality-1])){
+                              $otoptId = $surans[0]->option_id;
+                          }
                       }
-      								if($surans){
+      								if(!empty($otoptId)){
       									$question = Question::find($relquestion->question_id);
       									if(!empty($question->for_position) && is_numeric($question->for_position)){
                           info("Found linked Question: ");
-                          info($relquestion);
-                          info($question);
-      										$optioncandidate = OptionCandidate::where('option_id',$surans->option_id)->first();
+      										$optioncandidate = QuestionOption::find($otoptId);
       										if($optioncandidate){
                             info("Storing tally for candidate qualities: #".$voteranswers['questionId']);
-                            info($optioncandidate);
       											$othertallycandidate = new TallyOtherVote;
                             $othertallycandidate->question_id = $voteranswers['questionId'];
                             $othertallycandidate->option_id = $optid;
