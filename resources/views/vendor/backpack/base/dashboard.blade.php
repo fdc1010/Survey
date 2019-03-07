@@ -875,7 +875,7 @@
                                   </thead>
                                 <tbody>
                                 @php
-                                  $tallytotalogcandidate = 0;
+                                $tallytotalogcandidate = 0;
                                 @endphp
                                  @foreach($position->candidates as $candidate)
                                    @php
@@ -889,11 +889,13 @@
                                   @endforeach
                                   @php
                                   arsort($tallyg);
-                                  $tallytotalgcandidate = 0;
                                   @endphp
                                   @foreach($tallyg as $key => $sortedtallyg)
                                  	<tr>
                                    	   <td>{{ $tallycandidate[$key] }}</td>
+                                       @php
+                                       $tallytotalgcandidate = 0;
+                                       @endphp
                                        @foreach($genders as $gender)
                                           @php
                                               if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
