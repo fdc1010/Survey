@@ -1408,7 +1408,7 @@
                                      <tr>
                                          <th>Total:</td>
                                          @foreach($brgysurveys as $barangay)
-                                           <th>{{ $tallytotalvvbcandidate[$barangay->id][$barangay->id][$surveydetail->id] }}</th>
+                                           <th>{{ $tallytotalvvbcandidate[$position->id][$barangay->id][$surveydetail->id] }}</th>
                                          @endforeach
                                          <th>{{ $tallytotalovbcandidate }}</th>
                                      </tr>
