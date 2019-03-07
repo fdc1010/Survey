@@ -921,15 +921,15 @@
                                   @endforeach
                                   </tbody>
                                 @if($tallytotalogcandidate>0)
-
-                                  <tr>
+                                <thead>
+                                <tr>
                                       <th>Total:</td>
                                       @foreach($genders as $gender)
                                         <th>{{ $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] }}</th>
                                       @endforeach
                                       <th>{{ $tallytotalogcandidate }}</th>
                                   </tr>
-
+                                  </thead>
                                 @endif
                               @endforeach
                             </table>
