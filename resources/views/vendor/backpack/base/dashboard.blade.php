@@ -891,10 +891,10 @@
                                           }else{
                                               $tallytotalgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }
-                                          if(empty($tallytotalvgcandidate[$gender->id][$surveydetail->id])){
-                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                          if(empty($tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id])){
+                                              $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] = $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }else{
-                                              $tallytotalvgcandidate[$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
+                                              $tallytotalvgcandidate[$candidate->id][$gender->id][$surveydetail->id] += $tallyg[$candidate->id][$gender->id][$surveydetail->id];
                                           }
                                         @endphp
                                         <td>{{ $tallyg[$candidate->id][$gender->id][$surveydetail->id] }}</td>
