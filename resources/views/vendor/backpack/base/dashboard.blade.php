@@ -195,49 +195,57 @@
         $qualities = App\Models\OptionQuality::with('options')->get();
 
         $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])->where('id',$surveypos)->get();
+                                                          $q->with(['voter'=>function($qv){
+                                                                        $qv->orderBy('last_name');
+                                                                    },'tally'=>function($qc){
+                                                                        $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                                ->from('tally_votes')
+                                                                                ->groupBy('candidate_id')
+                                                                                ->orderBy('ctally','DESC');
+                                                                    }]);
+                                                           }])
+                                                           ->where('id',$surveypos)
+                                                           ->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
-            $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])->whereIn('id',$rdata['position'])->get();
+                $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+                                                            $q->with(['voter'=>function($qv){
+                                                                          $qv->orderBy('last_name');
+                                                                      },'tally'=>function($qc){
+                                                                          $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                                  ->from('tally_votes')
+                                                                                  ->groupBy('candidate_id')
+                                                                                  ->orderBy('ctally','DESC');
+                                                                      }]);
+                                                             }])
+                                                             ->whereIn('id',$rdata['position'])
+                                                             ->get();
 
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                												$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])
+                                                            $q->with(['voter'=>function($qv){
+                                                                          $qv->orderBy('last_name');
+                                                                      },'tally'=>function($qc){
+                                                                          $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                                  ->from('tally_votes')
+                                                                                  ->groupBy('candidate_id')
+                                                                                  ->orderBy('ctally','DESC');
+                                                                      }]);
+                                                             }])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
 
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])
+                                                            $q->with(['voter'=>function($qv){
+                                                                          $qv->orderBy('last_name');
+                                                                      },'tally'=>function($qc){
+                                                                          $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                                  ->from('tally_votes')
+                                                                                  ->groupBy('candidate_id')
+                                                                                  ->orderBy('ctally','DESC');
+                                                                      }]);
+                                                             }])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
 
@@ -245,26 +253,28 @@
         }else{
             if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])
-                                                            ->get();
+                                    $q->with(['voter'=>function($qv){
+                                                  $qv->orderBy('last_name');
+                                              },'tally'=>function($qc){
+                                                  $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                          ->from('tally_votes')
+                                                          ->groupBy('candidate_id')
+                                                          ->orderBy('ctally','DESC');
+                                              }]);
+                                     }])
+                                    ->get();
             }else if(!empty($rdata['candidate'])){
-            	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-        														$q->with(['voter','tally'=>function($qc){
-                                                                		$qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                            ->from('tally_votes')
-                                                                            ->groupBy('candidate_id')
-                                                                            ->orderBy('last_name','DESC');
-                                                                            //->orderBy('ctally','DESC');
-                                                                }]);
-        													}])
-                                                            ->get();
+            	   $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
+        														$q->with(['voter'=>function($qv){
+                                                  $qv->orderBy('last_name');
+                                              },'tally'=>function($qc){
+                                      		        $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                          ->from('tally_votes')
+                                                          ->groupBy('candidate_id')
+                                                          ->orderBy('ctally','DESC');
+                                              }]);
+							                       }])
+                                    ->get();
             }
         }
 
