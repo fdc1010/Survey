@@ -2306,7 +2306,7 @@ $(document).ready(function ($) {
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$candidate->id][$civilstatus->id][$surveydetail->id] }},
+						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$surveydetail->id] }},
 					@endforeach
 				@endforeach
 				],
@@ -2608,7 +2608,7 @@ $(document).ready(function ($) {
 				['{{ $civilstatus->name }}',
 				@foreach($positions as $position)
 					@foreach($position->candidates as $candidate)
-						{{ $tallycv[$candidate->id][$civilstatus->id][$election->id] }},
+						{{ $tallycv[$position->id][$candidate->id][$civilstatus->id][$election->id] }},
 					@endforeach
 				@endforeach
 				],
