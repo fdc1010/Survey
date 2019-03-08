@@ -561,7 +561,7 @@
                     </select>
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
-                  <div class="col-md-12">
+                  <div class="col-md-2" style="height: 100px;">
                     <button type="submit" class="btn btn-primary">
                         <span class="fa fa-search"></span> View
                     </button>
