@@ -289,7 +289,9 @@ class SurveyAnswerController extends Controller
       if($csurans){
           $cquestionoption = QuestionOption::find($csurans->option_id);
           echo "<br>Your Answer: ".$csurans->option_id." ".$cquestionoption->option;
-        }
+      }else{
+          echo "Voter's Answer not found!";
+      }
     }else{
         echo "Question Info not found!";
     }
