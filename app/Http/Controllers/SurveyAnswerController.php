@@ -316,7 +316,7 @@ class SurveyAnswerController extends Controller
           }
       }
       $suranswers = SurveyAnswer::whereIn('id',$questionId)->get();
-      echo "<br>Record(s) Affected: ".(!empty($suranswers):count($suranswers):0);
+      echo "<br>Record(s) Affected: ".(!empty($suranswers)?count($suranswers):0);
       if(!empty($curquestions) && count($curquestions)<=0){
           echo "Questions Info not found!";
       }else if(empty($curquestions)){
