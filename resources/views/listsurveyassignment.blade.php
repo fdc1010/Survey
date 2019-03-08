@@ -49,7 +49,6 @@
                     >
                     {!! $column['label'] !!}
                   </th>
-									fred {!! $column['label'] !!}
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
