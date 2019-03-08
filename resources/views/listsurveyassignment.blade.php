@@ -40,7 +40,7 @@
 				$surveyorassignment = new App\Models\SurveyorAssignment;
 				$totalquota = $surveyorassignment->getAllSurveyQuota();
 				$totalcount = $surveyorassignment->getAllSurveyCount();
-				$totalprogress = round(($totalquota / $totalcount) * 100,2);
+				$totalprogress = round(($totalcount / $totalquota) * 100,2);
 				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
