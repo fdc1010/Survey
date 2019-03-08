@@ -36,7 +36,9 @@
         @if ($crud->filtersEnabled())
           @include('crud::inc.filters_navbar')
         @endif
-
+				@php
+				$surveyorassignment = new App\Models\SurveyorAssignment;
+				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
               <tr>
@@ -47,7 +49,19 @@
                     data-priority="{{ $column['priority'] }}"
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
-                    {!! $column['label'] !!}
+										@if($column['label']=="Quota")
+											@php
+											$totalquota = $surveyorassignment->getAllSurveyQuota();
+											@endphp
+											<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
+										@elseif($column['label']=="Count")
+											@php
+											$totalcount = $surveyorassignment->getAllSurveyCount();
+											@endphp
+											<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
+										@else
+		                  <th>{!! $column['label'] !!}</th>
+										@endif
                   </th>
                 @endforeach
 
@@ -61,13 +75,21 @@
             <tfoot>
               <tr>
                 {{-- Table columns --}}
-								@php
-								$surveyorassignment = new App\Models\SurveyorAssignment;
-								@endphp
+
                 @foreach ($crud->columns as $column)
-
-	                  <th>{!! $column['label'] !!} {{ $surveyorassignment->getAllSurveyQuota() }}</th>
-
+									@if($column['label']=="Quota")
+										@php
+										$totalquota = $surveyorassignment->getAllSurveyQuota();
+										@endphp
+										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
+									@elseif($column['label']=="Count")
+										@php
+										$totalcount = $surveyorassignment->getAllSurveyCount();
+										@endphp
+										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
+									@else
+	                  <th>{!! $column['label'] !!}</th>
+									@endif
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
