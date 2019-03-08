@@ -30,11 +30,17 @@ class VoterCrudController extends CrudController
 
         if(backpack_user()->hasPermissionTo('Edit')){
           $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
         }
         if(backpack_user()->hasPermissionTo('Add')){
           $this->crud->denyAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
         }
         if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->denyAccess(['delete']);
+        }else{
           $this->crud->denyAccess(['delete']);
         }
         /*
