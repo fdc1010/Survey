@@ -2223,12 +2223,12 @@
        -moz-appearance: none;
        appearance: none;
        width: 80px;
-       padding: 9px 9px 11px 13px;
-       background-color: #f1f1f1;
+       /*padding: 9px 9px 11px 13px;
+        background-color: #f1f1f1; */
        border: none;
        border-radius: 3px;
        outline: none;
-       font: 100 12px 'Open Sans', sans-serif;
+       /* font: 100 12px 'Open Sans', sans-serif; */
        color: #666;
        cursor: pointer;
     }
@@ -2237,7 +2237,7 @@
        position: absolute;
        top: 8px;
        right: 13px;
-       font: 100 16px 'Open Sans', sans-serif;
+       /* font: 100 16px 'Open Sans', sans-serif; */
        color: #666;
     }
     select:-moz-focusring
