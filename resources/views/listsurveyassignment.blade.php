@@ -62,12 +62,12 @@
               <tr>
                 {{-- Table columns --}}
                 @foreach ($crud->columns as $column)
-									@if($column['label']=="quota")
+									@if($column['label']=="Quota")
 										@php
 										$totalquota = App\Models\SurveyorAssignment::getAllSurveyQuota();
 										@endphp
 										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
-									@elseif($column['label']=="count")
+									@elseif($column['label']=="Count")
 										@php
 										$totalcount = App\Models\SurveyorAssignment::getAllSurveyCount();
 										@endphp
