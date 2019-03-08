@@ -129,10 +129,8 @@ $this->crud->addColumn([
 			'pivot'     => true,
 		])->afterField('user_id');*/
 		// add asterisk for fields that are required in SurveyorAssignmentRequest
-        $this->crud->removeButton( 'preview' );
-        $this->crud->removeButton( 'update' );
-        $this->crud->removeButton( 'revisions' );
-        $this->crud->removeButton( 'delete' );
+      $this->crud->removeAllButtonsFromStack('line');
+
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
