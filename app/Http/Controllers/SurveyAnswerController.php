@@ -136,7 +136,7 @@ class SurveyAnswerController extends Controller
                                                   ->where('question_id',$relquestion->question_id)
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
-                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       $tallyothervotedata = [
                                                               'survey_detail_id'=>$surveydetailid,
                                                               'question_id'=>$relquestion->question_id,
@@ -176,7 +176,7 @@ class SurveyAnswerController extends Controller
                                                   ->where('question_id',$relquestion->question_id)
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
-                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       $tallyothervotedata = [
                                                               'survey_detail_id'=>$surveydetailid,
                                                               'question_id'=>$relquestion->question_id,
