@@ -51,7 +51,7 @@
                     data-priority="{{ $column['priority'] }}"
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
-										!! $column['label'] !!}
+										{!! $column['label'] !!}
                   </th>
                 @endforeach
 
