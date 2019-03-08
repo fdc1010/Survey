@@ -19,7 +19,7 @@ class TallyOtherVote extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['candidate_id','barangay_id','option_id','voter_id','tally','survey_detail_id'];
+    protected $fillable = ['user_id','candidate_id','barangay_id','option_id','voter_id','tally','survey_detail_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	public function candidate()
