@@ -89,14 +89,14 @@ class SurveyAnswerController extends Controller
                                                       ->where('candidate_id',$cquestionoption->candidate_id)
                                                       ->where('question_id',$suranswer->question_id)
                                                       ->first();
-                              if($tallyvotes){
-                                    TallyVote::where('id',$tallyvotes->id)
-                                              ->update([
-                                                        'question_id'=>$suranswer->question_id,
-                                                        'option_id'=>$suranswer->option_id,
-                                                        'user_id'=>$suranswer->user_id
-                                                      ]);
-                              }else{
+                              // if($tallyvotes){
+                              //       TallyVote::where('id',$tallyvotes->id)
+                              //                 ->update([
+                              //                           'question_id'=>$suranswer->question_id,
+                              //                           'option_id'=>$suranswer->option_id,
+                              //                           'user_id'=>$suranswer->user_id
+                              //                         ]);
+                              // }else{
                                 $tallyvotedata = [
                                                     'survey_detail_id'=>$surveydetailid,
                                                     'question_id'=>$suranswer->question_id,
@@ -106,7 +106,7 @@ class SurveyAnswerController extends Controller
                                                     'user_id'=>$suranswer->user_id
                                                   ];
                                 TallyVote::insert($tallyvotedata);
-                              }
+                              //}
                               $i++;
                         }
                   });
