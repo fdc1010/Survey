@@ -90,12 +90,12 @@ class SurveyAnswerController extends Controller
                                                       ->where('question_id',$suranswer->question_id)
                                                       ->first();
                               if($tallyvotes){
-                                    // TallyVote::where('id',$tallyvotes->id)
-                                    //           ->update([
-                                    //                     'question_id'=>$suranswer->question_id,
-                                    //                     'option_id'=>$suranswer->option_id,
-                                    //                     'user_id'=>$suranswer->user_id
-                                    //                   ]);
+                                    TallyVote::where('id',$tallyvotes->id)
+                                              ->update([
+                                                        'question_id'=>$suranswer->question_id,
+                                                        'option_id'=>$suranswer->option_id,
+                                                        'user_id'=>$suranswer->user_id
+                                                      ]);
                               }else{
                                 $tallyvotedata = [
                                                     'survey_detail_id'=>$surveydetailid,
@@ -105,7 +105,7 @@ class SurveyAnswerController extends Controller
                                                     'candidate_id'=>$cquestionoption->candidate_id,
                                                     'user_id'=>$suranswer->user_id
                                                   ];
-                                //TallyVote::insert($tallyvotedata);
+                                TallyVote::insert($tallyvotedata);
                               }
                               $i++;
                         }
@@ -240,8 +240,8 @@ class SurveyAnswerController extends Controller
                                                             ->where('voter_id',$suranswer->voter_id)
                                                             ->first();
                                             if($tallyothervotes){
-                                                  // TallyOtherVote::where('id',$tallyothervotes->id)
-                                                  //                 ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                                  TallyOtherVote::where('id',$tallyothervotes->id)
+                                                                  ->update(['candidate_id'=>$optioncandidate->candidate_id]);
                                             }else{
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
@@ -252,7 +252,7 @@ class SurveyAnswerController extends Controller
                                                                       'user_id'=>$csurans->user_id,
                                                                       'id'=>$suranswer->id
                                                                     ];
-                                                  //TallyOtherVote::insert($tallyothervotedata);
+                                                  TallyOtherVote::insert($tallyothervotedata);
                                             }
 
                                           }
@@ -291,8 +291,8 @@ class SurveyAnswerController extends Controller
                                                             ->where('voter_id',$suranswer->voter_id)
                                                             ->first();
                                             if($tallyothervotes){
-                                                  // TallyOtherVote::where('id',$tallyothervotes->id)
-                                                  //                 ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                                  TallyOtherVote::where('id',$tallyothervotes->id)
+                                                                  ->update(['candidate_id'=>$optioncandidate->candidate_id]);
                                             }else{
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
@@ -303,7 +303,7 @@ class SurveyAnswerController extends Controller
                                                                       'user_id'=>$csurans->user_id,
                                                                       'id'=>$csurans->id
                                                                     ];
-                                                  //TallyOtherVote::insert($tallyothervotedata);
+                                                  TallyOtherVote::insert($tallyothervotedata);
                                             }
                                           }
 
@@ -354,8 +354,8 @@ class SurveyAnswerController extends Controller
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->first();
                               if($tallyothervotes){
-                                  // TallyOtherVote::where('id',$tallyothervotes->id)
-                                  //               ->update(['option_id'=>$suranswer->option_id]);
+                                  TallyOtherVote::where('id',$tallyothervotes->id)
+                                                ->update(['option_id'=>$suranswer->option_id]);
                               }else{
                                   $tallyothervotedata = [
                                                       'survey_detail_id'=>$surveydetailid,
@@ -365,7 +365,7 @@ class SurveyAnswerController extends Controller
                                                       'user_id'=>$suranswer->user_id,
                                                       'id'=>$suranswer->id
                                                     ];
-                                  //TallyOtherVote::insert($tallyothervotedata);
+                                  TallyOtherVote::insert($tallyothervotedata);
                               }
                               $i++;
                         }
