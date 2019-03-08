@@ -490,6 +490,15 @@
                         <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="col-md-12">
+                      		<div class="box-title">Survey & Print Preview Options</div>
+                    </div>
+                </div>
                 <div class="box-body">
                   <div class="col-md-1"><strong>Barangays:</strong></div>
                   <div class="col-md-1"><span id="countbrgy">{{ (!empty($rdata['to'])?count($rdata['to']):count($barangays)) }}</span></div>
