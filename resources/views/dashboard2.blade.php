@@ -498,7 +498,7 @@
                     <select name="selposition" id="selposition">
                         <option value="0">Run for</option>
                       @foreach($selinitpositions as $position)
-                        <option value="{{ $position->id }}" {{ ((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
+                        <option value="{{ $position->id }}" {{ (((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
                       @endforeach
                     </select>
                   </div>
