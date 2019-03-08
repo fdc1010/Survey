@@ -71,6 +71,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(3,4,6,8);
     }
+    echo $questionId;
     $i=0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
@@ -202,6 +203,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(5,7,9,10,11,12);
     }
+    echo $questionId;
     $i=0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
@@ -331,6 +333,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(1,2);
     }
+    echo $questionId;
     $i = 0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
