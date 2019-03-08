@@ -249,8 +249,7 @@ class SurveyAnswerController extends Controller
                                                                       'option_id'=>$csurans->option_id,
                                                                       'voter_id'=>$csurans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$csurans->user_id,
-                                                                      'id'=>$suranswer->id
+                                                                      'user_id'=>$csurans->user_id
                                                                     ];
                                                   TallyOtherVote::insert($tallyothervotedata);
                                             }
@@ -300,8 +299,7 @@ class SurveyAnswerController extends Controller
                                                                       'option_id'=>$csurans->option_id,
                                                                       'voter_id'=>$csurans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$csurans->user_id,
-                                                                      'id'=>$csurans->id
+                                                                      'user_id'=>$csurans->user_id
                                                                     ];
                                                   TallyOtherVote::insert($tallyothervotedata);
                                             }
@@ -365,8 +363,7 @@ class SurveyAnswerController extends Controller
                                                       'question_id'=>$suranswer->question_id,
                                                       'option_id'=>$suranswer->option_id,
                                                       'voter_id'=>$suranswer->voter_id,
-                                                      'user_id'=>$suranswer->user_id,
-                                                      'id'=>$suranswer->id
+                                                      'user_id'=>$suranswer->user_id
                                                     ];
                                   TallyOtherVote::insert($tallyothervotedata);
                               }
