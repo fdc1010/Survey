@@ -532,8 +532,13 @@
                         <option value="{{ $agebracket->id }}" {{ ((!empty($rdata['selagebracket'])&&$rdata['selagebracket']==$agebracket->id)?"selected='selected'":"") }}>{{ $agebracket->title }}</option>
                       @endforeach
                     </select>
-                  </div>
-                  <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>
+                  </div>                  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
                   <div class="col-md-2">
                     <select name="selgender" id="selgender" style="width: 120px;">
                         <option value="0">Gender</option>
@@ -567,7 +572,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-12" id="brgydetails">
             <div class="box box-default">
                 <div class="box-header with-border">
