@@ -507,11 +507,11 @@
                     <select name="selcandidate" id="selcandidate">
                         <option value="0">Candidate</option>
                       @foreach($positions as $position)
-                        <optgroup label="{{ $position->name }}" >
+                        <optgroup label="{{ $position->name }}">
                         @foreach($position->candidates as $candidate)
                           <option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
                         @endforeach
-                          </optgroup>
+                        </optgroup>
                       @endforeach
                     </select>
                   </div>
@@ -557,7 +557,7 @@
                         <span class="fa fa-search"></span> View
                     </button>
                   </div>
-                  <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>                  
+                  <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
                 </div>
             </div>
         </div>
