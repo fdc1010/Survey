@@ -220,7 +220,7 @@ class SurveyAnswerController extends Controller
     }
   }
   public function testOtherVotesRelQ(Request $request){
-    $surveydetailid = $request->sdid;
+    $surveydetailid = $request->sid;
     $questionId = $request->qid;
     $curquestion = Question::find($questionId);
     if($relquestion){
@@ -278,7 +278,7 @@ class SurveyAnswerController extends Controller
     }
   }
   public function testOtherVotesProblem(Request $request){
-    $surveydetailid = $request->sdid;
+    $surveydetailid = $request->sid;
     $questionId = $request->qid;
     $curquestion = Question::find($questionId);
     if($curquestion){
@@ -290,7 +290,7 @@ class SurveyAnswerController extends Controller
           $cquestionoption = QuestionOption::find($csurans->option_id);
           echo "<br>Your Answer: ".$csurans->option_id." ".$cquestionoption->option;
       }else{
-          echo "Voter's Answer not found!";
+          echo "<br>Voter's Answer not found!";
       }
     }else{
         echo "Question Info not found!";
