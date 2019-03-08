@@ -474,8 +474,8 @@
                         @endforeach
                         </select>
                     </div>
-                    <div class="col-md-1"><strong>Election Returns:</strong></div>
-                    <div class="col-md-2">
+                    <div class="col-md-2"><strong>Election Returns:</strong></div>
+                    <div class="col-md-3">
                         <select name="selelection" id="selelection" style="width: 120px;">
                         	<option value="">Select Election</option>
                         @foreach($selinitelections as $election)
@@ -486,11 +486,8 @@
                     <div class="col-md-1">
                         <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <a href="#" id="printpreview" class="btn btn-primary"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="#" id="viewsurvey" class="btn btn-primary"><span class="fa fa-search"></span> View</a>
                     </div>
                 </div>
             </div>
@@ -564,6 +561,9 @@
                     </select>
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
+                  <div class="col-md-3">
+                      <a href="#" id="viewsurvey" class="btn btn-primary"><span class="fa fa-search"></span> View</a>
+                  </div>
                 </div>
             </div>
         </div>
