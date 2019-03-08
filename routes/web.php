@@ -22,6 +22,7 @@ Route::post('importsitios', 'SitioController@importsitios')->name('importsitios'
 Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramiddlename');
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
 
+Route::get('dashboard2', 'HomeController@dashboard2')->name('dashboard2');
 // Route::get('updateothertallyvotesqualityMayor', 'SurveyAnswerController@updateothertallyvotesqualityMayor')->name('updateothertallyvotesqualityMayor');
 // Route::get('updateothertallyvotesqualityViceMayor', 'SurveyAnswerController@updateothertallyvotesqualityViceMayor')->name('updateothertallyvotesqualityViceMayor');
 // Route::get('updateothertallyvotesqualityCong', 'SurveyAnswerController@updateothertallyvotesqualityCong')->name('updateothertallyvotesqualityCong');

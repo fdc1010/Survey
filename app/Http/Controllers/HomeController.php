@@ -25,4 +25,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function dashboard2(Request $request){
+        return view('dashboard2');
+    }
 }
