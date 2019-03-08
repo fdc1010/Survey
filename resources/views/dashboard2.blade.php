@@ -513,7 +513,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selcandidate" id="selcandidate" style="width: 100px;">
+                    <select name="selcandidate" id="selcandidate" style="width: 150px;">
                         <option value="0">Candidate</option>
                       @foreach($positions as $position)
                         <optgroup label="{{ $position->name }}">
