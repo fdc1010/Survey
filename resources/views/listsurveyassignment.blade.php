@@ -40,6 +40,7 @@
 				$surveyorassignment = new App\Models\SurveyorAssignment;
 				$totalquota = $surveyorassignment->getAllSurveyQuota();
 				$totalcount = $surveyorassignment->getAllSurveyCount();
+				$totalprogress = round(($totalquota / $totalcount) * 100,2);
 				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
@@ -71,6 +72,8 @@
 										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
 									@elseif($column['label']=="Count")
 										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
+										@elseif($column['label']=="Progress")
+											<th>{!! $column['label'] !!} ({{ $totalprogress }}%)</th>
 									@else
 	                  <th>{!! $column['label'] !!}</th>
 									@endif
