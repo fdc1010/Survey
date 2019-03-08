@@ -78,14 +78,8 @@
 
                 @foreach ($crud->columns as $column)
 									@if($column['label']=="Quota")
-										@php
-										$totalquota = $surveyorassignment->getAllSurveyQuota();
-										@endphp
 										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
 									@elseif($column['label']=="Count")
-										@php
-										$totalcount = $surveyorassignment->getAllSurveyCount();
-										@endphp
 										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
 									@else
 	                  <th>{!! $column['label'] !!}</th>
