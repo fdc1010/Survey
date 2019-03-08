@@ -49,7 +49,7 @@
                     >
                     {!! $column['label'] !!}
                   </th>
-									{!! $column !!}
+									@php print_r($column); @endphp
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
