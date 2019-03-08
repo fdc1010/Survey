@@ -509,7 +509,7 @@
                       @foreach($positions as $position)
                         <optgroup label="{{ $position->name }}">
                         @foreach($position->candidates as $candidate)
-                          <option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
+                          <option style="width: 100px;" value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
                         @endforeach
                         </optgroup>
                       @endforeach
