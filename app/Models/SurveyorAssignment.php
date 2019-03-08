@@ -80,9 +80,9 @@ class SurveyorAssignment extends Model
 	}
   public function getAllSurveyCount(){
     $countsurvey = SurveyAnswer::select(['voter_id'])
-            										->groupBy('voter_id')
-            										->get();
-		if(!empty($countsurvey) && count($countsurvey)>0)
+										->groupBy('voter_id')
+										->get();
+		if($countsurvey)
 			return count($countsurvey);
 		else
 			return 0;
