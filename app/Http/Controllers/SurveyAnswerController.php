@@ -57,7 +57,7 @@ class SurveyAnswerController extends Controller
                                   if(!empty($question->for_position) && is_numeric($question->for_position)){
                                     $optioncandidate = QuestionOption::find($otoptId);
                                     if($optioncandidate){
-                                      echo "Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       TallyOtherVote::where('survey_detail_id',$surveydetailid)
                                                       ->where('question_id',$relquestion->question_id)
                                                       ->where('voter_id',$lsuans->voter_id)
@@ -90,7 +90,7 @@ class SurveyAnswerController extends Controller
                                   if(!empty($question->for_position) && is_numeric($question->for_position)){
                                     $optioncandidate = QuestionOption::find($otoptId);
                                     if($optioncandidate){
-                                      echo "Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       TallyOtherVote::where('survey_detail_id',$surveydetailid)
                                                       ->where('question_id',$relquestion->question_id)
                                                       ->where('voter_id',$lsuans->voter_id)
@@ -136,7 +136,7 @@ class SurveyAnswerController extends Controller
                                                   ->where('question_id',$relquestion->question_id)
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
-                                      echo "Updating/Storing tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       $tallyothervotedata = [
                                                               'survey_detail_id'=>$surveydetailid,
                                                               'question_id'=>$relquestion->question_id,
@@ -176,7 +176,7 @@ class SurveyAnswerController extends Controller
                                                   ->where('question_id',$relquestion->question_id)
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
-                                      echo "Updating/Storing tally for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                      echo "<br>Updating/Storing tally #".$csurans->question_id." , #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                       $tallyothervotedata = [
                                                               'survey_detail_id'=>$surveydetailid,
                                                               'question_id'=>$relquestion->question_id,
