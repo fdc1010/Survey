@@ -37,7 +37,7 @@
           @include('crud::inc.filters_navbar')
         @endif
 				@php
-				$surveyorassignment = backpack::crud.getModel();
+				$surveyorassignment = $crud->getModel();
 				$totalquota = $surveyorassignment->getAllSurveyQuota();
 				$totalcount = $surveyorassignment->getAllSurveyCount();
 				$totalprogress = round(($totalcount / $totalquota) * 100,2);
