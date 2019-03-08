@@ -500,12 +500,12 @@
                     </div>
                 </div>
                 <div class="box-body">
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-1"><strong>Barangays:</strong></div>
                     <div class="col-md-1"><span id="countbrgy">{{ (!empty($rdata['to'])?count($rdata['to']):count($barangays)) }}</span></div>
                     <div class="col-md-1"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selposition" id="selposition">
                           <option value="0">Run for</option>
@@ -516,7 +516,7 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selcandidate" id="selcandidate" style="width: 100px;">
                           <option value="0">Candidate</option>
@@ -531,7 +531,7 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selagebracket" id="selagebracket">
                           <option value="0">Age</option>
@@ -542,7 +542,7 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selgender" id="selgender">
                           <option value="0">Gender</option>
@@ -553,7 +553,7 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selcivil" id="selcivil">
                           <option value="0">Civil</option>
@@ -564,7 +564,7 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="col-md-2">
                       <select name="selemp" id="selemp">
                           <option value="0">Employment</option>
@@ -575,13 +575,10 @@
                     </div>
                     <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
                   </div>
-                  <div class="col-md-1">
-                    <div class="col-md-2">
-                      <button type="submit" class="btn btn-primary">
-                          <span class="fa fa-search"></span> View
-                      </button>
-                    </div>
-                    <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="fa fa-search"></span> View
+                    </button>
                   </div>
                 </div>
             </div>
