@@ -71,6 +71,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(3,4,6,8);
     }
+    $i=0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
@@ -86,12 +87,12 @@ class SurveyAnswerController extends Controller
                                                       ->where('question_id',$suranswer->question_id)
                                                       ->first();
                               if($tallyvotes){
-                                    TallyVote::where('id',$tallyvotes->id)
-                                              ->update([
-                                                        'question_id'=>$suranswer->question_id,
-                                                        'option_id'=>$suranswer->option_id,
-                                                        'user_id'=>$suranswer->user_id
-                                                      ]);
+                                    // TallyVote::where('id',$tallyvotes->id)
+                                    //           ->update([
+                                    //                     'question_id'=>$suranswer->question_id,
+                                    //                     'option_id'=>$suranswer->option_id,
+                                    //                     'user_id'=>$suranswer->user_id
+                                    //                   ]);
                               }else{
                                 $tallyvotedata = [
                                                     'survey_detail_id'=>$surveydetailid,
@@ -101,11 +102,13 @@ class SurveyAnswerController extends Controller
                                                     'candidate_id'=>$cquestionoption->candidate_id,
                                                     'user_id'=>$suranswer->user_id
                                                   ];
-                                TallyVote::insert($tallyvotedata);
+                                //TallyVote::insert($tallyvotedata);
                               }
+                              $i++;
                         }
                   });
     }
+    echo "Record(s) Affected: ".$i;
     if(!empty($curquestions) && count($curquestions)<=0){
         echo "Question Info not found!";
     }else if(empty($curquestions)){
@@ -199,6 +202,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(5,7,9,10,11,12);
     }
+    $i=0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
           $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
@@ -207,11 +211,11 @@ class SurveyAnswerController extends Controller
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
                           ->chunk(400, function ($results)use($surveydetailid,$relquestion){
-                                foreach ($results as $lsuans) {
+                                foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                               ->where('question_id',$relquestion->related_question_id)
-                                              ->where('voter_id',$lsuans->voter_id)
+                                              ->where('voter_id',$suranswer->voter_id)
                                               ->orderBy('id')
                                               ->get();
                                   if(!empty($surans[$relquestion->cardinality-1])){
@@ -223,27 +227,29 @@ class SurveyAnswerController extends Controller
                                           if($optioncandidate){
                                             $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                                         ->where('question_id',$relquestion->question_id)
-                                                        ->where('voter_id',$lsuans->voter_id)
+                                                        ->where('voter_id',$suranswer->voter_id)
                                                         ->first();
                                             echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                             $tallyothervotes = TallyOtherVote::where('survey_detail_id',$surveydetailid)
                                                             ->where('question_id',$relquestion->question_id)
-                                                            ->where('voter_id',$lsuans->voter_id)
+                                                            ->where('voter_id',$suranswer->voter_id)
                                                             ->first();
                                             if($tallyothervotes){
-                                                  TallyOtherVote::where('id',$tallyothervotes->id)
-                                                                  ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                                  // TallyOtherVote::where('id',$tallyothervotes->id)
+                                                  //                 ->update(['candidate_id'=>$optioncandidate->candidate_id]);
                                             }else{
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
                                                                       'question_id'=>$relquestion->question_id,
-                                                                      'option_id'=>$lsuans->option_id,
-                                                                      'voter_id'=>$lsuans->voter_id,
+                                                                      'option_id'=>$csurans->option_id,
+                                                                      'voter_id'=>$csurans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$lsuans->user_id
+                                                                      'user_id'=>$csurans->user_id,
+                                                                      'id'=>$suranswer->id
                                                                     ];
-                                                  TallyOtherVote::insert($tallyothervotedata);
+                                                  //TallyOtherVote::insert($tallyothervotedata);
                                             }
+                                            $i++;
                                           }
 
                                         }
@@ -256,11 +262,11 @@ class SurveyAnswerController extends Controller
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
                           ->chunk(400, function ($results)use($surveydetailid,$relquestion){
-                                foreach ($results as $lsuans) {
+                                foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                               ->where('question_id',$relquestion->related_question_id)
-                                              ->where('voter_id',$lsuans->voter_id)
+                                              ->where('voter_id',$suranswer->voter_id)
                                               ->orderBy('id')
                                               ->get();
                                   if(!empty($surans[$relquestion->cardinality-1])){
@@ -272,27 +278,29 @@ class SurveyAnswerController extends Controller
                                           if($optioncandidate){
                                             $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                                         ->where('question_id',$relquestion->question_id)
-                                                        ->where('voter_id',$lsuans->voter_id)
+                                                        ->where('voter_id',$suranswer->voter_id)
                                                         ->first();
                                             echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                             $tallyothervotes = TallyOtherVote::where('survey_detail_id',$surveydetailid)
                                                             ->where('question_id',$relquestion->question_id)
-                                                            ->where('voter_id',$lsuans->voter_id)
+                                                            ->where('voter_id',$suranswer->voter_id)
                                                             ->first();
                                             if($tallyothervotes){
-                                                  TallyOtherVote::where('id',$tallyothervotes->id)
-                                                                  ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                                  // TallyOtherVote::where('id',$tallyothervotes->id)
+                                                  //                 ->update(['candidate_id'=>$optioncandidate->candidate_id]);
                                             }else{
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
                                                                       'question_id'=>$relquestion->question_id,
-                                                                      'option_id'=>$lsuans->option_id,
-                                                                      'voter_id'=>$lsuans->voter_id,
+                                                                      'option_id'=>$csurans->option_id,
+                                                                      'voter_id'=>$csurans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$lsuans->user_id
+                                                                      'user_id'=>$csurans->user_id,
+                                                                      'id'=>$csurans->id
                                                                     ];
-                                                  TallyOtherVote::insert($tallyothervotedata);
+                                                  //TallyOtherVote::insert($tallyothervotedata);
                                             }
+                                            $i++;
                                           }
 
                                         }
@@ -304,6 +312,7 @@ class SurveyAnswerController extends Controller
 
           }
       }
+      echo "Record(s) Affected: ".$i;
       if(!empty($curquestions) && count($curquestions)<=0){
           echo "Questions Info not found!";
       }else if(empty($curquestions)){
@@ -322,6 +331,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(1,2);
     }
+    $i = 0;
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
@@ -337,21 +347,24 @@ class SurveyAnswerController extends Controller
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->first();
                               if($tallyothervotes){
-                                  TallyOtherVote::where('id',$tallyothervotes->id)
-                                                ->update(['option_id'=>$suranswer->option_id]);
+                                  // TallyOtherVote::where('id',$tallyothervotes->id)
+                                  //               ->update(['option_id'=>$suranswer->option_id]);
                               }else{
                                   $tallyothervotedata = [
                                                       'survey_detail_id'=>$surveydetailid,
                                                       'question_id'=>$suranswer->question_id,
                                                       'option_id'=>$suranswer->option_id,
                                                       'voter_id'=>$suranswer->voter_id,
-                                                      'user_id'=>$suranswer->user_id
+                                                      'user_id'=>$suranswer->user_id,
+                                                      'id'=>$suranswer->id
                                                     ];
-                                  TallyOtherVote::insert($tallyothervotedata);
+                                  //TallyOtherVote::insert($tallyothervotedata);
                               }
+                              $i++;
                         }
                   });
     }
+    echo "Record(s) Affected: ".$i;
     if(!empty($curquestions) && count($curquestions)<=0){
         echo "Questions Info not found!";
     }else if(empty($curquestions)){
