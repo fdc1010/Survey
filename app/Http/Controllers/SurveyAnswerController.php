@@ -77,7 +77,7 @@ class SurveyAnswerController extends Controller
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
-                  ->chunk(400, function ($results)use($surveydetailid){
+                  ->chunk(400, function ($results)use($surveydetailid,&$i){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
@@ -210,7 +210,7 @@ class SurveyAnswerController extends Controller
             if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$relquestion){
+                          ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -261,7 +261,7 @@ class SurveyAnswerController extends Controller
             }else{
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$relquestion){
+                          ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -338,7 +338,7 @@ class SurveyAnswerController extends Controller
 
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
-                  ->chunk(400, function ($results)use($surveydetailid){
+                  ->chunk(400, function ($results)use($surveydetailid,&$i){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
