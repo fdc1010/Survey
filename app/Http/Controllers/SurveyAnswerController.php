@@ -99,7 +99,7 @@ class SurveyAnswerController extends Controller
                                                     'option_id'=>$suranswer->option_id,
                                                     'voter_id'=>$suranswer->voter_id,
                                                     'candidate_id'=>$cquestionoption->candidate_id,
-                                                    'user_id'=>$csurans->user_id
+                                                    'user_id'=>$suranswer->user_id
                                                   ];
                                 TallyVote::insert($tallyvotedata);
                               }
@@ -237,10 +237,10 @@ class SurveyAnswerController extends Controller
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
                                                                       'question_id'=>$relquestion->question_id,
-                                                                      'option_id'=>$csurans->option_id,
-                                                                      'voter_id'=>$csurans->voter_id,
+                                                                      'option_id'=>$lsuans->option_id,
+                                                                      'voter_id'=>$lsuans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$csurans->user_id
+                                                                      'user_id'=>$lsuans->user_id
                                                                     ];
                                                   TallyOtherVote::insert($tallyothervotedata);
                                             }
@@ -286,10 +286,10 @@ class SurveyAnswerController extends Controller
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
                                                                       'question_id'=>$relquestion->question_id,
-                                                                      'option_id'=>$csurans->option_id,
-                                                                      'voter_id'=>$csurans->voter_id,
+                                                                      'option_id'=>$lsuans->option_id,
+                                                                      'voter_id'=>$lsuans->voter_id,
                                                                       'candidate_id'=>$optioncandidate->candidate_id,
-                                                                      'user_id'=>$csurans->user_id
+                                                                      'user_id'=>$lsuans->user_id
                                                                     ];
                                                   TallyOtherVote::insert($tallyothervotedata);
                                             }
