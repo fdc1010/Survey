@@ -38,6 +38,8 @@
         @endif
 				@php
 				$surveyorassignment = new App\Models\SurveyorAssignment;
+				$totalquota = $surveyorassignment->getAllSurveyQuota();
+				$totalcount = $surveyorassignment->getAllSurveyCount();
 				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
@@ -50,14 +52,8 @@
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
 										@if($column['label']=="Quota")
-											@php
-											$totalquota = $surveyorassignment->getAllSurveyQuota();
-											@endphp
 											<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
 										@elseif($column['label']=="Count")
-											@php
-											$totalcount = $surveyorassignment->getAllSurveyCount();
-											@endphp
 											<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
 										@else
 		                  <th>{!! $column['label'] !!}</th>
