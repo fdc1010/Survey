@@ -61,15 +61,18 @@
             <tfoot>
               <tr>
                 {{-- Table columns --}}
+								@php
+								$surveyorassignment = new App\Models\SurveyorAssignment;
+								@endphp
                 @foreach ($crud->columns as $column)
 									@if($column['label']=="Quota")
 										@php
-										$totalquota = App\Models\SurveyorAssignment::getAllSurveyQuota();
+										$totalquota = $surveyorassignment->getAllSurveyQuota();
 										@endphp
 										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
 									@elseif($column['label']=="Count")
 										@php
-										$totalcount = App\Models\SurveyorAssignment::getAllSurveyCount();
+										$totalcount = $surveyorassignment->getAllSurveyCount();
 										@endphp
 										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
 									@else
