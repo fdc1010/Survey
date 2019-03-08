@@ -283,14 +283,14 @@ class SurveyAnswerController extends Controller
     $curquestion = Question::find($questionId);
     if($curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
-      
+
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
                   ->chunk(400, function ($results){
                         foreach ($results as $suranswer) {
                           if($suranswer){
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
-                              echo "<br>Your Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                           }else{
                               echo "<br>Voter's Answer not found!";
                           }
