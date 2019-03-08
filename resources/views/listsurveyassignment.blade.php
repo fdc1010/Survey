@@ -38,7 +38,6 @@
         @endif
 				@php
 				$surveyorassignment = $crud->getModel();
-				dd($surveyorassignment);
 				$totalquota = $surveyorassignment->getAllSurveyQuota();
 				$totalcount = $surveyorassignment->getAllSurveyCount();
 				$totalprogress = round(($totalcount / $totalquota) * 100,2);
