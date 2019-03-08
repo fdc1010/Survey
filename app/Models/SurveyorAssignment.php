@@ -78,10 +78,10 @@ class SurveyorAssignment extends Model
 
 		return (($this->count/$this->quota)*100);
 	}
-  public function getAllSurveyCount(){
+  public static function getAllSurveyCount(){
     return  $this->sum('count');
   }
-  public function getAllSurveyQuota(){
+  public static function getAllSurveyQuota(){
     return  $this->sum('quota');
   }
   public function getProgress(){
