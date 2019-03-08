@@ -108,7 +108,7 @@ class SurveyAnswerController extends Controller
                         }
                   });
     }
-    echo "Record(s) Affected: ".$i;
+    echo "<br>Record(s) Affected: ".$i;
     if(!empty($curquestions) && count($curquestions)<=0){
         echo "Question Info not found!";
     }else if(empty($curquestions)){
@@ -312,7 +312,7 @@ class SurveyAnswerController extends Controller
 
           }
       }
-      echo "Record(s) Affected: ".$i;
+      echo "<br>Record(s) Affected: ".$i;
       if(!empty($curquestions) && count($curquestions)<=0){
           echo "Questions Info not found!";
       }else if(empty($curquestions)){
@@ -364,7 +364,7 @@ class SurveyAnswerController extends Controller
                         }
                   });
     }
-    echo "Record(s) Affected: ".$i;
+    echo "<br>Record(s) Affected: ".$i;
     if(!empty($curquestions) && count($curquestions)<=0){
         echo "Questions Info not found!";
     }else if(empty($curquestions)){
