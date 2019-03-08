@@ -145,7 +145,9 @@ class SurveyAnswerController extends Controller
                                                               'candidate_id'=>$optioncandidate->candidate_id,
                                                               'user_id'=>$csurans->user_id
                                                             ];
-                                      TallyOtherVote::updateOrCreate($tallyothervotedata);
+                                      $result=TallyOtherVote::updateOrCreate($tallyothervotedata);
+
+                                      echo "<br>".$result;
                                     }
 
                                   }
@@ -185,7 +187,9 @@ class SurveyAnswerController extends Controller
                                                               'candidate_id'=>$optioncandidate->candidate_id,
                                                               'user_id'=>$csurans->user_id
                                                             ];
-                                      TallyOtherVote::updateOrCreate($tallyothervotedata);
+                                      $result = TallyOtherVote::updateOrCreate($tallyothervotedata);
+
+                                      echo "<br>".$result;
                                     }
 
                                   }
