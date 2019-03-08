@@ -487,7 +487,7 @@
                         <a href="#" id="btn_printdetails"><strong><span class="fa fa-plus" id="spanprintdetails"></span></strong></a>
                     </div>
                     <div class="col-md-3">
-                        <a href="#" id="printpreview" class="btn btn-primary" style="width: 90%;"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
+                        <a href="#" id="printpreview" class="btn btn-primary" style="width: 40%;"><span class="fa fa-file-pdf-o"></span> Print Preview</a>
                     </div>
                 </div>
             </div>
@@ -562,7 +562,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
                   <div class="col-md-3">
-                      <a href="#" id="viewsurvey" class="btn btn-primary" style="width: 90%;"><span class="fa fa-search"></span> View</a>
+                      <a href="#" id="viewsurvey" class="btn btn-primary" style="width: 40%;"><span class="fa fa-search"></span> View</a>
                   </div>
                 </div>
             </div>
