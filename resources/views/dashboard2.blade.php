@@ -504,16 +504,19 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selcandidate" id="selcandidate">
-                        <option value="0">Candidate</option>
-                      @foreach($positions as $position)
-                        <optgroup label="{{ $position->name }}">
-                        @foreach($position->candidates as $candidate)
-                          <option style="width: 100px;" value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
+                    <div class="select-wrap">
+                      <select name="selcandidate" id="selcandidate" class="select-box">
+                          <option value="0">Candidate</option>
+                        @foreach($positions as $position)
+                          <optgroup label="{{ $position->name }}">
+                          @foreach($position->candidates as $candidate)
+                            <option value="{{ $candidate->id }}" {{ ((!empty($rdata['selcandidate'])&&$rdata['selcandidate']==$candidate->id)?"selected='selected'":"") }}>{{ $candidate->voter->full_name }}</option>
+                          @endforeach
+                          </optgroup>
                         @endforeach
-                        </optgroup>
-                      @endforeach
-                    </select>
+                      </select>
+                      <div class="select-point">v</div>
+                    </div>
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></div>
                   <div class="col-md-2">
@@ -2206,6 +2209,43 @@
 	<link href="{{ asset('css/c3.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
     <link href="{{ asset('css/iCheck/flat/green.css') }}" rel="stylesheet">
+    <style>
+    .select-wrap
+    {
+       position: relative;
+       box-sizing: border-box;
+       width: 260px;
+       overflow: hidden;
+    }
+    .select-box
+    {
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       appearance: none;
+       width: 260px;
+       padding: 9px 9px 11px 13px;
+       background-color: #f1f1f1;
+       border: none;
+       border-radius: 3px;
+       outline: none;
+       font: 300 15px 'Open Sans', sans-serif;
+       color: #666;
+       cursor: pointer;
+    }
+    .select-point
+    {
+       position: absolute;
+       top: 8px;
+       right: 13px;
+       font: 300 16px 'Open Sans', sans-serif;
+       color: #666;
+    }
+    select:-moz-focusring
+    {
+       color: transparent;
+       text-shadow: 0 0 0 #000;
+    }
+    </style>
 @endsection
 @section('chartsjs')
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
