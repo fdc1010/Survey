@@ -534,6 +534,7 @@
                     </select>
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>
+                <div class="box-body">
                   <div class="col-md-2">
                     <select name="selgender" id="selgender" style="width: 120px;">
                         <option value="0">Gender</option>
@@ -565,8 +566,9 @@
                     <button type="submit" class="btn btn-primary">
                         <span class="fa fa-search"></span> View
                     </button>
-                  </div>                  
+                  </div>
                 </div>
+              </div>
             </div>
         </div>
 
