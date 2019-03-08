@@ -79,7 +79,8 @@ class SurveyorAssignment extends Model
 		return (($this->count/$this->quota)*100);
 	}
   public function getAllSurveyCount(){
-    $countsurvey = SurveyAnswer::whereNotNull('user_id')
+    $countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+										->where('user_id',$this->user_id)
 										->select(['voter_id'])
 										->groupBy('voter_id')
 										->get();
