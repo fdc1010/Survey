@@ -79,7 +79,7 @@ class SurveyorAssignment extends Model
 		return (($this->count/$this->quota)*100);
 	}
   public function getAllSurveyCount(){
-    $countsurvey = SurveyAnswer::where('question_id',4)
+    $countsurvey = SurveyAnswer::where('question_id',4) // Set by default to Question ID 4. for Mayor... Update this if id changes..
 										            ->get();
 		if($countsurvey)
 			return count($countsurvey);
