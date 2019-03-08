@@ -504,7 +504,7 @@
                   <div class="col-md-1"><span id="countbrgy">{{ (!empty($rdata['to'])?count($rdata['to']):count($barangays)) }}</span></div>
                   <div class="col-md-1"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selposition" id="selposition" style="width: 120px;">
+                    <select name="selposition" id="selposition" style="width: 120px; padding-top: 10px;">
                         <option value="0">Run for</option>
                       @foreach($selinitpositions as $position)
                         <option value="{{ $position->id }}" {{ ((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
@@ -513,7 +513,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selcandidate" id="selcandidate" style="width: 120px;">
+                    <select name="selcandidate" id="selcandidate" style="width: 120px; padding-top: 10px;">
                         <option value="0">Candidate</option>
                       @foreach($positions as $position)
                         <optgroup label="{{ $position->name }}">
