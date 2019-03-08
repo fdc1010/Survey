@@ -477,7 +477,7 @@
                     <div class="col-md-2"><strong>Election Returns:</strong></div>
                     <div class="col-md-3">
                         <select name="selelection" id="selelection" style="width: 120px;">
-                        	<option value="">--Select Election--</option>
+                        	<option value="">Select Election</option>
                         @foreach($selinitelections as $election)
                             <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
                         @endforeach
