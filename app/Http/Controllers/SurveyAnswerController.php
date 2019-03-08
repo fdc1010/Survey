@@ -69,7 +69,7 @@ class SurveyAnswerController extends Controller
         $qids = explode(',',$request->qid);
         $questionId = $qids;
     }else{
-        $questionId = array(3,4,6,8);
+        $questionId = array(4,6,8,3);
     }
     foreach($questionId as $qid){
         echo $qid.",";
