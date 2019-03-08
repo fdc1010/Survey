@@ -331,14 +331,14 @@ class SurveyAnswerController extends Controller
       							if($optionproblem){
                       info("Storing tally for brgy concerns: #".$voteranswers['questionId']);
                       info($optionproblem);
-      								$voterbrgy = Voter::with('precinct')->find($voterid);
+      								$voterbrgy = Voter::find($voterid);
       								$tallyproblem = new TallyOtherVote;
                       $tallyproblem->question_id = $voteranswers['questionId'];
       								$tallyproblem->option_id = $optid;
       								$tallyproblem->voter_id = $voterid;
                       $tallyproblem->user_id = $userid;
       								$tallyproblem->survey_detail_id = $surveydetailid;
-      								$tallyproblem->barangay_id = $voterbrgy->precinct->barangay_id;
+      								$tallyproblem->barangay_id = $voterbrgy->barangay_id;
       								$tallyproblem->save();
       							}
       						}

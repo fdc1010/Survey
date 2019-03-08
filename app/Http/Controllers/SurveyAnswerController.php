@@ -349,16 +349,19 @@ class SurveyAnswerController extends Controller
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              $voterbrgy = Voter::find($suranswer->voter_id);
                               $tallyothervotes = TallyOtherVote::where('survey_detail_id',$surveydetailid)
                                               ->where('question_id',$suranswer->question_id)
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->first();
                               if($tallyothervotes){
                                   TallyOtherVote::where('id',$tallyothervotes->id)
-                                                ->update(['option_id'=>$suranswer->option_id]);
+                                                ->update(['barangay_id'=>$voterbrgy->barangay_id,
+                                                          'option_id'=>$suranswer->option_id]);
                               }else{
                                   $tallyothervotedata = [
                                                       'survey_detail_id'=>$surveydetailid,
+                                                      'barangay_id'=>$voterbrgy->barangay_id,
                                                       'question_id'=>$suranswer->question_id,
                                                       'option_id'=>$suranswer->option_id,
                                                       'voter_id'=>$suranswer->voter_id,
