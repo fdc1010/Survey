@@ -57,7 +57,6 @@ class SurveyorAssignmentCrudController extends CrudController
 		$this->crud->removeColumn(['user_id','count','task','description','areas','survey_detail_id']);
 		$this->crud->removeField(['user_id','progress','areas','survey_detail_id']);
         $this->crud->addColumn([
-          'visibleInExport' => true,
             'label' => "User",
 			'type' => 'select',
 			'name' => 'user_id', // the relationship name in your Model

@@ -25,6 +25,7 @@ class CandidateCrudController extends CrudController
         $this->crud->setModel('App\Models\Candidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/candidate');
         $this->crud->setEntityNameStrings('candidate', 'candidates');
+        $this->crud->enableExportButtons();
         if(backpack_user()->hasPermissionTo('Edit')){
           $this->crud->allowAccess(['update']);
         }else{

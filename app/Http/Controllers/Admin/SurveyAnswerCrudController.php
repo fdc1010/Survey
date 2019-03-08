@@ -25,7 +25,8 @@ class SurveyAnswerCrudController extends CrudController
         $this->crud->setModel('App\Models\SurveyAnswer');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveyanswer');
         $this->crud->setEntityNameStrings('survey answer', 'Survey Answers');
-		$this->crud->denyAccess(['update', 'create', 'delete']);
+		    $this->crud->denyAccess(['update', 'create', 'delete']);
+        $this->crud->enableExportButtons();
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

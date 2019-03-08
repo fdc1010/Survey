@@ -78,6 +78,12 @@ class SurveyorAssignment extends Model
 
 		return (($this->count/$this->quota)*100);
 	}
+  public function getAllSurveyCount(){
+    return  $this->sum('count');
+  }
+  public function getAllSurveyQuota(){
+    return  $this->sum('quota');
+  }
   public function getProgress(){
 		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)

@@ -25,6 +25,7 @@ class BarangayCrudController extends CrudController
         $this->crud->setModel('App\Models\Barangay');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/barangay');
         $this->crud->setEntityNameStrings('barangay', 'barangays');
+        $this->crud->enableExportButtons();
         if(backpack_user()->hasPermissionTo('Edit')){
           $this->crud->allowAccess(['update']);
         }else{

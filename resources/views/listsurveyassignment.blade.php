@@ -62,7 +62,19 @@
               <tr>
                 {{-- Table columns --}}
                 @foreach ($crud->columns as $column)
-                  <th>{!! $column['label'] !!}</th>
+									@if($column['label']=="quota")
+										@php
+										$totalquota = App\Models\SurveyorAssignment::getAllSurveyQuota();
+										@endphp
+										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
+									@elseif($column['label']=="count")
+										@php
+										$totalcount = App\Models\SurveyorAssignment::getAllSurveyCount();
+										@endphp
+										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
+									@else
+	                  <th>{!! $column['label'] !!}</th>
+									@endif
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
