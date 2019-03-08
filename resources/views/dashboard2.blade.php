@@ -562,7 +562,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
                   <div class="col-md-3">
-                      <a href="#" id="viewsurvey" class="btn-primary"><span class="fa fa-search"></span> View</a>
+                      <a href="#" id="viewsurvey" class="btn btn-primary"><span class="fa fa-search"></span> View</a>
                   </div>
                 </div>
             </div>
