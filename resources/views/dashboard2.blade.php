@@ -2214,7 +2214,7 @@
     {
        position: relative;
        box-sizing: border-box;
-       width: 260px;
+       width: 80px;
        overflow: hidden;
     }
     .select-box
@@ -2222,13 +2222,13 @@
        -webkit-appearance: none;
        -moz-appearance: none;
        appearance: none;
-       width: 260px;
+       width: 80px;
        padding: 9px 9px 11px 13px;
        background-color: #f1f1f1;
        border: none;
        border-radius: 3px;
        outline: none;
-       font: 300 15px 'Open Sans', sans-serif;
+       font: 100 12px 'Open Sans', sans-serif;
        color: #666;
        cursor: pointer;
     }
@@ -2237,7 +2237,7 @@
        position: absolute;
        top: 8px;
        right: 13px;
-       font: 300 16px 'Open Sans', sans-serif;
+       font: 100 16px 'Open Sans', sans-serif;
        color: #666;
     }
     select:-moz-focusring
