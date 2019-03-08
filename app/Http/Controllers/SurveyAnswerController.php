@@ -73,7 +73,7 @@ class SurveyAnswerController extends Controller
     }
     $curquestions = Question::whereIn($questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
                   ->chunk(400, function ($results)use($surveydetailid){
