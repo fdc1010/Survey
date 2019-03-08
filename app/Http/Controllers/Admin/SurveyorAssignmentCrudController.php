@@ -45,6 +45,7 @@ class SurveyorAssignmentCrudController extends CrudController
         }else{
           $this->crud->denyAccess(['delete']);
         }
+        
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -129,7 +130,7 @@ $this->crud->addColumn([
 			'pivot'     => true,
 		])->afterField('user_id');*/
 		// add asterisk for fields that are required in SurveyorAssignmentRequest
-      $this->crud->removeAllButtonsFromStack('line');
+
 
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
