@@ -137,17 +137,26 @@ class SurveyAnswerController extends Controller
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
                                       echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
-                                      $tallyothervotedata = [
-                                                              'survey_detail_id'=>$surveydetailid,
-                                                              'question_id'=>$relquestion->question_id,
-                                                              'option_id'=>$csurans->option_id,
-                                                              'voter_id'=>$csurans->voter_id,
-                                                              'candidate_id'=>$optioncandidate->candidate_id,
-                                                              'user_id'=>$csurans->user_id
-                                                            ];
-                                      $result=TallyOtherVote::updateOrCreate($tallyothervotedata);
-
-                                      echo "<br>".$result;
+                                      $tallyothervotes = TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                      ->where('question_id',$relquestion->question_id)
+                                                      ->where('voter_id',$lsuans->voter_id)
+                                                      ->first();
+                                      if($tallyothervotes){
+                                            TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                            ->where('question_id',$relquestion->question_id)
+                                                            ->where('voter_id',$lsuans->voter_id)
+                                                            ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                      }else{
+                                            $tallyothervotedata = [
+                                                                'survey_detail_id'=>$surveydetailid,
+                                                                'question_id'=>$relquestion->question_id,
+                                                                'option_id'=>$csurans->option_id,
+                                                                'voter_id'=>$csurans->voter_id,
+                                                                'candidate_id'=>$optioncandidate->candidate_id,
+                                                                'user_id'=>$csurans->user_id
+                                                              ];
+                                            TallyOtherVote::insert($tallyothervotedata);
+                                      }
                                     }
 
                                   }
@@ -179,17 +188,26 @@ class SurveyAnswerController extends Controller
                                                   ->where('voter_id',$lsuans->voter_id)
                                                   ->first();
                                       echo "<br>Updating/Storing tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
-                                      $tallyothervotedata = [
-                                                              'survey_detail_id'=>$surveydetailid,
-                                                              'question_id'=>$relquestion->question_id,
-                                                              'option_id'=>$csurans->option_id,
-                                                              'voter_id'=>$csurans->voter_id,
-                                                              'candidate_id'=>$optioncandidate->candidate_id,
-                                                              'user_id'=>$csurans->user_id
-                                                            ];
-                                      $result = TallyOtherVote::updateOrCreate($tallyothervotedata);
-
-                                      echo "<br>".$result;
+                                      $tallyothervotes = TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                      ->where('question_id',$relquestion->question_id)
+                                                      ->where('voter_id',$lsuans->voter_id)
+                                                      ->first();
+                                      if($tallyothervotes){
+                                            TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                                            ->where('question_id',$relquestion->question_id)
+                                                            ->where('voter_id',$lsuans->voter_id)
+                                                            ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                      }else{
+                                            $tallyothervotedata = [
+                                                                'survey_detail_id'=>$surveydetailid,
+                                                                'question_id'=>$relquestion->question_id,
+                                                                'option_id'=>$csurans->option_id,
+                                                                'voter_id'=>$csurans->voter_id,
+                                                                'candidate_id'=>$optioncandidate->candidate_id,
+                                                                'user_id'=>$csurans->user_id
+                                                              ];
+                                            TallyOtherVote::insert($tallyothervotedata);
+                                      }
                                     }
 
                                   }
