@@ -71,7 +71,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(3,4,6,8);
     }
-    $curquestions = Question::whereIn($questionId)->get();
+    $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -199,7 +199,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(5,7,9,10,11,12);
     }
-    $curquestions = Question::whereIn($questionId)->get();
+    $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
           $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
           if($relquestion){
@@ -322,7 +322,7 @@ class SurveyAnswerController extends Controller
     }else{
         $questionId = array(1,2);
     }
-    $curquestions = Question::whereIn($questionId)->get();
+    $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
 
