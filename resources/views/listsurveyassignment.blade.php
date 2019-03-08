@@ -51,13 +51,7 @@
                     data-priority="{{ $column['priority'] }}"
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
-										@if($column['label']=="Quota")
-											<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
-										@elseif($column['label']=="Count")
-											<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
-										@else
-		                  <th>{!! $column['label'] !!}</th>
-										@endif
+										!! $column['label'] !!}
                   </th>
                 @endforeach
 
