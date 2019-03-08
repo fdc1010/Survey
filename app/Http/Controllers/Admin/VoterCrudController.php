@@ -28,10 +28,14 @@ class VoterCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/voter');
         $this->crud->setEntityNameStrings('voter', 'voters');
 
-        if(backpack_user()->hasRole('Admin')){
-          $this->crud->allowAccess(['create','update','delete']);
-        }else{
-          $this->crud->denyAccess(['create','update','delete']);
+        if(backpack_user()->hasPermissionTo('edit')){
+          $this->crud->allowAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('add')){
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('delete')){
+          $this->crud->denyAccess(['delete']);
         }
         /*
         |--------------------------------------------------------------------------

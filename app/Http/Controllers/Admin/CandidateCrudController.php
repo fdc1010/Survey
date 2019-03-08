@@ -25,7 +25,11 @@ class CandidateCrudController extends CrudController
         $this->crud->setModel('App\Models\Candidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/candidate');
         $this->crud->setEntityNameStrings('candidate', 'candidates');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

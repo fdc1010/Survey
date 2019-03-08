@@ -25,7 +25,11 @@ class AssignmentDetailCrudController extends CrudController
         $this->crud->setModel('App\Models\AssignmentDetail');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/assignmentdetail');
         $this->crud->setEntityNameStrings('assignmentdetail', 'assignment_details');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

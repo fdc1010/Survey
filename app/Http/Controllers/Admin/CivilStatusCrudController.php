@@ -25,7 +25,11 @@ class CivilStatusCrudController extends CrudController
         $this->crud->setModel('App\Models\CivilStatus');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/civilstatus');
         $this->crud->setEntityNameStrings('civil status', 'Civil Status');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

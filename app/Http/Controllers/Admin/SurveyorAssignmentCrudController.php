@@ -28,6 +28,11 @@ class SurveyorAssignmentCrudController extends CrudController
         $this->crud->setEntityNameStrings('surveyor assignment', 'Surveyor Assignments');
 		    $this->crud->enableDetailsRow();
 		    $this->crud->allowAccess('details_row');
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

@@ -25,7 +25,11 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->setModel('App\Models\BarangaySurveyable');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/barangaysurveyable');
         $this->crud->setEntityNameStrings('barangay surveyable', 'Barangay Surveyables');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -59,7 +63,7 @@ class BarangaySurveyableCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        
+
 		$redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

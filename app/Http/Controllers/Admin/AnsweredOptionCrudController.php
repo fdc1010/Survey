@@ -25,7 +25,11 @@ class AnsweredOptionCrudController extends CrudController
         $this->crud->setModel('App\Models\AnsweredOption');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/answeredoption');
         $this->crud->setEntityNameStrings('answered option', 'Answered Options');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

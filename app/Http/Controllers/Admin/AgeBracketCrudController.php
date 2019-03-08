@@ -25,7 +25,11 @@ class AgeBracketCrudController extends CrudController
         $this->crud->setModel('App\Models\AgeBracket');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/agebracket');
         $this->crud->setEntityNameStrings('age bracket', 'Age Brackets');
-
+        if(backpack_user()->hasRole('Admin')){
+          $this->crud->allowAccess(['create','update','delete']);
+        }else{
+          $this->crud->denyAccess(['create','update','delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
