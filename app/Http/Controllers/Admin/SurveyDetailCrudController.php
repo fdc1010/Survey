@@ -25,7 +25,21 @@ class SurveyDetailCrudController extends CrudController
         $this->crud->setModel('App\Models\SurveyDetail');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveydetail');
         $this->crud->setEntityNameStrings('survey detail', 'Survey Details');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

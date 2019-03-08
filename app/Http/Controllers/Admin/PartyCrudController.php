@@ -25,7 +25,21 @@ class PartyCrudController extends CrudController
         $this->crud->setModel('App\Models\Party');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/party');
         $this->crud->setEntityNameStrings('party', 'parties');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

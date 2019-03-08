@@ -25,7 +25,21 @@ class LocationCrudController extends CrudController
         $this->crud->setModel('App\Models\Location');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/location');
         $this->crud->setEntityNameStrings('Areas', 'areas');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -110,7 +124,7 @@ class LocationCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\Sitio"
 	    ]);
-		
+
         // add asterisk for fields that are required in LocationRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

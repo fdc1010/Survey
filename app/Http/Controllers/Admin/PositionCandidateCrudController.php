@@ -18,7 +18,7 @@ use App\Models\Candidate;
 class PositionCandidateCrudController extends CrudController
 {
     public function setup()
-    {		
+    {
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
@@ -29,6 +29,21 @@ class PositionCandidateCrudController extends CrudController
         $this->crud->setEntityNameStrings('position candidate', 'Position Candidates');
 		$this->crud->enableDetailsRow();
 		$this->crud->allowAccess('details_row');
+    if(backpack_user()->hasPermissionTo('Edit')){
+      $this->crud->allowAccess(['update']);
+    }else{
+      $this->crud->denyAccess(['update']);
+    }
+    if(backpack_user()->hasPermissionTo('Add')){
+      $this->crud->allowAccess(['create']);
+    }else{
+      $this->crud->denyAccess(['create']);
+    }
+    if(backpack_user()->hasPermissionTo('Delete')){
+      $this->crud->allowAccess(['delete']);
+    }else{
+      $this->crud->denyAccess(['delete']);
+    }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -40,7 +55,7 @@ class PositionCandidateCrudController extends CrudController
 		$this->crud->removeColumn('extras');
 		$this->crud->removeField('extras');
 		/*$this->crud->addColumn([
-            'name' => 'options',			
+            'name' => 'options',
             'label' => 'Tagged Options for Qualities',
             'type' => 'model_function',
 			'function_name' => 'getOptionSelections',
@@ -68,15 +83,15 @@ class PositionCandidateCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
 		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
-		$options = $this->crud->entry->extras;	
-		
+		$options = $this->crud->entry->extras;
+
 		foreach($options['options'] as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
-			]);			
+			]);
 		}*/
-		
+
         return $redirect_location;
     }
 
@@ -86,17 +101,17 @@ class PositionCandidateCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+
 		/*$position = $this->crud->entry->id; // <-- SHOULD WORK
-		$opdetail = OptionPosition::where('position_id',$position)->delete();		
+		$opdetail = OptionPosition::where('position_id',$position)->delete();
 		$options = $this->crud->entry->extras;
 		foreach($options['options'] as $option){
 			$optionposition = OptionPosition::create([
 				'position_id' => $position,
 				'option_id' => $option
-			]);			
+			]);
 		}*/
-		
+
         return $redirect_location;
     }
 	public function showDetailsRow($id){
@@ -112,6 +127,6 @@ class PositionCandidateCrudController extends CrudController
 		}
 		$result .= "</ul>";
 		return $result;
-		
+
 	}
 }

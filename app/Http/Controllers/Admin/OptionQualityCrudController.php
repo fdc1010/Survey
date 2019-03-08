@@ -26,7 +26,21 @@ class OptionQualityCrudController extends CrudController
         $this->crud->setModel('App\Models\OptionQuality');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionquality');
         $this->crud->setEntityNameStrings('option tag quality', 'Option Tag Qualities');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -62,12 +76,12 @@ class OptionQualityCrudController extends CrudController
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
-			'name' => 'positions', 
+			'name' => 'positions',
 			'entity' => 'positions',
-			'attribute' => 'name', 
+			'attribute' => 'name',
 			'model' => "App\Models\PositionCandidate"
 		]);
-		
+
         // add asterisk for fields that are required in OptionQualityRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -93,7 +107,7 @@ class OptionQualityCrudController extends CrudController
 		/*$optionquality = OptionQuality::find($oqid);
 		$optionquality->positions = $positionsarr;
 		$optionquality->save();*/
-		
+
         return $redirect_location;
     }
 
@@ -111,13 +125,13 @@ class OptionQualityCrudController extends CrudController
 			$optionquality = OptionPosition::create([
 				'position_id' => $posid,
 				'option_id' => $oqid
-			]);			
+			]);
 			array_push($positionsarr,array('positions'=>$posid));
 		}
 		/*$optionquality = OptionQuality::find($oqid);
 		$optionquality->positions = $positionsarr;
 		$optionquality->save();*/
-		
+
         return $redirect_location;
     }
 	public function destroy($id)

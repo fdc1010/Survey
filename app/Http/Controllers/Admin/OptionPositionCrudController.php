@@ -25,7 +25,21 @@ class OptionPositionCrudController extends CrudController
         $this->crud->setModel('App\Models\OptionPosition');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/optionposition');
         $this->crud->setEntityNameStrings('option tag position', 'Option Tag Positions');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -34,7 +48,7 @@ class OptionPositionCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		
+
 		$this->crud->removeColumns(['option_id','position_id','extras','extras_2']);
 		$this->crud->removeFields(['option_id','position_id','extras','extras_2']);
 		$this->crud->orderBy('position_id');
@@ -53,7 +67,7 @@ class OptionPositionCrudController extends CrudController
 			'entity' => 'options', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
-	    ]);		
+	    ]);
 		$this->crud->addField([
             'name' => 'position_id',
             'type' => 'select',
@@ -70,7 +84,7 @@ class OptionPositionCrudController extends CrudController
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
-		
+
 		// add asterisk for fields that are required in OptionPositionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -84,12 +98,12 @@ class OptionPositionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		/*$positions = $this->crud->entry->position_id;
 		foreach($positions as $position){
-			$options = $this->crud->entry->option_id;		
+			$options = $this->crud->entry->option_id;
 			foreach($options['options'] as $option){
 				$optionposition = OptionPosition::create([
 					'position_id' => $position,
 					'option_id' => $option
-				]);			
+				]);
 			}
 		}*/
         return $redirect_location;
@@ -103,13 +117,13 @@ class OptionPositionCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
 		/*$positions = $this->crud->entry->position_id;
 		foreach($positions as $position){
-		  $opdetail = OptionPosition::where('position_id',$position)->delete();		
+		  $opdetail = OptionPosition::where('position_id',$position)->delete();
 		  $options = $this->crud->entry->option_id;
-		  foreach($options as $option){			
+		  foreach($options as $option){
 			  $optionposition = OptionPosition::create([
 				  'position_id' => $position,
 				  'option_id' => $option
-			  ]);			
+			  ]);
 		  }
 		}*/
         return $redirect_location;

@@ -27,7 +27,21 @@ class QualityPositionCrudController extends CrudController
         $this->crud->setModel('App\Models\QualityPosition');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/qualityposition');
         $this->crud->setEntityNameStrings('option tag qualities per position', 'Option Tag Qualities Per Position');
-
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -39,13 +53,13 @@ class QualityPositionCrudController extends CrudController
 		$this->crud->removeColumns(['option_id','position_id','options','positions']);
 		$this->crud->removeFields(['option_id','position_id','options','positions','description']);
 		$this->crud->denyAccess(['update']);
-		
+
 		$this->crud->addField([
 			'label' => "Options",
 			'type' => 'checklistchkall2',
-			'name' => 'options', 
+			'name' => 'options',
 			'entity' => 'options',
-			'attribute' => 'option', 
+			'attribute' => 'option',
 			'model' => "App\Models\QuestionOption", // on create&update, do you need to add/delete pivot table entries?
 			'compare_value' => 1,
 			'compare_field' => 'for_candidate_quality',
@@ -53,13 +67,13 @@ class QualityPositionCrudController extends CrudController
 			'entity3' => 'positions',
 			'entity4' => 'options'
 		]);
-		
+
 		$this->crud->addField([
 			'label' => "Positions",
 			'type' => 'checklistchkall',
-			'name' => 'positions', 
+			'name' => 'positions',
 			'entity' => 'positions',
-			'attribute' => 'name', 
+			'attribute' => 'name',
 			'model' => "App\Models\PositionCandidate"
 		]);
         // add asterisk for fields that are required in QualityPositionRequest
@@ -73,7 +87,7 @@ class QualityPositionCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-		
+
 		$positions = $this->crud->entry->positions;
 		$options = $this->crud->entry->options;
 		foreach($options as $optid){
@@ -102,11 +116,11 @@ class QualityPositionCrudController extends CrudController
 		$options = $this->crud->entry->options;
 		foreach($options as $optid){
 			foreach($positions as $posid){
-				OptionPosition::where('option_id',$optid)->where('position_id',$posid)->delete();				
+				OptionPosition::where('option_id',$optid)->where('position_id',$posid)->delete();
 			}
 			OptionQuality::where('option_id',$optid)->delete();
 		}
-		
+
 		foreach($options as $optid){
 			foreach($positions as $posid){
 				$optionquality = OptionPosition::updateOrCreate([

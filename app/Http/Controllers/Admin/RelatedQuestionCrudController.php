@@ -25,7 +25,21 @@ class RelatedQuestionCrudController extends CrudController
         $this->crud->setModel('App\Models\RelatedQuestion');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/relatedquestion');
         $this->crud->setEntityNameStrings('related question', 'Related Questions');
-		
+        if(backpack_user()->hasPermissionTo('Edit')){
+          $this->crud->allowAccess(['update']);
+        }else{
+          $this->crud->denyAccess(['update']);
+        }
+        if(backpack_user()->hasPermissionTo('Add')){
+          $this->crud->allowAccess(['create']);
+        }else{
+          $this->crud->denyAccess(['create']);
+        }
+        if(backpack_user()->hasPermissionTo('Delete')){
+          $this->crud->allowAccess(['delete']);
+        }else{
+          $this->crud->denyAccess(['delete']);
+        }  
 		$this->crud->removeColumns(['question_id','related_question_id','description']);
 		$this->crud->removeFields(['question_id','related_question_id','description']);
 		$this->crud->addColumn([
