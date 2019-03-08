@@ -468,7 +468,7 @@
 				        <div class="box-body">
                 	  <div class="col-md-1"><strong>Survey:</strong></div>
                     <div class="col-md-2">
-                        <select name="selsurvey" id="selsurvey">
+                        <select name="selsurvey" id="selsurvey" style="width: 120px;">
                         @foreach($selinitsurveydetails as $surveydetail)
                             <option value="{{ $surveydetail->id }}" {{ ((!empty($rdata['selsurvey'])&&$rdata['selsurvey']==$surveydetail->id)?"selected='selected'":"") }}>{{ $surveydetail->subject }}</option>
                         @endforeach
@@ -476,7 +476,7 @@
                     </div>
                     <div class="col-md-2"><strong>Election Returns:</strong></div>
                     <div class="col-md-3">
-                        <select name="selelection" id="selelection">
+                        <select name="selelection" id="selelection" style="width: 120px;">
                         	<option value="">--Select Election--</option>
                         @foreach($selinitelections as $election)
                             <option value="{{ $election->id }}" {{ ((!empty($rdata['selelection'])&&$rdata['selelection']==$election->id)?"selected='selected'":"") }}>{{ $election->name }}</option>
@@ -504,7 +504,7 @@
                   <div class="col-md-1"><span id="countbrgy">{{ (!empty($rdata['to'])?count($rdata['to']):count($barangays)) }}</span></div>
                   <div class="col-md-1"><a href="#" id="btn_brgydetails"><span class="fa fa-plus" id="spanbrgydetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selposition" id="selposition">
+                    <select name="selposition" id="selposition" style="width: 120px;">
                         <option value="0">Run for</option>
                       @foreach($selinitpositions as $position)
                         <option value="{{ $position->id }}" {{ ((!empty($rdata['selposition'])&&$rdata['selposition']==$position->id)?"selected='selected'":"") }}>{{ $position->name }}</option>
@@ -513,7 +513,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_posdetails"><span class="fa fa-plus" id="spanposdetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selcandidate" id="selcandidate" style="width: 150px;">
+                    <select name="selcandidate" id="selcandidate" style="width: 120px;">
                         <option value="0">Candidate</option>
                       @foreach($positions as $position)
                         <optgroup label="{{ $position->name }}">
@@ -526,7 +526,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_candetails"><span class="fa fa-plus" id="spancandetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selagebracket" id="selagebracket">
+                    <select name="selagebracket" id="selagebracket" style="width: 120px;">
                         <option value="0">Age</option>
                       @foreach($selinitagebrackets as $agebracket)
                         <option value="{{ $agebracket->id }}" {{ ((!empty($rdata['selagebracket'])&&$rdata['selagebracket']==$agebracket->id)?"selected='selected'":"") }}>{{ $agebracket->title }}</option>
@@ -535,7 +535,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selgender" id="selgender">
+                    <select name="selgender" id="selgender" style="width: 120px;">
                         <option value="0">Gender</option>
                       @foreach($selinitgenders as $gender)
                         <option value="{{ $gender->id }}" {{ ((!empty($rdata['selgender'])&&$rdata['selgender']==$gender->id)?"selected='selected'":"") }}>{{ $gender->name }}</option>
@@ -544,7 +544,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_gendetails"><span class="fa fa-plus" id="spangendetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selcivil" id="selcivil">
+                    <select name="selcivil" id="selcivil" style="width: 120px;">
                         <option value="0">Civil</option>
                       @foreach($selinitcivilstatuses as $civilstatus)
                         <option value="{{ $civilstatus->id }}" {{ ((!empty($rdata['selcivil'])&&$rdata['selcivil']==$civilstatus->id)?"selected='selected'":"") }}>{{ $civilstatus->name }}</option>
@@ -553,7 +553,7 @@
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_civdetails"><span class="fa fa-plus" id="spancivdetails"> </span></a></div>
                   <div class="col-md-2">
-                    <select name="selemp" id="selemp">
+                    <select name="selemp" id="selemp" style="width: 120px;">
                         <option value="0">Employment</option>
                         @foreach($selinitempstatuses as $empstatus)
                         <option value="{{ $empstatus->id }}" {{ ((!empty($rdata['selemp'])&&$rdata['selemp']==$empstatus->id)?"selected='selected'":"") }}>{{ $empstatus->name }}</option>
