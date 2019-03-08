@@ -11,7 +11,6 @@
 |
 */
 Route::get('getQuestions','QuestionController@getQuestions');
-Route::post('storeAnswers','SurveyAnswerController@storeAnswers');
 Route::get('importexcel', 'VoterController@index')->name('index');
 Route::get('importVotersExcel2', 'VoterController@importVotersExcel2');
 Route::post('importprecinct', 'VoterController@importprecinct')->name('importprecinct');
@@ -23,13 +22,8 @@ Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramid
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
 
 Route::get('dashboard2', 'HomeController@dashboard2')->name('dashboard2');
-// Route::get('updateothertallyvotesqualityMayor', 'SurveyAnswerController@updateothertallyvotesqualityMayor')->name('updateothertallyvotesqualityMayor');
-// Route::get('updateothertallyvotesqualityViceMayor', 'SurveyAnswerController@updateothertallyvotesqualityViceMayor')->name('updateothertallyvotesqualityViceMayor');
-// Route::get('updateothertallyvotesqualityCong', 'SurveyAnswerController@updateothertallyvotesqualityCong')->name('updateothertallyvotesqualityCong');
-// Route::get('updateothertallyvotesquality', 'SurveyAnswerController@updateothertallyvotesquality')->name('updateothertallyvotesquality');
-// Route::get('insertmissingothertallyvotesqualityViceMayor', 'SurveyAnswerController@insertmissingothertallyvotesqualityViceMayor')->name('insertmissingothertallyvotesqualityViceMayor');
-// Route::get('insertmissingothertallyvotesqualityCong', 'SurveyAnswerController@insertmissingothertallyvotesqualityCong')->name('insertmissingothertallyvotesqualityCong');
 Route::get('updateOtherTallyVotesQuality', 'SurveyAnswerController@updateOtherTallyVotesQuality')->name('updateOtherTallyVotesQuality');
+Route::get('insertupdateOtherTallyVotesQuality', 'SurveyAnswerController@insertupdateOtherTallyVotesQuality')->name('insertupdateOtherTallyVotesQuality');
 Route::get('testOtherVotersRelQ', 'SurveyAnswerController@testOtherVotersRelQ')->name('testOtherVotersRelQ');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 
