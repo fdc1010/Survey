@@ -66,7 +66,7 @@ class SurveyAnswerController extends Controller
         $surveydetailid = 1;
     }
     if($request->has('qid')){
-        $qids = explode(',',$request->qid)
+        $qids = explode(',',$request->qid);
         $questionId = $qids;
     }else{
         $questionId = array(3,4,6,8);
@@ -194,7 +194,7 @@ class SurveyAnswerController extends Controller
         $surveydetailid = 1;
     }
     if($request->has('qid')){
-        $qids = explode(',',$request->qid)
+        $qids = explode(',',$request->qid);
         $questionId = $qids;
     }else{
         $questionId = array(5,7,9,10,11,12);
@@ -317,7 +317,7 @@ class SurveyAnswerController extends Controller
         $surveydetailid = 1;
     }
     if($request->has('qid')){
-        $qids = explode(',',$request->qid)
+        $qids = explode(',',$request->qid);
         $questionId = $qids;
     }else{
         $questionId = array(1,2);
