@@ -79,13 +79,7 @@ class SurveyorAssignment extends Model
 		return (($this->count/$this->quota)*100);
 	}
   public function getAllSurveyCount(){
-    $countsurvey = SurveyAnswer::select(['voter_id'])
-										->groupBy('voter_id')
-										->get();
-		if($countsurvey)
-			return count($countsurvey);
-		else
-			return 0;
+    return  $this->sum('count');
   }
   public function getAllSurveyQuota(){
     return  $this->sum('quota');
