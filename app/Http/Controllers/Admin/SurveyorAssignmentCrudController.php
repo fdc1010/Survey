@@ -29,6 +29,7 @@ class SurveyorAssignmentCrudController extends CrudController
         $this->crud->setListView('listsurveyassignment');
 		    $this->crud->enableDetailsRow();
 		    $this->crud->allowAccess('details_row');
+        $this->crud->enableExportButtons();
         if(backpack_user()->hasPermissionTo('Edit')){
           $this->crud->allowAccess(['update']);
         }else{
