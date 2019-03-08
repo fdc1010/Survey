@@ -216,7 +216,7 @@ class SurveyAnswerController extends Controller
             if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
+                          ->chunk(400, function ($results)use($surveydetailid,$relquestion){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -255,7 +255,7 @@ class SurveyAnswerController extends Controller
                                                                     ];
                                                   //TallyOtherVote::insert($tallyothervotedata);
                                             }
-                                            $i++;
+
                                           }
 
                                         }
@@ -267,7 +267,7 @@ class SurveyAnswerController extends Controller
             }else{
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
+                          ->chunk(400, function ($results)use($surveydetailid,$relquestion){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -306,7 +306,6 @@ class SurveyAnswerController extends Controller
                                                                     ];
                                                   //TallyOtherVote::insert($tallyothervotedata);
                                             }
-                                            $i++;
                                           }
 
                                         }
@@ -315,8 +314,8 @@ class SurveyAnswerController extends Controller
                                 }
                           });
                   }
-
           }
+          $i++;
       }
       echo "<br>Record(s) Affected: ".$i;
       if(!empty($curquestions) && count($curquestions)<=0){
