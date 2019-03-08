@@ -219,14 +219,12 @@ class SurveyAnswerController extends Controller
 
     }
   }
-  public function testOtherVotersRelQ(Request $request){
+  public function testOtherVotesRelQ(Request $request){
     $surveydetailid = $request->sdid;
-    $voterid = $request->vid;
     $questionId = $request->qid;
     $curquestion = Question::find($questionId);
-    $relquestion = RelatedQuestion::where('question_id',$questionId)->first();
     if($relquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                 ->where('question_id',$questionId)
                 ->where('voter_id',$voterid)
@@ -275,9 +273,27 @@ class SurveyAnswerController extends Controller
 
         }
       }
+    }else{
+        echo "Question Info not found!";
     }
   }
-
+  public function testOtherVotesProblem(Request $request){
+    $surveydetailid = $request->sdid;
+    $questionId = $request->qid;
+    $curquestion = Question::find($questionId);
+    if($curquestion){
+      echo "Current Question: #".$questionId." ".$curquestion->question;
+      $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                ->where('question_id',$questionId)
+                ->first();
+      if($csurans){
+          $cquestionoption = QuestionOption::find($csurans->option_id);
+          echo "<br>Your Answer: ".$csurans->option_id." ".$cquestionoption->option;
+        }
+    }else{
+        echo "Question Info not found!";
+    }
+  }
     /**
      * Show the form for creating a new resource.
      *

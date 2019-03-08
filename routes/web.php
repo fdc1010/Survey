@@ -24,7 +24,8 @@ Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfr
 Route::get('dashboard2', 'HomeController@dashboard2')->name('dashboard2');
 Route::get('updateOtherTallyVotesQuality', 'SurveyAnswerController@updateOtherTallyVotesQuality')->name('updateOtherTallyVotesQuality');
 Route::get('insertupdateOtherTallyVotesQuality', 'SurveyAnswerController@insertupdateOtherTallyVotesQuality')->name('insertupdateOtherTallyVotesQuality');
-Route::get('testOtherVotersRelQ', 'SurveyAnswerController@testOtherVotersRelQ')->name('testOtherVotersRelQ');
+Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ')->name('testOtherVotesRelQ');
+Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem')->name('testOtherVotesProblem');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
