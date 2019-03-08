@@ -533,12 +533,8 @@
                       @endforeach
                     </select>
                   </div>
-                  <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>                  
+                  <div class="col-md-1"><a href="#" id="btn_agedetails"><span class="fa fa-plus" id="spanagedetails"> </span></a></div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="box box-default">
                 <div class="box-body">
                   <div class="col-md-2">
                     <select name="selgender" id="selgender" style="width: 120px;">
