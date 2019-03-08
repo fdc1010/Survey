@@ -561,10 +561,8 @@
                     </select>
                   </div>
                   <div class="col-md-1"><a href="#" id="btn_empdetails"><span class="fa fa-plus" id="spanempdetails"> </span></a></div>
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">
-                        <span class="fa fa-search"></span> View
-                    </button>
+                  <div class="col-md-3">
+                      <a href="#" id="viewsurvey" class="btn btn-primary"><span class="fa fa-search"></span> View</a>
                   </div>
                 </div>
             </div>
@@ -2431,6 +2429,9 @@ $(document).ready(function ($) {
 			return value.length > 0;
 		}
 	});
+  $('#viewsurvey').on('click',function(e){
+    $('#my_form').submit();
+  });
 	// $("#tblviewdetails").mCustomScrollbar({
 	// 	axis:"yx",
 	// 	scrollButtons:{enable:true},
