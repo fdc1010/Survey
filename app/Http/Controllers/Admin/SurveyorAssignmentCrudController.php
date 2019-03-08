@@ -26,8 +26,8 @@ class SurveyorAssignmentCrudController extends CrudController
         $this->crud->setModel('App\Models\SurveyorAssignment');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveyorassignment');
         $this->crud->setEntityNameStrings('surveyor assignment', 'Surveyor Assignments');
-		$this->crud->enableDetailsRow();
-		$this->crud->allowAccess('details_row');
+		    $this->crud->enableDetailsRow();
+		    $this->crud->allowAccess('details_row');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -51,7 +51,7 @@ class SurveyorAssignmentCrudController extends CrudController
             'label' => 'Count'
 	    ])->afterColumn('quota');*/
 $this->crud->addColumn([
-            'name' => 'count',			
+            'name' => 'count',
             'label' => 'Count',
             'type' => 'model_function',
 			'function_name' => 'getSurveyCount'
