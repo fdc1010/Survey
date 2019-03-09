@@ -458,6 +458,9 @@ class SurveyAnswerController extends Controller
   public function checkTallyOtherVotesQualities(Request $request){
     $surveydetailid = $request->sid;
     $questionId = $request->qid;
+    $isinsert = 0;
+    if($request->has('isinsert'))
+        $isinsert = $request->isinsert;
     $curquestion = Question::find($questionId);
     if($curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
@@ -478,6 +481,53 @@ class SurveyAnswerController extends Controller
                               if(empty($tallyovq)){
                                 echo " ,But not found in tally_other_votes table!";
                                 $y++;
+                                if($isinsert){
+                                      $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
+                                      if($relquestion){
+                                        if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                                            $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                        ->where('question_id',$relquestion->related_question_id)
+                                                        ->where('voter_id',$suranswer->voter_id)
+                                                        ->orderBy('id')
+                                                        ->get();
+                                            if(!empty($surans[$relquestion->cardinality-1])){
+                                                $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                            }
+                                        }else{
+                                            $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                      ->where('question_id',$relquestion->related_question_id)
+                                                      ->where('voter_id',$suranswer->voter_id)
+                                                      ->get();
+                                            if(!empty($surans[$relquestion->cardinality-1])){
+                                                $otoptId = $surans[0]->option_id;
+                                            }
+                                        }
+                                        if(!empty($otoptId)){
+                                          $question = Question::find($relquestion->question_id);
+                                          if(!empty($question->for_position) && is_numeric($question->for_position)){
+                                            echo "<br>Found linked Question: ";
+                                            $optioncandidate = QuestionOption::find($otoptId);
+                                            if($optioncandidate){
+                                              echo "<br>Storing tally for candidate qualities: #".$suranswer->question_id." ".$optioncandidate->option;
+                                              $tallyothervotedata = [
+                                                                  'survey_detail_id'=>$suranswer->survey_detail_id,
+                                                                  'question_id'=>$suranswer->question_id,
+                                                                  'option_id'=>$suranswer->option_id,
+                                                                  'voter_id'=>$suranswer->voter_id,
+                                                                  'candidate_id'=>$optioncandidate->candidate_id,
+                                                                  'user_id'=>$suranswer->user_id,
+                                                                  'barangay_id'=>$suranswer->barangay_id
+                                                                ];
+                                              //$insertdata = TallyOtherVote::insert($tallyothervotedata);
+                                              // if($insertdata){
+                                              //   echo "<br>Record inserted to tally_other_votes table!";
+                                              // }
+                                            }
+
+                                          }
+                                        }
+                                      }
+                                }
                               }
                               $i++;
                         }
