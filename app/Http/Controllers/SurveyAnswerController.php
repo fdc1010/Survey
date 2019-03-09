@@ -368,8 +368,8 @@ class SurveyAnswerController extends Controller
     if($request->has('doinsertmissing'))
         $doInsertMissing = $request->doinsertmissing;
 
-    $curquestion = Question::find($questionId);
-    if($curquestion){
+    $curquestions = Question::whereIn('id',$questionId)->get();
+    foreach($curquestions as $curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
@@ -468,8 +468,8 @@ class SurveyAnswerController extends Controller
     if($request->has('doinsertmissing'))
         $doInsertMissing = $request->doinsertmissing;
 
-    $curquestion = Question::find($questionId);
-    if($curquestion){
+    $curquestions = Question::whereIn('id',$questionId)->get();
+    foreach($curquestions as $curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
@@ -569,8 +569,8 @@ class SurveyAnswerController extends Controller
     if($request->has('doinsertmissing'))
         $doInsertMissing = $request->doinsertmissing;
 
-    $curquestion = Question::find($questionId);
-    if($curquestion){
+    $curquestions = Question::whereIn('id',$questionId)->get();
+    foreach($curquestions as $curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
@@ -634,8 +634,8 @@ class SurveyAnswerController extends Controller
     if($request->has('dodeleteduplicate'))
         $doDeleteDuplicate = $request->dodeleteduplicate;
 
-    $curquestion = Question::find($questionId);
-    if($curquestion){
+    $curquestions = Question::whereIn('id',$questionId)->get();
+    foreach($curquestions as $curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
