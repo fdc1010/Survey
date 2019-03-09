@@ -476,7 +476,7 @@ class SurveyAnswerController extends Controller
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
                   ->orderBy('voter_id')
-                  ->chunk(400, function ($results)use(&$i,&$y,$isinsert){
+                  ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
@@ -533,7 +533,7 @@ class SurveyAnswerController extends Controller
 
                                           }
                                         }
-                                      }                                      
+                                      }
                                       echo "<hr>";
                                 }else{
                                   echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
