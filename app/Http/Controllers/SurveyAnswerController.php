@@ -658,8 +658,9 @@ class SurveyAnswerController extends Controller
                                 echo "<br>#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name;
                                 if($doDeleteDuplicate){
                                     $duptallyvotes = TallyVote::where('question_id',$dupsurans->question_id)
-                                                                    ->where('voter_id',$dupsurans->voter_id)
-                                                                    ->where('user_id',$dupsurans->user_id);
+                                                                ->where('voter_id',$dupsurans->voter_id)
+                                                                ->where('user_id',$dupsurans->user_id);
+                                                                
                                     $deleteduptallyvotes = $duptallyvotes->delete();
                                     if($deleteduptallyvotes){
                                         $duptallyqp = TallyOtherVote::where('question_id',$dupsurans->question_id)
