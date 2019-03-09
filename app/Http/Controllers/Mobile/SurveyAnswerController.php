@@ -139,10 +139,11 @@ class SurveyAnswerController extends Controller
 			$userid = $request->user_id;
 			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
+      $user = User::find($userid);
       $voter = Voter::find($voterid);
       if($voter){
-        info("Storing voter survey: #".$voter->id." ".$voter->full_name);
-        //if($voter->is_done_survey==0){
+            info("Storing voter survey: #".$voter->id." ".$voter->full_name);
+            //if($voter->is_done_survey==0){
             $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
                           ->where('voter_id',$voterid)
                           ->where('survey_detail_id',$surveydetailid)
@@ -240,112 +241,120 @@ class SurveyAnswerController extends Controller
               info("Storing answers: #".$voter->id." ".$voter->full_name);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
-      						$optid = $ansid['id'];
-      						$surveyanswers = SurveyAnswer::where('voter_id',$voterid)
-      											->where('survey_detail_id',$surveydetailid)
-      											->where('question_id',$voteranswers['questionId'])
-      											//->where('user_id',$userid)
-      											//->where('option_id',$optid)
-      											->first();
-      						if(!empty($surveyanswers)){
-                    info("New Entry! survey detail id: ".$surveydetailid." voter id: ".$voterid." question_id: ".$voteranswers['questionId']." option id: ".$optid." user id: ".$userid);
-                    info("Duplicate Entry! #".$surveyanswers->id." survey detail id: ".$surveydetailid." voter id: ".$surveyanswers->voter_id." question_id: ".$surveyanswers->question_id." option id: ".$surveyanswers->option_id." user id: ".$surveyanswers->user_id);
-                  }else{
-                    $candidateId = null;      				//$voter->save();
-
-                    $optioncandidatesa = OptionCandidate::where('option_id',$optid)->first();
-                    if($optioncandidatesa){
-                      $candidateId = $optioncandidatesa->candidate_id;
-                    }
-      							$surveyans = new SurveyAnswer;
-      							$surveyans->survey_detail_id = $surveydetailid;
-      							$surveyans->question_id = $voteranswers['questionId'];
-      							$surveyans->option_id = $optid;
-      							$surveyans->user_id = $userid;
-      							$surveyans->voter_id = $voterid;
-                    $surveyans->candidate_id = $candidateId;
-      							$surveyans->answered_option = $voteranswers['answers'];//$voter->save();
-
-      							$surveyans->other_answer = $ansid['otherAnswer'];
-
-      							if($request->has('latitude')){
-      								$surveyans->latitude = $request->latitude;
-      							}
-      							if($request->has('longitude')){
-      								$surveyans->longitude = $request->longitude;
-      							}
-
-      							$surveyansid=$surveyans->save();
-                    info("Storing tally: #".$voter->id." ".$voter->full_name);
-      							//$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-      							if($optioncandidatesa){
-      								$tallycandidate = new TallyVote;
-                      $tallycandidate->question_id = $voteranswers['questionId'];
-                      $tallycandidate->option_id = $optid;
-      								$tallycandidate->candidate_id = $candidateId;
-      								$tallycandidate->voter_id = $voterid;
-                      $tallycandidate->user_id = $userid;
-      								$tallycandidate->survey_detail_id = $surveydetailid;
-      								$tallycandidate->save();
-      							}
-                    $otoptId = null;
-      							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
-      							if($relquestion){
-                      if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
-          								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-          														->where('question_id',$relquestion->related_question_id)
-                                      ->where('voter_id',$voterid)
-                                      ->orderBy('id')
-                                      ->get();
-                          if(!empty($surans[$relquestion->cardinality-1])){
-                              $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                          }
+        						$optid = $ansid['id'];
+                    $surveyanswers = SurveyAnswer::where('user_id',$userid)
+        											->where('voter_id',$voterid)
+        											->where('survey_detail_id',$surveydetailid)
+        											->where('question_id',$voteranswers['questionId'])
+        											->where('option_id',$optid)
+        											->first();
+        						if(empty($surveyanswers)){
+                      $dupsurans = SurveyAnswer::with(['voter','user'])
+                                                  ->where('user_id','<>',$userid)
+                                                  ->where('question_id',$voteranswers['questionId'])
+                                                  ->where('voter_id',$voterid)
+                                                  ->first();
+                      if(!empty($dupsurans)){
+                            info("Current Entry!");
+                            info("survey detail id: ".$surveydetailid." ,voter id: ".$voterid." ".$voter->full_name." ,question_id: ".$voteranswers['questionId']." ,option id: ".$optid." ,user id: ".$userid." ".$user->name);
+                            info("Duplicate Entry!");
+                            info("#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name);
                       }else{
-                          $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                                    ->where('question_id',$relquestion->related_question_id)
-                                    ->where('voter_id',$voterid)
-                                    ->get();
-                          if(!empty($surans[$relquestion->cardinality-1])){
-                              $otoptId = $surans[0]->option_id;
-                          }
-                      }
-      								if(!empty($otoptId)){
-      									$question = Question::find($relquestion->question_id);
-      									if(!empty($question->for_position) && is_numeric($question->for_position)){
-                          info("Found linked Question: ");
-      										$optioncandidate = QuestionOption::find($otoptId);
-      										if($optioncandidate){
-                            info("Storing tally for candidate qualities: #".$voteranswers['questionId']." ".$optioncandidate->option);
-      											$othertallycandidate = new TallyOtherVote;
-                            $othertallycandidate->question_id = $voteranswers['questionId'];
-                            $othertallycandidate->option_id = $optid;
-      											$othertallycandidate->voter_id = $voterid;
-                            $othertallycandidate->user_id = $userid;
-      											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
-      											$othertallycandidate->survey_detail_id = $surveydetailid;
-                            $othertallycandidate->barangay_id = $voter->barangay_id;
-      											$othertallycandidate->save();
-      										}
+                            $candidateId = null;      				//$voter->save();
 
-      									}
-      								}
-      							}
+                            $optioncandidatesa = OptionCandidate::where('option_id',$optid)->first();
+                            if($optioncandidatesa){
+                              $candidateId = $optioncandidatesa->candidate_id;
+                            }
+              							$surveyans = new SurveyAnswer;
+              							$surveyans->survey_detail_id = $surveydetailid;
+              							$surveyans->question_id = $voteranswers['questionId'];
+              							$surveyans->option_id = $optid;
+              							$surveyans->user_id = $userid;
+              							$surveyans->voter_id = $voterid;
+                            $surveyans->candidate_id = $candidateId;
+              							$surveyans->answered_option = $voteranswers['answers'];//$voter->save();
 
-      							$optionproblem = OptionProblem::where('option_id',$optid)->first();
-      							if($optionproblem){
-                      info("Storing tally for brgy concerns: #".$voteranswers['questionId']." ".$optionproblem->option);
-      								//$voterbrgy = Voter::find($voterid);
-      								$tallyproblem = new TallyOtherVote;
-                      $tallyproblem->question_id = $voteranswers['questionId'];
-      								$tallyproblem->option_id = $optid;
-      								$tallyproblem->voter_id = $voterid;
-                      $tallyproblem->user_id = $userid;
-      								$tallyproblem->survey_detail_id = $surveydetailid;
-      								$tallyproblem->barangay_id = $voter->barangay_id;
-      								$tallyproblem->save();
-      							}
-      						}
+              							$surveyans->other_answer = $ansid['otherAnswer'];
 
+              							if($request->has('latitude')){
+              								$surveyans->latitude = $request->latitude;
+              							}
+              							if($request->has('longitude')){
+              								$surveyans->longitude = $request->longitude;
+              							}
+
+              							$surveyansid=$surveyans->save();
+                            info("Storing tally: #".$voter->id." ".$voter->full_name);
+              							//$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+              							if($optioncandidatesa){
+              								$tallycandidate = new TallyVote;
+                              $tallycandidate->question_id = $voteranswers['questionId'];
+                              $tallycandidate->option_id = $optid;
+              								$tallycandidate->candidate_id = $candidateId;
+              								$tallycandidate->voter_id = $voterid;
+                              $tallycandidate->user_id = $userid;
+              								$tallycandidate->survey_detail_id = $surveydetailid;
+              								$tallycandidate->save();
+              							}
+                            $otoptId = null;
+              							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
+              							if($relquestion){
+                              if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                  								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                  														->where('question_id',$relquestion->related_question_id)
+                                              ->where('voter_id',$voterid)
+                                              ->orderBy('id')
+                                              ->get();
+                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                  }
+                              }else{
+                                  $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                            ->where('question_id',$relquestion->related_question_id)
+                                            ->where('voter_id',$voterid)
+                                            ->get();
+                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                      $otoptId = $surans[0]->option_id;
+                                  }
+                              }
+              								if(!empty($otoptId)){
+              									$question = Question::find($relquestion->question_id);
+              									if(!empty($question->for_position) && is_numeric($question->for_position)){
+                                  info("Found linked Question: ");
+              										$optioncandidate = QuestionOption::find($otoptId);
+              										if($optioncandidate){
+                                    info("Storing tally for candidate qualities: #".$voteranswers['questionId']." ".$optioncandidate->option);
+              											$othertallycandidate = new TallyOtherVote;
+                                    $othertallycandidate->question_id = $voteranswers['questionId'];
+                                    $othertallycandidate->option_id = $optid;
+              											$othertallycandidate->voter_id = $voterid;
+                                    $othertallycandidate->user_id = $userid;
+              											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
+              											$othertallycandidate->survey_detail_id = $surveydetailid;
+                                    $othertallycandidate->barangay_id = $voter->barangay_id;
+              											$othertallycandidate->save();
+              										}
+
+              									}
+              								}
+              							}
+
+              							$optionproblem = OptionProblem::where('option_id',$optid)->first();
+              							if($optionproblem){
+                              info("Storing tally for brgy concerns: #".$voteranswers['questionId']." ".$optionproblem->option);
+              								//$voterbrgy = Voter::find($voterid);
+              								$tallyproblem = new TallyOtherVote;
+                              $tallyproblem->question_id = $voteranswers['questionId'];
+              								$tallyproblem->option_id = $optid;
+              								$tallyproblem->voter_id = $voterid;
+                              $tallyproblem->user_id = $userid;
+              								$tallyproblem->survey_detail_id = $surveydetailid;
+              								$tallyproblem->barangay_id = $voter->barangay_id;
+              								$tallyproblem->save();
+              							}
+              					}
+                    }
       					}
     			    }
 
