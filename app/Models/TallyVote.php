@@ -125,7 +125,7 @@ class TallyVote extends Model
 								}
 								if(count($voterstatus)>0){
 									$q->whereHas('statuses',function($qv)use($voterstatus,$voterstatusid){
-                              if($voterstatusid>0){
+                              if(count($voterstatusid)>0){
               									$qv->where('status_id',$voterstatusid);
               								}else{
                                 $qv->whereIn('status_id',$voterstatus);
