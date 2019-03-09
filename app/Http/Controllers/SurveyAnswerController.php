@@ -489,6 +489,41 @@ class SurveyAnswerController extends Controller
                                 $y++;
                                 echo "<hr>".$y.".) #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
+                                echo "<hr>";
+                              }else{
+                                echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
+                              }
+
+                        }
+                  });
+    }
+    if($i==0){
+        echo "Question Info not found!";
+    }else{
+        echo "<br><br>Record(s) Affected: ".$i;
+        echo "<br>Record(s) Not Found: ".$y;
+    }
+    foreach($curquestions as $curquestion){
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
+      $i=0;
+      $y=0;
+      SurveyAnswer::with(['voter','user'])
+                  ->where('survey_detail_id',$surveydetailid)
+                  ->where('question_id',$curquestion->id)
+                  ->orderBy('question_id')
+                  ->orderBy('voter_id')
+                  ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
+                        foreach ($results as $suranswer) {
+                              $i++;
+                              $cquestionoption = QuestionOption::find($suranswer->option_id);
+
+                              $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
+                                                          ->where('voter_id',$suranswer->voter_id)
+                                                          ->where('option_id',$suranswer->option_id)
+                                                          ->where('user_id',$suranswer->user_id)
+                                                          ->first();
+                              if(empty($tallyovq)){
+                                $y++;
                                 if($doInsertMissing){
                                       $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                       if($relquestion){
@@ -513,17 +548,13 @@ class SurveyAnswerController extends Controller
                                         if(!empty($otoptId)){
                                           $question = Question::find($relquestion->question_id);
                                           if(!empty($question->for_position) && is_numeric($question->for_position)){
-                                            echo "<br>Found linked Question: ";
                                             $optioncandidate = QuestionOption::find($otoptId);
                                             if($optioncandidate){
-                                              echo "<br>Storing tally for candidate qualities: #".$suranswer->question_id." ".$optioncandidate->option;
                                               $tallyothervotedata = [
                                                                   'survey_detail_id'=>$suranswer->survey_detail_id,
                                                                   'question_id'=>$suranswer->question_id,
                                                                   'option_id'=>$suranswer->option_id,
-                                                                  'votif($insertdata){
-                                                echo "<br>Record inserted to tally_other_votes table!";
-                                              }er_id'=>$suranswer->voter_id,
+                                                                  'voter_id'=>$suranswer->voter_id,
                                                                   'candidate_id'=>$optioncandidate->candidate_id,
                                                                   'user_id'=>$suranswer->user_id,
                                                                   'barangay_id'=>$suranswer->barangay_id
@@ -538,19 +569,10 @@ class SurveyAnswerController extends Controller
                                         }
                                       }
                                 }
-                                echo "<hr>";
-                              }else{
-                                echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                               }
 
                         }
                   });
-    }
-    if($i==0){
-        echo "Question Info not found!";
-    }else{
-        echo "<br><br>Record(s) Affected: ".$i;
-        echo "<br>Record(s) Not Found: ".$y;
     }
   }
   public function checkMissingTallyProblems(Request $request){
