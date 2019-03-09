@@ -486,7 +486,6 @@ class SurveyAnswerController extends Controller
                                 echo " ,But not found in tally_other_votes table!";
 
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
-
                                 if($relquestion){
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
@@ -499,7 +498,7 @@ class SurveyAnswerController extends Controller
                                   }
 
                                   if(!empty($otoptId)){
-                                    $question = Question::find($relquestion->question_id);
+                                    $question = Question::find($suranswer->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
                                       $optioncandidate = QuestionOption::find($otoptId);
                                       if($optioncandidate){
