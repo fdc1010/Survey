@@ -359,9 +359,7 @@ class SurveyAnswerController extends Controller
 
     $questionId = array(4,6,8,3);
     if($request->has('qid')){
-        if(in_array($request->qid,$qids)){
-            $questionId = array($request->qid);
-        }
+        $questionId = array($request->qid);
     }
 
     $doInsertMissing = 0;
@@ -457,13 +455,9 @@ class SurveyAnswerController extends Controller
     if($request->has('sid'))
       $surveydetailid = $request->sid;
 
-    $qids = array(5,7,9,10,11,12);
+    $questionId = array(5,7,9,10,11,12);
     if($request->has('qid')){
-        if(in_array($request->qid,$qids)){
-            $questionId = $qids;
-        }else{
-            $questionId = array($request->qid);
-        }
+        $questionId = array($request->qid);
     }
 
     $doInsertMissing = 0;
@@ -560,13 +554,9 @@ class SurveyAnswerController extends Controller
     if($request->has('sid'))
       $surveydetailid = $request->sid;
 
-    $qids = array(1,2);
+    $questionId = array(1,2);
     if($request->has('qid')){
-        if(in_array($request->qid,$qids)){
-            $questionId = $qids;
-        }else{
-            $questionId = array($request->qid);
-        }
+        $questionId = array($request->qid);
     }
 
     $doInsertMissing = 0;
@@ -628,13 +618,9 @@ class SurveyAnswerController extends Controller
     if($request->has('sid'))
       $surveydetailid = $request->sid;
 
-    $qids = array(1,2,4,6,8,3,5,7,9,10,11,12);
+    $questionId = array(1,2,4,6,8,3,5,7,9,10,11,12);
     if($request->has('qid')){
-        if(in_array($request->qid,$qids)){
-            $questionId = $qids;
-        }else{
-            $questionId = array($request->qid);
-        }
+        $questionId = array($request->qid);
     }
     $doDeleteDuplicate = 0;
     if($request->has('dodeleteduplicate'))
