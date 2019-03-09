@@ -368,11 +368,11 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                  ->whereIn('question_id',$questionId)
+                  ->whereIn('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
@@ -466,11 +466,11 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                  ->whereIn('question_id',$questionId)
+                  ->whereIn('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
@@ -565,7 +565,6 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
@@ -628,12 +627,12 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$questionId." ".$curquestion->question;
+      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::with(['voter','user'])
                   ->where('survey_detail_id',$surveydetailid)
-                  ->where('question_id',$questionId)
+                  ->where('question_id',$curquestion->id)
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate){
                         foreach ($results as $suranswer) {
