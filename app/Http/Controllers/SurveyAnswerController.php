@@ -507,7 +507,7 @@ class SurveyAnswerController extends Controller
                                       }
                                   }
 
-                                  dd($otoptId);
+                                  dd($surans[$relquestion->cardinality-1]);
                                   if(!empty($otoptId)){
                                     $question = Question::find($relquestion->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
