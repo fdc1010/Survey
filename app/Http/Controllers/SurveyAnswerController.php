@@ -455,6 +455,31 @@ class SurveyAnswerController extends Controller
         echo "Question Info not found!";
     }
   }
+  public function checkTallyOtherVotesQualities(Request $request){
+    $surveydetailid = $request->sid;
+    $questionId = $request->qid;
+    $curquestion = Question::find($questionId);
+    if($curquestion){
+      echo "Current Question: #".$questionId." ".$curquestion->question;
+
+      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                  ->where('question_id',$questionId)
+                  ->chunk(400, function ($results){
+                        foreach ($results as $suranswer) {
+                              $cquestionoption = QuestionOption::find($suranswer->option_id);
+                              echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              $tallyovq = TallyOtherVote::where('question_id',$questionId)
+                                                          ->where('voter_id',$suranswer->voter_id)
+                                                          ->get();
+                              if(empty($tallyovq)){
+                                echo "<br> But not found in tally_other_votes table!";
+                              }
+                        }
+                  });
+    }else{
+        echo "Question Info not found!";
+    }
+  }
     /**
      * Show the form for creating a new resource.
      *

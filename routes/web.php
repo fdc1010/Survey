@@ -28,8 +28,8 @@ Route::get('insertupdateOtherTallyVotesQuality', 'SurveyAnswerController@insertu
 Route::get('insertupdateOtherVotesProblem', 'SurveyAnswerController@insertupdateOtherVotesProblem')->name('insertupdateOtherVotesProblem');
 Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ')->name('testOtherVotesRelQ');
 Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem')->name('testOtherVotesProblem');
+Route::get('checkTallyOtherVotesQualities', 'SurveyAnswerController@checkTallyOtherVotesQualities')->name('checkTallyOtherVotesQualities');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
-
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
