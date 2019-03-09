@@ -468,7 +468,7 @@ class SurveyAnswerController extends Controller
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
-                              $tallyovq = TallyOtherVote::where('question_id',$questionId)
+                              $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->get();
                               if(empty($tallyovq)){
