@@ -127,7 +127,7 @@ class TallyVote extends Model
 									$q->whereHas('statuses',function($qv)use($voterstatus){
 
               									$qv->whereIn('status_id',$voterstatus);
-              								
+
 												});//->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
 								}
@@ -147,6 +147,9 @@ class TallyVote extends Model
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
+                if(count($agebrackets)>0){
+                  $q->whereIn('age',$agebrackets);
+                }                
 								if($brgyid>0){
 									$q->where('barangay_id',$brgyid);
 								}
