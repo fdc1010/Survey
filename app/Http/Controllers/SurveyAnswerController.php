@@ -607,7 +607,8 @@ class SurveyAnswerController extends Controller
                                     echo "<br>Record inserted to tally_other_votes table!";
                                   }
                               }
-                              $i++;
+                            }
+                            $i++;
                         }
                   });
           echo "<br><br>Record(s) Affected: ".$i;
@@ -660,7 +661,7 @@ class SurveyAnswerController extends Controller
                                     $duptallyvotes = TallyVote::where('question_id',$dupsurans->question_id)
                                                                 ->where('voter_id',$dupsurans->voter_id)
                                                                 ->where('user_id',$dupsurans->user_id);
-                                                                
+
                                     $deleteduptallyvotes = $duptallyvotes->delete();
                                     if($deleteduptallyvotes){
                                         $duptallyqp = TallyOtherVote::where('question_id',$dupsurans->question_id)
