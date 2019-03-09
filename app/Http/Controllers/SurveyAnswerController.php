@@ -506,8 +506,8 @@ class SurveyAnswerController extends Controller
                                   //         $otoptId = $surans[0]->option_id;
                                   //     }
                                   // }
-
-                                  dd($surans);
+                                  if($suranswer->voter_id==32127)
+                                      dd($surans);
                                   if(!empty($otoptId)){
                                     $question = Question::find($relquestion->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
