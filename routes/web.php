@@ -27,7 +27,7 @@ Route::get('insertUpdateSurveyQualities', 'SurveyAnswerController@insertUpdateSu
 Route::get('insertUpdateSurveyProblems', 'SurveyAnswerController@insertUpdateSurveyProblems');
 Route::get('checkMissingTally', 'SurveyAnswerController@checkMissingTally');
 Route::get('checkMissingTallyQualities', 'SurveyAnswerController@checkMissingTallyQualities');
-Route::get('checkMissingTallyProblems', 'SurveyAnswerController@checkMissingSurveyProblems');
+Route::get('checkMissingTallyProblems', 'SurveyAnswerController@checkMissingTallyProblems');
 Route::get('checkDuplicateSurvey', 'SurveyAnswerController@checkDuplicateSurvey');
 Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ');
 Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem');
