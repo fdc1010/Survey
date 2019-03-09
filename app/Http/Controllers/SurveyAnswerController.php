@@ -552,8 +552,7 @@ class SurveyAnswerController extends Controller
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y){
                         foreach ($results as $suranswer) {
-                              $cquestionoption = QuestionOption::find($suranswer->option_id);
-                              echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              $cquestionoption = QuestionOption::find($suranswer->option_id);                              
                               $dupsurans = SurveyAnswer::where('id','<>',$suranswer->id)
                                                           ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
