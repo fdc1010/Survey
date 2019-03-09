@@ -538,7 +538,7 @@ class SurveyAnswerController extends Controller
                                       }
                                       echo "<hr>";
                                 }else{
-                                  echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                                  echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 }
                               }
                               $i++;
