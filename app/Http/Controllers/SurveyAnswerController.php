@@ -619,7 +619,7 @@ class SurveyAnswerController extends Controller
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               $voterbrgy = Voter::find($suranswer->voter_id);
-                              $tallyproblems = TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                              $tallyproblems = TallyOtherVote::where('survey_detail_id',$suranswer->survey_detail_id)
                                               ->where('question_id',$suranswer->question_id)
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->first();
