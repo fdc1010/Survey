@@ -488,7 +488,7 @@ class SurveyAnswerController extends Controller
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                 if($relquestion){
                                   $otoptId = null;
-                                  //if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
+                                  if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
                                       $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                                   ->where('question_id',$relquestion->related_question_id)
                                                   ->where('voter_id',$suranswer->voter_id)
@@ -497,17 +497,17 @@ class SurveyAnswerController extends Controller
                                       if(!empty($surans[$relquestion->cardinality-1])){
                                           $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                       }
-                                  // }else{
-                                  //     $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
-                                  //               ->where('question_id',$relquestion->related_question_id)
-                                  //               ->where('voter_id',$suranswer->voter_id)
-                                  //               ->get();
-                                  //     if(!empty($surans[0])){
-                                  //         $otoptId = $surans[0]->option_id;
-                                  //     }
-                                  // }
-                                  if($suranswer->voter_id==32127)
                                       dd($surans);
+                                  }else{
+                                      $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                ->where('question_id',$relquestion->related_question_id)
+                                                ->where('voter_id',$suranswer->voter_id)
+                                                ->get();
+                                      if(!empty($surans[0])){
+                                          $otoptId = $surans[0]->option_id;
+                                      }
+                                  }
+
                                   if(!empty($otoptId)){
                                     $question = Question::find($relquestion->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
