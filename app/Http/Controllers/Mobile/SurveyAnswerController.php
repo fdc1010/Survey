@@ -17,6 +17,7 @@ use App\Models\TallyOtherVote;
 use App\Models\Voter;
 use App\Models\VoterStatus;
 use App\Models\StatusDetail;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
