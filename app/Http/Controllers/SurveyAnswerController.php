@@ -488,7 +488,7 @@ class SurveyAnswerController extends Controller
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                 if($relquestion){
                                   $otoptId = null;
-                                  if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                                  if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
                                       $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                                   ->where('question_id',$relquestion->related_question_id)
                                                   ->where('voter_id',$suranswer->voter_id)
