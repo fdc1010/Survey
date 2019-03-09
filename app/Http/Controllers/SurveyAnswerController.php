@@ -457,11 +457,11 @@ class SurveyAnswerController extends Controller
   }
   public function checkMissingSurveyQualities(Request $request){
     $surveydetailid = 1;
-    if($request->has('isinsert'))
+    if($request->has('sid'))
       $surveydetailid = $request->sid;
 
     $questionId = 5;
-    if($request->has('$questionId'))
+    if($request->has('qid'))
       $questionId = $request->qid;
 
     $doInsertMissing = 0;
@@ -551,11 +551,11 @@ class SurveyAnswerController extends Controller
 
   public function checkDuplicateSurvey(Request $request){
     $surveydetailid = 1;
-    if($request->has('isinsert'))
+    if($request->has('sid'))
       $surveydetailid = $request->sid;
 
     $questionId = 5;
-    if($request->has('$questionId'))
+    if($request->has('qid'))
       $questionId = $request->qid;
 
     $doDeleteDuplicate = 0;
