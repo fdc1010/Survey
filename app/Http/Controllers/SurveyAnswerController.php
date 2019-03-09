@@ -456,11 +456,18 @@ class SurveyAnswerController extends Controller
     }
   }
   public function checkTallyOtherVotesQualities(Request $request){
-    $surveydetailid = $request->sid;
-    $questionId = $request->qid;
-    $isinsert = 0;
+    $surveydetailid = 1;
     if($request->has('isinsert'))
-        $isinsert = $request->isinsert;
+      $surveydetailid = $request->sid;
+
+    $questionId = 5;
+    if($request->has('$questionId'))
+      $questionId = $request->qid;
+
+    $doInsertMissing = 0;
+    if($request->has('doinsertmissing'))
+        $doInsertMissing = $request->doinsertmissing;
+
     $curquestion = Question::find($questionId);
     if($curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
@@ -472,16 +479,16 @@ class SurveyAnswerController extends Controller
                   ->chunk(400, function ($results)use(&$i,&$y,$isinsert){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
-                              echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                               $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->where('option_id',$suranswer->option_id)
                                                           ->where('user_id',$suranswer->user_id)
                                                           ->first();
                               if(empty($tallyovq)){
+                                echo "<hr>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                                 echo " ,But not found in tally_other_votes table!";
                                 $y++;
-                                if($isinsert){
+                                if($doInsertMissing){
                                       $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                       if($relquestion){
                                         if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
@@ -518,15 +525,18 @@ class SurveyAnswerController extends Controller
                                                                   'user_id'=>$suranswer->user_id,
                                                                   'barangay_id'=>$suranswer->barangay_id
                                                                 ];
-                                              //$insertdata = TallyOtherVote::insert($tallyothervotedata);
-                                              // if($insertdata){
-                                              //   echo "<br>Record inserted to tally_other_votes table!";
-                                              // }
+                                              $insertdata = TallyOtherVote::insert($tallyothervotedata);
+                                              if($insertdata){
+                                                echo "<br>Record inserted to tally_other_votes table!";
+                                              }
                                             }
 
                                           }
                                         }
-                                      }
+                                      }                                      
+                                      echo "<hr>";
+                                }else{
+                                  echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                                 }
                               }
                               $i++;
@@ -553,7 +563,7 @@ class SurveyAnswerController extends Controller
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y){
                         foreach ($results as $suranswer) {
-                              
+
                               $dupsurans = SurveyAnswer::with(['voter','user'])
                                                           ->where('id','<>',$suranswer->id)
                                                           ->where('question_id',$suranswer->question_id)
