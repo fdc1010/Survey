@@ -621,7 +621,10 @@ class SurveyAnswerController extends Controller
     if($request->has('sid'))
       $surveydetailid = $request->sid;
 
-    $questionId = array(1,2,4,6,8,3,5,7,9,10,11,12);
+    $qidsproblems = array(1,2);
+    $qidstally = array(4,6,8,3);
+    $qidsqualities = array(5,7,9,10,11,12);
+    $questionId = array(1,2,4,6,8,3,5,7,9,10,11,12); // array(4,6,8,3)  array(5,7,9,10,11,12)
     if($request->has('qid')){
         $questionId = array($request->qid);
     }
@@ -638,14 +641,14 @@ class SurveyAnswerController extends Controller
                   ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
                   ->orderBy('voter_id')
-                  ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate){
+                  ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate,$qidstally,$qidsproblems,$qidsqualities){
                         foreach ($results as $suranswer) {
-
                               $dupsurans = SurveyAnswer::with(['voter','user'])
-                                                          ->where('id','<>',$suranswer->id)
+                                                          ->where('user_id','<>',$suranswer->user_id)
                                                           ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->first();
+
                               if(!empty($dupsurans)){
                                 $y++;
                                 echo "<hr>Current Entry! ";
