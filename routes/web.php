@@ -22,14 +22,15 @@ Route::get('extramiddlename', 'VoterController@extramiddlename')->name('extramid
 Route::get('removeMNfromLN', 'VoterController@removeMNfromLN')->name('removeMNfromLN');
 
 Route::get('dashboard2', 'HomeController@dashboard2')->name('dashboard2');
-Route::get('updateOtherTallyVotesQuality', 'SurveyAnswerController@updateOtherTallyVotesQuality')->name('updateOtherTallyVotesQuality');
-Route::get('insertupdateTallyVotesCandQ', 'SurveyAnswerController@insertupdateTallyVotesCandQ')->name('insertupdateTallyVotesCandQ');
-Route::get('insertupdateOtherTallyVotesQuality', 'SurveyAnswerController@insertupdateOtherTallyVotesQuality')->name('insertupdateOtherTallyVotesQuality');
-Route::get('insertupdateOtherVotesProblem', 'SurveyAnswerController@insertupdateOtherVotesProblem')->name('insertupdateOtherVotesProblem');
-Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ')->name('testOtherVotesRelQ');
-Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem')->name('testOtherVotesProblem');
-Route::get('checkMissingSurveyQualities', 'SurveyAnswerController@checkMissingSurveyQualities')->name('checkMissingSurveyQualities');
-Route::get('checkDuplicateSurvey', 'SurveyAnswerController@checkDuplicateSurvey')->name('checkDuplicateSurvey');
+Route::get('insertUpdateSurvey', 'SurveyAnswerController@insertUpdateSurvey');
+Route::get('insertUpdateSurveyQualities', 'SurveyAnswerController@insertUpdateSurveyQualities');
+Route::get('insertUpdateSurveyProblems', 'SurveyAnswerController@insertUpdateSurveyProblems');
+Route::get('checkMissingTally', 'SurveyAnswerController@checkMissingTally');
+Route::get('checkMissingTallyQualities', 'SurveyAnswerController@checkMissingTallyQualities');
+Route::get('checkMissingTallyProblems', 'SurveyAnswerController@checkMissingSurveyProblems');
+Route::get('checkDuplicateSurvey', 'SurveyAnswerController@checkDuplicateSurvey');
+Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ');
+Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
