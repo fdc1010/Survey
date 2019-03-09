@@ -776,7 +776,7 @@ class SurveyAnswerController extends Controller
                       });
             }
         if($y>0){
-            echo $y." TOtal Record(s) Deleted!";
+            echo "<br>".$y." Total Record(s) Deleted!";
         }
 
     }
