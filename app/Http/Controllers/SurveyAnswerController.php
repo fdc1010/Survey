@@ -559,7 +559,7 @@ class SurveyAnswerController extends Controller
                                                           ->first();
                               if(!empty($dupsurans)){
                                 $y++;
-                                echo "<br>Current Entry! ";
+                                echo "<br><hr><br>Current Entry! ";
                                 echo "<br>#".$suranswer->id." survey detail id: ".$suranswer->survey_detail_id." voter id: ".$suranswer->voter_id." question_id: ".$suranswer->question_id." option id: ".$suranswer->option_id." user id: ".$suranswer->user_id;
                                 echo "<br>Duplicate Entry! ";
                                 echo "<br>#".$dupsurans->id." survey detail id: ".$dupsurans->survey_detail_id." voter id: ".$dupsurans->voter_id." question_id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id." user id: ".$dupsurans->user_id;
