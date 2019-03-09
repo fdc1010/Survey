@@ -464,7 +464,7 @@ class SurveyAnswerController extends Controller
       $i=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
-                  ->chunk(400, function ($results)use($i){
+                  ->chunk(400, function ($results)use(&$i){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
@@ -477,7 +477,7 @@ class SurveyAnswerController extends Controller
                               $i++;
                         }
                   });
-      echo "Record(s) Affected: ".$i;
+      echo "<br><br>Record(s) Affected: ".$i;
     }else{
         echo "Question Info not found!";
     }
