@@ -556,7 +556,7 @@ class SurveyAnswerController extends Controller
                                                 $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                             }
                                             if(!empty($otoptId)){
-                                              $question = Question::find($relquestion->question_id);
+                                              $question = Question::find($suranswer->question_id);
                                               if(!empty($question->for_position) && is_numeric($question->for_position)){
                                                 $optioncandidate = QuestionOption::find($otoptId);
                                                 if($optioncandidate){
@@ -572,6 +572,8 @@ class SurveyAnswerController extends Controller
                                                   $insertdata = TallyOtherVote::insert($tallyothervotedata);
                                                   if($insertdata){
                                                     $y++;
+                                                  }else{
+                                                    echo $insertdata;
                                                   }
                                                 }
 
