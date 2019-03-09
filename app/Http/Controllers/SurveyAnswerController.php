@@ -498,7 +498,7 @@ class SurveyAnswerController extends Controller
                                       if(!empty($surans[$relquestion->cardinality-1])){
                                           $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                       }
-                                      print_r($surans);
+                                      dd($relquestion);
                                   // }else{
                                   //     $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                   //               ->where('question_id',$relquestion->related_question_id)
