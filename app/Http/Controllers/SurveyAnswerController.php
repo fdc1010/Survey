@@ -465,6 +465,7 @@ class SurveyAnswerController extends Controller
       $y=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
+                  ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
