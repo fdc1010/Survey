@@ -372,7 +372,7 @@ class SurveyAnswerController extends Controller
       $i=0;
       $y=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                  ->whereIn('question_id',$curquestion->id)
+                  ->where('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
@@ -470,7 +470,7 @@ class SurveyAnswerController extends Controller
       $i=0;
       $y=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                  ->whereIn('question_id',$curquestion->id)
+                  ->where('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
