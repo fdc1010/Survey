@@ -554,7 +554,7 @@ class SurveyAnswerController extends Controller
     if($request->has('sid'))
       $surveydetailid = $request->sid;
 
-    $questionId = 5;
+    $questionId = 4;
     if($request->has('qid'))
       $questionId = $request->qid;
 
