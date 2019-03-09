@@ -538,6 +538,38 @@ class SurveyAnswerController extends Controller
         echo "Question Info not found!";
     }
   }
+
+  public function checkDuplicateSurvey(Request $request){
+    $surveydetailid = $request->sid;
+    $questionId = $request->qid;
+    $curquestion = Question::find($questionId);
+    if($curquestion){
+      echo "Current Question: #".$questionId." ".$curquestion->question;
+      $i=0;
+      $y=0;
+      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                  ->where('question_id',$questionId)
+                  ->orderBy('voter_id')
+                  ->chunk(400, function ($results)use(&$i,&$y,$isinsert){
+                        foreach ($results as $suranswer) {
+                              $cquestionoption = QuestionOption::find($suranswer->option_id);
+                              echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              $dupsurans = SurveyAnswer::where('question_id',$suranswer->question_id)
+                                                          ->where('voter_id',$suranswer->voter_id)
+                                                          ->first();
+                              if(!empty($dupsurans)){
+                                $y++;
+                                echo " , Duplicate Record! voter id: ".$dupsurans->voter->id." question id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id;
+                              }
+                              $i++;
+                        }
+                  });
+      echo "<br><br>Record(s) Affected: ".$i;
+      echo "<br>Duplicate Record(s): ".$y;
+    }else{
+        echo "Question Info not found!";
+    }
+  }
     /**
      * Show the form for creating a new resource.
      *
