@@ -471,6 +471,7 @@ class SurveyAnswerController extends Controller
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                               $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
+                                                          ->where('option_id',$suranswer->option_id)
                                                           ->first();
                               if(empty($tallyovq)){
                                 echo "<br> But not found in tally_other_votes table!";
