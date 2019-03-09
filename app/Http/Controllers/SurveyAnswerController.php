@@ -484,7 +484,40 @@ class SurveyAnswerController extends Controller
                                 $y++;
                                 echo "<hr>".$y.".) #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
+
+                                $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
+                                if($relquestion){
+                                  if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                                      $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                  ->where('question_id',$relquestion->related_question_id)
+                                                  ->where('voter_id',$suranswer->voter_id)
+                                                  ->orderBy('id')
+                                                  ->get();
+                                      if(!empty($surans[$relquestion->cardinality-1])){
+                                          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                      }
+                                  }else{
+                                      $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                ->where('question_id',$relquestion->related_question_id)
+                                                ->where('voter_id',$suranswer->voter_id)
+                                                ->get();
+                                      if(!empty($surans[0])){
+                                          $otoptId = $surans[0]->option_id;
+                                      }
+                                  }
+                                  if(!empty($otoptId)){
+                                    $question = Question::find($relquestion->question_id);
+                                    if(!empty($question->for_position) && is_numeric($question->for_position)){
+                                      $optioncandidate = QuestionOption::find($otoptId);
+                                      if($optioncandidate){
+                                        echo "<br>Related Question: #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." candidate id: ".$optioncandidate->candidate_id." ".$$optioncandidate->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
+                                      }
+
+                                    }
+                                  }
+                                }
                                 echo "<hr>";
+
                               }else{
                                 echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                               }
