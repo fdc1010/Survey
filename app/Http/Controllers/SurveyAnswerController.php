@@ -478,14 +478,14 @@ class SurveyAnswerController extends Controller
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
-                              echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                              echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                               $tallyovq = TallyOtherVote::where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->where('option_id',$suranswer->option_id)
                                                           ->where('user_id',$suranswer->user_id)
                                                           ->first();
                               if(empty($tallyovq)){
-                                echo "<hr>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
+                                echo "<hr>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
                                 $y++;
                                 if($doInsertMissing){
