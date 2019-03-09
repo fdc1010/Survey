@@ -455,7 +455,7 @@ class SurveyAnswerController extends Controller
         echo "Question Info not found!";
     }
   }
-  public function checkTallyOtherVotesQualities(Request $request){
+  public function checkMissingSurveyQualities(Request $request){
     $surveydetailid = 1;
     if($request->has('isinsert'))
       $surveydetailid = $request->sid;
@@ -550,8 +550,18 @@ class SurveyAnswerController extends Controller
   }
 
   public function checkDuplicateSurvey(Request $request){
-    $surveydetailid = $request->sid;
-    $questionId = $request->qid;
+    $surveydetailid = 1;
+    if($request->has('isinsert'))
+      $surveydetailid = $request->sid;
+
+    $questionId = 5;
+    if($request->has('$questionId'))
+      $questionId = $request->qid;
+
+    $doDeleteDuplicate = 0;
+    if($request->has('dodeleteduplicate'))
+        $doDeleteDuplicate = $request->dodeleteduplicate;
+
     $curquestion = Question::find($questionId);
     if($curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
@@ -575,10 +585,26 @@ class SurveyAnswerController extends Controller
                                 echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo "<br>Duplicate Entry! ";
                                 echo "<br>#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name;
-                                //echo " , Duplicate Record! voter id: ".$dupsurans->voter->id." question id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id;
-                                // SurveyAnswer::where('voter_id',$dupsurans->voter_id)
-                                //               ->where('question_id',$dupsurans->question_id)
-                                //               ->delete();
+                                if($doDeleteDuplicate){
+                                    $duptallyvotes = TallyVote::where('question_id',$dupsurans->question_id)
+                                                                    ->where('voter_id',$dupsurans->voter_id)
+                                                                    ->where('user_id',$dupsurans->user_id)
+                                                                    ->first();
+                                    $deleteduptallyvotes = $duptallyvotes->delete();
+                                    if($deleteduptallyvotes){
+                                        $duptallyqp = TallyOtherVote::where('question_id',$dupsurans->question_id)
+                                                                          ->where('voter_id',$dupsurans->voter_id)
+                                                                          ->where('user_id',$dupsurans->user_id)
+                                                                          ->first();
+                                        $deleteduptallyqp = $duptallyqp->delete();
+                                        if($deleteduptallyqp){
+                                            $deletedupsurvey= SurveyAnswer::find($dupsurans->id)->delete();
+                                            if($deletedata){
+                                                echo "<br>Duplicate Record Deleted!";
+                                            }
+                                        }
+                                    }
+                                }
                               }
                               $i++;
                         }
