@@ -547,22 +547,24 @@ class SurveyAnswerController extends Controller
       echo "Current Question: #".$questionId." ".$curquestion->question;
       $i=0;
       $y=0;
-      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+      SurveyAnswer::with(['voter','user'])
+                  ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
-                              $dupsurans = SurveyAnswer::where('id','<>',$suranswer->id)
+                              $dupsurans = SurveyAnswer::with(['voter','user'])
+                                                          ->where('id','<>',$suranswer->id)
                                                           ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->first();
                               if(!empty($dupsurans)){
                                 $y++;
                                 echo "<hr>Current Entry! ";
-                                echo "<br>#".$suranswer->id." survey detail id: ".$suranswer->survey_detail_id." voter id: ".$suranswer->voter_id." question_id: ".$suranswer->question_id." option id: ".$suranswer->option_id." user id: ".$suranswer->user_id;
+                                echo "<br>#".$suranswer->id." survey detail id: ".$suranswer->survey_detail_id." voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." question_id: ".$suranswer->question_id." option id: ".$suranswer->option_id." user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo "<br>Duplicate Entry! ";
-                                echo "<br>#".$dupsurans->id." survey detail id: ".$dupsurans->survey_detail_id." voter id: ".$dupsurans->voter_id." question_id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id." user id: ".$dupsurans->user_id;
+                                echo "<br>#".$dupsurans->id." survey detail id: ".$dupsurans->survey_detail_id." voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." question_id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id." user id: ".$dupsurans->user_id." ".$dupsurans->user->name;
                                 //echo " , Duplicate Record! voter id: ".$dupsurans->voter->id." question id: ".$dupsurans->question_id." option id: ".$dupsurans->option_id;
                                 // SurveyAnswer::where('voter_id',$dupsurans->voter_id)
                                 //               ->where('question_id',$dupsurans->question_id)
