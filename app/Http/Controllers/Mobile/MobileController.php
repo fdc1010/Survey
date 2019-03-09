@@ -146,6 +146,7 @@ class MobileController extends Controller
 																			}]);
 															}])
 			  										->first();
+                            
 			  return response()->json(['success'=>true,'msg'=>'Authorization Successful','user'=>$user,
 			  						'voterstatus'=>$voterstatus,'empstatus'=>$empstatus,
 										'civilstatus'=>$civilstatus,'occstatus'=>$occstatus,
