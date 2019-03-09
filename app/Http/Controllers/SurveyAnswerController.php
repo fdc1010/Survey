@@ -546,23 +546,13 @@ class SurveyAnswerController extends Controller
                                   if(empty($tallyovq)){
                                           $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                           if($relquestion){
-                                            if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
-                                                $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
-                                                            ->where('question_id',$relquestion->related_question_id)
-                                                            ->where('voter_id',$suranswer->voter_id)
-                                                            ->orderBy('id')
-                                                            ->get();
-                                                if(!empty($surans[$relquestion->cardinality-1])){
-                                                    $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                                }
-                                            }else{
-                                                $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
-                                                          ->where('question_id',$relquestion->related_question_id)
-                                                          ->where('voter_id',$suranswer->voter_id)
-                                                          ->get();
-                                                if(!empty($surans[0])){
-                                                    $otoptId = $surans[0]->option_id;
-                                                }
+                                            $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                                        ->where('question_id',$relquestion->related_question_id)
+                                                        ->where('voter_id',$suranswer->voter_id)
+                                                        ->orderBy('id')
+                                                        ->get();
+                                            if(!empty($surans[$relquestion->cardinality-1])){
+                                                $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                             }
                                             if(!empty($otoptId)){
                                               $question = Question::find($relquestion->question_id);
