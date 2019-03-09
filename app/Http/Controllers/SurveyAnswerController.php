@@ -567,8 +567,8 @@ class SurveyAnswerController extends Controller
                                 // SurveyAnswer::where('voter_id',$dupsurans->voter_id)
                                 //               ->where('question_id',$dupsurans->question_id)
                                 //               ->delete();
+                                echo "<br><hr>";
                               }
-                              echo "<br><hr>";
                               $i++;
                         }
                   });
