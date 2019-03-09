@@ -748,19 +748,7 @@ class SurveyAnswerController extends Controller
                                   $i++;
                             }
                       });
-            }tes = $duptallyvotes->delete();
-                                      if($deleteduptallyvotes){
-                                          $duptallyqp = TallyOtherVote::where('question_id',$dupsurans->question_id)
-                                                                            ->where('voter_id',$dupsurans->voter_id)
-                                                                            ->where('user_id',$dupsurans->user_id);
-                                          $deleteduptallyqp = $duptallyqp->delete();
-                                          if($deleteduptallyqp){
-                                              $deletedupsurvey= SurveyAnswer::find($dupsurans->id)->delete();
-                                              if($deletedata){
-                                                  echo "<br>Duplicate Record Deleted!";
-                                              }
-                                          }
-                                      }
+            }
 
     }
   }
