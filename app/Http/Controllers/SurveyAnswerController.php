@@ -762,11 +762,11 @@ class SurveyAnswerController extends Controller
                                           $deleteduptallyqp = $duptallyqp->delete();
                                           echo "<br>".$deleteduptallyqp;
                                           if($deleteduptallyqp){
-                                              $deletedupsurvey= SurveyAnswer::find($dupsurans->id)->delete();
-                                              echo "<br>".$deletedupsurvey;
-                                              if($deletedata){
+                                              // $deletedupsurvey= SurveyAnswer::find($dupsurans->id)->delete();
+                                              // echo "<br>".$deletedupsurvey;
+                                              // if($deletedata){
                                                   $y++;
-                                              }
+                                              //}
                                           }
                                       }
                                   }
