@@ -126,10 +126,8 @@ class TallyVote extends Model
 								if(count($voterstatus)>0){
 									$q->whereHas('statuses',function($qv)use($voterstatus,$voterstatusid){
                               if(count($voterstatusid)>0){
-              									$qv->where('status_id',$voterstatusid);
-              								}else{
-                                $qv->whereIn('status_id',$voterstatus);
-                              }
+              									$qv->whereIn('status_id',$voterstatus);
+              								}
 												});//->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
 								}
@@ -164,9 +162,13 @@ class TallyVote extends Model
                 if($occstatusid>0){
 									$q->where('occupancy_status_id',$occstatusid);
 								}
-                if(count($agebrackets)>0){
-									$q->whereIn('age',$agebrackets);//->orWhereNull('age');
-									//info("agebrackets: ");info($agebrackets);
+                if(count($voterstatus)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus,$voterstatusid){
+                              if(count($voterstatusid)>0){
+              									$qv->whereIn('status_id',$voterstatus);
+              								}
+												});//->orWhereNull('status_id');
+									//info("voterstatus: ");info($voterstatus);
 								}
 							})
 						->sum('tally');
