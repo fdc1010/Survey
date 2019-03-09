@@ -480,7 +480,7 @@ class SurveyAnswerController extends Controller
                         }
                   });
       echo "<br><br>Record(s) Affected: ".$i;
-      echo "<br><br>Record(s) Not Found: ".$y;
+      echo "<br>Record(s) Not Found: ".$y;
     }else{
         echo "Question Info not found!";
     }
