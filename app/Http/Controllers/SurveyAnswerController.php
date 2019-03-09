@@ -713,7 +713,7 @@ class SurveyAnswerController extends Controller
       SurveyAnswer::with(['voter','user'])
                   ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
-                  ->orderBy('voter_id')
+                  ->orderBy('id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate,$qidstally,$qidsproblems,$qidsqualities){
                         foreach ($results as $suranswer) {
                               $dupsurans = SurveyAnswer::with(['voter','user'])
@@ -724,7 +724,7 @@ class SurveyAnswerController extends Controller
 
                               if(!empty($dupsurans)){
                                 $y++;
-                                echo "<hr>Current Entry! ";
+                                echo "<hr>First Entry! ";
                                 echo "<br>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo "<br>Duplicate Entry! ";
                                 echo "<br>#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name;
