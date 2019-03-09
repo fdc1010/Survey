@@ -443,10 +443,12 @@ class SurveyAnswerController extends Controller
                               $i++;
                         }
                   });
-      echo "<br><br>Record(s) Affected: ".$i;
-      echo "<br>Record(s) Not Found: ".$y;
-    }else{
+    }
+    if($i==0){
         echo "Question Info not found!";
+    }else{
+        echo "<br><br>Record(s) Affected: ".$i;
+        echo "<br>Record(s) Not Found: ".$y;
     }
   }
   public function checkMissingTallyQualities(Request $request){
@@ -545,10 +547,12 @@ class SurveyAnswerController extends Controller
                               $i++;
                         }
                   });
-      echo "<br><br>Record(s) Affected: ".$i;
-      echo "<br>Record(s) Not Found: ".$y;
-    }else{
+    }
+    if($i==0){
         echo "Question Info not found!";
+    }else{
+        echo "<br><br>Record(s) Affected: ".$i;
+        echo "<br>Record(s) Not Found: ".$y;
     }
   }
   public function checkMissingTallyProblems(Request $request){
@@ -680,10 +684,14 @@ class SurveyAnswerController extends Controller
                               $i++;
                         }
                   });
+
+    }
+    
+    if($i==0){
+        echo "Question Info not found!";
+    }else{
       echo "<br><br>Record(s) Affected: ".$i;
       echo "<br>Duplicate Record(s): ".$y;
-    }else{
-        echo "Question Info not found!";
     }
   }
     /**
