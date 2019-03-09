@@ -615,11 +615,13 @@ class SurveyAnswerController extends Controller
                             $i++;
                         }
                   });
+      }
+      if($i==0){
+          echo "Question Info not found!";
+      }else{
           echo "<br><br>Record(s) Affected: ".$i;
           echo "<br>Record(s) Not Found: ".$y;
-        }else{
-            echo "Question Info not found!";
-        }
+      }
   }
   public function checkDuplicateSurvey(Request $request){
     $surveydetailid = 1;
@@ -686,7 +688,7 @@ class SurveyAnswerController extends Controller
                   });
 
     }
-    
+
     if($i==0){
         echo "Question Info not found!";
     }else{
