@@ -368,7 +368,7 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
+      echo "<br>Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::with(['voter','user'])
@@ -460,7 +460,7 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
+      echo "<br>Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::with(['voter','user'])
@@ -585,7 +585,7 @@ class SurveyAnswerController extends Controller
     foreach($curquestions as $curquestion){
       $i=0;
       $y=0;
-      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
+      echo "<br>Current Question: #".$curquestion->id." ".$curquestion->question;
 
       SurveyAnswer::with(['voter','user'])
                   ->where('survey_detail_id',$surveydetailid)
@@ -674,7 +674,7 @@ class SurveyAnswerController extends Controller
 
     $curquestions = Question::whereIn('id',$questionId)->get();
     foreach($curquestions as $curquestion){
-      echo "Current Question: #".$curquestion->id." ".$curquestion->question;
+      echo "<br>Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
       SurveyAnswer::with(['voter','user'])
