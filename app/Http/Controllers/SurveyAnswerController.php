@@ -475,7 +475,7 @@ class SurveyAnswerController extends Controller
                                                           ->where('user_id',$suranswer->user_id)
                                                           ->first();
                               if(empty($tallyovq)){
-                                echo "<br> But not found in tally_other_votes table!";
+                                echo " ,But not found in tally_other_votes table!";
                                 $y++;
                               }
                               $i++;
