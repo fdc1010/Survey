@@ -654,13 +654,13 @@ class SurveyAnswerController extends Controller
                               foreach ($results as $suranswer) {
                                     $cquestionoption = QuestionOption::find($suranswer->option_id);
                                     $voterbrgy = Voter::find($suranswer->voter_id);
-                                    $tallyproblems = TallyOtherVote::where('survey_detail_id',$surveydetailid)
+                                    $tallyproblems = TallyOtherVote::where('survey_detail_id',$suranswer->survey_detail_id)
                                                     ->where('question_id',$suranswer->question_id)
                                                     ->where('voter_id',$suranswer->voter_id)
                                                     ->first();
                                     if(empty($tallyproblems)){
                                       $tallyothervotedata = [
-                                                              'survey_detail_id'=>$surveydetailid,
+                                                              'survey_detail_id'=>$suranswer->survey_detail_id,
                                                               'barangay_id'=>$voterbrgy->barangay_id,
                                                               'question_id'=>$suranswer->question_id,
                                                               'option_id'=>$suranswer->option_id,
