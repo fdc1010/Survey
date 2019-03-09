@@ -461,10 +461,10 @@ class SurveyAnswerController extends Controller
     $curquestion = Question::find($questionId);
     if($curquestion){
       echo "Current Question: #".$questionId." ".$curquestion->question;
-
+      $i=0;
       SurveyAnswer::where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
-                  ->chunk(400, function ($results){
+                  ->chunk(400, function ($results)use($i){
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
@@ -474,8 +474,10 @@ class SurveyAnswerController extends Controller
                               if(empty($tallyovq)){
                                 echo "<br> But not found in tally_other_votes table!";
                               }
+                              $i++;
                         }
                   });
+      echo "Record(s) Affected: ".$i;
     }else{
         echo "Question Info not found!";
     }
