@@ -487,7 +487,7 @@ class SurveyAnswerController extends Controller
 
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                 if($relquestion){
-                                  $otoptId = 0;
+                                  $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                               ->where('question_id',$relquestion->related_question_id)
                                               ->where('voter_id',$suranswer->voter_id)
@@ -496,7 +496,6 @@ class SurveyAnswerController extends Controller
                                   if(!empty($surans[$relquestion->cardinality-1])){
                                       $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                   }
-                                  echo "<br>".count($surans);
                                   if(!empty($otoptId)){
                                     echo "<br>Option ID: ".$otoptId;
                                     $question = Question::find($suranswer->question_id);
@@ -546,7 +545,7 @@ class SurveyAnswerController extends Controller
                                   if(empty($tallyovq)){
                                           $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                           if($relquestion){
-                                            $otoptId = 0;
+                                            $otoptId = null;
                                             $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                                         ->where('question_id',$relquestion->related_question_id)
                                                         ->where('voter_id',$suranswer->voter_id)
@@ -554,7 +553,6 @@ class SurveyAnswerController extends Controller
                                                         ->get();
                                             if(!empty($surans[$relquestion->cardinality-1])){
                                                 $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                                echo "<br>".$otoptId;
                                             }
                                             if(!empty($otoptId)){
                                               $question = Question::find($suranswer->question_id);
