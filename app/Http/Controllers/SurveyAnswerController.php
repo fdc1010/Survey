@@ -720,6 +720,7 @@ class SurveyAnswerController extends Controller
                                                           ->where('user_id','<>',$suranswer->user_id)
                                                           ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
+                                                          ->orderBy('id','DESC')
                                                           ->first();
 
                               if(!empty($dupsurans)){
