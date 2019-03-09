@@ -241,13 +241,16 @@ class SurveyAnswerController extends Controller
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
       						$optid = $ansid['id'];
-      						$surveyanswers = SurveyAnswer::where('user_id',$userid)
-      											->where('voter_id',$voterid)
+      						$surveyanswers = SurveyAnswer::where('voter_id',$voterid)
       											->where('survey_detail_id',$surveydetailid)
       											->where('question_id',$voteranswers['questionId'])
-      											->where('option_id',$optid)
+      											//->where('user_id',$userid)
+      											//->where('option_id',$optid)
       											->first();
-      						if(empty($surveyanswers)){
+      						if(!empty($surveyanswers)){
+                    info("New Entry! survey detail id: ".$surveydetailid." voter id: ".$voterid." question_id: ".$voteranswers['questionId']." option id: ".$optid." user id: ".$userid);
+                    info("Duplicate Entry! #".$surveyanswers->id." survey detail id: ".$surveydetailid." voter id: ".$surveyanswers->voter_id." question_id: ".$surveyanswers->question_id." option id: ".$surveyanswers->option_id." user id: ".$surveyanswers->user_id);
+                  }else{
                     $candidateId = null;      				//$voter->save();
 
                     $optioncandidatesa = OptionCandidate::where('option_id',$optid)->first();
