@@ -124,10 +124,10 @@ class TallyVote extends Model
 									//info("occstatus: ");info($occstatus);
 								}
 								if(count($voterstatus)>0){
-									$q->whereHas('statuses',function($qv)use($voterstatus,$voterstatusid){
-                              if(count($voterstatusid)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus){
+
               									$qv->whereIn('status_id',$voterstatus);
-              								}
+              								
 												});//->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
 								}
@@ -162,11 +162,10 @@ class TallyVote extends Model
                 if($occstatusid>0){
 									$q->where('occupancy_status_id',$occstatusid);
 								}
-                if(count($voterstatus)>0){
-									$q->whereHas('statuses',function($qv)use($voterstatus,$voterstatusid){
-                              if(count($voterstatusid)>0){
-              									$qv->whereIn('status_id',$voterstatus);
-              								}
+                if($voterstatusid>0){
+									$q->whereHas('statuses',function($qv)use($voterstatusid){
+              									$qv->where('status_id',$voterstatusid);
+
 												});//->orWhereNull('status_id');
 									//info("voterstatus: ");info($voterstatus);
 								}
