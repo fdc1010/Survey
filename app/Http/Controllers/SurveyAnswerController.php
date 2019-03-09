@@ -498,6 +498,7 @@ class SurveyAnswerController extends Controller
                                   }
 
                                   if(!empty($otoptId)){
+                                    echo "<br>Option ID: ".$otoptId;
                                     $question = Question::find($suranswer->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
                                       $optioncandidate = QuestionOption::find($otoptId);
