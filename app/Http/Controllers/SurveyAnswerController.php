@@ -554,7 +554,8 @@ class SurveyAnswerController extends Controller
                         foreach ($results as $suranswer) {
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
-                              $dupsurans = SurveyAnswer::where('question_id',$suranswer->question_id)
+                              $dupsurans = SurveyAnswer::where('id','<>',$suranswer->id)
+                                                          ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
                                                           ->first();
                               if(!empty($dupsurans)){
