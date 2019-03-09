@@ -571,7 +571,7 @@ class SurveyAnswerController extends Controller
                   ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$questionId)
                   ->orderBy('voter_id')
-                  ->chunk(400, function ($results)use(&$i,&$y){
+                  ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate){
                         foreach ($results as $suranswer) {
 
                               $dupsurans = SurveyAnswer::with(['voter','user'])
