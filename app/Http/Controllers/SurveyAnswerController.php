@@ -495,6 +495,7 @@ class SurveyAnswerController extends Controller
                                               ->get();
                                   if(!empty($surans[$relquestion->cardinality-1])){
                                       $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                      echo "<br>".$otoptId;
                                   }
 
                                   if(!empty($otoptId)){
@@ -556,7 +557,6 @@ class SurveyAnswerController extends Controller
                                                 $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                                 echo "<br>".$otoptId;
                                             }
-                                            echo "<br>".$otoptId;
                                             if(!empty($otoptId)){
                                               $question = Question::find($suranswer->question_id);
                                               if(!empty($question->for_position) && is_numeric($question->for_position)){
