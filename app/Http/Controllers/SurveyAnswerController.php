@@ -546,7 +546,7 @@ class SurveyAnswerController extends Controller
                                   if(empty($tallyovq)){
                                           $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                           if($relquestion){
-                                            $otoptId = null;
+                                            $otoptId = 0;
                                             $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                                         ->where('question_id',$relquestion->related_question_id)
                                                         ->where('voter_id',$suranswer->voter_id)
