@@ -753,15 +753,17 @@ class SurveyAnswerController extends Controller
                                       $duptallyvotes = TallyVote::where('question_id',$dupsurans->question_id)
                                                                   ->where('voter_id',$dupsurans->voter_id)
                                                                   ->where('user_id',$dupsurans->user_id);
-
                                       $deleteduptallyvotes = $duptallyvotes->delete();
+                                      echo "<br>".$deleteduptallyvotes;
                                       if($deleteduptallyvotes){
                                           $duptallyqp = TallyOtherVote::where('question_id',$dupsurans->question_id)
                                                                         ->where('voter_id',$dupsurans->voter_id)
                                                                         ->where('user_id',$dupsurans->user_id);
                                           $deleteduptallyqp = $duptallyqp->delete();
+                                          echo "<br>".$deleteduptallyqp;
                                           if($deleteduptallyqp){
                                               $deletedupsurvey= SurveyAnswer::find($dupsurans->id)->delete();
+                                              echo "<br>".$deletedupsurvey;
                                               if($deletedata){
                                                   $y++;
                                               }
