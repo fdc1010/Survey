@@ -487,6 +487,7 @@ class SurveyAnswerController extends Controller
                                 echo " ,But not found in tally_other_votes table!";
 
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
+                                dd($relquestion);
                                 if($relquestion){
                                   $otoptId = null;
                                   //if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
@@ -498,7 +499,7 @@ class SurveyAnswerController extends Controller
                                       if(!empty($surans[$relquestion->cardinality-1])){
                                           $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                                       }
-                                      dd($relquestion);
+
                                   // }else{
                                   //     $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                   //               ->where('question_id',$relquestion->related_question_id)
