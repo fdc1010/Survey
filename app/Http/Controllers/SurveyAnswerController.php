@@ -487,6 +487,7 @@ class SurveyAnswerController extends Controller
 
                                 $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                                 if($relquestion){
+                                  $otoptId = null;
                                   if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
                                       $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                                   ->where('question_id',$relquestion->related_question_id)
@@ -505,7 +506,8 @@ class SurveyAnswerController extends Controller
                                           $otoptId = $surans[0]->option_id;
                                       }
                                   }
-                                  dd($relquestion);
+
+                                  dd($surans);
                                   if(!empty($otoptId)){
                                     $question = Question::find($relquestion->question_id);
                                     if(!empty($question->for_position) && is_numeric($question->for_position)){
