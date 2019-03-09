@@ -312,7 +312,7 @@ class SurveyAnswerController extends Controller
                           info("Found linked Question: ");
       										$optioncandidate = QuestionOption::find($otoptId);
       										if($optioncandidate){
-                            info("Storing tally for candidate qualities: #".$voteranswers['questionId']);
+                            info("Storing tally for candidate qualities: #".$voteranswers['questionId']." ".$optioncandidate->option);
       											$othertallycandidate = new TallyOtherVote;
                             $othertallycandidate->question_id = $voteranswers['questionId'];
                             $othertallycandidate->option_id = $optid;
@@ -320,6 +320,7 @@ class SurveyAnswerController extends Controller
                             $othertallycandidate->user_id = $userid;
       											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
       											$othertallycandidate->survey_detail_id = $surveydetailid;
+                            $othertallycandidate->barangay_id = $voter->barangay_id;
       											$othertallycandidate->save();
       										}
 
@@ -329,16 +330,15 @@ class SurveyAnswerController extends Controller
 
       							$optionproblem = OptionProblem::where('option_id',$optid)->first();
       							if($optionproblem){
-                      info("Storing tally for brgy concerns: #".$voteranswers['questionId']);
-                      info($optionproblem);
-      								$voterbrgy = Voter::find($voterid);
+                      info("Storing tally for brgy concerns: #".$voteranswers['questionId']." ".$optionproblem->option);
+      								//$voterbrgy = Voter::find($voterid);
       								$tallyproblem = new TallyOtherVote;
                       $tallyproblem->question_id = $voteranswers['questionId'];
       								$tallyproblem->option_id = $optid;
       								$tallyproblem->voter_id = $voterid;
                       $tallyproblem->user_id = $userid;
       								$tallyproblem->survey_detail_id = $surveydetailid;
-      								$tallyproblem->barangay_id = $voterbrgy->barangay_id;
+      								$tallyproblem->barangay_id = $voter->barangay_id;
       								$tallyproblem->save();
       							}
       						}
