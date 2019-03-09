@@ -468,7 +468,7 @@ class SurveyAnswerController extends Controller
       SurveyAnswer::with(['voter','user'])
                   ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
-                  ->where('voer_id',32127)
+                  ->where('voter_id',32127)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
