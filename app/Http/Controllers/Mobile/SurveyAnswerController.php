@@ -315,7 +315,7 @@ class SurveyAnswerController extends Controller
                                             ->where('question_id',$relquestion->related_question_id)
                                             ->where('voter_id',$voterid)
                                             ->get();
-                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                  if(!empty($surans[0])){
                                       $otoptId = $surans[0]->option_id;
                                   }
                               }
