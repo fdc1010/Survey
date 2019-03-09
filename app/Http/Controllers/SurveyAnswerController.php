@@ -487,7 +487,7 @@ class SurveyAnswerController extends Controller
                                                           ->first();
                               if(empty($tallyovq)){
                                 $y++;
-                                echo "<hr>".$y.") #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
+                                echo "<hr>".$y.".) #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
                                 if($doInsertMissing){
                                       $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
