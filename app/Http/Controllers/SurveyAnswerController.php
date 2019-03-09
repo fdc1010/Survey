@@ -393,7 +393,6 @@ class SurveyAnswerController extends Controller
                               }else{
                                 echo "<br>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
                               }
-                            }
                             $i++;
                         }
                   });
