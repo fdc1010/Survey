@@ -713,14 +713,14 @@ class SurveyAnswerController extends Controller
       SurveyAnswer::with(['voter','user'])
                   ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
-                  ->orderBy('id')
+                  ->orderBy('created_at','ASC')
                   ->chunk(400, function ($results)use(&$i,&$y,$doDeleteDuplicate,$qidstally,$qidsproblems,$qidsqualities){
                         foreach ($results as $suranswer) {
                               $dupsurans = SurveyAnswer::with(['voter','user'])
                                                           ->where('user_id','<>',$suranswer->user_id)
                                                           ->where('question_id',$suranswer->question_id)
                                                           ->where('voter_id',$suranswer->voter_id)
-                                                          ->orderBy('id','DESC')
+                                                          ->orderBy('created_at','DESC')
                                                           ->first();
 
                               if(!empty($dupsurans)){
