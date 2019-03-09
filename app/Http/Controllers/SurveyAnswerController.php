@@ -371,7 +371,8 @@ class SurveyAnswerController extends Controller
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
-      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+      SurveyAnswer::with(['voter','user'])
+                  ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
@@ -384,7 +385,7 @@ class SurveyAnswerController extends Controller
                                                 ->where('user_id',$suranswer->user_id)
                                                 ->first();
                               if(empty($tallyovq)){
-                                echo "<hr>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                                echo "<hr>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_votes table!";
                                 $y++;
                                 if($doInsertMissing){
@@ -469,7 +470,8 @@ class SurveyAnswerController extends Controller
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
       $i=0;
       $y=0;
-      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+      SurveyAnswer::with(['voter','user'])
+                  ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
@@ -482,7 +484,7 @@ class SurveyAnswerController extends Controller
                                                           ->where('user_id',$suranswer->user_id)
                                                           ->first();
                               if(empty($tallyovq)){
-                                echo "<hr>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                                echo "<hr>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
                                 $y++;
                                 if($doInsertMissing){
@@ -569,7 +571,8 @@ class SurveyAnswerController extends Controller
       $y=0;
       echo "Current Question: #".$curquestion->id." ".$curquestion->question;
 
-      SurveyAnswer::where('survey_detail_id',$surveydetailid)
+      SurveyAnswer::with(['voter','user'])
+                  ->where('survey_detail_id',$surveydetailid)
                   ->where('question_id',$curquestion->id)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
@@ -583,7 +586,7 @@ class SurveyAnswerController extends Controller
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->first();
                               if(empty($tallyproblems)){
-                                echo "<hr>#".$suranswer->id." Voter's #".$suranswer->voter_id." Answer: ".$suranswer->option_id." ".$cquestionoption->option;
+                                echo "<hr>#".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
                                 $y++;
                                 if($doInsertMissing){
@@ -599,7 +602,8 @@ class SurveyAnswerController extends Controller
                                   if($insertdata){
                                     echo "<br>Record inserted to tally_other_votes table!";
                                   }
-                              }
+                                }
+                                echo "<hr>";
                             }
                             $i++;
                         }
