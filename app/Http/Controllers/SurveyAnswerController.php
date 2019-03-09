@@ -495,9 +495,8 @@ class SurveyAnswerController extends Controller
                                               ->get();
                                   if(!empty($surans[$relquestion->cardinality-1])){
                                       $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                      echo "<br>".$otoptId;
                                   }
-
+                                  echo "<br>".count($surans);
                                   if(!empty($otoptId)){
                                     echo "<br>Option ID: ".$otoptId;
                                     $question = Question::find($suranswer->question_id);
