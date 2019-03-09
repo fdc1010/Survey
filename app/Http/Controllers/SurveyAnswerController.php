@@ -481,7 +481,7 @@ class SurveyAnswerController extends Controller
                                                           ->where('option_id',$suranswer->option_id)
                                                           ->where('user_id',$suranswer->user_id)
                                                           ->first();
-                              if(!empty($tallyovq)){
+                              if(empty($tallyovq)){
                                 $y++;
                                 echo "<hr>".$y.".) #".$suranswer->id." ,survey detail id: ".$suranswer->survey_detail_id." ,voter id: ".$suranswer->voter_id." ".$suranswer->voter->full_name." ,question_id: ".$suranswer->question_id." ,option id: ".$suranswer->option_id." ".$cquestionoption->option." ,user id: ".$suranswer->user_id." ".$suranswer->user->name;
                                 echo " ,But not found in tally_other_votes table!";
@@ -490,25 +490,14 @@ class SurveyAnswerController extends Controller
 
                                 if($relquestion){
                                   $otoptId = null;
-                                  //if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
-                                      $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
-                                                  ->where('question_id',$relquestion->related_question_id)
-                                                  ->where('voter_id',$suranswer->voter_id)
-                                                  ->orderBy('id')
-                                                  ->get();
-                                      if(!empty($surans[$relquestion->cardinality-1])){
-                                          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                      }
-                                      dd($surans[$relquestion->cardinality-1]);
-                                  // }else{
-                                  //     $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
-                                  //               ->where('question_id',$relquestion->related_question_id)
-                                  //               ->where('voter_id',$suranswer->voter_id)
-                                  //               ->get();
-                                  //     if(!empty($surans[0])){
-                                  //         $otoptId = $surans[0]->option_id;
-                                  //     }
-                                  // }
+                                  $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
+                                              ->where('question_id',$relquestion->related_question_id)
+                                              ->where('voter_id',$suranswer->voter_id)
+                                              ->orderBy('id')
+                                              ->get();
+                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                  }
 
                                   if(!empty($otoptId)){
                                     $question = Question::find($relquestion->question_id);

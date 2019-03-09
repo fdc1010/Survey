@@ -301,23 +301,13 @@ class SurveyAnswerController extends Controller
                             $otoptId = null;
               							$relquestion = RelatedQuestion::where('question_id',$voteranswers['questionId'])->first();
               							if($relquestion){
-                              if(!empty($relquestion->cardinality) && $relquestion->cardinality>1){
-                  								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                  														->where('question_id',$relquestion->related_question_id)
-                                              ->where('voter_id',$voterid)
-                                              ->orderBy('id')
-                                              ->get();
-                                  if(!empty($surans[$relquestion->cardinality-1])){
-                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                  }
-                              }else{
-                                  $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                                            ->where('question_id',$relquestion->related_question_id)
-                                            ->where('voter_id',$voterid)
-                                            ->get();
-                                  if(!empty($surans[0])){
-                                      $otoptId = $surans[0]->option_id;
-                                  }
+              								$surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+              														->where('question_id',$relquestion->related_question_id)
+                                          ->where('voter_id',$voterid)
+                                          ->orderBy('id')
+                                          ->get();
+                              if(!empty($surans[$relquestion->cardinality-1])){
+                                  $otoptId = $surans[$relquestion->cardinality-1]->option_id;
                               }
               								if(!empty($otoptId)){
               									$question = Question::find($relquestion->question_id);
