@@ -1525,7 +1525,7 @@
                                             if(!empty($surotheranws) && count($surotheranws)>0){
 
                                               foreach($surotheranws as $surotheranw){
-                                                  $otheransopt .= $surotheranw->other_answer.",";
+                                                  $otheransopt .= " ".$surotheranw->other_answer.",";
                                               }
                                               $otheransopt = rtrim($otheransopt,",");
                                             }
