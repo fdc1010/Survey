@@ -2208,7 +2208,7 @@
           <div class="box box-default">
               <div class="box-header with-border">
                   <div class="col-md-12">
-                        <div class="box-title">Other Answeres: {{ $surveydetail->subject }}</div>
+                        <div class="box-title">Other Answers: {{ $surveydetail->subject }}</div>
                   </div>
               </div>
               <div class="box-body">
@@ -2237,8 +2237,6 @@
                                         $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
                                                                                 ->where('candidate_id',$key)
                                                                                 ->whereNotNull('other_answer')
-                                                                                ->select(['other_answer'])
-                                                                                ->groupBy('other_answer')
                                                                                 ->get();
                                         if(!empty($surotheranws) && count($surotheranws)>0){
                                           $otheransopt .= "<ul>";
