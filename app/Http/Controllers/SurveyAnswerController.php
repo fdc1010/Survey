@@ -506,7 +506,7 @@ class SurveyAnswerController extends Controller
                             $i++;
                         }
                   });
-    }
+
     if($i==0){
         echo "Question Info not found!";
     }else{
@@ -549,7 +549,7 @@ class SurveyAnswerController extends Controller
                                     $i++;
                               }
                         });
-                }
+                
                 if($y>0){
                     echo $y." TOtal Record(s) Inserted!";
                 }
