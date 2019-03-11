@@ -378,7 +378,7 @@ class SurveyAnswerController extends Controller
         $questionId = array($request->qid);
     }
     $i=0;
-    $curquestions = Question::whereIn('id',$questionId)->get();
+    $curquestions = Question::whereIn('id',$questionId)->select(['id'])->groupBy('id')->get();
     foreach($curquestions as $curquestion){
           $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
           if($relquestion){
