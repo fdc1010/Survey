@@ -1498,7 +1498,7 @@
                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                 <thead>
                                       <tr>
-                                          <th width="20%">Cadidates</th>
+                                          <th width="30%">Cadidates</th>
                                           <th>Other</th>
                                       </tr>
                                   </thead>
