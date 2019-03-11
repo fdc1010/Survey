@@ -378,43 +378,41 @@ class SurveyAnswerController extends Controller
         $questionId = array($request->qid);
     }
     $i=0;
-    $curquestions = Question::whereIn('id',$questionId)->select(['id'])->groupBy('id')->get();
-    foreach($curquestions as $curquestion){
-          $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
-          if($relquestion){
-            if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
-              SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                          ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$curquestion,$relquestion,&$i){
-                                foreach ($results as $suranswer) {
-                                  $otoptId = null;
-                                  $surans = SurveyAnswer::with(['voter','user'])
-                                              ->where('survey_detail_id',$surveydetailid)
-                                              ->where('question_id',$relquestion->related_question_id)
-                                              ->where('voter_id',$suranswer->voter_id)
-                                              ->orderBy('id')
-                                              ->get();
-                                  if(!empty($surans[$relquestion->cardinality-1])){
-                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                      if(!empty($otoptId)){
-                                          $optioncandidate = QuestionOption::find($otoptId);
-                                          if($optioncandidate){
-                                            $i++;
-                                            echo "<br>Qualities Survey #".$curquestion->id.
-                                                " , from related question #".$relquestion->related_question_id.
-                                                " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
-                                                " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
-                                                " ".$surans[$relquestion->cardinality-1]->voter->full_name.
-                                                " ,user id: #".$surans[$relquestion->cardinality-1]->user_id.
-                                                " ".$surans[$relquestion->cardinality-1]->user->name;
-                                          }
+    //$curquestions = Question::whereIn('id',$questionId)->select(['id'])->groupBy('id')->get();
+    //foreach($curquestions as $curquestion){
+    SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                ->whereIn('question_id',$questionId)
+                ->chunk(400, function ($results)use($surveydetailid,&$i){
+                      foreach ($results as $suranswer) {
+                        $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
+                        if($relquestion){
+                          if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                              $otoptId = null;
+                              $surans = SurveyAnswer::with(['voter','user'])
+                                          ->where('survey_detail_id',$surveydetailid)
+                                          ->where('question_id',$relquestion->related_question_id)
+                                          ->where('voter_id',$suranswer->voter_id)
+                                          ->orderBy('id')
+                                          ->get();
+                              if(!empty($surans[$relquestion->cardinality-1])){
+                                  $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                  if(!empty($otoptId)){
+                                      $optioncandidate = QuestionOption::find($otoptId);
+                                      if($optioncandidate){
+                                        $i++;
+                                        echo "<br>Qualities Survey #".$curquestion->id.
+                                            " , from related question #".$relquestion->related_question_id.
+                                            " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
+                                            " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
+                                            " ".$surans[$relquestion->cardinality-1]->voter->full_name.
+                                            " ,user id: #".$surans[$relquestion->cardinality-1]->user_id.
+                                            " ".$surans[$relquestion->cardinality-1]->user->name;
                                       }
                                   }
-                                }
-                          });
-              }
-          }
-      }
+                              }
+                          }
+                      }
+                });
 
       echo "<br>".$i." Record(s) Affected";
       $i = 0;
