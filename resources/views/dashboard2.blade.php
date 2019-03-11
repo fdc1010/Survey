@@ -1514,23 +1514,26 @@
                                     <tbody>
                                     @foreach($tally[$position->id] as $key => $sortedtallyo)
                                         @php
-                                            $surotherans = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
+                                            $otheransopt = "<ul>";
+                                            $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
                                                                                     ->where('candidate_id',$key)
-                                                                                    ->where('otherAnswer','<>','')
-                                                                                    ->
+                                                                                    ->whereNotNull('otherAnswer')
+                                                                                    ->select(['other_answer'])
+                                                                                    ->groupBy('other_answer')
+                                                                                    ->get();
+                                            if(!empty($surotheranws) && count($surotheranws)>0){
+                                              foreach($surotheranws as $surotheranw){
+                                                  $otheransopt .= $surotheranw->other_answer;
+                                              }
+                                            }
+                                            $otheransopt .= "</ul>";
                                         @endphp
                                         <tr>
                                             <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                            <td>{{ $surotherans->other_answer }}</td>
+                                            <td>{{ $otheransopt }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <thead>
-                                    <tr>
-                                        <th>Total:</th>
-                                        <th>{{ $tallytotalcandidate }}</th>
-                                    </tr>
-                                  </thead>
                                   @endforeach
                               </table>
                         </div>
