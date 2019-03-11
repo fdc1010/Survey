@@ -1490,7 +1490,7 @@
               <div class="box box-default">
                   <div class="box-header with-border">
                       <div class="col-md-12">
-                            <div class="box-title">Other Answers: {{ $surveydetail->subject }}</div>
+                            <div class="box-title">Comments: {{ $surveydetail->subject }}</div>
                       </div>
                   </div>
                   <div class="box-body">
@@ -1499,7 +1499,7 @@
                                 <thead>
                                       <tr>
                                           <th width="30%">Cadidates</th>
-                                          <th>Other</th>
+                                          <th>Comments</th>
                                       </tr>
                                   </thead>
                                 @foreach($positions as $position)
