@@ -384,7 +384,7 @@ class SurveyAnswerController extends Controller
                 ->whereIn('question_id',$questionId)
                 ->chunk(400, function ($results)use($surveydetailid,&$i){
                       foreach ($results as $suranswer) {
-                        $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
+                        $relquestion = RelatedQuestion::where('question_id',$suranswer->question_id)->first();
                         if($relquestion){
                           if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
                               $otoptId = null;
