@@ -385,20 +385,21 @@ class SurveyAnswerController extends Controller
                 ->whereIn('question_id',$questionId)
                 ->chunk(400, function ($results)use($surveydetailid,&$i){
                       foreach ($results as $suranswer) {
-                              $surans = SurveyAnswer::with(['voter','user'])
+                              $surans = SurveyAnswer::with(['voter','user','candidate'])
                                           ->where('survey_detail_id',$suranswer->survey_detail_id)
                                           ->where('question_id',$suranswer->question_id)
                                           ->where('voter_id',$suranswer->voter_id)
                                           ->first();
                               if($surans){
                                     $i++;
-                                    // echo "<br>Qualities Survey #".$suranswer->question_id.
-                                    //     " , from related question #".$relquestion->related_question_id.
-                                    //     " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
-                                    //     " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
-                                    //     " ".$surans[$relquestion->cardinality-1]->voter->full_name.
-                                    //     " ,user id: #".$surans[$relquestion->cardinality-1]->user_id.
-                                    //     " ".$surans[$relquestion->cardinality-1]->user->name;
+                                    echo "<br>Qualities Survey #".$suranswer->question_id.
+                                        " for candidate qualities: #".$relquestion->question_id.
+                                        " ".$suranswer->candidate_id." ".$suranswer->option->option.
+                                        " ".$suranswer->candidate->full_name.
+                                        " ,voter id: #".$surans->voter_id.
+                                        " ".$surans->voter->full_name.
+                                        " ,user id: #".$surans->user_id.
+                                        " ".$surans->user->name;
                               }
                           }
                     });
