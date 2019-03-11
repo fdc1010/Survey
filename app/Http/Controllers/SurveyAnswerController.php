@@ -476,18 +476,18 @@ class SurveyAnswerController extends Controller
     if($request->has('doinsertmissing'))
         $doInsertMissing = $request->doinsertmissing;
 
-    $curquestions = Question::whereIn('id',$questionId)->get();
-    foreach($curquestions as $curquestion){
-      echo "<hr>Current Question: #".$curquestion->id." ".$curquestion->question."<hr>";
+    //$curquestions = Question::whereIn('id',$questionId)->get();
+    //foreach($curquestions as $curquestion){
       $i=0;
       $y=0;
-      SurveyAnswer::with(['voter','user'])
+      SurveyAnswer::with(['voter','user','question'])
                   ->where('survey_detail_id',$surveydetailid)
-                  ->where('question_id',$curquestion->id)
+                  ->whereIn('question_id',$questionId)
                   ->orderBy('question_id')
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
                         foreach ($results as $suranswer) {
+                              echo "<hr>Current Question: #".$curquestion->id." ".$suranswer->question->question."<hr>";
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               $tally = TallyVote::where('question_id',$suranswer->question_id)
                                                 ->where('voter_id',$suranswer->voter_id)
@@ -514,12 +514,12 @@ class SurveyAnswerController extends Controller
         echo "<br>Record(s) Not Found: ".$y;
     }
     if($doInsertMissing){
-          foreach($curquestions as $curquestion){
+
             $i=0;
             $y=0;
             SurveyAnswer::with(['voter','user'])
                         ->where('survey_detail_id',$surveydetailid)
-                        ->where('question_id',$curquestion->id)
+                        ->whereIn('question_id',$questionId)
                         ->orderBy('question_id')
                         ->orderBy('voter_id')
                         ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
