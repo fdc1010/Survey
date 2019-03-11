@@ -25,6 +25,7 @@ Route::get('dashboard2', 'HomeController@dashboard2')->name('dashboard2');
 Route::get('insertUpdateSurvey', 'SurveyAnswerController@insertUpdateSurvey');
 Route::get('insertUpdateSurveyQualities', 'SurveyAnswerController@insertUpdateSurveyQualities');
 Route::get('insertUpdateSurveyProblems', 'SurveyAnswerController@insertUpdateSurveyProblems');
+Route::get('updateSurveyQualities', 'SurveyAnswerController@updateSurveyQualities');
 Route::get('checkMissingTally', 'SurveyAnswerController@checkMissingTally');
 Route::get('checkMissingTallyQualities', 'SurveyAnswerController@checkMissingTallyQualities');
 Route::get('checkMissingTallyProblems', 'SurveyAnswerController@checkMissingTallyProblems');

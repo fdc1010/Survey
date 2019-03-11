@@ -97,6 +97,14 @@ class SurveyAnswerController extends Controller
     }else{
         $surveydetailid = 1;
     }
+    $doUpdate = 0;
+    if($request->has('doupdate')){
+      $doUpdate = $request->doupdate;
+    }
+    $doInsert = 0;
+    if($request->has('doinsert')){
+      $doInsert = $request->doinsert;
+    }
     $qids = array(5,7,9,10,11,12);
     if($request->has('qid')){
         if(in_array($request->qid,$qids)){
@@ -137,9 +145,12 @@ class SurveyAnswerController extends Controller
                                                             ->where('voter_id',$suranswer->voter_id)
                                                             ->first();
                                             if($tallyothervotes){
+                                              if($doUpdate){
                                                   TallyOtherVote::where('id',$tallyothervotes->id)
                                                                   ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                              }
                                             }else{
+                                              if($doInsert){
                                                   $tallyothervotedata = [
                                                                       'survey_detail_id'=>$surveydetailid,
                                                                       'question_id'=>$relquestion->question_id,
@@ -149,6 +160,7 @@ class SurveyAnswerController extends Controller
                                                                       'user_id'=>$csurans->user_id
                                                                     ];
                                                   TallyOtherVote::insert($tallyothervotedata);
+                                              }
                                             }
 
                                           }
@@ -350,6 +362,95 @@ class SurveyAnswerController extends Controller
     }else{
         echo "Question Info not found!";
     }
+  }
+  public function updateSurveyQualities(Request $request){
+    if($request->has('sid')){
+        $surveydetailid = $request->sid;
+    }else{
+        $surveydetailid = 1;
+    }
+    $doUpdate = 0;
+    if($request->has('doupdate')){
+      $doUpdate = $request->doupdate;
+    }
+    $qids = array(5,7,9,10,11,12);
+    if($request->has('qid')){
+        if(in_array($request->qid,$qids)){
+            $questionId = $qids;
+        }else{
+            $questionId = array($request->qid);
+        }
+    }
+    $i=0;
+    $curquestions = Question::whereIn('id',$questionId)->get();
+    foreach($curquestions as $curquestion){
+          $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
+          if($relquestion){
+            if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+              SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                          ->where('question_id',$relquestion->related_question_id)
+                          ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
+                                foreach ($results as $suranswer) {
+                                  $otoptId = null;
+                                  $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                              ->where('question_id',$relquestion->related_question_id)
+                                              ->where('voter_id',$suranswer->voter_id)
+                                              ->orderBy('id')
+                                              ->get();
+                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                      if(!empty($otoptId)){
+                                          $optioncandidate = QuestionOption::find($otoptId);
+                                          if($optioncandidate){
+                                            $i++;
+                                            echo "<br>Qualities Survey #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                          }
+                                      }
+                                  }
+                                }
+                          });
+              }
+          }
+      }
+
+      echo "<br>".$i." Record(s) Affected";
+      $i = 0;
+      if($doUpdate){
+        foreach($curquestions as $curquestion){
+              $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
+              if($relquestion){
+                if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                  SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                              ->where('question_id',$relquestion->related_question_id)
+                              ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
+                                    foreach ($results as $suranswer) {
+                                      $otoptId = null;
+                                      $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                                  ->where('question_id',$relquestion->related_question_id)
+                                                  ->where('voter_id',$suranswer->voter_id)
+                                                  ->orderBy('id')
+                                                  ->get();
+                                      if(!empty($surans[$relquestion->cardinality-1])){
+                                          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                          if(!empty($otoptId)){
+                                              $optioncandidate = QuestionOption::find($otoptId);
+                                              if($optioncandidate){
+                                                $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                                            ->where('question_id',$relquestion->related_question_id)
+                                                            ->where('voter_id',$suranswer->voter_id)
+                                                            ->update(['candidate_id'=>$optioncandidate->candidate_id]);
+                                                echo "<br>Updating tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                                $i++;
+                                              }
+                                          }
+                                      }
+                                    }
+                              });
+                      }
+                }
+        }
+        echo "<br>".$i." Record(s) Updated!";
+      }
   }
   public function checkMissingTally(Request $request){
 
