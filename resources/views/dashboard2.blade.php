@@ -2234,7 +2234,7 @@
                                 @foreach($tally[$position->id] as $key => $sortedtallyo)
                                     @php
                                         $otheransopt = "";
-                                        $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
+                                        $surotheranws = App\Models\TallyOtherVote::where('survey_detail_id',$surveydetail->id)
                                                                                 ->where('candidate_id',$key)
                                                                                 ->whereNotNull('other_answer')
                                                                                 ->select(['other_answer'])

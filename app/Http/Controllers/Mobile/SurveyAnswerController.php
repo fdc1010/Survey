@@ -297,6 +297,11 @@ class SurveyAnswerController extends Controller
               								$tallycandidate->voter_id = $voterid;
                               $tallycandidate->user_id = $userid;
               								$tallycandidate->survey_detail_id = $surveydetailid;
+
+                              if(!empty($ansid['otherAnswer'])){
+                							       $tallycandidate->other_answer = $ansid['otherAnswer'];
+                              }
+
               								$tallycandidate->save();
               							}
                             $otoptId = null;
