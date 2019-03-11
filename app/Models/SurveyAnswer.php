@@ -19,7 +19,7 @@ class SurveyAnswer extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['question_id','user_id','voter_id','survey_detail_id','option_id',
+    protected $fillable = ['question_id','candidate_id','user_id','voter_id','survey_detail_id','option_id',
 							'answered_option','other_answer','option_other_answer',
 							'latitude','longitude'];
     // protected $hidden = [];
@@ -35,6 +35,10 @@ class SurveyAnswer extends Model
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
+    public function candidate()
+      {
+          return $this->belongsTo('App\Models\Candidate','candidate_id');
+      }
 	public function voter()
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
