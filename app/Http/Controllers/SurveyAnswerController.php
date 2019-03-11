@@ -405,7 +405,7 @@ class SurveyAnswerController extends Controller
                                                 " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
                                                 " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
                                                 " ".$surans[$relquestion->cardinality-1]->voter->full_name.
-                                                " ,user id: #".$surans[$relquestion->cardinality-1]->user.
+                                                " ,user id: #".$surans[$relquestion->cardinality-1]->user_id.
                                                 " ".$surans[$relquestion->cardinality-1]->user->name;
                                           }
                                       }
@@ -448,7 +448,7 @@ class SurveyAnswerController extends Controller
                                                         " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
                                                         " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
                                                         " ".$surans[$relquestion->cardinality-1]->voter->full_name.
-                                                        " ,user id: #".$surans[$relquestion->cardinality-1]->user.
+                                                        " ,user id: #".$surans[$relquestion->cardinality-1]->user_id.
                                                         " ".$surans[$relquestion->cardinality-1]->user->name;
                                                     $i++;
                                                   }
