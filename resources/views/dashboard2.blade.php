@@ -2237,11 +2237,12 @@
                                         $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
                                                                                 ->where('candidate_id',$key)
                                                                                 ->whereNotNull('other_answer')
+                                                                                ->select(['id','question_id','candidate_id','candidate_id'])
                                                                                 ->get();
                                         if(!empty($surotheranws) && count($surotheranws)>0){
                                           $otheransopt .= "<ul>";
                                           foreach($surotheranws as $surotheranw){
-                                              $otheransopt .= "<li>".$surotheranw->other_answer."</li>";                                              
+                                              $otheransopt .= "<li>".$surotheranw->other_answer."</li>";
                                           }
                                           $otheransopt .= "</ul>";
                                         }
