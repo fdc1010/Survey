@@ -1517,7 +1517,7 @@
                                             $otheransopt = "<ul>";
                                             $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
                                                                                     ->where('candidate_id',$key)
-                                                                                    ->whereNotNull('otherAnswer')
+                                                                                    ->whereNotNull('other_answer')
                                                                                     ->select(['other_answer'])
                                                                                     ->groupBy('other_answer')
                                                                                     ->get();
