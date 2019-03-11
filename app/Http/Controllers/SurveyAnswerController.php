@@ -393,8 +393,7 @@ class SurveyAnswerController extends Controller
                               if($surans){
                                     $i++;
                                     echo "<br>Qualities Survey #".$suranswer->question_id.
-                                        " for candidate qualities: #".$relquestion->question_id.
-                                        " ".$suranswer->candidate_id." ".$suranswer->option->option.
+                                        " for candidate qualities: #".$suranswer->candidate_id." ".$suranswer->option->option.
                                         " ".$suranswer->candidate->full_name.
                                         " ,voter id: #".$surans->voter_id.
                                         " ".$surans->voter->full_name.
