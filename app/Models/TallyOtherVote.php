@@ -34,10 +34,6 @@ class TallyOtherVote extends Model
     {
         return $this->belongsTo('App\Models\QuestionOption','option_id');
     }
-    public function candidate()
-      {
-          return $this->belongsTo('App\Models\Candidate','candidate_id');
-      }
 	public function voter()
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
