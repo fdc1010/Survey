@@ -417,25 +417,25 @@ class SurveyAnswerController extends Controller
       echo "<br>".$i." Record(s) Affected";
       $i = 0;
       if($doUpdate){
-        foreach($curquestions as $curquestion){
-              $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
-              if($relquestion){
-                if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
-                  SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                              ->where('question_id',$relquestion->related_question_id)
-                              ->chunk(400, function ($results)use($surveydetailid,$relquestion,&$i){
-                                    foreach ($results as $suranswer) {
-                                      $otoptId = null;
-                                      $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
-                                                  ->where('question_id',$relquestion->related_question_id)
-                                                  ->where('voter_id',$suranswer->voter_id)
-                                                  ->orderBy('id')
-                                                  ->get();
-                                      if(!empty($surans[$relquestion->cardinality-1])){
-                                          $otoptId = $surans[$relquestion->cardinality-1]->option_id;
-                                          if(!empty($otoptId)){
-                                              $optioncandidate = QuestionOption::find($otoptId);
-                                              if($optioncandidate){
+        SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                    ->whereIn('question_id',$questionId)
+                    ->chunk(400, function ($results)use($surveydetailid,&$i){
+                          foreach ($results as $suranswer) {
+                            $relquestion = RelatedQuestion::where('question_id',$curquestion->id)->first();
+                            if($relquestion){
+                              if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
+                                  $otoptId = null;
+                                  $surans = SurveyAnswer::with(['voter','user'])
+                                              ->where('survey_detail_id',$surveydetailid)
+                                              ->where('question_id',$relquestion->related_question_id)
+                                              ->where('voter_id',$suranswer->voter_id)
+                                              ->orderBy('id')
+                                              ->get();
+                                  if(!empty($surans[$relquestion->cardinality-1])){
+                                      $otoptId = $surans[$relquestion->cardinality-1]->option_id;
+                                      if(!empty($otoptId)){
+                                          $optioncandidate = QuestionOption::find($otoptId);
+                                          if($optioncandidate){
                                                 $csurans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                                             ->where('question_id',$relquestion->related_question_id)
                                                             ->where('voter_id',$suranswer->voter_id)
@@ -455,8 +455,6 @@ class SurveyAnswerController extends Controller
                                       }
                                     }
                               });
-                      }
-                }
         }
         echo "<br>".$i." Record(s) Updated!";
       }
