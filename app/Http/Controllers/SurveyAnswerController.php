@@ -380,7 +380,7 @@ class SurveyAnswerController extends Controller
     $i=0;
     //$curquestions = Question::whereIn('id',$questionId)->select(['id'])->groupBy('id')->get();
     //foreach($curquestions as $curquestion){
-    TallyOtherVote::with(['voter','user'])
+    TallyOtherVote::with(['voter','user','candidate'])
                 ->where('survey_detail_id',$surveydetailid)
                 ->whereIn('question_id',$questionId)
                 ->chunk(400, function ($results)use($surveydetailid,&$i){
@@ -407,12 +407,12 @@ class SurveyAnswerController extends Controller
       echo "<br>".$i." Record(s) Affected";
       $i = 0;
       if($doUpdate){
-        TallyOtherVote::with(['voter','user'])
+        TallyOtherVote::with(['voter','user','candidate'])
                     ->where('survey_detail_id',$surveydetailid)
                     ->whereIn('question_id',$questionId)
                     ->chunk(400, function ($results)use($surveydetailid,&$i){
                           foreach ($results as $suranswer) {
-                                  $surans = SurveyAnswer::with(['voter','user'])
+                                  $surans = SurveyAnswer::with(['voter','user','candidate'])
                                               ->where('survey_detail_id',$suranswer->survey_detail_id)
                                               ->where('question_id',$suranswer->question_id)
                                               ->where('voter_id',$suranswer->voter_id)
