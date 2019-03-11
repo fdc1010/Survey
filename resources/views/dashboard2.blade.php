@@ -2237,19 +2237,10 @@
                                         $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
                                                                                 ->where('candidate_id',$key)
                                                                                 ->whereNotNull('other_answer')
-                                                                                ->select(['id','candidate_id','question_id'])
-                                                                                ->groupBy('question_id')
                                                                                 ->get();
                                         if(!empty($surotheranws) && count($surotheranws)>0){
                                           $otheransopt .= "<ul>";
                                           foreach($surotheranws as $surotheranw){
-                                              $otoptId = null;
-                                              $relquestion = RelatedQuestion::where('question_id',$surotheranw->question_id)->first();
-                                              if($relquestion){
-                                                  $surans = SurveyAnswer::where('survey_detail_id',$surotheranw->survey_detail_id)
-                                                              ->where('question_id',$relquestion->related_question_id)
-                                                              ->where('candidate_id',$surotheranw->candidate_id)
-                                                              ->first();
                                                   $otheransopt .= "<li>".$suranswer->other_answer."</li>";
                                               }
                                           }
