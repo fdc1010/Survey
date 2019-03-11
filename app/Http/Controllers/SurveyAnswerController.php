@@ -423,6 +423,68 @@ class SurveyAnswerController extends Controller
         echo "<br>".$i." Record(s) Updated!";
       }
   }
+  public function updateTallyOtherAnsQualities(Request $request){
+    if($request->has('sid')){
+        $surveydetailid = $request->sid;
+    }else{
+        $surveydetailid = 1;
+    }
+    $doUpdate = 0;
+    if($request->has('doupdate')){
+      $doUpdate = $request->doupdate;
+    }
+    $questionId = array(5,7,9,10,11,12);
+    if($request->has('qid')){
+        $questionId = array($request->qid);
+    }
+    $i=0;
+    //$curquestions = Question::whereIn('id',$questionId)->select(['id'])->groupBy('id')->get();
+    //foreach($curquestions as $curquestion){
+    SurveyAnswer::with(['voter','user','candidate'])
+                ->where('survey_detail_id',$surveydetailid)
+                ->whereIn('question_id',$questionId)
+                ->chunk(400, function ($results)use($surveydetailid,&$i){
+                      foreach ($results as $suranswer) {
+                              $surans = TallyOtherVote::with(['voter','user','candidate'])
+                                          ->where('survey_detail_id',$suranswer->survey_detail_id)
+                                          ->where('question_id',$suranswer->question_id)
+                                          ->where('voter_id',$suranswer->voter_id)
+                                          ->where('candidate_id',$suranswer->candidate_id)
+                                          ->first();
+                              if($surans){
+                                    $i++;
+                                    echo "<br>Qualities Survey #".$suranswer->question_id.
+                                        " for candidate qualities: #".$suranswer->candidate_id." ".$suranswer->option->option.
+                                        " ".$suranswer->candidate->full_name.
+                                        " ,voter id: #".$surans->voter_id.
+                                        " ".$surans->voter->full_name.
+                                        " ,user id: #".$surans->user_id.
+                                        " ".$surans->user->name;
+                              }
+                          }
+                    });
+
+      echo "<br>".$i." Record(s) Affected";
+      $i = 0;
+      if($doUpdate){
+        SurveyAnswer::with(['voter','user','candidate'])
+                    ->where('survey_detail_id',$surveydetailid)
+                    ->whereIn('question_id',$questionId)
+                    ->chunk(400, function ($results)use($surveydetailid,&$i){
+                          foreach ($results as $suranswer) {
+                                  $surans = TallyOtherVote::where('survey_detail_id',$suranswer->survey_detail_id)
+                                              ->where('question_id',$suranswer->question_id)
+                                              ->where('voter_id',$suranswer->voter_id)
+                                              ->where('candidate_id',$suranswer->candidate_id)
+                                              ->update(['other_answer'=>$suranswer->other_answer]);
+                                  if($surans){
+                                        $i++;
+                                  }
+                              }
+                        });
+        echo "<br>".$i." Record(s) Updated!";
+      }
+  }
   public function checkMissingTally(Request $request){
 
     $surveydetailid = 1;
