@@ -2244,12 +2244,12 @@
                                           foreach($surotheranws as $surotheranw){
                                               $otheransopt .= "<li>".$surotheranw->other_answer."</li>";
                                           }
+                                          $otheransopt .= "</ul>";
                                         }
-                                        $otheransopt .= "</ul>";
                                     @endphp
                                     <tr>
                                         <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                        <td>{{ $otheransopt }}</td>
+                                        <td>{!! $otheransopt !!}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
