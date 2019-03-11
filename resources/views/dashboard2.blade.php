@@ -2241,8 +2241,7 @@
                                         if(!empty($surotheranws) && count($surotheranws)>0){
                                           $otheransopt .= "<ul>";
                                           foreach($surotheranws as $surotheranw){
-                                                  $otheransopt .= "<li>".$suranswer->other_answer."</li>";
-                                              }
+                                              $otheransopt .= "<li>".$suranswer->other_answer."</li>";                                              
                                           }
                                           $otheransopt .= "</ul>";
                                         }
