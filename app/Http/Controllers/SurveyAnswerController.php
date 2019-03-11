@@ -411,8 +411,7 @@ class SurveyAnswerController extends Controller
                     ->whereIn('question_id',$questionId)
                     ->chunk(400, function ($results)use($surveydetailid,&$i){
                           foreach ($results as $suranswer) {
-                                  $surans = SurveyAnswer::with(['voter','user','candidate'])
-                                              ->where('survey_detail_id',$suranswer->survey_detail_id)
+                                  $surans = SurveyAnswer::where('survey_detail_id',$suranswer->survey_detail_id)
                                               ->where('question_id',$suranswer->question_id)
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->update(['candidate_id'=>$suranswer->candidate_id]);
