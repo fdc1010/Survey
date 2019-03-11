@@ -410,6 +410,7 @@ class SurveyAnswerController extends Controller
                                       }
                                   }
                               }
+                            }
                           }
                       }
                 });
