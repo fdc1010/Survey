@@ -2202,6 +2202,7 @@
         </div>
         @endforeach
     @endif
+    </div>
     @foreach($surveydetails as $surveydetail)
     <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
           <div class="box box-default">
@@ -2260,8 +2261,6 @@
           </div>
       </div>
       @endforeach
-    </div>
-
 @endsection
 @section('chartcss')
 	<link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
