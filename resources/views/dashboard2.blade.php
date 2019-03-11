@@ -1484,63 +1484,7 @@
             </div>
         @endforeach
         @endif
-        @foreach($surveydetails as $surveydetail)
-      	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
-              <div class="box box-default">
-                  <div class="box-header with-border">
-                      <div class="col-md-12">
-                        		<div class="box-title">Other Answeres: {{ $surveydetail->subject }}</div>
-                      </div>
-                  </div>
-                  <div class="box-body">
-                        <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
-                        		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
-                               	<thead>
-                                      <tr>
-                                          <th>Cadidates</th>
-                                          <th>Other</th>
-                                      </tr>
-                                  </thead>
-                      					@foreach($positions as $position)
-                                    @php
-                                      $i = 0;
-                                    @endphp
-                                    <thead>
-                                        <tr>
-                                            <th>{{ $position->name }}</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($tally[$position->id] as $key => $sortedtallyo)
-                                        @php
-                                            $otheransopt = "<ul>";
-                                            $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
-                                                                                    ->where('candidate_id',$key)
-                                                                                    ->whereNotNull('other_answer')
-                                                                                    ->select(['other_answer'])
-                                                                                    ->groupBy('other_answer')
-                                                                                    ->get();
-                                            if(!empty($surotheranws) && count($surotheranws)>0){
-                                              foreach($surotheranws as $surotheranw){
-                                                  $otheransopt .= $surotheranw->other_answer;
-                                              }
-                                            }
-                                            $otheransopt .= "</ul>";
-                                        @endphp
-                                        <tr>
-                                            <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
-                                            <td>{{ $otheransopt }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                  @endforeach
-                              </table>
-                        </div>
-                  </div>
-              </div>
-          </div>
-          @endforeach
+
         @foreach($elections as $election)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
@@ -2258,7 +2202,64 @@
         </div>
         @endforeach
     @endif
-
+    @foreach($surveydetails as $surveydetail)
+    <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
+          <div class="box box-default">
+              <div class="box-header with-border">
+                  <div class="col-md-12">
+                        <div class="box-title">Other Answeres: {{ $surveydetail->subject }}</div>
+                  </div>
+              </div>
+              <div class="box-body">
+                    <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                        <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
+                            <thead>
+                                  <tr>
+                                      <th>Cadidates</th>
+                                      <th>Other</th>
+                                  </tr>
+                              </thead>
+                            @foreach($positions as $position)
+                                @php
+                                  $i = 0;
+                                @endphp
+                                <thead>
+                                    <tr>
+                                        <th>{{ $position->name }}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($tally[$position->id] as $key => $sortedtallyo)
+                                    @php
+                                        $otheransopt = "";
+                                        $surotheranws = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
+                                                                                ->where('candidate_id',$key)
+                                                                                ->whereNotNull('other_answer')
+                                                                                ->select(['other_answer'])
+                                                                                ->groupBy('other_answer')
+                                                                                ->get();
+                                        if(!empty($surotheranws) && count($surotheranws)>0){
+                                          $otheransopt .= "<ul>";
+                                          foreach($surotheranws as $surotheranw){
+                                              $otheransopt .= "<li>".$surotheranw->other_answer."</li>";
+                                          }
+                                        }
+                                        $otheransopt .= "</ul>";
+                                    @endphp
+                                    <tr>
+                                        <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                        <td>{{ $otheransopt }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                              @endforeach
+                          </table>
+                    </div>
+              </div>
+          </div>
+      </div>
+      @endforeach
     </div>
 
 @endsection
