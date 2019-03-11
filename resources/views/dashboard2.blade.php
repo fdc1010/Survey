@@ -1484,7 +1484,60 @@
             </div>
         @endforeach
         @endif
-
+        @foreach($surveydetails as $surveydetail)
+      	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
+              <div class="box box-default">
+                  <div class="box-header with-border">
+                      <div class="col-md-12">
+                        		<div class="box-title">Other Answeres: {{ $surveydetail->subject }}</div>
+                      </div>
+                  </div>
+                  <div class="box-body">
+                        <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:320px;">
+                        		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
+                               	<thead>
+                                      <tr>
+                                          <th>Cadidates</th>
+                                          <th>Other</th>
+                                      </tr>
+                                  </thead>
+                      					@foreach($positions as $position)
+                                    @php
+                                      $i = 0;
+                                    @endphp
+                                    <thead>
+                                        <tr>
+                                            <th>{{ $position->name }}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($tally[$position->id] as $key => $sortedtallyo)
+                                        @php
+                                            $surotherans = App\Models\SurveyAnswer::where('survey_detail_id',$surveydetail->id)
+                                                                                    ->where('candidate_id',$key)
+                                                                                    ->where('otherAnswer','<>','')
+                                                                                    ->
+                                        @endphp
+                                        <tr>
+                                            <td>{{ ++$i . ".) " . $tallycandidate[$key] }}</td>
+                                            <td>{{ $surotherans->other_answer }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <thead>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <th>{{ $tallytotalcandidate }}</th>
+                                    </tr>
+                                  </thead>
+                                  @endforeach
+                              </table>
+                        </div>
+                  </div>
+              </div>
+          </div>
+          @endforeach
         @foreach($elections as $election)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">

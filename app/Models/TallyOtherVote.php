@@ -166,6 +166,7 @@ class TallyOtherVote extends Model
 							})
 						->sum('tally');
 	}
+  
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
