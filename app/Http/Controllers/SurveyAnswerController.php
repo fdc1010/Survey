@@ -455,8 +455,9 @@ class SurveyAnswerController extends Controller
                                           }
                                       }
                                     }
-                              });
-        }
+                                }
+                              }
+                        });
         echo "<br>".$i." Record(s) Updated!";
       }
   }
