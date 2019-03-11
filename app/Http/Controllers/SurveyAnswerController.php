@@ -373,13 +373,9 @@ class SurveyAnswerController extends Controller
     if($request->has('doupdate')){
       $doUpdate = $request->doupdate;
     }
-    $qids = array(5,7,9,10,11,12);
+    $questionId = array(5,7,9,10,11,12);
     if($request->has('qid')){
-        if(in_array($request->qid,$qids)){
-            $questionId = $qids;
-        }else{
-            $questionId = array($request->qid);
-        }
+        $questionId = array($request->qid);
     }
     $i=0;
     $curquestions = Question::whereIn('id',$questionId)->get();
