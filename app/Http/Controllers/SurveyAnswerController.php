@@ -385,7 +385,7 @@ class SurveyAnswerController extends Controller
             if(!empty($relquestion->cardinality) && $relquestion->cardinality>0){
               SurveyAnswer::where('survey_detail_id',$surveydetailid)
                           ->where('question_id',$relquestion->related_question_id)
-                          ->chunk(400, function ($results)use($surveydetailid,$curquestions,$relquestion,&$i){
+                          ->chunk(400, function ($results)use($surveydetailid,$curquestion,$relquestion,&$i){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
                                   $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
@@ -399,7 +399,7 @@ class SurveyAnswerController extends Controller
                                           $optioncandidate = QuestionOption::find($otoptId);
                                           if($optioncandidate){
                                             $i++;
-                                            echo "<br>Qualities Survey #".$curquestions->id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                            echo "<br>Qualities Survey #".$curquestion->id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                           }
                                       }
                                   }
