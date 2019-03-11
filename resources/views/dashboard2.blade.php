@@ -2238,6 +2238,7 @@
                                                                                 ->where('candidate_id',$key)
                                                                                 ->whereNotNull('other_answer')
                                                                                 ->select(['id','question_id','candidate_id','candidate_id'])
+                                                                                ->groupBy('other_answer')
                                                                                 ->get();
                                         if(!empty($surotheranws) && count($surotheranws)>0){
                                           $otheransopt .= "<ul>";
