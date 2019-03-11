@@ -400,7 +400,7 @@ class SurveyAnswerController extends Controller
                                       $optioncandidate = QuestionOption::find($otoptId);
                                       if($optioncandidate){
                                         $i++;
-                                        echo "<br>Qualities Survey #".$curquestion->id.
+                                        echo "<br>Qualities Survey #".$suranswer->question_id.
                                             " , from related question #".$relquestion->related_question_id.
                                             " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
                                             " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
@@ -442,7 +442,7 @@ class SurveyAnswerController extends Controller
                                                             ->where('voter_id',$suranswer->voter_id)
                                                             ->update(['candidate_id'=>$optioncandidate->candidate_id]);
                                                 if($csurans){
-                                                    echo "<br>Qualities Survey #".$curquestion->id.
+                                                    echo "<br>Qualities Survey #".$suranswer->question_id.
                                                         " , from related question #".$relquestion->related_question_id.
                                                         " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
                                                         " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
