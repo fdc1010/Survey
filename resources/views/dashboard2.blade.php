@@ -2203,7 +2203,7 @@
         @endforeach
     @endif
     @foreach($surveydetails as $surveydetail)
-    <div class="col-md-6" style="font-size:24px; font-weight:bolder;">
+    <div class="col-md-12" style="font-size:24px; font-weight:bolder;">
           <div class="box box-default">
               <div class="box-header with-border">
                   <div class="col-md-12">
