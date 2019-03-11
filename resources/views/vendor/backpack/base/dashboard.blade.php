@@ -1523,11 +1523,11 @@
                                                                                     ->groupBy('other_answer')
                                                                                     ->get();
                                             if(!empty($surotheranws) && count($surotheranws)>0){
-                                              $otheransopt .= "<ul>";
+
                                               foreach($surotheranws as $surotheranw){
-                                                  $otheransopt .= "<li>".$surotheranw->other_answer."</li>";
+                                                  $otheransopt .= $surotheranw->other_answer.",";
                                               }
-                                              $otheransopt .= "</ul>";
+                                              $otheransopt = rtrim($otheransopt,",");
                                             }
                                         @endphp
                                         <tr>
@@ -1543,7 +1543,7 @@
               </div>
           </div>
           @endforeach
-          
+
         @foreach($elections as $election)
     	<div class="col-md-6" style="font-size:24px; font-weight:bolder;">
             <div class="box box-default">
