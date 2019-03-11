@@ -388,7 +388,8 @@ class SurveyAnswerController extends Controller
                           ->chunk(400, function ($results)use($surveydetailid,$curquestion,$relquestion,&$i){
                                 foreach ($results as $suranswer) {
                                   $otoptId = null;
-                                  $surans = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                  $surans = SurveyAnswer::with(['voter','user'])
+                                              ->where('survey_detail_id',$surveydetailid)
                                               ->where('question_id',$relquestion->related_question_id)
                                               ->where('voter_id',$suranswer->voter_id)
                                               ->orderBy('id')
@@ -399,7 +400,13 @@ class SurveyAnswerController extends Controller
                                           $optioncandidate = QuestionOption::find($otoptId);
                                           if($optioncandidate){
                                             $i++;
-                                            echo "<br>Qualities Survey #".$curquestion->id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                            echo "<br>Qualities Survey #".$curquestion->id.
+                                                " , from related question #".$relquestion->related_question_id.
+                                                " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
+                                                " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
+                                                " ".$surans[$relquestion->cardinality-1]->voter->full_name.
+                                                " ,user id: #".$surans[$relquestion->cardinality-1]->user.
+                                                " ".$surans[$relquestion->cardinality-1]->user->name;
                                           }
                                       }
                                   }
@@ -435,8 +442,16 @@ class SurveyAnswerController extends Controller
                                                             ->where('question_id',$relquestion->related_question_id)
                                                             ->where('voter_id',$suranswer->voter_id)
                                                             ->update(['candidate_id'=>$optioncandidate->candidate_id]);
-                                                echo "<br>Updating tally #".$csurans->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
-                                                $i++;
+                                                if($csurans){
+                                                    echo "<br>Qualities Survey #".$curquestion->id.
+                                                        " , from related question #".$relquestion->related_question_id.
+                                                        " for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option.
+                                                        " ,voter id: #".$surans[$relquestion->cardinality-1]->voter_id.
+                                                        " ".$surans[$relquestion->cardinality-1]->voter->full_name.
+                                                        " ,user id: #".$surans[$relquestion->cardinality-1]->user.
+                                                        " ".$surans[$relquestion->cardinality-1]->user->name;
+                                                    $i++;
+                                                  }
                                               }
                                           }
                                       }
