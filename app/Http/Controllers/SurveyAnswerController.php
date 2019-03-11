@@ -399,7 +399,7 @@ class SurveyAnswerController extends Controller
                                           $optioncandidate = QuestionOption::find($otoptId);
                                           if($optioncandidate){
                                             $i++;
-                                            echo "<br>Qualities Survey #".$curquestions->question_id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
+                                            echo "<br>Qualities Survey #".$curquestions->id." , from related question #".$relquestion->related_question_id." for candidate qualities: #".$relquestion->question_id." ".$optioncandidate->candidate_id." ".$optioncandidate->option;
                                           }
                                       }
                                   }
