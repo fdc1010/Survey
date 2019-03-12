@@ -79,7 +79,7 @@ class BarangaySurveyable extends Model
   		$result = "<div class='progress'>".
   					  "<div class='progress-bar' style='width:".$progress."%;'>".$progress." %</div>".
   					"</div>";
-  		return $result;
+  		return $progress;
   	}
     public function getProgress(){
 
