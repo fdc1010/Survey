@@ -25,21 +25,7 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->setModel('App\Models\BarangaySurveyable');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/barangaysurveyable');
         $this->crud->setEntityNameStrings('barangay surveyable', 'Barangay Surveyables');
-        if(backpack_user()->hasPermissionTo('Edit')){
-          $this->crud->allowAccess(['update']);
-        }else{
-          $this->crud->denyAccess(['update']);
-        }
-        if(backpack_user()->hasPermissionTo('Add')){
-          $this->crud->allowAccess(['create']);
-        }else{
-          $this->crud->denyAccess(['create']);
-        }
-        if(backpack_user()->hasPermissionTo('Delete')){
-          $this->crud->allowAccess(['delete']);
-        }else{
-          $this->crud->denyAccess(['delete']);
-        }
+        $this->crud->denyAccess(['update', 'create', 'delete']);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -48,6 +34,7 @@ class BarangaySurveyableCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
+        $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
     		$this->crud->addColumn([
                 'name' => 'barangay_id',
                 'type' => 'select',

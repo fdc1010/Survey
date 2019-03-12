@@ -19,7 +19,7 @@ class BarangaySurveyable extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['barangay_id','count','progress','quota'];
+    protected $fillable = ['barangay_id','count','progress','quota','survey_detail_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	/*protected $casts = [
