@@ -66,6 +66,12 @@ class BarangaySurveyableCrudController extends CrudController
     			//'pivot' => true
     		]);
         $this->crud->addColumn([
+                    'name' => 'quota',
+                    'label' => 'Quota',
+                    'type' => 'model_function',
+        			'function_name' => 'getQuota'
+  	    ]);
+        $this->crud->addColumn([
                     'name' => 'count',
                     'label' => 'Count',
                     'type' => 'model_function',
