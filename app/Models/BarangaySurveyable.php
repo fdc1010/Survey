@@ -31,7 +31,7 @@ class BarangaySurveyable extends Model
     }
     public function getQuota(){
         $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
-        if($countquota)
+        if($countquota>0)
           return $countquota;
         else
           return 1;
