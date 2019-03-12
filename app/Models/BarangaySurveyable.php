@@ -51,7 +51,7 @@ class BarangaySurveyable extends Model
   				$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
   											//->whereIn('voter_id',$voters)
                         ->where('barangay_id',$this->barangay_id)
-                        ->distinct()
+                        ->distinct('user_id')
   											->select(['voter_id'])
   											->groupBy('voter_id')
   											->get();
