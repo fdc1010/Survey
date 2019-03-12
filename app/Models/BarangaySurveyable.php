@@ -44,8 +44,7 @@ class BarangaySurveyable extends Model
         //   info("else: ".$countquota);
         //   return 1;
         // }
-        $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)
-                      ->sum('quota');
+        $countquota = $this->assignment->sum('quota');
 
         return $countquota;
 
@@ -82,6 +81,7 @@ class BarangaySurveyable extends Model
   	}
     public function getProgress(){
       $countquota = $this->assignment->sum('quota');
+      info($countquota);
       if($countquota)
   		    return (($this->getSurveyCount()/$countquota)*100);
       else
