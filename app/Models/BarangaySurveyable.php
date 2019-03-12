@@ -29,12 +29,12 @@ class BarangaySurveyable extends Model
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
     }
-    public function assignmentsumquota()
+    public function assignment()
     {
-        return $this->hasMany('App\Models\AssignmentDetail','barangay_id')->sum('quota');
+        return $this->hasMany('App\Models\AssignmentDetail','barangay_id');
     }
     public function getQuota(){
-        $countquota = $this->assignmentsumquota;
+        $countquota = $this->assignment->sum('quota');
         if($countquota)
           return $countquota;
         else

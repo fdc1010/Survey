@@ -30,6 +30,10 @@ class AssignmentDetail extends Model
       {
           return $this->belongsToMany('App\Models\SurveyAssignment','sitios','assignment_id','sitio_id');
       }
+      public function barangaysurveyable()
+        {
+            return $this->belongsTo('App\Models\BarangaySurveyable','barangay_id');
+        }
   	public function barangay()
       {
           return $this->belongsTo('App\Models\Barangay','barangay_id');
