@@ -53,9 +53,6 @@ class BarangaySurveyable extends Model
   					return count($countsurvey);
   				else
   					return 0;
-  		}else{
-  			return 0;
-  		}
   	}
   	public function getProgressBar(){
 
