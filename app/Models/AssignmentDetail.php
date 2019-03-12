@@ -62,7 +62,7 @@ class AssignmentDetail extends Model
   				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
   											->where('user_id',$surveyassignment->user_id)
   											//->whereIn('voter_id',$voters)
-                        where('barangay_id',$this->barangay_id)
+                        ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])
   											->groupBy('voter_id')
   											->get();
