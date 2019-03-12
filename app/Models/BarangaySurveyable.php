@@ -42,8 +42,8 @@ class BarangaySurveyable extends Model
     public function getProgressPercent(){
       if($this->getQuota())
           return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
-
-      return "0.00 %";
+      else
+          return "0.00 %";
   	}
   	public function getSurveyCount(){
           // $voters = Voter::where('barangay_id',$this->barangay_id)
@@ -62,44 +62,32 @@ class BarangaySurveyable extends Model
   					return 0;
   	}
   	public function getProgressBar(){
-      $countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
-                    //->whereIn('voter_id',$voters)
-                    ->where('barangay_id',$this->barangay_id)
-                    ->select(['voter_id'])
-                    ->groupBy('voter_id')
-                    ->get();
 
-      $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
-
-      if($countquota){
-          $progress = ((count($countsurvey)/$countquota)*100);
-      }else{
-          $progress = 0;
-      }
   		$result = "<div class='progress'>".
-  					  "<div class='progress-bar' style='width:".$progress."%;'>".$progress." %</div>".
+  					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgress()." %</div>".
   					"</div>";
-  		return $progress;
+  		return $result;
   	}
     public function getProgress(){
 
-      // if($this->getQuota())
-      //     return (($this->getSurveyCount()/$this->getQuota())*100);
-      //
-      $countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
-                    //->whereIn('voter_id',$voters)
-                    ->where('barangay_id',$this->barangay_id)
-                    ->select(['voter_id'])
-                    ->groupBy('voter_id')
-                    ->get();
-
-      $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
-
-      if($countquota){
-          return ((count($countsurvey)/$countquota)*100);
-      }else{
+      if($this->getQuota())
+          return (($this->getSurveyCount()/$this->getQuota())*100);
+      else
           return 0;
-      }
+      // $countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+      //               //->whereIn('voter_id',$voters)
+      //               ->where('barangay_id',$this->barangay_id)
+      //               ->select(['voter_id'])
+      //               ->groupBy('voter_id')
+      //               ->get();
+      //
+      // $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
+      //
+      // if($countquota){
+      //     return ((count($countsurvey)/$countquota)*100);
+      // }else{
+      //     return 0;
+      // }
   	}
     public function getAllSurveyCount(){
       $countsurvey = SurveyAnswer::where('question_id',4) // Set by default to Question ID 4. for Mayor... Update this if id changes..
