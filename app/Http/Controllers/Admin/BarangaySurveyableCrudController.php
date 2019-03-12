@@ -27,7 +27,7 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->setEntityNameStrings('barangay surveyable', 'Barangay Surveyables');
         $this->crud->setListView('listsurveyassignment');
         $this->crud->enableExportButtons();
-        $this->crud->denyAccess(['update', 'create', 'delete']);
+        $this->crud->removeAllButtonsFromStack('line');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
