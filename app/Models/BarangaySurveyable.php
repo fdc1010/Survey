@@ -50,11 +50,7 @@ class BarangaySurveyable extends Model
 
     }
     public function getProgressPercent(){
-      $countquota = $this->assignment->sum('quota');
-      if($countquota)
-  		    return number_format((($this->getSurveyCount()/$countquota)*100),2) . " %";
-      else
-          return number_format((($this->getSurveyCount()/1)*100),2) . " %";
+        return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
   	}
   	public function getSurveyCount(){
           // $voters = Voter::where('barangay_id',$this->barangay_id)
@@ -80,13 +76,7 @@ class BarangaySurveyable extends Model
   		return $result;
   	}
     public function getProgress(){
-      $countquota = $this->assignment->sum('quota');
-
-      if($countquota)
-  		    return (($this->getSurveyCount()/$countquota)*100);
-      else
-          return (($this->getSurveyCount()/1)*100);
-
+      return (($this->getSurveyCount()/$this->getQuota())*100);
   	}
     /*
     |--------------------------------------------------------------------------
