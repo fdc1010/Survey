@@ -77,7 +77,7 @@ class BarangaySurveyable extends Model
       if($this->getQuota())
           return (($this->getSurveyCount()/$this->getQuota())*100);
 
-      return 0;
+      return 10;
   	}
     public function getAllSurveyCount(){
       $countsurvey = SurveyAnswer::where('question_id',4) // Set by default to Question ID 4. for Mayor... Update this if id changes..
