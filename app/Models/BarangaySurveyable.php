@@ -36,12 +36,7 @@ class BarangaySurveyable extends Model
     public function getQuota(){
         $countquota = $this->assignment->sum('quota');
 
-        if($countquota){
-          return $countquota;
-        }
-        else{
-          return 0;
-        }
+        return $countquota;
 
     }
     public function getProgressPercent(){
