@@ -62,8 +62,22 @@ class BarangaySurveyable extends Model
   					return 0;
   	}
   	public function getProgressBar(){
+      $countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
+                    //->whereIn('voter_id',$voters)
+                    ->where('barangay_id',$this->barangay_id)
+                    ->select(['voter_id'])
+                    ->groupBy('voter_id')
+                    ->get();
+
+      $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
+
+      if($countquota){
+          $progress = ((count($countsurvey)/$countquota)*100);
+      }else{
+          $progress = 0;
+      }
   		$result = "<div class='progress'>".
-  					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgressPercent()."</div>".
+  					  "<div class='progress-bar' style='width:".$progress."%;'>".$progress." %</div>".
   					"</div>";
   		return $result;
   	}
