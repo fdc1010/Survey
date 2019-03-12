@@ -53,7 +53,7 @@ class BarangaySurveyable extends Model
     public function getProgressPercent(){
       $countquota = $this->assignment->sum('quota');
       if($countquota)
-  		    return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
+  		    return number_format((($this->getSurveyCount()/$countquota)*100),2) . " %";
       else
           return number_format((($this->getSurveyCount()/1)*100),2) . " %";
   	}
@@ -83,7 +83,7 @@ class BarangaySurveyable extends Model
     public function getProgress(){
       $countquota = $this->assignment->sum('quota');
       if($countquota)
-  		    return (($this->getSurveyCount()/$this->getQuota())*100);
+  		    return (($this->getSurveyCount()/$countquota)*100);
       else
           return (($this->getSurveyCount()/1)*100);
 
