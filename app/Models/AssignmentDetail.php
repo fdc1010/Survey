@@ -32,7 +32,7 @@ class AssignmentDetail extends Model
       }
       public function barangaysurveyable()
         {
-            return $this->hasOne('App\Models\BarangaySurveyable','barangay_id');
+            return $this->belongsTo('App\Models\BarangaySurveyable','barangay_id');
         }
   	public function barangay()
       {
