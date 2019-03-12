@@ -25,6 +25,8 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->setModel('App\Models\BarangaySurveyable');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/barangaysurveyable');
         $this->crud->setEntityNameStrings('barangay surveyable', 'Barangay Surveyables');
+        $this->crud->setListView('listsurveyassignment');
+        $this->crud->enableExportButtons();
         $this->crud->denyAccess(['update', 'create', 'delete']);
         /*
         |--------------------------------------------------------------------------
