@@ -34,7 +34,7 @@ class BarangaySurveyable extends Model
         return $this->hasMany('App\Models\AssignmentDetail','barangay_id');
     }
     public function getQuota(){
-        $countquota = $this->assignment->sum('quota');
+        $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)->sum('quota');
         if($countquota)
           return $countquota;
         else
@@ -51,7 +51,6 @@ class BarangaySurveyable extends Model
   				$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
   											//->whereIn('voter_id',$voters)
                         ->where('barangay_id',$this->barangay_id)
-                        ->distinct('user_id')
   											->select(['voter_id'])
   											->groupBy('voter_id')
   											->get();
