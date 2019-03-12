@@ -73,7 +73,7 @@ class BarangaySurveyable extends Model
   					return 0;
   	}
   	public function getProgressBar(){
-
+      info($this->getProgress()."% ".$this->getProgressPercent());
   		$result = "<div class='progress'>".
   					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgressPercent()."</div>".
   					"</div>";
@@ -81,7 +81,7 @@ class BarangaySurveyable extends Model
   	}
     public function getProgress(){
       $countquota = $this->assignment->sum('quota');
-      info($countquota);
+
       if($countquota)
   		    return (($this->getSurveyCount()/$countquota)*100);
       else
