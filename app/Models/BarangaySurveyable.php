@@ -34,16 +34,22 @@ class BarangaySurveyable extends Model
         return $this->hasMany('App\Models\AssignmentDetail','barangay_id');
     }
     public function getQuota(){
-        $countquota = $this->assignment->sum('quota');
-
-        if($countquota){
-          info("if: ".$countquota);
+        // $countquota = $this->assignment->sum('quota');
+        //
+        // if($countquota){
+        //   info("if: ".$countquota);
+        //   return $countquota;
+        // }
+        // else{
+        //   info("else: ".$countquota);
+        //   return 1;
+        // }
+        $countquota = AssignmentDetail::where('barangay_id',$this->barangay_id)
+                      ->sum('quota');
+        if($countquota)
           return $countquota;
-        }
-        else{
-          info("else: ".$countquota);
+        else
           return 1;
-        }
     }
     public function getProgressPercent(){
   		return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
