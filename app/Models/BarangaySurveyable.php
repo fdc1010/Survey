@@ -44,12 +44,13 @@ class BarangaySurveyable extends Model
   		return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
   	}
   	public function getSurveyCount(){
-          $voters = Voter::where('barangay_id',$this->barangay_id)
-                          ->get()
-                          ->pluck('id')
-                          ->toArray();
+          // $voters = Voter::where('barangay_id',$this->barangay_id)
+          //                 ->get()
+          //                 ->pluck('id')
+          //                 ->toArray();
   				$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
-  											->whereIn('voter_id',$voters)
+  											//->whereIn('voter_id',$voters)
+                        ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])
   											->groupBy('voter_id')
   											->get();
