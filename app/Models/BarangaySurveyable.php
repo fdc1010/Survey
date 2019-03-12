@@ -40,12 +40,15 @@ class BarangaySurveyable extends Model
           return $countquota;
         }
         else{
-          return 1;
+          return 0;
         }
 
     }
     public function getProgressPercent(){
-        return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
+      if($this->getQuota())
+          return number_format((($this->getSurveyCount()/$this->getQuota())*100),2) . " %";
+
+      return "0.00 %";
   	}
   	public function getSurveyCount(){
           // $voters = Voter::where('barangay_id',$this->barangay_id)
@@ -64,14 +67,17 @@ class BarangaySurveyable extends Model
   					return 0;
   	}
   	public function getProgressBar(){
-      info($this->getProgress()."% ".$this->getProgressPercent());
   		$result = "<div class='progress'>".
   					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgressPercent()."</div>".
   					"</div>";
   		return $result;
   	}
     public function getProgress(){
-      return (($this->getSurveyCount()/$this->getQuota())*100);
+
+      if($this->getQuota())
+          return (($this->getSurveyCount()/$this->getQuota())*100);
+
+      return 0;
   	}
     /*
     |--------------------------------------------------------------------------
