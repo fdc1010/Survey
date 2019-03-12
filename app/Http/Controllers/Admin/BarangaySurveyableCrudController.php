@@ -70,13 +70,13 @@ class BarangaySurveyableCrudController extends CrudController
                     'label' => 'Count',
                     'type' => 'model_function',
         			'function_name' => 'getSurveyCount'
-  	    ])->afterColumn('quota');
+  	    ]);
     		$this->crud->addColumn([
               'name' => 'progress',
               'label' => 'Progress',
               'type' => 'model_function',
   			'function_name' => 'getProgressBar'
-  	    ]);
+  	    ])->afterColumn('count');
         // add asterisk for fields that are required in BarangaySurveyableRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
