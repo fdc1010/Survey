@@ -88,7 +88,8 @@ class BarangaySurveyable extends Model
   			return 0;
     }
     public function getAllSurveyQuota(){
-      return  $this->assignment->sum('quota');
+
+      return  AssignmentDetail::sum('quota');
     }
     /*
     |--------------------------------------------------------------------------
