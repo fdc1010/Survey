@@ -19,18 +19,52 @@ class BarangaySurveyable extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['barangay_id'];
+    protected $fillable = ['barangay_id','count','progress','quota'];
     // protected $hidden = [];
     // protected $dates = [];
 	/*protected $casts = [
         'barangay_id' => 'array'
     ];*/
-	public function barangay()
+	  public function barangay()
     {
         return $this->belongsTo('App\Models\Barangay','barangay_id');
     }
-	
-	
+    public function getProgressPercent(){
+  		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
+  	}
+  	public function getSurveyCount(){
+  		$surveyassignment = SurveyorAssignment::find($this->assignment_id);
+  		if($surveyassignment){
+  				//$precincts = Precinct::where('barangay_id',$this->barangay_id)->get()->pluck('id')->toArray();
+          $voters = Voter::where('barangay_id',$this->barangay_id)
+                          ->get()
+                          ->pluck('id')
+                          ->toArray();
+  				$countsurvey = SurveyAnswer::where('survey_detail_id',$surveyassignment->survey_detail_id)
+  											->where('user_id',$surveyassignment->user_id)
+  											->whereIn('voter_id',$voters)
+  											->select(['voter_id'])
+  											->groupBy('voter_id')
+  											->get();
+  				if($countsurvey)
+  					return count($countsurvey);
+  				else
+  					return 0;
+  		}else{
+  			return 0;
+  		}
+  	}
+  	public function getProgressBar(){
+
+  		$result = "<div class='progress'>".
+  					  "<div class='progress-bar' style='width:".$this->getProgress()."%;'>".$this->getProgressPercent()."</div>".
+  					"</div>";
+  		return $result;
+  	}
+    public function getProgress(){
+
+  		return (($this->getSurveyCount()/$this->quota)*100);
+  	}
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

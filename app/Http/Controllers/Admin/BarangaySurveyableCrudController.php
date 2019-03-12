@@ -48,23 +48,35 @@ class BarangaySurveyableCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->addColumn([
-            'name' => 'barangay_id',
-            'type' => 'select',
-            'label' => 'Municipality',
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay"
-	    ]);
-		$this->crud->addField([
-			'label' => "Barangay",
-			'type' => 'select2',
-			'name' => 'barangay_id', // the relationship name in your Model
-			'entity' => 'barangay', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
-			//'pivot' => true
-		]);
+    		$this->crud->addColumn([
+                'name' => 'barangay_id',
+                'type' => 'select',
+                'label' => 'Municipality',
+    			'entity' => 'barangay', // the relationship name in your Model
+    			'attribute' => 'name', // attribute on Article that is shown to admin
+    			'model' => "App\Models\Barangay"
+    	  ]);
+    		$this->crud->addField([
+    			'label' => "Barangay",
+    			'type' => 'select2',
+    			'name' => 'barangay_id', // the relationship name in your Model
+    			'entity' => 'barangay', // the relationship name in your Model
+    			'attribute' => 'name', // attribute on Article that is shown to admin
+    			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
+    			//'pivot' => true
+    		]);
+        $this->crud->addColumn([
+                    'name' => 'count',
+                    'label' => 'Count',
+                    'type' => 'model_function',
+        			'function_name' => 'getSurveyCount'
+  	    ])->afterColumn('quota');
+    		$this->crud->addColumn([
+              'name' => 'progress',
+              'label' => 'Progress',
+              'type' => 'model_function',
+  			'function_name' => 'getProgressBar'
+  	    ]);
         // add asterisk for fields that are required in BarangaySurveyableRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
