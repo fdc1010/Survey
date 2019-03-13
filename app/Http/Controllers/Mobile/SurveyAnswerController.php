@@ -355,7 +355,7 @@ class SurveyAnswerController extends Controller
               							}
               					}
                       }else{
-                          info("Duplicate Survey Detected!");
+                          info("Duplicate Survey Detected! voter id: ".$voterid." user id: ".$userid);
                           info("Storing Duplicate Survey to duplicate_surveys table");
                           $dupsurvey = [
                                           'voter_id' => $voterid,
