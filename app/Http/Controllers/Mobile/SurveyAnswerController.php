@@ -276,8 +276,9 @@ class SurveyAnswerController extends Controller
                             $surveyans->candidate_id = $candidateId;
               							$surveyans->answered_option = $voteranswers['answers'];//$voter->save();
 
-              							$surveyans->other_answer = $ansid['otherAnswer'];
-
+                            if(!empty($ansid['otherAnswer'])){
+              							       $surveyans->other_answer = $ansid['otherAnswer'];
+                            }
               							if($request->has('latitude')){
               								$surveyans->latitude = $request->latitude;
               							}
@@ -296,6 +297,11 @@ class SurveyAnswerController extends Controller
               								$tallycandidate->voter_id = $voterid;
                               $tallycandidate->user_id = $userid;
               								$tallycandidate->survey_detail_id = $surveydetailid;
+
+                              if(!empty($ansid['otherAnswer'])){
+                							       $tallycandidate->other_answer = $ansid['otherAnswer'];
+                              }
+
               								$tallycandidate->save();
               							}
                             $otoptId = null;

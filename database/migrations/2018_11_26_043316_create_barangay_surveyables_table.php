@@ -15,10 +15,13 @@ class CreateBarangaySurveyablesTable extends Migration
     {
         Schema::create('barangay_surveyables', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('barangay_id');
+      			$table->unsignedInteger('barangay_id');
+            $table->integer('quota')->nullable();
+            $table->integer('count')->nullable();
+      			$table->decimal('progress',10,2)->nullable();
             $table->timestamps();
-			
-			$table->foreign('barangay_id')->references('id')->on('barangays');
+
+      			$table->foreign('barangay_id')->references('id')->on('barangays');
         });
     }
 

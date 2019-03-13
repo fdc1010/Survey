@@ -54,25 +54,25 @@ class SurveyorAssignmentCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-		$this->crud->removeColumn(['user_id','count','task','description','areas','survey_detail_id']);
-		$this->crud->removeField(['user_id','progress','areas','survey_detail_id']);
-        $this->crud->addColumn([
-            'label' => "User",
-			'type' => 'select',
-			'name' => 'user_id', // the relationship name in your Model
-			'entity' => 'user', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
-		])->makeFirstColumn();
-		/*$this->crud->addColumn([
-            'name' => 'count',
-            'label' => 'Count'
-	    ])->afterColumn('quota');*/
-$this->crud->addColumn([
-            'name' => 'count',
-            'label' => 'Count',
-            'type' => 'model_function',
-			'function_name' => 'getSurveyCount'
+      		$this->crud->removeColumn(['user_id','count','task','description','areas','survey_detail_id']);
+      		$this->crud->removeField(['user_id','progress','areas','survey_detail_id']);
+              $this->crud->addColumn([
+                  'label' => "User",
+      			'type' => 'select',
+      			'name' => 'user_id', // the relationship name in your Model
+      			'entity' => 'user', // the relationship name in your Model
+      			'attribute' => 'name', // attribute on Article that is shown to admin
+      			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
+      		])->makeFirstColumn();
+      		/*$this->crud->addColumn([
+                  'name' => 'count',
+                  'label' => 'Count'
+      	    ])->afterColumn('quota');*/
+      $this->crud->addColumn([
+                  'name' => 'count',
+                  'label' => 'Count',
+                  'type' => 'model_function',
+      			'function_name' => 'getSurveyCount'
 	    ])->afterColumn('quota');
 		$this->crud->addColumn([
             'name' => 'progress',

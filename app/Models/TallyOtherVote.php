@@ -38,6 +38,10 @@ class TallyOtherVote extends Model
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
     }
+  public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
 	public function surveydetail()
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
@@ -166,6 +170,7 @@ class TallyOtherVote extends Model
 							})
 						->sum('tally');
 	}
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

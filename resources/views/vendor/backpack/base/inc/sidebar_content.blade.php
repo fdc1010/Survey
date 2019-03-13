@@ -39,8 +39,9 @@
   <a href="#"><i class="fa fa-bar-chart"></i> <span>Surveys</span> <i class="fa fa-angle-left pull-right"></i></a>
   <ul class="treeview-menu">
   	<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
-	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
-	<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
+  	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
+  	<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
+    <li><a href='{{ backpack_url('barangaysurveyable') }}'><i class='fa fa-map'></i> <span>Barangay Survey</span></a></li>
     <li><a href='{{ backpack_url('tallyvote') }}'><i class='fa fa-bar-chart'></i> <span>Tally</span></a></li>
     <li><a href='{{ backpack_url('tallyothervote') }}'><i class='fa fa-bar-chart'></i> <span>Other Tally</span></a></li>
   	<li class="treeview">
@@ -57,7 +58,7 @@
             <li><a href='{{ backpack_url('electionreturn') }}'><i class='fa fa-thumbs-o-up'></i> <span>Election Returns</span></a></li>
   		</ul>
     </li>
-    
+
   </ul>
 </li>
 <li class="treeview">
