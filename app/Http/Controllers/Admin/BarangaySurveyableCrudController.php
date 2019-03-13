@@ -40,6 +40,10 @@ class BarangaySurveyableCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
         $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
+        $this->crud->addColumn([
+                'name' => 'barangay_id',
+                'label' => 'Barangay iD',
+    	  ]);
     		$this->crud->addColumn([
                 'name' => 'barangay_id',
                 'type' => 'select',
