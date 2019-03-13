@@ -123,7 +123,7 @@ class BarangaySurveyableCrudController extends CrudController
               						 "<div class='col-lg-2'>quota: ".$assignment->quota."</div>".
                 					 "<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
                 					 "<div class='col-lg-2'>progress: </div>".
-                					 "<div class='col-lg-2'>".$assignment->getProgressBar()."</div>";
+                					 "<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
             }
       }
   		$result .= "</div>";
