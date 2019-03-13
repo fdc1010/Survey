@@ -348,20 +348,7 @@ class SurveyAnswerController extends Controller
                               $tallyproblem->question_id = $voteranswers['questionId'];
               								$tallyproblem->option_id = $optid;
               								$tallyproblem->voter_id = $voterid;
-                              $tallyprob}else{
-                          info("Duplicate Survey Detected!");
-                          info("Storing Duplicate Survey to duplicate_surveys table");
-                          $dupsurvey = [
-                                          'voter_id' => $voterid,
-                                          'user_id' => $userid,
-                                          'survey_detail_id' => $surveydetailid,
-                                          'barangay_id' => $voter->barangay_id
-                                       ];
-                          $insert = DuplicateSurvey::insert($dupsurvey);
-                          if($insert){
-                            info("Duplicate Survey Saved!");
-                          }
-                      }lem->user_id = $userid;
+                              $tallyproblem->user_id = $userid;
               								$tallyproblem->survey_detail_id = $surveydetailid;
               								$tallyproblem->barangay_id = $voter->barangay_id;
               								$tallyproblem->save();
