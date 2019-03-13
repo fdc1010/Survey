@@ -120,9 +120,11 @@ class BarangaySurveyableCrudController extends CrudController
 
   		foreach($surveyors as $surveyor){
             foreach($surveyor->assignments as $assignment){
-          			$result .= "<div class='col-lg-4'>".$surveyor->user->name."</div>".
-                						"<div class='col-lg-4'>quota: ".$assignment->quota."</div>".
-                            "<div class='col-lg-4'>count: ".$assignment->getSurveyCount()."</div>";
+              $result .= "<div class='col-lg-2'>Total Quota: </div>".
+                         "<div class='col-lg-2'>".$totalquotaperbrgy."</div>".
+                         "<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
+                         "<div class='col-lg-2'>progress: </div>".
+                         "<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
             }
       }
   		$result .= "</div>";
