@@ -7,7 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\BarangaySurveyableRequest as StoreRequest;
 use App\Http\Requests\BarangaySurveyableRequest as UpdateRequest;
-
+use App\Models\SurveyorAssignment;
 /**
  * Class BarangaySurveyableCrudController
  * @package App\Http\Controllers\Admin
