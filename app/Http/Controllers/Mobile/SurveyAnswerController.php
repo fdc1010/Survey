@@ -273,6 +273,7 @@ class SurveyAnswerController extends Controller
               							$surveyans->option_id = $optid;
               							$surveyans->user_id = $userid;
               							$surveyans->voter_id = $voterid;
+                            $surveyans->barangay_id = $voter->barangay_id;
                             $surveyans->candidate_id = $candidateId;
               							$surveyans->answered_option = $voteranswers['answers'];//$voter->save();
 
@@ -297,6 +298,7 @@ class SurveyAnswerController extends Controller
               								$tallycandidate->voter_id = $voterid;
                               $tallycandidate->user_id = $userid;
               								$tallycandidate->survey_detail_id = $surveydetailid;
+                              $tallycandidate->barangay_id = $voter->barangay_id;
 
                               if(!empty($ansid['otherAnswer'])){
                 							       $tallycandidate->other_answer = $ansid['otherAnswer'];
