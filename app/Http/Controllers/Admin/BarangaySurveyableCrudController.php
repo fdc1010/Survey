@@ -42,7 +42,7 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
         $this->crud->addColumn([
                 'name' => 'barangay_id',
-                'label' => 'Barangay iD',
+                'label' => 'Barangay ID',
     	  ]);
     		$this->crud->addColumn([
                 'name' => 'barangay_id',
