@@ -29,6 +29,8 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->denyAccess(['update', 'create', 'delete']);
         $this->crud->enableExportButtons();
         $this->crud->removeAllButtonsFromStack('line');
+        $this->crud->enableDetailsRow();
+		    $this->crud->allowAccess('details_row');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -96,4 +98,27 @@ class BarangaySurveyableCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
+    public function showDetailsRow($id){
+      // $brgysur = BarangaySurveyable::with(['assignment'=>function($q){
+      //                                       $q->with(['surveyor'=>function($s){
+      //                                                   $s->with('user');
+      //                                               }]);
+      //                                     }])
+      //                                     ->find($id);
+      $brgysur = BarangaySurveyable::find($id);
+      $surveyors = SurveyorAssignment::with(['user','assignments'=>function($q)use($brgysur){
+                                          $q->where('barangay_id',$brgysur->barangay_id);
+                                        }])
+                                        ->get();
+  		$result = "<h4>Assigned Surveyor(s):</h4><div class='col-lg-8'>";
+  		foreach($surveyors as $surveyor){
+      			$result .= "<div class='col-lg-2'>".$surveyor->user->full_name."</div>".
+      						"<div class='col-lg-2'>quota: ".$surveyor->assignments->quota."</div>".
+      						"<div class='col-lg-2'>count: ".$surveyor->assignments->getSurveyCount()."</div>".
+      						"<div class='col-lg-2'>progress: </div>".
+      						"<div class='col-lg-4'>".$surveyor->assignments->getProgressBar()."</div>";
+      }
+  		$result .= "</div>";
+  		return $result;
+  	}
 }
