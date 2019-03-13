@@ -40,10 +40,6 @@ class BarangaySurveyableCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
         $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
-        $this->crud->addColumn([
-                'name' => 'barangay_id',
-                'label' => 'Barangay ID',
-    	  ]);
     		$this->crud->addColumn([
                 'name' => 'barangay_id',
                 'type' => 'select',
@@ -123,11 +119,11 @@ class BarangaySurveyableCrudController extends CrudController
             $totalcountperbrgy = 0;
             $totalprogressperbrgy = 0;
             foreach($surveyor->assignments as $assignment){
-          			$result .= "<div class='col-lg-2'>".$surveyor->user->name."</div>".
+          			$result .= "<div class='col-lg-2'>#".$surveyor->user->id." ".$surveyor->user->name."</div>".
               						 "<div class='col-lg-2'>quota: ".$assignment->quota."</div>".
                 					 "<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
                 					 "<div class='col-lg-2'>progress: </div>".
-                					 "<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
+                					 "<div class='col-lg-2'>".$assignment->getProgressBar()."</div>";
             }
       }
   		$result .= "</div>";
