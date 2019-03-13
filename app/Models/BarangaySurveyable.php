@@ -50,9 +50,9 @@ class BarangaySurveyable extends Model
                         ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])
   											->groupBy('voter_id')
-  											->get();
+  											->count('voter_id');
   				if($countsurvey)
-  					return count($countsurvey);
+  					return $countsurvey;
   				else
   					return 0;
   	}
