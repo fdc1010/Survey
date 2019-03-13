@@ -110,22 +110,26 @@ class BarangaySurveyableCrudController extends CrudController
       //                                     }])
       //                                     ->find($id);
       $brgysur = $this->crud->getModel()::find($id);
-      info($brgysur);
       $surveyors = SurveyorAssignment::whereHas('assignments',function($a)use($brgysur){
                                             $a->where('barangay_id',$brgysur->barangay_id);
                                         })->with(['user','assignments'=>function($q)use($brgysur){
-                                          $q->where('barangay_id',$brgysur->barangay_id);
+                                            $q->where('barangay_id',$brgysur->barangay_id);
                                         }])
                                         ->get();
   		$result = "<h4>Assigned Surveyor(s):</h4><div class='col-lg-8'>";
+
   		foreach($surveyors as $surveyor){
+            $totalquotaperbrgy = 0;
             foreach($surveyor->assignments as $assignment){
           			$result .= "<div class='col-lg-2'>".$surveyor->user->name."</div>".
           						"<div class='col-lg-2'>quota: ".$assignment->quota."</div>".
           						"<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
           						"<div class='col-lg-2'>progress: </div>".
           						"<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
+                $totalquotaperbrgy += $assignment->quota;
             }
+            $result .= "<div class='col-lg-2'>Total Quota: </div>".
+                       "<div class='col-lg-2'>".$totalquotaperbrgy."</div>";
       }
   		$result .= "</div>";
   		return $result;
