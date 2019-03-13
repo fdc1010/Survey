@@ -105,7 +105,7 @@ class BarangaySurveyableCrudController extends CrudController
       //                                               }]);
       //                                     }])
       //                                     ->find($id);
-      $brgysur = BarangaySurveyable::find($id);
+      $brgysur = $this->crud->getModel()::find($id);
       $surveyors = SurveyorAssignment::with(['user','assignments'=>function($q)use($brgysur){
                                           $q->where('barangay_id',$brgysur->barangay_id);
                                         }])
