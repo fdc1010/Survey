@@ -17,6 +17,7 @@ use App\Models\TallyOtherVote;
 use App\Models\Voter;
 use App\Models\VoterStatus;
 use App\Models\StatusDetail;
+use App\Models\DuplicateSurvey;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

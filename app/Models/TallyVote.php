@@ -19,7 +19,7 @@ class TallyVote extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['candidate_id','voter_id','tally','survey_detail_id'];
+    protected $fillable = ['candidate_id','voter_id','tally','survey_detail_id','barangay_id','user_id'];
     // protected $hidden = [];
     // protected $dates = [];
 	public function candidate()
@@ -149,7 +149,7 @@ class TallyVote extends Model
 
                 if(count($agebrackets)>0){
                   $q->whereIn('age',$agebrackets);
-                }                
+                }
 								if($brgyid>0){
 									$q->where('barangay_id',$brgyid);
 								}
