@@ -260,7 +260,17 @@ class SurveyAnswerController extends Controller
                             info("Current Entry!");
                             info("survey detail id: ".$surveydetailid." ,voter id: ".$voterid." ".$voter->full_name." ,question_id: ".$voteranswers['questionId']." ,option id: ".$optid." ,user id: ".$userid." ".$user->name);
                             info("Duplicate Entry!");
-                            info("#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name);
+                            info("#".$dupsurans->id." ,survey detail id: ".$dupsurans->survey_detail_id." ,voter id: ".$dupsurans->voter_id." ".$dupsurans->voter->full_name." ,question_id: ".$dupsurans->question_id." ,option id: ".$dupsurans->option_id." ,user id: ".$dupsurans->user_id." ".$dupsurans->user->name);                            
+                            $dupsurvey = [
+                                            'voter_id' => $voterid,
+                                            'user_id' => $userid,
+                                            'survey_detail_id' => $surveydetailid,
+                                            'barangay_id' => $voter->barangay_id
+                                         ];
+                            $insert = DuplicateSurvey::insert($dupsurvey);
+                            if($insert){
+                              info("Duplicate Survey Saved!");
+                            }
                       }else{
                             $candidateId = null;      				//$voter->save();
 
@@ -354,19 +364,6 @@ class SurveyAnswerController extends Controller
               								$tallyproblem->save();
               							}
               					}
-                      }else{
-                          info("Duplicate Survey Detected! voter id: ".$voterid." user id: ".$userid);
-                          info("Storing Duplicate Survey to duplicate_surveys table");
-                          $dupsurvey = [
-                                          'voter_id' => $voterid,
-                                          'user_id' => $userid,
-                                          'survey_detail_id' => $surveydetailid,
-                                          'barangay_id' => $voter->barangay_id
-                                       ];
-                          $insert = DuplicateSurvey::insert($dupsurvey);
-                          if($insert){
-                            info("Duplicate Survey Saved!");
-                          }
                       }
       					}
     			    }
