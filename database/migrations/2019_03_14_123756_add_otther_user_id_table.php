@@ -14,7 +14,7 @@ class AddOttherUserIdTable extends Migration
     public function up()
     {
         Schema::table('duplicate_surveys', function (Blueprint $table) {
-            $table->integer('other_user_id')->nullable();
+            $table->unsignedInteger('other_user_id');
 
             $table->foreign('other_user_id')->references('id')->on('users');
         });
