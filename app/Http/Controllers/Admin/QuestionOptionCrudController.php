@@ -197,10 +197,12 @@ class QuestionOptionCrudController extends CrudController
     				]);
     				//array_push($positionsarr,array('positions'=>$posid));
     			}
-    			$optioncandidate = OptionCandidate::updateOrCreate([
-    				'option_id' => $optid,
-    				'candidate_id' => $candid
-    			]);
+          if(!empty($candid)){
+        			$optioncandidate = OptionCandidate::updateOrCreate([
+        				'option_id' => $optid,
+        				'candidate_id' => $candid
+        			]);
+          }
 			}
 		}
 		if(intval($this->crud->entry->for_issues)){
@@ -243,12 +245,14 @@ class QuestionOptionCrudController extends CrudController
 			]);
 		}
 		if(intval($this->crud->entry->for_candidate_votes)){
-			OptionCandidate::where('option_id',$optid)->delete();
+      if(!empty($candid)){
+    			OptionCandidate::where('option_id',$optid)->delete();
 
-			$optioncandidate = OptionCandidate::updateOrCreate([
-				'option_id' => $optid,
-				'candidate_id' => $candid
-			]);
+    			$optioncandidate = OptionCandidate::updateOrCreate([
+    				'option_id' => $optid,
+    				'candidate_id' => $candid
+    			]);
+      }
 		}
 		if(intval($this->crud->entry->for_issues)){
 			OptionProblem::where('option_id',$optid)->delete();
