@@ -21,6 +21,7 @@ use App\Models\DuplicateSurvey;
 use App\Models\BarangaySurveyable;
 use App\Models\Barangay;
 use App\Models\Precinct;
+use App\Models\AgeReview;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -232,7 +233,12 @@ class SurveyAnswerController extends Controller
                         'is_done_survey'=>1,
       									'profilepic'=>$profilepic
       								]);
-
+              if($voterdetails['age']>100){
+                $agereview = new AgeReview;
+                $agereview->voter_id = $voterid;
+                $agereview->age = $voterdetails['age'];
+                $agereview->save();
+              }
               $surveyassignment = SurveyorAssignment::where('user_id',$userid)
                                           ->where('survey_detail_id',$surveydetailid)
                                           ->first();
