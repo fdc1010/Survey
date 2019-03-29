@@ -145,7 +145,7 @@ class SurveyAnswerController extends Controller
 			$surveydetailid = $request->survey_detail_id;
       $user = User::find($userid);
 
-      if(!$request->has('voter_id') || $request->has('is_anonymous')){
+      if(!$request->has('voter_id') || ($request->has('is_anonymous') && $request->is_anonymous==1)){
           $anonymousvoter = new Voter;
           if($request->has('barangay_id')){
             $anonymousvoterbrgy = Barangay::find($request->barangay_id);
@@ -408,7 +408,7 @@ class SurveyAnswerController extends Controller
 
 	  }
     public function testAnonymousVoterAdd(Request $request){
-      if(!$request->has('voter_id') || $request->has('is_anonymous')){
+      if(!$request->has('voter_id') || ($request->has('is_anonymous') && $request->is_anonymous==1)){
           $anonymousvoter = new Voter;
           if($request->has('barangay_id')){
             $anonymousvoterbrgy = Barangay::find($request->barangay_id);
