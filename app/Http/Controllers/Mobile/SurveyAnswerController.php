@@ -431,11 +431,13 @@ class SurveyAnswerController extends Controller
           $anonymousvoter->is_anonymous = 1;
           $anonymousvoter->save();
           $voterid = $anonymousvoter->id;
-      }else[
+      }else{
           $voterid = $request->voter_id;
-      ]
+      }
 
       $voter = Voter::find($voterid);
+
+      return response()->json($voter);
     }
     /**
      * Show the form for creating a new resource.
