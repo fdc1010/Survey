@@ -18,6 +18,9 @@ use App\Models\Voter;
 use App\Models\VoterStatus;
 use App\Models\StatusDetail;
 use App\Models\DuplicateSurvey;
+use App\Models\BarangaySurveyable;
+use App\Models\Barangay;
+use App\Models\Precinct;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -139,9 +142,36 @@ class SurveyAnswerController extends Controller
 		//info($request);
 			$ok = true;
 			$userid = $request->user_id;
-			$voterid = $request->voter_id;
 			$surveydetailid = $request->survey_detail_id;
       $user = User::find($userid);
+
+      if(!$request->has('voter_id') || $request->has('is_anonymous')){
+          $anonymousvoter = new Voter;
+          if($request->has('barangay_id')){
+            $anonymousvoterbrgy = Barangay::find($request->barangay_id);
+            $anonymousvoterprec = Precinct::where('barangay_id',$request->barangay_id)->first();
+            $anonymousvoter->barangay_id = $request->barangay_id;
+            $anonymousvoter->barangay_name = $anonymousvoterbrgy->name;
+            $anonymousvoter->precinct_id = $anonymousvoterprec->id;
+            $anonymousvoter->precinct_number = $anonymousvoterprec->precinct_number;
+          }else{
+            $surveyablebrgy = BarangaySurveyable::inRandomOrder()->first();
+            $anonymousvoterbrgy = Barangay::find($surveyablebrgy->barangay_id);
+            $anonymousvoterprec = Precinct::where('barangay_id',$surveyablebrgy->barangay_id)->first();
+            $anonymousvoter->barangay_id = $surveyablebrgy->barangay_id;
+            $anonymousvoter->barangay_name = $anonymousvoterbrgy->name;
+            $anonymousvoter->precinct_id = $anonymousvoterprec->id;
+            $anonymousvoter->precinct_number = $anonymousvoterprec->precinct_number;
+          }
+          $anonymousvoter->last_name = "voter";
+          $anonymousvoter->first_name = "anonymous";
+          $anonymousvoter->is_anonymous = 1;
+          $anonymousvoter->save();
+          $voterid = $anonymousvoter->id;
+      }else[
+          $voterid = $request->voter_id;
+      ]
+
       $voter = Voter::find($voterid);
       if($voter){
             info("Storing voter survey: #".$voter->id." ".$voter->full_name);
@@ -376,7 +406,37 @@ class SurveyAnswerController extends Controller
       }
 			return response()->json(['success'=>true,'msg'=>'An Error Occured!']);
 
-	}
+	  }
+    public function testAnonymousVoterAdd(Request $request){
+      if(!$request->has('voter_id') || $request->has('is_anonymous')){
+          $anonymousvoter = new Voter;
+          if($request->has('barangay_id')){
+            $anonymousvoterbrgy = Barangay::find($request->barangay_id);
+            $anonymousvoterprec = Precinct::where('barangay_id',$request->barangay_id)->first();
+            $anonymousvoter->barangay_id = $request->barangay_id;
+            $anonymousvoter->barangay_name = $anonymousvoterbrgy->name;
+            $anonymousvoter->precinct_id = $anonymousvoterprec->id;
+            $anonymousvoter->precinct_number = $anonymousvoterprec->precinct_number;
+          }else{
+            $surveyablebrgy = BarangaySurveyable::inRandomOrder()->first();
+            $anonymousvoterbrgy = Barangay::find($surveyablebrgy->barangay_id);
+            $anonymousvoterprec = Precinct::where('barangay_id',$surveyablebrgy->barangay_id)->first();
+            $anonymousvoter->barangay_id = $surveyablebrgy->barangay_id;
+            $anonymousvoter->barangay_name = $anonymousvoterbrgy->name;
+            $anonymousvoter->precinct_id = $anonymousvoterprec->id;
+            $anonymousvoter->precinct_number = $anonymousvoterprec->precinct_number;
+          }
+          $anonymousvoter->last_name = "voter";
+          $anonymousvoter->first_name = "anonymous";
+          $anonymousvoter->is_anonymous = 1;
+          $anonymousvoter->save();
+          $voterid = $anonymousvoter->id;
+      }else[
+          $voterid = $request->voter_id;
+      ]
+
+      $voter = Voter::find($voterid);
+    }
     /**
      * Show the form for creating a new resource.
      *

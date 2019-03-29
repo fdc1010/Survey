@@ -15,19 +15,20 @@ class CreateVotersTable extends Migration
     {
         Schema::create('voters', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('precinct_id');
-			$table->string('first_name');
-			$table->string('last_name');
-			$table->string('middle_name')->nullable();
-			$table->dateTime('birth_date')->nullable();
-			$table->string('contact')->nullable();
-			$table->string('address')->nullable();
-			$table->string('birth_place')->nullable();
-			$table->decimal('age',10,2)->nullable();
-			$table->enum('gender', ['M', 'F']);
-			$table->longText('profilepic')->nullable();
-			$table->integer('status_id')->nullable();
-			$table->integer('seq_num')->nullable();
+      			$table->unsignedInteger('precinct_id');
+      			$table->string('first_name');
+      			$table->string('last_name');
+      			$table->string('middle_name')->nullable();
+      			$table->dateTime('birth_date')->nullable();
+      			$table->string('contact')->nullable();
+      			$table->string('address')->nullable();
+      			$table->string('birth_place')->nullable();
+      			$table->decimal('age',10,2)->nullable();
+      			$table->enum('gender', ['M', 'F']);
+      			$table->longText('profilepic')->nullable();
+      			$table->integer('status_id')->nullable();
+      			$table->integer('seq_num')->nullable();
+            $table->boolean('is_anonymous')->default(0);
             $table->timestamps();
 
 			$table->foreign('precinct_id')->references('id')->on('precincts');
