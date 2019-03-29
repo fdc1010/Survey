@@ -58,4 +58,5 @@ Route::group([
     CRUD::resource('locationshape', 'LocationShapeCrudController');
     CRUD::resource('locationarea', 'LocationAreaCrudController');
     CRUD::resource('duplicatesurvey', 'DuplicateSurveyCrudController');
+    CRUD::resource('agereview', 'AgeReviewCrudController');
 }); // this should be the absolute last line of this file

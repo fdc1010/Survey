@@ -58,7 +58,7 @@
             <li><a href='{{ backpack_url('electionreturn') }}'><i class='fa fa-thumbs-o-up'></i> <span>Election Returns</span></a></li>
   		</ul>
     </li>
-
+    <li><a href='{{ backpack_url('agereview') }}'><i class='fa fa-user'></i> <span>Age Review for Voter's Survey</span></a></li>
   </ul>
 </li>
 <li class="treeview">
