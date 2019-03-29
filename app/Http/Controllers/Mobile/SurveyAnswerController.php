@@ -170,7 +170,7 @@ class SurveyAnswerController extends Controller
           $voterid = $anonymousvoter->id;
       }else{
           $voterid = $request->voter_id;
-      ]
+      }
 
       $voter = Voter::find($voterid);
       if($voter){
