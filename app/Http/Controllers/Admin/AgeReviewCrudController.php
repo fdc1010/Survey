@@ -27,7 +27,7 @@ class AgeReviewCrudController extends CrudController
         $this->crud->setEntityNameStrings('age review', 'Age Reviews');
         $this->crud->enableExportButtons();
         $this->crud->denyAccess(['update', 'create', 'delete']);
-        
+        $this->crud->removeAllButtonsFromStack('line');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
