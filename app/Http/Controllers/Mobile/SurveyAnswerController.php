@@ -168,7 +168,7 @@ class SurveyAnswerController extends Controller
           $anonymousvoter->is_anonymous = 1;
           $anonymousvoter->save();
           $voterid = $anonymousvoter->id;
-      }else[
+      }else{
           $voterid = $request->voter_id;
       ]
 
