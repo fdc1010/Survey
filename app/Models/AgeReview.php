@@ -19,10 +19,10 @@ class AgeReview extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['voter_id','age'];
     // protected $hidden = [];
     // protected $dates = [];
-
+    protected $appends = ['full_name'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -34,7 +34,10 @@ class AgeReview extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function voter()
+    {
+        return $this->belongsTo('App\Models\Voter','voter_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -52,4 +55,9 @@ class AgeReview extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function getFullNameAttribute()
+    {
+		    $voter = Voter::find($this->voter_id);
+        return ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);
+    }
 }
