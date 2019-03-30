@@ -222,13 +222,14 @@
                                                            ->get();
         if(!empty($rdata['position']) && empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                                                          $q->with(['voter'=>function($qv){
-                                                                          $qv->orderBy('last_name');
-                                                                      },'tally'=>function($qc){
-                                                                          $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                                  ->from('tally_votes')
-                                                                                  ->groupBy('candidate_id');
-                                                                      }]);
+                                                              $q->with(['voter'=>function($qv){
+                                                                  $qv->orderBy('last_name');
+                                                              },'tally'=>function($qc){
+                                                                  $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                          ->from('tally_votes')
+                                                                          ->groupBy('candidate_id');
+                                                              }])
+                                                              ->orderBy('priority');
                                                              }])
                                                              ->whereIn('id',$rdata['position'])
                                                              ->get();
@@ -236,26 +237,28 @@
         }else if(!empty($rdata['position'])){
         	if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                                                          $q->with(['voter'=>function($qv){
-                                                                          $qv->orderBy('last_name');
-                                                                      },'tally'=>function($qc){
-                                                                          $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
-                                                                                  ->from('tally_votes')
-                                                                                  ->groupBy('candidate_id');
-                                                                      }]);
+                                                              $q->with(['voter'=>function($qv){
+                                                                    $qv->orderBy('last_name');
+                                                                },'tally'=>function($qc){
+                                                                    $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
+                                                                            ->from('tally_votes')
+                                                                            ->groupBy('candidate_id');
+                                                                }])
+                                                                ->orderBy('priority');
                                                              }])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
 
             }else if(!empty($rdata['candidate'])){
             	$positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                                                          $q->with(['voter'=>function($qv){
+                                                              $q->with(['voter'=>function($qv){
                                                                           $qv->orderBy('last_name');
                                                                       },'tally'=>function($qc){
                                                                           $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
                                                                                   ->groupBy('candidate_id');
-                                                                      }]);
+                                                                      }])
+                                                                      ->orderBy('priority');
                                                              }])
                                                             ->whereIn('id',$rdata['position'])
                                                             ->get();
@@ -264,13 +267,14 @@
         }else{
             if(!empty($rdata['selcandidate'])){
                 $positions = App\Models\PositionCandidate::with(['candidates'=>function($q){
-                                                              $q->with(['voter'=>function($qv){
+                                                                $q->with(['voter'=>function($qv){
                                                                           $qv->orderBy('last_name');
                                                                       },'tally'=>function($qc){
                                                                           $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
                                                                                   ->groupBy('candidate_id');
-                                                                      }]);
+                                                                      }])
+                                                                      ->orderBy('priority');
                                                              }])
                                                             ->get();
             }else if(!empty($rdata['candidate'])){
@@ -281,7 +285,8 @@
                                                               		        $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                   ->from('tally_votes')
                                                                                   ->groupBy('candidate_id');
-                                                                      }]);
+                                                                      }])
+                                                                ->orderBy('priority');
                         							                       }])
                                                             ->get();
             }
