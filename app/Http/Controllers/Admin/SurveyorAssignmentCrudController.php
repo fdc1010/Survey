@@ -68,70 +68,81 @@ class SurveyorAssignmentCrudController extends CrudController
                   'name' => 'count',
                   'label' => 'Count'
       	    ])->afterColumn('quota');*/
-      $this->crud->addColumn([
-                  'name' => 'count',
-                  'label' => 'Count',
-                  'type' => 'model_function',
-      			'function_name' => 'getSurveyCount'
-	    ])->afterColumn('quota');
-		$this->crud->addColumn([
-            'name' => 'progress',
-            'label' => 'Progress',
-            'type' => 'model_function',
-			'function_name' => 'getProgressBar'
-	    ]);
-		$this->crud->addColumn([
-            'label' => "Survey",
-			'type' => 'select',
-			'name' => 'survey_detail_id', // the relationship name in your Model
-			'entity' => 'surveydetail', // the relationship name in your Model
-			'attribute' => 'subject', // attribute on Article that is shown to admin
-			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
-		])->afterColumn('progress');
-		$this->crud->addField([
-			'label' => "User",
-			'type' => 'select',
-			'name' => 'user_id', // the relationship name in your Model
-			'entity' => 'user', // the relationship name in your Model
-			'attribute' => 'name', // attribute on Article that is shown to admin
-			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
-		])->beforeField('task');
-		$this->crud->addField([
-			'name' => 'areas',
-			'label' => 'Areas',
-			'type' => 'tableadv2',
-			'entity_singular' => 'area', // used on the "Add X" button
-			'columns' => [
-				'name' => 'areas',
-				'select' => 'Area',
-				'number' => 'Quota',
-				'entity' => 'surveyareas', // the method that defines the relationship in your Model
-				'attribute' => 'name', // foreign key attribute that is shown to user
-				'model' => "App\Models\Barangay",
-			],
-			'max' => 1000, // maximum rows allowed in the table
-			'min' => 1 // minimum rows allowed in the table
-		]);
-		$this->crud->addField([
-			'label' => "Survey",
-			'type' => 'select',
-			'name' => 'survey_detail_id', // the relationship name in your Model
-			'entity' => 'surveydetail', // the relationship name in your Model
-			'attribute' => 'subject', // attribute on Article that is shown to admin
-			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
-		]);
-		/*$this->crud->addField([
-			'label'     => 'Assignment Area',
-			'type'      => 'checklist',
-			'name'      => 'sitio_id',
-			'entity'    => 'sitio',
-			'attribute' => 'name',
-			'model'     => "App\Models\Sitio",
-			'pivot'     => true,
-		])->afterField('user_id');*/
-		// add asterisk for fields that are required in SurveyorAssignmentRequest
+          $this->crud->addColumn([
+                      'name' => 'count',
+                      'label' => 'Count',
+                      'type' => 'model_function',
+          			'function_name' => 'getSurveyCount'
+    	    ])->afterColumn('quota');
+    		$this->crud->addColumn([
+                'name' => 'progress',
+                'label' => 'Progress',
+                'type' => 'model_function',
+    			'function_name' => 'getProgressBar'
+    	    ]);
+    		$this->crud->addColumn([
+                'label' => "Survey",
+    			'type' => 'select',
+    			'name' => 'survey_detail_id', // the relationship name in your Model
+    			'entity' => 'surveydetail', // the relationship name in your Model
+    			'attribute' => 'subject', // attribute on Article that is shown to admin
+    			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
+    		])->afterColumn('progress');
+    		$this->crud->addField([
+    			'label' => "User",
+    			'type' => 'select',
+    			'name' => 'user_id', // the relationship name in your Model
+    			'entity' => 'user', // the relationship name in your Model
+    			'attribute' => 'name', // attribute on Article that is shown to admin
+    			'model' => "App\User" // on create&update, do you need to add/delete pivot table entries?
+    		])->beforeField('task');
+    		$this->crud->addField([
+    			'name' => 'areas',
+    			'label' => 'Areas',
+    			'type' => 'tableadv2',
+    			'entity_singular' => 'area', // used on the "Add X" button
+    			'columns' => [
+    				'name' => 'areas',
+    				'select' => 'Area',
+    				'number' => 'Quota',
+    				'entity' => 'surveyareas', // the method that defines the relationship in your Model
+    				'attribute' => 'name', // foreign key attribute that is shown to user
+    				'model' => "App\Models\Barangay",
+    			],
+    			'max' => 1000, // maximum rows allowed in the table
+    			'min' => 1 // minimum rows allowed in the table
+    		]);
+    		$this->crud->addField([
+    			'label' => "Survey",
+    			'type' => 'select',
+    			'name' => 'survey_detail_id', // the relationship name in your Model
+    			'entity' => 'surveydetail', // the relationship name in your Model
+    			'attribute' => 'subject', // attribute on Article that is shown to admin
+    			'model' => "App\Models\SurveyDetail" // on create&update, do you need to add/delete pivot table entries?
+    		]);
+    		/*$this->crud->addField([
+    			'label'     => 'Assignment Area',
+    			'type'      => 'checklist',
+    			'name'      => 'sitio_id',
+    			'entity'    => 'sitio',
+    			'attribute' => 'name',
+    			'model'     => "App\Models\Sitio",
+    			'pivot'     => true,
+    		])->afterField('user_id');*/
+    		// add asterisk for fields that are required in SurveyorAssignmentRequest
 
-
+        $this->crud->addFilter([ // select2 filter
+          'name' => 'status',
+          'type' => 'select2',
+          'label'=> 'Survey'
+        ], function() {
+            return [
+                    1 => 'Initial Survey',
+                    2 => '2nd Wave Survey'
+                    ];
+        }, function($value) { // if the filter is active
+             $this->crud->addClause('where', 'survey_detail_id', $value);
+        });
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
