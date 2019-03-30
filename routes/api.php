@@ -29,7 +29,7 @@ Route::group(['prefix' => 'mobile',
 		Route::get('getSurveyorProgress','SurveyAnswerController@getSurveyorProgress');
 		Route::get('getSurveyorProgressB','SurveyAnswerController@getSurveyorProgressB');
 		Route::get('getSurveyorInfo','MobileController@getSurveyorInfo');
-
+		Route::get('testAnonymousVoterAdd','SurveyAnswerController@testAnonymousVoterAdd');
 		Route::group(['middleware' => 'auth:api'], function () {
 			//info("Mobile Middleware");
 			Route::get('logout', 'MobileController@logout');

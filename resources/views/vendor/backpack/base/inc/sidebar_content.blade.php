@@ -33,6 +33,7 @@
 	<li><a href='{{ backpack_url('positioncandidate') }}'><i class='fa fa-list'></i> <span>Positions</span></a></li>
 	<li><a href='{{ backpack_url('voter') }}'><i class='fa fa-users'></i> <span>Voters</span></a></li>
 	<li><a href='{{ backpack_url('candidate') }}'><i class='fa fa-users'></i> <span>Candidate</span></a></li>
+  <li><a href='{{ backpack_url('agereview') }}'><i class='fa fa-user'></i> <span>Age Review</span></a></li>
   </ul>
 </li>
 <li class="treeview">
@@ -58,7 +59,6 @@
             <li><a href='{{ backpack_url('electionreturn') }}'><i class='fa fa-thumbs-o-up'></i> <span>Election Returns</span></a></li>
   		</ul>
     </li>
-
   </ul>
 </li>
 <li class="treeview">

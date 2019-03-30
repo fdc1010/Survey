@@ -21,7 +21,7 @@ class Voter extends Model
     protected $fillable = ['precinct_id','barangay_id','is_candidate', 'first_name','last_name','middle_name', 'birth_date','contact',
 							'address', 'birth_place','age','gender_id', 'profilepic','status_id','employment_status_id',
 							'civil_status_id','occupancy_status_id','occupancy_length','monthly_household',
-							'yearly_household','work'];
+							'yearly_household','work','is_anonymous'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $appends = ['full_name'];
@@ -76,7 +76,7 @@ class Voter extends Model
   public function getCandidatePosition(){
 		$candidate = Candidate::where('voter_id',$this->id)->with('position')->first();
     if($candidate)
-        return $candidate->position->name;    
+        return $candidate->position->name;
 	}
 	public function getStatusName(){
 		$voterstatus = StatusDetail::with('status')->where('voter_id',$this->id)->get();

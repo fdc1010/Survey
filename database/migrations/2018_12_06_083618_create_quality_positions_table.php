@@ -15,11 +15,11 @@ class CreateQualityPositionsTable extends Migration
     {
         Schema::create('quality_positions', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('option_id')->nullable();
-			$table->integer('position_id')->nullable();
-			$table->longText('options')->nullable();
-			$table->longText('positions')->nullable();
-			$table->longText('description')->nullable();
+      			$table->integer('option_id')->nullable();
+      			$table->integer('position_id')->nullable();
+      			$table->longText('options')->nullable();
+      			$table->longText('positions')->nullable();
+      			$table->longText('description')->nullable();
             $table->timestamps();
         });
     }
