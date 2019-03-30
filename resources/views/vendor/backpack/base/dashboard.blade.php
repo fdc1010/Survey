@@ -215,7 +215,8 @@
                                                                         $qc->select(['candidate_id',DB::raw('COUNT(tally) as ctally')])
                                                                                 ->from('tally_votes')
                                                                                 ->groupBy('candidate_id');
-                                                                    }]);
+                                                                    }])
+                                                            ->orderBy('priority');
                                                            }])
                                                            ->where('id',$surveypos)
                                                            ->get();

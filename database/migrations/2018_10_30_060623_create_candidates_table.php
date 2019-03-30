@@ -15,11 +15,12 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('position_id');
-			$table->integer('party_id')->nullable();
-			$table->unsignedInteger('voter_id');
+      			$table->unsignedInteger('position_id');
+      			$table->integer('party_id')->nullable();
+      			$table->unsignedInteger('voter_id');
+            $table->integer('priority')->default(1);
             $table->timestamps();
-			
+
 			$table->foreign('position_id')->references('id')->on('position_candidates');
 			$table->foreign('voter_id')->references('id')->on('voters');
         });
