@@ -137,6 +137,7 @@ class SurveyAnswerController extends Controller
   											'survey_count_per_quota'=>0]);
   			}
   	}
+  public fun
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
@@ -276,6 +277,7 @@ class SurveyAnswerController extends Controller
               }
             }
               $receivedans = json_decode($request->q_and_a, true);
+            if(!empty($receivedans)){
               info("Storing answers: #".$voter->id." ".$voter->full_name);
       				foreach($receivedans as $voteranswers){
       					foreach($voteranswers['answers'] as $ansid){
@@ -402,9 +404,9 @@ class SurveyAnswerController extends Controller
               							}
               					}
                       }
-      					}
-    			    }
-
+      					    }
+    			        }
+              }
               return response()->json(['success'=>true,'msg'=>'Voter survey saved!']);
 
   		//		}
