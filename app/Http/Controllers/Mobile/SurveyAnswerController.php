@@ -136,8 +136,7 @@ class SurveyAnswerController extends Controller
   											'survey_quota'=>0,
   											'survey_count_per_quota'=>0]);
   			}
-  	}
-  public fun
+  	}  
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
