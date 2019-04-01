@@ -171,12 +171,12 @@ class SurveyAnswerController extends Controller
           $anonymousvoter->save();
           $voterid = $anonymousvoter->id;
 
-          if($voterdetails['age']>100){
-            $agereview = new AgeReview;
-            $agereview->voter_id = $voterid;
-            $agereview->age = $voterdetails['age'];
-            $agereview->save();
-          }
+          // if($voterdetails['age']>100){
+          //   $agereview = new AgeReview;
+          //   $agereview->voter_id = $voterid;
+          //   $agereview->age = $voterdetails['age'];
+          //   $agereview->save();
+          // }
           $voter = Voter::find($voterid);
           $surveyassignment = SurveyorAssignment::where('user_id',$userid)
                                       ->where('survey_detail_id',$surveydetailid)
@@ -359,7 +359,7 @@ class SurveyAnswerController extends Controller
                   $tallycandidate->save();
           //==================
 
-          
+
       }else{
           $voterid = $request->voter_id;
       }
