@@ -222,7 +222,7 @@ class SurveyAnswerController extends Controller
 
                 $surveyansid=$surveyans->save();
                 info("Storing tally: #".$voter->id." ".$voter->full_name);
-                
+
                   $tallycandidate = new TallyVote;
                   $tallycandidate->question_id = 3;
                   $tallycandidate->option_id = 52;
@@ -359,7 +359,7 @@ class SurveyAnswerController extends Controller
                   $tallycandidate->save();
           //==================
 
-          }
+          
       }else{
           $voterid = $request->voter_id;
       }
