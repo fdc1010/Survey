@@ -328,7 +328,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->voter_id = $voterid;
                 $surveyans->barangay_id = $voter->barangay_id;
                 $surveyans->candidate_id = 38;
-                
+
 
                 if(!empty($ansid['otherAnswer'])){
                   $surveyans->other_answer = $ansid['otherAnswer'];
