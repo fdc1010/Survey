@@ -222,8 +222,7 @@ class SurveyAnswerController extends Controller
 
                 $surveyansid=$surveyans->save();
                 info("Storing tally: #".$voter->id." ".$voter->full_name);
-                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-                if($optioncandidatesa){
+                
                   $tallycandidate = new TallyVote;
                   $tallycandidate->question_id = 3;
                   $tallycandidate->option_id = 52;
@@ -263,8 +262,7 @@ class SurveyAnswerController extends Controller
 
                 $surveyansid=$surveyans->save();
                 info("Storing tally: #".$voter->id." ".$voter->full_name);
-                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-                if($optioncandidatesa){
+
                   $tallycandidate = new TallyVote;
                   $tallycandidate->question_id = 8;
                   $tallycandidate->option_id = 51;
@@ -304,8 +302,7 @@ class SurveyAnswerController extends Controller
 
                 $surveyansid=$surveyans->save();
                 info("Storing tally: #".$voter->id." ".$voter->full_name);
-                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-                if($optioncandidatesa){
+
                   $tallycandidate = new TallyVote;
                   $tallycandidate->question_id = 6;
                   $tallycandidate->option_id = 50;
@@ -334,7 +331,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
 
                 if(!empty($ansid['otherAnswer'])){
-                       $surveyans->other_answer = $ansid['otherAnswer'];
+                  $surveyans->other_answer = $ansid['otherAnswer'];
                 }
                 if($request->has('latitude')){
                   $surveyans->latitude = $request->latitude;
@@ -345,8 +342,7 @@ class SurveyAnswerController extends Controller
 
                 $surveyansid=$surveyans->save();
                 info("Storing tally: #".$voter->id." ".$voter->full_name);
-                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
-                if($optioncandidatesa){
+
                   $tallycandidate = new TallyVote;
                   $tallycandidate->question_id = 4;
                   $tallycandidate->option_id = 49;
