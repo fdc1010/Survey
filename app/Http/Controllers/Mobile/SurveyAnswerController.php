@@ -158,7 +158,7 @@ class SurveyAnswerController extends Controller
           }else{
             //$surveyablebrgy = BarangaySurveyable::inRandomOrder()->first();
             $anonymousvoterbrgy = Barangay::find(82); // Barangay for Undecided
-            $anonymousvoterprec = Precinct::where('barangay_id',$surveyablebrgy->barangay_id)->first();
+            $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
             $anonymousvoter->barangay_id = $anonymousvoterbrgy->id;
             $anonymousvoter->barangay_name = $anonymousvoterbrgy->name;
             $anonymousvoter->precinct_id = $anonymousvoterprec->id;
