@@ -208,7 +208,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->voter_id = $voterid;
                 $surveyans->barangay_id = $voter->barangay_id;
                 $surveyans->candidate_id = 40;
-                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
 
                 if(!empty($ansid['otherAnswer'])){
                        $surveyans->other_answer = $ansid['otherAnswer'];
@@ -248,7 +248,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->voter_id = $voterid;
                 $surveyans->barangay_id = $voter->barangay_id;
                 $surveyans->candidate_id = 41;
-                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
 
                 if(!empty($ansid['otherAnswer'])){
                        $surveyans->other_answer = $ansid['otherAnswer'];
@@ -288,7 +288,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->voter_id = $voterid;
                 $surveyans->barangay_id = $voter->barangay_id;
                 $surveyans->candidate_id = 39;
-                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
 
                 if(!empty($ansid['otherAnswer'])){
                        $surveyans->other_answer = $ansid['otherAnswer'];
@@ -328,7 +328,7 @@ class SurveyAnswerController extends Controller
                 $surveyans->voter_id = $voterid;
                 $surveyans->barangay_id = $voter->barangay_id;
                 $surveyans->candidate_id = 38;
-                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+                
 
                 if(!empty($ansid['otherAnswer'])){
                   $surveyans->other_answer = $ansid['otherAnswer'];
