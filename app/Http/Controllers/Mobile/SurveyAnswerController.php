@@ -136,7 +136,7 @@ class SurveyAnswerController extends Controller
   											'survey_quota'=>0,
   											'survey_count_per_quota'=>0]);
   			}
-  	}  
+  	}
 	public function storeAnswers(Request $request){
 		//$sid = $request->survey_detail_id;
 		//$survey = Survey::find($sid);
@@ -167,8 +167,203 @@ class SurveyAnswerController extends Controller
           $anonymousvoter->last_name = "voter";
           $anonymousvoter->first_name = "anonymous";
           $anonymousvoter->is_anonymous = 1;
+          $anonymousvoter->contact = '032';
           $anonymousvoter->save();
           $voterid = $anonymousvoter->id;
+
+          if($voterdetails['age']>100){
+            $agereview = new AgeReview;
+            $agereview->voter_id = $voterid;
+            $agereview->age = $voterdetails['age'];
+            $agereview->save();
+          }
+          $voter = Voter::find($voterid);
+          $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                                      ->where('survey_detail_id',$surveydetailid)
+                                      ->first();
+          $newcount = $surveyassignment->count + 1;
+          SurveyorAssignment::where('user_id',$userid)
+                              ->where('survey_detail_id',$surveydetailid)
+                              ->update(['count'=>$newcount]);
+
+
+          $assignmentdetails = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                      ->where('assignment_id',$surveyassignment->id)
+                                      ->get();
+          if(!empty($assignmentdetails) && count($assignmentdetails)>0){
+              foreach($assignmentdetails as $assignmentdetail){
+                  $newcountad = $assignmentdetail->count + 1;
+                  AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                                      ->where('id',$assignmentdetail->id)
+                                      ->update(['count'=>$newcountad]);
+              }
+          }
+
+          //3===============
+                $surveyans = new SurveyAnswer;
+                $surveyans->survey_detail_id = $surveydetailid;
+                $surveyans->question_id = 3;
+                $surveyans->option_id = 52;
+                $surveyans->user_id = $userid;
+                $surveyans->voter_id = $voterid;
+                $surveyans->barangay_id = $voter->barangay_id;
+                $surveyans->candidate_id = 40;
+                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
+                if(!empty($ansid['otherAnswer'])){
+                       $surveyans->other_answer = $ansid['otherAnswer'];
+                }
+                if($request->has('latitude')){
+                  $surveyans->latitude = $request->latitude;
+                }
+                if($request->has('longitude')){
+                  $surveyans->longitude = $request->longitude;
+                }
+
+                $surveyansid=$surveyans->save();
+                info("Storing tally: #".$voter->id." ".$voter->full_name);
+                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+                if($optioncandidatesa){
+                  $tallycandidate = new TallyVote;
+                  $tallycandidate->question_id = 3;
+                  $tallycandidate->option_id = 52;
+                  $tallycandidate->candidate_id = 40;
+                  $tallycandidate->voter_id = $voterid;
+                  $tallycandidate->user_id = $userid;
+                  $tallycandidate->survey_detail_id = $surveydetailid;
+                  $tallycandidate->barangay_id = $voter->barangay_id;
+
+                  if(!empty($ansid['otherAnswer'])){
+                         $tallycandidate->other_answer = $ansid['otherAnswer'];
+                  }
+
+                  $tallycandidate->save();
+          //==================
+
+          //8===============
+                $surveyans = new SurveyAnswer;
+                $surveyans->survey_detail_id = $surveydetailid;
+                $surveyans->question_id = 8;
+                $surveyans->option_id = 51;
+                $surveyans->user_id = $userid;
+                $surveyans->voter_id = $voterid;
+                $surveyans->barangay_id = $voter->barangay_id;
+                $surveyans->candidate_id = 41;
+                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
+                if(!empty($ansid['otherAnswer'])){
+                       $surveyans->other_answer = $ansid['otherAnswer'];
+                }
+                if($request->has('latitude')){
+                  $surveyans->latitude = $request->latitude;
+                }
+                if($request->has('longitude')){
+                  $surveyans->longitude = $request->longitude;
+                }
+
+                $surveyansid=$surveyans->save();
+                info("Storing tally: #".$voter->id." ".$voter->full_name);
+                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+                if($optioncandidatesa){
+                  $tallycandidate = new TallyVote;
+                  $tallycandidate->question_id = 8;
+                  $tallycandidate->option_id = 51;
+                  $tallycandidate->candidate_id = 41;
+                  $tallycandidate->voter_id = $voterid;
+                  $tallycandidate->user_id = $userid;
+                  $tallycandidate->survey_detail_id = $surveydetailid;
+                  $tallycandidate->barangay_id = $voter->barangay_id;
+
+                  if(!empty($ansid['otherAnswer'])){
+                         $tallycandidate->other_answer = $ansid['otherAnswer'];
+                  }
+
+                  $tallycandidate->save();
+          //==================
+
+          //6===============
+                $surveyans = new SurveyAnswer;
+                $surveyans->survey_detail_id = $surveydetailid;
+                $surveyans->question_id = 6;
+                $surveyans->option_id = 50;
+                $surveyans->user_id = $userid;
+                $surveyans->voter_id = $voterid;
+                $surveyans->barangay_id = $voter->barangay_id;
+                $surveyans->candidate_id = 39;
+                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
+                if(!empty($ansid['otherAnswer'])){
+                       $surveyans->other_answer = $ansid['otherAnswer'];
+                }
+                if($request->has('latitude')){
+                  $surveyans->latitude = $request->latitude;
+                }
+                if($request->has('longitude')){
+                  $surveyans->longitude = $request->longitude;
+                }
+
+                $surveyansid=$surveyans->save();
+                info("Storing tally: #".$voter->id." ".$voter->full_name);
+                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+                if($optioncandidatesa){
+                  $tallycandidate = new TallyVote;
+                  $tallycandidate->question_id = 6;
+                  $tallycandidate->option_id = 50;
+                  $tallycandidate->candidate_id = 39;
+                  $tallycandidate->voter_id = $voterid;
+                  $tallycandidate->user_id = $userid;
+                  $tallycandidate->survey_detail_id = $surveydetailid;
+                  $tallycandidate->barangay_id = $voter->barangay_id;
+
+                  if(!empty($ansid['otherAnswer'])){
+                         $tallycandidate->other_answer = $ansid['otherAnswer'];
+                  }
+
+                  $tallycandidate->save();
+          //==================
+
+          //4===============
+                $surveyans = new SurveyAnswer;
+                $surveyans->survey_detail_id = $surveydetailid;
+                $surveyans->question_id = 4;
+                $surveyans->option_id = 49;
+                $surveyans->user_id = $userid;
+                $surveyans->voter_id = $voterid;
+                $surveyans->barangay_id = $voter->barangay_id;
+                $surveyans->candidate_id = 38;
+                $surveyans->answered_option = $voteranswers['answers'];//$voter->save();
+
+                if(!empty($ansid['otherAnswer'])){
+                       $surveyans->other_answer = $ansid['otherAnswer'];
+                }
+                if($request->has('latitude')){
+                  $surveyans->latitude = $request->latitude;
+                }
+                if($request->has('longitude')){
+                  $surveyans->longitude = $request->longitude;
+                }
+
+                $surveyansid=$surveyans->save();
+                info("Storing tally: #".$voter->id." ".$voter->full_name);
+                //$optioncandidate = OptionCandidate::where('option_id',$optid)->first();
+                if($optioncandidatesa){
+                  $tallycandidate = new TallyVote;
+                  $tallycandidate->question_id = 4;
+                  $tallycandidate->option_id = 49;
+                  $tallycandidate->candidate_id = 38;
+                  $tallycandidate->voter_id = $voterid;
+                  $tallycandidate->user_id = $userid;
+                  $tallycandidate->survey_detail_id = $surveydetailid;
+                  $tallycandidate->barangay_id = $voter->barangay_id;
+
+                  if(!empty($ansid['otherAnswer'])){
+                         $tallycandidate->other_answer = $ansid['otherAnswer'];
+                  }
+
+                  $tallycandidate->save();
+          //==================
+
+          }
       }else{
           $voterid = $request->voter_id;
       }
