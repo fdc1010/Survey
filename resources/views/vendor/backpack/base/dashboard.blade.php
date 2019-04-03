@@ -60,7 +60,7 @@
       	$tallypoll = new App\Models\TallyVote;
         $tallyotherpoll = new App\Models\TallyOtherVote;
 
-      	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:1;
+      	$tallysurvey = (!empty($rdata['selsurvey']))?$rdata['selsurvey']:2;
         $tallyelection = (!empty($rdata['selelection']))?$rdata['selelection']:0;
 
 
@@ -70,7 +70,7 @@
         $selinitempstatuses = App\Models\EmploymentStatus::all();
         $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
-        $selinitsurveydetails = App\Models\SurveyDetail::all();
+        $selinitsurveydetails = App\Models\SurveyDetail::latest();
 
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();
@@ -187,10 +187,10 @@
 
 
         	if(!empty($rdata['selcivil'])){
-        		$civilstatuses = App\Models\CivilStatus::where('id',$rdata['selcivil'])->get();
+        		    $civilstatuses = App\Models\CivilStatus::where('id',$rdata['selcivil'])->get();
              		$tallycivilstatus=$civilstatuses->pluck('id')->toArray();
             }else{
-            	$civilstatuses = App\Models\CivilStatus::all();
+            	  $civilstatuses = App\Models\CivilStatus::all();
 		//$tallycivilstatus=[];
             }
         }
