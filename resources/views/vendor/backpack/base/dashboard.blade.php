@@ -70,7 +70,7 @@
         $selinitempstatuses = App\Models\EmploymentStatus::all();
         $problems = App\Models\OptionProblem::with('option')->get();
         $selinitelections = App\Models\Election::all();
-        $selinitsurveydetails = App\Models\SurveyDetail::ordeBy('id','DESC')->get();
+        $selinitsurveydetails = App\Models\SurveyDetail::orderBy('id','DESC')->get();
 
         $tallyagebrackets=[];
         $tempagebrackets = App\Models\AgeBracket::all();
