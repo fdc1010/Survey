@@ -76,13 +76,12 @@
 
     <script>
 		jQuery(document).ready(function($) {
-			$("select[name=filter_{{ $filter->name }}]").change(function() {
-				var value = $(this).val();
+			function getSurveyorProgressDetails(sid){
 				$.ajax({
 	          type:'GET',
 	          url: 'getSurveyorProgressDetails',
 	          data: {
-	            survey_detail_id: value
+	            survey_detail_id: sid
 	        },
 	        success: function(response) {
 							console.log(response);
@@ -90,6 +89,10 @@
 	            console.log("getSurveyorProgressDetails error",response);
 	        }
 	      });
+			}
+			$("select[name=filter_{{ $filter->name }}]").change(function() {
+				var value = $(this).val();
+				getSurveyorProgressDetails(value);
 				var parameter = '{{ $filter->name }}';
 		    	// behaviour for ajax table
 				var ajax_table = $("#crudTable").DataTable();
@@ -120,6 +123,7 @@
 				// console.log('select2 filter cleared');
 				$("li[filter-name={{ $filter->name }}]").removeClass('active');
 				$("li[filter-name={{ $filter->name }}] .select2").select2("val", "");
+				getSurveyorProgressDetails(0);
 			});
 		});
 	</script>
