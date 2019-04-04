@@ -34,7 +34,6 @@ Route::get('checkDuplicateSurvey', 'SurveyAnswerController@checkDuplicateSurvey'
 Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ');
 Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
-Route::get('getSurveyorProgressDetails','SurveyorAssignmentController@getSurveyorProgressDetails');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
@@ -48,6 +47,7 @@ Route::group([
     CRUD::resource('menu-item', 'MenuItemCrudController');
 	Route::post('stats', 'StatsController@stats');
 	Route::post('printsurvey', 'StatsController@printsurvey');
+  Route::get('getSurveyorProgressDetails','SurveyorAssignmentController@getSurveyorProgressDetails');
 });
 
 /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
