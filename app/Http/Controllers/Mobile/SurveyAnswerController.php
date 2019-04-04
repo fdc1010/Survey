@@ -392,7 +392,7 @@ class SurveyAnswerController extends Controller
       }
 
       $voter = Voter::find($voterid);
-      if($voter){
+      if(!empty($voter)){
             info("Storing voter survey: #".$voter->id." ".$voter->full_name);
             //if($voter->is_done_survey==0){
             $checksurveyvoter = SurveyAnswer::where('user_id',$userid)
