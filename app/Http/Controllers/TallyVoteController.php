@@ -94,7 +94,7 @@ class TallyVoteController extends Controller
                                     ->where('question_id',4)
                                     ->get();
                                     //->delete();
-          if(!empty($delTallyVotes)){
+          if(!empty($delTallyVotes) && count($delTallyVotes)>0){
               $delTallyVotetotal += $delTallyVotes->count();
               echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
               echo "======================================<br>";
