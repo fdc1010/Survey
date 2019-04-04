@@ -93,7 +93,7 @@ class TallyVoteController extends Controller
                                     ->where('voter_id',$tallyVote->voter_id)
                                     ->get();
                                     //->delete();
-          $delTallyVotetotal += $delTallyVote->count();
+          $delTallyVotetotal += $delTallyVotes->count();
           echo "Current Entry:#".$tallyVote->id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
           foreach($delTallyVotes as $delTallyVote){
             echo "Duplicate Entry:#".$delTallyVote->id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
