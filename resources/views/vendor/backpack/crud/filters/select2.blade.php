@@ -91,7 +91,6 @@
 	        }
 	      });
 				var parameter = '{{ $filter->name }}';
-				console.log(value);
 		    	// behaviour for ajax table
 				var ajax_table = $("#crudTable").DataTable();
 				var current_url = ajax_table.ajax.url();
