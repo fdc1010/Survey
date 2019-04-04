@@ -37,7 +37,7 @@
           @include('crud::inc.filters_navbar')
         @endif
 				@php
-				dd($crud);
+				var_dump($_REQUEST);
 				$surveyorassignment = $crud->getModel();
 
 				$totalquota = $surveyorassignment->getAllSurveyQuota(); //$surveyorassignment->sum('quota');
