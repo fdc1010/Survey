@@ -91,6 +91,7 @@ class TallyVoteController extends Controller
                                     ->where('question_id',$tallyVote->question_id)
                                     ->where('user_id',$tallyVote->user_id)
                                     ->where('voter_id',$tallyVote->voter_id)
+                                    ->where('question_id',$tallyVote->question_id)
                                     ->get();
                                     //->delete();
           $delTallyVotetotal += $delTallyVotes->count();
