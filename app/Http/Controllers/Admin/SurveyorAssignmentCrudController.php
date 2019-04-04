@@ -140,7 +140,7 @@ class SurveyorAssignmentCrudController extends CrudController
             $collection = collect([]);
             $surveydetails = SurveyDetail::get();
             foreach($surveydetails as $surveydetail){
-              $collection->put($surveydetail->id,$surveydetail->name);
+              $collection->put($surveydetail->id,$surveydetail->subject);
             }
             return $collection;
         }, function($value) { // if the filter is active
