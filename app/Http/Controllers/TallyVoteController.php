@@ -110,7 +110,7 @@ class TallyVoteController extends Controller
                                               //if(in_array($delTallyVote->option_id,[49,50,51,52])){
                                                 echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | Question & Answer: ".$delTallyVote->question_id." | ".$delTallyVote->option_id."<br>";
                                                 $delTallyVotetotal++;// += $delTallyVotes->count();
-                                                TallyVote::find($delTallyVote->id)->delete();
+                                                //TallyVote::find($delTallyVote->id)->delete();
                                               //}
                                             }
                                             echo "======================================<br>";
