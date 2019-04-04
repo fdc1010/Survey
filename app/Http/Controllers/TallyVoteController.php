@@ -87,7 +87,7 @@ class TallyVoteController extends Controller
 
       $tallyVotes = TallyVote::where('survey_detail_id',2)
                                //->where('id','<>',7634)
-                               ->whereNotIn('id',[7634,7635,7636])
+                               ->whereNotIn('id',[7627,7635,7636])
                                ->orderBy('question_id')
                                //->whereIn('option_id',[49,50,51,52])
                                ->chunk(400, function ($tallyVotes){
