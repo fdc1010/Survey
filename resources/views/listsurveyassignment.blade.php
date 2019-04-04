@@ -37,8 +37,9 @@
           @include('crud::inc.filters_navbar')
         @endif
 				@php
-				print_r($crud);
+				dd($crud);
 				$surveyorassignment = $crud->getModel();
+
 				$totalquota = $surveyorassignment->getAllSurveyQuota(); //$surveyorassignment->sum('quota');
 				$totalcount = $surveyorassignment->getAllSurveyCount(); //$surveyorassignment->sum('count');
 				$totalprogress = round(($totalcount / $totalquota) * 100,2);
