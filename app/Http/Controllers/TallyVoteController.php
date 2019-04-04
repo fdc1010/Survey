@@ -94,7 +94,7 @@ class TallyVoteController extends Controller
 
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                                                  ->where('id','<>',$tallyVote->id)
+                                                                  ->where('id','>',$tallyVote->id)
                                                                   //->whereNotIn('id',[7635,7636,7652,7653])
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
