@@ -120,13 +120,12 @@ class TallyVoteController extends Controller
       echo $delTallyVotetotal;
     }
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
-
+      $delTallyVotetotal = 0;
       $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
                                //->where('id','<>',7634)
                                ->orderBy('question_id')
                                //->whereIn('option_id',[49,50,51,52])
-                               ->chunk(400, function ($tallyVotes){
-                                    $delTallyVotetotal = 0;
+                               ->chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){                                    
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   ->where('id','>',$tallyVote->id)
@@ -143,13 +142,14 @@ class TallyVoteController extends Controller
                                               //if(in_array($delTallyVote->option_id,[49,50,51,52])){
                                                 echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | Question & Answer: ".$delTallyVote->question_id." | ".$delTallyVote->option_id."<br>";
                                                 $delTallyVotetotal++;// += $delTallyVotes->count();
-                                                //$delTallyVotes->delete();
+                                                SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
                                             }
                                             echo "======================================<br>";
                                         }
                                     }
-                                    echo $delTallyVotetotal;
+
                                 });
+      echo $delTallyVotetotal;
     }
 }
