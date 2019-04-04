@@ -138,7 +138,7 @@ class SurveyorAssignmentCrudController extends CrudController
           'label'=> 'Survey'
         ], function() {
             //$collection = collect([]);
-            $surveydetails = SurveyDetail::get()->pluck('id','subject')->toArray();
+            $surveydetails = SurveyDetail::get()->pluck(['id','subject'])->toArray();
             // foreach($surveydetails as $surveydetail){
             //   $collection->put($surveydetail->id,$surveydetail->subject);
             // }
