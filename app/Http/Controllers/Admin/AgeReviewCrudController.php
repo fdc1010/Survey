@@ -38,6 +38,10 @@ class AgeReviewCrudController extends CrudController
         $this->crud->setFromDb();
         //$this->crud->removeColumns(['voter_id']);
         $this->crud->addColumn([
+          'label' => "Voter ID",
+    			'name' => 'voter_id'
+  	    ]);
+        $this->crud->addColumn([
           'label' => "Voter",
     			'type' => 'select',
     			'name' => 'voter_id', // the relationship name in your Model
