@@ -20,7 +20,7 @@
 						</option>
 					@endforeach
 				@endif
-			</select>			
+			</select>
 		</div>
     </div>
   </li>
@@ -78,6 +78,18 @@
 		jQuery(document).ready(function($) {
 			$("select[name=filter_{{ $filter->name }}]").change(function() {
 				var value = $(this).val();
+				$.ajax({
+	          type:'GET',
+	          url: 'getSurveyorProgressDetails',
+	          data: {
+	            survey_detail_id: value
+	        },
+	        success: function(response) {
+							console.log(response);
+	        }, error: function (response) {
+	            console.log("getSurveyorProgressDetails error",response);
+	        }
+	      });
 				var parameter = '{{ $filter->name }}';
 				console.log(value);
 		    	// behaviour for ajax table

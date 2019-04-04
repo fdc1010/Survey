@@ -36,14 +36,6 @@
         @if ($crud->filtersEnabled())
           @include('crud::inc.filters_navbar')
         @endif
-				@php
-
-				$surveyorassignment = $crud->getModel();
-
-				$totalquota = $surveyorassignment->getAllSurveyQuota(); //$surveyorassignment->sum('quota');
-				$totalcount = $surveyorassignment->getAllSurveyCount(); //$surveyorassignment->sum('count');
-				$totalprogress = round(($totalcount / $totalquota) * 100,2);
-				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
               <tr>
