@@ -85,10 +85,17 @@ class SurveyorAssignmentController extends Controller
 
     // User-defined FUNCTIONS
     public function getSurveyorProgressDetails(Request $request){
-      $surveyorsassignment = new SurveyorAssignment; //::where('survey_detail_id',$request->survey_detail_id)->first();
-      $surveyorscount = $surveyorsassignment->getAllSurveyCount($request->survey_detail_id);
-      $surveyorsquota = $surveyorsassignment->getAllSurveyQuota($request->survey_detail_id);
-      $surveyorsprogress = round(($surveyorscount / $surveyorsquota) * 100,2);
-      return response()->json(['totalquota'=>$surveyorsquota,'totalcount'=>$surveyorscount,'totalprogress'=>$surveyorsprogress],200);
+      if($request->has('survey_detail_id')){
+        $surveyorsassignment = new SurveyorAssignment; //::where('survey_detail_id',$request->survey_detail_id)->first();
+        if($request->survey_detail_id > 0){
+          $surveyorscount = $surveyorsassignment->getAllSurveyCount($request->survey_detail_id);
+          $surveyorsquota = $surveyorsassignment->getAllSurveyQuota($request->survey_detail_id);
+        }else{
+          $surveyorscount = $surveyorsassignment->getAllSurveyCount(0);
+          $surveyorsquota = $surveyorsassignment->getAllSurveyQuota(0);
+        }
+        $surveyorsprogress = round(($surveyorscount / $surveyorsquota) * 100,2);
+        return response()->json(['totalquota'=>$surveyorsquota,'totalcount'=>$surveyorscount,'totalprogress'=>$surveyorsprogress],200);
+      }
     }
 }

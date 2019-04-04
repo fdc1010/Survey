@@ -79,16 +79,25 @@ class SurveyorAssignment extends Model
 		return (($this->count/$this->quota)*100);
 	}
   public function getAllSurveyCount($sid){
-    $countsurvey = SurveyAnswer::where('survey_detail_id',$sid)
+    if($sid > 0){
+      $countsurvey = SurveyAnswer::where('survey_detail_id',$sid)
                                 ->groupBy('voter_id') // Set by default to Question ID 4. for Mayor... Update this if id changes..
-                                ->get();
-		if($countsurvey)
-			return count($countsurvey);
+                                ->count('voter_id');//->get();
+    }else{
+      $countsurvey = SurveyAnswer::groupBy('voter_id') // Set by default to Question ID 4. for Mayor... Update this if id changes..
+                                ->count('voter_id');//->get();
+    }
+    if(!empty($countsurvey))
+			return $countsurvey;
 		else
 			return 0;
   }
   public function getAllSurveyQuota($sid){
-    return  $this->where('survey_detail_id',$sid)->sum('quota');
+    if($sid > 0){
+      return  $this->where('survey_detail_id',$sid)->sum('quota');
+    }else{
+      return  $this->sum('quota');
+    }
   }
   public function getProgress(){
 		/*$countsurvey = SurveyAnswer::where('survey_detail_id',$this->survey_detail_id)
