@@ -96,10 +96,10 @@ class TallyVoteController extends Controller
                                     //->delete();
           if(!empty($delTallyVotes) && count($delTallyVotes)>0){
               $delTallyVotetotal += $delTallyVotes->count();
-              echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
+              echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | Question & Answer: ".$tallyVote->question_id." | ".$tallyVote->option_id."<br>";
               echo "======================================<br>";
               foreach($delTallyVotes as $delTallyVote){
-                echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
+                echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | Question & Answer: ".$delTallyVote->question_id." | ".$delTallyVote->option_id."<br>";
               }
               echo "======================================<br>";
           }
