@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\SurveyorAssignment;
 use App\Models\SurveyAnswer;
+use App\Models\TallyVote;
 class SurveyorAssignmentController extends Controller
 {
     /**
@@ -88,7 +89,7 @@ class SurveyorAssignmentController extends Controller
         if($request->has('survey_detail_id')){
           if($request->survey_detail_id>0){
               $surveyorsquota = SurveyorAssignment::where('survey_detail_id',$request->survey_detail_id)->sum('quota');
-              $countsurvey = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
+              $countsurvey = TallyVote::where('survey_detail_id',$request->survey_detail_id)
                               ->select(['voter_id'])
                               ->groupBy('voter_id')
           										->get();
