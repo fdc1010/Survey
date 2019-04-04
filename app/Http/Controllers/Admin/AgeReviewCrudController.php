@@ -36,7 +36,7 @@ class AgeReviewCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumns(['voter_id']);
+        //$this->crud->removeColumns(['voter_id']);
         $this->crud->addColumn([
           'label' => "Voter",
     			'type' => 'select',
