@@ -137,12 +137,12 @@ class SurveyorAssignmentCrudController extends CrudController
           'type' => 'select2',
           'label'=> 'Survey'
         ], function() {
-            $collection = collect([]);
-            $surveydetails = SurveyDetail::get();
-            foreach($surveydetails as $surveydetail){
-              $collection->put($surveydetail->id,$surveydetail->subject);
-            }
-            return $collection;
+            //$collection = collect([]);
+            $surveydetails = SurveyDetail::get()->pluck('id','subject')->toArray();
+            // foreach($surveydetails as $surveydetail){
+            //   $collection->put($surveydetail->id,$surveydetail->subject);
+            // }
+            return $surveydetails; //$collection;
         }, function($value) { // if the filter is active
              $this->crud->addClause('where', 'survey_detail_id', $value);
         });
