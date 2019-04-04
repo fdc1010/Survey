@@ -37,7 +37,7 @@
           @include('crud::inc.filters_navbar')
         @endif
 				@php
-
+				
 				$surveyorassignment = $crud->getModel();
 
 				$totalquota = $surveyorassignment->getAllSurveyQuota(); //$surveyorassignment->sum('quota');
@@ -54,15 +54,7 @@
                     data-priority="{{ $column['priority'] }}"
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
-										@if($column['label']=="Quota")
-											{!! $column['label'] !!} <span id="quotacolumn"></span>
-										@elseif($column['label']=="Count")
-											{!! $column['label'] !!} <span id="countcolumn"></span>
-										@elseif($column['label']=="Progress")
-											{!! $column['label'] !!} <span id="progresscolumn"></span>
-										@else
-											{!! $column['label'] !!}
-										@endif
+										{!! $column['label'] !!}
                   </th>
                 @endforeach
 
@@ -79,13 +71,13 @@
 
                 @foreach ($crud->columns as $column)
 									@if($column['label']=="Quota")
-										<th>{!! $column['label'] !!} <span id="quotacolumn"></span></th>
+										<th>{!! $column['label'] !!} ({{ $totalquota }})</th>
 									@elseif($column['label']=="Count")
-										<th>{!! $column['label'] !!} <span id="countcolumn"></span></th>
-									@elseif($column['label']=="Progress")
-										<th>{!! $column['label'] !!} <span id="progresscolumn"></span></th>
+										<th>{!! $column['label'] !!} ({{ $totalcount }})</th>
+										@elseif($column['label']=="Progress")
+											<th>{!! $column['label'] !!} ({{ $totalprogress }}%)</th>
 									@else
-										<th>{!! $column['label'] !!}</th>
+	                  <th>{!! $column['label'] !!}</th>
 									@endif
                 @endforeach
 

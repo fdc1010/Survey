@@ -20,7 +20,7 @@
 						</option>
 					@endforeach
 				@endif
-			</select>
+			</select>			
 		</div>
     </div>
   </li>
