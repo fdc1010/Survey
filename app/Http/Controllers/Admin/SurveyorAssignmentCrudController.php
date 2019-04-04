@@ -9,6 +9,7 @@ use App\Http\Requests\SurveyorAssignmentRequest as StoreRequest;
 use App\Http\Requests\SurveyorAssignmentRequest as UpdateRequest;
 use App\Models\AssignmentDetail;
 use App\Models\Sitio;
+use App\Models\SurveyDetail;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
@@ -136,10 +137,8 @@ class SurveyorAssignmentCrudController extends CrudController
           'type' => 'select2',
           'label'=> 'Survey'
         ], function() {
-            return [
-                    1 => 'Initial Survey',
-                    2 => '2nd Wave Survey'
-                    ];
+            $surveydetails = SurveyDetail::get()->pluck('id','name')->toArray();
+            return $surveydetails;
         }, function($value) { // if the filter is active
              $this->crud->addClause('where', 'survey_detail_id', $value);
         });
