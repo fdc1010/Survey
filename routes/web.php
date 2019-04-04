@@ -34,7 +34,7 @@ Route::get('checkDuplicateSurvey', 'SurveyAnswerController@checkDuplicateSurvey'
 Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ');
 Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
-Route::get('getSurveyorProgressDetails','SurveyorAssignmentController@getSurveyorProgressDetails')
+Route::get('getSurveyorProgressDetails','SurveyorAssignmentController@getSurveyorProgressDetails');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
