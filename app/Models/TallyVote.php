@@ -96,6 +96,7 @@ class TallyVote extends Model
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
+          ->where('question_id',4)
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
