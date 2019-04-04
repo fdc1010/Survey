@@ -84,14 +84,15 @@ class TallyVoteController extends Controller
     }
     public function deleteVoterDuplicateTally(Request $request){
       $delTallyVotetotal = 0;
-      $tallyVotes = TallyVote::where('survey_detail_id',2)->get();
+      $tallyVotes = TallyVote::where('survey_detail_id',2)
+                              ->whereIn('question_id',[3,4,6,8])
+                              ->get();
       foreach($tallyVotes as $tallyVote){
           $delTallyVotes = TallyVote::where('survey_detail_id',2)
                                     ->where('id','>',$tallyVote->id)
                                     ->where('question_id',$tallyVote->question_id)
                                     ->where('user_id',$tallyVote->user_id)
                                     ->where('voter_id',$tallyVote->voter_id)
-                                    ->whereIn('question_id',[3,4,6,8])
                                     ->whereIn('option_id',[49,50,51,52])
                                     ->get();
                                     //->delete();
