@@ -97,7 +97,7 @@ class TallyVoteController extends Controller
                                                                   ->where('id','>',$tallyVote->id)
                                                                   //->whereNotIn('id',[7635,7636,7652,7653])
                                                                   ->where('question_id',$tallyVote->question_id)
-                                                                  ->where('user_id',$tallyVote->user_id)
+                                                                  //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
                                                                   //->whereIn('option_id',[49,50,51,52])
                                                                   ->get();
