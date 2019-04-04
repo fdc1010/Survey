@@ -96,7 +96,50 @@ class TallyVote extends Model
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->sum('tally');
+          ->has('surveyanswer')
+					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
+															$empstatus,$civilstatus,
+															$occstatus,$voterstatus){
+
+
+								if(count($agebrackets)>0){
+									$q->whereIn('age',$agebrackets);//->orWhereNull('age');
+									//info("agebrackets: ");info($agebrackets);
+								}
+								if(count($genders)>0){
+									$q->whereIn('gender_id',$genders);//->orWhereNull('gender_id');
+									//info("genders: ");info($genders);
+								}
+								if(count($empstatus)>0){
+									$q->whereIn('employment_status_id',$empstatus);//->orWhereNull('employment_status_id');
+									//info("empstatus: ");info($empstatus);
+								}
+								if(count($civilstatus)>0){
+									$q->whereIn('civil_status_id',$civilstatus);//->orWhereNull('civil_status_id');
+									//info("civilstatus: ");info($civilstatus);
+								}
+
+								if(count($occstatus)>0){
+									$q->whereIn('occupancy_status_id',$occstatus);//->orWhereNull('occupancy_status_id');
+									//info("occstatus: ");info($occstatus);
+								}
+								if(count($voterstatus)>0){
+									$q->whereHas('statuses',function($qv)use($voterstatus){
+
+              									$qv->whereIn('status_id',$voterstatus);
+
+												});//->orWhereNull('status_id');
+									//info("voterstatus: ");info($voterstatus);
+								}
+
+								if(count($brgy)>0){
+									//$q->whereHas('precinct',function($qb)use($brgy){
+										$q->whereIn('barangay_id',$brgy);
+									//});
+									//info("brgy: ");info($brgy);
+								}
+							})
+						->sum('tally');
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
