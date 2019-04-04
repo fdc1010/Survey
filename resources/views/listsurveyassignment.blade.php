@@ -55,11 +55,11 @@
                     data-visible-in-modal="{{ (isset($column['visibleInModal']) && $column['visibleInModal'] == false) ? 'false' : 'true' }}"
                     >
 										@if($column['label']=="Quota")
-											{!! $column['label'] !!} <span id="quotacolumn"></span>
+											{!! $column['label'] !!} <span id="quotacolumnthead"></span>
 										@elseif($column['label']=="Count")
-											{!! $column['label'] !!} <span id="countcolumn"></span>
+											{!! $column['label'] !!} <span id="countcolumnthead"></span>
 										@elseif($column['label']=="Progress")
-											{!! $column['label'] !!} <span id="progresscolumn"></span>
+											{!! $column['label'] !!} <span id="progresscolumnthead"></span>
 										@else
 											{!! $column['label'] !!}
 										@endif
@@ -79,11 +79,11 @@
 
                 @foreach ($crud->columns as $column)
 									@if($column['label']=="Quota")
-										<th>{!! $column['label'] !!} <span id="quotacolumn"></span></th>
+										<th>{!! $column['label'] !!} <span id="quotacolumntfoot"></span></th>
 									@elseif($column['label']=="Count")
-										<th>{!! $column['label'] !!} <span id="countcolumn"></span></th>
+										<th>{!! $column['label'] !!} <span id="countcolumntfoot"></span></th>
 									@elseif($column['label']=="Progress")
-										<th>{!! $column['label'] !!} <span id="progresscolumn"></span></th>
+										<th>{!! $column['label'] !!} <span id="progresscolumntfoot"></span></th>
 									@else
 										<th>{!! $column['label'] !!}</th>
 									@endif
