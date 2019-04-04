@@ -84,7 +84,13 @@
 	            survey_detail_id: sid
 	        },
 	        success: function(response) {
-							console.log(response);
+							//console.log(response);
+							$('#quotacolumnthead').html(response.totalquota);
+							$('#countcolumnthead').html(response.totalcount);
+							$('#progresscolumnthead').html(response.totalprogress);
+							$('#quotacolumntfoot').html(response.totalquota);
+							$('#countcolumntfoot').html(response.totalcount);
+							$('#progresscolumntfoot').html(response.totalprogress);
 	        }, error: function (response) {
 	            console.log("getSurveyorProgressDetails error",response);
 	        }
