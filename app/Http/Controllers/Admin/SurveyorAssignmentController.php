@@ -96,6 +96,6 @@ class SurveyorAssignmentController extends Controller
   			$surveyorscount = 0;
 
       $surveyorsprogress = round(($surveyorscount / $surveyorsquota) * 100,2);
-      return response()->json(['totalquota'=>$surveyorsquota,'totalcount'=>$surveycount,'totalprogress'=>$surveyorsprogress],200);
+      return response()->json(['totalquota'=>$surveyorsquota,'totalcount'=>$surveyorscount,'totalprogress'=>$surveyorsprogress],200);
     }
 }
