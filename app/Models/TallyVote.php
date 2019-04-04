@@ -137,7 +137,7 @@ class TallyVote extends Model
 									//info("brgy: ");info($brgy);
 								}
 							})
-						->sum('tally');
+						->count('tally');
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
