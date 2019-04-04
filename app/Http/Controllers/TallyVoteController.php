@@ -86,16 +86,18 @@ class TallyVoteController extends Controller
       $delTallyVotetotal = 0;
       $tallyVotes = TallyVote::where('survey_detail_id',2)->get();
       foreach($tallyVotes as $tallyVote){
-          $delTallyVote = TallyVote::where('survey_detail_id',2)
+          $delTallyVotes = TallyVote::where('survey_detail_id',2)
                                     ->where('id','<>',$tallyVote->id)
                                     ->where('question_id',$tallyVote->question_id)
                                     ->where('user_id',$tallyVote->user_id)
                                     ->where('voter_id',$tallyVote->voter_id)
-                                    ->count();
+                                    ->get();
                                     //->delete();
-          $delTallyVotetotal += $delTallyVote;
+          $delTallyVotetotal += $delTallyVote->count();
           echo "Current Entry:#".$tallyVote->id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
-          echo "Duplicate Entry:#".$delTallyVote->id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
+          foreach($delTallyVotes as $delTallyVote){
+            echo "Duplicate Entry:#".$delTallyVote->id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
+          }
       }
       echo $delTallyVotetotal;
     }
