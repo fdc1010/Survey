@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\SurveyorAssignment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SurveyorAssignmentController extends Controller
 {
@@ -41,10 +41,10 @@ class SurveyorAssignmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SurveyorAssignment  $surveyorAssignment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SurveyorAssignment $surveyorAssignment)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class SurveyorAssignmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SurveyorAssignment  $surveyorAssignment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SurveyorAssignment $surveyorAssignment)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class SurveyorAssignmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SurveyorAssignment  $surveyorAssignment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SurveyorAssignment $surveyorAssignment)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,14 +75,13 @@ class SurveyorAssignmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SurveyorAssignment  $surveyorAssignment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SurveyorAssignment $surveyorAssignment)
+    public function destroy($id)
     {
         //
     }
-
     // User-defined FUNCTIONS
     public function getSurveyorProgressDetails(Request $request){
       $surveyorsassignment = SurveyorAssignment::where('survey_detail_id',$request->survey_detail_id)->first();
