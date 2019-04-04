@@ -38,8 +38,8 @@
         @endif
 				@php
 				$surveyorassignment = $crud->getEntries();
-				$totalquota = $surveyorassignment->sum('quota'); //$surveyorassignment->getAllSurveyQuota();
-				$totalcount = $surveyorassignment->sum('count'); //$surveyorassignment->getAllSurveyCount();
+				$totalquota = $surveyorassignment->getAllSurveyQuota(); //$surveyorassignment->sum('quota');
+				$totalcount = $surveyorassignment->getAllSurveyCount(); //$surveyorassignment->sum('count');
 				$totalprogress = round(($totalcount / $totalquota) * 100,2);
 				@endphp
         <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
