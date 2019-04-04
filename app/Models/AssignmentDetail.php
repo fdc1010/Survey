@@ -63,9 +63,8 @@ class AssignmentDetail extends Model
   											->where('user_id',$surveyassignment->user_id)
   											//->whereIn('voter_id',$voters)
                         ->where('barangay_id',$this->barangay_id)
-                        ->where('question_id',4)
-  											//->select(['voter_id'])
-  											//->groupBy('voter_id')
+  											->select(['voter_id'])
+  											->groupBy('voter_id')
   											->get();
   				if($countsurvey)
   					return count($countsurvey);
