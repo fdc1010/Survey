@@ -85,9 +85,9 @@ class SurveyorAssignmentController extends Controller
 
     // User-defined FUNCTIONS
     public function getSurveyorProgressDetails(Request $request){
-      $surveyorsassignment = SurveyorAssignment::where('survey_detail_id',$request->survey_detail_id)->first();
-      $surveyorscount = $surveyorsassignment->getAllSurveyCount();
-      $surveyorsquota = $surveyorsassignment->getAllSurveyQuota();
+      $surveyorsassignment = new SurveyorAssignment; //::where('survey_detail_id',$request->survey_detail_id)->first();
+      $surveyorscount = $surveyorsassignment->getAllSurveyCount($request->survey_detail_id);
+      $surveyorsquota = $surveyorsassignment->getAllSurveyQuota($request->survey_detail_id);
       $surveyorsprogress = round(($surveyorscount / $surveyorsquota) * 100,2);
       return response()->json(['totalquota'=>$surveyorsquota,'totalcount'=>$surveyorscount,'totalprogress'=>$surveyorsprogress],200);
     }
