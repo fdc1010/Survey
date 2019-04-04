@@ -118,6 +118,7 @@ class TallyVoteController extends Controller
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
 
       $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
+                               ->where('id','<>',7634)
                                ->orderBy('question_id')
                                //->whereIn('option_id',[49,50,51,52])
                                ->chunk(400, function ($tallyVotes){
@@ -128,7 +129,6 @@ class TallyVoteController extends Controller
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   ->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
-                                                                  //->whereIn('option_id',[49,50,51,52])
                                                                   ->get();
                                                                   //->delete();
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
