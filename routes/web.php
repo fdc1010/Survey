@@ -35,6 +35,7 @@ Route::get('testOtherVotesRelQ', 'SurveyAnswerController@testOtherVotesRelQ');
 Route::get('testOtherVotesProblem', 'SurveyAnswerController@testOtherVotesProblem');
 Route::post('updatedfnvoters', 'VoterController@updatedfnvoters')->name('updatedfnvoters');
 Route::get('deleteVoterDuplicateTally','TallyVoteController@deleteVoterDuplicateTally');
+Route::get('deleteVoterDuplicateSurveyAnswer','TallyVoteController@deleteVoterDuplicateSurveyAnswer');
 //Route::get('media/user/{user}/{collection}', 'VoterController@getMedia');
 
 Route::get('/', function () {
