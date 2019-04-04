@@ -198,8 +198,13 @@ class SurveyAnswerController extends Controller
                                       ->update(['count'=>$newcountad]);
               }
           }
-
           //3===============
+          $surveyans3 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                      ->where('question_id',3)
+                                      ->where('user_id',$userid)
+                                      ->where('voter_id',$voterid)
+                                      ->first();
+          if(empty($surveyans3)){
                 $surveyans = new SurveyAnswer;
                 $surveyans->survey_detail_id = $surveydetailid;
                 $surveyans->question_id = 3;
@@ -237,9 +242,16 @@ class SurveyAnswerController extends Controller
                   }
 
                   $tallycandidate->save();
+          }
           //==================
 
           //8===============
+          $surveyans8 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                      ->where('question_id',8)
+                                      ->where('user_id',$userid)
+                                      ->where('voter_id',$voterid)
+                                      ->first();
+          if(empty($surveyans8)){
                 $surveyans = new SurveyAnswer;
                 $surveyans->survey_detail_id = $surveydetailid;
                 $surveyans->question_id = 8;
@@ -277,9 +289,16 @@ class SurveyAnswerController extends Controller
                   }
 
                   $tallycandidate->save();
+          }
           //==================
 
           //6===============
+          $surveyans6 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                      ->where('question_id',6)
+                                      ->where('user_id',$userid)
+                                      ->where('voter_id',$voterid)
+                                      ->first();
+          if(empty($surveyans6)){
                 $surveyans = new SurveyAnswer;
                 $surveyans->survey_detail_id = $surveydetailid;
                 $surveyans->question_id = 6;
@@ -317,9 +336,16 @@ class SurveyAnswerController extends Controller
                   }
 
                   $tallycandidate->save();
+          }
           //==================
 
           //4===============
+          $surveyans4 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
+                                      ->where('question_id',4)
+                                      ->where('user_id',$userid)
+                                      ->where('voter_id',$voterid)
+                                      ->first();
+          if(empty($surveyans4)){
                 $surveyans = new SurveyAnswer;
                 $surveyans->survey_detail_id = $surveydetailid;
                 $surveyans->question_id = 4;
@@ -357,6 +383,7 @@ class SurveyAnswerController extends Controller
                   }
 
                   $tallycandidate->save();
+          }
           //==================
 
 
