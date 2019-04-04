@@ -89,8 +89,8 @@ class SurveyorAssignmentController extends Controller
           if($request->survey_detail_id>0){
               $surveyorsquota = SurveyorAssignment::where('survey_detail_id',$request->survey_detail_id)->sum('quota');
               $countsurvey = SurveyAnswer::where('survey_detail_id',$request->survey_detail_id)
-                              ->where('question_id',4)
                               ->select(['voter_id'])
+                              ->groupBy('voter_id')
           										->get();
           		if($countsurvey)
           			$surveyorscount = count($countsurvey);
