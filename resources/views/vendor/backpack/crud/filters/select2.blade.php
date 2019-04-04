@@ -125,6 +125,8 @@
 				$("li[filter-name={{ $filter->name }}] .select2").select2("val", "");
 				getSurveyorProgressDetails(0);
 			});
+
+			getSurveyorProgressDetails(0);
 		});
 	</script>
 @endpush
