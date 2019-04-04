@@ -98,10 +98,10 @@ class TallyVoteController extends Controller
               echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | Question & Answer: ".$tallyVote->question_id." | ".$tallyVote->option_id."<br>";
               echo "======================================<br>";
               foreach($delTallyVotes as $delTallyVote){
-                if(in_array($delTallyVote->option_id,[49,50,51,52])){
+                //if(in_array($delTallyVote->option_id,[49,50,51,52])){
                   echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | Question & Answer: ".$delTallyVote->question_id." | ".$delTallyVote->option_id."<br>";
                   $delTallyVotetotal += $delTallyVotes->count();
-                }
+                //}
               }
               echo "======================================<br>";
           }
