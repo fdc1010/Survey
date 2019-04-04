@@ -94,9 +94,9 @@ class TallyVoteController extends Controller
                                     ->get();
                                     //->delete();
           $delTallyVotetotal += $delTallyVotes->count();
-          echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
+          echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | ".$tallyVote->user_id." | ".$tallyVote->voter_id." | ".$tallyVote->question_id."<br>";
           foreach($delTallyVotes as $delTallyVote){
-            echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
+            echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | ".$delTallyVote->user_id." | ".$delTallyVote->voter_id." | ".$delTallyVote->question_id."<br>";
           }
       }
       echo $delTallyVotetotal;
