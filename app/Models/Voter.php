@@ -24,7 +24,7 @@ class Voter extends Model
 							'yearly_household','work','is_anonymous'];
     // protected $hidden = [];
     // protected $dates = [];
-	protected $appends = ['full_name','id_full_name'];
+	protected $appends = ['full_name','full_name_id'];
 
 	public function sitio()
     {
@@ -105,7 +105,7 @@ class Voter extends Model
     {
         return ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
     }
-  public function getIdFullNameAttribute()
+  public function getFullNameIdAttribute()
     {
         return $this->voter_id . "  " . ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
     }

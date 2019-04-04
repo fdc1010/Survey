@@ -43,7 +43,7 @@ class AgeReviewCrudController extends CrudController
     			'type' => 'select',
     			'name' => 'voter_id', // the relationship name in your Model
     			'entity' => 'voter', // the relationship name in your Model
-    			'attribute' => 'id_full_name', // attribute on Article that is shown to admin
+    			'attribute' => 'full_name_id', // attribute on Article that is shown to admin
     			'model' => "App\Models\Voter" // on create&update, do you need to add/delete pivot table entries?
   	    ]);
         // add asterisk for fields that are required in AgeReviewRequest
