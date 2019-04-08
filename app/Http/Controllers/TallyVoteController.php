@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\TallyVote;
 use App\Models\SurveyAnswer;
+use App\Models\QuestionOption;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller
