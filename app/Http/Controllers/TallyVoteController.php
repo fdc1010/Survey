@@ -161,6 +161,7 @@ class TallyVoteController extends Controller
                                             }
                                             echo "======================================<br>";
                                         }
+                                      $tallyVote->delete();  
                                     }
                                 });
       echo $delTallyVotetotal;
