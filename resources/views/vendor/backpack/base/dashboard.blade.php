@@ -949,7 +949,7 @@
                                       @foreach($genders as $gender)
                                         <th>{{ $tallytotalvgcandidate[$position->id][$gender->id][$surveydetail->id] }}</th>
                                       @endforeach
-                                      <th>{{ $tallytotalogcandidate }}</th>
+                                      <th>{{ $tallytotalogcandidate ->tally(}}</th>
                                   </tr>
                                   </thead>
                                 @endif
