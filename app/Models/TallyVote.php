@@ -103,8 +103,8 @@ class TallyVote extends Model
 
 								if(count($agebrackets)>0){
 
-                  // info('\$agebrackets');
-                  // info($agebrackets);
+                  info('\$agebrackets: '.$candidateid);
+                  info($agebrackets);
 
 									$q->whereIn('age',$agebrackets)
                     ->whereNotNull('age');//->orWhereNull('age');
@@ -112,8 +112,8 @@ class TallyVote extends Model
 								}
 								if(count($genders)>0){
 
-                  // info('\$genders');
-                  // info($genders);
+                  info('\$genders '.$candidateid);
+                  info($genders);
 
 									$q->whereIn('gender_id',$genders)
                     ->whereNotNull('gender_id');//->orWhereNull('gender_id');
@@ -121,8 +121,8 @@ class TallyVote extends Model
 								}
 								if(count($empstatus)>0){
 
-                  // info('\$empstatus');
-                  // info($empstatus);
+                  info('\$empstatus '.$candidateid);
+                  info($empstatus);
 
 									$q->whereIn('employment_status_id',$empstatus)
                     ->whereNotNull('employment_status_id');//->orWhereNull('employment_status_id');
@@ -130,8 +130,8 @@ class TallyVote extends Model
 								}
 								if(count($civilstatus)>0){
 
-                  // info('\$civilstatus');
-                  // info($civilstatus);
+                  info('\$civilstatus '.$candidateid);
+                  info($civilstatus);
 
 									$q->whereIn('civil_status_id',$civilstatus)
                     ->whereNotNull('civil_status_id');//->orWhereNull('civil_status_id');
@@ -140,8 +140,8 @@ class TallyVote extends Model
 
 								if(count($occstatus)>0){
 
-                  // info('\$occstatus');
-                  // info($occstatus);
+                  info('\$occstatus '.$candidateid);
+                  info($occstatus);
 
 									$q->whereIn('occupancy_status_id',$occstatus)
                     ->whereNotNull('occupancy_status_id');//->orWhereNull('occupancy_status_id');
@@ -149,8 +149,8 @@ class TallyVote extends Model
 								}
 								if(count($voterstatus)>0){
 
-                  // info('\$voterstatus');
-                  // info($voterstatus);
+                  info('\$voterstatus '.$candidateid);
+                  info($voterstatus);
 
 									$q->whereHas('statuses',function($qv)use($voterstatus){
 
@@ -163,8 +163,8 @@ class TallyVote extends Model
 
 								if(count($brgy)>0){
 
-                    // info('\$brgy');
-                    // info($brgy);
+                    info('\$brgy '.$candidateid);
+                    info($brgy);
 
 									//$q->whereHas('precinct',function($qb)use($brgy){
 										$q->whereIn('barangay_id',$brgy)
