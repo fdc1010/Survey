@@ -99,7 +99,7 @@ class TallyVote extends Model
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
-															$occstatus,$voterstatus){
+															$occstatus,$voterstatus,$candidateid){
 
 								if(count($agebrackets)>0){
 
