@@ -124,8 +124,9 @@ class TallyVoteController extends Controller
       $delTallyVotetotal = 0;
       $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
                                //->where('id','<>',7634)
+                               ->whereIn('question_id',[4,3,6,8])
+                               //->whereIn('option_id',[49,50,51,52])
                                ->orderBy('question_id')
-                               ->whereIn('option_id',[4,3,6,8])
                                ->chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
