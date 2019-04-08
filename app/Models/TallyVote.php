@@ -100,6 +100,28 @@ class TallyVote extends Model
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
+
+                info('\$agebrackets');
+                info($agebrackets);
+
+                info('\$brgy');
+                info($brgy);
+
+                info('\$genders');
+                info($genders);
+
+                info('\$empstatus');
+                info($empstatus);
+
+                info('\$civilstatus');
+                info($civilstatus);
+
+                info('\$occstatus');
+                info($occstatus);
+
+                info('\$voterstatus');
+                info($voterstatus);
+
 								if(count($agebrackets)>0){
 									$q->whereIn('age',$agebrackets)
                     ->whereNotNull('age');//->orWhereNull('age');
