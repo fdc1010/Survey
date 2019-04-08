@@ -115,7 +115,7 @@ class TallyVoteController extends Controller
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                           echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
                                         }else{
-                                          echo "<span style='color: red;'>(".$markeddelcnt.") ".$cnt++.".) Current Entry: #".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")</span><br>";
+                                          echo "<span style='color: red;'>(".$markeddelcnt++.") ".$cnt++.".) Current Entry: #".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")</span><br>";
                                         }
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                             echo "======================================<br>";
@@ -169,7 +169,7 @@ class TallyVoteController extends Controller
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                           echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
                                         }else{
-                                          echo "<span style='color: red;'>(".$markeddelcnt.") ".$cnt++.".) Current Entry: #".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")</span><br>";
+                                          echo "<span style='color: red;'>(".$markeddelcnt++.") ".$cnt++.".) Current Entry: #".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")</span><br>";
                                         }
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                             echo "======================================<br>";
