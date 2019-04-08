@@ -94,7 +94,7 @@ class TallyVote extends Model
 	}*/
 	public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
-		$tally = $this->where('candidate_id',$candidateid)
+		$tallyraw = $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
@@ -165,13 +165,13 @@ class TallyVote extends Model
 									//});
 									//info("brgy: ");info($brgy);
 								}
-							})
-						->sum('tally');
+							});
+			$tally = $tallyraw->sum('tally');
 
       info("Tally: ".$candidateid);
       info($tally);
-      $sqlmsg = $tally->toSql();
-      info($sqlmsg);
+      //$sqlmsg = $tally->toSql();
+      //info($sqlmsg);
       return $tally;
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
