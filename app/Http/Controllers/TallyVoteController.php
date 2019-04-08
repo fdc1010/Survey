@@ -110,9 +110,9 @@ class TallyVoteController extends Controller
 
       $questionId = array(4,6,8,3);
       if($request->has('qid')){
-          $questionId = array($request->qid);
+        $questionId = array($request->qid);
       }
-      
+
       $tallyVotes = TallyVote::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
                                ->whereIn('question_id',$questionId)
