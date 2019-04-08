@@ -183,6 +183,43 @@ class TallyVote extends Model
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
+          ->whereIn('question_id',[3,4,6,8])
+          ->has('surveyanswer')
+					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
+
+                if(count($agebrackets)>0){
+                  $q->whereIn('age',$agebrackets);
+                }
+								if($brgyid>0){
+									$q->where('barangay_id',$brgyid);
+								}
+                if($genderid>0){
+									$q->where('gender_id',$genderid);
+								}
+								if($civilstatusid>0){
+									$q->where('civil_status_id',$civilstatusid);
+								}
+                if($empstatusid>0){
+									$q->where('employment_status_id',$empstatusid);
+								}
+                if($occstatusid>0){
+									$q->where('occupancy_status_id',$occstatusid);
+								}
+                if($voterstatusid>0){
+									$q->whereHas('statuses',function($qv)use($voterstatusid){
+              						$qv->where('status_id',$voterstatusid);
+
+												});//->orWhereNull('status_id');
+									//info("voterstatus: ");info($voterstatus);
+								}
+							})
+            //->groupBy('voter_id')
+						->sum('tally');
+	}
+  public function tallyqualities($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
+		return $this->where('candidate_id',$candidateid)
+					->where('survey_detail_id',$surveydetailid)
+          ->whereIn('question_id',[3,4,6,8])
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
