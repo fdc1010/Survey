@@ -112,7 +112,6 @@ class TallyVoteController extends Controller
                                ->whereIn('question_id',$questionId)
                                ->where('option_id','>=',$optid)
                                ->where('voter_id','>=',$vid)
-                               ->whereBetween('voter_id',[231937,232170])
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
