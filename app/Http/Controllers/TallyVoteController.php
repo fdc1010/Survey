@@ -92,22 +92,27 @@ class TallyVoteController extends Controller
       $duptallyvote = 0;
       $cnt = 1;
       $markeddelcnt = 1;
+
       $sid = 2;
       if($request->has('sid') && $request->sid > 0){
         $sid = $request->sid;
       }
+
       $optid = 48;
       if($request->has('optid') && $request->optid > 0){
         $optid = $request->optid;
       }
+
       $vid = 1;
       if($request->has('vid ') && $request->vid > 0){
         $vid = $request->vid;
       }
+
       $questionId = array(4,6,8,3);
       if($request->has('qid')){
           $questionId = array($request->qid);
       }
+      
       $tallyVotes = TallyVote::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
                                ->whereIn('question_id',$questionId)
