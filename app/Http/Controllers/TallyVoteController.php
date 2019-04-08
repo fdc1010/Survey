@@ -130,6 +130,7 @@ class TallyVoteController extends Controller
                                //->whereIn('question_id',[4,3,6,8])
                                ->where('option_id','>',48)
                                ->where('voter_id','>',231937)
+                               ->where('voter_id','<',232170)
                                ->orderBy('question_id')
                                ->get();//(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
