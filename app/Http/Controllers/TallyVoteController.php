@@ -123,8 +123,8 @@ class TallyVoteController extends Controller
                                             }
                                             echo "======================================<br>";
                                         }
-                                        if($request->has('delete') && $request->delete==1){
-                                          if(!empty($delTallyVotes) && count($delTallyVotes)>0){
+                                        if(!empty($delTallyVotes) && count($delTallyVotes)>0){
+                                          if($request->has('delete') && $request->delete==1){
                                             $tallyVote->delete();
                                           }
                                         }
@@ -168,8 +168,8 @@ class TallyVoteController extends Controller
                                             }
                                             echo "======================================<br>";
                                         }
-                                        if($request->has('delete') && $request->delete==1){
-                                          if(!empty($delTallyVotes) && count($delTallyVotes)>0){
+                                        if(!empty($delTallyVotes) && count($delTallyVotes)>0){
+                                          if($request->has('delete') && $request->delete==1){
                                             $tallyVote->delete();
                                           }
                                         }
