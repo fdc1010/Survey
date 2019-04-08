@@ -165,10 +165,9 @@ class TallyVote extends Model
 
                     info('\$brgy '.$candidateid);
                     info($brgy);
-
+                    $brgysurveys = BarangaySurveyable::whereIn('barangay_id',$brgy)->get()->pluck('barangay_id')->toArray();
 									//$q->whereHas('precinct',function($qb)use($brgy){
-										$q->whereIn('barangay_id',$brgy)
-                      ->whereNotNull('barangay_id');
+										$q->whereIn('barangay_id',$brgysurveys);
 									//});
 									//info("brgy: ");info($brgy);
 								}
