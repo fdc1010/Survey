@@ -511,7 +511,7 @@ class SurveyAnswerController extends Controller
                   ->orderBy('voter_id')
                   ->chunk(400, function ($results)use(&$i,&$y,$doInsertMissing){
                         foreach ($results as $suranswer) {
-                              echo "<hr>Current Question: #".$curquestion->id." ".$suranswer->question->question."<hr>";
+                              echo "<hr>Current Question: #".$suranswer->question_id." ".$suranswer->question->question."<hr>";
                               $cquestionoption = QuestionOption::find($suranswer->option_id);
                               $tally = TallyVote::where('question_id',$suranswer->question_id)
                                                 ->where('voter_id',$suranswer->voter_id)
