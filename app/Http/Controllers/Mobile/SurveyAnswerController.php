@@ -277,7 +277,7 @@ class SurveyAnswerController extends Controller
               }
             }
 
-              if(!empty($receivedans)){
+              if(!empty($receivedans) && count($receivedans)>0){
                 info("Storing answers: #".$voter->id." ".$voter->full_name);
         				foreach($receivedans as $voteranswers){
         					foreach($voteranswers['answers'] as $ansid){
