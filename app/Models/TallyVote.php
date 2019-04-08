@@ -219,7 +219,7 @@ class TallyVote extends Model
   public function tallyqualities($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',[3,4,6,8])
+          ->whereIn('question_id',[5,7,9,10,11,12])
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
