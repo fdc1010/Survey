@@ -172,7 +172,9 @@ class TallyVote extends Model
       info($tally);
 
       $tallyrecs = $tallyraw->get();
-      info($tallyrecs->voter->id." : ".$tallyrecs->voter->full_name);
+      foreach($tallyrecs as $tallyrec){
+        info($tallyrec->voter->id." : ".$tallyrec->voter->full_name);
+      }
       //$sqlmsg = $tally->toSql();
       //info($sqlmsg);
       return $tally;
