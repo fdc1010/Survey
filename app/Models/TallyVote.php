@@ -167,10 +167,10 @@ class TallyVote extends Model
 								}
 							})
 						->sum('tally');
-            
+
       info("Tally: ".$candidateid);
       info($tally);
-
+      info($tally->toSql());
       return $tally;
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
