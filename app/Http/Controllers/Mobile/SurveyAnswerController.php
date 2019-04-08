@@ -304,7 +304,7 @@ class SurveyAnswerController extends Controller
                                               'user_id' => $userid,
                                               'other_user_id' => $dupsurans->user_id,
                                               'survey_detail_id' => $surveydetailid,
-                                              'barangay_id' => $vo$receivedanster->barangay_id
+                                              'barangay_id' => $receivedanster->barangay_id
                                            ];
                               $insert = DuplicateSurvey::insert($dupsurvey);
                               if($insert){
