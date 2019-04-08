@@ -59,7 +59,7 @@ class AssignmentDetail extends Model
           //                 ->get()
           //                 ->pluck('id')
           //                 ->toArray();
-  				$countsurvey = TallVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
+  				$countsurvey = TallyVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
   											->where('user_id',$surveyassignment->user_id)
   											//->whereIn('voter_id',$voters)
                         ->where('barangay_id',$this->barangay_id)
