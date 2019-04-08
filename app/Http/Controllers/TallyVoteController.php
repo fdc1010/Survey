@@ -134,16 +134,16 @@ class TallyVoteController extends Controller
                                ->get();//(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                                                  //->where('id','>',$tallyVote->id)
+                                                                  ->where('id','>',$tallyVote->id)
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
                                                                   ->where('option_id','>',48)
                                                                   ->get();
                                                                   //->delete();
+                                        $tallyOption = QuestionOption::find($tallyVote->option_id);
+                                        echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." | voter: ".$tallyVote->voter_id." | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
-                                            $tallyOption = QuestionOption::find($tallyVote->option_id);
-                                            echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." | voter: ".$tallyVote->voter_id." | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
                                             echo "======================================<br>";
                                             foreach($delTallyVotes as $delTallyVote){
                                               $delTallyOption = QuestionOption::find($delTallyVote->option_id);
