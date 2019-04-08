@@ -170,6 +170,9 @@ class TallyVote extends Model
 
       info("Tally: ".$candidateid);
       info($tally);
+
+      $tallyrecs = $tallyraw->get();
+      info($tallyrecs);      
       //$sqlmsg = $tally->toSql();
       //info($sqlmsg);
       return $tally;
