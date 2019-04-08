@@ -101,54 +101,57 @@ class TallyVote extends Model
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus){
 
-                info('\$agebrackets');
-                info($agebrackets);
-
-                info('\$brgy');
-                info($brgy);
-
-                info('\$genders');
-                info($genders);
-
-                info('\$empstatus');
-                info($empstatus);
-
-                info('\$civilstatus');
-                info($civilstatus);
-
-                info('\$occstatus');
-                info($occstatus);
-
-                info('\$voterstatus');
-                info($voterstatus);
-
 								if(count($agebrackets)>0){
+
+                  info('\$agebrackets');
+                  info($agebrackets);
+
 									$q->whereIn('age',$agebrackets)
                     ->whereNotNull('age');//->orWhereNull('age');
 									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
+
+                  info('\$genders');
+                  info($genders);
+
 									$q->whereIn('gender_id',$genders)
                     ->whereNotNull('gender_id');//->orWhereNull('gender_id');
 									//info("genders: ");info($genders);
 								}
 								if(count($empstatus)>0){
+
+                  info('\$empstatus');
+                  info($empstatus);
+
 									$q->whereIn('employment_status_id',$empstatus)
                     ->whereNotNull('employment_status_id');//->orWhereNull('employment_status_id');
 									//info("empstatus: ");info($empstatus);
 								}
 								if(count($civilstatus)>0){
+
+                  info('\$civilstatus');
+                  info($civilstatus);
+
 									$q->whereIn('civil_status_id',$civilstatus)
                     ->whereNotNull('civil_status_id');//->orWhereNull('civil_status_id');
 									//info("civilstatus: ");info($civilstatus);
 								}
 
 								if(count($occstatus)>0){
+
+                  info('\$occstatus');
+                  info($occstatus);
+
 									$q->whereIn('occupancy_status_id',$occstatus)
                     ->whereNotNull('occupancy_status_id');//->orWhereNull('occupancy_status_id');
 									//info("occstatus: ");info($occstatus);
 								}
 								if(count($voterstatus)>0){
+
+                  info('\$voterstatus');
+                  info($voterstatus);
+                  
 									$q->whereHas('statuses',function($qv)use($voterstatus){
 
               									$qv->whereIn('status_id',$voterstatus)
@@ -159,6 +162,10 @@ class TallyVote extends Model
 								}
 
 								if(count($brgy)>0){
+
+                    info('\$brgy');
+                    info($brgy);
+
 									//$q->whereHas('precinct',function($qb)use($brgy){
 										$q->whereIn('barangay_id',$brgy)
                       ->whereNotNull('barangay_id');
