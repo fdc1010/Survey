@@ -131,7 +131,7 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo $delTallyVotetotal;
+      echo "Deleted Record(s): ".$delTallyVotetotal;
     }
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
       $delTallyVotetotal = 0;
@@ -177,6 +177,6 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo $delTallyVotetotal;
+      echo "Deleted Record(s): ".$delTallyVotetotal;
     }
 }
