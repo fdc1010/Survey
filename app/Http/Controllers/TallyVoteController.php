@@ -131,7 +131,7 @@ class TallyVoteController extends Controller
                                ->where('option_id','>',48)
                                ->where('voter_id','>',231937)
                                ->where('voter_id','<',232170)
-                               ->orderBy('question_id')
+                               ->orderBy('voter_id')
                                ->get();//(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
