@@ -380,7 +380,7 @@ class SurveyAnswerController extends Controller
                 											$othertallycandidate->voter_id = $voterid;
                                       $othertallycandidate->user_id = $userid;
                 											$othertallycandidate->candidate_id = $optioncandidate->candidate_id;
-                											$othertallycandidat$receivedanse->survey_detail_id = $surveydetailid;
+                											$othertallycandidate->survey_detail_id = $surveydetailid;
                                       $othertallycandidate->barangay_id = $voter->barangay_id;
                 											$othertallycandidate->save();
                 										}
