@@ -138,7 +138,7 @@ class TallyVoteController extends Controller
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   ->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
-                                                                  ->whereIn('option_id','>',48)
+                                                                  ->where('option_id','>',48)
                                                                   ->get();
                                                                   //->delete();
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
