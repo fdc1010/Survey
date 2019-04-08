@@ -96,7 +96,7 @@ class TallyVoteController extends Controller
                                ->where('voter_id','>',231937)
                                ->where('voter_id','<',232170)
                                ->orderBy('voter_id')
-                               ->chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
+                               ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   ->where('id','<>',$tallyVote->id)
@@ -123,9 +123,11 @@ class TallyVoteController extends Controller
                                             }
                                             echo "======================================<br>";
                                         }
-                                      $tallyVote->delete();
+                                        if($request->has('delete') && $request->delete==1){
+                                            $tallyVote->delete();
+                                        }
                                     }
-                                });
+                                //});
       echo $delTallyVotetotal;
     }
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
@@ -137,7 +139,7 @@ class TallyVoteController extends Controller
                                ->where('voter_id','>',231937)
                                ->where('voter_id','<',232170)
                                ->orderBy('voter_id')
-                               ->chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
+                               ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   ->where('id','<>',$tallyVote->id)
@@ -164,9 +166,11 @@ class TallyVoteController extends Controller
                                             }
                                             echo "======================================<br>";
                                         }
-                                      $tallyVote->delete();
+                                      if($request->has('delete') && $request->delete==1){
+                                          $tallyVote->delete();
+                                      }
                                     }
-                                });
+                                //});
       echo $delTallyVotetotal;
     }
 }
