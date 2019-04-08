@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Voter;
+use App\User;
 use App\Models\TallyVote;
 use App\Models\SurveyAnswer;
 use App\Models\QuestionOption;
@@ -142,15 +144,17 @@ class TallyVoteController extends Controller
                                                                   ->where('option_id','>',48)
                                                                   ->get();
                                                                   //->delete();
+                                        $user = User::find($tallyVote->user_id);
                                         $voter = Voter::find($tallyVote->voter_id);
                                         $tallyOption = QuestionOption::find($tallyVote->option_id);
-                                        echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
+                                        echo "Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                             echo "======================================<br>";
                                             foreach($delTallyVotes as $delTallyVote){
+                                              $delUser = User::find($delTallyVote->user_id);
                                               $delTallyOption = QuestionOption::find($delTallyVote->option_id);
                                               //if(in_array($delTallyVote->option_id,[49,50,51,52])){
-                                                echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | user: ".$delTallyVote->user_id." | voter: ".$delTallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$delTallyVote->question_id." | option: ".$delTallyVote->option_id." (".$delTallyOption->option.")<br>";
+                                                echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | user: ".$delTallyVote->user_id." (".$delUser->name.") | voter: ".$delTallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$delTallyVote->question_id." | option: ".$delTallyVote->option_id." (".$delTallyOption->option.")<br>";
                                                 $delTallyVotetotal++;// += $delTallyVotes->count();
                                                 //SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
