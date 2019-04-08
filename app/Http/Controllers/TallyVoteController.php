@@ -96,6 +96,7 @@ class TallyVoteController extends Controller
       if($request->has('sid') && $request->sid > 0){
         $sid = $request->sid;
       }
+      $optid = 48;
       if($request->has('optid') && $request->optid > 0){
         $optid = $request->optid;
       }
