@@ -135,11 +135,10 @@ class TallyVoteController extends Controller
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   ->where('id','>',$tallyVote->id)
-                                                                  //->whereNotIn('id',[7635,7636])
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
-                                                                  //->where('option_id','>',48)
+                                                                  ->whereIn('option_id',[49,50,51,52])
                                                                   ->get();
                                                                   //->delete();
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
