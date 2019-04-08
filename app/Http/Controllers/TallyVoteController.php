@@ -134,7 +134,7 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo "<br>Record(s) to be Deleted:".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
+      echo "<br>Record(s) to be Deleted: ".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
     }
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
       $delTallyVotetotal = 0;
@@ -183,6 +183,6 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo "<br>Record(s) to be Deleted:".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
+      echo "<br>Record(s) to be Deleted: ".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
     }
 }
