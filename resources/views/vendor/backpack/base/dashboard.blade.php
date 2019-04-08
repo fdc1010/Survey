@@ -1358,7 +1358,7 @@
                                    @foreach($position->candidates as $candidate)
                                        @foreach($qualities as $quality)
                                            @php
-                                               $tallyq[$position->id][$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallyqualities($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
+                                               $tallyq[$position->id][$candidate->id][$quality->option_id][$surveydetail->id]=$tallyotherpoll->tallydetails($candidate->id,$surveydetail->id,$quality->option_id,[],0,0,0,0,0,0);
                                            @endphp
                                        @endforeach
                                    @endforeach
