@@ -92,9 +92,17 @@ class TallyVoteController extends Controller
       $duptallyvote = 0;
       $cnt = 1;
       $markeddelcnt = 1;
-      $tallyVotes = TallyVote::where('survey_detail_id',2)
+      $sid = 2;
+      if($request->has('sid') && $request->sid > 0){
+        $sid = $request->sid;
+      }
+      $questionId = array(4,6,8,3);
+      if($request->has('qid')){
+          $questionId = array($request->qid);
+      }
+      $tallyVotes = TallyVote::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
-                               //->whereIn('question_id',[4,3,6,8])
+                               ->whereIn('question_id',$questionId)
                                ->where('option_id','>',48)
                                ->where('voter_id','>',231937)
                                ->where('voter_id','<',232170)
@@ -127,7 +135,6 @@ class TallyVoteController extends Controller
                                                 //$delTallyVotetotal++;// += $delTallyVotes->count();
                                                 //SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
-                                              $duptallyvote++;
                                             }
                                             echo "======================================<br>";
                                         }
@@ -139,16 +146,24 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo "<br>Record(s) to be Deleted: ".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
+      echo "<br>Record(s):".($cnt-1)."<br>Record(s) to be Deleted: ".($markeddelcnt-1)."<br>Deleted Record(s): ".$delTallyVotetotal;
     }
     public function deleteVoterDuplicateSurveyAnswer(Request $request){
       $delTallyVotetotal = 0;
       $duptallyvote = 0;
       $cnt = 1;
       $markeddelcnt = 1;
-      $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
+      $sid = 2;
+      if($request->has('sid') && $request->sid > 0){
+        $sid = $request->sid;
+      }
+      $questionId = array(4,6,8,3);
+      if($request->has('qid')){
+          $questionId = array($request->qid);
+      }
+      $tallyVotes = SurveyAnswer::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
-                               //->whereIn('question_id',[4,3,6,8])
+                               ->whereIn('question_id',$questionId)
                                ->where('option_id','>',48)
                                ->where('voter_id','>',231937)
                                ->where('voter_id','<',232170)
@@ -181,7 +196,6 @@ class TallyVoteController extends Controller
                                                 //$delTallyVotetotal++;// += $delTallyVotes->count();
                                                 //SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
-                                              $duptallyvote++;
                                             }
                                             echo "======================================<br>";
                                         }
@@ -193,6 +207,6 @@ class TallyVoteController extends Controller
                                         }
                                     }
                                 //});
-      echo "<br>Record(s) to be Deleted: ".$duptallyvote."<br>Deleted Record(s): ".$delTallyVotetotal;
+      echo "<br>Record(s):".($cnt-1)."<br>Record(s) to be Deleted: ".($markeddelcnt-1)."<br>Deleted Record(s): ".$delTallyVotetotal;
     }
 }
