@@ -434,7 +434,7 @@ class SurveyAnswerController extends Controller
                                                 ->update(['count'=>$newcountad]);
                         }
                     }
-                    info("Storing tally: #".$voter->id." ".$voter->full_name." with empty answers: ".count($receivedans));
+                    info("Storing tally: #".$voter->id." ".$voter->full_name." with empty answers: ");
                     //3===============
                     $surveyans3 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
                                                 ->where('question_id',3)
