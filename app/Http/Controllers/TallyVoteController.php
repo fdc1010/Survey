@@ -117,7 +117,7 @@ class TallyVoteController extends Controller
                                               $delTallyOption = QuestionOption::find($delTallyVote->option_id);
                                               //if(in_array($delTallyVote->option_id,[49,50,51,52])){
                                                 echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | user: ".$delTallyVote->user_id." (".$delUser->name.") | voter: ".$delTallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$delTallyVote->question_id." | option: ".$delTallyVote->option_id." (".$delTallyOption->option.")<br>";
-                                                $delTallyVotetotal++;// += $delTallyVotes->count();
+
                                                 //SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
                                             }
@@ -126,6 +126,7 @@ class TallyVoteController extends Controller
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                           if($request->has('delete') && $request->delete==1){
                                             $tallyVote->delete();
+                                            $delTallyVotetotal++;
                                           }
                                         }
                                     }
@@ -162,7 +163,7 @@ class TallyVoteController extends Controller
                                               $delTallyOption = QuestionOption::find($delTallyVote->option_id);
                                               //if(in_array($delTallyVote->option_id,[49,50,51,52])){
                                                 echo "Duplicate Entry:#".$delTallyVote->id." Survey ID:#".$delTallyVote->survey_detail_id." | user: ".$delTallyVote->user_id." (".$delUser->name.") | voter: ".$delTallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$delTallyVote->question_id." | option: ".$delTallyVote->option_id." (".$delTallyOption->option.")<br>";
-                                                $delTallyVotetotal++;// += $delTallyVotes->count();
+                                                //$delTallyVotetotal++;// += $delTallyVotes->count();
                                                 //SurveyAnswer::find($delTallyVote->id)->delete();
                                               //}
                                             }
@@ -171,6 +172,7 @@ class TallyVoteController extends Controller
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                           if($request->has('delete') && $request->delete==1){
                                             $tallyVote->delete();
+                                            $delTallyVotetotal++;
                                           }
                                         }
                                     }
