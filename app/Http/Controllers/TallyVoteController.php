@@ -100,7 +100,7 @@ class TallyVoteController extends Controller
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                                                  ->where('id','<>',$tallyVote->id)
+                                                                  ->where('id','>',$tallyVote->id)
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
@@ -148,7 +148,7 @@ class TallyVoteController extends Controller
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                                                  ->where('id','<>',$tallyVote->id)
+                                                                  ->where('id','>',$tallyVote->id)
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
