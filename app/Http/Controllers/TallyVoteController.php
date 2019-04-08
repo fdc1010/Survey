@@ -92,7 +92,7 @@ class TallyVoteController extends Controller
       $duptallyvote = 0;
       $cnt = 1;
       $markeddelcnt = 1;
-      $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
+      $tallyVotes = TallyVote::where('survey_detail_id',2)
                                //->where('id','<>',7634)
                                //->whereIn('question_id',[4,3,6,8])
                                ->where('option_id','>',48)
@@ -101,7 +101,7 @@ class TallyVoteController extends Controller
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
-                                        $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
+                                        $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   ->where('id','>',$tallyVote->id)
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
