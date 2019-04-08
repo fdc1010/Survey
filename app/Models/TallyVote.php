@@ -94,7 +94,7 @@ class TallyVote extends Model
 	}*/
 	public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
-		return $this->where('candidate_id',$candidateid)
+		$tally = $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
@@ -103,8 +103,8 @@ class TallyVote extends Model
 
 								if(count($agebrackets)>0){
 
-                  info('\$agebrackets');
-                  info($agebrackets);
+                  // info('\$agebrackets');
+                  // info($agebrackets);
 
 									$q->whereIn('age',$agebrackets)
                     ->whereNotNull('age');//->orWhereNull('age');
@@ -112,8 +112,8 @@ class TallyVote extends Model
 								}
 								if(count($genders)>0){
 
-                  info('\$genders');
-                  info($genders);
+                  // info('\$genders');
+                  // info($genders);
 
 									$q->whereIn('gender_id',$genders)
                     ->whereNotNull('gender_id');//->orWhereNull('gender_id');
@@ -121,8 +121,8 @@ class TallyVote extends Model
 								}
 								if(count($empstatus)>0){
 
-                  info('\$empstatus');
-                  info($empstatus);
+                  // info('\$empstatus');
+                  // info($empstatus);
 
 									$q->whereIn('employment_status_id',$empstatus)
                     ->whereNotNull('employment_status_id');//->orWhereNull('employment_status_id');
@@ -130,8 +130,8 @@ class TallyVote extends Model
 								}
 								if(count($civilstatus)>0){
 
-                  info('\$civilstatus');
-                  info($civilstatus);
+                  // info('\$civilstatus');
+                  // info($civilstatus);
 
 									$q->whereIn('civil_status_id',$civilstatus)
                     ->whereNotNull('civil_status_id');//->orWhereNull('civil_status_id');
@@ -140,8 +140,8 @@ class TallyVote extends Model
 
 								if(count($occstatus)>0){
 
-                  info('\$occstatus');
-                  info($occstatus);
+                  // info('\$occstatus');
+                  // info($occstatus);
 
 									$q->whereIn('occupancy_status_id',$occstatus)
                     ->whereNotNull('occupancy_status_id');//->orWhereNull('occupancy_status_id');
@@ -149,9 +149,9 @@ class TallyVote extends Model
 								}
 								if(count($voterstatus)>0){
 
-                  info('\$voterstatus');
-                  info($voterstatus);
-                  
+                  // info('\$voterstatus');
+                  // info($voterstatus);
+
 									$q->whereHas('statuses',function($qv)use($voterstatus){
 
               									$qv->whereIn('status_id',$voterstatus)
@@ -163,8 +163,8 @@ class TallyVote extends Model
 
 								if(count($brgy)>0){
 
-                    info('\$brgy');
-                    info($brgy);
+                    // info('\$brgy');
+                    // info($brgy);
 
 									//$q->whereHas('precinct',function($qb)use($brgy){
 										$q->whereIn('barangay_id',$brgy)
@@ -174,6 +174,10 @@ class TallyVote extends Model
 								}
 							})
 						->sum('tally');
+      info("Tally: ".$candidateid);
+      info($tally);
+
+      return $tally;
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
 		return $this->where('candidate_id',$candidateid)
