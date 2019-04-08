@@ -165,14 +165,14 @@ class TallyVote extends Model
 									//});
 									//info("brgy: ");info($brgy);
 								}
-							});
+							})->with('voter');
 			$tally = $tallyraw->sum('tally');
 
       info("Tally: ".$candidateid);
       info($tally);
 
       $tallyrecs = $tallyraw->get();
-      info($tallyrecs);      
+      info($tallyrecs->voter->id." : ".$tallyrecs->voter->full_name);
       //$sqlmsg = $tally->toSql();
       //info($sqlmsg);
       return $tally;
