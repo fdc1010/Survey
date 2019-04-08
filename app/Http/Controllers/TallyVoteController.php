@@ -96,9 +96,12 @@ class TallyVoteController extends Controller
       if($request->has('sid') && $request->sid > 0){
         $sid = $request->sid;
       }
-      $optid = 48;
-      if($request->has('optid')){
+      if($request->has('optid') && $request->optid > 0){
         $optid = $request->optid;
+      }
+      $vid = 1;
+      if($request->has('vid ') && $request->vid > 0){
+        $vid = $request->vid;
       }
       $questionId = array(4,6,8,3);
       if($request->has('qid')){
@@ -107,9 +110,9 @@ class TallyVoteController extends Controller
       $tallyVotes = TallyVote::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
                                ->whereIn('question_id',$questionId)
-                               ->where('option_id','>',$optid)
-                               ->where('voter_id','>',231937)
-                               ->where('voter_id','<',232170)
+                               ->where('option_id','>=',$optid)
+                               ->where('voter_id','>=',$vid)
+                               ->whereBetween('voter_id',[231937,232170])
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
@@ -162,8 +165,12 @@ class TallyVoteController extends Controller
         $sid = $request->sid;
       }
       $optid = 48;
-      if($request->has('optid')){
+      if($request->has('optid') && $request->optid > 0){
         $optid = $request->optid;
+      }
+      $vid = 1;
+      if($request->has('vid ') && $request->vid > 0){
+        $vid = $request->vid;
       }
       $questionId = array(4,6,8,3);
       if($request->has('qid')){
@@ -172,9 +179,8 @@ class TallyVoteController extends Controller
       $tallyVotes = SurveyAnswer::where('survey_detail_id',$sid)
                                //->where('id','<>',7634)
                                ->whereIn('question_id',$questionId)
-                               ->where('option_id','>',$optid)
-                               ->where('voter_id','>',231937)
-                               ->where('voter_id','<',232170)
+                               ->where('option_id','>=',$optid)
+                               ->where('voter_id','>=',$vid)
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
