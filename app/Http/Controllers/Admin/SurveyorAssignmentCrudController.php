@@ -245,8 +245,8 @@ class SurveyorAssignmentCrudController extends CrudController
           $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
         }
 
-        $result .= "<div class='col-lg-6' style='text-align: right;'>".$position->name."</div>".
-                     "<div class='col-lg-6'>".$votes."</div>";
+        $result .= "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
+                     "<div class='col-lg-7'>".$votes."</div>";
 
       }
 
