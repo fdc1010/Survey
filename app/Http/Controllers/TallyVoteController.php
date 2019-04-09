@@ -289,10 +289,14 @@ class TallyVoteController extends Controller
       if($request->has('sid'))
         $id = $request->sid;
 
+      $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
+      if($request->has('qid')){
+          $questionidsfortally = array($request->qid);
+      }
       $tallypoll = new TallyVote;
       $surveyassignment = SurveyorAssignment::find($id);
       $tally = array();
-      $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
+
   		$areas = AssignmentDetail::where('assignment_id',$id)
   										->with('barangay')
   										->get();
