@@ -329,8 +329,8 @@ class TallyVoteController extends Controller
                             //->has('surveyanswer')
                             ->has('voter')
                             ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
-        										->select(['voter_id','survey_detail_id'])
-        										->groupBy('voter_id')
+        										//->select(['voter_id','survey_detail_id'])
+        										//->groupBy('voter_id')
                             ->orderBy('voter_id')
         										->get();
 
