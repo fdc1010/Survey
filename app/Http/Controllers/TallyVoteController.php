@@ -285,6 +285,8 @@ class TallyVoteController extends Controller
       $id = 37;
       if($request->has('sid'))
         $id = $request->sid;
+
+      $tallypoll = new TallyVote;
       $surveydetail = SurveyDetail::find($id);
       $tally = array();
       $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
