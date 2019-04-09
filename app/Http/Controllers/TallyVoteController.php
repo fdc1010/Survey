@@ -349,8 +349,8 @@ class TallyVoteController extends Controller
               //foreach($Votervote->voter as $Vvoter){
 
                 echo "<tr>".
-                      "<td>".$Votervote->survey_detail_id."</td>".
-                      "<td>".$Votervote->voter->id_full_name."</td>".
+                      "<td>".$Votervote->voter->id."</td>".
+                      "<td>".$Votervote->voter->full_name."</td>".
                       "<td>".$Votervote->voter->barangay_id."</td>".
                       "<td>".$Votervote->voter->barangay_name."</td>".
                       "<td>".$Votervote->survey_detail_id."</td>".
