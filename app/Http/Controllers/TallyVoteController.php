@@ -328,9 +328,10 @@ class TallyVoteController extends Controller
                             ->whereIn('question_id',$questionidsfortally)
                             //->has('surveyanswer')
                             ->has('voter')
-                            ->with('voter')
+                            ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
         										->select(['voter_id'])
         										->groupBy('voter_id')
+                            ->orderBy('voter_id')
         										->get();
 
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
@@ -391,19 +392,20 @@ class TallyVoteController extends Controller
               //}
             }
             echo "</table></td><td colspan='5'><table>";
+            $cnt = 1;
             foreach($Voterssurvey as $Votersurvey){
               echo "<tr>".
                     "<td>".($cnt++)."</td>".
-                    "<td>".$Votervote->voter->id_full_name."</td>".
-                    "<td>".$Votervote->voter->barangay_id."</td>".
-                    "<td>".$Votervote->voter->barangay_name."</td>".
-                    "<td>".$Votervote->survey_detail_id."</td>".
-                    "<td>".$Votervote->voter->gender_id."</td>".
-                    "<td>".$Votervote->voter->civil_status_id."</td>".
-                    "<td>".$Votervote->voter->employment_status_id."</td>".
-                    "<td>".$Votervote->voter->occupancy_status_id."</td>".
+                    "<td>".$Votersurvey->voter->id_full_name."</td>".
+                    "<td>".$Votersurvey->voter->barangay_id."</td>".
+                    "<td>".$Votersurvey->voter->barangay_name."</td>".
+                    "<td>".$Votersurvey->survey_detail_id."</td>".
+                    "<td>".$Votersurvey->voter->gender_id."</td>".
+                    "<td>".$Votersurvey->voter->civil_status_id."</td>".
+                    "<td>".$Votersurvey->voter->employment_status_id."</td>".
+                    "<td>".$Votersurvey->voter->occupancy_status_id."</td>".
                     "<td>";
-              foreach($Votervote->voter->statuses as $status){
+              foreach($Votersurvey->voter->statuses as $status){
                 echo $status->id.",";
               }
               echo "</td>";
