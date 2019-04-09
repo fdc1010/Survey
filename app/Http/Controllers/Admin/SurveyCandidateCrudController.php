@@ -7,7 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\SurveyCandidateRequest as StoreRequest;
 use App\Http\Requests\SurveyCandidateRequest as UpdateRequest;
-
+use App\Models\SurveyorAssignment;
 /**
  * Class SurveyCandidateCrudController
  * @package App\Http\Controllers\Admin
@@ -74,7 +74,7 @@ class SurveyCandidateCrudController extends CrudController
           'label' => 'Progress',
           'type' => 'model_function',
     			'function_name' => 'getProgressBar'
-  	    ])->afterColumn('count');        
+  	    ])->afterColumn('count');
     }
 
     public function store(StoreRequest $request)
