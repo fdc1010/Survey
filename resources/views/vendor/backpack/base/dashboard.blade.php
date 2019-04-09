@@ -79,7 +79,7 @@
         		array_push($tallyagebrackets,$iage);
             }
         }
-        $tallybrgy=App\Models\Barangay::get()->pluck('id')->toArray();
+        //$tallybrgy=App\Models\Barangay::get()->pluck('id')->toArray();
         $tallygenders=App\Models\Gender::get()->pluck('id')->toArray();
         $tallyempstatus=[];
         $tallycivilstatus=[];
@@ -89,6 +89,7 @@
         $surveypos = !empty($rdata['selposition'])?$rdata['selposition']:1;
 
         $brgyarr = App\Models\BarangaySurveyable::get()->pluck('barangay_id')->toArray();//!empty($rdata['to'])?$rdata['to']:array(rand(0,80),rand(0,80),rand(0,80),rand(0,80));
+        $tallybrgy=$brgyarr;
         $brgysurveys = App\Models\Barangay::whereIn('id',$brgyarr)->get();
         $selinitpositions = App\Models\PositionCandidate::with(['candidates'=>function($q){
                                                                   $q->with(['voter'=>function($qv){
