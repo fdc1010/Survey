@@ -308,7 +308,7 @@ class TallyVoteController extends Controller
         foreach($positions as $position){
           foreach($position->candidates as $candidate){
             $brgyid=$area->barangay->id;
-            $Votersvote = TallyVote->where('candidate_id',$candidate->id)
+            $Votersvote = TallyVote::where('candidate_id',$candidate->id)
           					->where('survey_detail_id',$surveydetail->survey_detail_id)
                     ->whereIn('question_id',$questionidsfortally)
                     //->has('surveyanswer')
