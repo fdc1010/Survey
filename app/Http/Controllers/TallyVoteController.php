@@ -10,6 +10,8 @@ use App\Models\QuestionOption;
 use App\Models\Question;
 use App\Models\Barangay;
 use App\Models\Precinct;
+use App\Models\PositionCandidate;
+use App\Models\AssignmentDetail;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller
@@ -271,4 +273,90 @@ class TallyVoteController extends Controller
                                 //});
       echo "<br>Record(s):".($cnt-1);
     }
+    public function getRecTallyDetails(Request $request){
+      $agebrackets=[];
+      $brgyid=0;
+      $civilstatusid=0;
+      $empstatusid=0;
+      $occstatusid=0;
+      $voterstatusid=0;
+      $genderid=0;
+      $id = 38;
+      if($request->has('sid'))
+        $id = $request->sid;
+      $surveydetail = SurveyDetail::find($id);
+      $tally = array();
+      $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
+  		$areas = AssignmentDetail::where('assignment_id',$id)
+  										->with('barangay')
+  										->get();
+  		echo "<h4>Assigned Areas: #".$id."</h4><div class='col-lg-8'>";
+  		foreach($areas as $area){
+        $positions = PositionCandidate::with('candidates')->get();
+        foreach($positions as $position){
+          $votes = 0;
+
+          foreach($position->candidates as $candidate){
+            $votes += $tallypoll->tallydetails($candidate->id,$surveydetail->survey_detail_id,[],$area->barangay->id,0,0,0,0,0);
+          }
+
+          echo "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
+                       "<div class='col-lg-7'>".$votes."</div>";
+
+        }
+
+        foreach($positions as $position){
+          foreach($position->candidates as $candidate){
+            $brgyid=$area->barangay->id;
+            $Votersvote = TallyVote->where('candidate_id',$candidate->id)
+          					->where('survey_detail_id',$surveydetail->survey_detail_id)
+                    ->whereIn('question_id',$questionidsfortally)
+                    //->has('surveyanswer')
+          					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
+                          if(count($agebrackets)>0){
+                            $q->whereIn('age',$agebrackets);
+                          }
+          								if($brgyid>0){
+          									$q->where('barangay_id',$brgyid);
+          								}
+                          if($genderid>0){
+          									$q->where('gender_id',$genderid);
+          								}
+          								if($civilstatusid>0){
+          									$q->where('civil_status_id',$civilstatusid);
+          								}
+                          if($empstatusid>0){
+          									$q->where('employment_status_id',$empstatusid);
+          								}
+                          if($occstatusid>0){
+          									$q->where('occupancy_status_id',$occstatusid);
+          								}
+                          if($voterstatusid>0){
+          									$q->whereHas('statuses',function($qv)use($voterstatusid){
+                        						$qv->where('status_id',$voterstatusid);
+          												});
+          								}
+          							})
+                      ->with(['voter'=>function($q){$q->with('statuses');}])
+          						->get();
+            foreach($Votersvote as $Votervote){
+              foreach($Votervote->voter as $voter){
+                echo "<div class='col-lg-4'>".$voter->id_full_name."</div>".
+                      "<div class='col-lg-1'>".$voter->barangay_id."</div>".
+                      "<div class='col-lg-2'>".$voter->barangay_name."</div>".
+                      "<div class='col-lg-1'>".$voter->gender_id."</div>".
+                      "<div class='col-lg-1'>".$voter->civil_status_id."</div>".
+                      "<div class='col-lg-1'>".$voter->employment_status_id."</div>".
+                      "<div class='col-lg-1'>".$voter->occupancy_status_id."</div>".
+                      "<div class='col-lg-1'>";
+                foreach($voter->statuses as $status){
+                  echo $voter->occupancy_status_id.",";
+                }
+                echo "</div>";
+              }
+            }
+          }
+        }
+      }
+      echo "</div>";
 }
