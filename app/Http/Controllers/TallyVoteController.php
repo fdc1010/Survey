@@ -277,6 +277,7 @@ class TallyVoteController extends Controller
       echo "<br>Record(s):".($cnt-1);
     }
     public function getRecTallyDetails(Request $request){
+      $cnt = 1;
       $agebrackets=[];
       $brgyid=0;
       $civilstatusid=0;
@@ -349,8 +350,8 @@ class TallyVoteController extends Controller
               //foreach($Votervote->voter as $Vvoter){
 
                 echo "<tr>".
-                      "<td>".$Votervote->voter->id."</td>".
-                      "<td>".$Votervote->voter->full_name."</td>".
+                      "<td>".($cnt++)."</td>".
+                      "<td>".$Votervote->voter->id_full_name."</td>".
                       "<td>".$Votervote->voter->barangay_id."</td>".
                       "<td>".$Votervote->voter->barangay_name."</td>".
                       "<td>".$Votervote->survey_detail_id."</td>".
