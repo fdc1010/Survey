@@ -306,7 +306,7 @@ class TallyVoteController extends Controller
                       ->whereIn('barangay_id',$brgyarr)
   										->with('barangay')
   										->get();
-  		echo "<h4>Assigned Areas: #".$id."</h4><table>";
+  		echo "<h4>Assigned Areas: #".$id."</h4><table border='1'>";
   		foreach($areas as $area){
         $positions = PositionCandidate::with('candidates')->get();
         foreach($positions as $position){
@@ -367,7 +367,7 @@ class TallyVoteController extends Controller
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
                       ->orderBy('voter_id')
                       ->get();
-            echo "<tr><td colspan='5'><table>";
+            echo "<tr><td colspan='5'><table border='1'>";
             foreach($Votersvote as $Votervote){
               //dd($Votervote->voter);
               //foreach($Votervote->voter as $Vvoter){
@@ -392,7 +392,7 @@ class TallyVoteController extends Controller
               //}
             }
             echo "</table></td>";
-            echo "<td colspan='5'><table>";
+            echo "<td colspan='5'><table border='1'>";
             $cnt = 1;
             foreach($Voterssurvey as $Votersurvey){
               echo "<tr>".
