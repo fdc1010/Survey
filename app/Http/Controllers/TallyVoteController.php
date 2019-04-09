@@ -342,9 +342,10 @@ class TallyVoteController extends Controller
           												});
           								}
           							})
-                      ->with(['voter'=>function($q){$q->with('statuses');}])
+                      ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
-          						->get();
+                      ->orderBy('voter_id')
+                      ->get();
             foreach($Votersvote as $Votervote){
               //dd($Votervote->voter);
               //foreach($Votervote->voter as $Vvoter){
