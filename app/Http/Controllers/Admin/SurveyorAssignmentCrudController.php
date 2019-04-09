@@ -210,12 +210,12 @@ class SurveyorAssignmentCrudController extends CrudController
 										->get();
 		$result = "<h4>Assigned Areas: #".$id."</h4><div class='col-lg-8'>";
 		foreach($areas as $area){
-			$result .= "<div id='brgy_'".$area->barangay->id." class='col-lg-4' style='border: 1px solid grey; cursor: pointer;'><i id='ibrgy_".$area->barangay->id."' class='fa fa-plus-square'></i> ".$area->barangay->name."</div>".
+			$result .= "<div id='brgy_'".$area->id." class='col-lg-4' style='border: 1px solid grey; cursor: pointer;'><i id='ibrgy_".$area->id."' class='fa fa-plus-square'></i> ".$area->barangay->name."</div>".
 						"<div class='col-lg-1'>quota: ".$area->quota."</div>".
 						"<div class='col-lg-1'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
 						"<div class='col-lg-4'>".$area->getProgressBar()."</div>".
-            "<div class='col-lg-12' id='dbrgy_".$area->barangay->id."'>";
+            "<div class='col-lg-12' id='dbrgy_".$area->id."'>";
 
       $positions = PositionCandidate::with('candidates')->get();
       foreach($positions as $position){
@@ -234,7 +234,7 @@ class SurveyorAssignmentCrudController extends CrudController
                      "</div>";
         }
       }
-      $result .="</div>".                
+      $result .="</div>".
 		}
 		$result .= "</div>";
 		return $result;

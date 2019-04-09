@@ -130,18 +130,18 @@
 			$areas = App\Models\AssignmentDetail::with('barangay')->get();
 			@endphp
 			@foreach($areas as $area)
-			$('#brgy_".$area->barangay->id."').on('click',function(e){
-					if(\$('#ibrgy_".$area->barangay->id."').hasClass('fa-plus-square')){
-						$('#dbrgy_".$area->barangay->id."').show('slow');
-						$('#ibrgy_".$area->barangay->id."').removeClass('fa-plus-square');
-						$('#ibrgy_".$area->barangay->id."').addClass('fa-minus-square');
+			$('#brgy_".$area->id."').on('click',function(e){
+					if(\$('#ibrgy_".$area->id."').hasClass('fa-plus-square')){
+						$('#dbrgy_".$area->id."').show('slow');
+						$('#ibrgy_".$area->id."').removeClass('fa-plus-square');
+						$('#ibrgy_".$area->id."').addClass('fa-minus-square');
 					}else{
-						$('#dbrgy_".$area->barangay->id."').hide('slow');
-						$('#ibrgy_".$area->barangay->id."').removeClass('fa-minus-square');
-						$('#ibrgy_".$area->barangay->id."').addClass('fa-plus-square');
+						$('#dbrgy_".$area->id."').hide('slow');
+						$('#ibrgy_".$area->id."').removeClass('fa-minus-square');
+						$('#ibrgy_".$area->id."').addClass('fa-plus-square');
 					}
 				})
-				$('#dbrgy_".$area->barangay->id."').hide();
+				$('#dbrgy_".$area->id."').hide();
 		});
 		@endforeach
 	</script>
