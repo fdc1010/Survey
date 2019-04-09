@@ -225,7 +225,7 @@ class SurveyorAssignmentCrudController extends CrudController
           $tally[$position->id][$candidate->id][$surveydetailid]=$tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
         }
         arsort($tally[$position->id]);
-        foreach($tally[$position->id] as $key => $sortedtally)
+        foreach($tally[$position->id] as $key => $sortedtally){
           $result .= "<div class='col-lg-12'>".
                      "<div class='col-lg-1' style='text-align: right;'>".($i++)."</div>".
                      "<div class='col-lg-4' style='text-align: right;'>".$tallycandidate[$key]."</div>".
