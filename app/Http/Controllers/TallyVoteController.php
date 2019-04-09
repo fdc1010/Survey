@@ -234,7 +234,7 @@ class TallyVoteController extends Controller
       $cnt = 1;
       $tallyVotes = TallyVote::where('survey_detail_id',2)
                                //->where('option_id','>',48)
-                               ->where('question_id','>',3)
+                               //->where('question_id','>',3)
                                ->where('voter_id','>',231937)
                                ->where('barangay_id',83)
                                ->orderBy('voter_id')
