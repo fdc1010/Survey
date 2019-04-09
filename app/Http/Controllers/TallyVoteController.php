@@ -244,6 +244,7 @@ class TallyVoteController extends Controller
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
                                                                   ->where('option_id','<',49)
+                                                                  ->where('barangay_id',82)
                                                                   ->get();
                                                                   //->delete();
                                         $user = User::find($tallyVote->user_id);
@@ -251,16 +252,16 @@ class TallyVoteController extends Controller
                                         $tallyOption = QuestionOption::find($tallyVote->option_id);
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
                                           echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.")<br>";
-                                          $anonymousvoterbrgy = Barangay::find(83); // Barangay for Anonymous
-                                          $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
-                                          $voter->barangay_id=$anonymousvoterbrgy->id;
-                                          $voter->barangay_name = $anonymousvoterbrgy->name;
-                                          $voter->precinct_id = $anonymousvoterprec->id;
-                                          $voter->precinct_number = $anonymousvoterprec->precinct_number;
-                                          $vmsg = $voter->save();
-                                          echo "<br>".$vmsg."<br>";
-                                          $tallyVote->barangay_id=$anonymousvoterbrgy->id;
-                                          $tallyVote->save();
+                                          // $anonymousvoterbrgy = Barangay::find(83); // Barangay for Anonymous
+                                          // $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
+                                          // $voter->barangay_id=$anonymousvoterbrgy->id;
+                                          // $voter->barangay_name = $anonymousvoterbrgy->name;
+                                          // $voter->precinct_id = $anonymousvoterprec->id;
+                                          // $voter->precinct_number = $anonymousvoterprec->precinct_number;
+                                          // $vmsg = $voter->save();
+                                          // echo "<br>".$vmsg."<br>";
+                                          // $tallyVote->barangay_id=$anonymousvoterbrgy->id;
+                                          // $tallyVote->save();
                                         }
                                     }
                                 //});
