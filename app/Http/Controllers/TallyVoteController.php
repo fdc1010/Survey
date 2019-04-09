@@ -282,7 +282,7 @@ class TallyVoteController extends Controller
       $occstatusid=0;
       $voterstatusid=0;
       $genderid=0;
-      $id = 38;
+      $id = 37;
       if($request->has('sid'))
         $id = $request->sid;
       $surveydetail = SurveyDetail::find($id);
