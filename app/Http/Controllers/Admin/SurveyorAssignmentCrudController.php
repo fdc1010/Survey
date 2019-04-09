@@ -10,6 +10,7 @@ use App\Http\Requests\SurveyorAssignmentRequest as UpdateRequest;
 use App\Models\AssignmentDetail;
 use App\Models\Sitio;
 use App\Models\SurveyDetail;
+use App\Models\TallyVote;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
@@ -200,6 +201,8 @@ class SurveyorAssignmentCrudController extends CrudController
 		return $this->crud->delete($id);
 	}
 	public function showDetailsRow($id){
+    $tallypoll = new TallyVote;
+    $surveydetail = SurveyDetail::find($id);
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('barangay')
 										->get();
@@ -210,6 +213,18 @@ class SurveyorAssignmentCrudController extends CrudController
 						"<div class='col-lg-2'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
 						"<div class='col-lg-4'>".$area->getProgressBar()."</div>";
+
+      $positions = PositionCandidate::with('candidates')->get();
+      foreach($positions as $position){
+        $votes = 0;
+        foreach($position->candidates as $candidate){
+          $votes += $tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$area->barangay->id,0,0,0,0);
+        }
+        $result .= "<div class='col-lg-12'>".
+                   "<div class='col-lg-4'>".$position->name."</div>".
+                   "<div class='col-lg-8'>".$votes."</div>".
+                   "</div>";
+      }
 		}
 		$result .= "</div>";
 		return $result;
