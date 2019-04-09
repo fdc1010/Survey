@@ -61,7 +61,7 @@ class Candidate extends Model
     public function getIdFullNameAttribute()
     {
         $voter = Voter::find($this->voter_id);
-        return $this->attributes['id'] . " - " . ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);
+        return $this->id . " - " . ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);
     }
     /*
     |--------------------------------------------------------------------------
