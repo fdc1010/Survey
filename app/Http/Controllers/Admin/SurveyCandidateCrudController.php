@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\BarangaySurveyableRequest as StoreRequest;
-use App\Http\Requests\BarangaySurveyableRequest as UpdateRequest;
-use App\Models\SurveyorAssignment;
+use App\Http\Requests\SurveyCandidateRequest as StoreRequest;
+use App\Http\Requests\SurveyCandidateRequest as UpdateRequest;
+
 /**
- * Class BarangaySurveyableCrudController
+ * Class SurveyCandidateCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class BarangaySurveyableCrudController extends CrudController
+class SurveyCandidateCrudController extends CrudController
 {
     public function setup()
     {
@@ -23,8 +23,8 @@ class BarangaySurveyableCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\BarangaySurveyable');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/barangaysurveyable');
-        $this->crud->setEntityNameStrings('barangay surveyable', 'Barangay Surveyables');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveycandidate');
+        $this->crud->setEntityNameStrings('survey candidate', 'Survey Candidates');
         $this->crud->setListView('listsurveyassignment');
         $this->crud->denyAccess(['update', 'create', 'delete']);
         $this->crud->enableExportButtons();
@@ -75,7 +75,7 @@ class BarangaySurveyableCrudController extends CrudController
           'type' => 'model_function',
     			'function_name' => 'getProgressBar'
   	    ])->afterColumn('count');
-        // add asterisk for fields that are required in BarangaySurveyableRequest
+        // add asterisk for fields that are required in SurveyCandidateRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
@@ -83,8 +83,7 @@ class BarangaySurveyableCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-
-		$redirect_location = parent::storeCrud($request);
+        $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
