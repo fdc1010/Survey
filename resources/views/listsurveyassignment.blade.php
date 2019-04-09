@@ -131,7 +131,7 @@
 			@endphp
 			@foreach($areas as $area)
 			$('#brgy_{{ $area->id }}').on('click',function(e){
-					if(\$('#ibrgy_{{ $area->id }}').hasClass('fa-plus-square')){
+					if($('#ibrgy_{{ $area->id }}').hasClass('fa-plus-square')){
 						$('#dbrgy_{{ $area->id }}').show('slow');
 						$('#ibrgy_{{ $area->id }}').removeClass('fa-plus-square');
 						$('#ibrgy_{{ $area->id }}').addClass('fa-minus-square');
