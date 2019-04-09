@@ -315,7 +315,6 @@ class TallyVoteController extends Controller
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
           					->where('survey_detail_id',$surveyassignment->survey_detail_id)
                     ->whereIn('question_id',$questionidsfortally)
-                    ->with(['voter'=>function($q){$q->with('statuses');}])
                     //->has('surveyanswer')
           					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
                           if(count($agebrackets)>0){
@@ -342,7 +341,8 @@ class TallyVoteController extends Controller
           												});
           								}
           							})
-                      ->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
+                      ->with(['voter'=>function($q){$q->with('statuses');}])
+                      //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
           						->get();
             foreach($Votersvote->voter as $Votervote){
               dd($Vvoter);
