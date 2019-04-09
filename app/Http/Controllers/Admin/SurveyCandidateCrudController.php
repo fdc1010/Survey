@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\SurveyCandidateRequest as StoreRequest;
 use App\Http\Requests\SurveyCandidateRequest as UpdateRequest;
 use App\Models\SurveyorAssignment;
+use App\Models\AssignmentDetail;
 use App\Models\SurveyDetail;
 /**
  * Class SurveyCandidateCrudController
@@ -23,10 +24,10 @@ class SurveyCandidateCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\BarangaySurveyable');
+        $this->crud->setModel('App\Models\PositionCandidate');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/surveycandidate');
         $this->crud->setEntityNameStrings('survey candidate', 'Survey Candidates');
-        $this->crud->setListView('listsurveyassignment');
+        //$this->crud->setListView('listsurveyassignment');
         $this->crud->denyAccess(['update', 'create', 'delete']);
         $this->crud->enableExportButtons();
         $this->crud->removeAllButtonsFromStack('line');
@@ -40,59 +41,8 @@ class SurveyCandidateCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-        $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
-    		$this->crud->addColumn([
-          'name' => 'barangay_id',
-          'type' => 'select',
-          'label' => 'Municipality',
-    			'entity' => 'barangay', // the relationship name in your Model
-    			'attribute' => 'name', // attribute on Article that is shown to admin
-    			'model' => "App\Models\Barangay"
-    	  ]);
-    		$this->crud->addField([
-    			'label' => "Barangay",
-    			'type' => 'select2',
-    			'name' => 'barangay_id', // the relationship name in your Model
-    			'entity' => 'barangay', // the relationship name in your Model
-    			'attribute' => 'name', // attribute on Article that is shown to admin
-    			'model' => "App\Models\Barangay", // on create&update, do you need to add/delete pivot table entries?
-    			//'pivot' => true
-    		]);
-        $this->crud->addColumn([
-          'name' => 'quota',
-          'label' => 'Quota',
-          'type' => 'model_function',
-    			'function_name' => 'getQuota'
-  	    ]);
-        $this->crud->addColumn([
-          'name' => 'count',
-          'label' => 'Count',
-          'type' => 'model_function',
-    			'function_name' => 'getSurveyCount'
-  	    ]);
-    		$this->crud->addColumn([
-          'name' => 'progress',
-          'label' => 'Progress',
-          'type' => 'model_function',
-    			'function_name' => 'getProgressBar'
-  	    ])->afterColumn('count');
-
-        $this->crud->addFilter([ // select2 filter
-          'name' => 'status',
-          'type' => 'select2',
-          'label'=> 'Survey'
-        ], function() {
-            //$collection = collect([]);
-            $filters = [];
-            $surveydetails = SurveyDetail::get();
-            foreach($surveydetails as $surveydetail){
-              //$collection->put($surveydetail->id,$surveydetail->subject);
-              $filters[$surveydetail->id] = $surveydetail->subject;
-            }
-            return $filters; //$collection;
-        }, function($value) { // if the filter is active
-             $this->crud->addClause('where', 'survey_detail_id', $value);
-        });
+        $this->crud->removeColumn('extras');
+    		$this->crud->removeField('extras');
     }
 
     public function store(StoreRequest $request)
@@ -113,34 +63,28 @@ class SurveyCandidateCrudController extends CrudController
         return $redirect_location;
     }
     public function showDetailsRow($id){
-      // $brgysur = BarangaySurveyable::with(['assignment'=>function($q){
-      //                                       $q->with(['surveyor'=>function($s){
-      //                                                   $s->with('user');
-      //                                               }]);
-      //                                     }])
-      //                                     ->find($id);
-      $brgysur = $this->crud->getModel()::find($id);
-      $surveyors = SurveyorAssignment::whereHas('assignments',function($a)use($brgysur){
-                                            $a->where('barangay_id',$brgysur->barangay_id);
-                                        })->with(['user','assignments'=>function($q)use($brgysur){
-                                            $q->where('barangay_id',$brgysur->barangay_id);
-                                        }])
-                                        ->get();
-  		$result = "<h4>Assigned Surveyor(s):</h4><div class='col-lg-8'>";
-
-  		foreach($surveyors as $surveyor){
-            $totalquotaperbrgy = 0;
-            $totalcountperbrgy = 0;
-            $totalprogressperbrgy = 0;
-            foreach($surveyor->assignments as $assignment){
-          			$result .= "<div class='col-lg-2'>#".$surveyor->user->id." ".$surveyor->user->name."</div>".
-              						 "<div class='col-lg-2'>quota: ".$assignment->quota."</div>".
-                					 "<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
-                					 "<div class='col-lg-2'>progress: </div>".
-                					 "<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
-            }
-      }
-  		$result .= "</div>";
-  		return $result;
-  	}
+    //   $brgysur = $this->crud->getModel()::find($id);
+    //   $surveyors = SurveyorAssignment::whereHas('assignments',function($a)use($brgysur){
+    //                                         $a->where('barangay_id',$brgysur->barangay_id);
+    //                                     })->with(['user','assignments'=>function($q)use($brgysur){
+    //                                         $q->where('barangay_id',$brgysur->barangay_id);
+    //                                     }])
+    //                                     ->get();
+  	// 	$result = "<h4>Assigned Surveyor(s):</h4><div class='col-lg-8'>";
+    //
+  	// 	foreach($surveyors as $surveyor){
+    //         $totalquotaperbrgy = 0;
+    //         $totalcountperbrgy = 0;
+    //         $totalprogressperbrgy = 0;
+    //         foreach($surveyor->assignments as $assignment){
+    //       			$result .= "<div class='col-lg-2'>#".$surveyor->user->id." ".$surveyor->user->name."</div>".
+    //           						 "<div class='col-lg-2'>quota: ".$assignment->quota."</div>".
+    //             					 "<div class='col-lg-2'>count: ".$assignment->getSurveyCount()."</div>".
+    //             					 "<div class='col-lg-2'>progress: </div>".
+    //             					 "<div class='col-lg-4'>".$assignment->getProgressBar()."</div>";
+    //         }
+    //   }
+  	// 	$result .= "</div>";
+  	// 	return $result;
+  	// }
 }
