@@ -278,6 +278,15 @@ class SurveyAnswerController extends Controller
             }
 
               if(!empty($receivedans) && count($receivedans)>0){
+                if($voter->barangay_id==82){
+                  $anonymousvoterbrgy = Barangay::find(83); // Barangay for Anonymous
+                  $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
+                  $voter->barangay_id=$anonymousvoterbrgy->id;
+                  $voter->barangay_name = $anonymousvoterbrgy->name;
+                  $voter->precinct_id = $anonymousvoterprec->id;
+                  $voter->precinct_number = $anonymousvoterprec->precinct_number;
+                  $voter->save();
+                }
                 info("Storing answers: #".$voter->id." ".$voter->full_name);
         				foreach($receivedans as $voteranswers){
         					foreach($voteranswers['answers'] as $ansid){
