@@ -51,8 +51,12 @@ class CandidateCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['position_id', 'party_id','voter_id']);
 		$this->crud->removeFields(['position_id', 'party_id']);
-        $this->crud->addColumn([
-            'label' => "Position",
+    $this->crud->addColumn([
+      'name' => 'id',
+      'label' => 'ID'
+    ])->makeFirstColumn();
+    $this->crud->addColumn([
+      'label' => "Position",
 			'type' => 'select',
 			'name' => 'position_id', // the relationship name in your Model
 			'entity' => 'position', // the relationship name in your Model
