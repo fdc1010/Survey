@@ -287,7 +287,7 @@ class TallyVoteController extends Controller
       if($request->has('sid'))
         $id = $request->sid;
 
-      $voters = Voter::get();
+      $voters = Voter::find(20);
       dd($voters);
       $tallypoll = new TallyVote;
       $surveyassignment = SurveyorAssignment::find($id);
