@@ -186,7 +186,7 @@ class TallyVote extends Model
     return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->whereIn('question_id',$questionidsfortally)
-          ->has('surveyanswer')
+          //->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
                 if(count($agebrackets)>0){
