@@ -359,4 +359,5 @@ class TallyVoteController extends Controller
         }
       }
       echo "</div>";
+    }
 }
