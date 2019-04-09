@@ -12,6 +12,7 @@ use App\Models\Barangay;
 use App\Models\Precinct;
 use App\Models\PositionCandidate;
 use App\Models\AssignmentDetail;
+use App\Models\SurveyDetail;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller
