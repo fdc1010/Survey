@@ -215,7 +215,7 @@ class SurveyorAssignmentCrudController extends CrudController
 						"<div class='col-lg-1'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
 						"<div class='col-lg-4'>".$area->getProgressBar()."</div>"
-            "<div class='col-lg-12' id='dbrgy_'".$area->barangay->id.">";
+            "<div class='col-lg-12' id='dbrgy_".$area->barangay->id."'>";
 
       $positions = PositionCandidate::with('candidates')->get();
       foreach($positions as $position){
