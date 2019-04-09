@@ -55,12 +55,13 @@ class Candidate extends Model
   	}
   	public function getFullNameAttribute()
     {
-		$voter = Voter::find($this->voter_id);
+		    $voter = Voter::find($this->voter_id);
         return ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);
     }
     public function getIdFullNameAttribute()
       {
-          return $this->attributes['id'] . "  " . ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
+          $voter = Voter::find($this->voter_id);
+          return $this->attributes['id'] . "  " . ucwords($voter->first_name . ' ' . $voter->middle_name . ' ' . $voter->last_name);          
       }
     /*
     |--------------------------------------------------------------------------
