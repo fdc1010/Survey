@@ -234,7 +234,7 @@ class SurveyorAssignmentCrudController extends CrudController
                      "</div>";
         }
       }
-      $result .="</div>".
+      $result .="</div>";
 		}
 		$result .= "</div>";
 		return $result;
