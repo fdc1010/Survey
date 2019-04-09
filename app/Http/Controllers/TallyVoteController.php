@@ -8,6 +8,8 @@ use App\Models\TallyVote;
 use App\Models\SurveyAnswer;
 use App\Models\QuestionOption;
 use App\Models\Question;
+use App\Models\Barangay;
+use App\Models\Precinct;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller
