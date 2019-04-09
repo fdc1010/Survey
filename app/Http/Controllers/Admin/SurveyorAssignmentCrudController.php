@@ -204,7 +204,6 @@ class SurveyorAssignmentCrudController extends CrudController
 	public function showDetailsRow($id){
     $tallypoll = new TallyVote;
     $surveydetailid = $this->crud->getEntry($id)->survey_detail_id;
-
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('barangay')
 										->get();
@@ -218,13 +217,19 @@ class SurveyorAssignmentCrudController extends CrudController
 
       $positions = PositionCandidate::with('candidates')->get();
       foreach($positions as $position){
+        $tally = array();
+        $i = 1;
         $result .= "<div class='col-lg-12'>".$position->name."</div>";
-        $votes = 0;
         foreach($position->candidates as $candidate){
-          $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+          $tallycandidate[$candidate->id] = $candidate->full_name;
+          $tally[$position->id][$candidate->id][$surveydetailid]=$tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+        }
+        arsort($tally[$position->id]);
+        foreach($tally[$position->id] as $key => $sortedtally)
           $result .= "<div class='col-lg-12'>".
-                     "<div class='col-lg-5' style='text-align: right;'>".$candidate->id_full_name."</div>".
-                     "<div class='col-lg-7'>".$votes."</div>".
+                     "<div class='col-lg-1' style='text-align: right;'>".($i++)."</div>".
+                     "<div class='col-lg-4' style='text-align: right;'>".$tallycandidate[$key]."</div>".
+                     "<div class='col-lg-7'>".$sortedtally[$surveydetailid]."</div>".
                      "</div>";
         }
       }
