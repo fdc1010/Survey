@@ -232,13 +232,13 @@ class TallyVoteController extends Controller
     }
     public function updateVoterUndecidedAnonymous(Request $request){
       $cnt = 1;
-      $tallyVotes = TallyVote::where('survey_detail_id',2)
+      $tallyVotes = SurveyAnswer::where('survey_detail_id',2)
                                //->where('option_id','>',48)
                                ->where('barangay_id',82)
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
-                                        $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
+                                        $delTallyVotes = SurveyAnswer::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   //->where('id','>',$tallyVote->id)
                                                                   ->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
@@ -258,9 +258,12 @@ class TallyVoteController extends Controller
                                           $voter->precinct_id = $anonymousvoterprec->id;
                                           $voter->precinct_number = $anonymousvoterprec->precinct_number;
                                           $vmsg = $voter->save();
-
-                                          $tallyVote->barangay_id=$anonymousvoterbrgy->id;
-                                          $tallyVote->save();
+                                          $tvote = TallyVote::where('voter_id',$tallyvote->voter_id)
+                                                              ->where('question_id',$tallyVote->question_id)
+                                                              ->where('option_id',$tallyVote->option_id)
+                                                              ->first();
+                                          $tvote->barangay_id=$anonymousvoterbrgy->id;
+                                          $tvote->save();
                                         }
                                     }
                                 //});
@@ -286,7 +289,7 @@ class TallyVoteController extends Controller
                                           $voter->precinct_id = $anonymousvoterprec->id;
                                           $voter->precinct_number = $anonymousvoterprec->precinct_number;
                                           $vmsg = $voter->save();
-                                        
+
                                     }
                                 //});
       echo "<br>Record(s):".($cnt-1);
