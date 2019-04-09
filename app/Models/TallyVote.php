@@ -22,22 +22,22 @@ class TallyVote extends Model
     protected $fillable = ['candidate_id','voter_id','tally','survey_detail_id','barangay_id','user_id'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function candidate()
+  	public function candidate()
     {
         return $this->belongsTo('App\Models\Candidate','candidate_id');
     }
-	public function voter()
+  	public function voter()
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
     }
-	public function surveydetail()
+  	public function surveydetail()
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
     public function surveyanswer()
-      {
-          return $this->belongsTo('App\Models\Voter','voter_id');
-      }
+    {
+        return $this->belongsTo('App\Models\Voter','voter_id');
+    }
 	/*public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
@@ -98,7 +98,7 @@ class TallyVote extends Model
 		$tallyraw = $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
           ->whereIn('question_id',$questionidsfortally)
-          ->has('surveyanswer')
+          //->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus,$candidateid){
