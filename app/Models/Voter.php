@@ -105,7 +105,7 @@ class Voter extends Model
     {
         return ucwords($this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name);
     }
-  public function getIdFullNameAttribute()
+  public function getIDFullNameAttribute()
     {
         return $this->id . " - " . ucwords($this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name);
     }
