@@ -221,6 +221,7 @@ class SurveyorAssignmentCrudController extends CrudController
         $votes = 0;
         foreach($position->candidates as $candidate){
           $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+          info("votes: ".$votes);
         }
         $result .= "<div class='col-lg-12'>".
                    "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
