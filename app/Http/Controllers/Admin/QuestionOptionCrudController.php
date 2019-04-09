@@ -130,15 +130,15 @@ class QuestionOptionCrudController extends CrudController
     			'model_id' => 'option_id'
     		]);
     		$this->crud->addField([
-                'name' => 'for_candidate_votes',
+          'name' => 'for_candidate_votes',
     			'label' => 'Is Option for Candidate Votes (if Option is Name of Candidate)',
     			'type' => 'checkboxtoggle',
     			'toggle_field' => 'candidate_id'
-    	    ]);
+  	    ]);
     		$this->crud->addField([
-                'name' => 'candidate_id',
-                'type' => 'select2criteria2',
-                'label' => 'Tagged Option to Candidate',
+          'name' => 'candidate_id',
+          'type' => 'select2criteria2',
+          'label' => 'Tagged Option to Candidate',
     			'entity' => 'candidate', // the relationship name in your Model
     			'attribute' => 'full_name', // attribute on Article that is shown to admin
     			'model' => "App\Models\Candidate",
@@ -146,12 +146,12 @@ class QuestionOptionCrudController extends CrudController
     			'entity2' => 'optionpositions',
     			'attribute2' => 'candidate_id',
     			'model_id' => 'option_id'
-    	    ]);
+  	    ]);
     		$this->crud->addField([
-                'name' => 'for_issues',
+          'name' => 'for_issues',
     			'label' => 'Is Option Tagged for Issues/Concerns/Problems',
     			'type' => 'checkbox'
-    	    ]);
+  	    ]);
         $this->crud->orderBy('priority');
 
         $this->crud->setDefaultPageLength(100); // number of rows shown in list view

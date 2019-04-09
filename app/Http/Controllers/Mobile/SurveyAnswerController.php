@@ -407,33 +407,33 @@ class SurveyAnswerController extends Controller
         					    }
       			        }
                   }else{
-                    if($voterdetails['age']>100){
-                      $agereview = new AgeReview;
-                      $agereview->voter_id = $voterid;
-                      $agereview->age = $voterdetails['age'];
-                      $agereview->save();
-                    }
-                    $voter = Voter::find($voterid);
-                    $surveyassignment = SurveyorAssignment::where('user_id',$userid)
-                                                ->where('survey_detail_id',$surveydetailid)
-                                                ->first();
-                    $newcount = $surveyassignment->count + 1;
-                    SurveyorAssignment::where('user_id',$userid)
-                                        ->where('survey_detail_id',$surveydetailid)
-                                        ->update(['count'=>$newcount]);
-
-
-                    $assignmentdetails = AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                                ->where('assignment_id',$surveyassignment->id)
-                                                ->get();
-                    if(!empty($assignmentdetails) && count($assignmentdetails)>0){
-                        foreach($assignmentdetails as $assignmentdetail){
-                            $newcountad = $assignmentdetail->count + 1;
-                            AssignmentDetail::where('barangay_id',$voter->barangay_id)
-                                                ->where('id',$assignmentdetail->id)
-                                                ->update(['count'=>$newcountad]);
-                        }
-                    }
+                    // if($voterdetails['age']>100){
+                    //   $agereview = new AgeReview;
+                    //   $agereview->voter_id = $voterid;
+                    //   $agereview->age = $voterdetails['age'];
+                    //   $agereview->save();
+                    // }
+                    // $voter = Voter::find($voterid);
+                    // $surveyassignment = SurveyorAssignment::where('user_id',$userid)
+                    //                             ->where('survey_detail_id',$surveydetailid)
+                    //                             ->first();
+                    // $newcount = $surveyassignment->count + 1;
+                    // SurveyorAssignment::where('user_id',$userid)
+                    //                     ->where('survey_detail_id',$surveydetailid)
+                    //                     ->update(['count'=>$newcount]);
+                    //
+                    //
+                    // $assignmentdetails = AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                    //                             ->where('assignment_id',$surveyassignment->id)
+                    //                             ->get();
+                    // if(!empty($assignmentdetails) && count($assignmentdetails)>0){
+                    //     foreach($assignmentdetails as $assignmentdetail){
+                    //         $newcountad = $assignmentdetail->count + 1;
+                    //         AssignmentDetail::where('barangay_id',$voter->barangay_id)
+                    //                             ->where('id',$assignmentdetail->id)
+                    //                             ->update(['count'=>$newcountad]);
+                    //     }
+                    // }
                     info("Storing tally: #".$voter->id." ".$voter->full_name." with empty answers: ");
                     //3===============
                     $surveyans3 = SurveyAnswer::where('survey_detail_id',$surveydetailid)
