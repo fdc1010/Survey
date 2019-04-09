@@ -324,6 +324,7 @@ class TallyVoteController extends Controller
         $Voterssurvey = TallyVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
                         ->where('user_id',$surveyassignment->user_id)
                         ->whereIn('question_id',$questionidsfortally)
+                        ->whereIn('barangay_id',$brgyarr)
                         //->has('surveyanswer')
                         ->has('voter')
                         ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
