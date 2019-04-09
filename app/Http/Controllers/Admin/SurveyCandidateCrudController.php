@@ -74,10 +74,7 @@ class SurveyCandidateCrudController extends CrudController
           'label' => 'Progress',
           'type' => 'model_function',
     			'function_name' => 'getProgressBar'
-  	    ])->afterColumn('count');
-        // add asterisk for fields that are required in SurveyCandidateRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+  	    ])->afterColumn('count');        
     }
 
     public function store(StoreRequest $request)
