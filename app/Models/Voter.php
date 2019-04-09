@@ -107,7 +107,7 @@ class Voter extends Model
     }
   public function getIdFullNameAttribute()
     {
-        return $this->attributes['id'] . "  " . ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
+        return $this->attributes['id'] . " - " . ucwords($this->attributes['first_name'] . ' ' . $this->attributes['middle_name'] . ' ' . $this->attributes['last_name']);
     }
 	public function getStatusArrAttribute()
     {
