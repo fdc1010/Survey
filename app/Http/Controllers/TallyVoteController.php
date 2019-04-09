@@ -236,23 +236,24 @@ class TallyVoteController extends Controller
                                //->where('option_id','>',48)
                                ->where('question_id','>',3)
                                ->where('voter_id','>',231937)
+                               ->where('barangay_id',82)
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
-                                        // $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                        //                           //->where('id','>',$tallyVote->id)
-                                        //                           //->where('question_id',$tallyVote->question_id)
-                                        //                           //->where('user_id',$tallyVote->user_id)
-                                        //                           ->where('voter_id',$tallyVote->voter_id)
-                                        //                           ->where('option_id','>',48)
-                                        //                           ->where('barangay_id',83)
-                                        //                           ->get();
+                                        $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
+                                                                  //->where('id','>',$tallyVote->id)
+                                                                  //->where('question_id',$tallyVote->question_id)
+                                                                  //->where('user_id',$tallyVote->user_id)
+                                                                  ->where('voter_id',$tallyVote->voter_id)
+                                                                  ->where('option_id','>',48)
+                                                                  ->where('barangay_id',83)
+                                                                  ->get();
                                                                   //->delete();
                                         $user = User::find($tallyVote->user_id);
                                         $voter = Voter::find($tallyVote->voter_id);
                                         $tallyOption = QuestionOption::find($tallyVote->option_id);
-                                        //if(!empty($delTallyVotes) && count($delTallyVotes)>0){
-                                          echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | brgy: ".$tallyVote->barangay_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.") | rec(s)".count($tallyVotes)."<br>";
+                                        if(!empty($delTallyVotes) && count($delTallyVotes)>0){
+                                          echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | brgy: ".$tallyVote->barangay_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.") | rec(s)".count($delTallyVotes)."<br>";
                                           //echo "<br>".count($delTallyVotes)."</br>";
                                           // $anonymousvoterbrgy = Barangay::find(83); // Barangay for Anonymous
                                           // $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
@@ -264,7 +265,7 @@ class TallyVoteController extends Controller
                                           // echo "<br>".$vmsg."<br>";
                                           // $tallyVote->barangay_id=$anonymousvoterbrgy->id;
                                           // $tallyVote->save();
-                                        //}
+                                        }
                                     }
                                 //});
       echo "<br>Record(s):".($cnt-1);
