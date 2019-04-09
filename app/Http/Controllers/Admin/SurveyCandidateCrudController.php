@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\SurveyCandidateRequest as StoreRequest;
 use App\Http\Requests\SurveyCandidateRequest as UpdateRequest;
 use App\Models\SurveyorAssignment;
+use App\Models\SurveyDetail;
 /**
  * Class SurveyCandidateCrudController
  * @package App\Http\Controllers\Admin
@@ -75,6 +76,23 @@ class SurveyCandidateCrudController extends CrudController
           'type' => 'model_function',
     			'function_name' => 'getProgressBar'
   	    ])->afterColumn('count');
+
+        $this->crud->addFilter([ // select2 filter
+          'name' => 'status',
+          'type' => 'select2',
+          'label'=> 'Survey'
+        ], function() {
+            //$collection = collect([]);
+            $filters = [];
+            $surveydetails = SurveyDetail::get();
+            foreach($surveydetails as $surveydetail){
+              //$collection->put($surveydetail->id,$surveydetail->subject);
+              $filters[$surveydetail->id] = $surveydetail->subject;
+            }
+            return $filters; //$collection;
+        }, function($value) { // if the filter is active
+             $this->crud->addClause('where', 'survey_detail_id', $value);
+        });
     }
 
     public function store(StoreRequest $request)

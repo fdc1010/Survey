@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\BarangaySurveyableRequest as StoreRequest;
 use App\Http\Requests\BarangaySurveyableRequest as UpdateRequest;
 use App\Models\SurveyorAssignment;
+use App\Models\SurveyDetail;
 /**
  * Class BarangaySurveyableCrudController
  * @package App\Http\Controllers\Admin
@@ -75,9 +76,26 @@ class BarangaySurveyableCrudController extends CrudController
           'type' => 'model_function',
     			'function_name' => 'getProgressBar'
   	    ])->afterColumn('count');
+        $this->crud->addFilter([ // select2 filter
+          'name' => 'status',
+          'type' => 'select2',
+          'label'=> 'Survey'
+        ], function() {
+            //$collection = collect([]);
+            $filters = [];
+            $surveydetails = SurveyDetail::get();
+            foreach($surveydetails as $surveydetail){
+              //$collection->put($surveydetail->id,$surveydetail->subject);
+              $filters[$surveydetail->id] = $surveydetail->subject;
+            }
+            return $filters; //$collection;
+        }, function($value) { // if the filter is active
+             $this->crud->addClause('where', 'survey_detail_id', $value);
+        });
         // add asterisk for fields that are required in BarangaySurveyableRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        // $this->crud->setRequiredFields(StoreRequest::class, 'create');
+        // $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
     }
 
     public function store(StoreRequest $request)
