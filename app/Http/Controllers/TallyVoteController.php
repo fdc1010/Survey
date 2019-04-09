@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Voter;
 use App\User;
+use App\Models\Candidate;
 use App\Models\TallyVote;
 use App\Models\SurveyAnswer;
 use App\Models\QuestionOption;
@@ -287,8 +288,8 @@ class TallyVoteController extends Controller
       if($request->has('sid'))
         $id = $request->sid;
 
-      $voters = Voter::find(20);
-      dd($voters);
+      $candidate = Candidate::find(20);
+      dd($candidate);
       $tallypoll = new TallyVote;
       $surveyassignment = SurveyorAssignment::find($id);
       $tally = array();
