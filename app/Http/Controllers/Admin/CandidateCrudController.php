@@ -54,7 +54,7 @@ class CandidateCrudController extends CrudController
     $this->crud->addColumn([
       'name' => 'id',
       'label' => 'ID'
-    ])->makeFirstColumn();
+    ])->beforeColumn('voter_id');
     $this->crud->addColumn([
       'label' => "Position",
 			'type' => 'select',
