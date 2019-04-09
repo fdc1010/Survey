@@ -240,7 +240,7 @@ class TallyVoteController extends Controller
                                     foreach($tallyVotes as $tallyVote){
                                         $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
                                                                   //->where('id','>',$tallyVote->id)
-                                                                  ->where('question_id',$tallyVote->question_id)
+                                                                  //->where('question_id',$tallyVote->question_id)
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
                                                                   ->where('option_id','>',48)
