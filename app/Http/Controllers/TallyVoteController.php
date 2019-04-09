@@ -308,13 +308,13 @@ class TallyVoteController extends Controller
                        "<div class='col-lg-7'>".$votes."</div>";
 
         }
-
         foreach($positions as $position){
           foreach($position->candidates as $candidate){
             $brgyid=$area->barangay->id;
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
           					->where('survey_detail_id',$surveyassignment->survey_detail_id)
                     ->whereIn('question_id',$questionidsfortally)
+                    ->with(['voter'=>function($q){$q->with('statuses');}])
                     //->has('surveyanswer')
           					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
                           if(count($agebrackets)>0){
@@ -341,7 +341,6 @@ class TallyVoteController extends Controller
           												});
           								}
           							})
-                      ->with(['voter'=>function($q){$q->with('statuses');}])
           						->get();
             foreach($Votersvote as $Votervote){
               foreach($Votervote->voter as $voter){
