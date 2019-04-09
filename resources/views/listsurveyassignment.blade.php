@@ -140,9 +140,9 @@
 						$('#ibrgy_{{ $area->id }}').removeClass('fa-minus-square');
 						$('#ibrgy_{{ $area->id }}').addClass('fa-plus-square');
 					}
-				})
-				$('#dbrgy_{{ $area->id }}').hide();
+			});
+			$('#dbrgy_{{ $area->id }}').hide();
+			@endforeach
 		});
-		@endforeach
 	</script>
 @endsection
