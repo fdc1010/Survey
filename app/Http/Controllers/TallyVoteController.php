@@ -255,8 +255,8 @@ class TallyVoteController extends Controller
                                           $voter->barangay_name = $anonymousvoterbrgy->name;
                                           $voter->precinct_id = $anonymousvoterprec->id;
                                           $voter->precinct_number = $anonymousvoterprec->precinct_number;
-                                          $voter->save();
-
+                                          $vmsg = $voter->save();
+                                          echo "<br>".$vmsg."<br>";
                                           $tallyVote->barangay_id=$anonymousvoterbrgy->id;
                                           $tallyVote->save();
                                         }
