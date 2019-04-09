@@ -24,7 +24,7 @@ class Voter extends Model
 							'yearly_household','work','is_anonymous'];
     // protected $hidden = [];
     // protected $dates = [];
-	public $appends = ['full_name','id_full_name'];
+	protected $appends = ['full_name','id_full_name'];
 
 	public function sitio()
     {

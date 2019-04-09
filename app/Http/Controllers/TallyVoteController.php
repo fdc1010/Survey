@@ -343,10 +343,10 @@ class TallyVoteController extends Controller
           							})
           						->get();
             foreach($Votersvote as $Votervote){
-              dd($Votervote);
+              dd($Votervote->voter);
               foreach($Votervote->voter as $Vvoter){
-                echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
-                      "<div class='col-lg-3'>".$Vvoter->full_name."</div>".
+                //echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
+                echo   "<div class='col-lg-4'>".$Vvoter->id_full_name."</div>".
                       "<div class='col-lg-1'>".$Vvoter->barangay_id."</div>".
                       "<div class='col-lg-2'>".$Vvoter->barangay_name."</div>".
                       "<div class='col-lg-1'>".$Vvoter->gender_id."</div>".
