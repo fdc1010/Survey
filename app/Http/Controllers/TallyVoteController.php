@@ -13,6 +13,7 @@ use App\Models\Precinct;
 use App\Models\PositionCandidate;
 use App\Models\AssignmentDetail;
 use App\Models\SurveyDetail;
+use App\Models\SurveyorAssignment;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller
@@ -287,7 +288,7 @@ class TallyVoteController extends Controller
         $id = $request->sid;
 
       $tallypoll = new TallyVote;
-      $surveydetail = SurveyDetail::find($id);
+      $surveyassignment = SurveyorAssignment::find($id);
       $tally = array();
       $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
   		$areas = AssignmentDetail::where('assignment_id',$id)
@@ -300,7 +301,7 @@ class TallyVoteController extends Controller
           $votes = 0;
 
           foreach($position->candidates as $candidate){
-            $votes += $tallypoll->tallydetails($candidate->id,$surveydetail->survey_detail_id,[],$area->barangay->id,0,0,0,0,0);
+            $votes += $tallypoll->tallydetails($candidate->id,$surveyassignment->survey_detail_id,[],$area->barangay->id,0,0,0,0,0);
           }
 
           echo "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
@@ -312,7 +313,7 @@ class TallyVoteController extends Controller
           foreach($position->candidates as $candidate){
             $brgyid=$area->barangay->id;
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
-          					->where('survey_detail_id',$surveydetail->survey_detail_id)
+          					->where('survey_detail_id',$surveyassignment->survey_detail_id)
                     ->whereIn('question_id',$questionidsfortally)
                     //->has('surveyanswer')
           					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
