@@ -112,9 +112,9 @@ class SurveyorAssignment extends Model
                     ->has('voter')
 										->select(['voter_id'])
 										->groupBy('voter_id')
-										->get();
+										->get()->count();
 		if($countsurvey)
-			return count($countsurvey);
+			return $countsurvey; //count($countsurvey);
 		else
 			return 0;
 	}
