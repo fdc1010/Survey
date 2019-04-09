@@ -320,20 +320,20 @@ class TallyVoteController extends Controller
                        "<td>".$votes."</td></tr>";
 
         }
+        $brgyid=$area->barangay->id;
+        $Voterssurvey = TallyVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
+                        ->where('user_id',$surveyassignment->user_id)
+                        ->whereIn('question_id',$questionidsfortally)
+                        //->has('surveyanswer')
+                        ->has('voter')
+                        ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
+                        //->select(['voter_id','survey_detail_id'])
+                        //->groupBy('voter_id')
+                        ->orderBy('voter_id')
+                        ->get();
         foreach($positions as $position){
+          echo "<tr><td><table border='1'>";
           foreach($position->candidates as $candidate){
-            $brgyid=$area->barangay->id;
-            $Voterssurvey = TallyVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
-        										->where('user_id',$surveyassignment->user_id)
-                            ->whereIn('question_id',$questionidsfortally)
-                            //->has('surveyanswer')
-                            ->has('voter')
-                            ->with(['voter'=>function($q){$q->with('statuses')->orderBy('id');}])
-        										//->select(['voter_id','survey_detail_id'])
-        										//->groupBy('voter_id')
-                            ->orderBy('voter_id')
-        										->get();
-
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
           					->where('survey_detail_id',$surveyassignment->survey_detail_id)
                     ->whereIn('question_id',$questionidsfortally)
@@ -367,7 +367,7 @@ class TallyVoteController extends Controller
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
                       ->orderBy('voter_id')
                       ->get();
-                echo "<tr><td><table border='1'>";
+
                 foreach($Votersvote as $Votervote){
                   //dd($Votervote->voter);
                   //foreach($Votervote->voter as $Vvoter){
@@ -389,30 +389,30 @@ class TallyVoteController extends Controller
                       echo "</td>";
                     echo "</tr>";
                   //}
-                }
-                echo "</table></td>";
-                echo "<td><table border='1'>";
-                $cnt = 1;
-                foreach($Voterssurvey as $Votersurvey){
-                  echo "<tr>".
-                        "<td>".($cnt++)."</td>".
-                        "<td>".$Votersurvey->voter->id_full_name."</td>".
-                        "<td>".$Votersurvey->voter->barangay_id."</td>".
-                        "<td>".$Votersurvey->voter->barangay_name."</td>".
-                        "<td>".$Votersurvey->survey_detail_id."</td>".
-                        "<td>".$Votersurvey->voter->gender_id."</td>".
-                        "<td>".$Votersurvey->voter->civil_status_id."</td>".
-                        "<td>".$Votersurvey->voter->employment_status_id."</td>".
-                        "<td>".$Votersurvey->voter->occupancy_status_id."</td>".
-                        "<td>";
-                  foreach($Votersurvey->voter->statuses as $status){
-                    echo $status->id.",";
-                  }
-                    echo "</td>";
-                  echo "</tr>";
-                }
-                echo "</table></td></tr>";
+              }
           }
+          echo "</table></td>";
+          echo "<td><table border='1'>";
+          $cnt = 1;
+          foreach($Voterssurvey as $Votersurvey){
+            echo "<tr>".
+                  "<td>".($cnt++)."</td>".
+                  "<td>".$Votersurvey->voter->id_full_name."</td>".
+                  "<td>".$Votersurvey->voter->barangay_id."</td>".
+                  "<td>".$Votersurvey->voter->barangay_name."</td>".
+                  "<td>".$Votersurvey->survey_detail_id."</td>".
+                  "<td>".$Votersurvey->voter->gender_id."</td>".
+                  "<td>".$Votersurvey->voter->civil_status_id."</td>".
+                  "<td>".$Votersurvey->voter->employment_status_id."</td>".
+                  "<td>".$Votersurvey->voter->occupancy_status_id."</td>".
+                  "<td>";
+            foreach($Votersurvey->voter->statuses as $status){
+              echo $status->id.",";
+            }
+              echo "</td>";
+            echo "</tr>";
+          }
+          echo "</table></td></tr>";
         }
       }
       echo "</table>";
