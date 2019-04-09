@@ -316,8 +316,8 @@ class TallyVoteController extends Controller
             $votes += $tallypoll->tallydetails($candidate->id,$surveyassignment->survey_detail_id,[],$area->barangay->id,0,0,0,0,0);
           }
 
-          echo "<tr><td colspan='5' style='text-align: right;'>".$position->name."</td>".
-                       "<td colspan='5'>".$votes."</td></tr>";
+          echo "<tr><td style='text-align: right;'>".$position->name."</td>".
+                       "<td>".$votes."</td></tr>";
 
         }
         foreach($positions as $position){
@@ -367,7 +367,7 @@ class TallyVoteController extends Controller
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
                       ->orderBy('voter_id')
                       ->get();
-            echo "<tr><td colspan='5'><table border='1'>";
+            echo "<tr><td><table border='1'>";
             foreach($Votersvote as $Votervote){
               //dd($Votervote->voter);
               //foreach($Votervote->voter as $Vvoter){
@@ -392,7 +392,7 @@ class TallyVoteController extends Controller
               //}
             }
             echo "</table></td>";
-            echo "<td colspan='5'><table border='1'>";
+            echo "<td><table border='1'>";
             $cnt = 1;
             foreach($Voterssurvey as $Votersurvey){
               echo "<tr>".
