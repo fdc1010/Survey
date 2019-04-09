@@ -15,6 +15,7 @@ use App\Models\PositionCandidate;
 use App\Models\AssignmentDetail;
 use App\Models\SurveyDetail;
 use App\Models\SurveyorAssignment;
+use App\Models\BarangaySurveyable;
 use Illuminate\Http\Request;
 
 class TallyVoteController extends Controller

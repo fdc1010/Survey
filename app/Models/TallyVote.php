@@ -170,13 +170,13 @@ class TallyVote extends Model
 							})->with('voter');
 			$tally = $tallyraw->sum('tally');
 
-      info("Tally: ".$candidateid);
-      info($tally);
+      // info("Tally: ".$candidateid);
+      // info($tally);
 
-      $tallyrecs = $tallyraw->get();
-      foreach($tallyrecs as $tallyrec){
-        info("#".$tallyrec->id." | qid: ".$tallyrec->question_id." | optid: ".$tallyrec->option_id." ".$tallyrec->voter->id." : ".$tallyrec->voter->full_name);
-      }
+      // $tallyrecs = $tallyraw->get();
+      // foreach($tallyrecs as $tallyrec){
+      //   info("#".$tallyrec->id." | qid: ".$tallyrec->question_id." | optid: ".$tallyrec->option_id." ".$tallyrec->voter->id." : ".$tallyrec->voter->full_name);
+      // }
       //$sqlmsg = $tally->toSql();
       //info($sqlmsg);
       return $tally;
