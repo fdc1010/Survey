@@ -391,7 +391,8 @@ class TallyVoteController extends Controller
                 echo "</tr>";
               //}
             }
-            echo "</table></td><td colspan='5'><table>";
+            echo "</table></td>";
+            echo "<td colspan='5'><table>";
             $cnt = 1;
             foreach($Voterssurvey as $Votersurvey){
               echo "<tr>".
@@ -409,7 +410,6 @@ class TallyVoteController extends Controller
                 echo $status->id.",";
               }
               echo "</td>";
-
               echo "</tr>";
             }
             echo "</table></td></tr>";
