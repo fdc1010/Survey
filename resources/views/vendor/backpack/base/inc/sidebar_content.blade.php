@@ -42,8 +42,8 @@
   	<li><a href='{{ backpack_url('survey') }}'><i class='fa fa-users'></i> <span>Surveys</span></a></li>
   	<li><a href='{{ backpack_url('surveyorassignment') }}'><i class='fa fa-users'></i> <span>Surveyor Assignment</span></a></li>
   	<li><a href='{{ backpack_url('surveydetail') }}'><i class='fa fa-tag'></i> <span>Survey Details</span></a></li>
-    <li><a href='{{ backpack_url('barangaysurveyableperuser') }}'><i class='fa fa-map'></i> <span>Barangay Survey Per Users</span></a></li>
-    <li><a href='{{ backpack_url('barangaysurveyablepercandidate') }}'><i class='fa fa-map'></i> <span>Barangay Survey Per Candidates</span></a></li>
+    <li><a href='{{ backpack_url('barangaysurveyable') }}'><i class='fa fa-map'></i> <span>Barangay Survey Per Users</span></a></li>
+    <li><a href='{{ backpack_url('surveycandidate') }}'><i class='fa fa-map'></i> <span>Barangay Survey Per Candidates</span></a></li>
     <li><a href='{{ backpack_url('tallyvote') }}'><i class='fa fa-bar-chart'></i> <span>Tally</span></a></li>
     <li><a href='{{ backpack_url('tallyothervote') }}'><i class='fa fa-bar-chart'></i> <span>Other Tally</span></a></li>
   	<li class="treeview">
