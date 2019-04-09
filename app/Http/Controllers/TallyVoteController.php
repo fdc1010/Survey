@@ -261,9 +261,7 @@ class TallyVoteController extends Controller
                                           $tvote = TallyVote::where('voter_id',$tallyVote->voter_id)
                                                               ->where('question_id',$tallyVote->question_id)
                                                               ->where('option_id',$tallyVote->option_id)
-                                                              ->first();
-                                          $tvote->barangay_id=$anonymousvoterbrgy->id;
-                                          $tvote->save();
+                                                              ->update(['barangay_id'=>$anonymousvoterbrgy->id]);
                                         }
                                     }
                                 //});
