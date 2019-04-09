@@ -108,7 +108,7 @@ class TallyVote extends Model
                   // info('\$agebrackets: '.$candidateid);
                   // info($agebrackets);
 
-									$q->whereIn('age',$agebrackets)->whereNotNull('age');//->orWhereNull('age');
+									$q->whereIn('age',$agebrackets);//->orWhereNull('age');
 									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
@@ -116,7 +116,7 @@ class TallyVote extends Model
                   // info('\$genders '.$candidateid);
                   // info($genders);
 
-									$q->whereIn('gender_id',$genders)->whereNotNull('gender_id');//->orWhereNull('gender_id');
+									$q->whereIn('gender_id',$genders);//->orWhereNull('gender_id');
 									//info("genders: ");info($genders);
 								}
 								if(count($empstatus)>0){
