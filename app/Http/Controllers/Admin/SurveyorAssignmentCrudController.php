@@ -11,6 +11,7 @@ use App\Models\AssignmentDetail;
 use App\Models\Sitio;
 use App\Models\SurveyDetail;
 use App\Models\TallyVote;
+use App\Models\PositionCandidate;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
