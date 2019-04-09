@@ -246,7 +246,8 @@ class TallyVoteController extends Controller
                                                                   //->where('user_id',$tallyVote->user_id)
                                                                   ->where('voter_id',$tallyVote->voter_id)
                                                                   //->where('option_id','>',48)
-                                                                  ->where('barangay_id','<>',$tallyVote->barangay_id)
+                                                                  //->where('barangay_id','<>',$tallyVote->barangay_id)
+                                                                  ->where('user_id','<>',$tallyVote->user_id)
                                                                   ->get();
                                                                   //->delete();
                                         $user = User::find($tallyVote->user_id);
