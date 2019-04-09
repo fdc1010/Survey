@@ -344,9 +344,10 @@ class TallyVoteController extends Controller
           							})
                       ->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
           						->get();
-            foreach($Votersvote as $Votervote){
-              foreach($Votervote->voter as $Vvoter){
-                dd($Vvoter);
+            foreach($Votersvote->voter as $Votervote){
+              dd($Vvoter);
+              //foreach($Votervote->voter as $Vvoter){
+
                 //echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
                 echo   "<div class='col-lg-4'>".$Vvoter->id_full_name."</div>".
                       "<div class='col-lg-1'>".$Vvoter->barangay_id."</div>".
@@ -360,7 +361,7 @@ class TallyVoteController extends Controller
                   echo $status->id.",";
                 }
                 echo "</div>";
-              }
+              //}
             }
           }
         }
