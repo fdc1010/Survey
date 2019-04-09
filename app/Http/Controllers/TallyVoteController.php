@@ -333,7 +333,7 @@ class TallyVoteController extends Controller
                         ->orderBy('voter_id')
                         ->get();
         foreach($positions as $position){
-          echo "<tr><td style='vertical-alignment: top;'><table border='1'>";
+          echo "<tr><td style='vertical-align: top;'><table border='1'>";
           foreach($position->candidates as $candidate){
             $Votersvote = TallyVote::where('candidate_id',$candidate->id)
           					->where('survey_detail_id',$surveyassignment->survey_detail_id)
@@ -393,7 +393,7 @@ class TallyVoteController extends Controller
               }
           }
           echo "</table></td>";
-          echo "<td style='vertical-alignment: top;'><table border='1'>";
+          echo "<td style='vertical-align: top;'><table border='1'>";
           $cnt = 1;
           foreach($Voterssurvey as $Votersurvey){
             echo "<tr>".
