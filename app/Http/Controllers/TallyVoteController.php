@@ -343,18 +343,18 @@ class TallyVoteController extends Controller
           							})
           						->get();
             foreach($Votersvote as $Votervote){
-              foreach($Votervote->voter as $voter){
-                echo "<div class='col-lg-1'>".$voter->id."</div>".
-                      "<div class='col-lg-3'>".$voter->full_name."</div>".
-                      "<div class='col-lg-1'>".$voter->barangay_id."</div>".
-                      "<div class='col-lg-2'>".$voter->barangay_name."</div>".
-                      "<div class='col-lg-1'>".$voter->gender_id."</div>".
-                      "<div class='col-lg-1'>".$voter->civil_status_id."</div>".
-                      "<div class='col-lg-1'>".$voter->employment_status_id."</div>".
-                      "<div class='col-lg-1'>".$voter->occupancy_status_id."</div>".
+              foreach($Votervote->voter as $Vvoter){
+                echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
+                      "<div class='col-lg-3'>".$Vvoter->full_name."</div>".
+                      "<div class='col-lg-1'>".$Vvoter->barangay_id."</div>".
+                      "<div class='col-lg-2'>".$Vvoter->barangay_name."</div>".
+                      "<div class='col-lg-1'>".$Vvoter->gender_id."</div>".
+                      "<div class='col-lg-1'>".$Vvoter->civil_status_id."</div>".
+                      "<div class='col-lg-1'>".$Vvoter->employment_status_id."</div>".
+                      "<div class='col-lg-1'>".$Vvoter->occupancy_status_id."</div>".
                       "<div class='col-lg-1'>";
-                foreach($voter->statuses as $status){
-                  echo $voter->occupancy_status_id.",";
+                foreach($Vvoter->statuses as $status){
+                  echo $status->id.",";
                 }
                 echo "</div>";
               }
