@@ -218,15 +218,15 @@ class SurveyorAssignmentCrudController extends CrudController
 
       $positions = PositionCandidate::with('candidates')->get();
       foreach($positions as $position){
+        $result .= "<div class='col-lg-12' style='text-align: right;'>".$position->name."</div>";
         $votes = 0;
         foreach($position->candidates as $candidate){
           $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+          $result .= "<div class='col-lg-12'>".
+                     "<div class='col-lg-5' style='text-align: right;'>".$candidate->id_full_name."</div>".
+                     "<div class='col-lg-7'>".$votes."</div>".
+                     "</div>";
         }
-        $result .= "<div class='col-lg-12'>".
-                   "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
-                   "<div class='col-lg-7'>".$votes."</div>".
-                   "</div>";
-
       }
 		}
 		$result .= "</div>";
