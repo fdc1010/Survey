@@ -345,7 +345,7 @@ class TallyVoteController extends Controller
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
           						->get();
             foreach($Votersvote as $Votervote){
-              dd($Vvoter);
+              dd($Votervote);
               //foreach($Votervote->voter as $Vvoter){
 
                 //echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
