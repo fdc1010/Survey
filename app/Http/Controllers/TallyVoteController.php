@@ -350,8 +350,8 @@ class TallyVoteController extends Controller
 
                 echo "<tr>".
                       "<td>".$Votervote->voter->id_full_name."</td>".
-                      "<td>".$Votervote->voter->barangay_id."</td>".
-                      "<td>".$Votervote->voter->barangay_name."</td>".
+                      "<td>".$Votervote->voter->barangay_id." - ".$Votervote->voter->barangay_name."</td>".
+                      "<td>".$Votervote->survey_detail_id."</td>".
                       "<td>".$Votervote->voter->gender_id."</td>".
                       "<td>".$Votervote->voter->civil_status_id."</td>".
                       "<td>".$Votervote->voter->employment_status_id."</td>".
