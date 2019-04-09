@@ -215,9 +215,9 @@ class SurveyorAssignmentCrudController extends CrudController
         		"<div class='col-lg-1'>quota: ".$area->quota."</div>".
 						"<div class='col-lg-1'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
-						"<div class='col-lg-4'>".$area->getProgressBar()."</div>";
-            //"<div class='col-lg-12' id='dbrgy_".$area->id."'>";
-
+						"<div class='col-lg-4'>".$area->getProgressBar()."</div>".
+      //       "<div class='col-lg-12' id='dbrgy_".$area->id."'>";
+      //
       // $positions = PositionCandidate::with('candidates')->get();
       // foreach($positions as $position){
       //   $i = 1;
@@ -236,6 +236,20 @@ class SurveyorAssignmentCrudController extends CrudController
       //   }
       // }
       // $result .="</div>";
+
+      $positions = PositionCandidate::with('candidates')->get();
+      foreach($positions as $position){
+        $votes = 0;
+
+        foreach($position->candidates as $candidate){
+          $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+        }
+
+        $result .= "<div class='col-lg-6' style='text-align: right;'>".$position->name."</div>".
+                     "<div class='col-lg-6'>".$votes."</div>";
+
+      }
+
 		}
 		$result .= "</div>";
 		return $result;
