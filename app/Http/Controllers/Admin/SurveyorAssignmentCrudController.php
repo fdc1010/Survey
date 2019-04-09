@@ -203,7 +203,6 @@ class SurveyorAssignmentCrudController extends CrudController
 	}
 	public function showDetailsRow($id){
     $tallypoll = new TallyVote;
-    $surveydetail = SurveyDetail::find($id);
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('barangay')
 										->get();
@@ -219,7 +218,7 @@ class SurveyorAssignmentCrudController extends CrudController
       foreach($positions as $position){
         $votes = 0;
         foreach($position->candidates as $candidate){
-          $votes += $tallypoll->tallydetails($candidate->id,$surveydetail->id,[],$area->barangay->id,0,0,0,0);
+          $votes += $tallypoll->tallydetails($candidate->id,$this->crud->survey_detail_id,[],$area->barangay->id,0,0,0,0);
         }
         $result .= "<div class='col-lg-12'>".
                    "<div class='col-lg-4'>".$position->name."</div>".
