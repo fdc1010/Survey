@@ -293,11 +293,16 @@ class TallyVoteController extends Controller
       if($request->has('qid')){
           $questionidsfortally = array($request->qid);
       }
+      $brgyarr = App\Models\BarangaySurveyable::get()->pluck('barangay_id')->toArray();
+      if($request->has('brgyid')){
+          $brgyarr = array($request->brgyid);
+      }
       $tallypoll = new TallyVote;
       $surveyassignment = SurveyorAssignment::find($id);
       $tally = array();
 
   		$areas = AssignmentDetail::where('assignment_id',$id)
+                      ->whereIn('barangay_id',$brgyarr)
   										->with('barangay')
   										->get();
   		echo "<h4>Assigned Areas: #".$id."</h4><table>";
