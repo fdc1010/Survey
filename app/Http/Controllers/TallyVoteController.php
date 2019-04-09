@@ -238,14 +238,14 @@ class TallyVoteController extends Controller
                                ->orderBy('voter_id')
                                ->get();//chunk(400, function ($tallyVotes)use(&$delTallyVotetotal){
                                     foreach($tallyVotes as $tallyVote){
-                                        $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
-                                                                  //->where('id','>',$tallyVote->id)
-                                                                  //->where('question_id',$tallyVote->question_id)
-                                                                  //->where('user_id',$tallyVote->user_id)
-                                                                  ->where('voter_id',$tallyVote->voter_id)
-                                                                  ->where('option_id','>',48)
-                                                                  ->where('barangay_id',83)
-                                                                  ->get();
+                                        // $delTallyVotes = TallyVote::where('survey_detail_id',$tallyVote->survey_detail_id)
+                                        //                           //->where('id','>',$tallyVote->id)
+                                        //                           //->where('question_id',$tallyVote->question_id)
+                                        //                           //->where('user_id',$tallyVote->user_id)
+                                        //                           ->where('voter_id',$tallyVote->voter_id)
+                                        //                           ->where('option_id','>',48)
+                                        //                           ->where('barangay_id',83)
+                                        //                           ->get();
                                                                   //->delete();
                                         $user = User::find($tallyVote->user_id);
                                         $voter = Voter::find($tallyVote->voter_id);
