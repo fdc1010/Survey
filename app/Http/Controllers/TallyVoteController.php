@@ -344,7 +344,7 @@ class TallyVoteController extends Controller
                       ->with(['voter'=>function($q){$q->with('statuses');}])
                       //->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
           						->get();
-            foreach($Votersvote->voter as $Votervote){
+            foreach($Votersvote as $Votervote){
               dd($Vvoter);
               //foreach($Votervote->voter as $Vvoter){
 
