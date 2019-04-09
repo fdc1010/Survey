@@ -386,8 +386,7 @@ class TallyVoteController extends Controller
                 foreach($Votervote->voter->statuses as $status){
                   echo $status->id.",";
                 }
-                echo "</td>";
-
+                  echo "</td>";
                 echo "</tr>";
               //}
             }
@@ -409,7 +408,7 @@ class TallyVoteController extends Controller
               foreach($Votersurvey->voter->statuses as $status){
                 echo $status->id.",";
               }
-              echo "</td>";
+                echo "</td>";
               echo "</tr>";
             }
             echo "</table></td></tr>";
