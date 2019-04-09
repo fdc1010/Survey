@@ -59,15 +59,19 @@ class AssignmentDetail extends Model
           //                 ->get()
           //                 ->pluck('id')
           //                 ->toArray();
+          $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
   				$countsurvey = TallyVote::where('survey_detail_id',$surveyassignment->survey_detail_id)
   											->where('user_id',$surveyassignment->user_id)
   											//->whereIn('voter_id',$voters)
+                        ->whereIn('question_id',$questionidsfortally)
+                        ->has('surveyanswer')
+                        ->has('voter')
                         ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])
   											->groupBy('voter_id')
-  											->get();
+  											->get()->count();
   				if($countsurvey)
-  					return count($countsurvey);
+  					return $countsurvey;//count($countsurvey);
   				else
   					return 0;
   		}else{
