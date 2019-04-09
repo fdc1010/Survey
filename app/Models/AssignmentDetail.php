@@ -64,7 +64,7 @@ class AssignmentDetail extends Model
   											->where('user_id',$surveyassignment->user_id)
   											//->whereIn('voter_id',$voters)
                         ->whereIn('question_id',$questionidsfortally)
-                        ->has('surveyanswer')
+                        //->has('surveyanswer')
                         ->has('voter')
                         ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])

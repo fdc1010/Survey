@@ -108,7 +108,7 @@ class SurveyorAssignment extends Model
 		$countsurvey = TallyVote::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
                     ->whereIn('question_id',$questionidsfortally)
-                    ->has('surveyanswer')
+                    //->has('surveyanswer')
                     ->has('voter')
 										->select(['voter_id'])
 										->groupBy('voter_id')
