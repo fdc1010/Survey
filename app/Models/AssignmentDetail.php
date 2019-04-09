@@ -64,8 +64,8 @@ class AssignmentDetail extends Model
   											//->whereIn('voter_id',$voters)
                         ->where('barangay_id',$this->barangay_id)
   											->select(['voter_id'])
-  											->sum('tally')
-  											//->get();
+  											->groupBy('voter_id')
+  											->get();
   				if($countsurvey)
   					return count($countsurvey);
   				else
