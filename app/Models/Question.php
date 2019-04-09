@@ -25,7 +25,7 @@ class Question extends Model
 	protected $casts = [
         'options' => 'array'
     ];
-	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options'];
+	protected $fillable = ['priority', 'question', 'number_answers', 'type_id', 'with_other_ans', 'for_position', 'with_partyselect','options','isfor_tallyvotes'];
 	protected $appends = ['question_name'];
 	public function choices()
     {

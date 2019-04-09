@@ -50,8 +50,8 @@ class QuestionCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 
-		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
-		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options']);
+		$this->crud->removeColumns(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options','isfor_tallyvotes']);
+		$this->crud->removeFields(['number_answers','with_other_ans','with_partyselect','for_position','type_id','options','isfor_tallyvotes']);
     $this->crud->addColumn([
             'name' => 'id',
             'label' => 'ID'
@@ -68,6 +68,11 @@ class QuestionCrudController extends CrudController
             'name' => 'number_answers',
             'type' => 'number',
             'label' => 'Number of Req. Answers',
+	    ]);
+    $this->crud->addColumn([
+            'name' => 'isfor_tallyvotes',
+            'type' => 'checkbox',
+            'label' => 'Is for Tally Votes per Candidate/Position (if false, votes tallied for others such as problems,qualities, etc.)',
 	    ]);
 		$this->crud->addField([
             'name' => 'number_answers',
@@ -117,6 +122,11 @@ class QuestionCrudController extends CrudController
 			'attribute' => 'name', // attribute on Article that is shown to admin
 			'model' => "App\Models\PositionCandidate" // on create&update, do you need to add/delete pivot table entries?
 		]);
+    $this->crud->addField([
+            'name' => 'isfor_tallyvotes',
+            'type' => 'checkbox',
+            'label' => 'Is for Tally Votes per Candidate/Position (if unchecked, votes tallied for others such as problems,qualities, etc.)',
+	    ]);
 		$this->crud->orderBy('priority');
         // add asterisk for fields that are required in QuestionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
