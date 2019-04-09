@@ -97,7 +97,7 @@ class TallyVote extends Model
     $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
 		$tallyraw = $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',$questionidsfortally)
+          //->whereIn('question_id',$questionidsfortally)
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
@@ -185,7 +185,7 @@ class TallyVote extends Model
     $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
     return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',$questionidsfortally)
+          //->whereIn('question_id',$questionidsfortally)
           ->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
