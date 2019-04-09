@@ -258,7 +258,7 @@ class TallyVoteController extends Controller
                                           $voter->precinct_id = $anonymousvoterprec->id;
                                           $voter->precinct_number = $anonymousvoterprec->precinct_number;
                                           $vmsg = $voter->save();
-                                          $tvote = TallyVote::where('voter_id',$tallyvote->voter_id)
+                                          $tvote = TallyVote::where('voter_id',$tallyVote->voter_id)
                                                               ->where('question_id',$tallyVote->question_id)
                                                               ->where('option_id',$tallyVote->option_id)
                                                               ->first();
