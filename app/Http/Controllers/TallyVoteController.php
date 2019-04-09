@@ -251,7 +251,7 @@ class TallyVoteController extends Controller
                                         $voter = Voter::find($tallyVote->voter_id);
                                         $tallyOption = QuestionOption::find($tallyVote->option_id);
                                         if(!empty($delTallyVotes) && count($delTallyVotes)>0){
-                                          echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.") | rec(s)".count($delTallyVotes)."<br>";
+                                          echo $cnt++.".) Current Entry:#".$tallyVote->id." Survey ID:#".$tallyVote->survey_detail_id." | brgy: ".$tallyVote->barangay_id." | user: ".$tallyVote->user_id." (".$user->name.") | voter: ".$tallyVote->voter_id." (".$voter->full_name.") | Question & Answer: ".$tallyVote->question_id." | option: ".$tallyVote->option_id." (".$tallyOption->option.") | rec(s)".count($delTallyVotes)."<br>";
                                           //echo "<br>".count($delTallyVotes)."</br>";
                                           // $anonymousvoterbrgy = Barangay::find(83); // Barangay for Anonymous
                                           // $anonymousvoterprec = Precinct::where('barangay_id',$anonymousvoterbrgy->id)->first();
