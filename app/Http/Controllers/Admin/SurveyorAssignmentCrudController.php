@@ -204,7 +204,7 @@ class SurveyorAssignmentCrudController extends CrudController
 	public function showDetailsRow($id){
     $tallypoll = new TallyVote;
     $surveydetailid = $this->crud->getEntry($id)->survey_detail_id;
-    info("survey detail:".$surveydetailid);
+    
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('barangay')
 										->get();
@@ -215,18 +215,17 @@ class SurveyorAssignmentCrudController extends CrudController
 						"<div class='col-lg-1'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
 						"<div class='col-lg-4'>".$area->getProgressBar()."</div>";
-
+      $votes = 0;
       $positions = PositionCandidate::with('candidates')->get();
       foreach($positions as $position){
-        $votes = 0;
         foreach($position->candidates as $candidate){
-          $votes = $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
-          info($position->name." votes: ".$votes);
+          $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
         }
         $result .= "<div class='col-lg-12'>".
                    "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
                    "<div class='col-lg-7'>".$votes."</div>".
                    "</div>";
+        $votes = 0;
       }
 		}
 		$result .= "</div>";
