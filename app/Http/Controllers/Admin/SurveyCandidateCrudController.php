@@ -86,5 +86,5 @@ class SurveyCandidateCrudController extends CrudController
     //   }
   	// 	$result .= "</div>";
   	// 	return $result;
-  	// }
+  	}
 }
