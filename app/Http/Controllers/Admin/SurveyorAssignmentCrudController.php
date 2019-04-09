@@ -220,7 +220,7 @@ class SurveyorAssignmentCrudController extends CrudController
         $votes = 0;
         foreach($position->candidates as $candidate){
           //$votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
-          $votes += $tallypoll->tally($candidate->id,$surveydetail->id,$tallyagebrackets,$tallybrgy,
+          $votes += $tallypoll->tally($candidate->id,$surveydetailid,$tallyagebrackets,$tallybrgy,
                             $tallygenders, $tallyempstatus,$tallycivilstatus,
                             $tallyoccstatus,$tallyvoterstatus);
         }
