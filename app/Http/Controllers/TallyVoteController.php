@@ -294,7 +294,7 @@ class TallyVoteController extends Controller
       if($request->has('qid')){
           $questionidsfortally = array($request->qid);
       }
-      $brgyarr = App\Models\BarangaySurveyable::get()->pluck('barangay_id')->toArray();
+      $brgyarr = BarangaySurveyable::get()->pluck('barangay_id')->toArray();
       if($request->has('brgyid')){
           $brgyarr = array($request->brgyid);
       }
