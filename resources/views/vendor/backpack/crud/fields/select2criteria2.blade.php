@@ -22,9 +22,9 @@
         @if (isset($field['model']))
             @foreach ($field['model']::all() as $connected_entity_entry)
                 @if(!empty($id) && in_array($connected_entity_entry->getKey(), $field['model2']::where($field['model_id'],$id)->get()->pluck($field['attribute2'])->toArray())))
-                    <option value="{{ $connected_entity_entry->getKey() }}" selected>#{{ $connected_entity_entry->{$field['name']} }} - {{ $connected_entity_entry->{$field['attribute']} }}</option>
+                    <option value="{{ $connected_entity_entry->getKey() }}" selected>{{ $connected_entity_entry->{$field['attribute']} }}</option>
                 @else
-                    <option value="{{ $connected_entity_entry->getKey() }}">#{{ $connected_entity_entry->{$field['name']} }} - {{ $connected_entity_entry->{$field['attribute']} }}</option>
+                    <option value="{{ $connected_entity_entry->getKey() }}">{{ $connected_entity_entry->{$field['attribute']} }}</option>
                 @endif
             @endforeach
         @endif
