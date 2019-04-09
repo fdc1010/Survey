@@ -288,8 +288,6 @@ class TallyVoteController extends Controller
       if($request->has('sid'))
         $id = $request->sid;
 
-      $candidate = Candidate::find(20);
-      dd($candidate);
       $tallypoll = new TallyVote;
       $surveyassignment = SurveyorAssignment::find($id);
       $tally = array();
@@ -347,8 +345,8 @@ class TallyVoteController extends Controller
                       ->select(['voter_id','barangay_id','question_id','candidate_id','option_id','user_id','survey_detail_id'])
           						->get();
             foreach($Votersvote as $Votervote){
-              dd($Votervote->voter);
               foreach($Votervote->voter as $Vvoter){
+                dd($Vvoter);
                 //echo "<div class='col-lg-1'>".$Vvoter->id."</div>".
                 echo   "<div class='col-lg-4'>".$Vvoter->id_full_name."</div>".
                       "<div class='col-lg-1'>".$Vvoter->barangay_id."</div>".
