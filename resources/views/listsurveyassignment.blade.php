@@ -123,5 +123,5 @@
   <script src="{{ asset('vendor/backpack/crud/js/list.js') }}"></script>
 
   <!-- CRUD LIST CONTENT - crud_list_scripts stack -->
-  @stack('crud_list_scripts')
+  @stack('crud_list_scripts')	
 @endsection

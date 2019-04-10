@@ -22,22 +22,22 @@ class TallyVote extends Model
     protected $fillable = ['candidate_id','voter_id','tally','survey_detail_id','barangay_id','user_id'];
     // protected $hidden = [];
     // protected $dates = [];
-	public function candidate()
+  	public function candidate()
     {
         return $this->belongsTo('App\Models\Candidate','candidate_id');
     }
-	public function voter()
+  	public function voter()
     {
         return $this->belongsTo('App\Models\Voter','voter_id');
     }
-	public function surveydetail()
+  	public function surveydetail()
     {
         return $this->belongsTo('App\Models\SurveyDetail','survey_detail_id');
     }
     public function surveyanswer()
-      {
-          return $this->belongsTo('App\Models\Voter','voter_id');
-      }
+    {
+        return $this->belongsTo('App\Models\Voter','voter_id');
+    }
 	/*public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [],$brgy=[],$genders = [], $empstatus = [],
 							$civilstatus = [],$occstatus = [],$voterstatus = []){
 		return $this->where('candidate_id',$candidateid)
@@ -94,10 +94,11 @@ class TallyVote extends Model
 	}*/
 	public function tally($candidateid=1,$surveydetailid=1,$agebrackets = [], $brgy = [], $genders = [], $empstatus = [],
 							$civilstatus = [], $occstatus = [], $voterstatus = []){
+    $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
 		$tallyraw = $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',[3,4,6,8])
-          ->has('surveyanswer')
+          ->whereIn('question_id',$questionidsfortally)
+          //->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgy,$genders,
 															$empstatus,$civilstatus,
 															$occstatus,$voterstatus,$candidateid){
@@ -107,7 +108,7 @@ class TallyVote extends Model
                   // info('\$agebrackets: '.$candidateid);
                   // info($agebrackets);
 
-									$q->whereIn('age',$agebrackets)->whereNotNull('age');//->orWhereNull('age');
+									$q->whereIn('age',$agebrackets);//->orWhereNull('age');
 									//info("agebrackets: ");info($agebrackets);
 								}
 								if(count($genders)>0){
@@ -115,7 +116,7 @@ class TallyVote extends Model
                   // info('\$genders '.$candidateid);
                   // info($genders);
 
-									$q->whereIn('gender_id',$genders)->whereNotNull('gender_id');//->orWhereNull('gender_id');
+									$q->whereIn('gender_id',$genders);//->orWhereNull('gender_id');
 									//info("genders: ");info($genders);
 								}
 								if(count($empstatus)>0){
@@ -169,22 +170,23 @@ class TallyVote extends Model
 							})->with('voter');
 			$tally = $tallyraw->sum('tally');
 
-      info("Tally: ".$candidateid);
-      info($tally);
+      // info("Tally: ".$candidateid);
+      // info($tally);
 
-      $tallyrecs = $tallyraw->get();
-      foreach($tallyrecs as $tallyrec){
-        info("#".$tallyrec->id." | qid: ".$tallyrec->question_id." | optid: ".$tallyrec->option_id." ".$tallyrec->voter->id." : ".$tallyrec->voter->full_name);
-      }
+      // $tallyrecs = $tallyraw->get();
+      // foreach($tallyrecs as $tallyrec){
+      //   info("#".$tallyrec->id." | qid: ".$tallyrec->question_id." | optid: ".$tallyrec->option_id." ".$tallyrec->voter->id." : ".$tallyrec->voter->full_name);
+      // }
       //$sqlmsg = $tally->toSql();
       //info($sqlmsg);
       return $tally;
 	}
   public function tallydetails($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
-		return $this->where('candidate_id',$candidateid)
+    $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
+    return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',[3,4,6,8])
-          ->has('surveyanswer')
+          ->whereIn('question_id',$questionidsfortally)
+          //->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
                 if(count($agebrackets)>0){
@@ -217,10 +219,11 @@ class TallyVote extends Model
 						->sum('tally');
 	}
   public function tallyqualities($candidateid=1,$surveydetailid=1,$agebrackets,$brgyid=0,$civilstatusid=0,$empstatusid=0,$occstatusid=0,$voterstatusid=0,$genderid=0){
-		return $this->where('candidate_id',$candidateid)
+    $questionidsfortally = Question::where('isfor_tallyvotes',0)->get()->pluck('id')->toArray();
+    return $this->where('candidate_id',$candidateid)
 					->where('survey_detail_id',$surveydetailid)
-          ->whereIn('question_id',[5,7,9,10,11,12])
-          ->has('surveyanswer')
+          ->whereIn('question_id',$questionidsfortally)
+          //->has('surveyanswer')
 					->whereHas('voter',function($q)use($agebrackets,$brgyid,$civilstatusid,$empstatusid,$occstatusid,$voterstatusid,$genderid){
 
                 if(count($agebrackets)>0){

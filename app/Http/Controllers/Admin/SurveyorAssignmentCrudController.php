@@ -10,6 +10,8 @@ use App\Http\Requests\SurveyorAssignmentRequest as UpdateRequest;
 use App\Models\AssignmentDetail;
 use App\Models\Sitio;
 use App\Models\SurveyDetail;
+use App\Models\TallyVote;
+use App\Models\PositionCandidate;
 /**
  * Class SurveyorAssignmentCrudController
  * @package App\Http\Controllers\Admin
@@ -200,16 +202,55 @@ class SurveyorAssignmentCrudController extends CrudController
 		return $this->crud->delete($id);
 	}
 	public function showDetailsRow($id){
+    $tallypoll = new TallyVote;
+    $surveydetailid = $this->crud->getEntry($id)->survey_detail_id;
+    $tally = array();
 		$areas = AssignmentDetail::where('assignment_id',$id)
 										->with('barangay')
 										->get();
 		$result = "<h4>Assigned Areas: #".$id."</h4><div class='col-lg-8'>";
 		foreach($areas as $area){
-			$result .= "<div class='col-lg-2'>".$area->barangay->name."</div>".
-						"<div class='col-lg-2'>quota: ".$area->quota."</div>".
-						"<div class='col-lg-2'>count: ".$area->getSurveyCount()."</div>".
+			//$result .= "<div id='brgy_'".$area->id." class='col-lg-4' style='border: 1px solid grey; cursor: pointer;'><i id='ibrgy_".$area->id."' class='fa fa-plus-square'></i> ".$area->barangay->name."</div>".
+      $result .= "<div class='col-lg-4' style='border: 1px solid grey;'>".$area->barangay->name."</div>".
+        		"<div class='col-lg-1'>quota: ".$area->quota."</div>".
+						"<div class='col-lg-1'>count: ".$area->getSurveyCount()."</div>".
 						"<div class='col-lg-2'>progress: </div>".
-						"<div class='col-lg-4'>".$area->getProgressBar()."</div>";		}
+						"<div class='col-lg-4'>".$area->getProgressBar()."</div>";
+      //       "<div class='col-lg-12' id='dbrgy_".$area->id."'>";
+      //
+      // $positions = PositionCandidate::with('candidates')->get();
+      // foreach($positions as $position){
+      //   $i = 1;
+      //   $result .= "<div class='col-lg-12'>".$position->name."</div>";
+      //   foreach($position->candidates as $candidate){
+      //     $tallycandidate[$candidate->id] = $candidate->full_name;
+      //     $tally[$position->id][$candidate->id][$surveydetailid]=$tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+      //   }
+      //   arsort($tally[$position->id]);
+      //   foreach($tally[$position->id] as $key => $sortedtally){
+      //     $result .= "<div class='col-lg-12'>".
+      //                "<div class='col-lg-1' style='text-align: right;'>".($i++)."</div>".
+      //                "<div class='col-lg-4' style='text-align: right;'>".$tallycandidate[$key]."</div>".
+      //                "<div class='col-lg-7'>".$sortedtally[$surveydetailid]."</div>".
+      //                "</div>";
+      //   }
+      // }
+      // $result .="</div>";
+
+      $positions = PositionCandidate::with('candidates')->get();
+      foreach($positions as $position){
+        $votes = 0;
+
+        foreach($position->candidates as $candidate){
+          $votes += $tallypoll->tallydetails($candidate->id,$surveydetailid,[],$area->barangay->id,0,0,0,0);
+        }
+
+        $result .= "<div class='col-lg-5' style='text-align: right;'>".$position->name."</div>".
+                     "<div class='col-lg-7'>".$votes."</div>";
+
+      }
+
+		}
 		$result .= "</div>";
 		return $result;
 

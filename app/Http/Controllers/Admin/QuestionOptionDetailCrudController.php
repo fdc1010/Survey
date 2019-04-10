@@ -50,42 +50,43 @@ class QuestionOptionDetailCrudController extends CrudController
         $this->crud->setFromDb();
 		$this->crud->removeColumns(['question_id','option_id','sub_option_id','description']);
 		$this->crud->removeFields(['question_id','option_id','sub_option_id']);
+    
 		$this->crud->addColumn([
-            'name' => 'question_id',
-            'type' => 'select',
-            'label' => 'Question',
+      'name' => 'question_id',
+      'type' => 'select',
+      'label' => 'Question',
 			'entity' => 'question', // the relationship name in your Model
 			'attribute' => 'question', // attribute on Article that is shown to admin
 			'model' => "App\Models\Question"
 	    ]);
 		$this->crud->addColumn([
-            'name' => 'option_id',
-            'type' => 'select',
-            'label' => 'Options',
+      'name' => 'option_id',
+      'type' => 'select',
+      'label' => 'Options',
 			'entity' => 'option', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"
 	    ]);
 		$this->crud->addColumn([
-            'name' => 'sub_option_id',
-            'type' => 'select',
-            'label' => 'Sub Option',
+      'name' => 'sub_option_id',
+      'type' => 'select',
+      'label' => 'Sub Option',
 			'entity' => 'suboption', // the relationship name in your Model
 			'attribute' => 'sub_option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionSubOption"
 	    ]);
 		$this->crud->addField([
-            'name' => 'question_id',
-            'type' => 'select2',
-            'label' => 'Question',
+      'name' => 'question_id',
+      'type' => 'select2',
+      'label' => 'Question',
 			'entity' => 'question', // the relationship name in your Model
 			'attribute' => 'question', // attribute on Article that is shown to admin
 			'model' => "App\Models\Question"
 	    ]);
 		$this->crud->addField([
-            'name' => 'option_id',
-            'type' => 'select2',
-            'label' => 'Options',
+      'name' => 'option_id',
+      'type' => 'select2',
+      'label' => 'Options',
 			'entity' => 'option', // the relationship name in your Model
 			'attribute' => 'option', // attribute on Article that is shown to admin
 			'model' => "App\Models\QuestionOption"

@@ -43,6 +43,7 @@ Route::group([
     CRUD::resource('optionposition', 'OptionPositionCrudController');
     CRUD::resource('gender', 'GenderCrudController');
     CRUD::resource('barangaysurveyable', 'BarangaySurveyableCrudController');
+    CRUD::resource('surveycandidate', 'SurveyCandidateCrudController');
     CRUD::resource('optionproblem', 'OptionProblemCrudController');
     CRUD::resource('agebracket', 'AgeBracketCrudController');
     CRUD::resource('statusdetail', 'StatusDetailCrudController');

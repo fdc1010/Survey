@@ -104,13 +104,17 @@ class SurveyorAssignment extends Model
 		return number_format((($this->getSurveyCount()/$this->quota)*100),2) . " %";
 	}
 	public function getSurveyCount(){
+    $questionidsfortally = Question::where('isfor_tallyvotes',1)->get()->pluck('id')->toArray();
 		$countsurvey = TallyVote::where('survey_detail_id',$this->survey_detail_id)
 										->where('user_id',$this->user_id)
+                    ->whereIn('question_id',$questionidsfortally)
+                    //->has('surveyanswer')
+                    ->has('voter')
 										->select(['voter_id'])
 										->groupBy('voter_id')
-										->get();
+										->get()->count();
 		if($countsurvey)
-			return count($countsurvey);
+			return $countsurvey; //count($countsurvey);
 		else
 			return 0;
 	}

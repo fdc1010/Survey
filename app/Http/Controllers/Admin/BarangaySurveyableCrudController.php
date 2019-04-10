@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\BarangaySurveyableRequest as StoreRequest;
 use App\Http\Requests\BarangaySurveyableRequest as UpdateRequest;
 use App\Models\SurveyorAssignment;
+use App\Models\SurveyDetail;
 /**
  * Class BarangaySurveyableCrudController
  * @package App\Http\Controllers\Admin
@@ -41,9 +42,9 @@ class BarangaySurveyableCrudController extends CrudController
         $this->crud->setFromDb();
         $this->crud->removeColumn(['barangay_id','count','progress','quota','survey_detail_id']);
     		$this->crud->addColumn([
-                'name' => 'barangay_id',
-                'type' => 'select',
-                'label' => 'Municipality',
+          'name' => 'barangay_id',
+          'type' => 'select',
+          'label' => 'Municipality',
     			'entity' => 'barangay', // the relationship name in your Model
     			'attribute' => 'name', // attribute on Article that is shown to admin
     			'model' => "App\Models\Barangay"
@@ -58,26 +59,28 @@ class BarangaySurveyableCrudController extends CrudController
     			//'pivot' => true
     		]);
         $this->crud->addColumn([
-                    'name' => 'quota',
-                    'label' => 'Quota',
-                    'type' => 'model_function',
-        			'function_name' => 'getQuota'
+          'name' => 'quota',
+          'label' => 'Quota',
+          'type' => 'model_function',
+    			'function_name' => 'getQuota'
   	    ]);
         $this->crud->addColumn([
-                    'name' => 'count',
-                    'label' => 'Count',
-                    'type' => 'model_function',
-        			'function_name' => 'getSurveyCount'
+          'name' => 'count',
+          'label' => 'Count',
+          'type' => 'model_function',
+    			'function_name' => 'getSurveyCount'
   	    ]);
     		$this->crud->addColumn([
-              'name' => 'progress',
-              'label' => 'Progress',
-              'type' => 'model_function',
-  			'function_name' => 'getProgressBar'
+          'name' => 'progress',
+          'label' => 'Progress',
+          'type' => 'model_function',
+    			'function_name' => 'getProgressBar'
   	    ])->afterColumn('count');
+        
         // add asterisk for fields that are required in BarangaySurveyableRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        // $this->crud->setRequiredFields(StoreRequest::class, 'create');
+        // $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
     }
 
     public function store(StoreRequest $request)
