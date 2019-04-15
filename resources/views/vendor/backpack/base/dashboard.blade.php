@@ -821,7 +821,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                              	<thead>
                                     <tr>
@@ -885,7 +885,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
             					           <thead>
                                     <tr>
@@ -973,7 +973,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                               <thead>
                                   <tr>
@@ -1061,7 +1061,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                               <th>Candidates</th>
@@ -1149,7 +1149,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                               <tr>
@@ -1241,7 +1241,7 @@
                    </div>
 
                    <div class="box-body">
-                         <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                         <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                                <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                   <thead>
                                      <tr>
@@ -1328,7 +1328,7 @@
                </div>
 
                    <div class="box-body">
-                         <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                         <div id="tblqualities" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                            <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                 <thead>
                                     </tr>
@@ -1417,7 +1417,7 @@
                     </div>
 
                     <div class="box-body">
-                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                          <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                                 <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                    <thead>
                                         <tr>
@@ -1500,7 +1500,7 @@
                       </div>
                   </div>
                   <div class="box-body">
-                        <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                        <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                             <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                 <thead>
                                       <tr>
@@ -1559,7 +1559,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblvotes" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                                   <tr>
@@ -1622,7 +1622,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblgender" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                                <tr>
@@ -1710,7 +1710,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblcivilstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                                 <tr>
@@ -1798,7 +1798,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblempstatus" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                               <th>Candidates</th>
@@ -1886,7 +1886,7 @@
                 </div>
 
                 <div class="box-body">
-                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                      <div id="tblagebracket" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                       		<table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                             <thead>
                               <tr>
@@ -1978,7 +1978,7 @@
                  </div>
 
                  <div class="box-body">
-                       <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:500px;">
+                       <div id="tblproblem" class="mCustomScrollbar custom-css" data-mcs-theme="dark" style="height:520px;">
                              <table class="table table-striped_dashboard table-hover display responsive nowrap" cellspacing="0">
                                 <thead>
                                    <tr>
